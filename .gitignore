@@ -1,0 +1,29 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+artifacts/*.json
+.DS_Store
+
+# Datasets — machine-local; keep code and docs visible to git
+data/**
+!data/**/
+!data/**/*.py
+!data/**/*.md
+
+# Scratch and generated outputs
+tmp/
+claude_outputs/
+
+# Feature/tile caches (regenerable)
+boxinst_tcd/cache/
+boxinst_tcd/tiles/
+boxinst_tcd/canopy_masks/
+dapt/cache/
+dino/efficiency/cache/
+
+# Model weights and checkpoints
+*.pth
+*.pt
+*.ckpt
+*.safetensors
