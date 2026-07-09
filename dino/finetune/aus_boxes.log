@@ -1,0 +1,7 @@
+=== aus head boxes viz Fri Jul  3 16:58:23 AEST 2026 ===
+[viz] ckpt step=400 val_f1=-1.0000 dev=mps
+[viz] image (4600, 4560, 3)
+[viz] predicted canopy fraction = 0.038  (25s)
+[viz] 165 crown boxes (connected components)
+>>> saved /Users/tompitts/dphil/CanopyAI2/dino/finetune/../../claude_outputs/BRU162_10cm_canopy_aushead_boxes.png  (canopy_frac=0.038)
+=== done Fri Jul  3 16:58:51 AEST 2026 ===

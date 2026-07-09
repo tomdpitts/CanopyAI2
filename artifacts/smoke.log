@@ -1,0 +1,19 @@
+[data] 133 azimuth tiles | acquisitions={np.str_('WON'): 41, np.str_('BRU'): 53, np.str_('NEON'): 39}
+[folds] effective_n (scenes) per fold = {0: 67, 1: 66}
+[fold 0 | rgb     ] AP50=0.0000  (9s)
+[fold 0 | correct ] AP50=0.0000  (7s)
+[fold 0 | shuffled] AP50=0.0000  (7s)
+[fold 1 | rgb     ] AP50=0.0000  (7s)
+[fold 1 | correct ] AP50=0.0000  (7s)
+[fold 1 | shuffled] AP50=0.0000  (7s)
+[seed 0 | correct fold0] AP50=0.0000  (7s)
+[seed 1 | correct fold0] AP50=0.0000  (7s)
+
+===== STEP 1 SUMMARY =====
+AP50 by rung/fold: {'rgb': [0.0, 0.0], 'correct': [0.0, 0.0], 'shuffled': [0.0, 0.0]}
+delta correct-shuffled (per fold): [0.0, 0.0]  mean=0.0000
+delta correct-rgb      (per fold): [0.0, 0.0]  mean=0.0000
+Nadeau-Bengio 2v3: mean=0.0000 CI=(0.0000,0.0000) dz=nan p=1.000
+seed floor: seed_std=0.0000  MDE=0.0000
+>>> verdict: |mean 2v3|=0.0000 vs MDE=0.0000 -> BELOW floor (underpowered / null)
+wall clock: 56.2s | artifact: artifacts/step1_signal_check.json

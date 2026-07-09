@@ -1,0 +1,5 @@
+=== eval step1500 on 439 test Wed Jul  1 12:06:24 AEST 2026 ===
+[eval] loaded step=1500 val_f1=0.9235 dev=mps
+
+>>> ckpt step 1500 on 439 test tiles: F1=0.8643 IoU=0.7610 (val was 0.9235) [57.8min]
+=== done Wed Jul  1 13:04:13 AEST 2026 ===

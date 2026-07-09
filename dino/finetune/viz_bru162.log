@@ -1,0 +1,6 @@
+=== viz BRU162 Thu Jul  2 14:50:41 AEST 2026 ===
+[viz] ckpt step=2000 val_f1=0.9047 dev=mps
+[viz] image (4600, 4560, 3)
+[viz] predicted canopy fraction = 0.481  (26s)
+>>> saved /Users/tompitts/dphil/CanopyAI2/dino/finetune/../../claude_outputs/BRU162_10cm_canopy.png  (canopy_frac=0.481)
+=== done Thu Jul  2 14:51:10 AEST 2026 ===

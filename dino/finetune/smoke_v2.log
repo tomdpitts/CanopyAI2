@@ -1,0 +1,7 @@
+=== v2 smoke Wed Jul  1 13:21:21 AEST 2026 ===
+[ftv2] event=init trainable_bb_M=25.2 decoder_M=2.51 dev=mps
+[ftv2] event=split n_bins=910 val_bins=138 km=2.0 n_train=3532 n_val=637 test=8 val_eval=6
+[ftv2] step=15 grouped_val_f1=0.4395 best=0.4395 improved=True
+[ftv2] step=30 grouped_val_f1=0.5173 best=0.5173 improved=True
+[ftv2] event=FINAL best_val_step=30 best_grouped_val_f1=0.5173 test_f1=0.8775 test_iou=0.7817 vs_frozen_0.874=0.0035 total_min=2.3
+=== done Wed Jul  1 13:23:40 AEST 2026 ===

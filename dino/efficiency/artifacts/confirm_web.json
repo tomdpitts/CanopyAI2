@@ -1,0 +1,236 @@
+{
+  "feat": "web",
+  "cfg": {
+    "offset_min": 2.0,
+    "offset_max": 20.0,
+    "offset_steps": 8,
+    "aggregation": "max",
+    "logsumexp_beta": 4.0,
+    "brightness_proxy": "greenness",
+    "azimuth_points_to": "shadow",
+    "n_channels": 1,
+    "shift_mode": "nearest",
+    "shift_order": 1,
+    "contrast_gain": 1.5,
+    "z_clip": 6.0
+  },
+  "all": [
+    {
+      "N": 6,
+      "tag": "all",
+      "ap_mean": {
+        "r1": 0.2450557212253715,
+        "r2": 0.23700061548585455,
+        "r3": 0.24258633926564188
+      },
+      "d23_mean": -0.005585723779787337,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": -0.005585723779787337,
+        "ci_low": -0.023521272118515582,
+        "ci_high": 0.01234982455894091,
+        "effect_size_dz": -0.91805400354381,
+        "p_value": 0.5264693401022453,
+        "n_folds": 25,
+        "statistic": -0.6427663686122884,
+        "df": 24,
+        "note": "correction_factor=2.0400 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": -0.005585723779787337,
+        "ci_low": -0.007891524831464063,
+        "ci_high": -0.0034043193225756162,
+        "effect_size_dz": -0.91805400354381,
+        "p_value": 9.999000099990002e-05,
+        "n_folds": 25,
+        "statistic": -0.005585723779787337,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.23700061548585455,
+        "seed_std": 0.033354616059550625,
+        "n_seeds": 25,
+        "paired_diff_std": 0.04717055039916394,
+        "minimum_detectable_effect": 0.026430463345710094,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    },
+    {
+      "N": 12,
+      "tag": "all",
+      "ap_mean": {
+        "r1": 0.2635445138491647,
+        "r2": 0.2549023159308964,
+        "r3": 0.2622586801998107
+      },
+      "d23_mean": -0.0073563642689142734,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": -0.0073563642689142734,
+        "ci_low": -0.014267029814412833,
+        "ci_high": -0.0004456987234157132,
+        "effect_size_dz": -2.2405176491873684,
+        "p_value": 0.03791519793872991,
+        "n_folds": 25,
+        "statistic": -2.197008310337582,
+        "df": 24,
+        "note": "correction_factor=1.0400 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": -0.0073563642689142734,
+        "ci_low": -0.008599327949997628,
+        "ci_high": -0.0060927283808895364,
+        "effect_size_dz": -2.2405176491873684,
+        "p_value": 9.999000099990002e-05,
+        "n_folds": 25,
+        "statistic": -0.0073563642689142734,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.2549023159308964,
+        "seed_std": 0.01188770415297954,
+        "n_seeds": 25,
+        "paired_diff_std": 0.01681175243862263,
+        "minimum_detectable_effect": 0.009419911424523962,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    },
+    {
+      "N": 20,
+      "tag": "all",
+      "ap_mean": {
+        "r1": 0.2630191325051829,
+        "r2": 0.25419446204135915,
+        "r3": 0.2635103729495899
+      },
+      "d23_mean": -0.009315910908230718,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": -0.009315910908230718,
+        "ci_low": -0.014533500627381431,
+        "ci_high": -0.004098321189080005,
+        "effect_size_dz": -2.9480424730493127,
+        "p_value": 0.0011629388378702923,
+        "n_folds": 25,
+        "statistic": -3.685053091311641,
+        "df": 24,
+        "note": "correction_factor=0.6400 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": -0.009315910908230718,
+        "ci_low": -0.010504736770415963,
+        "ci_high": -0.008101829181983442,
+        "effect_size_dz": -2.9480424730493127,
+        "p_value": 9.999000099990002e-05,
+        "n_folds": 25,
+        "statistic": -0.009315910908230718,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.25419446204135915,
+        "seed_std": 0.008775901645786505,
+        "n_seeds": 25,
+        "paired_diff_std": 0.012410999129523642,
+        "minimum_detectable_effect": 0.0069540943406572716,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    }
+  ],
+  "dryland": [
+    {
+      "N": 6,
+      "tag": "dryland",
+      "ap_mean": {
+        "r1": 0.24239434279769057,
+        "r2": 0.2501284469455254,
+        "r3": 0.244891516135801
+      },
+      "d23_mean": 0.005236930809724349,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": 0.005236930809724349,
+        "ci_low": -0.013062464232302234,
+        "ci_high": 0.02353632585175093,
+        "effect_size_dz": 0.6921758336071807,
+        "p_value": 0.5602780560120324,
+        "n_folds": 25,
+        "statistic": 0.5906476110665215,
+        "df": 24,
+        "note": "correction_factor=1.3733 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": 0.005236930809724349,
+        "ci_low": 0.002347450969239662,
+        "ci_high": 0.008188327833363632,
+        "effect_size_dz": 0.6921758336071807,
+        "p_value": 0.0017998200179982,
+        "n_folds": 25,
+        "statistic": 0.005236930809724349,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.2501284469455254,
+        "seed_std": 0.020416790605595793,
+        "n_seeds": 25,
+        "paired_diff_std": 0.02887370217456517,
+        "minimum_detectable_effect": 0.01617842744089161,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    },
+    {
+      "N": 12,
+      "tag": "dryland",
+      "ap_mean": {
+        "r1": 0.24637645815752537,
+        "r2": 0.25320976514384086,
+        "r3": 0.24787733552451705
+      },
+      "d23_mean": 0.005332429619323807,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": 0.005332429619323807,
+        "ci_low": -0.003916908214448869,
+        "ci_high": 0.014581767453096483,
+        "effect_size_dz": 1.0002536414963559,
+        "p_value": 0.24573197052366869,
+        "n_folds": 25,
+        "statistic": 1.1898791047635495,
+        "df": 24,
+        "note": "correction_factor=0.7067 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": 0.005332429619323807,
+        "ci_low": 0.0034058066360396484,
+        "ci_high": 0.007303684003231225,
+        "effect_size_dz": 1.0002536414963559,
+        "p_value": 9.999000099990002e-05,
+        "n_folds": 25,
+        "statistic": 0.005332429619323807,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.25320976514384086,
+        "seed_std": 0.01481041863592556,
+        "n_seeds": 25,
+        "paired_diff_std": 0.020945094899349162,
+        "minimum_detectable_effect": 0.011735893652397989,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+=== validate split Wed Jul  1 13:16:03 AEST 2026 ===
+[split] {'n_bins': 910, 'val_bins': 138, 'km': 2.0, 'n_train': 3532, 'n_val': 637}
+[split] val_clean=584 (excluded 53 probe-train); evaluating frozen probe on 120
+[split] 0/120
+[split] 40/120
+[split] 80/120
+
+>>> frozen probe on grouped-val: F1=0.8815  (439-test was 0.874; random-tile-val leaked to ~0.92)
+=== done Wed Jul  1 13:20:31 AEST 2026 ===

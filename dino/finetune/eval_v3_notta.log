@@ -1,0 +1,5 @@
+=== v3 no-TTA eval Wed Jul  1 22:42:55 AEST 2026 ===
+[eval] loaded step=2000 val_f1=0.9047 dev=mps
+
+>>> ckpt step 2000 on 439 test tiles [flips=False]: F1=0.8954 IoU=0.8106 (val was 0.9047) [40.1min]
+=== done Wed Jul  1 23:23:02 AEST 2026 ===

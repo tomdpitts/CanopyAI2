@@ -1,0 +1,16 @@
+=== train BRU head + viz Thu Jul  2 14:58:49 AEST 2026 ===
+[bru] SEED=0 dev=mps
+[bru] backbone=v3(frozen) head=forked-v3
+[bru] BRU tiles=53 crowns=160
+[bru] step 50/300 loss=0.2101
+[bru] step 100/300 loss=0.1879
+[bru] step 150/300 loss=0.1876
+[bru] step 200/300 loss=0.1949
+[bru] step 250/300 loss=0.0905
+[bru] step 300/300 loss=0.1283
+>>> saved /Users/tompitts/dphil/CanopyAI2/dino/finetune/ckpt/bru_head.pt  SEED=0  (151s)
+[viz] ckpt step=300 val_f1=-1.0000 dev=mps
+[viz] image (4600, 4560, 3)
+[viz] predicted canopy fraction = 0.056  (25s)
+>>> saved /Users/tompitts/dphil/CanopyAI2/dino/finetune/../../claude_outputs/BRU162_10cm_canopy_bruhead.png  (canopy_frac=0.056)
+=== done Thu Jul  2 15:01:49 AEST 2026 ===

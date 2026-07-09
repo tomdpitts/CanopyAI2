@@ -1,0 +1,236 @@
+{
+  "feat": "raw",
+  "cfg": {
+    "offset_min": 2.0,
+    "offset_max": 20.0,
+    "offset_steps": 8,
+    "aggregation": "max",
+    "logsumexp_beta": 4.0,
+    "brightness_proxy": "greenness",
+    "azimuth_points_to": "shadow",
+    "n_channels": 1,
+    "shift_mode": "nearest",
+    "shift_order": 1,
+    "contrast_gain": 1.5,
+    "z_clip": 6.0
+  },
+  "all": [
+    {
+      "N": 6,
+      "tag": "all",
+      "ap_mean": {
+        "r1": 0.024960639898269344,
+        "r2": 0.04680645600845922,
+        "r3": 0.02578257967517996
+      },
+      "d23_mean": 0.021023876333279255,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": 0.021023876333279255,
+        "ci_low": 0.004364564642037893,
+        "ci_high": 0.037683188024520614,
+        "effect_size_dz": 3.7201390369985274,
+        "p_value": 0.015541269960490768,
+        "n_folds": 25,
+        "statistic": 2.6046183016620885,
+        "df": 24,
+        "note": "correction_factor=2.0400 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": 0.021023876333279255,
+        "ci_low": 0.018825800088233598,
+        "ci_high": 0.0231942567006525,
+        "effect_size_dz": 3.7201390369985274,
+        "p_value": 9.999000099990002e-05,
+        "n_folds": 25,
+        "statistic": 0.021023876333279255,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.04680645600845922,
+        "seed_std": 0.004862016385518373,
+        "n_seeds": 25,
+        "paired_diff_std": 0.0068759295128802975,
+        "minimum_detectable_effect": 0.003852700496814429,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    },
+    {
+      "N": 12,
+      "tag": "all",
+      "ap_mean": {
+        "r1": 0.026717273944675855,
+        "r2": 0.04687982846887806,
+        "r3": 0.027121878832620867
+      },
+      "d23_mean": 0.019757949636257183,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": 0.019757949636257183,
+        "ci_low": 0.013859544511248921,
+        "ci_high": 0.025656354761265446,
+        "effect_size_dz": 7.050376245137623,
+        "p_value": 3.7753413578770674e-07,
+        "n_folds": 25,
+        "statistic": 6.913462702332263,
+        "df": 24,
+        "note": "correction_factor=1.0400 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": 0.019757949636257183,
+        "ci_low": 0.018652171001153715,
+        "ci_high": 0.02082986877736234,
+        "effect_size_dz": 7.050376245137623,
+        "p_value": 9.999000099990002e-05,
+        "n_folds": 25,
+        "statistic": 0.019757949636257183,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.04687982846887806,
+        "seed_std": 0.0029619136733526454,
+        "n_seeds": 25,
+        "paired_diff_std": 0.0041887784874336245,
+        "minimum_detectable_effect": 0.002347043978468728,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    },
+    {
+      "N": 20,
+      "tag": "all",
+      "ap_mean": {
+        "r1": 0.02750229141219288,
+        "r2": 0.046364607063761935,
+        "r3": 0.026664707846211774
+      },
+      "d23_mean": 0.019699899217550155,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": 0.019699899217550155,
+        "ci_low": 0.016343070348951026,
+        "ci_high": 0.023056728086149284,
+        "effect_size_dz": 9.689762630356874,
+        "p_value": 1.030584965810362e-11,
+        "n_folds": 25,
+        "statistic": 12.112203287946093,
+        "df": 24,
+        "note": "correction_factor=0.6400 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": 0.019699899217550155,
+        "ci_low": 0.01890671153573011,
+        "ci_high": 0.020472365055055633,
+        "effect_size_dz": 9.689762630356874,
+        "p_value": 9.999000099990002e-05,
+        "n_folds": 25,
+        "statistic": 0.019699899217550155,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.046364607063761935,
+        "seed_std": 0.002040320612206619,
+        "n_seeds": 25,
+        "paired_diff_std": 0.0028854490813719773,
+        "minimum_detectable_effect": 0.001616766298797875,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    }
+  ],
+  "dryland": [
+    {
+      "N": 6,
+      "tag": "dryland",
+      "ap_mean": {
+        "r1": 0.048988223467270886,
+        "r2": 0.1040744818158779,
+        "r3": 0.04204575274786321
+      },
+      "d23_mean": 0.062028729068014696,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": 0.062028729068014696,
+        "ci_low": 0.029625945746602877,
+        "ci_high": 0.09443151238942651,
+        "effect_size_dz": 4.630062944619056,
+        "p_value": 0.0005964182061301591,
+        "n_folds": 25,
+        "statistic": 3.950926173014688,
+        "df": 24,
+        "note": "correction_factor=1.3733 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": 0.062028729068014696,
+        "ci_low": 0.056872147824963956,
+        "ci_high": 0.06742588942645786,
+        "effect_size_dz": 4.630062944619056,
+        "p_value": 9.999000099990002e-05,
+        "n_folds": 25,
+        "statistic": 0.062028729068014696,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.1040744818158779,
+        "seed_std": 0.009962699233173186,
+        "n_seeds": 25,
+        "paired_diff_std": 0.014089384373397554,
+        "minimum_detectable_effect": 0.007894522198564487,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    },
+    {
+      "N": 12,
+      "tag": "dryland",
+      "ap_mean": {
+        "r1": 0.0483330546012105,
+        "r2": 0.10225032011547809,
+        "r3": 0.04176571318336056
+      },
+      "d23_mean": 0.060484606932117525,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": 0.060484606932117525,
+        "ci_low": 0.044147288527136466,
+        "ci_high": 0.07682192533709858,
+        "effect_size_dz": 6.423322698172976,
+        "p_value": 7.043331314925519e-08,
+        "n_folds": 25,
+        "statistic": 7.64103937704814,
+        "df": 24,
+        "note": "correction_factor=0.7067 (1/J + n_test/n_train)"
+      },
+      "perm_23": {
+        "name": "permutation",
+        "mean_delta": 0.060484606932117525,
+        "ci_low": 0.057143888909829826,
+        "ci_high": 0.0640788006551168,
+        "effect_size_dz": 6.423322698172976,
+        "p_value": 9.999000099990002e-05,
+        "n_folds": 25,
+        "statistic": 0.060484606932117525,
+        "df": null,
+        "note": "sampled n_perm=10000"
+      },
+      "mde": {
+        "mean_metric": 0.10225032011547809,
+        "seed_std": 0.007449748754409772,
+        "n_seeds": 25,
+        "paired_diff_std": 0.010535535724758372,
+        "minimum_detectable_effect": 0.005903240230276831,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    }
+  ]
+}

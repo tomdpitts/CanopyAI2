@@ -1,0 +1,10 @@
+{
+  "model": "facebook/dinov3-vitl16-pretrain-sat493m",
+  "eval_split": "sparse",
+  "crop": 512,
+  "train_tiles": 300,
+  "steps": 800,
+  "micro_f1": 0.7743383185612359,
+  "micro_iou": 0.6317716628395084,
+  "wall_clock_s": 876.5
+}

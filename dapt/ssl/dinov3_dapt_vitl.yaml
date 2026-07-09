@@ -1,0 +1,115 @@
+# DAPT continuation config: ViT-L/16, core objective (DINO+iBOT+KoLeo), Gram OFF.
+# Base = vitl_im1k_lin834 (SSLMetaArch + losses); student arch OVERRIDDEN to match the
+# RELEASED lvd1689m ViT-L (from dinov3_vitl16_lvd1689m_distilled.yaml) so the loaded
+# web weights sit under the correct geometry (ropenew / layernormbf16 / 4 storage
+# tokens / masked k-bias). Merged over ssl_default_config.yaml by the loader.
+#
+# KNOBS TO VERIFY ON THE BOX (see SPEC.md run order, pre-flight):
+#   * effective LR after sqrt_wrt_1024 scaling at the chosen batch (want ~1-2e-5)
+#   * batch_size_per_gpu that fits A100-40GB with ViT-L multi-crop (start 32, drop if OOM)
+#   * teacher .pth loads with 0 missing PARAMETERS under this exact arch
+#   * gram: if the schema offers simple anchor-to-checkpoint wiring, enable with
+#     anchor = the web teacher .pth; else run without — the 500-iter DCP trail +
+#     local probe checkpoint-selection is the collapse insurance either way
+MODEL:
+  META_ARCHITECTURE: SSLMetaArch
+  DEVICE: cuda
+  WEIGHTS: ''
+  DTYPE: float32
+compute_precision:
+  param_dtype: bf16
+  reduce_dtype: fp32
+  sharding_strategy: SHARD_GRAD_OP
+dino:
+  loss_weight: 1.0
+  global_ignore_diagonal: true
+  head_n_prototypes: 65536
+  head_bottleneck_dim: 256
+  head_norm_last_layer: false
+  head_nlayers: 3
+  head_hidden_dim: 2048
+  koleo_loss_weight: 0.1
+  koleo_topk: 1
+ibot:
+  loss_weight: 1.0
+  mask_sample_probability: 0.5
+  mask_ratio_min_max: [0.1, 0.5]
+  separate_head: true
+  head_n_prototypes: 65536
+  head_bottleneck_dim: 256
+  head_norm_last_layer: false
+  head_nlayers: 3
+  head_hidden_dim: 2048
+gram:
+  use_loss: false            # off unless preflight shows trivial anchor wiring (see
+                             # header note); insurance = DCP trail + probe selection
+train:
+  batch_size_per_gpu: 32     # conservative for 1x A100-40GB; verify no OOM
+  # root MUST be pool/tiles (pool/samples holds coverage thumbnails — never train)
+  dataset_path: AridPool:root=/vol/pool/tiles
+  output_dir: /vol/out
+  seed: 0
+  num_workers: 8
+  OFFICIAL_EPOCH_LENGTH: 500 # 1 "epoch" = 500 iters; with optim.epochs=10 -> 5000 iters
+  centering: sinkhorn_knopp
+  use_teacher_head: true
+  compile: true              # disable (=false) if torch.compile errors on the box
+student:
+  arch: vit_large
+  patch_size: 16
+  drop_path_rate: 0.1        # light reg for the small pool (released model used 0.0)
+  layerscale: 1.0e-05
+  ffn_layer: mlp
+  ffn_ratio: 4.0
+  qkv_bias: true
+  proj_bias: true
+  ffn_bias: true
+  norm_layer: layernormbf16          # match released ViT-L
+  n_storage_tokens: 4                # match released ViT-L (4 register tokens)
+  mask_k_bias: true                  # match released ViT-L (k has no bias)
+  in_chans: 3
+  pos_embed_type: ropenew            # match released ViT-L
+  pos_embed_rope_base: 100           # (pos_embed_grid_size is multidist-only, not in
+  pos_embed_rope_normalize_coords: separate   #  the SSL schema; grid is derived from
+  pos_embed_rope_rescale_coords: 2   #  img_size/patch. Verified equivalent by the
+  pos_embed_rope_dtype: bf16         #  HF-vs-native feature check in local_smoke.py)
+  # THE DAPT INIT LEVER: convert HF web weights first (dapt.ssl.convert_hf_to_dinov3)
+  resume_from_teacher_chkpt: /vol/dinov3_web_vitl_teacher.pth
+teacher:
+  momentum_teacher: 0.994            # slightly higher for stability on a tiny pool
+  final_momentum_teacher: 1.0
+  warmup_teacher_temp: 0.04
+  teacher_temp: 0.07
+  warmup_teacher_temp_epochs: 2
+optim:                       # v1 scheduler (schema-safe; 'schedules:' is 7B-only)
+  epochs: 10                 # x OFFICIAL_EPOCH_LENGTH(500) = 5000 iters total
+  optimizer: adamw
+  lr: 1.0e-04                # sqrt_wrt_1024 @ batch32/1gpu -> ~1.8e-5 effective (VERIFY)
+  min_lr: 1.0e-06
+  warmup_epochs: 1
+  weight_decay: 0.04
+  weight_decay_end: 0.04     # flat WD for a short continuation
+  clip_grad: 3.0
+  freeze_last_layer_epochs: 1
+  scaling_rule: sqrt_wrt_1024
+  patch_embed_lr_mult: 0.2
+  layerwise_decay: 0.9
+crops:
+  global_crops_scale: [0.32, 1.0]
+  local_crops_number: 8
+  local_crops_scale: [0.05, 0.32]
+  global_crops_size: 256     # DINOv3 pretrain resolution (224/96 was the DINOv2-era
+  local_crops_size: 112      # value); 512-px source tiles keep RRC native-res
+  horizontal_flips: true
+  # Normalization: ImageNet (repo default — no rgb_mean/std override), SETTLED
+  # 2026-07-07: web weights expect ImageNet-normed inputs; switching stats mid-
+  # continuation (arid std 0.127 vs 0.229 -> ~2x input amplification) would spend the
+  # short 5k-step budget re-adapting to the norm, and sat's domain stats didn't help
+  # it beat web. dapt-arm HF export keeps ImageNet stats too (self-consistent; dapt
+  # vs web then differs by WEIGHTS ONLY). Arid stats live in pool/manifest.json as a
+  # documented follow-up variant.
+evaluation:
+  eval_period_iterations: 999999999   # skip built-in benchmarks (no ImageNet on box)
+checkpointing:
+  period: 500                # DCP checkpoint every 500 iters -> step-sweep points
+  max_to_keep: 20            # keep the whole sweep (500,1000,...,5000)

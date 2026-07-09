@@ -1,0 +1,38 @@
+{"event": "init", "trainable_bb_M": 25.2, "decoder_M": 2.51, "dev": "mps"}
+{"event": "split", "val_fold": 0, "n_train": 3341, "n_val": 828, "test": 439, "val_eval": 100}
+{"phase": "warmup", "step": 100, "loss": 0.1542, "min": 2.7}
+{"phase": "warmup", "step": 200, "loss": 0.2036, "min": 5.4}
+{"phase": "warmup", "step": 250, "grouped_val_f1": 0.8918, "best": 0.8918, "improved": true, "since_improve": 0, "min": 10.7}
+{"phase": "warmup", "step": 300, "loss": 0.0413, "min": 12.0}
+{"phase": "warmup", "step": 400, "loss": 0.3421, "min": 14.7}
+{"phase": "warmup", "step": 400, "grouped_val_f1": 0.8951, "best": 0.8951, "improved": true, "since_improve": 0, "min": 18.5}
+{"event": "warmup_done", "best": 0.8951, "min": 18.5}
+{"phase": "joint", "step": 100, "loss": 0.0143, "lr_bb": 1e-05, "min": 21.4}
+{"phase": "joint", "step": 200, "loss": 0.0998, "lr_bb": 9.9e-06, "min": 24.4}
+{"phase": "joint", "step": 250, "grouped_val_f1": 0.8879, "best": 0.8951, "improved": false, "since_improve": 1, "min": 29.7}
+{"phase": "joint", "step": 300, "loss": 0.1089, "lr_bb": 9.7e-06, "min": 31.2}
+{"phase": "joint", "step": 400, "loss": 0.0007, "lr_bb": 9.4e-06, "min": 34.1}
+{"phase": "joint", "step": 500, "loss": 0.078, "lr_bb": 8.9e-06, "min": 36.8}
+{"phase": "joint", "step": 500, "grouped_val_f1": 0.8979, "best": 0.8979, "improved": true, "since_improve": 0, "min": 40.6}
+{"phase": "joint", "step": 600, "loss": 0.2376, "lr_bb": 8.4e-06, "min": 43.3}
+{"phase": "joint", "step": 700, "loss": 0.095, "lr_bb": 7.7e-06, "min": 46.2}
+{"phase": "joint", "step": 750, "grouped_val_f1": 0.8986, "best": 0.8986, "improved": true, "since_improve": 0, "min": 51.4}
+{"phase": "joint", "step": 800, "loss": 0.1213, "lr_bb": 7e-06, "min": 52.9}
+{"phase": "joint", "step": 900, "loss": 0.0539, "lr_bb": 6.2e-06, "min": 55.8}
+{"phase": "joint", "step": 1000, "loss": 0.5433, "lr_bb": 5.4e-06, "min": 58.7}
+{"phase": "joint", "step": 1000, "grouped_val_f1": 0.8892, "best": 0.8986, "improved": false, "since_improve": 1, "min": 62.4}
+{"phase": "joint", "step": 1100, "loss": 0.1446, "lr_bb": 4.6e-06, "min": 65.5}
+{"phase": "joint", "step": 1200, "loss": 0.1715, "lr_bb": 3.8e-06, "min": 68.4}
+{"phase": "joint", "step": 1250, "grouped_val_f1": 0.8986, "best": 0.8986, "improved": false, "since_improve": 2, "min": 73.6}
+{"phase": "joint", "step": 1300, "loss": 0.1714, "lr_bb": 3e-06, "min": 75.0}
+{"phase": "joint", "step": 1400, "loss": 0.1079, "lr_bb": 2.3e-06, "min": 77.9}
+{"phase": "joint", "step": 1500, "loss": 0.2334, "lr_bb": 1.6e-06, "min": 80.6}
+{"phase": "joint", "step": 1500, "grouped_val_f1": 0.9034, "best": 0.9034, "improved": true, "since_improve": 0, "min": 84.4}
+{"phase": "joint", "step": 1600, "loss": 0.6476, "lr_bb": 1.1e-06, "min": 87.3}
+{"phase": "joint", "step": 1700, "loss": 0.1197, "lr_bb": 6e-07, "min": 90.4}
+{"phase": "joint", "step": 1750, "grouped_val_f1": 0.9034, "best": 0.9034, "improved": true, "since_improve": 0, "min": 95.7}
+{"phase": "joint", "step": 1800, "loss": 0.1242, "lr_bb": 3e-07, "min": 97.1}
+{"phase": "joint", "step": 1900, "loss": 0.2232, "lr_bb": 1e-07, "min": 100.2}
+{"phase": "joint", "step": 2000, "loss": 0.2751, "lr_bb": 0.0, "min": 103.2}
+{"phase": "joint", "step": 2000, "grouped_val_f1": 0.9038, "best": 0.9038, "improved": true, "since_improve": 0, "min": 107.0}
+{"event": "FINAL", "best_ckpt_phase": "joint", "best_ckpt_step": 2000, "best_grouped_val_f1": 0.9038, "stopped_at": 2000, "test_f1": 0.8929, "test_iou": 0.8065, "vs_frozen_0.874": 0.0189, "vs_segformer_0.8945": -0.0016, "total_min": 147.2}

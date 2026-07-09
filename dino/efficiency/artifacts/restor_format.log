@@ -1,0 +1,17 @@
+=== restor-format eval Wed Jul  1 10:54:59 AEST 2026 ===
+[eval] loaded head /Users/tompitts/dphil/CanopyAI2/dino/efficiency/ckpt/probe_web_1x1.pt
+[eval] 0/439
+[eval] 50/439
+[eval] 100/439
+[eval] 150/439
+[eval] 200/439
+[eval] 250/439
+[eval] 300/439
+[eval] 350/439
+[eval] 400/439
+==================== TCD-439 (Restor format) ====================
+SEMANTIC   area-F1 = 0.8739   IoU = 0.7761
+INSTANCE   mAP50(segm, CC-derived) = 8.97   mAP50(bbox) = 9.02   [19164 pred instances]
+           (AP@[.5:.95] segm = 3.15)
+NOTE: CC-mAP50 is a semantic->instance lower bound, NOT a trained instance model.
+=== done Wed Jul  1 11:19:14 AEST 2026 ===

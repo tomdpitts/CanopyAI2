@@ -1,0 +1,7 @@
+=== ft smoke Wed Jul  1 10:52:34 AEST 2026 ===
+[ft] event=init trainable_bb_M=50.39 decoder_M=10.03 dev=mps
+[ft] event=data train=20 val=12 test=12
+[ft] step=30 val_f1=0.8542 best=0.8542 improved=True min=1.1
+[ft] step=60 val_f1=0.8497 best=0.8542 improved=False min=2.3
+[ft] event=FINAL best_val_step=30 best_val_f1=0.8542 test_f1=0.8516 test_iou=0.7416 total_min=3.8
+=== done Wed Jul  1 10:56:25 AEST 2026 ===

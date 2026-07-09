@@ -1,0 +1,40 @@
+{
+    // Keep the file watcher off the big dataset/cache trees — training jobs
+    // write thousands of files per hour here, overflowing FSEvents and
+    // forcing VS Code to rescan the whole 90 GB workspace.
+    "files.watcherExclude": {
+        "**/.venv/**": true,
+        "**/data/**": true,
+        "**/tmp/**": true,
+        "**/claude_outputs/**": true,
+        "**/boxinst_tcd/cache/**": true,
+        "**/boxinst_tcd/tiles/**": true,
+        "**/boxinst_tcd/canopy_masks/**": true,
+        "**/dapt/cache/**": true,
+        "**/dino/efficiency/cache/**": true
+    },
+    "search.exclude": {
+        "**/.venv/**": true,
+        "**/data/tcd/**": true,
+        "**/data/finetune/**": true,
+        "**/data/jansen/**": true,
+        "**/tmp/**": true,
+        "**/claude_outputs/**": true,
+        "**/boxinst_tcd/cache/**": true,
+        "**/boxinst_tcd/tiles/**": true,
+        "**/dapt/cache/**": true,
+        "**/dino/efficiency/cache/**": true
+    },
+    "python.analysis.exclude": [
+        "**/.venv",
+        "data/tcd",
+        "data/finetune",
+        "data/jansen",
+        "tmp",
+        "claude_outputs",
+        "boxinst_tcd/cache",
+        "boxinst_tcd/tiles",
+        "dapt/cache",
+        "dino/efficiency/cache"
+    ]
+}

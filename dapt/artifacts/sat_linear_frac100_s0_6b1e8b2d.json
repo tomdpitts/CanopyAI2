@@ -1,0 +1,31 @@
+{
+  "arm": "sat",
+  "capacity": "linear",
+  "frac": 1.0,
+  "seed": 0,
+  "best_epoch": 60,
+  "cfg_hash": "6b1e8b2d",
+  "val": {
+    "mAP50": 0.14003879462440896,
+    "mAP50_95": 0.035381303690930545,
+    "AP_small": 0.0,
+    "score_thr": 0.2,
+    "precision": 0.22366288492706646,
+    "recall": 0.40233236151603496,
+    "f1": 0.2875,
+    "tp": 138,
+    "fp": 479,
+    "fn": 205,
+    "count_mae": 8.303030303030303,
+    "strata_readable": {
+      "isolated": {
+        "recall": 0.32,
+        "n": 100
+      },
+      "touching": {
+        "recall": 0.436,
+        "n": 243
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+[data] 133 scenes | domains={'WON': 41, 'BRU': 53, 'NEON': 39} N_SWEEP=[10, 30, 60, 90] folds=5 seeds=3 steps=400 dev=mps
+[cache] 0/133
+[cache] 40/133
+[cache] 80/133
+[cache] 120/133
+[cache] done C=1024 k=2 (29s)
+[fold 0 N= 10] none=0.602 correct=0.602 shuffled=0.602 Δ(c-s)=-0.000
+[fold 0 N= 30] none=0.632 correct=0.633 shuffled=0.633 Δ(c-s)=+0.000
+[fold 0 N= 60] none=0.630 correct=0.631 shuffled=0.631 Δ(c-s)=+0.000

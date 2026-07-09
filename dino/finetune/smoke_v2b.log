@@ -1,0 +1,11 @@
+=== v2 smoke2 (phases+earlystop) Wed Jul  1 13:28:33 AEST 2026 ===
+[ftv2] event=init trainable_bb_M=25.2 decoder_M=2.51 dev=mps
+[ftv2] event=split n_bins=910 val_bins=138 km=2.0 n_train=3532 n_val=637 test=8 val_eval=6
+[ftv2] phase=warmup step=15 grouped_val_f1=0.5431 best=0.5431 improved=True since_improve=0 min=0.7
+[ftv2] phase=warmup step=20 grouped_val_f1=0.5337 best=0.5431 improved=False since_improve=1 min=1.1
+[ftv2] event=warmup_done best=0.5431 min=1.1
+[ftv2] phase=joint step=15 grouped_val_f1=0.4882 best=0.5431 improved=False since_improve=1 min=1.8
+[ftv2] phase=joint step=30 grouped_val_f1=0.5351 best=0.5431 improved=False since_improve=2 min=2.5
+[ftv2] event=EARLY_STOP step=30 best=0.5431 patience=2
+[ftv2] event=FINAL best_ckpt_phase=warmup best_ckpt_step=15 best_grouped_val_f1=0.5431 stopped_at=30 test_f1=0.827 test_iou=0.705 vs_frozen_0.874=-0.047 vs_segformer_0.8945=-0.0675 total_min=3.2
+=== done Wed Jul  1 13:31:49 AEST 2026 ===

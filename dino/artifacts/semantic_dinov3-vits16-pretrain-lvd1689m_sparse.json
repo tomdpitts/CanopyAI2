@@ -1,0 +1,10 @@
+{
+  "model": "facebook/dinov3-vits16-pretrain-lvd1689m",
+  "eval_split": "sparse",
+  "crop": 512,
+  "train_tiles": 30,
+  "steps": 80,
+  "micro_f1": 0.7395629616198565,
+  "micro_iou": 0.5867512133492279,
+  "wall_clock_s": 35.6
+}

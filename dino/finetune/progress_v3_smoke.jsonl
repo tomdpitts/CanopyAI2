@@ -1,0 +1,9 @@
+{"event": "init", "trainable_bb_M": 50.39, "decoder_M": 4.87, "dev": "mps"}
+{"event": "split", "val_fold": 0, "n_train": 3341, "n_val": 828, "test": 8, "val_eval": 6}
+{"phase": "warmup", "step": 15, "grouped_val_f1": 0.8559, "best": 0.8559, "improved": true, "since_improve": 0, "min": 0.7}
+{"phase": "warmup", "step": 20, "grouped_val_f1": 0.8691, "best": 0.8691, "improved": true, "since_improve": 0, "min": 1.1}
+{"event": "warmup_done", "best": 0.8691, "min": 1.1}
+{"phase": "joint", "step": 15, "grouped_val_f1": 0.9072, "best": 0.9072, "improved": true, "since_improve": 0, "min": 1.8}
+{"phase": "joint", "step": 30, "grouped_val_f1": 0.9099, "best": 0.9099, "improved": true, "since_improve": 0, "min": 2.4}
+{"phase": "joint", "step": 40, "grouped_val_f1": 0.9162, "best": 0.9162, "improved": true, "since_improve": 0, "min": 2.9}
+{"event": "FINAL", "tag": "v3_smoke", "flips": true, "best_ckpt_phase": "joint", "best_ckpt_step": 40, "best_grouped_val_f1": 0.9162, "stopped_at": 40, "test_f1": 0.8798, "test_iou": 0.7854, "vs_frozen_0.874": 0.0058, "vs_segformer_0.8945": -0.0147, "total_min": 5.1}

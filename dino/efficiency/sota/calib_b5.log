@@ -1,0 +1,14 @@
+=== segformer-b5 full calib Wed Jul  1 01:14:55 AEST 2026 ===
+[calib] restor/tcd-segformer-mit-b5 labels={0: '__background__', 1: 'tree'} tree_idx=1 dev=mps
+[calib] 0/439
+[calib] 50/439
+[calib] 100/439
+[calib] 150/439
+[calib] 200/439
+[calib] 250/439
+[calib] 300/439
+[calib] 350/439
+[calib] 400/439
+
+>>> restor/tcd-segformer-mit-b5 in MY protocol (439 tiles): F1=0.8945 IoU=0.8091
+=== done Wed Jul  1 01:24:04 AEST 2026 ===

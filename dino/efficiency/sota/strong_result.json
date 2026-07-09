@@ -1,0 +1,13 @@
+{
+  "model": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+  "layers": 4,
+  "train_tiles": 800,
+  "steps": 1500,
+  "scales": [
+    512,
+    768
+  ],
+  "micro_f1": 0.876261477962547,
+  "micro_iou": 0.7797734622230404,
+  "wall_clock_s": 4232.4
+}

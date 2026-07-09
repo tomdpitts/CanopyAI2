@@ -1,0 +1,42 @@
+[data] 133 azimuth tiles | acquisitions={np.str_('WON'): 41, np.str_('BRU'): 53, np.str_('NEON'): 39}
+[folds] effective_n (scenes) per fold = {0: 45, 1: 44, 2: 44}
+[fold 0 | rgb      | seed 0] AP50=0.5950  (179s)
+[fold 0 | rgb      | seed 1] AP50=0.5588  (177s)
+[fold 0 | rgb      | seed 2] AP50=0.5855  (176s)
+[fold 0 | correct  | seed 0] AP50=0.5728  (196s)
+[fold 0 | correct  | seed 1] AP50=0.5771  (195s)
+[fold 0 | correct  | seed 2] AP50=0.5719  (194s)
+[fold 0 | shuffled | seed 0] AP50=0.5696  (195s)
+[fold 0 | shuffled | seed 1] AP50=0.5903  (194s)
+[fold 0 | shuffled | seed 2] AP50=0.5166  (192s)
+[fold 1 | rgb      | seed 0] AP50=0.5254  (179s)
+[fold 1 | rgb      | seed 1] AP50=0.5152  (177s)
+[fold 1 | rgb      | seed 2] AP50=0.5050  (177s)
+[fold 1 | correct  | seed 0] AP50=0.5541  (196s)
+[fold 1 | correct  | seed 1] AP50=0.5649  (195s)
+[fold 1 | correct  | seed 2] AP50=0.5422  (207s)
+[fold 1 | shuffled | seed 0] AP50=0.5571  (247s)
+[fold 1 | shuffled | seed 1] AP50=0.5432  (313s)
+[fold 1 | shuffled | seed 2] AP50=0.5599  (307s)
+[fold 2 | rgb      | seed 0] AP50=0.6104  (224s)
+[fold 2 | rgb      | seed 1] AP50=0.5877  (279s)
+[fold 2 | rgb      | seed 2] AP50=0.5874  (299s)
+[fold 2 | correct  | seed 0] AP50=0.5840  (268s)
+[fold 2 | correct  | seed 1] AP50=0.5703  (267s)
+[fold 2 | correct  | seed 2] AP50=0.5418  (305s)
+[fold 2 | shuffled | seed 0] AP50=0.5669  (301s)
+[fold 2 | shuffled | seed 1] AP50=0.5852  (302s)
+[fold 2 | shuffled | seed 2] AP50=0.5953  (301s)
+
+===== STEP 1 SUMMARY =====
+  rgb      seeds/fold: [[0.595, 0.559, 0.585], [0.525, 0.515, 0.505], [0.61, 0.588, 0.587]] -> per-fold median [0.585, 0.515, 0.588]
+  correct  seeds/fold: [[0.573, 0.577, 0.572], [0.554, 0.565, 0.542], [0.584, 0.57, 0.542]] -> per-fold median [0.573, 0.554, 0.57]
+  shuffled seeds/fold: [[0.57, 0.59, 0.517], [0.557, 0.543, 0.56], [0.567, 0.585, 0.595]] -> per-fold median [0.57, 0.557, 0.585]
+collapses (AP50<0.05): 0  -> ACCEPTANCE MET (training stable)
+delta correct-shuffled (per fold): [0.0032, -0.003, -0.0149]  mean=-0.0049
+delta correct-rgb      (per fold): [-0.0127, 0.0389, -0.0174]  mean=0.0029
+Nadeau-Bengio 2v3: mean=-0.0049 CI=(-0.0414,0.0316) dz=-0.532 p=0.621
+permutation 2v3 p=0.778
+pooled seed_std=0.0159  MDE(pooled)=0.0363
+>>> VERDICT: |mean 2v3|=0.0049 vs MDE=0.0363 | CI_excludes_0=False -> no effect above floor (null/underpowered)
+wall clock: 6243.3s | artifact: artifacts/step1_signal_check.json

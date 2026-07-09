@@ -1,0 +1,76 @@
+=== bakeoff started Tue Jun 30 17:16:43 AEST 2026 ===
+>>> RUN model=facebook/dinov3-vitl16-pretrain-sat493m split=sparse
+[data] train=300 eval(sparse)=180 device=mps
+[train] step    0/800 loss=0.7961
+[train] step  100/800 loss=0.6270
+[train] step  200/800 loss=0.1571
+[train] step  300/800 loss=0.1642
+[train] step  400/800 loss=0.1633
+[train] step  500/800 loss=0.3659
+[train] step  600/800 loss=0.0157
+[train] step  700/800 loss=0.0779
+[eval] 0/180
+[eval] 50/180
+[eval] 100/180
+[eval] 150/180
+
+>>> facebook/dinov3-vitl16-pretrain-sat493m on sparse: F1=0.7743 IoU=0.6318 (876.5s)
+>>> RUN model=facebook/dinov3-vitl16-pretrain-lvd1689m split=sparse
+[data] train=300 eval(sparse)=180 device=mps
+[train] step    0/800 loss=0.6543
+[train] step  100/800 loss=0.2952
+[train] step  200/800 loss=0.1163
+[train] step  300/800 loss=0.0629
+[train] step  400/800 loss=0.1935
+[train] step  500/800 loss=0.0798
+[train] step  600/800 loss=0.0104
+[train] step  700/800 loss=0.0334
+[eval] 0/180
+[eval] 50/180
+[eval] 100/180
+[eval] 150/180
+
+>>> facebook/dinov3-vitl16-pretrain-lvd1689m on sparse: F1=0.8479 IoU=0.7360 (945.6s)
+>>> RUN model=facebook/dinov3-vitl16-pretrain-sat493m split=test
+[data] train=300 eval(test)=439 device=mps
+[train] step    0/800 loss=0.6932
+[train] step  100/800 loss=0.6558
+[train] step  200/800 loss=0.1580
+[train] step  300/800 loss=0.1565
+[train] step  400/800 loss=0.1624
+[train] step  500/800 loss=0.3849
+[train] step  600/800 loss=0.0142
+[train] step  700/800 loss=0.0749
+[eval] 0/439
+[eval] 50/439
+[eval] 100/439
+[eval] 150/439
+[eval] 200/439
+[eval] 250/439
+[eval] 300/439
+[eval] 350/439
+[eval] 400/439
+
+>>> facebook/dinov3-vitl16-pretrain-sat493m on test: F1=0.8204 IoU=0.6954 (1691.9s)
+>>> RUN model=facebook/dinov3-vitl16-pretrain-lvd1689m split=test
+[data] train=300 eval(test)=439 device=mps
+[train] step    0/800 loss=0.7085
+[train] step  100/800 loss=0.3106
+[train] step  200/800 loss=0.1224
+[train] step  300/800 loss=0.0642
+[train] step  400/800 loss=0.1901
+[train] step  500/800 loss=0.0819
+[train] step  600/800 loss=0.0095
+[train] step  700/800 loss=0.0331
+[eval] 0/439
+[eval] 50/439
+[eval] 100/439
+[eval] 150/439
+[eval] 200/439
+[eval] 250/439
+[eval] 300/439
+[eval] 350/439
+[eval] 400/439
+
+>>> facebook/dinov3-vitl16-pretrain-lvd1689m on test: F1=0.8740 IoU=0.7763 (1239.7s)
+=== bakeoff finished Tue Jun 30 18:36:08 AEST 2026 ===

@@ -1,0 +1,22 @@
+=== strong head v2 (stable) Wed Jul  1 02:13:59 AEST 2026 ===
+[strong] train=800 test=439 layers=4 dev=mps
+[strong] step 0/1500 loss=2.0315
+[strong] step 200/1500 loss=0.1290
+[strong] step 400/1500 loss=0.3095
+[strong] step 600/1500 loss=0.1013
+[strong] step 800/1500 loss=0.1020
+[strong] step 1000/1500 loss=0.0245
+[strong] step 1200/1500 loss=0.1177
+[strong] step 1400/1500 loss=0.1047
+[strong] eval 0/439
+[strong] eval 50/439
+[strong] eval 100/439
+[strong] eval 150/439
+[strong] eval 200/439
+[strong] eval 250/439
+[strong] eval 300/439
+[strong] eval 350/439
+[strong] eval 400/439
+
+>>> STRONG frozen DINOv3 multi-layer: F1=0.8763 IoU=0.7798 (vs SegFormer-b5 matched 0.878) [4232.4s]
+=== done Wed Jul  1 03:24:33 AEST 2026 ===

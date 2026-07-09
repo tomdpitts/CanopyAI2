@@ -1,0 +1,25 @@
+=== viz Wed Jul  1 09:22:46 AEST 2026 ===
+[viz] training 1x1 probe on 300 tiles (mps)...
+[train] step    0/800 loss=0.7843
+[train] step  100/800 loss=0.3086
+[train] step  200/800 loss=0.1223
+[train] step  300/800 loss=0.0652
+[train] step  400/800 loss=0.1885
+[train] step  500/800 loss=0.0821
+[train] step  600/800 loss=0.0098
+[train] step  700/800 loss=0.0337
+[viz] saved trained head -> /Users/tompitts/dphil/CanopyAI2/dino/efficiency/ckpt/probe_web_1x1.pt
+[viz] selected 10 tiles
+[viz] 1/10 tcd_val_tile_106 F1=0.636
+[viz] 2/10 tcd_val_tile_125 F1=0.559
+[viz] 3/10 tcd_val_tile_131 F1=0.930
+[viz] 4/10 tcd_val_tile_144 F1=0.881
+[viz] 5/10 tcd_val_tile_150 F1=0.869
+[viz] 6/10 tcd_val_tile_16 F1=0.904
+[viz] 7/10 tcd_val_tile_200 F1=0.892
+[viz] 8/10 tcd_val_tile_207 F1=0.920
+[viz] 9/10 tcd_val_tile_213 F1=0.852
+[viz] 10/10 tcd_val_tile_21 F1=0.953
+
+>>> saved /Users/tompitts/dphil/CanopyAI2/dino/efficiency/viz/probe_preds.png  mean F1 (these 10 tiles)=0.840
+=== done Wed Jul  1 09:27:38 AEST 2026 ===

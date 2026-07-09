@@ -1,0 +1,6 @@
+[data] 133 azimuth tiles | acquisitions={np.str_('WON'): 41, np.str_('BRU'): 53, np.str_('NEON'): 39}
+[folds] effective_n (scenes) per fold = {0: 45, 1: 44, 2: 44}
+[fold 0 | rgb     ] AP50=0.6651  (418s)
+[fold 0 | correct ] AP50=0.6596  (439s)
+[fold 0 | shuffled] AP50=0.6535  (439s)
+[fold 1 | rgb     ] AP50=0.6250  (424s)

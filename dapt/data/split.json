@@ -1,0 +1,1008 @@
+{
+  "seed": 20260702,
+  "ratios": [
+    0.6,
+    0.2,
+    0.2
+  ],
+  "csv": "data/finetune/phase22X_combined.csv",
+  "n_tiles": 166,
+  "tiles": {
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2022_LAJA_2_703000_1997000_image_y8400_x9200.png": {
+      "domain": "NEON",
+      "site": "LAJA",
+      "n_boxes": 2,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2022_LAJA_2_704000_1998000_image_y3200_x4800.png": {
+      "domain": "NEON",
+      "site": "LAJA",
+      "n_boxes": 7,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2022_LAJA_2_704000_1998000_image_y3600_x2400.png": {
+      "domain": "NEON",
+      "site": "LAJA",
+      "n_boxes": 19,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2022_LAJA_2_704000_1998000_image_y5600_x8400.png": {
+      "domain": "NEON",
+      "site": "LAJA",
+      "n_boxes": 13,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2022_LAJA_2_704000_1998000_image_y9600_x4800.png": {
+      "domain": "NEON",
+      "site": "LAJA",
+      "n_boxes": 15,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2024_LENO_8_381000_3519000_image_y2800_x9200.png": {
+      "domain": "NEON",
+      "site": "LENO",
+      "n_boxes": 71,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2024_LENO_8_381000_3519000_image_y400_x6400.png": {
+      "domain": "NEON",
+      "site": "LENO",
+      "n_boxes": 22,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2024_LENO_8_381000_3519000_image_y8400_x6800.png": {
+      "domain": "NEON",
+      "site": "LENO",
+      "n_boxes": 7,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2025_CLBJ_9_635000_3691000_image_y1200_x4000.png": {
+      "domain": "NEON",
+      "site": "CLBJ",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2025_CLBJ_9_635000_3691000_image_y4800_x800.png": {
+      "domain": "NEON",
+      "site": "CLBJ",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2025_CLBJ_9_635000_3691000_image_y5600_x4000.png": {
+      "domain": "NEON",
+      "site": "CLBJ",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/2025_CLBJ_9_635000_3691000_image_y800_x2800.png": {
+      "domain": "NEON",
+      "site": "CLBJ",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/DCFS_2019_WOOD_3_492000_5222000_image_y0_x0.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 3,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/DCFS_2019_WOOD_3_492000_5222000_image_y2000_x800.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 1,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/DCFS_2019_WOOD_3_492000_5222000_image_y3600_x0.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 10,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/DCFS_2019_WOOD_3_492000_5222000_image_y400_x1600.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 6,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/DCFS_2019_WOOD_3_492000_5222000_image_y5200_x5200.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 1,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/DCFS_2019_WOOD_3_492000_5222000_image_y6000_x2400.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 1,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/DCFS_2019_WOOD_3_492000_5222000_image_y800_x2800.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 7,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/DCFS_2019_WOOD_3_494000_5220000_image_y6400_x7600.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 2,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/DCFS_2019_WOOD_3_494000_5220000_image_y6800_x6000.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 5,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/JORN_2019_JORN_3_318000_3617000_image_y2800_x3600.png": {
+      "domain": "NEON",
+      "site": "JORN",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/JORN_2019_JORN_3_323000_3620000_image_y2400_x4800.png": {
+      "domain": "NEON",
+      "site": "JORN",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/JORN_2019_JORN_3_323000_3620000_image_y4000_x800.png": {
+      "domain": "NEON",
+      "site": "JORN",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5182000_image_y5200_x5600.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 26,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5183000_image_y1200_x3200.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5183000_image_y5200_x5200.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5183000_image_y5200_x8800.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5183000_image_y5600_x7200.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5183000_image_y5600_x9600.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 2,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5183000_image_y6000_x9600.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 5,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5183000_image_y7200_x6800.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5183000_image_y800_x4400.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 0,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/NOGP_2019_NOGP_3_352000_5183000_image_y8400_x9600.png": {
+      "domain": "NEON",
+      "site": "NOGP",
+      "n_boxes": 3,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y2000_x6400.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 3,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y2000_x7600.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y2400_x6400.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 3,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y3200_x6000.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y3200_x8400.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y3200_x9200.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 2,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y3600_x5600.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 3,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y400_x2400.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 4,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y4800_x2800.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 2,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y4800_x5200.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 9,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_494000_3905000_image_y5600_x8800.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 14,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_496000_3906000_image_y5600_x0.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 2,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_496000_3906000_image_y8000_x9600.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 9,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_496000_3906000_image_y8800_x5200.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_496000_3906000_image_y8800_x7600.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 14,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/OAES_2021_OAES_5_496000_3906000_image_y9600_x4000.png": {
+      "domain": "NEON",
+      "site": "OAES",
+      "n_boxes": 5,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/ONAQ_2021_ONAQ_3_374000_4446000_image_y2800_x1200.png": {
+      "domain": "NEON",
+      "site": "ONAQ",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/ONAQ_2021_ONAQ_3_375000_4446000_image_y4800_x2800.png": {
+      "domain": "NEON",
+      "site": "ONAQ",
+      "n_boxes": 0,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/ONAQ_2021_ONAQ_3_375000_4446000_image_y5600_x8000.png": {
+      "domain": "NEON",
+      "site": "ONAQ",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/ONAQ_2021_ONAQ_3_375000_4446000_image_y7600_x7600.png": {
+      "domain": "NEON",
+      "site": "ONAQ",
+      "n_boxes": 0,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/ONAQ_2021_ONAQ_3_375000_4446000_image_y8000_x7600.png": {
+      "domain": "NEON",
+      "site": "ONAQ",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/STER_2021_STER_3_664000_4485000_image_y7200_x3600.png": {
+      "domain": "NEON",
+      "site": "STER",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/STER_2021_STER_3_664000_4485000_image_y8800_x800.png": {
+      "domain": "NEON",
+      "site": "STER",
+      "n_boxes": 10,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/TOOL_2019_TOOL_3_404000_7607000_image_y2000_x5600.png": {
+      "domain": "NEON",
+      "site": "TOOL",
+      "n_boxes": 2,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/TOOL_2019_TOOL_3_404000_7607000_image_y2000_x7600.png": {
+      "domain": "NEON",
+      "site": "TOOL",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/TOOL_2019_TOOL_3_404000_7607000_image_y2000_x8800.png": {
+      "domain": "NEON",
+      "site": "TOOL",
+      "n_boxes": 0,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/TOOL_2019_TOOL_3_404000_7607000_image_y800_x6000.png": {
+      "domain": "NEON",
+      "site": "TOOL",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/TOOL_2019_TOOL_3_404000_7607000_image_y8400_x6800.png": {
+      "domain": "NEON",
+      "site": "TOOL",
+      "n_boxes": 2,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/TOOL_2019_TOOL_3_404000_7607000_image_y9200_x8400.png": {
+      "domain": "NEON",
+      "site": "TOOL",
+      "n_boxes": 3,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/WOOD_2021_WOOD_5_483000_5224000_image_y6800_x5600.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 0,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/WOOD_2021_WOOD_5_483000_5224000_image_y8000_x3600.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/WOOD_2021_WOOD_5_483000_5224000_image_y9600_x7200.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/WOOD_2021_WOOD_5_483000_5226000_image_y1200_x5600.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 0,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/WOOD_2021_WOOD_5_483000_5226000_image_y2400_x4000.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/WOOD_2021_WOOD_5_483000_5226000_image_y2400_x8400.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 0,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/WOOD_2021_WOOD_5_483000_5226000_image_y3600_x6000.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 5,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/WOOD_2021_WOOD_5_483000_5226000_image_y7200_x7600.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 0,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/manual_annotations/images/WOOD_2021_WOOD_5_483000_5226000_image_y8800_x3600.png": {
+      "domain": "NEON",
+      "site": "WOOD",
+      "n_boxes": 0,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1256_0_rot16.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 6,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1256_2000_rot82.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1256_2400_rot104.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 3,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1256_2800_rot28.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 9,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1256_3200_rot83.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 2,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1256_3600_rot36.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 3,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1256_4000_rot100.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 6,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1656_0_rot228.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1656_1200_rot131.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1656_2000_rot133.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1656_2400_rot75.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1656_3200_rot96.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1656_3600_rot337.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 5,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1656_4000_rot219.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 5,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_1656_400_rot233.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2056_1600_rot61.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 3,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2056_2800_rot262.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2056_4000_rot58.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2056_800_rot136.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2456_2000_rot356.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 6,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2456_4000_rot230.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2856_0_rot200.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 5,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2856_1200_rot246.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 2,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2856_2800_rot303.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 3,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2856_3200_rot279.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 3,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2856_3600_rot82.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 2,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_2856_400_rot11.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3256_1200_rot113.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 2,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3256_2000_rot96.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 2,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3256_2400_rot75.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 4,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3256_2800_rot339.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 5,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3256_3600_rot315.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 4,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3256_400_rot113.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3656_2000_rot235.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 2,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3656_2400_rot142.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3656_2800_rot329.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 5,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3656_3200_rot165.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 10,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_3656_400_rot95.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 3,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_456_1200_rot88.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 4,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_456_1600_rot202.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 3,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_456_2400_rot94.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 8,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_456_2800_rot210.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 3,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_456_3200_rot323.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 2,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_456_3600_rot143.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_456_4000_rot359.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 5,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_456_400_rot78.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_456_4400_rot183.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_856_1200_rot32.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 3,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_856_2000_rot16.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_856_2400_rot39.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 8,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_856_4000_rot225.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 4,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_856_4400_rot285.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/bru_tile_856_800_rot151.tif": {
+      "domain": "BRU",
+      "site": "BRU162",
+      "n_boxes": 1,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_12_rot230.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 21,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_13_rot9.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 36,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_14_rot99.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 34,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_15_rot80.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 50,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_18_rot265.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 46,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_19_rot243.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 36,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_21_rot321.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 22,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_22_rot31.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 36,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_23_rot151.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 22,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_24_rot10.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 27,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_25_rot78.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 17,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_26_rot181.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 38,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_27_rot9.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 21,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_28_rot71.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 44,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_29_rot233.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 34,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_30_rot196.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 42,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_31_rot79.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 30,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_32_rot212.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 39,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_34_rot291.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 32,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_35_rot2.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 43,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_36_rot290.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 31,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_38_rot251.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 21,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_39_rot122.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 25,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_3_rot55.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 19,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_40_rot344.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 18,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_41_rot121.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 27,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_42_rot33.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 33,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_44_rot34.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 32,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_46_rot305.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 45,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_47_rot217.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 26,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_48_rot290.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 28,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_49_rot262.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 42,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_4_rot193.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 27,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_50_rot350.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 13,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_51_rot136.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 51,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_52_rot198.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 31,
+      "partition": "test"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_54_rot298.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 32,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_5_rot222.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 51,
+      "partition": "train"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_7_rot310.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 35,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_8_rot207.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 29,
+      "partition": "val"
+    },
+    "/Users/tompitts/dphil/CanopyAI2/data/finetune/phase5_tiles/won_tile_9_rot253.tif": {
+      "domain": "WON",
+      "site": "WON003",
+      "n_boxes": 47,
+      "partition": "train"
+    }
+  }
+}

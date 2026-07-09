@@ -1,0 +1,18 @@
+=== aus-only head (train+val_fixed) Fri Jul  3 16:49:59 AEST 2026 ===
+[bru] SEED=0 dev=mps
+[bru] backbone=web(frozen) head=fresh hidden=128
+[bru] domains=WON,BRU tiles=94 crowns=1493
+[bru] step 50/400 loss=0.3303
+[bru] step 100/400 loss=0.4311
+[bru] step 150/400 loss=0.5065
+[bru] step 200/400 loss=0.2010
+[bru] step 250/400 loss=0.1542
+[bru] step 300/400 loss=0.3541
+[bru] step 350/400 loss=0.2394
+[bru] step 400/400 loss=0.2409
+>>> saved /Users/tompitts/dphil/CanopyAI2/dino/finetune/ckpt/aus_head.pt  SEED=0  (197s)
+[viz] ckpt step=400 val_f1=-1.0000 dev=mps
+[viz] image (4600, 4560, 3)
+[viz] predicted canopy fraction = 0.038  (25s)
+>>> saved /Users/tompitts/dphil/CanopyAI2/dino/finetune/../../claude_outputs/BRU162_10cm_canopy_aushead.png  (canopy_frac=0.038)
+=== done Fri Jul  3 16:53:46 AEST 2026 ===

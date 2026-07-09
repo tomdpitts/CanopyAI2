@@ -1,0 +1,136 @@
+{
+  "label": "disc_raw_ctr",
+  "feat_tag": "raw",
+  "include_raw": false,
+  "cfg": {
+    "offset_min": 2.0,
+    "offset_max": 20.0,
+    "offset_steps": 8,
+    "aggregation": "max",
+    "logsumexp_beta": 4.0,
+    "brightness_proxy": "luminance",
+    "azimuth_points_to": "shadow",
+    "n_channels": 1,
+    "shift_mode": "nearest",
+    "shift_order": 1,
+    "contrast_gain": 1.5,
+    "z_clip": 6.0
+  },
+  "n_grid": [
+    6,
+    12,
+    24
+  ],
+  "n_draws": 12,
+  "n_test_scenes": 30,
+  "curve": [
+    {
+      "N": 6,
+      "ap_mean": {
+        "r1": 0.03542973826609085,
+        "r2": 0.03228178359547998,
+        "r3": 0.03440333160502906
+      },
+      "ap_std": {
+        "r1": 0.0054576764263435185,
+        "r2": 0.00458814981415098,
+        "r3": 0.005231355647460281
+      },
+      "d23_mean": -0.00212154800954908,
+      "d21_mean": -0.0031479546706108786,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": -0.00212154800954908,
+        "ci_low": -0.009600767492931768,
+        "ci_high": 0.005357671473833609,
+        "effect_size_dz": -1.407628316836697,
+        "p_value": 0.5451423345091044,
+        "n_folds": 12,
+        "statistic": -0.6243292760422016,
+        "df": 11,
+        "note": "correction_factor=5.0833 (1/J + n_test/n_train)"
+      },
+      "mde": {
+        "mean_metric": 0.03228178359547998,
+        "seed_std": 0.00458814981415098,
+        "n_seeds": 12,
+        "paired_diff_std": 0.006488623693371912,
+        "minimum_detectable_effect": 0.0052476613693462435,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    },
+    {
+      "N": 12,
+      "ap_mean": {
+        "r1": 0.03855289615949702,
+        "r2": 0.03473234505275613,
+        "r3": 0.036778148529500086
+      },
+      "ap_std": {
+        "r1": 0.004726352408273078,
+        "r2": 0.005061018977474561,
+        "r3": 0.0054041634686446925
+      },
+      "d23_mean": -0.0020458034767439604,
+      "d21_mean": -0.0038205511067408923,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": -0.0020458034767439604,
+        "ci_low": -0.005539888489175948,
+        "ci_high": 0.001448281535688027,
+        "effect_size_dz": -2.0712750951286982,
+        "p_value": 0.2239504826423227,
+        "n_folds": 12,
+        "statistic": -1.2886873320879757,
+        "df": 11,
+        "note": "correction_factor=2.5833 (1/J + n_test/n_train)"
+      },
+      "mde": {
+        "mean_metric": 0.03473234505275613,
+        "seed_std": 0.005061018977474561,
+        "n_seeds": 12,
+        "paired_diff_std": 0.0071573616773721385,
+        "minimum_detectable_effect": 0.005788501869687975,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    },
+    {
+      "N": 24,
+      "ap_mean": {
+        "r1": 0.04518397014993494,
+        "r2": 0.042449945238928345,
+        "r3": 0.0446008717402113
+      },
+      "ap_std": {
+        "r1": 0.0017921406652011947,
+        "r2": 0.002466031599796954,
+        "r3": 0.002724885814940469
+      },
+      "d23_mean": -0.002150926501282969,
+      "d21_mean": -0.0027340249110066055,
+      "nb_23": {
+        "name": "nadeau-bengio",
+        "mean_delta": -0.002150926501282969,
+        "ci_low": -0.0036596486040731168,
+        "ci_high": -0.0006422043984928218,
+        "effect_size_dz": -3.623287538662221,
+        "p_value": 0.00944438294974497,
+        "n_folds": 12,
+        "statistic": -3.137859053697075,
+        "df": 11,
+        "note": "correction_factor=1.3333 (1/J + n_test/n_train)"
+      },
+      "mde": {
+        "mean_metric": 0.042449945238928345,
+        "seed_std": 0.002466031599796954,
+        "n_seeds": 12,
+        "paired_diff_std": 0.003487495333673473,
+        "minimum_detectable_effect": 0.002820504840955429,
+        "alpha": 0.05,
+        "power": 0.8
+      }
+    }
+  ]
+}
