@@ -47,7 +47,7 @@ HARD_TIMEOUT_S = 3 * 3600      # 3h ceiling -> ~$6-7 on A100-40GB, comfortably <
 @app.function(gpu="A100", volumes={"/vol": vol}, timeout=HARD_TIMEOUT_S, image=image,
               cpu=8, memory=32768)   # 8 vCPU for train.num_workers=8; 32 GiB RAM
 def train(max_iters: int = 5000, batch: int = 32, lr_peak: float = 1e-4,
-          seed: int = 0):
+          seed: int = 0, pool: str = "pool/tiles", tag: str = ""):
     """Pre-flight, then a single resumable DAPT run. Re-invoking resumes from the last
     DCP checkpoint (budget-safe: a timeout/kill loses no completed sweep points)."""
     repo = "/opt/dinov3"
@@ -56,10 +56,14 @@ def train(max_iters: int = 5000, batch: int = 32, lr_peak: float = 1e-4,
     import torch
     assert torch.cuda.is_available(), \
         "no CUDA torch in image -- fix image before burning GPU time"
-    eff_lr = lr_peak * math.sqrt(batch * 1 / 1024)   # sqrt_wrt_1024, world=1
-    print(f"[preflight] effective peak LR = {eff_lr:.2e} (want ~1-2e-5); "
-          f"gpu={torch.cuda.get_device_name(0)}")
-    assert 5e-6 <= eff_lr <= 5e-5, f"effective LR {eff_lr:.2e} outside continuation band"
+    # Repo convention (train.py build_schedulers_v2 / config.py): sqrt_wrt_1024 is
+    # lr * 4 * sqrt(batch*world/1024) — note the FACTOR 4 (missed in run-1's
+    # preflight: run-1 trained at eff 7.07e-5, ~4x the intended band; healthy in
+    # logs, covered by the DCP trail + val selection).
+    eff_lr = lr_peak * 4 * math.sqrt(batch * 1 / 1024)
+    print(f"[preflight] effective peak LR = {eff_lr:.2e} (continuation target ~1-2e-5;"
+          f" pass --lr-peak 2.5e-5 for eff 1.77e-5); gpu={torch.cuda.get_device_name(0)}")
+    assert 5e-6 <= eff_lr <= 1e-4, f"effective LR {eff_lr:.2e} outside sane band"
     subprocess.run(["python", "/opt/dapt_ssl/apply_repo_patches.py", repo], check=True)
 
     cfg = "/opt/dapt_ssl/dinov3_dapt_vitl.yaml"
@@ -88,7 +92,7 @@ print('PREFLIGHT OK (0 missing params)')
     # ---- training (single node, 1 GPU). Resumes if <out_dir>/ckpt exists. ----
     # Seed-scoped output dir: prevents a different-seed invocation from silently
     # RESUMING another seed's DCP checkpoints. Resume = re-run with the SAME seed.
-    out_dir = f"/vol/out_s{seed}"
+    out_dir = f"/vol/out_s{seed}{tag}"        # tag distinguishes variants (e.g. _shuf)
     cmd = ["torchrun", "--nproc_per_node=1", "dinov3/train/train.py",
            "--config-file", cfg, "--output-dir", out_dir,
            "--seed", str(seed),               # -> setup_job/fix_random_seeds
@@ -98,7 +102,7 @@ print('PREFLIGHT OK (0 missing params)')
            f"optim.lr={lr_peak}",   # v1 scheduler key; 'schedules.*' is NOT in schema
            # NOTE root must be pool/tiles, NOT pool/ — AridPool walks recursively and
            # pool/samples/ holds coverage-thumbnail PNGs that must never train.
-           "train.dataset_path=AridPool:root=/vol/pool/tiles",
+           f"train.dataset_path=AridPool:root=/vol/{pool}",
            "student.resume_from_teacher_chkpt=/vol/dinov3_web_vitl_teacher.pth"]
     subprocess.run(cmd, check=True, cwd=repo)
     vol.commit()
@@ -106,11 +110,11 @@ print('PREFLIGHT OK (0 missing params)')
 
 
 @app.function(volumes={"/vol": vol}, timeout=1800, image=image, cpu=4, memory=16384)
-def extract(seed: int = 0, iters: str = ""):
+def extract(seed: int = 0, iters: str = "", tag: str = ""):
     """CPU-only: teacher-backbone .pth per DCP checkpoint -> /vol/export/.
 
     iters: comma-separated iteration dirs (e.g. "999,1999,4999"); default = all
-    found under /vol/out_s<seed>/ckpt/. Then download with:
+    found under /vol/out_s<seed><tag>/ckpt/. Then download with:
         modal volume get dinov3-dapt-arid-vol /export dapt/ssl/export
     """
     import glob
@@ -118,7 +122,7 @@ def extract(seed: int = 0, iters: str = ""):
     sys.path.insert(0, "/opt/dapt_ssl")
     from dcp_extract import extract as dcp_extract
 
-    ckpt_root = f"/vol/out_s{seed}/ckpt"
+    ckpt_root = f"/vol/out_s{seed}{tag}/ckpt"
     dirs = sorted(glob.glob(os.path.join(ckpt_root, "*")),
                   key=lambda p: int(os.path.basename(p)))
     if iters:
@@ -129,7 +133,7 @@ def extract(seed: int = 0, iters: str = ""):
     os.makedirs("/vol/export", exist_ok=True)
     for d in dirs:
         it = os.path.basename(d)
-        out = f"/vol/export/teacher_s{seed}_i{it}.pth"
+        out = f"/vol/export/teacher_s{seed}{tag}_i{it}.pth"
         if os.path.exists(out):
             print(f"skip {out} (exists)")
             continue

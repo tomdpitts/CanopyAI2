@@ -1,0 +1,16 @@
+[frac 0.25 dapt_s42_i999] test mAP50 0.020+/-0.015 95%CI[0.007,0.045]
+[frac 0.25 web] test mAP50 0.021+/-0.016 95%CI[0.008,0.046]
+[frac 0.25 sat] test mAP50 0.050+/-0.037 95%CI[0.020,0.101]
+  paired dapt_s42_i999-web gap=-0.001 CI[-0.005,+0.003] P>0=0.25
+
+[frac 0.50 dapt_s42_i999] test mAP50 0.166+/-0.039 95%CI[0.099,0.243]
+[frac 0.50 web] test mAP50 0.175+/-0.047 95%CI[0.102,0.260]
+[frac 0.50 sat] test mAP50 0.160+/-0.037 95%CI[0.097,0.234]
+  paired dapt_s42_i999-web gap=-0.009 CI[-0.023,+0.008] P>0=0.16
+
+[frac 1.00 dapt_s42_i999] test mAP50 0.483+/-0.009 95%CI[0.348,0.568]
+[frac 1.00 web] test mAP50 0.450+/-0.015 95%CI[0.317,0.537]
+[frac 1.00 sat] test mAP50 0.354+/-0.027 95%CI[0.243,0.432]
+  paired dapt_s42_i999-web gap=+0.033 CI[+0.009,+0.058] P>0=1.00
+
+wrote dapt/artifacts/label_efficiency_3arm.json

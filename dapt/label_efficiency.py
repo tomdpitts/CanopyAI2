@@ -26,7 +26,7 @@ def main():
     ap.add_argument("--fracs", type=float, nargs="+", default=[0.25, 0.5, 1.0])
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2, 3, 4])
     ap.add_argument("--epochs", type=int, default=60)
-    ap.add_argument("--out", default="dapt/artifacts/label_efficiency.json")
+    ap.add_argument("--out", default="dapt/artifacts/labeff/label_efficiency.json")
     args = ap.parse_args()
 
     curve = {arm: [] for arm in args.arms}
@@ -58,6 +58,7 @@ def main():
     out = {"capacity": args.capacity, "fracs": args.fracs, "seeds": args.seeds,
            "curve": curve}
     out_path = args.out if os.path.isabs(args.out) else os.path.join(REPO, args.out)
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     json.dump(out, open(out_path, "w"), indent=2)
     print(f"wrote {os.path.relpath(out_path, REPO)}")
 

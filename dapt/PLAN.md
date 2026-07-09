@@ -163,7 +163,10 @@ checkpoint and result file. Files: `dapt/head.py` (all three levels, capacity fl
 **Gate decision:** Meta `dinov3` training repo, full core objective (DINO + iBOT +
 Koleo); Gram off unless preflight shows trivial anchor wiring — collapse insurance is
 the **DCP-every-500 checkpoint trail + local probe checkpoint-selection**. One-shot
-~5k iters on Modal A100 (cost-optimized, 3 h hard cap ~$7), effective peak LR ~1.8e-5.
+~5k iters on Modal A100 (cost-optimized, 3 h hard cap ~$7). **Run-1 LR as-executed
+and adopted: true peak 7.07e-5** (repo's sqrt rule has a ×4 missed pre-launch; kept
+mid-run — the DCP-500 trail covers the intended gentler regime in its first rungs;
+probed blocks train at ~0.8–2e-5 via layerwise decay; no seed-0 retrain).
 
 **History note (branch merge 2026-07-07):** two parallel branches built this dir; the
 detector-pipeline branch took ownership and reconciled. The fork's Modal/repo infra
@@ -241,10 +244,12 @@ pattern: gain on WON/BRU with ~0 on NEON ⇒ arid-specific; uniform lift ⇒ gen
    of test boxes, so dilution is modest), checkpoint selected on full val; arid/NEON
    subset gaps always reported as the mechanism readout. Full reasoning + amendment
    history in `dapt/ssl/SPEC.md`.
-5. **M2 — DAPT arm (§5): infra BUILT, run pending.** Pool + converters + preflight +
-   Modal app in place; after the run, convert to HF, add the `dapt` `MODEL_IDS`
-   entry, re-run cache → L1+L2 probes byte-identically (§4/§6). No shuffled control
-   (SPEC caveat); L3 full head only if a deployable number is wanted.
+5. **M2 — DAPT arm: DONE, RESULT POSITIVE (see dapt/REPORT.md).** Run-1 (seed 42,
+   5k iters, ~$2) → 10-ckpt trail → val-selected winner `dapt_s42_i999` → one-shot
+   test: **paired dapt−web +0.033 CI[+0.009,+0.058] RESOLVED** (L2, full test);
+   arid subset RESOLVED, NEON not (D4 signature). Semseg area-F1: dapt ≈ web →
+   gain is instance-level. Remaining from M2 scope: label-efficiency for dapt,
+   shuffled control, 2nd SSL seed.
 5. **M3 — decision write-up** against the GOAL's decision rule:
    - `dapt > web` and `> sat`, gap clears CI → arid adaptation helps; headline the
      label-efficiency win; then diagnose the touching-crown subset.

@@ -63,7 +63,7 @@ def main():
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2, 3, 4])
     ap.add_argument("--frac", type=float, default=1.0)
     ap.add_argument("--epochs", type=int, default=60)
-    ap.add_argument("--out", default="dapt/artifacts/baseline_summary.json")
+    ap.add_argument("--out", default="dapt/artifacts/detection/baseline_summary.json")
     args = ap.parse_args()
 
     summary = {}
@@ -123,6 +123,7 @@ def main():
                   f"  -> {'RESOLVED' if resolved else 'not resolved'}")
 
     out_path = args.out if os.path.isabs(args.out) else os.path.join(REPO, args.out)
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     json.dump(summary, open(out_path, "w"), indent=2)
     print(f"wrote {os.path.relpath(out_path, REPO)}")
 

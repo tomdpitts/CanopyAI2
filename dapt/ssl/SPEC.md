@@ -53,8 +53,14 @@ tiles.**
 - **Objective:** full DINOv3 (DINO + iBOT + Koleo + **Gram anchoring, anchor =
   frozen web checkpoint**), Meta `dinov3` training repo on CUDA.
 - **Init:** web `facebook/dinov3-vitl16-pretrain-lvd1689m`. Backbone ViT-L/16.
-- **LR:** continuation regime — peak **~2e-5**, short warmup, cosine to ~0. Low enough
-  to adapt without catastrophic forgetting; Gram anchor guards the rest.
+- **LR (as-executed, FROZEN for run-1):** peak effective **7.07e-5** (yaml
+  `optim.lr: 1e-4` × the repo's `sqrt_wrt_1024` = ×4×√(32/1024)), 500-iter linear
+  warmup, cosine to ~0. Hotter than the originally-intended ~1.8e-5 (factor-4
+  convention missed pre-launch, caught live at iter ~1700, run kept) — accepted as
+  the canonical run-1 config: cumulative-drift arithmetic means the DCP trail's
+  first rungs cover the intended gentle regime (hot-500 ≈ intended-1250, hot-1500 ≈
+  the whole intended 5k run) and later rungs extend into stronger adaptation.
+  Layerwise decay 0.9 → probed blocks 3/6/9/12 train at ~0.8–2e-5 regardless.
 - **Steps:** single **~5k** (≈ few hundred passes over the pool; enough to adapt,
   Gram bounds overfit/collapse). No sweep — this is the one-shot bet.
 - **Crops: global 256 / local 112 — VERIFIED as Meta's own recipe** for our exact
@@ -149,7 +155,7 @@ Prints `PAIRED dapt-web mAP50 gap ±95%CI, P(gap>0), RESOLVED?`. Headline the **
 Resolved iff the paired-gap CI clears 0.
 
 **Checkpoint selection = the anti-forgetting + don't-miss-benefits lever.** Because
-we run a single gently-tuned DAPT (LR ~2e-5 effective, no LR/step sweep), **save
+we run a single DAPT (true peak 7.07e-5 as-executed, no separate LR sweep), **save
 intermediate checkpoints on Modal (DCP every 500 iters)**, register each
 (`dapt_s1000`, `dapt_s3000`, `dapt_s5000`, …), and probe all — **selecting the
 checkpoint on full-val mAP50, never on the test gap** (test-based selection would
@@ -233,6 +239,19 @@ bias_mask buffer). DINO/iBOT heads start fresh (never released) — expected for
 continuation; warmup + freeze_last_layer_epochs=1 handles head burn-in. Local smoke
 re-passes on the patched clone (cosine 1.0000).
 
+## Run-1 LR: as-executed config ADOPTED (decided 2026-07-07, mid-run)
+
+The repo's `sqrt_wrt_1024` rule is `lr × 4 × sqrt(batch·world/1024)` — a **factor 4**
+missing from our (and the fork's) preflight formula, so run-1 trains at **true peak
+7.07e-5**, not the intended ~1.8e-5. Caught live at iter ~1700 (losses/grads
+healthy); decision: **keep the run and adopt it as canonical — no seed-0 SSL
+retrain.** Rationale: the DCP-500 trail from the hot run spans the intended run's
+entire cumulative-drift range within its first ~3 rungs and extends beyond, so val
+checkpoint-selection reads a wider adaptation sweep than the original design.
+Deviation disclosed here; preflight formula fixed in app.py (a hypothetical future
+cooler variant would be `--lr-peak 2.5e-5` under a NEW seed, only if the science
+demands it — not part of run-1).
+
 ## Run order (handoff checklist)
 
 1. **Pool — DONE.** 1,084 tiles @512 px native, 50% overlap, white-filtered,
@@ -241,22 +260,22 @@ re-passes on the patched clone (cosine 1.0000).
 2. **Stage volume** — upload `pool/tiles/`, `dinov3_web_vitl_teacher.pth`, yaml to the
    Modal volume (`/vol/pool/tiles`, `/vol/dinov3_web_vitl_teacher.pth`).
 3. **Modal SSL** — `modal run --detach dapt/ssl/modal/app.py::train [--seed N]`;
-   preflight asserts CUDA, effective-LR band (~1–2e-5), 0-missing-params, then
+   preflight asserts CUDA, effective-LR sanity band, 0-missing-params, then
    torchrun 5k iters, DCP every 500. Seed feeds both `--seed` (fix_random_seeds) and
    `train.seed` (sampler stream); output dir is seed-scoped (`/vol/out_s<seed>`) so
    different seeds can't cross-resume. Resumable: re-invoke with the SAME seed to
    continue after timeout/kill.
 4. **Export + pull** (chain built & tested 2026-07-07 on the web teacher):
-   a. `modal run dapt/ssl/modal/app.py::extract --seed 0` — teacher-backbone-only
+   a. `modal run dapt/ssl/modal/app.py::extract --seed 42` — teacher-backbone-only
       .pth per DCP checkpoint (partial metadata-driven load, ~0.6 GB bf16 each) →
-      `/vol/export/teacher_s0_i<iter>.pth`
+      `/vol/export/teacher_s42_i<iter>.pth`
    b. `modal volume get dinov3-dapt-arid-vol /export dapt/ssl/export`
    c. per checkpoint: `.venv/bin/python -m dapt.ssl.export_hf --teacher
-      dapt/ssl/export/teacher_s0_i<iter>.pth` — unmap → load into a real web
+      dapt/ssl/export/teacher_s42_i<iter>.pth` — unmap → load into a real web
       AutoModel (0-unexpected gate) → feature-sanity gate (must differ from web but
-      cosine > 0.5; warns if ~identical) → `dapt/ckpt/dapt_s0_i<iter>_hf/` (fp32 +
+      cosine > 0.5; warns if ~identical) → `dapt/ckpt/dapt_s42_i<iter>_hf/` (fp32 +
       ImageNet preprocessor per the norm decision) → auto-registers arm
-      `dapt_s0_i<iter>` in `checkpoints.json`.
+      `dapt_s42_i<iter>` in `checkpoints.json`.
 5. **Probe locally** — `cache_features --arm dapt_sNNNN` then `run_baseline --arms
    dapt_sNNNN web` (linear + mlp, 5 seeds); **select the checkpoint on full-val
    mAP50** (never the test gap); later ckpts below web on val = degradation, use

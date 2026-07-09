@@ -33,7 +33,7 @@ def main():
     ap.add_argument("--capacity", default="mlp", choices=["linear", "mlp"])
     ap.add_argument("--seeds", type=int, nargs="+", default=[0, 1, 2, 3, 4])
     ap.add_argument("--epochs", type=int, default=60)
-    ap.add_argument("--out", default="dapt/artifacts/checkpoint_selection.json")
+    ap.add_argument("--out", default="dapt/artifacts/selection/checkpoint_selection.json")
     args = ap.parse_args()
 
     arms = args.arms
@@ -42,11 +42,15 @@ def main():
         arms = sorted(reg) + ["web"]          # web = the do-not-degrade reference
     split_path = os.path.join(REPO, "dapt/data/split.json")
 
+    n_tiles = len(json.load(open(split_path))["tiles"])
     rows = []
     for arm in arms:
         cache_dir = os.path.join(REPO, "dapt/cache", arm)
-        if not os.path.isdir(cache_dir) or not os.listdir(cache_dir):
-            print(f"[{arm}] caching features...", flush=True)
+        n_cached = len([f for f in os.listdir(cache_dir) if f.endswith(".npy")]) \
+            if os.path.isdir(cache_dir) else 0
+        if n_cached < n_tiles:   # empty OR partial (e.g. an interrupted earlier run)
+            print(f"[{arm}] caching features ({n_cached}/{n_tiles} present)...",
+                  flush=True)
             cache_arm(arm, split_path, os.path.join(REPO, "dapt/cache"))
         vals = []
         for s in args.seeds:
@@ -61,6 +65,7 @@ def main():
     winner = rows[0]["arm"]
     out = {"capacity": args.capacity, "ranking": rows, "winner": winner}
     out_path = os.path.join(REPO, args.out)
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     json.dump(out, open(out_path, "w"), indent=2)
     print(f"\nVAL RANKING: " + " > ".join(f"{r['arm']}({r['val_mAP50_mean']:.3f})"
                                           for r in rows))

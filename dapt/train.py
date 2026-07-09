@@ -130,7 +130,7 @@ def main():
     ap.add_argument("--bs", type=int, default=8)
     ap.add_argument("--device", default=None)
     ap.add_argument("--eval_every", type=int, default=10)
-    ap.add_argument("--out", default="dapt/artifacts")
+    ap.add_argument("--out", default="dapt/artifacts/probes")
     args = ap.parse_args()
 
     r = train_probe(args.arm, args.capacity, args.frac, args.seed, args.epochs,

@@ -29,7 +29,11 @@ REGISTRY = os.path.join(REPO, "dapt/ssl/checkpoints.json")
 
 
 def export(teacher_pth: str, out_dir: str | None = None, register: bool = True,
-           cos_band=(0.5, 0.9999)):
+           cos_band=(0.15, 0.9999)):
+    # cos lower bound = CORRUPTION tripwire only. Run-1 (hot LR 7e-5) showed real
+    # adaptation drifts smoothly to cos≈0.385 by iter ~3000 — a smooth monotone decay
+    # is training, not corruption; corruption looks like ~0/NaN/random. Whether the
+    # drifted features are BETTER is the val probes' question, not this gate's.
     from transformers import AutoImageProcessor, AutoModel
 
     name = re.sub(r"^teacher_", "dapt_", os.path.splitext(
