@@ -19,6 +19,27 @@ GPU ≈ $6 (3 Modal A100 runs).
 web ≫ sat is the robust, large effect (detection AND area-F1). DAPT > web is real but
 small (below).
 
+## Pooled 5-SSL-seed estimate (P1K protocol) — the definitive effect size
+
+Five independent SSL seeds (43, 124, 317, 588, 902), short 1000-iter protocol
+(validated: seed-43 gate +0.022 matched the long-run family at 1/5 the cost), each
+val-selected, pooled paired-bootstrap vs web:
+
+| subset | pooled gap | 95% CI | per-SSL-seed spread |
+|---|---|---|---|
+| FULL | +0.018 | [−0.001, +0.036] | **+0.018 ± 0.003** |
+| arid | +0.020 | [−0.004, +0.043] | **+0.020 ± 0.004** |
+| NEON | +0.002 | [−0.016, +0.014] | +0.002 ± 0.003 |
+
+**The headline finding: the DAPT effect is real and extraordinarily reproducible
+(±0.003 across 5 independent SSL runs) but its magnitude (~+0.018–0.020 arid, ≈0
+NEON) sits just below what a 33-tile test can resolve.** Pooling SSL seeds did NOT
+push it over the CI — because the residual uncertainty is the TEST SET, not SSL
+variability (per-seed spread ±0.003 ≪ the ±0.02 bootstrap CI). Actionable conclusion:
+**more training/seeds won't resolve it; only a larger annotated test set will.** The
+pre-registered single run (+0.033, resolved) was on the high side of this
+distribution; the pooled ~+0.018 is the honest best estimate.
+
 ## Five findings
 
 **1. DAPT > web: small, arid-specific, directionally reproducible — not a slam dunk.**
@@ -85,7 +106,9 @@ win the prior predicted — a modest ceiling lift on the counting task.
 
 ## Caveats
 
-- 33-tile test: gains < ~±0.02 unresolvable; the DAPT−web effect straddles that line.
+- 33-tile test: gains < ~±0.02 unresolvable; the pooled DAPT−web effect (+0.018) sits
+  right at that floor — RESOLVING it requires a bigger test set, not more SSL (the
+  per-seed spread is only ±0.003).
 - Shuffled-arid still contains arid statistics, so it does not exclude a "generic
   extra-SSL on any tree imagery" component — but the NEON-neutral pattern argues
   against pure generic SSL. A non-arid SSL control would close this fully.

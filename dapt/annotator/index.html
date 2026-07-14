@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crown Box Annotator</title>
+<style>
+  :root {
+    --bg: #14171c; --panel: #1d222a; --panel2: #232a34; --border: #323b48;
+    --fg: #d8dee7; --dim: #8a94a3; --accent: #4da3ff; --green: #46d16a;
+    --blue: #5ab8e8; --warn: #ffb347; --sel: #ffd400;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font: 13px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--fg);
+    display: flex; flex-direction: column;
+  }
+  header {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 8px 10px; background: var(--panel); border-bottom: 1px solid var(--border);
+  }
+  .btn {
+    display: inline-block; padding: 5px 12px; border-radius: 5px; cursor: pointer;
+    background: var(--panel2); border: 1px solid var(--border); color: var(--fg);
+    font: inherit; user-select: none; white-space: nowrap;
+  }
+  .btn:hover { border-color: var(--accent); }
+  .btn.primary { background: #2b5e9e; border-color: #3a77c2; }
+  .btn.primary:hover { background: #336fbb; }
+  header .spacer { flex: 1; }
+  header label.field { color: var(--dim); display: flex; align-items: center; gap: 5px; }
+  header input[type=text] {
+    width: 64px; padding: 4px 6px; background: var(--bg); color: var(--fg);
+    border: 1px solid var(--border); border-radius: 4px; font: inherit;
+  }
+  #progress { font-weight: 600; color: var(--green); white-space: nowrap; }
+  #main { flex: 1; display: flex; min-height: 0; }
+  #tileList {
+    width: 250px; min-width: 250px; overflow-y: auto;
+    background: var(--panel); border-right: 1px solid var(--border);
+  }
+  .tileItem {
+    display: flex; align-items: center; gap: 6px; padding: 6px 8px;
+    border-bottom: 1px solid #262c36; cursor: pointer; user-select: none;
+  }
+  .tileItem:hover { background: var(--panel2); }
+  .tileItem.current { background: #2a3c55; box-shadow: inset 3px 0 0 var(--accent); }
+  .tileItem .name {
+    flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    font-family: ui-monospace, Menlo, monospace; font-size: 11.5px;
+  }
+  .badge {
+    font-size: 10.5px; font-weight: 700; padding: 1px 7px; border-radius: 9px; white-space: nowrap;
+  }
+  .badge.todo  { background: #3a4250; color: var(--dim); }
+  .badge.boxes { background: #1e4a2c; color: var(--green); }
+  .badge.empty { background: #1d4055; color: var(--blue); }
+  #canvasWrap { flex: 1; position: relative; min-width: 0; background: #0c0e11; }
+  #cv { position: absolute; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; touch-action: none; }
+  .hud {
+    position: absolute; pointer-events: none; font-family: ui-monospace, Menlo, monospace;
+    font-size: 11.5px; color: #cfd6df; background: rgba(16,19,24,.75);
+    padding: 3px 8px; border-radius: 4px;
+  }
+  #hudZoom { top: 8px; right: 8px; }
+  #emptyBadge {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    pointer-events: none; display: none;
+    background: rgba(20,60,86,.92); border: 1px solid var(--blue); color: #bfe6fa;
+    font-weight: 700; padding: 6px 16px; border-radius: 6px; letter-spacing: .4px;
+  }
+  footer {
+    display: flex; align-items: center; gap: 14px; padding: 6px 12px;
+    background: var(--panel); border-top: 1px solid var(--border);
+    font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; color: var(--dim);
+    white-space: nowrap; overflow: hidden;
+  }
+  footer b { color: var(--fg); font-weight: 600; }
+  footer #boxCount { color: var(--green); font-weight: 700; }
+  #help {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 400px; max-width: 90vw;
+    overflow-y: auto; z-index: 20;
+    background: var(--panel); border-left: 1px solid var(--border);
+    padding: 16px 18px; box-shadow: -6px 0 24px rgba(0,0,0,.45);
+  }
+  #help h2 { font-size: 15px; margin-bottom: 10px; }
+  #help h3 { font-size: 12.5px; margin: 14px 0 6px; color: var(--accent); text-transform: uppercase; letter-spacing: .5px; }
+  #help ul { padding-left: 18px; display: grid; gap: 5px; }
+  #help li { color: #c6cdd8; }
+  #help .rules li strong { color: var(--warn); }
+  #help kbd {
+    font-family: ui-monospace, Menlo, monospace; font-size: 11px;
+    background: var(--panel2); border: 1px solid var(--border); border-bottom-width: 2px;
+    border-radius: 4px; padding: 0 5px; color: var(--fg);
+  }
+  #help table { border-collapse: collapse; width: 100%; }
+  #help td { padding: 3px 6px 3px 0; vertical-align: top; color: #c6cdd8; }
+  #help td:first-child { white-space: nowrap; }
+  #helpClose { position: absolute; top: 10px; right: 12px; }
+  #toast {
+    position: fixed; bottom: 48px; left: 50%; transform: translateX(-50%); z-index: 50;
+    background: #2e3742; border: 1px solid var(--border); color: var(--fg);
+    padding: 8px 18px; border-radius: 6px; box-shadow: 0 4px 18px rgba(0,0,0,.5);
+    display: none; max-width: 70vw;
+  }
+  #dropHint {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    color: var(--dim); font-size: 14px; text-align: center; pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <label class="btn primary">📁 Load tile folder<input type="file" id="folderInput" webkitdirectory multiple hidden></label>
+  <label class="btn">Load image files<input type="file" id="filesInput" accept=".png,.jpg,.jpeg,image/png,image/jpeg" multiple hidden></label>
+  <label class="btn">Import CSV<input type="file" id="importInput" accept=".csv,text/csv" hidden></label>
+  <button class="btn" id="exportBtn">⬇ Export CSV</button>
+  <label class="field" title="Used for tiles without a domain from an imported CSV">default domain <input type="text" id="domainInput" value="WON" spellcheck="false"></label>
+  <span class="spacer"></span>
+  <span id="progress">0/0 done</span>
+  <button class="btn" id="helpBtn">Help (?)</button>
+</header>
+
+<div id="main">
+  <aside id="tileList"></aside>
+  <main id="canvasWrap">
+    <canvas id="cv"></canvas>
+    <div class="hud" id="hudZoom">zoom 100%</div>
+    <div id="emptyBadge">∅ MARKED EMPTY — no crowns (press E to unmark)</div>
+    <div id="dropHint">Load a folder of PNG tiles to begin.<br>Everything runs locally; work autosaves to this browser.</div>
+  </main>
+</div>
+
+<footer>
+  <span id="fileInfo">no tile</span>
+  <span>boxes: <span id="boxCount">0</span></span>
+  <span id="selInfo"></span>
+  <span class="spacer" style="flex:1"></span>
+  <button class="btn" id="emptyBtn" style="font-size:11.5px;padding:2px 10px">Mark empty (E)</button>
+</footer>
+
+<div id="help" hidden>
+  <button class="btn" id="helpClose">✕</button>
+  <h2>Crown Box Annotator</h2>
+
+  <h3>Correctness rules (pipeline-critical)</h3>
+  <ul class="rules">
+    <li><strong>Exhaustive per tile</strong> — box <em>every</em> crown, or mark the tile empty. Partially annotated tiles corrupt the metric; the per-tile status column tracks this.</li>
+    <li><strong>Box each crown separately</strong>, even when crowns touch or overlap — overlapping boxes are expected and valid.</li>
+    <li><strong>Boxes tight</strong> to the crown's visible extent. Include edge-clipped crowns: box the visible part.</li>
+    <li><strong>Dryland crowns can be small (~20 px)</strong> — zoom in for tight placement.</li>
+  </ul>
+
+  <h3>Annotating</h3>
+  <ul>
+    <li>Click-drag on the image to draw a box (label is always <code>Tree</code>; no dialog — you're immediately ready to draw the next).</li>
+    <li>Click a box to select it; drag it to move, drag its handles to resize.</li>
+    <li><kbd>Shift</kbd>+drag always draws a <em>new</em> box, even starting inside an existing one (needed for overlapping crowns).</li>
+    <li>A tile is "done" when it has ≥1 box <em>or</em> is explicitly marked empty. "Unannotated" is a distinct third state.</li>
+    <li>Marking a tile empty requires zero boxes; drawing a box clears the empty mark.</li>
+  </ul>
+
+  <h3>Keyboard</h3>
+  <table>
+    <tr><td><kbd>A</kbd>/<kbd>D</kbd>, <kbd>←</kbd>/<kbd>→</kbd>, <kbd>↑</kbd>/<kbd>↓</kbd></td><td>previous / next tile</td></tr>
+    <tr><td><kbd>E</kbd></td><td>toggle "mark tile empty (no crowns)"</td></tr>
+    <tr><td><kbd>Delete</kbd> / <kbd>Backspace</kbd></td><td>delete selected box</td></tr>
+    <tr><td><kbd>Ctrl/Cmd</kbd>+<kbd>Z</kbd></td><td>undo (per tile) &nbsp;·&nbsp; +<kbd>Shift</kbd> = redo</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>deselect</td></tr>
+    <tr><td><kbd>F</kbd> or <kbd>0</kbd></td><td>fit tile to view</td></tr>
+    <tr><td><kbd>+</kbd> / <kbd>−</kbd></td><td>zoom in / out</td></tr>
+    <tr><td><kbd>?</kbd></td><td>toggle this help</td></tr>
+  </table>
+
+  <h3>View</h3>
+  <ul>
+    <li>Mouse wheel = zoom at cursor. Rendering is nearest-neighbour at native resolution — coordinates are always exact image pixels, at any zoom.</li>
+    <li>Pan: drag with middle or right mouse button, or hold <kbd>Space</kbd> and drag.</li>
+  </ul>
+
+  <h3>Data &amp; CSV</h3>
+  <ul>
+    <li>Work autosaves to this browser (localStorage), keyed by filename — refresh/crash safe. Reload the same folder to resume.</li>
+    <li><b>Export CSV</b> writes <code>image_path,xmin,ymin,xmax,ymax,label,domain</code>: one row per box (integer pixels, origin top-left), and exactly one all-blank-fields row per empty-marked tile. Unannotated tiles are excluded (with a warning).</li>
+    <li><b>Import CSV</b> restores boxes, empty marks and per-tile domains by filename (replaces that file's current annotations) — use it to resume on another machine or after clearing the browser. Imported per-tile domains are preserved on export; the "default domain" field only applies to tiles without one.</li>
+  </ul>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ---------- pure helpers (no DOM) — kept separate so they are testable ---------- */
+'use strict';
+
+function clamp(v, lo, hi) { return v < lo ? lo : v > hi ? hi : v; }
+
+function normBox(x1, y1, x2, y2) {
+  return [Math.min(x1, x2), Math.min(y1, y2), Math.max(x1, x2), Math.max(y1, y2)];
+}
+
+// Parse annotation CSV -> {rows: [{file, empty:true}|{file, box:[x1,y1,x2,y2]}, domain], badLines: [lineNo]}
+function parseAnnCSV(text) {
+  const lines = text.split(/\r?\n/);
+  const rows = [], badLines = [];
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (!line) continue;
+    if (i === 0 && /^image_path\s*,/i.test(line)) continue;
+    const parts = line.split(',').map(s => s.trim());
+    if (parts.length !== 7) { badLines.push(i + 1); continue; }
+    const [file, x1, y1, x2, y2, , domain] = parts;
+    if (!file) { badLines.push(i + 1); continue; }
+    if (x1 === '' && y1 === '' && x2 === '' && y2 === '') {
+      rows.push({ file, empty: true, domain });
+    } else {
+      const nums = [x1, y1, x2, y2].map(Number);
+      if (nums.some(n => !Number.isFinite(n)) || nums[0] >= nums[2] || nums[1] >= nums[3]) {
+        badLines.push(i + 1); continue;
+      }
+      rows.push({ file, box: nums.map(Math.round), domain });
+    }
+  }
+  return { rows, badLines };
+}
+
+// Build CSV text from a list of filenames + annotation map {name:{boxes,empty,domain?}} + default domain.
+// Per-tile domain (set by CSV import) wins over the default. Skips names with no entry /
+// neither boxes nor empty mark.
+function buildAnnCSV(names, annMap, domain) {
+  const out = ['image_path,xmin,ymin,xmax,ymax,label,domain'];
+  for (const name of names) {
+    const a = annMap[name];
+    if (!a) continue;
+    const dom = a.domain || domain;
+    if (a.empty) out.push(`${name},,,,,,${dom}`);
+    else for (const b of a.boxes) out.push(`${name},${b[0]},${b[1]},${b[2]},${b[3]},Tree,${dom}`);
+  }
+  return out.join('\n') + '\n';
+}
+</script>
+
+<script>
+'use strict';
+/* ---------- state ---------- */
+const LSKEY = 'crownAnnotator_v1';
+const CLICK_EPS = 3;      // css px: below this a drag is a click
+const HANDLE_HIT = 7;     // css px hit radius for resize handles
+const MIN_BOX = 2;        // min box side, image px
+
+let store = { domain: 'WON', tiles: {}, helpSeen: false };
+try {
+  const raw = localStorage.getItem(LSKEY);
+  if (raw) store = Object.assign(store, JSON.parse(raw));
+} catch (e) { console.warn('localStorage load failed', e); }
+
+let tiles = [];        // loaded images: {name, img, w, h}
+let cur = -1;          // current tile index
+let sel = -1;          // selected box index in current tile
+let view = { x: 0, y: 0, scale: 1 };  // image coords of viewport top-left, css-px-per-image-px
+let drag = null;       // active pointer interaction
+let spaceDown = false;
+const undoStacks = {}, redoStacks = {};   // per filename
+
+/* ---------- DOM ---------- */
+const $ = id => document.getElementById(id);
+const cv = $('cv'), ctx = cv.getContext('2d');
+const wrap = $('canvasWrap');
+
+/* ---------- persistence ---------- */
+let saveTimer = null;
+function save() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(flushSave, 250);
+}
+function flushSave() {
+  clearTimeout(saveTimer);
+  try { localStorage.setItem(LSKEY, JSON.stringify(store)); }
+  catch (e) { toast('⚠ Could not save to localStorage: ' + e.message); }
+}
+window.addEventListener('beforeunload', flushSave);
+
+/* ---------- annotation access ---------- */
+function ann(name) {
+  name = name ?? (cur >= 0 ? tiles[cur].name : null);
+  if (!name) return null;
+  if (!store.tiles[name]) store.tiles[name] = { boxes: [], empty: false };
+  return store.tiles[name];
+}
+function tileStatus(name) {
+  const a = store.tiles[name];
+  if (!a) return 'todo';
+  if (a.empty) return 'empty';
+  if (a.boxes.length) return 'boxes';
+  return 'todo';
+}
+
+/* ---------- undo / redo (per tile) ---------- */
+function ustack() { return undoStacks[tiles[cur].name] ??= []; }
+function rstack() { return redoStacks[tiles[cur].name] ??= []; }
+function snap(a) { return JSON.stringify({ boxes: a.boxes, empty: a.empty }); }
+function pushUndo() {
+  if (cur < 0) return;
+  const st = ustack();
+  st.push(snap(ann()));
+  if (st.length > 200) st.shift();
+  rstack().length = 0;
+}
+function restoreSnap(s) {
+  const a = ann(), d = JSON.parse(s);
+  a.boxes = d.boxes; a.empty = d.empty;
+  sel = -1; save(); render(); updateUI();
+}
+function undo() {
+  if (cur < 0) return;
+  const st = ustack();
+  if (!st.length) { toast('Nothing to undo on this tile'); return; }
+  rstack().push(snap(ann()));
+  restoreSnap(st.pop());
+}
+function redo() {
+  if (cur < 0) return;
+  const st = rstack();
+  if (!st.length) { toast('Nothing to redo'); return; }
+  ustack().push(snap(ann()));
+  restoreSnap(st.pop());
+}
+
+/* ---------- file loading ---------- */
+async function loadFiles(fileList) {
+  const files = [...fileList]
+    .filter(f => /\.(png|jpe?g)$/i.test(f.name))
+    .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+  if (!files.length) { toast('No PNG/JPG files found in selection'); return; }
+  const loaded = [], failed = [];
+  for (const f of files) {
+    try {
+      const img = await createImageBitmap(f);
+      loaded.push({ name: f.name, img, w: img.width, h: img.height });
+    } catch (e) { failed.push(f.name); }
+  }
+  if (!loaded.length) { toast('Could not decode any images'); return; }
+  tiles = loaded;
+  cur = -1;
+  $('dropHint').style.display = 'none';
+  gotoTile(0, true);
+  toast(`Loaded ${loaded.length} tile(s)` + (failed.length ? ` — ${failed.length} failed to decode` : ''));
+}
+$('folderInput').addEventListener('change', e => { loadFiles(e.target.files); e.target.value = ''; });
+$('filesInput').addEventListener('change', e => { loadFiles(e.target.files); e.target.value = ''; });
+
+/* ---------- CSV import / export ---------- */
+$('importInput').addEventListener('change', async e => {
+  const f = e.target.files[0];
+  e.target.value = '';
+  if (!f) return;
+  const { rows, badLines } = parseAnnCSV(await f.text());
+  if (!rows.length) { toast('No valid rows found in CSV'); return; }
+  const byFile = {};
+  const domains = new Set();
+  for (const r of rows) {
+    if (r.domain) domains.add(r.domain);
+    const entry = byFile[r.file] ??= { boxes: [], empty: false };
+    if (r.domain) entry.domain = r.domain;
+    if (r.empty) entry.empty = true;
+    else { entry.boxes.push(r.box); entry.empty = false; }
+  }
+  for (const [file, entry] of Object.entries(byFile)) {
+    store.tiles[file] = entry;
+    delete undoStacks[file]; delete redoStacks[file];
+  }
+  sel = -1;
+  flushSave(); render(); updateUI();
+  let msg = `Imported ${rows.length} row(s) covering ${Object.keys(byFile).length} tile(s)`;
+  if (domains.size) msg += ` (domains: ${[...domains].join(', ')} — kept per tile)`;
+  if (badLines.length) msg += ` — skipped ${badLines.length} malformed line(s): ${badLines.slice(0, 8).join(', ')}`;
+  toast(msg, 5000);
+});
+
+$('exportBtn').addEventListener('click', () => {
+  if (!tiles.length) { toast('Load tiles first'); return; }
+  const names = tiles.map(t => t.name);
+  const undone = names.filter(n => tileStatus(n) === 'todo');
+  if (undone.length &&
+      !confirm(`${undone.length} tile(s) are still unannotated (neither boxed nor marked empty) and will be EXCLUDED from the CSV:\n\n${undone.join('\n')}\n\nExport anyway?`)) return;
+  const csv = buildAnnCSV(names, store.tiles, store.domain || 'WON');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'crown_annotations.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  toast(`Exported ${csv.trim().split('\n').length - 1} row(s) for ${names.length - undone.length} tile(s)`);
+});
+
+$('domainInput').addEventListener('input', e => {
+  store.domain = e.target.value.trim() || 'WON';
+  save();
+});
+
+/* ---------- coordinate transforms ---------- */
+function cssPos(e) {
+  const r = cv.getBoundingClientRect();
+  return { x: e.clientX - r.left, y: e.clientY - r.top };
+}
+function toImg(p) { return { x: p.x / view.scale + view.x, y: p.y / view.scale + view.y }; }
+function toCss(ix, iy) { return { x: (ix - view.x) * view.scale, y: (iy - view.y) * view.scale }; }
+
+function fitView() {
+  if (cur < 0) return;
+  const t = tiles[cur];
+  const cw = wrap.clientWidth, ch = wrap.clientHeight;
+  view.scale = clamp(Math.min(cw / t.w, ch / t.h) * 0.96, 0.1, 40);
+  view.x = t.w / 2 - cw / view.scale / 2;
+  view.y = t.h / 2 - ch / view.scale / 2;
+  render();
+}
+function zoomAt(css, factor) {
+  const before = toImg(css);
+  view.scale = clamp(view.scale * factor, 0.1, 40);
+  view.x = before.x - css.x / view.scale;
+  view.y = before.y - css.y / view.scale;
+  render();
+}
+
+/* ---------- rendering ---------- */
+let rafPending = false;
+function render() {
+  if (rafPending) return;
+  rafPending = true;
+  requestAnimationFrame(() => { rafPending = false; draw(); });
+}
+function draw() {
+  const dpr = window.devicePixelRatio || 1;
+  const cw = wrap.clientWidth, ch = wrap.clientHeight;
+  if (cv.width !== Math.round(cw * dpr) || cv.height !== Math.round(ch * dpr)) {
+    cv.width = Math.round(cw * dpr);
+    cv.height = Math.round(ch * dpr);
+  }
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.fillStyle = '#0c0e11';
+  ctx.fillRect(0, 0, cv.width, cv.height);
+  if (cur < 0) { $('hudZoom').textContent = ''; return; }
+
+  const t = tiles[cur], a = ann();
+  const s = view.scale;
+
+  // image, nearest-neighbour, native pixels
+  ctx.imageSmoothingEnabled = false;
+  ctx.setTransform(dpr * s, 0, 0, dpr * s, -view.x * s * dpr, -view.y * s * dpr);
+  ctx.drawImage(t.img, 0, 0);
+
+  // image border
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const o = toCss(0, 0);
+  ctx.strokeStyle = '#48566a'; ctx.lineWidth = 1;
+  ctx.strokeRect(o.x - .5, o.y - .5, t.w * s + 1, t.h * s + 1);
+
+  // boxes (css-px space, constant stroke width regardless of zoom)
+  for (let i = 0; i < a.boxes.length; i++) {
+    if (i === sel) continue;
+    drawBox(a.boxes[i], '#39e639', 'rgba(57,230,57,0.07)', 1.5);
+  }
+  if (sel >= 0 && a.boxes[sel]) {
+    drawBox(a.boxes[sel], '#ffd400', 'rgba(255,212,0,0.10)', 2);
+    for (const h of handlePts(a.boxes[sel])) {
+      ctx.fillStyle = '#fff'; ctx.strokeStyle = '#222'; ctx.lineWidth = 1;
+      ctx.fillRect(h.x - 3.5, h.y - 3.5, 7, 7);
+      ctx.strokeRect(h.x - 3.5, h.y - 3.5, 7, 7);
+    }
+  }
+  // live draw preview
+  if (drag && drag.type === 'draw' && drag.moved) {
+    const [x1, y1, x2, y2] = normBox(drag.startImg.x, drag.startImg.y, drag.curImg.x, drag.curImg.y);
+    ctx.setLineDash([5, 4]);
+    drawBox([x1, y1, x2, y2], '#ffd400', 'rgba(255,212,0,0.08)', 1.5);
+    ctx.setLineDash([]);
+  }
+  $('hudZoom').textContent = `zoom ${Math.round(s * 100)}%`;
+}
+function drawBox(b, stroke, fill, lw) {
+  const p1 = toCss(b[0], b[1]), p2 = toCss(b[2], b[3]);
+  ctx.fillStyle = fill;
+  ctx.fillRect(p1.x, p1.y, p2.x - p1.x, p2.y - p1.y);
+  ctx.strokeStyle = stroke; ctx.lineWidth = lw;
+  ctx.strokeRect(p1.x, p1.y, p2.x - p1.x, p2.y - p1.y);
+}
+function handlePts(b) {
+  const p1 = toCss(b[0], b[1]), p2 = toCss(b[2], b[3]);
+  const mx = (p1.x + p2.x) / 2, my = (p1.y + p2.y) / 2;
+  return [
+    { id: 'nw', x: p1.x, y: p1.y }, { id: 'n', x: mx, y: p1.y }, { id: 'ne', x: p2.x, y: p1.y },
+    { id: 'e', x: p2.x, y: my },
+    { id: 'se', x: p2.x, y: p2.y }, { id: 's', x: mx, y: p2.y }, { id: 'sw', x: p1.x, y: p2.y },
+    { id: 'w', x: p1.x, y: my },
+  ];
+}
+
+/* ---------- hit testing ---------- */
+function hitHandle(b, css) {
+  for (const h of handlePts(b)) {
+    if (Math.abs(css.x - h.x) <= HANDLE_HIT && Math.abs(css.y - h.y) <= HANDLE_HIT) return h.id;
+  }
+  return null;
+}
+function ptInBox(img, b) { return img.x >= b[0] && img.x <= b[2] && img.y >= b[1] && img.y <= b[3]; }
+function boxIndexAt(img) {
+  const a = ann();
+  let best = -1, bestArea = Infinity;
+  for (let i = 0; i < a.boxes.length; i++) {
+    const b = a.boxes[i];
+    if (ptInBox(img, b)) {
+      const area = (b[2] - b[0]) * (b[3] - b[1]);
+      if (area < bestArea) { bestArea = area; best = i; }
+    }
+  }
+  return best;
+}
+
+/* ---------- pointer interaction ---------- */
+cv.addEventListener('contextmenu', e => e.preventDefault());
+
+cv.addEventListener('pointerdown', e => {
+  if (cur < 0) return;
+  e.preventDefault();
+  try { cv.setPointerCapture(e.pointerId); } catch (err) { /* not critical */ }
+  const css = cssPos(e), img = toImg(css);
+
+  if (e.button === 1 || e.button === 2 || spaceDown) {
+    drag = { type: 'pan', startCss: css, origView: { ...view } };
+    cv.style.cursor = 'grabbing';
+    return;
+  }
+  if (e.button !== 0) return;
+
+  const a = ann();
+  if (sel >= 0 && a.boxes[sel]) {
+    const h = hitHandle(a.boxes[sel], css);
+    if (h) {
+      drag = { type: 'resize', handle: h, orig: [...a.boxes[sel]], undoPushed: false, startCss: css };
+      return;
+    }
+    if (!e.shiftKey && ptInBox(img, a.boxes[sel])) {
+      drag = { type: 'move', startImg: img, orig: [...a.boxes[sel]], undoPushed: false, startCss: css };
+      return;
+    }
+  }
+  drag = { type: 'draw', startImg: img, curImg: img, startCss: css, moved: false };
+});
+
+cv.addEventListener('pointermove', e => {
+  if (cur < 0) return;
+  const css = cssPos(e), img = toImg(css);
+
+  if (!drag) { updateHoverCursor(css, img); return; }
+  const t = tiles[cur], a = ann();
+  const movedFar = Math.hypot(css.x - drag.startCss.x, css.y - drag.startCss.y) > CLICK_EPS;
+
+  if (drag.type === 'pan') {
+    view.x = drag.origView.x - (css.x - drag.startCss.x) / view.scale;
+    view.y = drag.origView.y - (css.y - drag.startCss.y) / view.scale;
+    render();
+  } else if (drag.type === 'draw') {
+    drag.curImg = img;
+    if (movedFar) drag.moved = true;
+    render();
+  } else if (drag.type === 'move') {
+    if (!movedFar && !drag.undoPushed) return;
+    if (!drag.undoPushed) { pushUndo(); drag.undoPushed = true; }
+    const bw = drag.orig[2] - drag.orig[0], bh = drag.orig[3] - drag.orig[1];
+    const dx = Math.round(img.x - drag.startImg.x), dy = Math.round(img.y - drag.startImg.y);
+    const nx = clamp(drag.orig[0] + dx, 0, t.w - bw);
+    const ny = clamp(drag.orig[1] + dy, 0, t.h - bh);
+    a.boxes[sel] = [nx, ny, nx + bw, ny + bh];
+    save(); render(); updateBoxCount();
+  } else if (drag.type === 'resize') {
+    if (!drag.undoPushed) { pushUndo(); drag.undoPushed = true; }
+    a.boxes[sel] = resizeBox(drag.orig, drag.handle, img, t.w, t.h);
+    save(); render(); updateBoxCount();
+  }
+});
+
+function resizeBox(orig, handle, img, w, h) {
+  let [x1, y1, x2, y2] = orig;
+  const px = Math.round(clamp(img.x, 0, w));
+  const py = Math.round(clamp(img.y, 0, h));
+  if (handle.includes('w')) x1 = px;
+  if (handle.includes('e')) x2 = px;
+  if (handle.includes('n')) y1 = py;
+  if (handle.includes('s')) y2 = py;
+  let [a, b, c, d] = normBox(x1, y1, x2, y2);
+  if (c - a < 1) c = Math.min(a + 1, w);
+  if (d - b < 1) d = Math.min(b + 1, h);
+  return [a, b, c, d];
+}
+
+cv.addEventListener('pointerup', e => {
+  if (!drag) return;
+  const d = drag; drag = null;
+  const css = cssPos(e), img = toImg(css);
+
+  if (d.type === 'draw') {
+    const movedFar = Math.hypot(css.x - d.startCss.x, css.y - d.startCss.y) > CLICK_EPS;
+    if (!movedFar) {
+      // plain click: select / deselect
+      sel = boxIndexAt(img);
+    } else {
+      const t = tiles[cur];
+      let [x1, y1, x2, y2] = normBox(d.startImg.x, d.startImg.y, img.x, img.y);
+      x1 = Math.round(clamp(x1, 0, t.w)); x2 = Math.round(clamp(x2, 0, t.w));
+      y1 = Math.round(clamp(y1, 0, t.h)); y2 = Math.round(clamp(y2, 0, t.h));
+      if (x2 - x1 >= MIN_BOX && y2 - y1 >= MIN_BOX) {
+        pushUndo();
+        const a = ann();
+        a.boxes.push([x1, y1, x2, y2]);
+        a.empty = false;           // drawing a box clears the empty mark
+        sel = -1;                  // ready to draw the next box immediately
+        save();
+      }
+    }
+  } else if (d.type === 'resize') {
+    const a = ann(), b = a.boxes[sel];
+    if (b && (b[2] - b[0] < MIN_BOX || b[3] - b[1] < MIN_BOX)) a.boxes[sel] = d.orig; // reject degenerate
+    save();
+  } else if (d.type === 'move') {
+    save();
+  }
+  updateHoverCursor(css, img);
+  render(); updateUI();
+});
+
+cv.addEventListener('pointercancel', () => { drag = null; render(); });
+
+function updateHoverCursor(css, img) {
+  if (cur < 0) { cv.style.cursor = 'default'; return; }
+  if (spaceDown) { cv.style.cursor = 'grab'; return; }
+  const a = ann();
+  if (sel >= 0 && a.boxes[sel]) {
+    const h = hitHandle(a.boxes[sel], css);
+    if (h) {
+      const cursors = { n: 'ns-resize', s: 'ns-resize', e: 'ew-resize', w: 'ew-resize',
+                        nw: 'nwse-resize', se: 'nwse-resize', ne: 'nesw-resize', sw: 'nesw-resize' };
+      cv.style.cursor = cursors[h]; return;
+    }
+    if (ptInBox(img, a.boxes[sel])) { cv.style.cursor = 'move'; return; }
+  }
+  cv.style.cursor = 'crosshair';
+}
+
+cv.addEventListener('wheel', e => {
+  if (cur < 0) return;
+  e.preventDefault();
+  zoomAt(cssPos(e), Math.exp(-e.deltaY * 0.0016));
+}, { passive: false });
+
+/* ---------- tile navigation & actions ---------- */
+function gotoTile(i, forceFit = false) {
+  if (!tiles.length) return;
+  i = clamp(i, 0, tiles.length - 1);
+  const prev = cur >= 0 ? tiles[cur] : null;
+  if (i === cur && !forceFit) return;
+  cur = i; sel = -1;
+  const t = tiles[cur];
+  if (forceFit || !prev || prev.w !== t.w || prev.h !== t.h) fitView();
+  render(); updateUI();
+  const el = document.querySelector(`.tileItem[data-i="${cur}"]`);
+  if (el) el.scrollIntoView({ block: 'nearest' });
+}
+
+function toggleEmpty() {
+  if (cur < 0) return;
+  const a = ann();
+  if (!a.empty && a.boxes.length) {
+    toast(`Tile has ${a.boxes.length} box(es) — delete them before marking empty`);
+    return;
+  }
+  pushUndo();
+  a.empty = !a.empty;
+  save(); render(); updateUI();
+}
+
+function deleteSel() {
+  if (cur < 0 || sel < 0) return;
+  pushUndo();
+  ann().boxes.splice(sel, 1);
+  sel = -1;
+  save(); render(); updateUI();
+}
+
+$('emptyBtn').addEventListener('click', toggleEmpty);
+
+/* ---------- keyboard ---------- */
+window.addEventListener('keydown', e => {
+  if (e.target.matches('input, textarea')) {
+    if (e.key === 'Enter' || e.key === 'Escape') e.target.blur();
+    return;
+  }
+  if (e.key === ' ') { spaceDown = true; if (!drag) cv.style.cursor = 'grab'; e.preventDefault(); return; }
+  const mod = e.ctrlKey || e.metaKey;
+  if (mod && e.key.toLowerCase() === 'z') { e.preventDefault(); e.shiftKey ? redo() : undo(); return; }
+  if (mod && e.key.toLowerCase() === 'y') { e.preventDefault(); redo(); return; }
+  if (mod) return;
+  switch (e.key) {
+    case 'a': case 'A': case 'ArrowLeft': case 'ArrowUp':
+      e.preventDefault(); gotoTile(cur - 1); break;
+    case 'd': case 'D': case 'ArrowRight': case 'ArrowDown':
+      e.preventDefault(); gotoTile(cur + 1); break;
+    case 'e': case 'E': toggleEmpty(); break;
+    case 'Delete': case 'Backspace': e.preventDefault(); deleteSel(); break;
+    case 'Escape':
+      if ($('help').hidden === false) toggleHelp();
+      else { sel = -1; render(); updateUI(); }
+      break;
+    case 'f': case 'F': case '0': fitView(); break;
+    case '+': case '=': zoomAt({ x: wrap.clientWidth / 2, y: wrap.clientHeight / 2 }, 1.3); break;
+    case '-': case '_': zoomAt({ x: wrap.clientWidth / 2, y: wrap.clientHeight / 2 }, 1 / 1.3); break;
+    case '?': case 'h': case 'H': toggleHelp(); break;
+  }
+});
+window.addEventListener('keyup', e => {
+  if (e.key === ' ') { spaceDown = false; cv.style.cursor = cur < 0 ? 'default' : 'crosshair'; }
+});
+
+/* ---------- UI ---------- */
+function updateBoxCount() {
+  $('boxCount').textContent = cur >= 0 ? ann().boxes.length : 0;
+}
+function updateUI() {
+  // progress
+  const done = tiles.filter(t => tileStatus(t.name) !== 'todo').length;
+  $('progress').textContent = `${done}/${tiles.length} done`;
+  $('progress').style.color = tiles.length && done === tiles.length ? 'var(--green)' : 'var(--warn)';
+
+  // tile list
+  const list = $('tileList');
+  list.innerHTML = '';
+  tiles.forEach((t, i) => {
+    const a = store.tiles[t.name];
+    const st = tileStatus(t.name);
+    const div = document.createElement('div');
+    div.className = 'tileItem' + (i === cur ? ' current' : '');
+    div.dataset.i = i;
+    const badge = st === 'empty' ? '<span class="badge empty">∅ empty</span>'
+      : st === 'boxes' ? `<span class="badge boxes">${a.boxes.length} box${a.boxes.length > 1 ? 'es' : ''}</span>`
+      : '<span class="badge todo">—</span>';
+    div.innerHTML = `<span class="name" title="${t.name}">${t.name}</span>${badge}`;
+    div.addEventListener('click', () => gotoTile(i));
+    list.appendChild(div);
+  });
+
+  // status bar
+  if (cur >= 0) {
+    const t = tiles[cur], a = ann();
+    $('fileInfo').innerHTML = `<b>${t.name}</b> (${cur + 1}/${tiles.length}) · ${t.w}×${t.h}px · ${a.domain || store.domain || 'WON'}`;
+    $('selInfo').textContent = sel >= 0 && a.boxes[sel]
+      ? `sel [${a.boxes[sel].join(', ')}] (${a.boxes[sel][2] - a.boxes[sel][0]}×${a.boxes[sel][3] - a.boxes[sel][1]}px)` : '';
+    $('emptyBadge').style.display = a.empty ? 'block' : 'none';
+    $('emptyBtn').textContent = a.empty ? 'Unmark empty (E)' : 'Mark empty (E)';
+  } else {
+    $('fileInfo').textContent = 'no tile';
+    $('selInfo').textContent = '';
+    $('emptyBadge').style.display = 'none';
+  }
+  updateBoxCount();
+}
+
+/* ---------- help & toast ---------- */
+function toggleHelp() {
+  const h = $('help');
+  h.hidden = !h.hidden;
+  if (h.hidden && !store.helpSeen) { store.helpSeen = true; save(); }
+}
+$('helpBtn').addEventListener('click', toggleHelp);
+$('helpClose').addEventListener('click', toggleHelp);
+
+let toastTimer = null;
+function toast(msg, ms = 2800) {
+  const el = $('toast');
+  el.textContent = msg;
+  el.style.display = 'block';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { el.style.display = 'none'; }, ms);
+}
+
+/* ---------- init ---------- */
+new ResizeObserver(() => render()).observe(wrap);
+$('domainInput').value = store.domain || 'WON';
+if (!store.helpSeen) $('help').hidden = false;
+updateUI();
+render();
+</script>
+</body>
+</html>
