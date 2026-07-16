@@ -1,0 +1,28 @@
+[eval_box] variant=full4096 ckpt=det_t8.pt in_dim=4096 device=mps tiles=439
+  40/439 tiles
+  80/439 tiles
+  120/439 tiles
+  160/439 tiles
+  200/439 tiles
+  240/439 tiles
+  280/439 tiles
+  320/439 tiles
+  360/439 tiles
+  400/439 tiles
+  439/439 tiles
+{
+  "variant": "full4096",
+  "ckpt": "boxinst_commonality_tcd_04/artifacts/det_t8.pt",
+  "in_dim": 4096,
+  "seed": 0,
+  "best_epoch": 20,
+  "val_boxAP50": 0.4707,
+  "n_tiles": 439,
+  "n_gt_trees": 25705,
+  "box_mAP50": 0.555,
+  "box_mAP50_95": 0.2271,
+  "eval_score_thr": 0.05,
+  "topk": 600,
+  "single_scale": true
+}
+-> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/results/eval_box_full4096_t8.json

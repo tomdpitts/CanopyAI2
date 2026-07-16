@@ -1,0 +1,15 @@
+{
+  "variant": "full4096",
+  "ckpt": "boxinst_commonality_tcd_04/artifacts/det_t8.pt",
+  "in_dim": 4096,
+  "seed": 0,
+  "best_epoch": 20,
+  "val_boxAP50": 0.4707,
+  "n_tiles": 439,
+  "n_gt_trees": 25705,
+  "box_mAP50": 0.555,
+  "box_mAP50_95": 0.2271,
+  "eval_score_thr": 0.05,
+  "topk": 600,
+  "single_scale": true
+}

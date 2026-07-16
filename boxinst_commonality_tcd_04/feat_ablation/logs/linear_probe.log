@@ -1,0 +1,44 @@
+[collect] 100/900 tiles  n=19260  3s
+[collect] 200/900 tiles  n=37860  6s
+[collect] 300/900 tiles  n=57327  9s
+[collect] 400/900 tiles  n=76416  11s
+[collect] 500/900 tiles  n=95915  14s
+[collect] 600/900 tiles  n=115357  17s
+[collect] 700/900 tiles  n=133920  20s
+[collect] 800/900 tiles  n=152901  23s
+[collect] 900/900 tiles  n=172242  26s
+[data] n=172242  train=151876  val=20366  pos_rate=0.479
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/linear_probe.py:131: RuntimeWarning: divide by zero encountered in matmul
+  "pca256": Xc @ W.T}
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/linear_probe.py:131: RuntimeWarning: overflow encountered in matmul
+  "pca256": Xc @ W.T}
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/linear_probe.py:131: RuntimeWarning: invalid value encountered in matmul
+  "pca256": Xc @ W.T}
+[probe] full4096   dim=4096  train AUC=0.9668  VAL AUC=0.9480
+[probe] block1024  dim=1024  train AUC=0.9555  VAL AUC=0.9491
+[probe] pca256     dim= 256  train AUC=0.9415  VAL AUC=0.9426
+{
+  "explained_var_top256": 0.8401,
+  "n_train": 151876,
+  "n_val": 20366,
+  "seed": 0,
+  "per_tile_per_class": 100,
+  "probes": {
+    "full4096": {
+      "dim": 4096,
+      "train_auc": 0.9668,
+      "val_auc": 0.948
+    },
+    "block1024": {
+      "dim": 1024,
+      "train_auc": 0.9555,
+      "val_auc": 0.9491
+    },
+    "pca256": {
+      "dim": 256,
+      "train_auc": 0.9415,
+      "val_auc": 0.9426
+    }
+  }
+}
+-> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/results/linear_probe.json

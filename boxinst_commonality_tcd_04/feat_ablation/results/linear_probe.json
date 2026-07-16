@@ -1,0 +1,24 @@
+{
+  "explained_var_top256": 0.8401,
+  "n_train": 151876,
+  "n_val": 20366,
+  "seed": 0,
+  "per_tile_per_class": 100,
+  "probes": {
+    "full4096": {
+      "dim": 4096,
+      "train_auc": 0.9668,
+      "val_auc": 0.948
+    },
+    "block1024": {
+      "dim": 1024,
+      "train_auc": 0.9555,
+      "val_auc": 0.9491
+    },
+    "pca256": {
+      "dim": 256,
+      "train_auc": 0.9415,
+      "val_auc": 0.9426
+    }
+  }
+}

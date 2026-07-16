@@ -1,0 +1,59 @@
+[fit] 900 train tiles, 223 vectors/tile -> ~200700 samples
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/build_pca_cache.py:51: RuntimeWarning: divide by zero encountered in matmul
+  s2 += v @ v.T
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/build_pca_cache.py:51: RuntimeWarning: overflow encountered in matmul
+  s2 += v @ v.T
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/build_pca_cache.py:51: RuntimeWarning: invalid value encountered in matmul
+  s2 += v @ v.T
+[fit] 100/900 tiles  n=22300  7s
+[fit] 200/900 tiles  n=44600  15s
+[fit] 300/900 tiles  n=66900  22s
+[fit] 400/900 tiles  n=89200  29s
+[fit] 500/900 tiles  n=111500  36s
+[fit] 600/900 tiles  n=133800  44s
+[fit] 700/900 tiles  n=156100  51s
+[fit] 800/900 tiles  n=178400  58s
+[fit] 900/900 tiles  n=200700  65s
+[fit] eigh(4096x4096)...
+[fit] top-256 explained variance = 0.8401 -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/pca256.npz
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/build_pca_cache.py:73: RuntimeWarning: divide by zero encountered in matmul
+  off = (W @ mean)[:, None]                        # (256,1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/build_pca_cache.py:73: RuntimeWarning: overflow encountered in matmul
+  off = (W @ mean)[:, None]                        # (256,1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/build_pca_cache.py:73: RuntimeWarning: invalid value encountered in matmul
+  off = (W @ mean)[:, None]                        # (256,1)
+[proj] feat_traintile: 900/900 to project
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/build_pca_cache.py:84: RuntimeWarning: divide by zero encountered in matmul
+  y = (W @ x - off).reshape(K, 128, 128).astype(np.float16)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/build_pca_cache.py:84: RuntimeWarning: overflow encountered in matmul
+  y = (W @ x - off).reshape(K, 128, 128).astype(np.float16)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/feat_ablation/build_pca_cache.py:84: RuntimeWarning: invalid value encountered in matmul
+  y = (W @ x - off).reshape(K, 128, 128).astype(np.float16)
+[proj] feat_traintile 50/900  0.12s/tile  eta 100s
+[proj] feat_traintile 100/900  0.12s/tile  eta 94s
+[proj] feat_traintile 150/900  0.12s/tile  eta 88s
+[proj] feat_traintile 200/900  0.12s/tile  eta 82s
+[proj] feat_traintile 250/900  0.12s/tile  eta 76s
+[proj] feat_traintile 300/900  0.12s/tile  eta 71s
+[proj] feat_traintile 350/900  0.12s/tile  eta 65s
+[proj] feat_traintile 400/900  0.12s/tile  eta 59s
+[proj] feat_traintile 450/900  0.12s/tile  eta 53s
+[proj] feat_traintile 500/900  0.12s/tile  eta 47s
+[proj] feat_traintile 550/900  0.12s/tile  eta 41s
+[proj] feat_traintile 600/900  0.12s/tile  eta 35s
+[proj] feat_traintile 650/900  0.12s/tile  eta 30s
+[proj] feat_traintile 700/900  0.12s/tile  eta 24s
+[proj] feat_traintile 750/900  0.12s/tile  eta 18s
+[proj] feat_traintile 800/900  0.12s/tile  eta 12s
+[proj] feat_traintile 850/900  0.12s/tile  eta 6s
+[proj] feat_traintile 900/900  0.12s/tile  eta 0s
+[proj] feat_test: 439/439 to project
+[proj] feat_test 50/439  0.12s/tile  eta 45s
+[proj] feat_test 100/439  0.12s/tile  eta 40s
+[proj] feat_test 150/439  0.12s/tile  eta 34s
+[proj] feat_test 200/439  0.12s/tile  eta 28s
+[proj] feat_test 250/439  0.12s/tile  eta 22s
+[proj] feat_test 300/439  0.12s/tile  eta 16s
+[proj] feat_test 350/439  0.12s/tile  eta 10s
+[proj] feat_test 400/439  0.12s/tile  eta 5s
+[proj] feat_test 439/439  0.12s/tile  eta 0s
