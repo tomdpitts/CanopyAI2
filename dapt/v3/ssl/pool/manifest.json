@@ -1,0 +1,48 @@
+{
+  "study": "v3",
+  "tile": 512,
+  "stride": 256,
+  "min_valid": 0.95,
+  "n_tiles": 1051,
+  "per_site": {
+    "BRU162": {
+      "tiles": 198,
+      "ortho": "data/australia/BRU162/splits2/BRU162_center_80pct.tif",
+      "note": "center-80; labels are the L/R 10% strips"
+    },
+    "CAN091": {
+      "tiles": 227,
+      "ortho": "data/australia/CAN091/CAN091_10cm.tif",
+      "note": "unlabelled"
+    },
+    "CAN095": {
+      "tiles": 224,
+      "ortho": "data/australia/CAN095/CAN095_10cm.tif",
+      "note": "unlabelled"
+    },
+    "CAN117": {
+      "tiles": 284,
+      "ortho": "data/australia/CAN117/CAN117_10cm.tif",
+      "note": "unlabelled"
+    },
+    "WON003": {
+      "tiles": 118,
+      "ortho": "data/australia/WON003/WON003_10cm_right50.tif",
+      "note": "right50 crop; labelled/test tiles removed by construction"
+    }
+  },
+  "rgb_stats_qa": {
+    "mean": [
+      0.5028,
+      0.4696,
+      0.4136
+    ],
+    "std": [
+      0.1264,
+      0.1163,
+      0.109
+    ]
+  },
+  "norm": "ImageNet (final)",
+  "leakage_contract": "orthos are the v3 test-excluded crops (WON right50, BRU center80, CAN unlabelled); the 62 data/finetune/v3/test tiles cannot originate here by construction."
+}

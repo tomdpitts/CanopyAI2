@@ -1,4 +1,13 @@
-# M2 — DAPT on Modal/CUDA: single run, maximize power to detect DAPT > web
+# DAPT on Modal/CUDA — SPEC
+
+> **STATUS 2026-07-14: v3 is the ACTIVE study — see the `## v3 study` section below
+> (it is the runbook). Everything from `# M2 …` down to `## v3 study` is run-1/v1–v2
+> history (old pool, 33-tile fixed split, NEON-included) retained for provenance;
+> its numbers are superseded by v3. Result narrative: `dapt/REPORT.md`.**
+
+---
+
+# M2 (run-1, HISTORICAL) — DAPT on Modal/CUDA: single run, maximize power
 
 Not a sweep. One adapted checkpoint, configured for the **highest probability of a
 real, resolved DAPT − web gap** on the L2 paired test — by matching the pool to the
@@ -284,3 +293,129 @@ demands it — not part of run-1).
 6. **Report once on test** — per the amended endpoint: paired gap ±95% CI, L2, FULL
    test; secondary arid/NEON subsets (mechanism readout), per-site, L1; RESOLVED iff
    CI clears 0. DAPT ≈ web = valid *subsumption* result.
+
+
+## v3 study (ACTIVE — 2026-07-14) — repeated k-fold, leakage-safe, arid-only
+
+Fresh start on re-annotated, higher-quality data with NEON removed (it was out of
+domain). Same core question — does arid DAPT beat off-the-shelf DINOv3 for a
+frozen-feature dryland crown detector — but re-engineered to **settle the
+significance question** that v1/v2 left at a modest margin (effect ~+0.018–0.020,
+per-SSL-seed spread ±0.003, but 33-tile test CI ±0.02 → unresolved).
+
+**All v3 code + assets isolated under `dapt/v3/`** (data, k-fold runner, SSL app,
+pool). **Brand-new Modal app + volume** (`dinov3-dapt-v3` / `dinov3-dapt-v3-vol`) —
+nothing shared with the v1/v2 run.
+
+### Data (`data/finetune/v3/`)
+- **97 tiles, arid-only (WON+BRU), NEON dropped.** train/ 16 tiles (1,053 boxes,
+  WON-only), test/ 81 tiles (1,375 boxes, 53 BRU + 28 WON). Annotations =
+  `annotations.csv` (basenames + domain; 259 stale rows referencing images not in
+  either folder → pruned on load).
+- **CORRECTION 2026-07-14 (during execution):** the 19 BRU tiles originally in
+  train/ were moved to test/ — all labelled BRU tiles come from the L/R 10% strips,
+  which the pool ortho (BRU162_center_80pct) excludes by construction, so they are
+  leakage-safe (user confirmed). Only the 16 WON tiles overlap the SSL pool.
+- **The `test/` 81 tiles are DEFINITIVELY EXCLUDED from the DAPT SSL orthos**
+  (leakage-safe holdout). The `train/` 16 WON tiles overlap the SSL pool (WON
+  right50) → usable to *train* a probe but **never to evaluate the DAPT arm**.
+
+### Evaluation — repeated k-fold over the leakage-safe tiles only
+- **5-fold × 3 repeats over the 81 leakage-safe test tiles**, every arm identical
+  folds. Each fold: ~65 train / ~16 held-out; pool out-of-fold predictions over all
+  81 → **paired-gap bootstrap** (same powerful test as v1/v2). Multiple probe seeds.
+- Why: eval only ever on pool-excluded tiles (**zero DAPT leakage**), yet all 81 tiles
+  contribute to the estimate (**full power**) and each fold trains on ~65 box-dense
+  tiles (**no train starvation** — the trap the fixed 35/65 split carried).
+- Est. power: 81 eval tiles → CI half-width ≈ 0.011, so the ~+0.020 arid effect
+  should **resolve** (P(gap>0) ≈ 0.98+). The 16 WON overlap tiles are held out of the
+  headline (a "DAPT memorized them" objection); optional robustness run adds them as
+  fixed extra training.
+- **Probes:** L1 linear + L2 MLP, frozen-backbone, identical target-encoder/NMS across
+  web / sat / dapt arms (reuses `dapt.head`/`dapt.targets`/`dapt.eval` unchanged).
+  Full decoder head = optional later.
+
+### DAPT SSL — new pool, leakage-safe
+- **Pool orthos (all arid, all leakage-safe for the 81 test tiles):**
+  `BRU162_center_80pct.tif`, `CAN091/095/117_10cm.tif`, `WON003_10cm_right50.tif`
+  (pre-cropped so labelled tiles are removed — no footprint masking). ~2,180 raw
+  512px/50%-overlap tiles → ~1,400 after the ≥95%-valid white filter (est.).
+- **Protocol = P1K** (validated in v2): 1000 iters, DCP every 250, warmup 500 (so the
+  i499 rung stays schedule-comparable), **ImageNet norm (FINAL — the old arid-stats
+  norm variant is RETIRED: arid-only study, no NEON, no cross-domain norm question)**,
+  Gram off, crops 256/112. Each seed → ~i249/i499/i749/i999 checkpoints; **val-select
+  per seed** (inner val), pool the selected winners across seeds.
+- **Seeds: 101, 201, 301, 401, 501 — CONFIRMED (5 seeds, ImageNet norm; user
+  2026-07-14).**
+- **Backbone must not see the 81 test tiles** — guaranteed by pool construction;
+  `build_pool` asserts test-tile disjointness before upload.
+
+### Modal GPU cost estimate (grounded in v2's measured P1K timing)
+- **Per SSL seed (P1K, A100-40GB @ ~$2.10/hr):** ~11 min training + ~2 min
+  startup/preflight ≈ 13 min GPU → **~$0.50/seed** (measured: v2 seed-43 ran ~11 min).
+- **Marginal cost per ADDITIONAL seed ≈ $0.50.**
+- **5 seeds ≈ $2.6; 3 seeds ≈ $1.6** (+ ~$0.10 CPU-extract + one-time image build,
+  effectively free). All-in with margin/rebuilds: **$3–4 (5 seeds) / $2–2.5 (3 seeds)**.
+- Extraction runs on a CPU Modal function (~$0.02/seed); all probing/k-fold is LOCAL
+  (M4 Max, $0) — only wall-clock, not $.
+- H100 would ~halve wall-time at ~$3.95/hr → similar $/seed; A100-40GB stays default.
+
+### HANDOFF — execution checklist (state as of 2026-07-14: BUILT+VALIDATED, NOT RUN)
+
+**Already done (no GPU spent):** `dapt/v3/` package built and smoke-tested —
+`data.py` (97 tiles → 81 leakage-safe + 16 WON overlap after the 2026-07-14 BRU
+correction, 259 stale rows auto-dropped;
+web+sat v3 features already cached in `dapt/v3/cache/`), `kfold.py` (validated
+end-to-end: web−sat +0.028 RESOLVED on a 1-seed smoke), `ssl/build_pool.py`,
+`ssl/app.py` (fresh Modal app `dinov3-dapt-v3` / volume `dinov3-dapt-v3-vol`).
+Locked decisions: 5 SSL seeds 101/201/301/401/501; ImageNet norm (arid-stats concept
+retired); K=5 × 3 repeats; probe seeds 0–4; L1 linear + L2 MLP; budget ~$4.
+
+**To execute, in order:**
+1. **Pool:** `.venv/bin/python -m dapt.v3.ssl.build_pool --tile 512 --stride 256`
+   → `dapt/v3/ssl/pool/{tiles,manifest.json}` (expect ~1,300–1,500 tiles).
+2. **Stage volume:** `modal volume put dinov3-dapt-v3-vol dapt/v3/ssl/pool/tiles
+   /pool/tiles` and `modal volume put dinov3-dapt-v3-vol
+   dapt/ssl/dinov3_web_vitl_teacher.pth /dinov3_web_vitl_teacher.pth`
+   (teacher .pth is 1.1 GB, lives in dapt/ssl/; regenerate via
+   `dapt.ssl.convert_hf_to_dinov3` if missing).
+3. **SSL (~$0.5/seed):** per seed S in 101 201 301 401 501:
+   `modal run --detach dapt/v3/ssl/app.py::train --seed S` (P1K defaults baked in).
+   Poll volume for `/out_v3_sS/ckpt/999`. Resume = re-run same seed.
+4. **Extract (CPU):** `modal run dapt/v3/ssl/app.py::extract --seed S` →
+   `/vol/export/teacher_v3_sS_i<it>.pth`; if it errors right after training, it's the
+   volume-commit race — wait ~1 min and retry (known, harmless).
+5. **Download + export:** `modal volume get dinov3-dapt-v3-vol
+   /export/teacher_v3_sS_i<it>.pth dapt/v3/ssl/export/…` per file, then
+   `.venv/bin/python -m dapt.ssl.export_hf --teacher <pth> --out
+   dapt/v3/ckpt/dapt_v3_sS_i<it>_hf` (pass --out explicitly to keep v3 ckpts under
+   dapt/v3/; registry `dapt/ssl/checkpoints.json` is intentionally shared — arm names
+   `dapt_v3_*` can't collide). Cosine-vs-web gate: smooth decay to ~0.4–0.7 = normal
+   adaptation; hard-fail only <0.15/NaN.
+6. **Cache + per-seed val-select (local, free):**
+   `.venv/bin/python -m dapt.v3.data --cache dapt_v3_sS_i249 …` then val-select among
+   each seed's rungs — NOTE: `dapt.select_checkpoint` uses the OLD v1/v2 split, do
+   NOT use it for v3; select instead on the k-fold inner-val (run `dapt.v3.kfold`
+   with each rung vs web on 1–2 probe seeds and pick the rung with best OOF val
+   mAP50, or simply carry both i499/i999 rungs into step 7 and select on inner-val
+   there — either is val-only, never on the paired test gap).
+7. **K-fold headline (local):** `.venv/bin/python -m dapt.v3.kfold --arms
+   <pooled dapt winners…> web sat --k 5 --repeats 3 --seeds 0 1 2 3 4 --capacity mlp`
+   (and `--capacity linear`) → `dapt/v3/artifacts/`. Paired gap arm[0]−arm[1];
+   subsets reported = FULL/WON/BRU (all arid now).
+8. **Report:** append a v3 section to `dapt/REPORT.md`; update the
+   `project-dapt-detector` memory.
+
+**Gotchas that already bit us once:** zsh does NOT word-split unquoted vars (pass
+arm lists explicitly); Monitor greps must include failure signatures; probe runs are
+MPS — don't run two heavy probe jobs concurrently; `train/` tiles must NEVER appear
+in a DAPT-arm eval (headline = the 81 `test/` tiles only).
+
+### Planned follow-ups (after v3-arid lands)
+- **Restor OAM-TCD DAPT**, two variants: (a) detection — bboxes extracted from ITC
+  masks, canopy masks ignored; (b) box-to-mask. Much larger pool ⇒ **same ~$0.50/seed**
+  (SSL is step-bound, not epoch-bound; a bigger pool just lowers per-tile reuse).
+- **NEON DAPT** — almost certainly valid: web LVD-1689M is curated *internet* images
+  (NEON airborne tiles ~certainly absent); sat SAT-493M is *satellite* (NEON is
+  airborne AOP, different sensor/altitude — likely absent, worth a quick check). So
+  NEON is a fair separate-domain adaptation target, not a leakage risk.

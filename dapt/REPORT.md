@@ -1,6 +1,17 @@
 # DAPT for dryland crown detection — results (web vs sat vs DAPT)
 
-**Setup.** Frozen DINOv3 ViT-L backbones; one fixed CenterNet-style probe, identical
+> **STATUS 2026-07-14:** the results below are **v1/v2** (old pool, 33-tile fixed
+> split, NEON included). The **mechanism findings stand** (web≫sat; DAPT gain is
+> small, arid-specific, ~60% low-level appearance / ~40% structure; instance-level not
+> occupancy). The **significance question** (effect ~+0.018 vs 33-tile CI ±0.02) is
+> re-run in **v3** — arid-only, re-annotated, repeated-k-fold over 81 leakage-safe
+> tiles. **v3 verdict (see `# v3` section at the end): the DAPT effect does NOT
+> replicate (L2 gap −0.000 ± 0.003); web ≫ sat does (+0.120).** Plan + cost:
+> `dapt/ssl/SPEC.md` `## v3 study`; code isolated in `dapt/v3/`.
+
+---
+
+**Setup (v1/v2).** Frozen DINOv3 ViT-L backbones; one fixed CenterNet-style probe, identical
 targets/NMS/seeds across arms; only the backbone differs. Test = 33 tiles (18 arid
 WON+BRU / 15 non-arid NEON), ~360 crowns. Primary instrument = L2 (MLP) probe,
 test mAP50, paired-gap bootstrap over tiles (5 probe seeds). DAPT = continue DINOv3
@@ -121,3 +132,66 @@ Organized under `dapt/artifacts/{detection,selection,labeff,semseg,probes,logs}/
 (see `artifacts/README.md` for layout + naming). Winner ckpts in `dapt/ckpt/`
 (non-winners archived on the Modal volume). SSL runs: out_s42 / out_s123 /
 out_s42_shuf on `dinov3-dapt-arid-vol`.
+
+---
+
+# v3 (2026-07-14) — repeated k-fold, leakage-safe, arid-only: THE DAPT EFFECT DOES NOT SURVIVE
+
+**One-line verdict: on the re-annotated, leakage-safe, arid-only v3 design, arid DAPT
+provides NO gain over off-the-shelf web DINOv3 (L2 gap −0.000, CI ±0.003) — the v1/v2
+~+0.018–0.020 effect does not replicate. web ≫ sat replicates emphatically (+0.120).**
+
+**Setup.** 97 re-annotated arid tiles (WON+BRU, NEON dropped): 81 leakage-safe eval
+tiles (53 BRU + 28 WON, 1,375 boxes; incl. the 2026-07-14 correction moving 19
+strip-sourced BRU tiles from train/ to test/) + 16 WON pool-overlap tiles (excluded
+from the headline entirely). Fresh SSL pool: 1,051 tiles from BRU162-center80 /
+CAN091/095/117 / WON003-right50 (below the ~1,300–1,500 estimate; ≥95%-valid white
+filter dropped more than projected). 5 SSL seeds (101–501), P1K protocol, ImageNet
+norm, on `dinov3-dapt-v3-vol`; ~$2.6 Modal GPU all-in. Per-seed val-selection
+(inner-val only, i499 vs i999: mlp picked i499 for s101/s501, i999 otherwise; cosine
+gates all healthy, smooth 0.93→0.74→0.65 decay). Evaluation: 5-fold × 3-repeat
+k-fold over the 81 tiles, identical folds across arms, 5 probe seeds, OOF pooled →
+paired-gap bootstrap; pooled-seed estimator = 25 runs (5 SSL × 5 probe seeds).
+Selection val-only; the paired test gap was read once, at the end.
+
+## Headline (L2/MLP, OOF mAP50 over 81 tiles)
+
+| arm | mAP50 |
+|---|---|
+| DAPT (pooled 5-seed winners) | 0.2556 |
+| web (lvd1689m) | 0.2560 |
+| sat (sat493m) | 0.1366 |
+
+| paired gap (L2) | FULL 81t | WON 28t | BRU 53t |
+|---|---|---|---|
+| **DAPT − web** | **−0.000 CI[−0.003,+0.003] n.r.** | −0.000 CI[−0.004,+0.003] n.r. | −0.002 CI[−0.004,−0.000] RESOLVED (negative) |
+| web − sat | +0.120 CI[+0.100,+0.140] RESOLVED | +0.128 RESOLVED | +0.035 RESOLVED |
+
+The design delivered the power it promised (paired CI half-width ±0.003 ≪ the ±0.02
+v1/v2 floor) — and at that resolution the effect is **zero**, with a tiny *negative*
+resolved gap on BRU. The DAPT arm is functional (matches web exactly; no collapse;
+adaptation confirmed by cosine drift), so this is a genuine null, not a broken arm.
+
+**L1/linear is at floor (all arms 0.06–0.08 mAP50)** — as in v1/v2 it is not a usable
+instrument; its tiny resolved gaps (DAPT−web +0.007; sat above web) are floor
+artifacts and carry no weight against the L2 readout.
+
+## Interpretation
+
+- The v1/v2 pooled +0.018–0.020 arid effect (±0.003 across seeds) came from a design
+  with WON pool/test adjacency-leakage risk, first-pass annotations, NEON-mixed
+  probes, and a starved fixed split. Removing all four removes the effect. Which one
+  carried it is not isolated here; the leakage + annotation-quality pair is the prime
+  suspect.
+- web ≫ sat is design-robust (replicated at +0.120 on a clean 81-tile instrument) —
+  backbone provenance (curated web vs satellite SSL) remains the dominant lever.
+- Actionable: **do not spend further GPU on arid DAPT for this detector**; the
+  planned Restor OAM-TCD / NEON DAPT follow-ups should carry pre-registered nulls as
+  the default expectation.
+
+## v3 artifacts
+
+`dapt/v3/artifacts/{kfold_mlp,kfold_linear,val_select,winners}.json`; OOF runs in
+`dapt/v3/cache/oof/`; ckpts `dapt/v3/ckpt/` (registered as `dapt_v3_*`); SSL outputs
+on `dinov3-dapt-v3-vol` (out_v3_s101–501); pool `dapt/v3/ssl/pool/`. Runbook + dated
+corrections: `dapt/ssl/SPEC.md` `## v3 study`.
