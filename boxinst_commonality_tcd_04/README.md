@@ -31,8 +31,18 @@ Recall by GT crown size showed the detector has a **32–128px sweet spot** (rec
 looks ~128px, back in the sweet spot), scales boxes ×2, and cross-scale NMS-merges;
 masks stay native. Inference-only, no retrain. Effect: **128–256px recall 0.48→0.66**,
 mask mAP50 +0.005 (safe — big trees are rare so instance-mAP barely moves), **semantic
-F1 +0.058** (big trees = big area). An *upscale* arm for the <32px tail is the
-untried complement (more FP risk; see multiscale notes).
+F1 +0.058** (big trees = big area).
+
+**Upscale arm for the <32px tail: TESTED AND REJECTED** (isolated experiment,
+folder since deleted). On a 60-tile tiny-crown-rich subset — upscale's *best case*
+— running `det_t8` on 2× tiles recovered <32px recall 0.28→0.61 (total recall
+0.46→0.68) but **dropped mask mAP50 0.44→0.39**: the recovered crowns bring FPs,
+and a <32px crown is <8px at the 512 eval raster, so its mask often can't clear
+IoU 0.5 even when the box is right — recall rises, AP falls. Since the full 439
+has proportionally fewer tiny crowns (only more FP surface), it can only look
+worse; not folded in. Upscale is a *coverage/recall* lever (e.g. tree counting),
+not an AP lever. Cost also steep: 2× features are 537MB/tile (~235GB for 439) or
+on-the-fly recompute.
 
 Crop-trained baseline `det_d8` (superseded): mask 0.254 / box 0.275. The **+0.245**
 came from full-tile training (below). Still box-limited (box→mask only 0.056), and
