@@ -210,14 +210,23 @@ def run(args):
         if (k + 1) % 20 == 0 or k + 1 == len(tiles):
             print(f"  {k+1}/{len(tiles)} tiles", flush=True)
 
+    # aggregation is minutes of silent numpy over 439 tiles x 11 IoU thresholds
+    # -> flushed per-threshold progress so a hang is distinguishable from work
+    print("  [score] mask AP@0.50 ...", flush=True)
     m50 = mask_ap(P_masks, P_scores, G_masks, Ign_mask, 0.5)
-    m5095 = float(np.nanmean([mask_ap(P_masks, P_scores, G_masks, Ign_mask, t)
-                              for t in IOU_50_95]))
+    m_all = []
+    for t in IOU_50_95:
+        m_all.append(mask_ap(P_masks, P_scores, G_masks, Ign_mask, t))
+        print(f"  [score] mask AP@{t:.2f} = {m_all[-1]:.4f}", flush=True)
+    m5095 = float(np.nanmean(m_all))
     # box AP with the SAME canopy-ignore + matching -> box50 - m50 isolates the
     # box->mask conversion cost (the detector ceiling vs the EM mask cost)
     box50 = box_ap(P_boxes, P_scores, G_boxes, Ign_box, 0.5)
-    box5095 = float(np.nanmean([box_ap(P_boxes, P_scores, G_boxes, Ign_box, t)
-                                for t in IOU_50_95]))
+    b_all = []
+    for t in IOU_50_95:
+        b_all.append(box_ap(P_boxes, P_scores, G_boxes, Ign_box, t))
+        print(f"  [score] box  AP@{t:.2f} = {b_all[-1]:.4f}", flush=True)
+    box5095 = float(np.nanmean(b_all))
     prec = sem_tp / (sem_tp + sem_fp + 1e-9); rec = sem_tp / (sem_tp + sem_fn + 1e-9)
     f1 = 2 * prec * rec / (prec + rec + 1e-9)
     res = {"n_tiles": len(tiles), "n_gt_trees": int(sum(len(g) for g in G_masks)),

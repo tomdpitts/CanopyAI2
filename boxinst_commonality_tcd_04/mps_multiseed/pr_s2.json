@@ -1,0 +1,20 @@
+{
+  "seed": 2,
+  "op_thr": 0.35,
+  "iou_thr": 0.5,
+  "n_gt": 25705,
+  "mask_P50": 0.6848,
+  "mask_R50": 0.5074,
+  "mask_F1_50": 0.5829,
+  "box_P50": 0.7161,
+  "box_R50": 0.5327,
+  "box_F1_50": 0.6109,
+  "mask_tp": 13044,
+  "mask_fp": 6003,
+  "mask_fn": 12661,
+  "box_tp": 13692,
+  "box_fp": 5428,
+  "box_fn": 12013,
+  "det": "det_t8_s2",
+  "em": "em_model.npz"
+}

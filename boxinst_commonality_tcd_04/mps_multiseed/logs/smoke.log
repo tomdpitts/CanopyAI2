@@ -1,0 +1,6 @@
+[smoke] T.ART -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/mps_multiseed/logs/_smoke_art
+[smoke0] device=mps in_dim=4096 params=4.00M grid=256 train/val=792/108 seed=0 tower=3 wd=0.0001 cosine
+  ep  1 hm=1.882 off=0.084 size=0.047 giou=0.575 | val boxAP50=0.106 F1=0.252@0.25 lr=0.0e+00
+    ^ saved best ep1 boxAP50=0.106
+[smoke0] best ep1 val boxAP50=0.106 -> det_smoke0.pt
+[smoke] wrote: ['det_smoke0.pt']

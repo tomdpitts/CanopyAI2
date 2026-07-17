@@ -1,0 +1,99 @@
+[seed 0] TRAIN det_t8 recipe (cosine, best-on-val, early-stop p2/min12) -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/mps_multiseed/_out/artifacts/det_t8_s0.pt
+[t8_s0] device=mps in_dim=4096 params=4.00M grid=256 train/val=792/108 seed=0 tower=3 wd=0.0001 cosine early-stop
+  ep  5 hm=1.202 off=0.068 size=0.011 giou=0.370 | val boxAP50=0.437 F1=0.518@0.35 lr=9.6e-04
+    ^ saved best ep5 boxAP50=0.437
+  ep 10 hm=1.122 off=0.065 size=0.009 giou=0.351 | val boxAP50=0.436 F1=0.517@0.35 lr=8.5e-04
+  ep 15 hm=0.994 off=0.062 size=0.007 giou=0.326 | val boxAP50=0.465 F1=0.530@0.35 lr=6.9e-04
+    ^ saved best ep15 boxAP50=0.465
+  ep 20 hm=0.844 off=0.060 size=0.006 giou=0.308 | val boxAP50=0.471 F1=0.540@0.40 lr=5.0e-04
+    ^ saved best ep20 boxAP50=0.471
+  ep 25 hm=0.677 off=0.057 size=0.005 giou=0.292 | val boxAP50=0.429 F1=0.512@0.40 lr=3.1e-04
+  ep 30 hm=0.460 off=0.055 size=0.005 giou=0.279 | val boxAP50=0.393 F1=0.497@0.40 lr=1.5e-04
+    early-stop: 2 evals without >0.005 improvement (best ep20)
+[t8_s0] best ep20 val boxAP50=0.471 -> det_t8_s0.pt
+[seed 0] EVAL multiscale on full 439 (EM=/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/vault/em_model.npz)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:82: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:82: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:82: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:87: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + self.kappa * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:87: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + self.kappa * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:87: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + self.kappa * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:205: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:205: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:205: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+  20/439 tiles
+  40/439 tiles
+  60/439 tiles
+  80/439 tiles
+  100/439 tiles
+  120/439 tiles
+  140/439 tiles
+  160/439 tiles
+  180/439 tiles
+  200/439 tiles
+  220/439 tiles
+  240/439 tiles
+  260/439 tiles
+  280/439 tiles
+  300/439 tiles
+  320/439 tiles
+  340/439 tiles
+  360/439 tiles
+  380/439 tiles
+  400/439 tiles
+  420/439 tiles
+  439/439 tiles
+  [score] mask AP@0.50 ...
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py:56: RuntimeWarning: divide by zero encountered in matmul
+  inter = p @ g.T
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py:56: RuntimeWarning: overflow encountered in matmul
+  inter = p @ g.T
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py:56: RuntimeWarning: invalid value encountered in matmul
+  inter = p @ g.T
+  [score] mask AP@0.50 = 0.5041
+  [score] mask AP@0.55 = 0.4219
+  [score] mask AP@0.60 = 0.3260
+  [score] mask AP@0.65 = 0.2047
+  [score] mask AP@0.70 = 0.0966
+  [score] mask AP@0.75 = 0.0307
+  [score] mask AP@0.80 = 0.0080
+  [score] mask AP@0.85 = 0.0025
+  [score] mask AP@0.90 = 0.0000
+  [score] mask AP@0.95 = 0.0000
+  [score] box  AP@0.50 = 0.5562
+  [score] box  AP@0.55 = 0.5026
+  [score] box  AP@0.60 = 0.4304
+  [score] box  AP@0.65 = 0.3401
+  [score] box  AP@0.70 = 0.2353
+  [score] box  AP@0.75 = 0.1332
+  [score] box  AP@0.80 = 0.0564
+  [score] box  AP@0.85 = 0.0147
+  [score] box  AP@0.90 = 0.0014
+  [score] box  AP@0.95 = 0.0004
+{
+  "n_tiles": 439,
+  "n_gt_trees": 25705,
+  "mask_mAP50": 0.5041,
+  "mask_mAP50_95": 0.1594,
+  "box_mAP50": 0.5562,
+  "box_mAP50_95": 0.2271,
+  "box_minus_mask_mAP50": 0.0521,
+  "semantic_F1": 0.6453,
+  "semantic_P": 0.7853,
+  "semantic_R": 0.5477,
+  "det": "det_t8_s0",
+  "em": "em_model.npz"
+}
+
+MASK mAP50 = 0.504   BOX mAP50 = 0.556  (same canopy-ignore; gap = box->mask cost = 0.052)
+target 0.432   semantic F1 = 0.645   [439 tiles]
+[seed 0] EVAL done -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/mps_multiseed/eval_s0.json | mask_mAP50=0.5041 box_mAP50=0.5562 semF1=0.6453

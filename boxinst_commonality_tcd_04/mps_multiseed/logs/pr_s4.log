@@ -1,0 +1,54 @@
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:82: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:82: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:82: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:87: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + self.kappa * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:87: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + self.kappa * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:87: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + self.kappa * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:205: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:205: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:205: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py:56: RuntimeWarning: divide by zero encountered in matmul
+  inter = p @ g.T
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py:56: RuntimeWarning: overflow encountered in matmul
+  inter = p @ g.T
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py:56: RuntimeWarning: invalid value encountered in matmul
+  inter = p @ g.T
+  seed 4: 50/439 tiles
+  seed 4: 100/439 tiles
+  seed 4: 150/439 tiles
+  seed 4: 200/439 tiles
+  seed 4: 250/439 tiles
+  seed 4: 300/439 tiles
+  seed 4: 350/439 tiles
+  seed 4: 400/439 tiles
+  seed 4: 439/439 tiles
+{
+  "seed": 4,
+  "op_thr": 0.39999999999999997,
+  "iou_thr": 0.5,
+  "n_gt": 25705,
+  "mask_P50": 0.6605,
+  "mask_R50": 0.5124,
+  "mask_F1_50": 0.5771,
+  "box_P50": 0.6945,
+  "box_R50": 0.5411,
+  "box_F1_50": 0.6083,
+  "mask_tp": 13172,
+  "mask_fp": 6771,
+  "mask_fn": 12533,
+  "box_tp": 13910,
+  "box_fp": 6118,
+  "box_fn": 11795,
+  "det": "det_t8_s4",
+  "em": "em_model.npz"
+}
+[seed 4] mask P/R@50 0.6605/0.5124  box P/R@50 0.6945/0.5411 (op_thr=0.39999999999999997) -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/mps_multiseed/pr_s4.json

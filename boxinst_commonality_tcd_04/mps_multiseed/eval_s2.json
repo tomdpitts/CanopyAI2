@@ -1,0 +1,14 @@
+{
+  "n_tiles": 439,
+  "n_gt_trees": 25705,
+  "mask_mAP50": 0.5218,
+  "mask_mAP50_95": 0.1683,
+  "box_mAP50": 0.564,
+  "box_mAP50_95": 0.2257,
+  "box_minus_mask_mAP50": 0.0422,
+  "semantic_F1": 0.655,
+  "semantic_P": 0.7871,
+  "semantic_R": 0.5609,
+  "det": "det_t8_s2",
+  "em": "em_model.npz"
+}
