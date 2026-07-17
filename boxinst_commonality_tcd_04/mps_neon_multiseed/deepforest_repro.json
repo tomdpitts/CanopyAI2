@@ -1,0 +1,110 @@
+{
+  "pinned_tag": "1.8.0",
+  "n_plots": 194,
+  "n_gt_boxes": 6634,
+  "iou_thr": 0.4,
+  "operating_score_thr": 0.1,
+  "mean_precision": 0.6167,
+  "mean_recall": 0.7648,
+  "micro_precision": 0.666,
+  "micro_recall": 0.6596,
+  "tp": 4376,
+  "fp": 2195,
+  "fn": 2258,
+  "target_paper_P": 0.76,
+  "target_paper_R": 0.67,
+  "target_package_P": 0.66,
+  "target_package_R": 0.79,
+  "pr_curve": [
+    {
+      "score_thr": 0.05,
+      "mean_precision": 0.6167353749751325,
+      "mean_recall": 0.76480998143614
+    },
+    {
+      "score_thr": 0.1,
+      "mean_precision": 0.6167353749751325,
+      "mean_recall": 0.76480998143614
+    },
+    {
+      "score_thr": 0.15,
+      "mean_precision": 0.6638190375030802,
+      "mean_recall": 0.7499206540456019
+    },
+    {
+      "score_thr": 0.2,
+      "mean_precision": 0.7088742341409296,
+      "mean_recall": 0.7312271003735381
+    },
+    {
+      "score_thr": 0.25,
+      "mean_precision": 0.7503016670899001,
+      "mean_recall": 0.7032366328694061
+    },
+    {
+      "score_thr": 0.3,
+      "mean_precision": 0.7856607787851587,
+      "mean_recall": 0.6713352136239361
+    },
+    {
+      "score_thr": 0.35,
+      "mean_precision": 0.8166152360646179,
+      "mean_recall": 0.6195734354809735
+    },
+    {
+      "score_thr": 0.4,
+      "mean_precision": 0.8417795430260195,
+      "mean_recall": 0.5609452332927843
+    },
+    {
+      "score_thr": 0.45,
+      "mean_precision": 0.861703066714696,
+      "mean_recall": 0.48402590734193657
+    },
+    {
+      "score_thr": 0.5,
+      "mean_precision": 0.8829823363928233,
+      "mean_recall": 0.4064230652376671
+    },
+    {
+      "score_thr": 0.55,
+      "mean_precision": 0.8823120233515546,
+      "mean_recall": 0.32772390686568714
+    },
+    {
+      "score_thr": 0.6,
+      "mean_precision": 0.8542137516819142,
+      "mean_recall": 0.25521109079690507
+    },
+    {
+      "score_thr": 0.65,
+      "mean_precision": 0.8293875797741778,
+      "mean_recall": 0.19799216910556208
+    },
+    {
+      "score_thr": 0.7,
+      "mean_precision": 0.6993127147766324,
+      "mean_recall": 0.1454887369872564
+    },
+    {
+      "score_thr": 0.75,
+      "mean_precision": 0.46134020618556704,
+      "mean_recall": 0.0994797258188352
+    },
+    {
+      "score_thr": 0.8,
+      "mean_precision": 0.26804123711340205,
+      "mean_recall": 0.06371725206296384
+    },
+    {
+      "score_thr": 0.85,
+      "mean_precision": 0.09278350515463918,
+      "mean_recall": 0.028009605238542314
+    },
+    {
+      "score_thr": 0.9,
+      "mean_precision": 0.02577319587628866,
+      "mean_recall": 0.009370186041000119
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "source": "Weinstein et al. 2021, PLOS Comput Biol, DOI 10.1371/journal.pcbi.1009180, Table 3",
+  "verified_from": "PMC8282040 verbatim transcription (cross-checked vs our DeepForest reproduction)",
+  "partition": "image-annotated crowns, RGB, IoU 0.4, macro-average per image",
+  "target_precision": 0.659,
+  "target_recall": 0.790,
+  "note": "Table 3 image-annotated row = Recall 79.0 / Precision 65.9. This equals the maintained deepforest package operating point; there is not a separate ~70/70 point. Our deepforest 2.1.0 reproduction (P0.617/R0.765) sits ~0.04 below this, consistent (model-version drift).",
+  "beat_criterion": "Our PR curve must dominate (0.659, 0.790): at R=0.790 our P>0.659, OR at P=0.659 our R>0.790."
+}

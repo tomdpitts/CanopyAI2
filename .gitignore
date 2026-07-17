@@ -31,4 +31,12 @@ boxinst_commonality_tcd_04/cache/
 *.safetensors
 *cache/
 
+*.venv_df*
+*boxinst_commonality_tcd_04*.tif
+
 *.png
+*.tif
+boxinst_commonality_tcd_04/mps_neon_multiseed/zenodo_dl/training.zip
+
+# Large machine-local NEON datasets (nested git repo + rasters)
+boxinst_commonality_tcd_04/mps_neon_multiseed/NeonTreeEvaluation/
