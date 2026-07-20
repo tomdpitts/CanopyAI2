@@ -18,7 +18,7 @@ Val split is TILE-LEVEL (whole tiles held out) so no patch from a training tile 
 into val — val is only the early-stopping / best-on-val signal; the REPORTED metric is
 the fully-separate 194-tile NEON benchmark.
 
-Usage: .venv/bin/python -m boxinst_commonality_tcd_04.mps_neon_multiseed.prepare_neon_train
+Usage: .venv/bin/python -m boxinst_commonality_tcd_04.modal_neon_multiseed.prepare_neon_train
 """
 import glob
 import json
@@ -43,24 +43,14 @@ COVER_MIN = 0.85             # drop tiles annotated over < this fraction of the 
 EMPTY_RATIO = 0.3            # keep empties up to this x positives (per tile)
 MIN_BOX = 4                  # drop boxes whose clipped side < this (px)
 KEEP_FRAC = 0.5              # keep a clipped box only if >= this of its area survives
-VAL_FRAC = 0.12              # target fraction of boxes held out for the val signal
-VAL_MAX_TILE_FRAC = 0.25     # never put a tile holding > this of all boxes in val
-
-
-def choose_val_tiles(tile_boxes):
-    """Tile-level val split (no patch leakage): hold out whole tiles totalling ~VAL_FRAC
-    of boxes, adding smallest-first and skipping any single tile that alone exceeds
-    VAL_MAX_TILE_FRAC (keeps the big NIWO/TEAK tiles in train). Deterministic; adapts
-    to whichever tiles are present."""
-    total = sum(tile_boxes.values()) or 1
-    val, acc = set(), 0
-    for t, n in sorted(tile_boxes.items(), key=lambda kv: (kv[1], kv[0])):
-        if n / total > VAL_MAX_TILE_FRAC:
-            continue
-        if acc / total >= VAL_FRAC:
-            break
-        val.add(t); acc += n
-    return val
+VAL_FRAC = 0.12              # fraction of each tile's patches held out for the val signal
+VAL_EVERY = max(2, round(1 / VAL_FRAC))   # -> every 8th patch of each tile -> val
+# Patch-level STRATIFIED val split (not whole-tile): every tile contributes ~1/VAL_EVERY
+# of its patches to val, so ALL sites appear in TRAINING (the point of adding the site
+# crops). Mild spatial correlation between a val patch and its train neighbours is
+# acceptable — val is only the early-stopping signal; the reported metric is the fully
+# separate 194-tile NEON benchmark. Offset by VAL_EVERY//2 so val isn't always a
+# tile's first (corner) patch.
 
 
 def find_image(fn):
@@ -116,15 +106,14 @@ def main():
             stats.append((tile, "MISSING_IMG", 0, 0))
             continue
         usable[tile] = (img_path, boxes, (ax0, ay0, ax1, ay1))
-    val_tiles = choose_val_tiles({t: len(v[1]) for t, v in usable.items()})
-    print(f"[val] held-out tiles: {sorted(val_tiles)}")
+    print(f"[val] patch-level stratified: ~1/{VAL_EVERY} of EACH tile's patches -> val "
+          f"(all {len(usable)} tiles train)")
 
     # PASS 2: crop patches from the annotation bbox of each usable tile
     gt = {}
     for tile in sorted(usable):
         img_path, boxes, (ax0, ay0, ax1, ay1) = usable[tile]
         img = Image.open(img_path).convert("RGB")
-        part = "val" if tile in val_tiles else "train"
         pos, empt = [], []
         for (px, py) in patch_grid(ax0, ay0, ax1, ay1):
             # boxes with centre inside the patch, clipped to patch, kept if enough survives
@@ -148,8 +137,9 @@ def main():
         n_keep_empt = min(len(empt), int(round(EMPTY_RATIO * len(pos))))
         empt = empt[:: max(1, len(empt) // n_keep_empt)][:n_keep_empt] if n_keep_empt else []
         recs = pos + empt
-        nbox = 0
+        nbox = n_val = 0
         for i, (px, py, keep) in enumerate(recs):
+            part = "val" if (i % VAL_EVERY == VAL_EVERY // 2) else "train"
             crop = img.crop((px, py, px + PATCH, py + PATCH))
             if crop.size != (PATCH, PATCH):            # flush-edge safety pad
                 pad = Image.new("RGB", (PATCH, PATCH))
@@ -157,8 +147,8 @@ def main():
             pid = f"{tile}__p{px}_{py}"
             crop.save(os.path.join(OUT_IMG, pid + ".png"))
             gt[pid] = {"boxes": keep, "partition": part, "src_tile": tile}
-            nbox += len(keep)
-        stats.append((tile, part, len(recs), nbox))
+            nbox += len(keep); n_val += (part == "val")
+        stats.append((tile, f"tr+{n_val}val", len(recs), nbox))
     json.dump(gt, open(OUT_GT, "w"))
 
     print(f"{'tile':44s} {'part':6s} {'patches':7s} {'boxes'}")

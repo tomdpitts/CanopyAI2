@@ -30,7 +30,7 @@ PKG = os.path.dirname(HERE)                    # boxinst_commonality_tcd_04/
 REPO = os.path.dirname(PKG)
 P = "/root/proj"
 PKG_R = f"{P}/boxinst_commonality_tcd_04"
-NEON_R = f"{PKG_R}/mps_neon_multiseed"
+NEON_R = f"{PKG_R}/modal_neon_multiseed"
 
 app = modal.App(APP)
 vol = modal.Volume.from_name(VOL_NAME, create_if_missing=True)
@@ -73,7 +73,7 @@ def extract():
     import torch
     _setup_path()
     assert torch.cuda.is_available(), "no CUDA"
-    from boxinst_commonality_tcd_04.mps_neon_multiseed import neon_features as nf
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_features as nf
     net = nf.build_net(device="cuda")
     print(f"[extract] gpu={torch.cuda.get_device_name(0)} out_dim={net.out_dim} "
           f"layers={net.layers}", flush=True)
@@ -109,18 +109,20 @@ def extract():
     return {"feat_train": n_tr, "feat_eval": n_ev}
 
 
-@app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=6 * 3600)
-def train_eval(seed: int = 0, epochs: int = 40):
+@app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=6 * 3600,
+              cpu=4, memory=110592)         # RAM for up-to-3x (aug) feature preload
+def train_eval(seed: int = 0, epochs: int = 40,
+               gt_name: str = "train_patches_gt.json", tag_suffix: str = ""):
     import time
     import torch
     _setup_path()
     assert torch.cuda.is_available(), "no CUDA"
-    from boxinst_commonality_tcd_04.mps_neon_multiseed import neon_train_lib as L
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_train_lib as L
     os.makedirs(OUT, exist_ok=True)
-    tag = f"neon_s{seed}"
+    tag = f"neon_s{seed}{tag_suffix}"
     t0 = time.time()
     best = L.train_resumable(
-        feat_dir=FEAT_TRAIN, gt_path=f"{VOL}/train_patches_gt.json",
+        feat_dir=FEAT_TRAIN, gt_path=f"{VOL}/{gt_name}",
         ckpt_dir=OUT, tag=tag, seed=seed, epochs=epochs, device="cuda",
         commit=vol.commit)                      # persist best + resume state each eval
     train_min = (time.time() - t0) / 60
@@ -141,6 +143,112 @@ def train_eval(seed: int = 0, epochs: int = 40):
     print(f"[train_eval] seed{seed}: train {train_min:.1f} min, eval {eval_min:.1f} "
           f"min; best ep{best['epoch']} valAP50={best['mAP50']:.3f}", flush=True)
     return res
+
+
+@app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=3600,
+              cpu=4, memory=32768, secrets=[hf_secret])
+def eval_multiscale(seed: int = 0, up: int = 2, qwin: int = 240):
+    """A/B the UPSCALE arm on an existing checkpoint (inference-only, no retrain):
+    native (cached 400px feats) vs native+upscale, scored with the NEON scorer."""
+    import torch
+    _setup_path()
+    assert torch.cuda.is_available(), "no CUDA"
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_features as nf
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_train_lib as L
+    tag = f"neon_s{seed}"
+    net = nf.build_net(device="cuda")
+    print(f"[eval_ms] up={up} qwin={qwin} on det_{tag}", flush=True)
+    L.predict_boxes_multiscale(
+        os.path.join(OUT, f"det_{tag}.pt"), net, FEAT_EVAL, f"{VOL}/neon_gt.json",
+        EVAL_RGB, os.path.join(OUT, f"preds_{tag}_ms.json"), up=up, qwin=qwin,
+        device="cuda")
+    res = L.score_predictions(os.path.join(OUT, f"preds_{tag}_ms.json"),
+                              f"{VOL}/neon_gt.json",
+                              os.path.join(OUT, f"results_{tag}_ms.json"))
+    vol.commit()
+    bf = res["best_f1_point"]
+    print(f"[eval_ms] native+upscale best-F1: P={bf['P']} R={bf['R']} "
+          f"(native was P0.731/R0.680; paper P0.659/R0.790)", flush=True)
+    return res
+
+
+@app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=2 * 3600,
+              cpu=4, memory=32768, secrets=[hf_secret])
+def extract_aug():
+    """Flip augmentation (H+V) of the TRAIN patches only: extract flipped-image features
+    (correct — through the backbone, not a feature flip) into feat_train as {pid}_h/_v,
+    and write train_patches_gt_aug.json with flipped boxes. Val patches unchanged.
+    Idempotent. Triples training data to attack the overfit/data plateau."""
+    import json
+    import glob  # noqa: F401
+    import numpy as np
+    import torch
+    from PIL import Image
+    _setup_path()
+    assert torch.cuda.is_available(), "no CUDA"
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_features as nf
+    net = nf.build_net(device="cuda")
+    gt = json.load(open(f"{VOL}/train_patches_gt.json"))
+    PATCH = 400
+    def flip(boxes, m):
+        return [([PATCH - x1, y0, PATCH - x0, y1] if m == "h"
+                 else [x0, PATCH - y1, x1, PATCH - y0]) for x0, y0, x1, y1 in boxes]
+    aug = dict(gt)
+    train_ids = [p for p, v in gt.items() if v["partition"] == "train"]
+    todo = []
+    for pid in train_ids:
+        for m in ("h", "v"):
+            aug[f"{pid}_{m}"] = {"boxes": flip(gt[pid]["boxes"], m),
+                                 "partition": "train",
+                                 "src_tile": gt[pid].get("src_tile")}
+            if not os.path.exists(f"{FEAT_TRAIN}/{pid}_{m}.npy"):
+                todo.append((pid, m))
+    print(f"[aug] train={len(train_ids)} -> flipped feats to extract: {len(todo)}",
+          flush=True)
+    T = {"h": Image.FLIP_LEFT_RIGHT, "v": Image.FLIP_TOP_BOTTOM}
+    for k, (pid, m) in enumerate(todo):
+        img = Image.open(f"{TRAIN_RGB}/{pid}.png").convert("RGB").transpose(T[m])
+        g, _ = nf.feat_for_pil(net, img)
+        np.save(f"{FEAT_TRAIN}/{pid}_{m}.npy", g)
+        if (k + 1) % 400 == 0 or k + 1 == len(todo):
+            print(f"  {k+1}/{len(todo)}", flush=True); vol.commit()
+    json.dump(aug, open(f"{VOL}/train_patches_gt_aug.json", "w"))
+    vol.commit()
+    print(f"[aug] wrote train_patches_gt_aug.json: {len(aug)} patches "
+          f"(~{len(train_ids)} train x3 + val)", flush=True)
+    return {"n_patches": len(aug), "n_extracted": len(todo)}
+
+
+@app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=3600,
+              cpu=4, memory=32768, secrets=[hf_secret])
+def eval_tta(seed: int = 0):
+    """A/B (inference-only, no retrain) on the full 194: soft-NMS-only, TTA+hard-NMS,
+    TTA+soft-NMS — vs native. Flip-TTA (id/h/v/hv), scored with the NEON scorer."""
+    import torch
+    _setup_path()
+    assert torch.cuda.is_available(), "no CUDA"
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_features as nf
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_train_lib as L
+    tag = f"neon_s{seed}"
+    net = nf.build_net(device="cuda")
+    ckpt = os.path.join(OUT, f"det_{tag}.pt")
+    configs = [("softnms", ("id",), "soft"),
+               ("tta_hard", ("id", "h", "v", "hv"), "hard"),
+               ("tta_soft", ("id", "h", "v", "hv"), "soft")]
+    out = {}
+    for name, views, merge in configs:
+        print(f"[eval_tta] {name}: views={views} merge={merge}", flush=True)
+        L.predict_boxes_tta(ckpt, net, FEAT_EVAL, f"{VOL}/neon_gt.json", EVAL_RGB,
+                            os.path.join(OUT, f"preds_{tag}_{name}.json"),
+                            views=views, merge=merge, device="cuda")
+        res = L.score_predictions(os.path.join(OUT, f"preds_{tag}_{name}.json"),
+                                  f"{VOL}/neon_gt.json",
+                                  os.path.join(OUT, f"results_{tag}_{name}.json"))
+        out[name] = res["best_f1_point"]
+        print(f"[eval_tta] {name} best-F1: {res['best_f1_point']}", flush=True)
+    vol.commit()
+    print(f"[eval_tta] native was P0.731/R0.680; DF best-F1 P0.745/R0.709", flush=True)
+    return out
 
 
 @app.local_entrypoint()

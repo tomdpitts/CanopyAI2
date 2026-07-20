@@ -1,4 +1,4 @@
-"""Unit tests for scorer.py — run: .venv/bin/python -m boxinst_commonality_tcd_04.mps_neon_multiseed.test_scorer
+"""Unit tests for scorer.py — run: .venv/bin/python -m boxinst_commonality_tcd_04.modal_neon_multiseed.test_scorer
 (or plain `python test_scorer.py` from this dir). Pure asserts, no pytest needed."""
 import os
 import sys

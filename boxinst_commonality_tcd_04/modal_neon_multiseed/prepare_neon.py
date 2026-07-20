@@ -6,7 +6,7 @@ PASCAL-VOC boxes (xmin,ymin,xmax,ymax, image pixel coords), and writes neon_gt.j
 
 RGB-ONLY: reads only annotations/*.xml and evaluation/RGB/*.tif. No LiDAR/CHM/HSI.
 
-Usage: .venv/bin/python -m boxinst_commonality_tcd_04.mps_neon_multiseed.prepare_neon
+Usage: .venv/bin/python -m boxinst_commonality_tcd_04.modal_neon_multiseed.prepare_neon
 """
 import glob
 import json

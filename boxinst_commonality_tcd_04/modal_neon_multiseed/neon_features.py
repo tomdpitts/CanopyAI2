@@ -43,6 +43,21 @@ def feat_for_image(net, path):
     return g, (H0, W0)
 
 
+def feat_for_pil(net, pil, size=512):
+    """In-memory RGB PIL image (<=size on each side) -> (4096,32,32) fp16 + (H0,W0).
+    Same zero-pad-to-512 as dapt.backbone.load_tile, but no file (for upscaled crops)."""
+    pil = pil.convert("RGB")
+    W0, H0 = pil.size
+    if W0 > size or H0 > size:
+        raise ValueError(f"crop {W0}x{H0} exceeds pad {size}")
+    arr = np.asarray(pil, np.float32) / 255.0
+    canvas = np.zeros((size, size, 3), np.float32)
+    canvas[:H0, :W0] = arr
+    x = torch.from_numpy(canvas).permute(2, 0, 1)[None]
+    g = net.extract(x)[0].to(torch.float16).cpu().numpy()
+    return g, (H0, W0)
+
+
 def extract_dir(net, img_paths, out_dir, log_every=25):
     """Idempotent: writes out_dir/<stem>.npy per image, skips existing. Returns count."""
     import time

@@ -1,5 +1,5 @@
 """NEON box-only detector: resumable training (faithful to the 0.492 TCD recipe) +
-box-only evaluation. Isolated in mps_neon_multiseed/; reuses the repo's Detector8 /
+box-only evaluation. Isolated in modal_neon_multiseed/; reuses the repo's Detector8 /
 det_loss / TileData / decode so the RECIPE is byte-identical to train_detector_tiles.
 
 Recipe (unchanged from the 0.492 run): width 256, tower 3, Adam lr 1e-3 wd 1e-4,
@@ -51,11 +51,31 @@ def _canopy_px(polys, res):
 
 
 class TileData:
-    def __init__(self, feat_dir, canvas=CANVAS, gt_path=None):
+    def __init__(self, feat_dir, canvas=CANVAS, gt_path=None, preload=False):
         self.cdir = feat_dir
         gt = json.load(open(gt_path))
         self.gt = {t: v for t, v in gt.items()
                    if os.path.exists(os.path.join(self.cdir, t + ".npy"))}
+        # RAM cache: NEON features (~8MB each) fit in memory, so preload once and
+        # skip the per-batch Volume np.load that dominated wall-clock (~1.5min/epoch).
+        # THREADED: np.load is I/O-bound and drops the GIL, so parallel reads saturate
+        # the (slow, small-file) Modal Volume bandwidth -> ~13min -> a few min.
+        self._cache = {}
+        if preload:
+            import time as _t
+            from concurrent.futures import ThreadPoolExecutor
+            keys = list(self.gt)
+            t0 = _t.time()
+
+            def _ld(t):
+                return t, torch.from_numpy(
+                    np.load(os.path.join(self.cdir, t + ".npy")))
+            with ThreadPoolExecutor(max_workers=16) as ex:
+                for j, (t, arr) in enumerate(ex.map(_ld, keys)):
+                    self._cache[t] = arr
+                    if (j + 1) % 400 == 0 or j + 1 == len(keys):
+                        print(f"  [preload] {j+1}/{len(keys)} feats "
+                              f"({_t.time()-t0:.0f}s)", flush=True)
         cfg = TargetConfig(grid=canvas // 8, stride=8)
         self.enc, self.ign, self.boxes = {}, {}, {}
         for t, v in self.gt.items():
@@ -72,6 +92,8 @@ class TileData:
         return sorted(t for t, v in self.gt.items() if v["partition"] == name)
 
     def _feat(self, t):
+        if t in self._cache:
+            return self._cache[t]
         return torch.from_numpy(np.load(os.path.join(self.cdir, t + ".npy")))
 
     def batch(self, tids, device):
@@ -94,8 +116,8 @@ def infer(model, data, tids, device, score_thr=0.05, topk=600):
     return preds, gts
 
 
-def make_data(feat_dir, gt_path):
-    return TileData(feat_dir, canvas=CANVAS, gt_path=gt_path)
+def make_data(feat_dir, gt_path, preload=False):
+    return TileData(feat_dir, canvas=CANVAS, gt_path=gt_path, preload=preload)
 
 
 def _cfg(in_dim, width, tower, thr, seed, tag, best_epoch):
@@ -107,11 +129,12 @@ def _cfg(in_dim, width, tower, thr, seed, tag, best_epoch):
 def train_resumable(feat_dir, gt_path, ckpt_dir, tag="neon_s0", seed=0, epochs=40,
                     bs=3, eval_every=5, lr=1e-3, wd=1e-4, width=256, tower=3,
                     min_epochs=12, es_patience=2, es_min_delta=0.005,
-                    device=None, commit=None):
+                    device=None, commit=None, preload=True, log_every_steps=100):
+    import time
     os.makedirs(ckpt_dir, exist_ok=True)
     set_seed(seed)
     device = pick_device(device)
-    data = make_data(feat_dir, gt_path)
+    data = make_data(feat_dir, gt_path, preload=preload)
     tr, va = data.partition("train"), data.partition("val")
     assert tr and va, f"empty split: train={len(tr)} val={len(va)}"
     in_dim = data._feat(tr[0]).shape[0]
@@ -138,18 +161,35 @@ def train_resumable(feat_dir, gt_path, ckpt_dir, tag="neon_s0", seed=0, epochs=4
           f"train/val={len(tr)}/{len(va)} seed={seed} cosine early-stop "
           f"(p{es_patience}/min{min_epochs}) start_ep={start_ep}", flush=True)
 
+    t_run = time.time()
+    ep_times = []
+    n_steps = (len(tr) + bs - 1) // bs
     for ep in range(start_ep, epochs):
         model.train()
         order = list(tr); rng.shuffle(order)
         losses = []
-        for i in range(0, len(order), bs):
+        t_ep = time.time()
+        for s, i in enumerate(range(0, len(order), bs)):
             b = data.batch(order[i:i + bs], device)
             det = model(b["feat"])
             l_hm, l_off, l_size, l_giou = det_loss(det, b)
             loss = l_hm + l_off + l_size + l_giou
             opt.zero_grad(); loss.backward(); opt.step()
             losses.append([l_hm.item(), l_off.item(), l_size.item(), l_giou.item()])
+            # intra-epoch heartbeat so a slow epoch is never a blind window
+            if log_every_steps and ((s + 1) % log_every_steps == 0):
+                el = time.time() - t_ep
+                print(f"    ep{ep+1} step {s+1}/{n_steps} loss={loss.item():.3f} "
+                      f"{(s+1)/el:.1f} it/s", flush=True)
         sched.step()
+        # per-epoch summary + ETA on EVERY epoch (not just eval epochs)
+        dt = time.time() - t_ep; ep_times.append(dt)
+        m_ep = np.mean(losses, 0)
+        eta = np.mean(ep_times[-5:]) * (epochs - ep - 1) / 60
+        print(f"  ep{ep+1:3d}/{epochs} loss={sum(m_ep):.3f} "
+              f"(hm={m_ep[0]:.3f} off={m_ep[1]:.3f} size={m_ep[2]:.3f} "
+              f"giou={m_ep[3]:.3f}) {dt:.1f}s/ep lr={opt.param_groups[0]['lr']:.1e} "
+              f"ETA<={eta:.1f}min", flush=True)
         if (ep + 1) % eval_every == 0 or ep + 1 == epochs:
             m = np.mean(losses, 0)
             preds, gts = infer(model, data, va, device)
@@ -222,6 +262,168 @@ def predict_boxes(ckpt_path, eval_feat_dir, eval_gt_json, rgb_dir, out_pred_json
         preds[plot] = {"boxes": bx.tolist(), "scores": sc.tolist()}
         if (k + 1) % 50 == 0 or k + 1 == len(gt):
             print(f"  predicted {k+1}/{len(gt)}", flush=True)
+    json.dump(preds, open(out_pred_json, "w"))
+    print(f"wrote {out_pred_json}", flush=True)
+    return preds
+
+
+@torch.no_grad()
+def predict_boxes_multiscale(ckpt_path, net, eval_feat_dir, eval_gt_json, rgb_dir,
+                             out_pred_json, up=2, qwin=240, score_thr=0.01, topk=600,
+                             ms_nms_iou=0.5, device=None):
+    """Native (cached 400px features) + UPSCALE arm for tiny crowns: each tile is split
+    into overlapping `qwin`px quadrants, each enlarged `up`x to fit the 512 pad so a
+    ~19px crown becomes ~38px (~2.5 feature cells). Upscale boxes are mapped back to tile
+    coords and cross-scale NMS-merged with the native detections. Inference-only; the
+    backbone `net` must be the SAME layers=(21,22,23,24) extractor. Writes {plot:{boxes,
+    scores}}."""
+    from torchvision.ops import nms
+    from PIL import Image
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_features as nf
+    device = pick_device(device)
+    ck = torch.load(ckpt_path, map_location="cpu", weights_only=False)
+    cfg = ck["cfg"]
+    model = Detector8(cfg["in_dim"], width=cfg["width"], tower=cfg["tower"]
+                      ).to(device).eval()
+    model.load_state_dict(ck["state"])
+    gt = json.load(open(eval_gt_json))
+    preds = {}
+    for k, plot in enumerate(sorted(gt)):
+        W, H = Image.open(os.path.join(rgb_dir, plot + ".tif")).size
+        boxes_all, scores_all = [], []
+        # native arm (cached features)
+        fp = os.path.join(eval_feat_dir, plot + ".npy")
+        if os.path.exists(fp):
+            det = model(torch.from_numpy(np.load(fp).astype(np.float32))[None].to(device))
+            bx, sc = decode(det.cpu(), score_thr=score_thr, stride=STRIDE8, topk=topk)
+            boxes_all.append(bx.numpy()); scores_all.append(sc.numpy())
+        # upscale arm: overlapping quadrants
+        img = Image.open(os.path.join(rgb_dir, plot + ".tif")).convert("RGB")
+        xs = sorted({0, max(0, W - qwin)}); ys = sorted({0, max(0, H - qwin)})
+        for qy in ys:
+            for qx in xs:
+                qw, qh = min(qwin, W - qx), min(qwin, H - qy)
+                quad = img.crop((qx, qy, qx + qw, qy + qh)).resize(
+                    (qw * up, qh * up), Image.BILINEAR)
+                feat, _ = nf.feat_for_pil(net, quad)
+                det = model(torch.from_numpy(feat.astype(np.float32))[None].to(device))
+                bx, sc = decode(det.cpu(), score_thr=score_thr, stride=STRIDE8, topk=topk)
+                bx = bx.numpy(); sc = sc.numpy()
+                cx = (bx[:, 0] + bx[:, 2]) / 2; cy = (bx[:, 1] + bx[:, 3]) / 2
+                keep = (cx >= 0) & (cx < qw * up) & (cy >= 0) & (cy < qh * up)
+                bx, sc = bx[keep], sc[keep]
+                bx = bx / up                                     # upscaled -> quad coords
+                bx[:, [0, 2]] += qx; bx[:, [1, 3]] += qy         # quad -> tile coords
+                boxes_all.append(bx); scores_all.append(sc)
+        if boxes_all:
+            B = np.concatenate(boxes_all); S = np.concatenate(scores_all)
+        else:
+            B = np.zeros((0, 4)); S = np.zeros(0)
+        # confine to tile, drop pad, cross-scale NMS
+        cx = (B[:, 0] + B[:, 2]) / 2; cy = (B[:, 1] + B[:, 3]) / 2
+        m = (cx >= 0) & (cx < W) & (cy >= 0) & (cy < H)
+        B, S = B[m], S[m]
+        B[:, [0, 2]] = B[:, [0, 2]].clip(0, W); B[:, [1, 3]] = B[:, [1, 3]].clip(0, H)
+        if len(B):
+            ki = nms(torch.from_numpy(B).float(), torch.from_numpy(S).float(),
+                     ms_nms_iou).numpy()
+            B, S = B[ki], S[ki]
+        preds[plot] = {"boxes": B.tolist(), "scores": S.tolist()}
+        if (k + 1) % 50 == 0 or k + 1 == len(gt):
+            print(f"  ms-predicted {k+1}/{len(gt)}", flush=True)
+    json.dump(preds, open(out_pred_json, "w"))
+    print(f"wrote {out_pred_json}", flush=True)
+    return preds
+
+
+def _soft_nms(boxes, scores, sigma=0.5, score_min=1e-3):
+    """Gaussian soft-NMS: keep all boxes but decay a box's score by exp(-iou^2/sigma)
+    against every higher-scoring kept box. Recovers dense-canopy crowns that hard NMS
+    deletes, and merges TTA duplicates by consensus. Returns (boxes, decayed_scores)."""
+    b = np.asarray(boxes, float).reshape(-1, 4).copy()
+    s = np.asarray(scores, float).copy()
+    if len(b) == 0:
+        return b, s
+    kb, ks = [], []
+    while True:
+        i = int(np.argmax(s))
+        if s[i] < score_min:
+            break
+        bi = b[i]; kb.append(bi.copy()); ks.append(s[i]); s[i] = -1
+        rest = np.where(s >= score_min)[0]
+        if len(rest) == 0:
+            continue
+        x0 = np.maximum(bi[0], b[rest, 0]); y0 = np.maximum(bi[1], b[rest, 1])
+        x1 = np.minimum(bi[2], b[rest, 2]); y1 = np.minimum(bi[3], b[rest, 3])
+        inter = (x1 - x0).clip(0) * (y1 - y0).clip(0)
+        ai = (bi[2] - bi[0]) * (bi[3] - bi[1])
+        ar = (b[rest, 2] - b[rest, 0]) * (b[rest, 3] - b[rest, 1])
+        iou = inter / (ai + ar - inter + 1e-9)
+        s[rest] *= np.exp(-(iou ** 2) / sigma)
+    return np.array(kb).reshape(-1, 4), np.array(ks)
+
+
+_FLIPS = {  # name -> (PIL transpose, box remap given tile W,H)
+    "id":  (None,                    lambda b, W, H: b),
+    "h":   ("FLIP_LEFT_RIGHT",       lambda b, W, H: np.stack([W - b[:, 2], b[:, 1], W - b[:, 0], b[:, 3]], 1)),
+    "v":   ("FLIP_TOP_BOTTOM",       lambda b, W, H: np.stack([b[:, 0], H - b[:, 3], b[:, 2], H - b[:, 1]], 1)),
+    "hv":  ("ROTATE_180",            lambda b, W, H: np.stack([W - b[:, 2], H - b[:, 3], W - b[:, 0], H - b[:, 1]], 1)),
+}
+
+
+@torch.no_grad()
+def predict_boxes_tta(ckpt_path, net, eval_feat_dir, eval_gt_json, rgb_dir, out_pred_json,
+                      views=("id", "h", "v", "hv"), sigma=0.5, score_thr=0.01, topk=600,
+                      merge="soft", nms_iou=0.5, device=None):
+    """Flip-TTA + soft-NMS (inference-only). Detects on each flip view (identity uses the
+    cached feature; flips re-extract), un-flips boxes to the tile frame, pools all views,
+    and soft-NMS-merges. Recovers borderline true crowns (view-consensus) and dense crowns
+    (soft-NMS) at low FP risk. views=('id',) => soft-NMS only, no TTA."""
+    from PIL import Image
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_features as nf
+    device = pick_device(device)
+    ck = torch.load(ckpt_path, map_location="cpu", weights_only=False)
+    cfg = ck["cfg"]
+    model = Detector8(cfg["in_dim"], width=cfg["width"], tower=cfg["tower"]
+                      ).to(device).eval()
+    model.load_state_dict(ck["state"])
+    gt = json.load(open(eval_gt_json))
+    preds = {}
+    for k, plot in enumerate(sorted(gt)):
+        img = Image.open(os.path.join(rgb_dir, plot + ".tif")).convert("RGB")
+        W, H = img.size
+        B, S = [], []
+        for vn in views:
+            tr, remap = _FLIPS[vn]
+            if vn == "id" and os.path.exists(os.path.join(eval_feat_dir, plot + ".npy")):
+                feat = np.load(os.path.join(eval_feat_dir, plot + ".npy")).astype(np.float32)
+            else:
+                vimg = img if tr is None else img.transpose(getattr(Image, tr))
+                feat, _ = nf.feat_for_pil(net, vimg)
+                feat = feat.astype(np.float32)
+            det = model(torch.from_numpy(feat)[None].to(device))
+            bx, sc = decode(det.cpu(), score_thr=score_thr, stride=STRIDE8, topk=topk,
+                            nms_iou=0.9)                     # permissive: soft-NMS does merging
+            bx = bx.numpy()
+            if len(bx):
+                bx = remap(bx, W, H)
+            B.append(bx.reshape(-1, 4)); S.append(sc.numpy())
+        B = np.concatenate(B) if B else np.zeros((0, 4)); S = np.concatenate(S) if S else np.zeros(0)
+        cx = (B[:, 0] + B[:, 2]) / 2; cy = (B[:, 1] + B[:, 3]) / 2
+        m = (cx >= 0) & (cx < W) & (cy >= 0) & (cy < H)
+        B, S = B[m], S[m]
+        if merge == "soft":
+            B, S = _soft_nms(B, S, sigma=sigma)          # keep-all-decayed (dense recovery)
+        elif len(B):                                     # "hard": consolidate TTA views
+            from torchvision.ops import nms
+            ki = nms(torch.from_numpy(B).float(), torch.from_numpy(S).float(),
+                     nms_iou).numpy()
+            B, S = B[ki], S[ki]
+        if len(B):
+            B[:, [0, 2]] = B[:, [0, 2]].clip(0, W); B[:, [1, 3]] = B[:, [1, 3]].clip(0, H)
+        preds[plot] = {"boxes": B.tolist(), "scores": S.tolist()}
+        if (k + 1) % 50 == 0 or k + 1 == len(gt):
+            print(f"  tta-predicted {k+1}/{len(gt)} (views={list(views)})", flush=True)
     json.dump(preds, open(out_pred_json, "w"))
     print(f"wrote {out_pred_json}", flush=True)
     return preds
