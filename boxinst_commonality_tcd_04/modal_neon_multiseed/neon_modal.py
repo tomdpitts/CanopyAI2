@@ -110,9 +110,10 @@ def extract():
 
 
 @app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=6 * 3600,
-              cpu=4, memory=110592)         # RAM for up-to-3x (aug) feature preload
+              cpu=4, memory=49152)          # 48GB: native preload ~17GB (bump for 3x aug)
 def train_eval(seed: int = 0, epochs: int = 40,
-               gt_name: str = "train_patches_gt.json", tag_suffix: str = ""):
+               gt_name: str = "train_patches_gt.json", tag_suffix: str = "",
+               up: int = 2):
     import time
     import torch
     _setup_path()
@@ -123,7 +124,7 @@ def train_eval(seed: int = 0, epochs: int = 40,
     t0 = time.time()
     best = L.train_resumable(
         feat_dir=FEAT_TRAIN, gt_path=f"{VOL}/{gt_name}",
-        ckpt_dir=OUT, tag=tag, seed=seed, epochs=epochs, device="cuda",
+        ckpt_dir=OUT, tag=tag, seed=seed, epochs=epochs, device="cuda", up=up,
         commit=vol.commit)                      # persist best + resume state each eval
     train_min = (time.time() - t0) / 60
     ckpt = os.path.join(OUT, f"det_{tag}.pt")

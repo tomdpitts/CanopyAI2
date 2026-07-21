@@ -94,6 +94,78 @@ crowns stay tiny), *site*, or LiDAR-recall coverage the benchmark actually needs
 the diagnosis: not lack of quantity-of-same-data, but lack of DIVERSITY / the LiDAR
 signal. Cost ~$3.4 (extract $1.1 + train $2.3). `results_neon_s0_aug.json`, `det_neon_s0_aug.pt`.
 
+## ⚠️ SEED-VARIANCE CORRECTION (read this first — it qualifies everything below)
+
+The lever search below was all done on **seed 0**. A 5-seed 4px band ($2.3) shows **seed 0 was a
+favorable draw**, and that **seed variance is LARGER than every lever difference measured**:
+
+- 4px **P@R0.709 = 0.653 ± 0.029** over 5 seeds (per-seed 0.699/0.621/0.660/0.623/0.662) — seed 0's
+  0.699 was the TOP; the mean (0.653) is **below native's single-seed 0.686**.
+- 4px maxR = **0.791 ± 0.021** (seed 0's 0.817 was the high tail; mean ≈ native's 0.787).
+- So **"4px halved the gap to DeepForest" does NOT survive seed variance** — it was seed-0 luck.
+- The single-seed lever ranking (4px 0.699 > native 0.686 > flip-aug 0.680 > 2px 0.671) spans ~0.028
+  ≈ **1σ of seed noise** → those distinctions are **not reliable**. Everything was compared on one
+  favorable seed.
+
+⇒ **No lever robustly beats native, and none approach DeepForest, once seed noise is accounted for.**
+To make ANY robust ours-vs-lever or ours-vs-DeepForest claim you need multiseed bands for native (and
+each lever), not single seeds. The single-seed tables below are kept for the record but are **within
+noise**. The honest headline: RGB-only, no-LiDAR, we're **competitive-but-behind** DeepForest, and the
+apparent lever gains were seed variance.
+
+## 4px stride — the one lever that moved toward DeepForest (seed 0 only — see correction above)
+
+Retrain with the detector upsampling 16px DINOv3 features to a **4px** grid (128² output)
+instead of 8px (`DetectorS(up=4)` + stride-correct `_det_loss`/decode; reuses cached 16px
+features, no re-extraction; train/test-consistent). Seed 0, IoU 0.4:
+
+| scope | model | best-F1 P/R | maxR | P@R0.68 | **P@R0.709** (DF recall) |
+|---|---|---|---|---|---|
+| Global | native | 0.731/0.680 | 0.787 | 0.719 | 0.686 |
+| Global | **4px** | 0.687/0.726 | **0.817** | 0.713 | **0.699** |
+| NIWO | native | 0.537/0.342 | 0.348 | — | — |
+| NIWO | 4px | 0.496/0.358 | 0.360 | — | — |
+| *DeepForest* | best-F1 | 0.750/0.703 | — | — | 0.709 |
+
+**First lever to genuinely expand the frontier (not just slide along it):** maxR 0.787→0.817;
+at DeepForest's recall (0.709) our precision 0.686→**0.699**, so the gap there shrank from
+−0.023 to **−0.010** (halved). At native's own recall (0.68) precision is unchanged → it *added*
+high-recall reach. **Mechanism = broad CenterNet cell-collision fix, NOT NIWO** (NIWO barely
+moved — it's resolution-limited, not collision-limited, as predicted): the +0.03 recall came from
+other dense-canopy sites where crowns collided in 8px cells. So part of the deficit was a
+**decoder-grid artifact**, not purely the learned/LiDAR gap. Still doesn't beat DeepForest
+(−0.010 at its recall) but closest yet. Cost **$0.55** (cached features; train 6.5min). Levers
+that only trade P↔R or stay flat: soft-NMS, TTA, multiscale, flip-aug — see above.
+
+**4px + flip-aug does NOT stack — it's the best single config, not improvable by combining.**
+The two levers push in TENSION: 4px expands recall, flip-aug regularizes toward high-precision.
+Combined best-F1 P0.735/R0.665 (highest precision, lowest recall); **P@R0.709 = 0.668 — WORSE
+than 4px alone (0.699) and native (0.686)**. Val boxAP50 was the highest of all (0.405, +0.073
+vs native) but did NOT convert to a better eval frontier — the third val↔eval disconnect (val
+rewards IoU-0.5 localization; the eval gap lives in the high-recall region). Cost $2.41.
+
+**Stride ablation (8/4/2px) — 4px is the confirmed optimum:**
+
+| stride | maxR | P@R0.68 | P@R0.709 | val boxAP50 |
+|---|---|---|---|---|
+| 8px (native) | 0.787 | 0.711 | 0.686 | 0.332 |
+| **4px** | **0.817** | 0.699 | **0.699** | 0.345 |
+| 2px | 0.816 | 0.714 | 0.671 ↓ | 0.371 |
+
+8→4 helps (collision fix); **4→2 REGRESSES** at the frontier (P@R0.709 0.699→0.671): maxR
+saturated (collision benefit exhausted at 4px) and the 8× interpolation of 16px feats +
+over-fine grid adds spurious/duplicate high-recall detections that cost precision. 2px is more
+precise at LOW recall (P@R0.68 0.714, best) but that's not where the gap is. Cost 2px $0.91.
+
+**Final lever ranking (P@R0.709, ↑=closer to DeepForest's 0.709):** 4px **0.699** > native 0.686
+> flip-aug 0.680 > 2px 0.671 > 4px+aug 0.668. **4px stride = single best usable config**; nothing
+beats DeepForest (0.709) but 4px halves the gap (−0.023→−0.010).
+
+**Val↔eval disconnect (4× confirmed):** val boxAP50 (IoU-0.5 localization on same-site patches)
+does NOT track the eval frontier — flip-aug, 4px+aug, and especially 2px all raised val while
+NOT improving (2px: worsening) P@R0.709. Past 4px, val is *anti*-correlated with the eval
+frontier. Use the 194-tile macro-P/R @IoU0.4, not val boxAP50, to judge levers here.
+
 ## Method / provenance
 
 - **Target (Step 0):** Weinstein et al. 2021, PLOS Comput Biol, DOI

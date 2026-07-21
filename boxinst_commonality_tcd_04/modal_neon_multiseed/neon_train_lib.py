@@ -24,14 +24,59 @@ import numpy as np
 import torch
 from PIL import Image, ImageDraw
 
+import torch.nn.functional as F
+from torchvision.ops import generalized_box_iou_loss
+
 from dapt.backbone import pick_device
 from dapt.decode import decode
 from dapt.eval import full_report, pick_threshold
+from dapt.head import _masked_smooth_l1, focal_heatmap_loss
 from dapt.targets import TargetConfig, encode
 from boxinst_commonality_tcd_04.detector import (STRIDE8, Detector8,
                                                  canopy_cell_mask, det_loss)
 
-CANVAS = 512                         # padded NEON tile -> grid 64 at 8px
+CANVAS = 512                         # padded NEON tile -> grid 64 at 8px (up=2)
+
+
+class DetectorS(Detector8):
+    """Detector8 with a configurable feature-upsample factor. up=2 -> 8px stride (the
+    0.492/native recipe); up=4 -> 4px stride: a 128x128 output grid that halves CenterNet
+    cell collisions again in dense canopy (the same trick as the original 16->8 upsample).
+    Features stay 16px (the 4px grid is interpolated), so this aids localization/collision,
+    not feature resolution. STRIDE = 16 // up (DINOv3 patch16 -> 32x32 grid on 512)."""
+    def __init__(self, in_dim, width=256, tower=3, up=2):
+        super().__init__(in_dim, width=width, tower=tower)
+        self.up_factor = up
+
+    def forward(self, feat):
+        x = self.tower(self.stem(feat))
+        x = F.interpolate(x, scale_factor=self.up_factor, mode="bilinear",
+                          align_corners=False)
+        x = self.up(x)
+        return torch.cat([self.hm(x), self.reg(x)], dim=1)
+
+
+def _det_loss(det, tgt, stride, w_size=0.1):
+    """det_loss (verbatim from detector.py) but with `stride` passed in, so the GIoU box
+    conversion is correct at 4px as well as 8px (the shared det_loss hardcodes STRIDE8)."""
+    hm, off, size = det[:, :1], det[:, 1:3], det[:, 3:5]
+    l_hm = focal_heatmap_loss(hm, tgt["heatmap"], tgt.get("ignore"))
+    l_off = _masked_smooth_l1(off, tgt["offset"], tgt["reg_mask"])
+    l_size = _masked_smooth_l1(size, tgt["size"], tgt["reg_mask"])
+    b, gy, gx = tgt["reg_mask"].nonzero(as_tuple=True)
+    if len(b):
+        def to_box(o, s):
+            cx = (gx.float() + o[b, 0, gy, gx]) * stride
+            cy = (gy.float() + o[b, 1, gy, gx]) * stride
+            w = s[b, 0, gy, gx].clamp(max=8).exp()
+            h = s[b, 1, gy, gx].clamp(max=8).exp()
+            return torch.stack([cx - w / 2, cy - h / 2, cx + w / 2, cy + h / 2], 1)
+        l_giou = generalized_box_iou_loss(to_box(off, size),
+                                          to_box(tgt["offset"], tgt["size"]),
+                                          reduction="mean")
+    else:
+        l_giou = det.sum() * 0.0
+    return l_hm, l_off, l_size * w_size, l_giou
 
 
 # --- data loading: TileData / infer / set_seed copied VERBATIM from
@@ -51,7 +96,7 @@ def _canopy_px(polys, res):
 
 
 class TileData:
-    def __init__(self, feat_dir, canvas=CANVAS, gt_path=None, preload=False):
+    def __init__(self, feat_dir, canvas=CANVAS, gt_path=None, preload=False, stride=8):
         self.cdir = feat_dir
         gt = json.load(open(gt_path))
         self.gt = {t: v for t, v in gt.items()
@@ -76,7 +121,7 @@ class TileData:
                     if (j + 1) % 400 == 0 or j + 1 == len(keys):
                         print(f"  [preload] {j+1}/{len(keys)} feats "
                               f"({_t.time()-t0:.0f}s)", flush=True)
-        cfg = TargetConfig(grid=canvas // 8, stride=8)
+        cfg = TargetConfig(grid=canvas // stride, stride=stride)
         self.enc, self.ign, self.boxes = {}, {}, {}
         for t, v in self.gt.items():
             bx = np.array(v["boxes"], np.float32).reshape(-1, 4)
@@ -106,39 +151,43 @@ class TileData:
 
 
 @torch.no_grad()
-def infer(model, data, tids, device, score_thr=0.05, topk=600):
+def infer(model, data, tids, device, score_thr=0.05, topk=600, stride=8):
     model.eval()
     preds, gts = [], []
     for t in tids:
         det = model(data._feat(t).float()[None].to(device))
-        bx, sc = decode(det.cpu(), score_thr=score_thr, stride=STRIDE8, topk=topk)
+        bx, sc = decode(det.cpu(), score_thr=score_thr, stride=stride, topk=topk)
         preds.append((bx.numpy(), sc.numpy())); gts.append(data.boxes[t])
     return preds, gts
 
 
-def make_data(feat_dir, gt_path, preload=False):
-    return TileData(feat_dir, canvas=CANVAS, gt_path=gt_path, preload=preload)
+def make_data(feat_dir, gt_path, preload=False, stride=8):
+    return TileData(feat_dir, canvas=CANVAS, gt_path=gt_path, preload=preload,
+                    stride=stride)
 
 
-def _cfg(in_dim, width, tower, thr, seed, tag, best_epoch):
+def _cfg(in_dim, width, tower, thr, seed, tag, best_epoch, up=2, stride=8):
     return {"in_dim": in_dim, "width": width, "tower": tower, "score_thr": thr,
             "nms_iou": 0.5, "seed": seed, "tag": tag, "best_epoch": best_epoch,
-            "canvas": CANVAS, "stride": STRIDE8, "data": "NEON hand-annotated patches"}
+            "up": up, "stride": stride,
+            "canvas": CANVAS, "data": "NEON hand-annotated patches"}
 
 
 def train_resumable(feat_dir, gt_path, ckpt_dir, tag="neon_s0", seed=0, epochs=40,
                     bs=3, eval_every=5, lr=1e-3, wd=1e-4, width=256, tower=3,
                     min_epochs=12, es_patience=2, es_min_delta=0.005,
-                    device=None, commit=None, preload=True, log_every_steps=100):
+                    device=None, commit=None, preload=True, log_every_steps=100,
+                    up=2):
     import time
+    stride = 16 // up                    # DINOv3 patch16 -> up=2:8px, up=4:4px
     os.makedirs(ckpt_dir, exist_ok=True)
     set_seed(seed)
     device = pick_device(device)
-    data = make_data(feat_dir, gt_path, preload=preload)
+    data = make_data(feat_dir, gt_path, preload=preload, stride=stride)
     tr, va = data.partition("train"), data.partition("val")
     assert tr and va, f"empty split: train={len(tr)} val={len(va)}"
     in_dim = data._feat(tr[0]).shape[0]
-    model = Detector8(in_dim, width=width, tower=tower).to(device)
+    model = DetectorS(in_dim, width=width, tower=tower, up=up).to(device)
     opt = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=wd)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, epochs)
     rng = np.random.default_rng(seed)
@@ -172,7 +221,7 @@ def train_resumable(feat_dir, gt_path, ckpt_dir, tag="neon_s0", seed=0, epochs=4
         for s, i in enumerate(range(0, len(order), bs)):
             b = data.batch(order[i:i + bs], device)
             det = model(b["feat"])
-            l_hm, l_off, l_size, l_giou = det_loss(det, b)
+            l_hm, l_off, l_size, l_giou = _det_loss(det, b, stride)
             loss = l_hm + l_off + l_size + l_giou
             opt.zero_grad(); loss.backward(); opt.step()
             losses.append([l_hm.item(), l_off.item(), l_size.item(), l_giou.item()])
@@ -192,7 +241,7 @@ def train_resumable(feat_dir, gt_path, ckpt_dir, tag="neon_s0", seed=0, epochs=4
               f"ETA<={eta:.1f}min", flush=True)
         if (ep + 1) % eval_every == 0 or ep + 1 == epochs:
             m = np.mean(losses, 0)
-            preds, gts = infer(model, data, va, device)
+            preds, gts = infer(model, data, va, device, stride=stride)
             thr, _ = pick_threshold(preds, gts)
             rep = full_report(preds, gts, thr)
             lr_now = opt.param_groups[0]["lr"]
@@ -206,7 +255,7 @@ def train_resumable(feat_dir, gt_path, ckpt_dir, tag="neon_s0", seed=0, epochs=4
                                   for k, v in model.state_dict().items()}}
                 torch.save({"state": best["state"],
                             "cfg": _cfg(in_dim, width, tower, thr, seed, tag,
-                                        ep + 1)}, best_fp)
+                                        ep + 1, up=up, stride=stride)}, best_fp)
                 print(f"    ^ saved best ep{ep+1} boxAP50={best['mAP50']:.3f}",
                       flush=True)
                 if commit:
@@ -239,7 +288,8 @@ def predict_boxes(ckpt_path, eval_feat_dir, eval_gt_json, rgb_dir, out_pred_json
     device = pick_device(device)
     ck = torch.load(ckpt_path, map_location="cpu", weights_only=False)
     cfg = ck["cfg"]
-    model = Detector8(cfg["in_dim"], width=cfg["width"], tower=cfg["tower"]
+    up = cfg.get("up", 2); stride = cfg.get("stride", 8)   # old ckpts = 8px
+    model = DetectorS(cfg["in_dim"], width=cfg["width"], tower=cfg["tower"], up=up
                       ).to(device).eval()
     model.load_state_dict(ck["state"])
     gt = json.load(open(eval_gt_json))
@@ -251,7 +301,7 @@ def predict_boxes(ckpt_path, eval_feat_dir, eval_gt_json, rgb_dir, out_pred_json
             continue
         feat = np.load(fp).astype(np.float32)
         det = model(torch.from_numpy(feat)[None].to(device))
-        bx, sc = decode(det.cpu(), score_thr=score_thr, stride=STRIDE8, topk=topk)
+        bx, sc = decode(det.cpu(), score_thr=score_thr, stride=stride, topk=topk)
         bx, sc = bx.numpy(), sc.numpy()
         W, H = Image.open(os.path.join(rgb_dir, plot + ".tif")).size   # true tile size
         cx = (bx[:, 0] + bx[:, 2]) / 2; cy = (bx[:, 1] + bx[:, 3]) / 2
