@@ -1,10 +1,9 @@
-"""Step 3 — DeepForest RGB prebuilt reproduction (scorer gatekeeper).
+"""Step 3 — DeepForest RGB prebuilt reproduction.
 
-Runs the DeepForest prebuilt 'tree' model (RGB only, no CHM filter) over the 194
-scored NEON tiles and scores it with OUR scorer.py at IoU 0.4. Confirms we land near
-the maintained-package operating point (P~0.66 / R~0.79) — i.e. the paper's ~70%.
-A large miss => diagnose snapshot / coord frame / matching / averaging BEFORE trusting
-the scorer on our own model.
+Runs the DeepForest prebuilt 'tree' model (RGB only, no CHM filter) over the 194 scored
+NEON tiles and scores it with the authors' benchmark scorer (df_scorer.py =
+deepforest.evaluate_boxes) at IoU 0.4. Confirms we land near the maintained-package
+operating point (P~0.66 / R~0.79). Same evaluation code used for every reported number.
 
 RGB-ONLY: reads only evaluation/RGB/*.tif. No LiDAR/CHM/HSI.
 
@@ -23,7 +22,7 @@ import numpy as np
 warnings.filterwarnings("ignore")
 HERE = os.path.abspath(os.path.dirname(__file__))
 sys.path.insert(0, HERE)
-from scorer import evaluate, pr_curve  # noqa: E402
+import df_scorer  # noqa: E402  (the NEON benchmark authors' scorer, swept)
 
 RGB_DIR = os.path.join(HERE, "NeonTreeEvaluation", "evaluation", "RGB")
 GT_JSON = os.path.join(HERE, "neon_gt.json")
@@ -72,33 +71,16 @@ def main():
         json.dump(preds, open(PRED_JSON, "w"))
         print(f"wrote {PRED_JSON}", flush=True)
 
-    gt_arr = {p: np.array(b, float).reshape(-1, 4) for p, b in gt.items()}
-    pr_in = {p: {"boxes": np.array(v["boxes"], float).reshape(-1, 4),
-                 "scores": np.array(v["scores"], float)} for p, v in preds.items()}
-
-    # operating point = DeepForest default score_thresh 0.10 (the package op point)
-    e = evaluate(pr_in, gt_arr, iou_thr=0.4, score_thr=DF_DEFAULT_OP,
-                 nan_precision="zero")
-    curve = pr_curve(pr_in, gt_arr, iou_thr=0.4,
-                     thresholds=np.round(np.arange(0.05, 0.95, 0.05), 2))
-    res = {
-        "pinned_tag": "1.8.0", "n_plots": len(gt), "n_gt_boxes": int(
-            sum(len(v) for v in gt_arr.values())),
-        "iou_thr": 0.4, "operating_score_thr": DF_DEFAULT_OP,
-        "mean_precision": round(e["mean_precision"], 4),
-        "mean_recall": round(e["mean_recall"], 4),
-        "micro_precision": round(e["micro_precision"], 4),
-        "micro_recall": round(e["micro_recall"], 4),
-        "tp": e["tp"], "fp": e["fp"], "fn": e["fn"],
-        "target_paper_P": 0.76, "target_paper_R": 0.67,
-        "target_package_P": 0.66, "target_package_R": 0.79,
-        "pr_curve": curve,
-    }
-    json.dump(res, open(RESULT_JSON, "w"), indent=2)
-    print(json.dumps({k: v for k, v in res.items() if k != "pr_curve"}, indent=2))
-    print(f"\n[repro] DeepForest @IoU0.4, score_thr={DF_DEFAULT_OP}: "
-          f"macro P={e['mean_precision']:.3f} R={e['mean_recall']:.3f}  "
-          f"(package target ~0.66/0.79; paper Table 3 0.76/0.67)")
+    # Score with the AUTHORS' scorer (deepforest.evaluate_boxes, swept) — same evaluation
+    # code used for every reported number.
+    res = df_scorer.score(PRED_JSON, GT_JSON, RESULT_JSON)
+    curve = res["pr_curve"]
+    p10 = min(curve, key=lambda x: abs(x["score_thr"] - DF_DEFAULT_OP))
+    bf = res["best_f1_point"]
+    print(f"\n[repro] DeepForest via deepforest.evaluate_boxes @IoU0.4: "
+          f"@thr{DF_DEFAULT_OP} P={p10['mean_precision']:.3f} R={p10['mean_recall']:.3f} "
+          f"| best-F1 P={bf['P']} R={bf['R']} @thr{bf['score_thr']}")
+    print(f"(maintained-package regime ~P0.66/R0.79; paper Table 3 P0.659/R0.790)")
     print(f"wrote {RESULT_JSON}")
 
 

@@ -1,0 +1,256 @@
+{
+  "iou_thr": 0.4,
+  "scorer": "deepforest.evaluate_boxes (NEON benchmark authors)",
+  "n_plots": 194,
+  "mean_precision": 0.716,
+  "mean_recall": 0.6577,
+  "best_f1_point": {
+    "score_thr": 0.2,
+    "P": 0.716,
+    "R": 0.6577
+  },
+  "target_paper_P": 0.659,
+  "target_paper_R": 0.79,
+  "pr_curve": [
+    {
+      "score_thr": 0.0,
+      "mean_precision": 0.4198459003605046,
+      "mean_recall": 0.7595689944644809
+    },
+    {
+      "score_thr": 0.02,
+      "mean_precision": 0.47631145988651624,
+      "mean_recall": 0.7489615517411493
+    },
+    {
+      "score_thr": 0.04,
+      "mean_precision": 0.5263442663826517,
+      "mean_recall": 0.7333400253498229
+    },
+    {
+      "score_thr": 0.06,
+      "mean_precision": 0.5579281862548529,
+      "mean_recall": 0.7254465378878372
+    },
+    {
+      "score_thr": 0.08,
+      "mean_precision": 0.593755176290634,
+      "mean_recall": 0.7157269132057991
+    },
+    {
+      "score_thr": 0.1,
+      "mean_precision": 0.6205536038316919,
+      "mean_recall": 0.7062871966324341
+    },
+    {
+      "score_thr": 0.12,
+      "mean_precision": 0.6439611769646201,
+      "mean_recall": 0.6988347627916339
+    },
+    {
+      "score_thr": 0.14,
+      "mean_precision": 0.6620912958734779,
+      "mean_recall": 0.6913822219751136
+    },
+    {
+      "score_thr": 0.16,
+      "mean_precision": 0.6812847643915068,
+      "mean_recall": 0.6821982559925794
+    },
+    {
+      "score_thr": 0.18,
+      "mean_precision": 0.6985737440538112,
+      "mean_recall": 0.6731068321733685
+    },
+    {
+      "score_thr": 0.2,
+      "mean_precision": 0.7159522909479659,
+      "mean_recall": 0.6577395432332426
+    },
+    {
+      "score_thr": 0.22,
+      "mean_precision": 0.7285259050990678,
+      "mean_recall": 0.6455300519443576
+    },
+    {
+      "score_thr": 0.24,
+      "mean_precision": 0.7453722728677411,
+      "mean_recall": 0.6301244307364275
+    },
+    {
+      "score_thr": 0.26,
+      "mean_precision": 0.7649522616746399,
+      "mean_recall": 0.6090985949849954
+    },
+    {
+      "score_thr": 0.28,
+      "mean_precision": 0.7835613631304982,
+      "mean_recall": 0.5897486692603103
+    },
+    {
+      "score_thr": 0.3,
+      "mean_precision": 0.79754303966791,
+      "mean_recall": 0.5624236978185561
+    },
+    {
+      "score_thr": 0.32,
+      "mean_precision": 0.8152953000895506,
+      "mean_recall": 0.5357352709214646
+    },
+    {
+      "score_thr": 0.34,
+      "mean_precision": 0.8313021519399922,
+      "mean_recall": 0.4996449387817317
+    },
+    {
+      "score_thr": 0.36,
+      "mean_precision": 0.8424659254523554,
+      "mean_recall": 0.46360123464151426
+    },
+    {
+      "score_thr": 0.38,
+      "mean_precision": 0.851870001963468,
+      "mean_recall": 0.4194084524349525
+    },
+    {
+      "score_thr": 0.4,
+      "mean_precision": 0.8582891581418496,
+      "mean_recall": 0.3790044335830147
+    },
+    {
+      "score_thr": 0.42,
+      "mean_precision": 0.8772427390073659,
+      "mean_recall": 0.3385400783927456
+    },
+    {
+      "score_thr": 0.44,
+      "mean_precision": 0.8891638061277847,
+      "mean_recall": 0.30903996717942006
+    },
+    {
+      "score_thr": 0.46,
+      "mean_precision": 0.8833067303895309,
+      "mean_recall": 0.2674015009695417
+    },
+    {
+      "score_thr": 0.48,
+      "mean_precision": 0.9092079202760318,
+      "mean_recall": 0.24236419431660924
+    },
+    {
+      "score_thr": 0.5,
+      "mean_precision": 0.9181891804340783,
+      "mean_recall": 0.21449397057816738
+    },
+    {
+      "score_thr": 0.52,
+      "mean_precision": 0.9295173330606402,
+      "mean_recall": 0.19015819127692027
+    },
+    {
+      "score_thr": 0.54,
+      "mean_precision": 0.9159685659685659,
+      "mean_recall": 0.1667678193109631
+    },
+    {
+      "score_thr": 0.56,
+      "mean_precision": 0.908080808080808,
+      "mean_recall": 0.14271306119186478
+    },
+    {
+      "score_thr": 0.58,
+      "mean_precision": 0.9193415637860083,
+      "mean_recall": 0.12221723795913197
+    },
+    {
+      "score_thr": 0.6,
+      "mean_precision": 0.9340277777777778,
+      "mean_recall": 0.10111969045361652
+    },
+    {
+      "score_thr": 0.62,
+      "mean_precision": 0.9285714285714286,
+      "mean_recall": 0.08272183623706522
+    },
+    {
+      "score_thr": 0.64,
+      "mean_precision": 0.9433962264150944,
+      "mean_recall": 0.07146960772321663
+    },
+    {
+      "score_thr": 0.66,
+      "mean_precision": 1.0,
+      "mean_recall": 0.06095304979155863
+    },
+    {
+      "score_thr": 0.68,
+      "mean_precision": 1.0,
+      "mean_recall": 0.04578572856753638
+    },
+    {
+      "score_thr": 0.7,
+      "mean_precision": 1.0,
+      "mean_recall": 0.030966652311604455
+    },
+    {
+      "score_thr": 0.72,
+      "mean_precision": 1.0,
+      "mean_recall": 0.023596792668957617
+    },
+    {
+      "score_thr": 0.74,
+      "mean_precision": 1.0,
+      "mean_recall": 0.01741122565864834
+    },
+    {
+      "score_thr": 0.76,
+      "mean_precision": 1.0,
+      "mean_recall": 0.00847651775486827
+    },
+    {
+      "score_thr": 0.78,
+      "mean_precision": 1.0,
+      "mean_recall": 0.00572737686139748
+    },
+    {
+      "score_thr": 0.8,
+      "mean_precision": 1.0,
+      "mean_recall": 0.00572737686139748
+    },
+    {
+      "score_thr": 0.82,
+      "mean_precision": 1.0,
+      "mean_recall": 0.005154639175257732
+    },
+    {
+      "score_thr": 0.84,
+      "mean_precision": 1.0,
+      "mean_recall": 0.005154639175257732
+    },
+    {
+      "score_thr": 0.86,
+      "mean_precision": 1.0,
+      "mean_recall": 0.005154639175257732
+    },
+    {
+      "score_thr": 0.88,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0
+    },
+    {
+      "score_thr": 0.9,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0
+    },
+    {
+      "score_thr": 0.92,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0
+    },
+    {
+      "score_thr": 0.94,
+      "mean_precision": 0.0,
+      "mean_recall": 0.0
+    }
+  ]
+}

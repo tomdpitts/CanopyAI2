@@ -48,7 +48,7 @@ for rel in ("dapt/__init__.py", "dapt/backbone.py", "dapt/targets.py",
     image = image.add_local_file(os.path.join(REPO, rel), f"{P}/{rel}")
 for rel in ("__init__.py", "detector.py"):
     image = image.add_local_file(os.path.join(PKG, rel), f"{PKG_R}/{rel}")
-for rel in ("__init__.py", "neon_features.py", "neon_train_lib.py", "scorer.py"):
+for rel in ("__init__.py", "neon_features.py", "neon_train_lib.py"):
     image = image.add_local_file(os.path.join(HERE, rel), f"{NEON_R}/{rel}")
 
 VOL = "/vol"
@@ -128,21 +128,21 @@ def train_eval(seed: int = 0, epochs: int = 40,
         commit=vol.commit)                      # persist best + resume state each eval
     train_min = (time.time() - t0) / 60
     ckpt = os.path.join(OUT, f"det_{tag}.pt")
+    preds_fp = os.path.join(OUT, f"preds_{tag}.json")
     t1 = time.time()
-    L.predict_boxes(ckpt, FEAT_EVAL, f"{VOL}/neon_gt.json", EVAL_RGB,
-                    os.path.join(OUT, f"preds_{tag}.json"), device="cuda")
-    res = L.score_predictions(os.path.join(OUT, f"preds_{tag}.json"),
-                              f"{VOL}/neon_gt.json",
-                              os.path.join(OUT, f"results_{tag}.json"))
+    # PREDICTIONS only; the NEON benchmark score is computed post-hoc with the authors'
+    # scorer (df_scorer.py = deepforest.evaluate_boxes) in .venv_df.
+    L.predict_boxes(ckpt, FEAT_EVAL, f"{VOL}/neon_gt.json", EVAL_RGB, preds_fp,
+                    device="cuda")
     eval_min = (time.time() - t1) / 60
-    res["train_min"] = round(train_min, 1)
-    res["eval_min"] = round(eval_min, 1)
-    res["best_val_boxAP50"] = round(best["mAP50"], 4)
-    res["best_epoch"] = best["epoch"]
+    res = {"tag": tag, "preds": preds_fp, "train_min": round(train_min, 1),
+           "eval_min": round(eval_min, 1), "best_val_boxAP50": round(best["mAP50"], 4),
+           "best_epoch": best["epoch"]}
     json.dump(res, open(os.path.join(OUT, f"results_{tag}.json"), "w"), indent=2)
     vol.commit()
-    print(f"[train_eval] seed{seed}: train {train_min:.1f} min, eval {eval_min:.1f} "
-          f"min; best ep{best['epoch']} valAP50={best['mAP50']:.3f}", flush=True)
+    print(f"[train_eval] seed{seed}: train {train_min:.1f}min pred {eval_min:.1f}min; "
+          f"preds -> {preds_fp} valAP50={best['mAP50']:.3f} "
+          f"(score post-hoc: df_scorer)", flush=True)
     return res
 
 
@@ -189,18 +189,13 @@ def eval_multiscale(seed: int = 0, up: int = 2, qwin: int = 240):
     tag = f"neon_s{seed}"
     net = nf.build_net(device="cuda")
     print(f"[eval_ms] up={up} qwin={qwin} on det_{tag}", flush=True)
+    preds_fp = os.path.join(OUT, f"preds_{tag}_ms.json")
     L.predict_boxes_multiscale(
         os.path.join(OUT, f"det_{tag}.pt"), net, FEAT_EVAL, f"{VOL}/neon_gt.json",
-        EVAL_RGB, os.path.join(OUT, f"preds_{tag}_ms.json"), up=up, qwin=qwin,
-        device="cuda")
-    res = L.score_predictions(os.path.join(OUT, f"preds_{tag}_ms.json"),
-                              f"{VOL}/neon_gt.json",
-                              os.path.join(OUT, f"results_{tag}_ms.json"))
+        EVAL_RGB, preds_fp, up=up, qwin=qwin, device="cuda")
     vol.commit()
-    bf = res["best_f1_point"]
-    print(f"[eval_ms] native+upscale best-F1: P={bf['P']} R={bf['R']} "
-          f"(native was P0.731/R0.680; paper P0.659/R0.790)", flush=True)
-    return res
+    print(f"[eval_ms] wrote {preds_fp} (score post-hoc with df_scorer)", flush=True)
+    return {"preds": preds_fp}
 
 
 @app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=2 * 3600,
@@ -269,16 +264,13 @@ def eval_tta(seed: int = 0):
     out = {}
     for name, views, merge in configs:
         print(f"[eval_tta] {name}: views={views} merge={merge}", flush=True)
+        preds_fp = os.path.join(OUT, f"preds_{tag}_{name}.json")
         L.predict_boxes_tta(ckpt, net, FEAT_EVAL, f"{VOL}/neon_gt.json", EVAL_RGB,
-                            os.path.join(OUT, f"preds_{tag}_{name}.json"),
-                            views=views, merge=merge, device="cuda")
-        res = L.score_predictions(os.path.join(OUT, f"preds_{tag}_{name}.json"),
-                                  f"{VOL}/neon_gt.json",
-                                  os.path.join(OUT, f"results_{tag}_{name}.json"))
-        out[name] = res["best_f1_point"]
-        print(f"[eval_tta] {name} best-F1: {res['best_f1_point']}", flush=True)
+                            preds_fp, views=views, merge=merge, device="cuda")
+        out[name] = preds_fp
+        print(f"[eval_tta] {name}: wrote {preds_fp}", flush=True)
     vol.commit()
-    print(f"[eval_tta] native was P0.731/R0.680; DF best-F1 P0.745/R0.709", flush=True)
+    print("[eval_tta] preds written; score post-hoc with df_scorer", flush=True)
     return out
 
 

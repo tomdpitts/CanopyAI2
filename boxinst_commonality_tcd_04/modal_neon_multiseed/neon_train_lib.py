@@ -508,42 +508,6 @@ def predict_boxes_tta(ckpt_path, net, eval_feat_dir, eval_gt_json, rgb_dir, out_
     return preds
 
 
-def score_predictions(pred_json, gt_json, out_json, op_score_thr=None):
-    """Score box predictions with the NEON macro-average scorer at IoU 0.4 + PR sweep.
-    If op_score_thr is None, report the sweep + the best-F1 operating point."""
-    import sys
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from scorer import evaluate, pr_curve
-    preds = json.load(open(pred_json))
-    gt = json.load(open(gt_json))
-    gt_arr = {p: np.array(b, float).reshape(-1, 4) for p, b in gt.items()}
-    pr_in = {p: {"boxes": np.array(v["boxes"], float).reshape(-1, 4),
-                 "scores": np.array(v["scores"], float)}
-             for p, v in preds.items()}
-    curve = pr_curve(pr_in, gt_arr, iou_thr=0.4,
-                     thresholds=np.round(np.arange(0.0, 0.95, 0.02), 3))
-    # best-F1 operating point on the sweep
-    def f1(p):
-        return 0.0 if (p["mean_precision"] + p["mean_recall"]) == 0 else \
-            2 * p["mean_precision"] * p["mean_recall"] / (p["mean_precision"] + p["mean_recall"])
-    best = max(curve, key=f1)
-    op = op_score_thr if op_score_thr is not None else best["score_thr"]
-    e = evaluate(pr_in, gt_arr, iou_thr=0.4, score_thr=op, nan_precision="zero")
-    res = {"iou_thr": 0.4, "operating_score_thr": op,
-           "mean_precision": round(e["mean_precision"], 4),
-           "mean_recall": round(e["mean_recall"], 4),
-           "best_f1_point": {"score_thr": best["score_thr"],
-                             "P": round(best["mean_precision"], 4),
-                             "R": round(best["mean_recall"], 4)},
-           "target_paper_P": 0.659, "target_paper_R": 0.790,
-           "n_plots": len(gt), "pr_curve": curve}
-    json.dump(res, open(out_json, "w"), indent=2)
-    print(f"[score] ours @IoU0.4 best-F1: P={best['mean_precision']:.3f} "
-          f"R={best['mean_recall']:.3f} @thr{best['score_thr']:.2f}  "
-          f"(paper Table 3: P0.659/R0.790)", flush=True)
-    return res
-
-
 def run_multiseed(feat_dir, gt_path, eval_feat_dir, eval_gt_json, rgb_dir, ckpt_dir,
                   seeds, up=2, epochs=40, device=None, commit=None):
     """AMORTIZED multiseed: preload the train TileData and the eval features ONCE, then
@@ -565,31 +529,29 @@ def run_multiseed(feat_dir, gt_path, eval_feat_dir, eval_gt_json, rgb_dir, ckpt_
         tag = f"neon_s{seed}" + ("" if up == 2 else f"_up{up}")
         res_fp = os.path.join(ckpt_dir, f"results_{tag}.json")
         done_fp = os.path.join(ckpt_dir, f"done_{tag}.flag")
-        if os.path.exists(res_fp) and os.path.exists(done_fp):
-            r = json.load(open(res_fp))
-            if "best_f1_point" in r:
-                print(f"[multiseed] seed {seed} ({tag}): already done -> skip",
-                      flush=True)
-                results[seed] = r
-                continue
+        preds_fp = os.path.join(ckpt_dir, f"preds_{tag}.json")
+        if os.path.exists(done_fp) and os.path.exists(preds_fp):
+            print(f"[multiseed] seed {seed} ({tag}): already done -> skip", flush=True)
+            results[seed] = (json.load(open(res_fp)) if os.path.exists(res_fp)
+                             else {"tag": tag, "preds": preds_fp})
+            continue
         t_s = time.time()
         best = train_resumable(feat_dir, gt_path, ckpt_dir, tag=tag, seed=seed,
                                epochs=epochs, device=device, up=up, commit=commit,
                                data=data)
         ckpt = os.path.join(ckpt_dir, f"det_{tag}.pt")
-        predict_boxes(ckpt, eval_feat_dir, eval_gt_json, rgb_dir,
-                      os.path.join(ckpt_dir, f"preds_{tag}.json"), device=device,
-                      eval_cache=eval_cache)
-        res = score_predictions(os.path.join(ckpt_dir, f"preds_{tag}.json"),
-                                eval_gt_json, res_fp)
-        res["best_val_boxAP50"] = round(best["mAP50"], 4)
-        res["best_epoch"] = best["epoch"]
-        res["seed_min"] = round((time.time() - t_s) / 60, 1)
+        # produce PREDICTIONS only; the NEON benchmark score is computed post-hoc with the
+        # authors' scorer (df_scorer.py = deepforest.evaluate_boxes), which can't run in
+        # this training image (deepforest pins torch 2.13 vs the image's 2.12.1).
+        predict_boxes(ckpt, eval_feat_dir, eval_gt_json, rgb_dir, preds_fp,
+                      device=device, eval_cache=eval_cache)
+        res = {"tag": tag, "preds": preds_fp, "best_val_boxAP50": round(best["mAP50"], 4),
+               "best_epoch": best["epoch"], "seed_min": round((time.time() - t_s) / 60, 1)}
         json.dump(res, open(res_fp, "w"), indent=2)
         if commit:
             commit()
-        bf = res["best_f1_point"]
-        print(f"[multiseed] seed {seed} ({tag}): best-F1 P={bf['P']} R={bf['R']} "
-              f"in {res['seed_min']} min", flush=True)
+        print(f"[multiseed] seed {seed} ({tag}): preds -> {preds_fp}; val boxAP50="
+              f"{best['mAP50']:.3f} in {res['seed_min']} min "
+              f"(score post-hoc: df_scorer)", flush=True)
         results[seed] = res
     return results

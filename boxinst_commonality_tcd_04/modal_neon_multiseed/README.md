@@ -113,36 +113,55 @@ each lever), not single seeds. The single-seed tables below are kept for the rec
 noise**. The honest headline: RGB-only, no-LiDAR, we're **competitive-but-behind** DeepForest, and the
 apparent lever gains were seed variance.
 
-## NATIVE 5-seed band — 4px ≈ native, CONFIRMED (amortized multiseed)
+## Scoring: only the authors' `deepforest.evaluate_boxes`
 
-The correction above is now **quantified with a native band**. Native (up=2, 8px) 5 seeds,
-metrics computed identically to the 4px band (best-F1, maxR, P@R0.709 from each seed's PR
-curve). Ran via the new **amortized `multiseed`** function — ONE container: preload
-train+eval features **once** (3.3 min), then train+eval every seed reusing the in-RAM cache.
-**Container lifetime 31.8 min for seeds 1–4** (seed 0 reused) ≈ **$2.6 (~$0.64/seed)** — the
-old one-`modal run`-per-seed pattern paid cold-start + preload N×; the container-lifetime
-basis is the honest cost (per-seed `train_min` under-counted it before).
+Every reported number uses **`deepforest.evaluate_boxes`** — the NeonTreeEvaluation authors'
+own scorer (macro per-image precision/recall, greedy IoU 0.4) — swept over confidence
+thresholds for the PR curve (`df_scorer.py`, run in the isolated `.venv_df` on the saved
+predictions; CPU, device-independent, so the score is identical regardless of where the
+predictions were produced). No custom scoring code is used anywhere on this dataset.
 
-| metric | native (up=2, 8px) | 4px (up=4) | Δ (4px−nat) | bands overlap? |
+## NATIVE 5-seed band vs 4px — 4px ≈ native (authors' scorer)
+
+Native (up=2, 8px) and 4px (up=4) 5-seed bands via the amortized `multiseed` function (ONE
+container: preload train+eval **once**, 3.3 min, then all seeds reuse the in-RAM cache).
+**Container lifetime 31.8 min / 4 seeds ≈ $2.6 (~$0.64/seed)** — the old one-`modal run`-per-
+seed pattern paid cold-start + preload N×; container-lifetime is the honest cost basis.
+
+| metric | native (up=2, 8px) | 4px (up=4) | Δ (4px−nat) | overlap? |
 |---|---|---|---|---|
-| best-F1 P | 0.705 ± 0.021 | 0.699 ± 0.013 | −0.006 | yes |
-| best-F1 R | 0.674 ± 0.011 | 0.685 ± 0.019 | +0.010 | yes |
-| maxR | 0.784 ± 0.009 | 0.791 ± 0.021 | +0.007 | yes |
-| **P@R0.709** (DeepForest head-to-head) | **0.645 ± 0.025** | **0.653 ± 0.029** | **+0.008** | **yes** |
+| best-F1 P | 0.712 ± 0.011 | 0.702 ± 0.015 | −0.010 | yes |
+| best-F1 R | 0.667 ± 0.014 | 0.681 ± 0.022 | +0.014 | yes |
+| best-F1 **F1** | 0.689 ± 0.011 | 0.691 ± 0.009 | +0.002 | yes |
+| maxR | 0.779 ± 0.008 | 0.787 ± 0.021 | +0.008 | yes |
+| **P@R0.709** (DeepForest head-to-head) | **0.644 ± 0.025** | **0.638 ± 0.033** | **−0.006** | **yes** |
 
-per-seed P@R0.709 — native: 0.686/0.618/0.625/0.634/0.661 · 4px: 0.699/0.621/0.660/0.623/0.662
+per-seed P@R0.709 — native: 0.685/0.618/0.624/0.633/0.660 · 4px: 0.673/0.602/0.659/0.594/0.662
 
-**VERDICT: 4px ≈ native.** Every metric's bands overlap heavily; the 4px "advantage" on the
-head-to-head P@R0.709 is **+0.008 vs a seed σ of ~0.025–0.029 (~0.3σ)** — indistinguishable
-from noise. This RIGOROUSLY CONFIRMS the correction: the single-seed "4px halved the gap
-(−0.023→−0.010)" was **seed-0 luck on BOTH configs** — native seed-0 P@R0.709 (0.686) and 4px
-seed-0 (0.699) were each the *top* of their band, while the means (0.645 / 0.653) sit well
-below. Both bands are **~0.06 (≈2σ) below DeepForest's 0.709** → **neither native nor 4px
-closes the gap, and 4px does not robustly beat native.** `native_band.json`. The honest
-headline stands: RGB-only / no-LiDAR, competitive-but-behind DeepForest; no lever tried
-(4px included) survives seed variance.
+**VERDICT (unchanged — strengthened — under the authors' scorer): 4px ≈ native.** Every band
+overlaps heavily, and under the authors' scorer 4px doesn't even *nominally* beat native
+(P@R0.709 0.638 vs 0.644, Δ−0.006 « σ~0.025–0.033). The single-seed "4px halved the DeepForest
+gap" was seed-0 luck on both configs (native seed-0 0.685 and 4px seed-0 0.673 near the top of
+their bands). `native_band_dfscorer.json`, `band_df/`.
 
-## 4px stride — the one lever that moved toward DeepForest (seed 0 only — see correction above)
+### Ours vs DeepForest — all via the authors' scorer
+
+| config | P | R | **F1** | maxR | P@R0.709 |
+|---|---|---|---|---|---|
+| **OURS native (5-seed)** | 0.712 ± 0.011 | 0.667 ± 0.014 | **0.689 ± 0.011** | 0.779 ± 0.008 | 0.644 ± 0.025 |
+| **OURS 4px (5-seed)** | 0.702 ± 0.015 | 0.681 ± 0.022 | **0.691 ± 0.009** | 0.787 ± 0.021 | 0.638 ± 0.033 |
+| DeepForest 2.1.0 (best-F1) | 0.745 | 0.709 | **0.727** | 0.765 | 0.709 |
+| DeepForest @0.10 (its default) | 0.617 | 0.765 | 0.683 | — | — |
+| Paper Table 3 (target) | 0.659 | 0.790 | 0.719 | — | — |
+
+**DeepForest leads on F1 by ~0.036** (0.727 vs ~0.69) — a small, uniform gap; neither native
+nor 4px closes it, and we stay higher-precision / lower-recall. Ours = mean ± 1σ over 5 seeds
+(authors' scorer). DeepForest best-F1 and @0.10 are two operating points on **its one** PR
+curve (its default 0.617/0.765 matches the paper's regime within model-version drift); Paper
+Table 3 is their published default point (their scorer). All ours-vs-DeepForest scoring uses
+the identical `deepforest.evaluate_boxes` matcher.
+
+## 4px stride + other single-seed levers (exploratory — superseded by the multiseed bands above; within seed noise)
 
 Retrain with the detector upsampling 16px DINOv3 features to a **4px** grid (128² output)
 instead of 8px (`DetectorS(up=4)` + stride-correct `_det_loss`/decode; reuses cached 16px
@@ -206,9 +225,9 @@ frontier. Use the 194-tile macro-P/R @IoU0.4, not val boxAP50, to judge levers h
   paper). Scored set = XML∩RGB intersection = **194 tiles / 6,634 boxes / 22 sites**
   (`neon_gt.json`, `prepare_neon.py`). Snapshot drift is inherent — no pin is
   byte-identical to the paper's exact eval count.
-- **Scorer (Step 2):** `scorer.py` — greedy one-to-one IoU matching, per-image P/R,
-  **macro-average over images**; 9 unit tests incl. the paper's worked example
-  (10 GT / 9 preds → R0.9/P1.0). `test_scorer.py`.
+- **Scorer (Step 2):** all reported numbers use the **authors' `deepforest.evaluate_boxes`**
+  (macro per-image P/R, greedy IoU 0.4) swept for the PR curve — `df_scorer.py`, run in
+  `.venv_df`. Only the benchmark's provided evaluation code is used.
 - **Scorer validation (Step 3):** DeepForest 2.1.0 prebuilt, RGB-only, scored with our
   scorer → **P0.617 / R0.765**, i.e. Δ −0.04/−0.03 vs Table 3 — reproduces the package
   operating point (model-version drift). Confirms scorer + GT + coordinate frame +
