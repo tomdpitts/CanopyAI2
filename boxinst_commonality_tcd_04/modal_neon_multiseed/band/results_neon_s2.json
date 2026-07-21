@@ -1,0 +1,259 @@
+{
+  "iou_thr": 0.4,
+  "operating_score_thr": 0.3,
+  "mean_precision": 0.7092,
+  "mean_recall": 0.6534,
+  "best_f1_point": {
+    "score_thr": 0.3,
+    "P": 0.7092,
+    "R": 0.6534
+  },
+  "target_paper_P": 0.659,
+  "target_paper_R": 0.79,
+  "n_plots": 194,
+  "pr_curve": [
+    {
+      "score_thr": 0.0,
+      "mean_precision": 0.451748739076057,
+      "mean_recall": 0.7661356807730944
+    },
+    {
+      "score_thr": 0.02,
+      "mean_precision": 0.49925610713431634,
+      "mean_recall": 0.7584979631457875
+    },
+    {
+      "score_thr": 0.04,
+      "mean_precision": 0.5439139014595522,
+      "mean_recall": 0.7444798583177642
+    },
+    {
+      "score_thr": 0.06,
+      "mean_precision": 0.5688204613015543,
+      "mean_recall": 0.7322213809852159
+    },
+    {
+      "score_thr": 0.08,
+      "mean_precision": 0.5873160883596336,
+      "mean_recall": 0.7256035076485192
+    },
+    {
+      "score_thr": 0.1,
+      "mean_precision": 0.5982006505973321,
+      "mean_recall": 0.7202137937276666
+    },
+    {
+      "score_thr": 0.12,
+      "mean_precision": 0.6133265008432294,
+      "mean_recall": 0.7138808459827171
+    },
+    {
+      "score_thr": 0.14,
+      "mean_precision": 0.6251205244811502,
+      "mean_recall": 0.7113012856848087
+    },
+    {
+      "score_thr": 0.16,
+      "mean_precision": 0.6349522413623343,
+      "mean_recall": 0.7051472001562996
+    },
+    {
+      "score_thr": 0.18,
+      "mean_precision": 0.6453691864141314,
+      "mean_recall": 0.6993444802799529
+    },
+    {
+      "score_thr": 0.2,
+      "mean_precision": 0.6551707129154034,
+      "mean_recall": 0.6915703528235162
+    },
+    {
+      "score_thr": 0.22,
+      "mean_precision": 0.6639472515179118,
+      "mean_recall": 0.6852995823656319
+    },
+    {
+      "score_thr": 0.24,
+      "mean_precision": 0.6715707792148832,
+      "mean_recall": 0.6789638610608468
+    },
+    {
+      "score_thr": 0.26,
+      "mean_precision": 0.6825113110152746,
+      "mean_recall": 0.6738862429845598
+    },
+    {
+      "score_thr": 0.28,
+      "mean_precision": 0.6956757839805929,
+      "mean_recall": 0.6640270952474753
+    },
+    {
+      "score_thr": 0.3,
+      "mean_precision": 0.7092345343460252,
+      "mean_recall": 0.653432450644069
+    },
+    {
+      "score_thr": 0.32,
+      "mean_precision": 0.7198851846068768,
+      "mean_recall": 0.6398015126834401
+    },
+    {
+      "score_thr": 0.34,
+      "mean_precision": 0.7324338754933434,
+      "mean_recall": 0.6243731429565139
+    },
+    {
+      "score_thr": 0.36,
+      "mean_precision": 0.7473684932665278,
+      "mean_recall": 0.6046389662798944
+    },
+    {
+      "score_thr": 0.38,
+      "mean_precision": 0.7588985237245242,
+      "mean_recall": 0.5807655491865297
+    },
+    {
+      "score_thr": 0.4,
+      "mean_precision": 0.7806714781143451,
+      "mean_recall": 0.5513915680278716
+    },
+    {
+      "score_thr": 0.42,
+      "mean_precision": 0.7874021537518884,
+      "mean_recall": 0.5101588863582944
+    },
+    {
+      "score_thr": 0.44,
+      "mean_precision": 0.8019528004752556,
+      "mean_recall": 0.46243318719156107
+    },
+    {
+      "score_thr": 0.46,
+      "mean_precision": 0.805585181816825,
+      "mean_recall": 0.41361043717331164
+    },
+    {
+      "score_thr": 0.48,
+      "mean_precision": 0.8147292780003837,
+      "mean_recall": 0.3679546773756726
+    },
+    {
+      "score_thr": 0.5,
+      "mean_precision": 0.8302557348737649,
+      "mean_recall": 0.32968127619018484
+    },
+    {
+      "score_thr": 0.52,
+      "mean_precision": 0.8227517217550703,
+      "mean_recall": 0.28162113615390144
+    },
+    {
+      "score_thr": 0.54,
+      "mean_precision": 0.8215965642739446,
+      "mean_recall": 0.24975327025721744
+    },
+    {
+      "score_thr": 0.56,
+      "mean_precision": 0.7815273071716372,
+      "mean_recall": 0.22087448712443383
+    },
+    {
+      "score_thr": 0.58,
+      "mean_precision": 0.7440914397744296,
+      "mean_recall": 0.1902994942591037
+    },
+    {
+      "score_thr": 0.6,
+      "mean_precision": 0.6626697758141058,
+      "mean_recall": 0.1634276298856254
+    },
+    {
+      "score_thr": 0.62,
+      "mean_precision": 0.5619640811651121,
+      "mean_recall": 0.14144832386965528
+    },
+    {
+      "score_thr": 0.64,
+      "mean_precision": 0.4802712322042219,
+      "mean_recall": 0.12081185849133183
+    },
+    {
+      "score_thr": 0.66,
+      "mean_precision": 0.40153411880216,
+      "mean_recall": 0.10480082953834267
+    },
+    {
+      "score_thr": 0.68,
+      "mean_precision": 0.37292587137947963,
+      "mean_recall": 0.0924750378768833
+    },
+    {
+      "score_thr": 0.7,
+      "mean_precision": 0.317513500245459,
+      "mean_recall": 0.08244513272515083
+    },
+    {
+      "score_thr": 0.72,
+      "mean_precision": 0.26958762886597937,
+      "mean_recall": 0.07236481982710732
+    },
+    {
+      "score_thr": 0.74,
+      "mean_precision": 0.19871134020618555,
+      "mean_recall": 0.04972374211987713
+    },
+    {
+      "score_thr": 0.76,
+      "mean_precision": 0.14243986254295532,
+      "mean_recall": 0.04366361524142738
+    },
+    {
+      "score_thr": 0.78,
+      "mean_precision": 0.13015463917525774,
+      "mean_recall": 0.03593920778677589
+    },
+    {
+      "score_thr": 0.8,
+      "mean_precision": 0.1172680412371134,
+      "mean_recall": 0.0325129835727497
+    },
+    {
+      "score_thr": 0.82,
+      "mean_precision": 0.08591065292096219,
+      "mean_recall": 0.02594746287877171
+    },
+    {
+      "score_thr": 0.84,
+      "mean_precision": 0.08247422680412371,
+      "mean_recall": 0.023158301494809786
+    },
+    {
+      "score_thr": 0.86,
+      "mean_precision": 0.07731958762886598,
+      "mean_recall": 0.021096445824706694
+    },
+    {
+      "score_thr": 0.88,
+      "mean_precision": 0.05154639175257732,
+      "mean_recall": 0.01342278357630218
+    },
+    {
+      "score_thr": 0.9,
+      "mean_precision": 0.02577319587628866,
+      "mean_recall": 0.004301935924526691
+    },
+    {
+      "score_thr": 0.92,
+      "mean_precision": 0.020618556701030927,
+      "mean_recall": 0.0030468933427248088
+    },
+    {
+      "score_thr": 0.94,
+      "mean_precision": 0.005154639175257732,
+      "mean_recall": 0.0007363770250368188
+    }
+  ],
+  "best_val_boxAP50": 0.3293,
+  "best_epoch": 30,
+  "seed_min": 8.5
+}

@@ -177,13 +177,17 @@ def train_resumable(feat_dir, gt_path, ckpt_dir, tag="neon_s0", seed=0, epochs=4
                     bs=3, eval_every=5, lr=1e-3, wd=1e-4, width=256, tower=3,
                     min_epochs=12, es_patience=2, es_min_delta=0.005,
                     device=None, commit=None, preload=True, log_every_steps=100,
-                    up=2):
+                    up=2, data=None):
     import time
     stride = 16 // up                    # DINOv3 patch16 -> up=2:8px, up=4:4px
     os.makedirs(ckpt_dir, exist_ok=True)
     set_seed(seed)
     device = pick_device(device)
-    data = make_data(feat_dir, gt_path, preload=preload, stride=stride)
+    # `data` may be a pre-built (already-preloaded) TileData shared across seeds
+    # (amortized multiseed): identical to building it here since it's read-only during
+    # training and set_seed/model-init happen per call. Build it only if not supplied.
+    if data is None:
+        data = make_data(feat_dir, gt_path, preload=preload, stride=stride)
     tr, va = data.partition("train"), data.partition("val")
     assert tr and va, f"empty split: train={len(tr)} val={len(va)}"
     in_dim = data._feat(tr[0]).shape[0]
@@ -280,11 +284,30 @@ def train_resumable(feat_dir, gt_path, ckpt_dir, tag="neon_s0", seed=0, epochs=4
     return best
 
 
+def preload_eval(eval_feat_dir, eval_gt_json):
+    """Threaded one-time preload of the 194 eval features into a {plot: float32 array}
+    dict, so an amortized multiseed run reads the Volume once, not per-seed."""
+    from concurrent.futures import ThreadPoolExecutor
+    gt = json.load(open(eval_gt_json))
+    plots = [p for p in sorted(gt)
+             if os.path.exists(os.path.join(eval_feat_dir, p + ".npy"))]
+
+    def _ld(p):
+        return p, np.load(os.path.join(eval_feat_dir, p + ".npy")).astype(np.float32)
+    cache = {}
+    with ThreadPoolExecutor(max_workers=16) as ex:
+        for p, a in ex.map(_ld, plots):
+            cache[p] = a
+    print(f"  [preload-eval] {len(cache)} eval feats cached", flush=True)
+    return cache
+
+
 @torch.no_grad()
 def predict_boxes(ckpt_path, eval_feat_dir, eval_gt_json, rgb_dir, out_pred_json,
-                  score_thr=0.01, topk=600, device=None):
+                  score_thr=0.01, topk=600, device=None, eval_cache=None):
     """Box-only inference (NO EM). Per 194 eval tile: features -> detector -> decode ->
-    boxes in tile pixel coords (pad region dropped). Writes {plot: {boxes, scores}}."""
+    boxes in tile pixel coords (pad region dropped). Writes {plot: {boxes, scores}}.
+    `eval_cache` (dict plot->feat) reuses pre-loaded features across seeds if given."""
     device = pick_device(device)
     ck = torch.load(ckpt_path, map_location="cpu", weights_only=False)
     cfg = ck["cfg"]
@@ -295,11 +318,17 @@ def predict_boxes(ckpt_path, eval_feat_dir, eval_gt_json, rgb_dir, out_pred_json
     gt = json.load(open(eval_gt_json))
     preds = {}
     for k, plot in enumerate(sorted(gt)):
-        fp = os.path.join(eval_feat_dir, plot + ".npy")
-        if not os.path.exists(fp):
-            preds[plot] = {"boxes": [], "scores": []}
-            continue
-        feat = np.load(fp).astype(np.float32)
+        if eval_cache is not None:
+            if plot not in eval_cache:
+                preds[plot] = {"boxes": [], "scores": []}
+                continue
+            feat = eval_cache[plot]
+        else:
+            fp = os.path.join(eval_feat_dir, plot + ".npy")
+            if not os.path.exists(fp):
+                preds[plot] = {"boxes": [], "scores": []}
+                continue
+            feat = np.load(fp).astype(np.float32)
         det = model(torch.from_numpy(feat)[None].to(device))
         bx, sc = decode(det.cpu(), score_thr=score_thr, stride=stride, topk=topk)
         bx, sc = bx.numpy(), sc.numpy()
@@ -513,3 +542,54 @@ def score_predictions(pred_json, gt_json, out_json, op_score_thr=None):
           f"R={best['mean_recall']:.3f} @thr{best['score_thr']:.2f}  "
           f"(paper Table 3: P0.659/R0.790)", flush=True)
     return res
+
+
+def run_multiseed(feat_dir, gt_path, eval_feat_dir, eval_gt_json, rgb_dir, ckpt_dir,
+                  seeds, up=2, epochs=40, device=None, commit=None):
+    """AMORTIZED multiseed: preload the train TileData and the eval features ONCE, then
+    train+eval each seed reusing the in-RAM caches (vs the old one-container-per-seed
+    pattern that paid cold-start + preload N times). Recipe is byte-identical to the
+    single-seed path — `data` is read-only during training and set_seed/model-init happen
+    per seed inside train_resumable. Per-seed idempotent skip (results json + done flag)
+    so a preempted container resumes without redoing finished seeds."""
+    import time
+    stride = 16 // up
+    device = pick_device(device)
+    t_pre = time.time()
+    data = make_data(feat_dir, gt_path, preload=True, stride=stride)   # TRAIN, once
+    eval_cache = preload_eval(eval_feat_dir, eval_gt_json)             # EVAL, once
+    print(f"[multiseed] preloaded train+eval in {(time.time()-t_pre)/60:.1f} min; "
+          f"seeds={list(seeds)} up={up} stride={stride}", flush=True)
+    results = {}
+    for seed in seeds:
+        tag = f"neon_s{seed}" + ("" if up == 2 else f"_up{up}")
+        res_fp = os.path.join(ckpt_dir, f"results_{tag}.json")
+        done_fp = os.path.join(ckpt_dir, f"done_{tag}.flag")
+        if os.path.exists(res_fp) and os.path.exists(done_fp):
+            r = json.load(open(res_fp))
+            if "best_f1_point" in r:
+                print(f"[multiseed] seed {seed} ({tag}): already done -> skip",
+                      flush=True)
+                results[seed] = r
+                continue
+        t_s = time.time()
+        best = train_resumable(feat_dir, gt_path, ckpt_dir, tag=tag, seed=seed,
+                               epochs=epochs, device=device, up=up, commit=commit,
+                               data=data)
+        ckpt = os.path.join(ckpt_dir, f"det_{tag}.pt")
+        predict_boxes(ckpt, eval_feat_dir, eval_gt_json, rgb_dir,
+                      os.path.join(ckpt_dir, f"preds_{tag}.json"), device=device,
+                      eval_cache=eval_cache)
+        res = score_predictions(os.path.join(ckpt_dir, f"preds_{tag}.json"),
+                                eval_gt_json, res_fp)
+        res["best_val_boxAP50"] = round(best["mAP50"], 4)
+        res["best_epoch"] = best["epoch"]
+        res["seed_min"] = round((time.time() - t_s) / 60, 1)
+        json.dump(res, open(res_fp, "w"), indent=2)
+        if commit:
+            commit()
+        bf = res["best_f1_point"]
+        print(f"[multiseed] seed {seed} ({tag}): best-F1 P={bf['P']} R={bf['R']} "
+              f"in {res['seed_min']} min", flush=True)
+        results[seed] = res
+    return results

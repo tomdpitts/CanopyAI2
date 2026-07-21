@@ -113,6 +113,35 @@ each lever), not single seeds. The single-seed tables below are kept for the rec
 noise**. The honest headline: RGB-only, no-LiDAR, we're **competitive-but-behind** DeepForest, and the
 apparent lever gains were seed variance.
 
+## NATIVE 5-seed band — 4px ≈ native, CONFIRMED (amortized multiseed)
+
+The correction above is now **quantified with a native band**. Native (up=2, 8px) 5 seeds,
+metrics computed identically to the 4px band (best-F1, maxR, P@R0.709 from each seed's PR
+curve). Ran via the new **amortized `multiseed`** function — ONE container: preload
+train+eval features **once** (3.3 min), then train+eval every seed reusing the in-RAM cache.
+**Container lifetime 31.8 min for seeds 1–4** (seed 0 reused) ≈ **$2.6 (~$0.64/seed)** — the
+old one-`modal run`-per-seed pattern paid cold-start + preload N×; the container-lifetime
+basis is the honest cost (per-seed `train_min` under-counted it before).
+
+| metric | native (up=2, 8px) | 4px (up=4) | Δ (4px−nat) | bands overlap? |
+|---|---|---|---|---|
+| best-F1 P | 0.705 ± 0.021 | 0.699 ± 0.013 | −0.006 | yes |
+| best-F1 R | 0.674 ± 0.011 | 0.685 ± 0.019 | +0.010 | yes |
+| maxR | 0.784 ± 0.009 | 0.791 ± 0.021 | +0.007 | yes |
+| **P@R0.709** (DeepForest head-to-head) | **0.645 ± 0.025** | **0.653 ± 0.029** | **+0.008** | **yes** |
+
+per-seed P@R0.709 — native: 0.686/0.618/0.625/0.634/0.661 · 4px: 0.699/0.621/0.660/0.623/0.662
+
+**VERDICT: 4px ≈ native.** Every metric's bands overlap heavily; the 4px "advantage" on the
+head-to-head P@R0.709 is **+0.008 vs a seed σ of ~0.025–0.029 (~0.3σ)** — indistinguishable
+from noise. This RIGOROUSLY CONFIRMS the correction: the single-seed "4px halved the gap
+(−0.023→−0.010)" was **seed-0 luck on BOTH configs** — native seed-0 P@R0.709 (0.686) and 4px
+seed-0 (0.699) were each the *top* of their band, while the means (0.645 / 0.653) sit well
+below. Both bands are **~0.06 (≈2σ) below DeepForest's 0.709** → **neither native nor 4px
+closes the gap, and 4px does not robustly beat native.** `native_band.json`. The honest
+headline stands: RGB-only / no-LiDAR, competitive-but-behind DeepForest; no lever tried
+(4px included) survives seed variance.
+
 ## 4px stride — the one lever that moved toward DeepForest (seed 0 only — see correction above)
 
 Retrain with the detector upsampling 16px DINOv3 features to a **4px** grid (128² output)

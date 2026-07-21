@@ -146,6 +146,36 @@ def train_eval(seed: int = 0, epochs: int = 40,
     return res
 
 
+@app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=6 * 3600,
+              cpu=8, memory=65536)          # ~19GB cache (train 17GB + eval 1.6GB)
+def multiseed(seeds: str = "1,2,3,4", up: int = 2, epochs: int = 40,
+              gt_name: str = "train_patches_gt.json"):
+    """AMORTIZED multiseed variance band: ONE container, preload train+eval features once,
+    then train+eval each seed reusing the in-RAM caches. Byte-identical recipe to the
+    single-seed path. Reports CONTAINER-LIFETIME wall (the true cost basis; per-seed
+    train_min under-counted cold-start + preload before)."""
+    import time
+    import torch
+    _setup_path()
+    assert torch.cuda.is_available(), "no CUDA"
+    from boxinst_commonality_tcd_04.modal_neon_multiseed import neon_train_lib as L
+    os.makedirs(OUT, exist_ok=True)
+    seed_list = [int(s) for s in str(seeds).split(",") if s.strip() != ""]
+    print(f"[multiseed] gpu={torch.cuda.get_device_name(0)} seeds={seed_list} up={up}",
+          flush=True)
+    t0 = time.time()
+    results = L.run_multiseed(FEAT_TRAIN, f"{VOL}/{gt_name}", FEAT_EVAL,
+                              f"{VOL}/neon_gt.json", EVAL_RGB, OUT, seed_list,
+                              up=up, epochs=epochs, device="cuda", commit=vol.commit)
+    container_min = (time.time() - t0) / 60
+    summary = {s: {"best_f1": r["best_f1_point"], "seed_min": r.get("seed_min")}
+               for s, r in results.items()}
+    print(f"[multiseed] {len(seed_list)} seeds, CONTAINER LIFETIME {container_min:.1f} min",
+          flush=True)
+    vol.commit()
+    return {"container_min": round(container_min, 1), "up": up, "seeds": summary}
+
+
 @app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=3600,
               cpu=4, memory=32768, secrets=[hf_secret])
 def eval_multiscale(seed: int = 0, up: int = 2, qwin: int = 240):
