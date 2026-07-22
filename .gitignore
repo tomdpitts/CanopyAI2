@@ -35,6 +35,7 @@ boxinst_commonality_tcd_04/cache/
 *boxinst_commonality_tcd_04*.tif
 
 *.png
+!boxinst_commonality_tcd_04/modal_neon_multiseed/phase4/pr_curve_phase4.png
 *.tif
 boxinst_commonality_tcd_04/modal_neon_multiseed/zenodo_dl/training.zip
 
@@ -42,3 +43,6 @@ boxinst_commonality_tcd_04/modal_neon_multiseed/zenodo_dl/training.zip
 boxinst_commonality_tcd_04/modal_neon_multiseed/NeonTreeEvaluation/
 boxinst_commonality_tcd_04/modal_neon_multiseed/out_s0/
 boxinst_commonality_tcd_04/modal_neon_multiseed/viz/
+
+# Vendored SAM3 repo (has its own .git, 131M) — machine-local, not tracked
+boxinst_commonality_tcd_04/mps_tcd_multiseed_sam/

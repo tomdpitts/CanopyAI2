@@ -141,6 +141,32 @@ def train_eval_4p(seed: int = 0, epochs: int = 40):
     return res
 
 
+@app.function(gpu=GPU, image=image, volumes={VOL: vol}, timeout=6 * 3600,
+              cpu=8, memory=131072, secrets=[hf_secret])   # 128GB: ~82GB train+eval cache
+def multiseed_4p(seeds: str = "1,2,3,4", epochs: int = 40):
+    """AMORTIZED 4-phase band: ONE container, preload train+eval once, train+eval each
+    seed reusing in-RAM caches. Per-seed idempotent skip + resumable. Reports container-
+    lifetime wall + est cost (H100 ~= $0.082/min). Seed 0 already ran (train_eval_4p)."""
+    import time
+    import torch
+    _setup_path()
+    assert torch.cuda.is_available(), "no CUDA"
+    from boxinst_commonality_tcd_04.modal_neon_multiseed.phase4 import phase4_lib as L
+    os.makedirs(OUT, exist_ok=True)
+    sl = [int(s) for s in str(seeds).split(",") if s.strip() != ""]
+    print(f"[multiseed_4p] gpu={torch.cuda.get_device_name(0)} seeds={sl}", flush=True)
+    t0 = time.time()
+    results = L.run_multiseed(FEAT_TRAIN, f"{VOL}/train_patches_gt.json", FEAT_EVAL,
+                              f"{VOL}/neon_gt.json", EVAL_RGB, OUT, sl, epochs=epochs,
+                              device="cuda", commit=vol.commit)
+    mins = (time.time() - t0) / 60
+    vol.commit()
+    print(f"[multiseed_4p] {len(sl)} seeds CONTAINER {mins:.1f}min est≈${mins*0.082:.2f}",
+          flush=True)
+    return {"container_min": round(mins, 1), "est_cost_usd": round(mins * 0.082, 2),
+            "seeds": {s: results[s].get("best_val_boxAP50") for s in results}}
+
+
 @app.local_entrypoint()
 def main(seed: int = 0, epochs: int = 40, skip_extract: bool = False):
     if not skip_extract:

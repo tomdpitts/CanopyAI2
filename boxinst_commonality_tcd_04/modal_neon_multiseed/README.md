@@ -8,7 +8,36 @@ extracted — only `RGB/` entries). Compute: Modal **H100** (extract + train + e
 Compute is Modal H100 / CUDA (folder named `modal_neon_multiseed`; the sibling
 `../mps_multiseed` is the separate local-MPS TCD experiment).
 
-## Headline (seed 0)
+## ⭐ UPDATE (2026-07-22): 4-phase real-8px BEATS published DeepForest F1 — see [`phase4/`](phase4/)
+
+The headline/verdict below describe the **native single-pass** model and its levers, all of
+which stayed behind DeepForest. A new lever changes that. `DetectorS(up=2)` bilinearly
+**upsamples** 16px features to a fake 8px grid; **4-phase** instead runs the frozen backbone
+**4× on the image shifted by every (dy,dx)∈{0,8}px and interleaves** them into a **real** 8px
+grid (same 4096-dim / targets / decode / recipe — only real-8px vs interpolated-8px changes).
+
+**5-seed band, GLOBAL (194), best-F1, IoU 0.4:**
+
+| model | P | R | **F1** |
+|---|---|---|---|
+| DeepForest — **published** (Weinstein 2021) | 0.659 | 0.790 | **0.719** |
+| DeepForest **2.1.0 — our repro** (best-F1, same 194 tiles) | 0.745 | 0.709 | **0.726** |
+| Ours — **native** 5-seed | 0.712 | 0.667 | 0.689 ± 0.013 |
+| Ours — **4-phase** 5-seed | 0.727 | 0.729 | **0.728 ± 0.003** |
+
+- **Robustly beats published DeepForest** (0.719): per-seed 0.722/0.728/0.729/0.730/0.730,
+  mean−1σ = 0.725 > 0.719 (~3σ) — not a favorable draw. **Ties** the same-tile 2.1.0 repro
+  (0.728 vs 0.726). Native (0.689) is below both → the prior status quo.
+- **NIWO (12)**: F1 0.427±0.010 → **0.588±0.017** (ΔR +0.196, ΔP +0.101, ΔmaxR +0.209 — both
+  axes, ~10× seed σ), **precision-safe** (global P held, unlike the upscale arm's 0.731→0.523).
+- **Recall ceiling cleared**: global maxR 0.779±0.009 → **0.849±0.003**, past DF's R0.790.
+- **SCOPE (honest)**: this is a **best-F1 summary** beat, **not** PR-curve dominance at DF's
+  *published operating point* R0.790 (there P@R0.79 = 0.624 < 0.659). We win on **balance**
+  (P0.727/R0.729), not by out-recalling DF at high recall.
+- Cost ~$13 (H100). Fully isolated in [`phase4/`](phase4/) (`rm -rf phase4/` +
+  `modal volume rm neon-multiseed-vol phase4` = complete tidy-up; nothing native touched).
+
+## Headline (seed 0) — NATIVE single-pass model (superseded by `phase4/` above)
 
 | | Precision | Recall | @ |
 |---|---|---|---|
@@ -17,7 +46,9 @@ Compute is Modal H100 / CUDA (folder named `modal_neon_multiseed`; the sibling
 | DeepForest 2.1.0 (our reproduction) | 0.617 | 0.765 | score_thr 0.10 |
 | **Weinstein 2021 PLOS, Table 3 (target)** | **0.659** | **0.790** | image-annotated RGB |
 
-**Verdict: we do NOT beat the paper (or DeepForest) by the strict dominance test.**
+**Verdict (native single-pass model): we do NOT beat the paper (or DeepForest) by the
+strict dominance test.** (The 4-phase lever above later beats published DeepForest on F1,
+though still not by strict curve-dominance at their R0.790 point.)
 - At the paper's recall (0.790) we can't compete — our recall **ceiling is 0.787**.
 - At the paper's precision (0.659) our recall is **0.721 < 0.790**.
 - Curve-to-curve, **DeepForest's PR curve dominates ours** at every matched recall from

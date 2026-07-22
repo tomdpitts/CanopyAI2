@@ -138,6 +138,48 @@ def train_seed(feat_dir, gt_path, ckpt_dir, tag="phase4_s0", seed=0, epochs=40, 
     return best
 
 
+def run_multiseed(feat_dir, gt_path, eval_feat_dir, eval_gt_json, rgb_dir, ckpt_dir,
+                  seeds, epochs=40, device=None, commit=None):
+    """AMORTIZED band: preload train TileData + eval features ONCE, then train+eval each
+    seed reusing the in-RAM caches. Recipe byte-identical to the single-seed path
+    (set_seed + model-init happen per seed inside train_seed; `data` is read-only during
+    training). Per-seed idempotent skip (done flag + preds) so a preempted container
+    resumes without redoing finished seeds. RAM: ~69GB train + ~13GB eval < 128GB."""
+    from boxinst_commonality_tcd_04.modal_neon_multiseed.neon_train_lib import preload_eval
+    device = pick_device(device)
+    t_pre = time.time()
+    data = make_data(feat_dir, gt_path, preload=True, stride=STRIDE)     # train, once
+    eval_cache = preload_eval(eval_feat_dir, eval_gt_json)               # eval, once
+    print(f"[multiseed_4p] preloaded train+eval in {(time.time()-t_pre)/60:.1f} min; "
+          f"seeds={list(seeds)}", flush=True)
+    results = {}
+    for seed in seeds:
+        tag = f"phase4_s{seed}"
+        done_fp = os.path.join(ckpt_dir, f"done_{tag}.flag")
+        preds_fp = os.path.join(ckpt_dir, f"preds_{tag}.json")
+        res_fp = os.path.join(ckpt_dir, f"results_{tag}.json")
+        if os.path.exists(done_fp) and os.path.exists(preds_fp):
+            print(f"[multiseed_4p] seed {seed} ({tag}): already done -> skip", flush=True)
+            results[seed] = (json.load(open(res_fp)) if os.path.exists(res_fp)
+                             else {"tag": tag, "preds": preds_fp})
+            continue
+        t_s = time.time()
+        best = train_seed(feat_dir, gt_path, ckpt_dir, tag=tag, seed=seed, epochs=epochs,
+                          device=device, commit=commit, data=data)
+        ckpt = os.path.join(ckpt_dir, f"det_{tag}.pt")
+        predict_boxes_4p(ckpt, eval_feat_dir, eval_gt_json, rgb_dir, preds_fp,
+                         device=device, eval_cache=eval_cache)
+        res = {"tag": tag, "preds": preds_fp, "best_val_boxAP50": round(best["mAP50"], 4),
+               "best_epoch": best["epoch"], "seed_min": round((time.time() - t_s) / 60, 1)}
+        json.dump(res, open(res_fp, "w"), indent=2)
+        if commit:
+            commit()
+        print(f"[multiseed_4p] seed {seed}: valAP50={best['mAP50']:.3f} in "
+              f"{res['seed_min']}min -> {preds_fp}", flush=True)
+        results[seed] = res
+    return results
+
+
 @torch.no_grad()
 def predict_boxes_4p(ckpt_path, eval_feat_dir, eval_gt_json, rgb_dir, out_pred_json,
                      score_thr=0.01, topk=600, device=None, eval_cache=None):

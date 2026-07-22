@@ -44,6 +44,29 @@ worse; not folded in. Upscale is a *coverage/recall* lever (e.g. tree counting),
 not an AP lever. Cost also steep: 2× features are 537MB/tile (~235GB for 439) or
 on-the-fly recompute.
 
+**Single-layer feature probe (which DINOv3 layer for the detector; folder since deleted).**
+The web cache concatenates layers (21,22,23,24) → 4096-dim; slicing one 1024-dim block
+(layer L = dims `[(L-21)·1024 : (L-20)·1024]`) and training `Detector8(in_dim=1024)`
+with the `det_t8` recipe (+ early-stop), single-scale, fixed vault EM masker, isolates
+the detector's input layer. A single block ≈ the full 4096 on mask, ~0.01–0.02 below on
+box:
+
+| feature (interp-8px, single-scale) | mask mAP50 | box mAP50 | semantic F1 |
+|---|---|---|---|
+| L22 (1024-dim) | 0.510 | 0.544 | 0.563 |
+| L24 (1024-dim) | 0.502 | 0.540 | 0.614 |
+| full-4096 (native) | 0.499 | 0.555 | 0.587 |
+
+L22 vs L24 differ by <0.01 on box/mask AP — inside the 5-seed σ (~0.023–0.025; see
+`mps_multiseed/`), i.e. a tie; L24's semantic-F1 lead is a single-threshold pixel-union
+effect, not a detection signal. **Picked L24** (conventional last block) as the
+1024-dim feature for the 4-phase real-8px experiment (`mps_tcd_multiseed_4phase/`, kept
+only as a package stub — the probe's code and feature cache were deleted once the L22-vs-L24
+verdict above was in hand; nothing downstream depends on them). L18
+untested (not in the cache — needs re-extraction). Repro: slice
+`cache/web/feat_traintile` `[3072:4096]`, train `Detector8(in_dim=1024)`, eval with the
+detector on the 1024-dim slice and the EM masker on the full 4096-dim features.
+
 Crop-trained baseline `det_d8` (superseded): mask 0.254 / box 0.275. The **+0.245**
 came from full-tile training (below). Still box-limited (box→mask only 0.056), and
 `det_t8` overfits — val boxAP50 peaks ep20 (0.471) then falls as train loss → 0 on

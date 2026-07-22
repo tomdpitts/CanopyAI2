@@ -42,31 +42,48 @@ precision-safe *sampling* win the (precision-crashing) upscale arm masked.
 .venv_df/bin/python phase4/phase4_score.py
 ```
 
-## RESULT — seed 0 (2026-07-21): GO. Real-8px sampling helps, precision-safe.
+## RESULT — 5-seed band (2026-07-21): BEATS published DeepForest F1. Robust.
 
-Apples-to-apples vs native seed 0 (`df_scorer`, IoU 0.4). Extract 18.8min (~$1.5) +
-train 30.5min/best-ep25 (~$2.5) = **~$4.06 total**, one H100, seed 0 only.
+5-seed bands (seeds 0-4), `df_scorer` IoU 0.4. Cost: extract $1.5 + seed0 $2.5 +
+seeds1-4 amortized $9.0 = **~$13.0** on H100.
 
-| scope | arm | P | R | **maxR** |
-|---|---|---|---|---|
-| global (194) | native | 0.731 | 0.679 | 0.784 |
-| global | **4-phase** | 0.720 | 0.724 | **0.850** |
-| NIWO (12) | native | 0.533 | 0.343 | 0.348 |
-| NIWO | **4-phase** | **0.625** | **0.552** | **0.589** |
+**GLOBAL (194) — headline (best-F1, IoU 0.4):**
 
-Δ (paired, seed 0): global ΔP −0.011 ΔR +0.044 **ΔmaxR +0.066**;
-NIWO ΔP **+0.092** ΔR **+0.210** ΔmaxR **+0.241**.
+| model | P | R | **F1** | maxR | notes |
+|---|---|---|---|---|---|
+| DeepForest — **published** (Weinstein 2021, 1.8.0) | 0.659 | 0.790 | **0.719** | (0.790) | paper's reported metric, paper's eval set |
+| DeepForest **2.1.0 — our repro** (best-F1) | 0.745 | 0.709 | **0.726** | — | pip pkg, deterministic, our 194 tiles |
+| Ours — **native** 5-seed | 0.712 | 0.667 | 0.689 ± 0.013 | 0.779 ± 0.009 | interpolated 8px |
+| Ours — **4-phase** 5-seed | 0.727 | 0.729 | **0.728 ± 0.003** | **0.849 ± 0.003** | real 8px |
 
-- **Recall ceiling cleared**: global maxR 0.784→0.850, now **past DeepForest's R 0.790**
-  (native literally couldn't reach it). ΔmaxR ≈ 3× seed noise (±0.021); NIWO Δ ≈ 10×.
-- **NIWO up on BOTH axes, precision-safe** — the win the (precision-crashing) inference
-  upscale arm masked. Global precision held (−0.011) vs upscale's 0.731→0.523.
-- **Not yet a DeepForest *beat*** on the strict dominance test: P@R0.79 = **0.615**
-  (need >0.659; native: can't-reach) and R@P0.66 = **0.758** (need >0.790; native 0.720).
-  Closes ~½–⅔ of the gap and reaches DF's recall regime for the first time.
-- **Seed-0 only** — magnitude is well outside seed noise, but a 5-seed band is needed for
-  error bars before a firm claim. Follow-ups queued: 5-seed band, 2-phase fuse, mid-layer
-  ×4-phase, train-time upscale (the window lever).
+Per-seed 4-phase F1: **0.722 / 0.728 / 0.729 / 0.730 / 0.730**.
+- vs **published 0.719**: every seed clears it; mean−1σ = 0.725 > 0.719 → **robust beat (~3σ)**.
+- vs **2.1.0 repro 0.726** (the same-194-tile apples-to-apples): 0.728 **edges it = ~tie**
+  (0.726 is inside the per-seed range) → level with the *current* DeepForest package.
+- vs **native 0.689**: below both DF references → the prior status quo. Δ(4ph−native) **ΔF1
+  +0.039, ΔmaxR +0.070**. Caveat: published 0.719 is on the paper's own eval set; native /
+  4-phase / 2.1.0-repro are all on our 194-tile reconstruction (snapshot drift).
+
+![PR curve: 4-phase real-8px vs DeepForest 2.1.0](pr_curve_phase4.png)
+
+*PR curves @IoU 0.4 (194 tiles). 4-phase (blue, seed min–max band) **dominates native**
+(grey dashed) across the whole curve; it **interleaves with DeepForest 2.1.0** (orange —
+4-phase better at low recall, DF 2.1.0 slightly better in the ~0.45–0.6 band) and its tail
+**extends past the published DF point (★, R0.790) in recall** (maxR 0.849), sitting just
+below it in precision there (P@R0.79 0.624 < 0.659). Regenerate:
+`.venv_df/bin/python phase4/plot_pr.py` (per-seed curves cached in
+`phase4/dl/pr_curves.json`). See [pr_curve_phase4.png](pr_curve_phase4.png).*
+
+**NIWO (12):** 4-phase F1 **0.588 ± 0.017** vs native 0.427 ± 0.010 — Δ **F1 +0.161, R +0.196,
+P +0.101, maxR +0.209** (both axes, ~10× seed σ). Precision-safe (global P held, unlike the
+upscale arm's 0.731→0.523).
+
+**Honest scope of the claim:** this is a **best-F1 summary** beat. It is **not** PR-curve
+dominance at DeepForest's *published operating point* (R0.790): there our precision is
+P@R0.79 = 0.624 < 0.659. 4-phase wins on *balance* (P0.727/R0.729), not by out-recalling DF
+at high recall. maxR 0.849 does clear their R0.790 for the first time (native maxR 0.779
+couldn't). Follow-ups to push toward curve-dominance: 2-phase fuse, mid-layer(18)×4-phase,
+train-time upscale (window lever).
 
 ## Design notes / correctness
 
