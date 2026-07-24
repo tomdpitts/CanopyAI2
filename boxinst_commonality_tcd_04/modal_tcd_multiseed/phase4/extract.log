@@ -1,0 +1,153 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-ToCQThytJXqLppDDHfyAFg
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/ref_feat_tcd.npz
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/vault/em_model.np
+│   z
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function verify.
+├── 🔨 Created function train_eval_4p.
+├── 🔨 Created function extract_4p.
+└── 🔨 Created function band_4p.
+[extract_4p] gpu=NVIDIA A100-SXM4-40GB out_dim=4096 layers=(21, 22, 23, 24)
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+[reg-test] OK invertible (maxabs 0); real!=interp cos=0.9713
+[parity] phase(0,0) full-4096 vs local known-good: cos=0.86003 (local cache = transformers 5.12; image pins 4.57 -> some drift expected)
+[parity] NOTE cos 0.860<0.95: Modal DINOv3 (transformers 4.57) differs from the local 5.12 cache; absolute mAP is NOT directly comparable to the local 0.499/0.502 refs, but the Modal 4-phase seeds are mutually consistent.
+[extract_4p:feat_traintile] 900/900 to extract
+  25/900  5.74s/tile  ETA 84 min est_cost≈$0.1
+  50/900  5.84s/tile  ETA 83 min est_cost≈$0.2
+  75/900  5.95s/tile  ETA 82 min est_cost≈$0.3
+  100/900  6.11s/tile  ETA 81 min est_cost≈$0.4
+  125/900  6.11s/tile  ETA 79 min est_cost≈$0.4
+  150/900  6.19s/tile  ETA 77 min est_cost≈$0.5
+  175/900  6.16s/tile  ETA 74 min est_cost≈$0.6
+  200/900  6.15s/tile  ETA 72 min est_cost≈$0.7
+  225/900  6.12s/tile  ETA 69 min est_cost≈$0.8
+  250/900  6.12s/tile  ETA 66 min est_cost≈$0.9
+  275/900  6.12s/tile  ETA 64 min est_cost≈$1.0
+  300/900  6.11s/tile  ETA 61 min est_cost≈$1.1
+  325/900  6.10s/tile  ETA 58 min est_cost≈$1.2
+  350/900  6.09s/tile  ETA 56 min est_cost≈$1.2
+  375/900  6.08s/tile  ETA 53 min est_cost≈$1.3
+  400/900  6.09s/tile  ETA 51 min est_cost≈$1.4
+  425/900  6.08s/tile  ETA 48 min est_cost≈$1.5
+  450/900  6.08s/tile  ETA 46 min est_cost≈$1.6
+  475/900  6.08s/tile  ETA 43 min est_cost≈$1.7
+  500/900  6.10s/tile  ETA 41 min est_cost≈$1.8
+  525/900  6.11s/tile  ETA 38 min est_cost≈$1.9
+  550/900  6.13s/tile  ETA 36 min est_cost≈$2.0
+  575/900  6.13s/tile  ETA 33 min est_cost≈$2.1
+  600/900  6.13s/tile  ETA 31 min est_cost≈$2.1
+  625/900  6.12s/tile  ETA 28 min est_cost≈$2.2
+  650/900  6.12s/tile  ETA 25 min est_cost≈$2.3
+  675/900  6.12s/tile  ETA 23 min est_cost≈$2.4
+  700/900  6.11s/tile  ETA 20 min est_cost≈$2.5
+  725/900  6.11s/tile  ETA 18 min est_cost≈$2.6
+  750/900  6.11s/tile  ETA 15 min est_cost≈$2.7
+  775/900  6.12s/tile  ETA 13 min est_cost≈$2.8
+  800/900  6.12s/tile  ETA 10 min est_cost≈$2.9
+  825/900  6.12s/tile  ETA 8 min est_cost≈$2.9
+  850/900  6.13s/tile  ETA 5 min est_cost≈$3.0
+  875/900  6.13s/tile  ETA 3 min est_cost≈$3.1
+  900/900  6.14s/tile  ETA 0 min est_cost≈$3.2
+[extract_4p:feat_test] 439/439 to extract
+  25/439  6.62s/tile  ETA 46 min est_cost≈$0.1
+  50/439  6.80s/tile  ETA 44 min est_cost≈$0.2
+  75/439  6.79s/tile  ETA 41 min est_cost≈$0.3
+  100/439  6.82s/tile  ETA 39 min est_cost≈$0.4
+  125/439  6.86s/tile  ETA 36 min est_cost≈$0.5
+  150/439  7.00s/tile  ETA 34 min est_cost≈$0.6
+  175/439  7.04s/tile  ETA 31 min est_cost≈$0.7
+  200/439  6.99s/tile  ETA 28 min est_cost≈$0.8
+  225/439  7.01s/tile  ETA 25 min est_cost≈$0.9
+  250/439  7.01s/tile  ETA 22 min est_cost≈$1.0
+  275/439  7.00s/tile  ETA 19 min est_cost≈$1.1
+  300/439  6.97s/tile  ETA 16 min est_cost≈$1.2
+  325/439  6.96s/tile  ETA 13 min est_cost≈$1.3
+  350/439  6.93s/tile  ETA 10 min est_cost≈$1.4
+  375/439  6.94s/tile  ETA 7 min est_cost≈$1.5
+  400/439  6.95s/tile  ETA 5 min est_cost≈$1.6
+  425/439  6.96s/tile  ETA 2 min est_cost≈$1.7
+  439/439  6.96s/tile  ETA 0 min est_cost≈$1.8
+[extract_4p] done train=900 test=439 native=439
+Stopping app - local entrypoint completed.
+[modal-client] 2026-07-23T03:22:01+1000 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/tomdpitts/main/ap-ToCQThytJXqLppDDHfyAFg

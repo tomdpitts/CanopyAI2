@@ -1,0 +1,94 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-J91oukkMYE4qD41NeODWyL
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/ref_feat_tcd.npz
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/vault/em_model.np
+│   z
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function verify.
+├── 🔨 Created function extract_4p.
+└── 🔨 Created function train_eval_4p.
+[verify] HF token env: ['HF_TOKEN']
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+[verify] HF train=4169 test=439
+[verify] missing=0 wh_bad=0 box_bad=0 pixel_sha1 ok=40 bad=0
+[verify] JOIN OK
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/tomdpitts/main/ap-J91oukkMYE4qD41NeODWyL

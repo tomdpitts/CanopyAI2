@@ -1,0 +1,23 @@
+[2026-07-23 04:23:26] === overnight orchestrator START (goal: beat mask mAP50 0.502) ===
+[2026-07-23 04:23:26] Stage1 EXTRACT: waiting for extract_4p (deadline 4h)
+[2026-07-23 04:23:26] EXTRACT: SUCCESS
+[2026-07-23 04:23:26] extraction complete: [extract_4p] done train=900 test=439 native=439
+[2026-07-23 04:23:26] Stage2 TRAIN_EVAL: launching train_eval_4p seed 0
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  900 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 04:38:31] HEARTBEAT TRAIN_EVAL elapsed=15min spend≈$ |   150/439 tiles HEARTBEAT TRAIN_EVAL elapsed=15min spend≈$ |   150/439 tiles
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  1801 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 04:53:32] HEARTBEAT TRAIN_EVAL elapsed=30min spend≈$ |   350/439 tiles HEARTBEAT TRAIN_EVAL elapsed=30min spend≈$ |   350/439 tiles
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  2701 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 05:08:32] HEARTBEAT TRAIN_EVAL elapsed=45min spend≈$ |   439/439 tiles HEARTBEAT TRAIN_EVAL elapsed=45min spend≈$ |   439/439 tiles
+[2026-07-23 05:20:33] TRAIN_EVAL: SUCCESS
+[2026-07-23 05:20:33] SUMMARY: 4phase-L24 seed0 mask_mAP50=0.5039 box_mAP50=0.605 | target(interp-L24)=0.502 -> BEATS
+[2026-07-23 05:20:33] === overnight orchestrator DONE ===

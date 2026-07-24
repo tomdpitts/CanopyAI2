@@ -1,0 +1,11 @@
+[2026-07-23 14:30:10] === beta=0 payoff START (goal: box-0.605 reaches mask mAP; refs: b0.5 self 0.449, fixed 0.504) ===
+[2026-07-23 14:30:10] FIT: waiting for fit_masker_4p --beta 0 (deadline 45min)
+[2026-07-23 14:35:40] FIT: SUCCESS
+[2026-07-23 14:35:40] EVAL: launching eval_selfmask --beta 0 (A100)
+[2026-07-23 14:45:46] HEARTBEAT EVAL 601s |   150/439 tiles
+[2026-07-23 14:55:47] HEARTBEAT EVAL 1202s |   350/439 tiles
+[2026-07-23 15:05:47] HEARTBEAT EVAL 1802s |   439/439 tiles
+[2026-07-23 15:15:48] HEARTBEAT EVAL 2403s |   439/439 tiles
+[2026-07-23 15:20:49] EVAL: SUCCESS
+[2026-07-23 15:20:49] SUMMARY: 4phase-L24 seed0 beta=0 self-mask -> mask=0.5794 box=0.605 box->mask=0.0256 | vs b0.5 self 0.449, fixed 0.504
+[2026-07-23 15:20:49] === beta=0 payoff DONE ===

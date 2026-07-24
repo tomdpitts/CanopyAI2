@@ -1,0 +1,133 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-rh1Swke53KEg43vTO3O8gM
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/ref_feat_tcd.npz
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/vault/em_model.np
+│   z
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function verify.
+├── 🔨 Created function extract_4p.
+├── 🔨 Created function train_eval_4p.
+└── 🔨 Created function band_4p.
+[phase4_L24_s0] TRAIN Detector4Phase real-8px L24 (det_t8 recipe+ES) -> /vol/out/det_phase4_L24_s0.pt
+[phase4_L24_s0] device=cuda in_dim=1024 params=3.22M grid=256 train/val=792/108 seed=0 tower=3 wd=0.0001 cosine early-stop
+  ep  5 hm=1.130 off=0.062 size=0.011 giou=0.361 | val boxAP50=0.444 F1=0.518@0.35 lr=9.6e-04
+    ^ saved best ep5 boxAP50=0.444
+  ep 10 hm=1.052 off=0.058 size=0.008 giou=0.332 | val boxAP50=0.472 F1=0.538@0.40 lr=8.5e-04
+    ^ saved best ep10 boxAP50=0.472
+  ep 15 hm=0.945 off=0.055 size=0.007 giou=0.312 | val boxAP50=0.497 F1=0.545@0.35 lr=6.9e-04
+    ^ saved best ep15 boxAP50=0.497
+  ep 20 hm=0.810 off=0.052 size=0.005 giou=0.290 | val boxAP50=0.498 F1=0.554@0.40 lr=5.0e-04
+    ^ saved best ep20 boxAP50=0.498
+  ep 25 hm=0.689 off=0.050 size=0.005 giou=0.274 | val boxAP50=0.464 F1=0.534@0.40 lr=3.1e-04
+    early-stop: 2 evals without >0.005 improvement (best ep20)
+[phase4_L24_s0] best ep20 val boxAP50=0.498 -> det_phase4_L24_s0.pt
+[eval_4p] 439 tiles (op_thr=0.39999999999999997)
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 915, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 218, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/phase4_modal.py", line 262, in train_eval_4p
+    res = L.eval_4p(ckpt, FEAT_4P_TEST, NATIVE_TEST, TEST_GT, EM_PATH,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/proj/boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/phase4_lib_tcd.py", line 95, in eval_4p
+    pm = E.pred_instance_masks(masker, zn, g, bx)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/proj/boxinst_commonality_tcd_04/evaluate.py", line 64, in pred_instance_masks
+    idx, r = masker.box_mask(zn, g, b)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/proj/boxinst_commonality_tcd_04/em.py", line 112, in box_mask
+    self.bg_ll(zn[idx]), contrast)
+    ^^^^^^^^^^^^^^^^^^^
+  File "/root/proj/boxinst_commonality_tcd_04/em.py", line 87, in bg_ll
+    return logsumexp(np.log(self.wbg)[None] + self.kappa * (zn @ self.Gbg.T), 1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/proj/boxinst_commonality/em.py", line 7, in _unavailable
+    raise RuntimeError("boxinst_commonality.em is stubbed on Modal "
+RuntimeError: boxinst_commonality.em is stubbed on Modal (EM mask stage not used in the box-only ablation)
+Stopping app - uncaught exception raised in remote container: RuntimeError('boxinst_commonality.em is stubbed on Modal (EM mask stage not used in the box-only ablation)').
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ boxinst_commonality.em is stubbed on Modal (EM mask stage not used in the    │
+│ box-only ablation)                                                           │
+╰──────────────────────────────────────────────────────────────────────────────╯

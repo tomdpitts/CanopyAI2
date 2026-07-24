@@ -1,0 +1,6 @@
+[2026-07-23 16:31:19] === gamma-blend seed0 eval START (s0=65 tau=18; refs: beta=0 mask50 0.579 / mAP50-95 0.1948) ===
+[2026-07-23 16:41:25] HEARTBEAT 601s |   200/439 tiles
+[2026-07-23 16:51:25] HEARTBEAT 1201s |   400/439 tiles
+[2026-07-23 16:56:26] EVAL: SUCCESS
+[2026-07-23 16:56:26] SUMMARY: gamma-blend seed0 -> mask_mAP50=0.5731 (beta0 0.579) | mask_mAP50-95=0.1789 (beta0 0.1948) | box=0.605
+[2026-07-23 16:56:26] === gamma-blend seed0 eval DONE ===

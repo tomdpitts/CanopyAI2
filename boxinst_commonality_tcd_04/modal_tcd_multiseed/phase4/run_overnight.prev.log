@@ -1,0 +1,46 @@
+[2026-07-23 02:07:36] === overnight orchestrator START (goal: beat mask mAP50 0.502) ===
+[2026-07-23 02:07:36] Stage1 EXTRACT: waiting for extract_4p (deadline 4h)
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  900 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 02:22:36] HEARTBEAT EXTRACT elapsed=15min spend≈$ |   800/900  6.12s/tile  ETA 10 min est_cost≈$2.9 HEARTBEAT EXTRACT elapsed=15min spend≈$ |   800/900  6.12s/tile  ETA 10 min est_cost≈$2.9
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  1801 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 02:37:37] HEARTBEAT EXTRACT elapsed=30min spend≈$ |   50/439  6.80s/tile  ETA 44 min est_cost≈$0.2 HEARTBEAT EXTRACT elapsed=30min spend≈$ |   50/439  6.80s/tile  ETA 44 min est_cost≈$0.2
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  2701 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 02:52:37] HEARTBEAT EXTRACT elapsed=45min spend≈$ |   175/439  7.04s/tile  ETA 31 min est_cost≈$0.7 HEARTBEAT EXTRACT elapsed=45min spend≈$ |   175/439  7.04s/tile  ETA 31 min est_cost≈$0.7
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  3602 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 03:07:38] HEARTBEAT EXTRACT elapsed=60min spend≈$ |   300/439  6.97s/tile  ETA 16 min est_cost≈$1.2 HEARTBEAT EXTRACT elapsed=60min spend≈$ |   300/439  6.97s/tile  ETA 16 min est_cost≈$1.2
+[2026-07-23 03:22:38] EXTRACT: SUCCESS
+[2026-07-23 03:22:38] extraction complete: [extract_4p] done train=900 test=439 native=439
+[2026-07-23 03:22:38] Stage2 TRAIN_EVAL: launching train_eval_4p seed 0
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  901 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 03:37:44] HEARTBEAT TRAIN_EVAL elapsed=15min spend≈$ | [phase4_L24_s0] device=cuda in_dim=1024 params=3.22M grid=256 train/val=792/108 seed=0 tower=3 wd=0.0001 cosin HEARTBEAT TRAIN_EVAL elapsed=15min spend≈$ | [phase4_L24_s0] device=cuda in_dim=1024 params=3.22M grid=256 train/val=792/108 seed=0 tower=3 wd=0.0001 cosin
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  1801 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 03:52:44] HEARTBEAT TRAIN_EVAL elapsed=30min spend≈$ |     ^ saved best ep5 boxAP50=0.444 HEARTBEAT TRAIN_EVAL elapsed=30min spend≈$ |     ^ saved best ep5 boxAP50=0.444
+awk: syntax error at source line 1
+ context is
+	BEGIN >>>  2702 <<< /60*0.035
+awk: bailing out at source line 1
+[2026-07-23 04:07:45] HEARTBEAT TRAIN_EVAL elapsed=45min spend≈$ |     ^ saved best ep15 boxAP50=0.497 HEARTBEAT TRAIN_EVAL elapsed=45min spend≈$ |     ^ saved best ep15 boxAP50=0.497
+[2026-07-23 04:19:49] TRAIN_EVAL: FAILED — 'modal run' exited without the success marker
+    raise RuntimeError("boxinst_commonality.em is stubbed on Modal "
+RuntimeError: boxinst_commonality.em is stubbed on Modal (EM mask stage not used in the box-only ablation)
+Stopping app - uncaught exception raised in remote container: RuntimeError('boxinst_commonality.em is stubbed on Modal (EM mask stage not used in the box-only ablation)').
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+[2026-07-23 04:19:49] ABORT: train_eval did not complete (rc=1).

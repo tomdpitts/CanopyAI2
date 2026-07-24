@@ -1,0 +1,20 @@
+{
+  "variant": "4phase_L24_selfmask",
+  "scale": "single",
+  "op_thr": 0.39999999999999997,
+  "n_tiles": 439,
+  "n_gt_trees": 25705,
+  "mask_mAP50": 0.5794,
+  "mask_mAP50_95": 0.1948,
+  "box_mAP50": 0.605,
+  "box_mAP50_95": 0.2555,
+  "box_minus_mask_mAP50": 0.0256,
+  "semantic_F1": 0.5772,
+  "semantic_P": 0.7334,
+  "semantic_R": 0.4759,
+  "best_epoch": 20,
+  "em": "em_model_4p_b0.npz",
+  "tag": "phase4_L24_s0",
+  "seed": 0,
+  "beta": 0.0
+}
