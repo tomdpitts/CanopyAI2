@@ -10,6 +10,46 @@
 > Deployable 5-seed band: `modal run phase4_modal.py::band_selfmask --seeds 0,1,2,3,4`.
 > _(The rest of this doc is the chronological investigation that led here — the go/no-go, the β=0 payoff, and the sigmoid-γ scoped-negative.)_
 
+## 🧭 HANDOFF — state, artifacts & paths (read this first)
+
+**Current state:** detector + masker **settled** (β=0 self-mask @ mask_thr=0.25, code defaults).
+Only **seed 0** is trained/evaluated. Everything runs on Modal A100; features are cached — **do
+not re-extract**. Numbers/tables in [SETTLED PIPELINE + tables](#settled-pipeline--tables-2026-07-24).
+
+**Modal Volume `tcd04-phase4-vol`** (pull any: `modal volume get tcd04-phase4-vol <path> <dest>`):
+
+| artifact | path on volume |
+|---|---|
+| detector ckpt (seed 0) | `out/det_phase4_L24_s0.pt` |
+| **masker β=0 (THE one)** | `out/em_model_4p_b0.npz` |
+| masker β=0.5 (carve, for compare/negative) | `out/em_model_4p.npz` |
+| best-model metrics (both tables) | `out/results_selfmask_b0_thr025_phase4_L24_s0.json` |
+| **predictions β=0** (boxes+RLE masks) | `out/preds_selfmask_b0_thr025_phase4_L24_s0/preds.json` |
+| predictions β=0.5 (same boxes, carved masks) | `out/preds_selfmask_thr025_phase4_L24_s0/preds.json` |
+| detector features | `feat_4p_train/` (900), `feat_4p_test/` (439), `native_test/` (439, 4096-d) |
+
+⚠️ **Predictions are currently the first 50 tiles only** (last run used `--limit 50`). For the full
+439, re-run without `--limit` (see below) — it overwrites the 50-tile files at the same paths.
+⚠️ The `results_selfmask_b0_thr025_*.json` on the volume is currently the **50-tile** version (the
+limit run overwrote it); the **439** numbers are in this README + `phase4/results_*.json` local copies.
+
+**Key commands** (from `modal_tcd_multiseed/phase4/`):
+- Best eval (defaults β=0, mask_thr=0.25): `modal run phase4_modal.py::eval_selfmask`
+  · add `--save-preds` to dump boxes+masks · `--limit N` for a subset · `--beta 0.5` for the carve masker.
+- **Deployable 5-seed band:** `modal run phase4_modal.py::band_selfmask --seeds 0,1,2,3,4` (~$1.5–2/seed).
+- Sigmoid-γ blend (scoped-negative): `::eval_blend`.  Refit a masker: `::fit_masker_4p --beta {0|0.5}`.
+- Preds JSON format: `{meta, preds[tile]}` → `boxes_2048` (xyxy@2048px), `scores`, `canopy_ignore`,
+  `masks_rle` (pycocotools RLE @512; boxes/`meta.scale_box_to_mask` to align). Decode:
+  `pycocotools.mask.decode({"size", "counts": counts.encode("ascii")})`.
+
+**Ops gotchas:** cancel a Modal run with **`modal app stop <ap-id> --yes`** — `pkill` only kills the
+local client and leaves the remote A100 billing. Image pins **transformers 4.57** (do not bump; it's
+cross-env vs the local 5.12 cache — never bit-compare Modal features to local).
+
+**Open threads (none blocking):** 5-seed variance (`band_selfmask`, only seed 0 done) · full-439
+predictions (only 50 saved) · same-env interp-L24 baseline (never run) · multiscale arm (not tried).
+The sigmoid-γ carve is a **closed negative** — don't reopen without new box-precision.
+
 **Question.** Does *real* 8px feature sampling (run the frozen DINOv3-web backbone 4×
 on the tile shifted by every (dy,dx)∈{0,8}px, interleave into a real 256-grid) beat the
 native *interpolated* 8px (Detector8's internal bilinear upsample) at layer 24?
@@ -155,28 +195,30 @@ the sigmoid-γ gain (perfect boxes let the carve work) and *under*-predicted the
 @ mask_thr=0.25, per-seed idempotent, reuses the seed-independent masker + cached features
 (~$1.5–2/seed). Seeds 1–4 extend the seed-0 headline for variance.
 
-## To make it conclusive (next steps)
+## Open next steps (nothing blocking; see Handoff "Open threads")
 
-- **Modal interp-L24 baseline** (same env): train Detector8 on the native phase-(0,0) L24
-  slice on Modal, eval identically → a clean same-env box A/B (real vs interp). Cheap
-  (native phase-(0,0) is already computed during extraction; ~+1 train+eval).
-- **Refit the EM masker on Modal features** (or on 4-phase cells) so the mask metric isn't
-  OOD — then the box gain can flow into mask mAP50.
-- **5-seed band**: `modal run phase4_modal.py::band_4p --seeds 0,1,2,3,4` — reuses the
-  cached features (extraction is seed-independent), per-seed idempotent, ~$1.5–2/seed.
+- **5-seed variance** (the main gap): `modal run phase4_modal.py::band_selfmask --seeds 0,1,2,3,4`
+  — β=0 @ 0.25, per-seed idempotent, reuses cached features (~$1.5–2/seed). Only seed 0 done.
+- **Same-env interp-L24 baseline** (never run): train Detector8 on the native phase-(0,0) L24 slice
+  on Modal, eval identically → a clean same-env real-vs-interp box A/B (the box 0.605 is currently
+  cross-env vs local). Cheap (phase-(0,0) native already extracted).
+- **Multiscale arm** (not tried): add the 0.5× downscale detection arm (as native did, 0.499→0.504)
+  to the 4-phase detector — likely lifts detection further.
+- *Done:* masker refit on Modal/4-phase cells (→ β=0 self-mask); mask_thr sweep (→ 0.25 default).
 
 ## Files (isolated; `rm -rf` this folder + the `tcd04-phase4-vol` Volume undoes everything)
 
 | file | role |
 |---|---|
 | `phase4_features_tcd.py` | 2048-tile 4-phase shift + interleave (256-grid) + L24 slice + native-4096 byproduct + reg self-test |
-| `phase4_lib_tcd.py` | `Detector4Phase` + train (reuses train_detector_tiles) + single-scale box+mask eval |
-| `phase4_modal.py` | A100 app: `verify` / `extract_4p` (reg + layers-trap parity gate) / `train_eval_4p` / `band_4p` |
-| `test_interleave_tcd.py` | pure-numpy geometry test (no GPU) |
-| `ref_feat_tcd.npz` | layers-trap parity ref (local native slice) |
-| `stubs/` | Modal import stubs; `boxinst_commonality/em.py` carries the REAL `logsumexp`+`estep` for the mask stage |
-| `run_overnight.sh` | autonomous extract→train→eval orchestrator w/ heartbeats + runaway deadlines |
-| `results_phase4_L24_s0.json` | the seed-0 metrics above |
+| `phase4_lib_tcd.py` | `Detector4Phase` + `train_4p` + evals: `eval_4p_selfmask` (β-masker @ mask_thr, `save_preds_dir`, `limit`) · `eval_4p_blend` (sigmoid-γ, negative) · `eval_4p` (fixed vault masker) · `_full_metrics`/`_instance_pr` (the two tables) · `BlendMasker` |
+| `phase4_fit_tcd.py` | `fit_masker_4p` — refit the EM masker on 4-phase L24 8px cells (`contrastive_beta`/`no_contrast`) |
+| `phase4_modal.py` | A100 app: `verify` · `extract_4p` (reg+layers-trap gate) · `train_eval_4p` · `fit_masker_4p` · **`eval_selfmask`** (best; `--save-preds`/`--limit`/`--beta`/`--mask-thr`) · **`band_selfmask`** (deployable 5-seed) · `eval_blend`/`band_blend` (sigmoid-γ) · `band_4p` (fixed-masker) |
+| `stubs/boxinst_commonality/em.py` | Modal masker deps (REAL `logsumexp`/`estep`/`spherical_kmeans`/`contrastive_update`/`softmax`) — **keep** |
+| `test_interleave_tcd.py`, `ref_feat_tcd.npz` | pure-numpy geometry test · layers-trap parity ref |
+| `run_*.sh` | autonomous orchestrators (extract→train→eval, save_preds, blend, thr) w/ heartbeats + `app stop` on runaway |
+| `results_*.json`, `preds_*` (local pulls) | metrics + prediction copies; canonical copies live on the Volume (see Handoff) |
+| `../../mps_tcd_multiseed_4phase/masker_lab/` | local/free forensics: β-sweep, size-control, gamma sweeps, det_t8 predicted-box mask_thr sweep |
 
 ## Caveat log (things that bit us)
 

@@ -63,7 +63,7 @@ def train_4p(feat_dir, out_dir, gt_path=None, tag="phase4_L24_s0", seed=0, epoch
 
 @torch.no_grad()
 def eval_4p_selfmask(ckpt_path, feat4p_test_dir, test_gt_path, em_path, out_json,
-                     mask_thr=0.25, device="cuda"):
+                     mask_thr=0.25, device="cuda", save_preds_dir=None, limit=None):
     """Single-scale box+mask eval where the EM masker reads the SAME 4-phase L24
     features as the detector (self-mask) — masker refit on 4-phase cells, so both
     detection and mask conversion are in-distribution. No native-4096 needed.
@@ -83,12 +83,18 @@ def eval_4p_selfmask(ckpt_path, feat4p_test_dir, test_gt_path, em_path, out_json
     gt = json.load(open(test_gt_path))
     tiles = [t for t in sorted(gt)
              if os.path.exists(os.path.join(feat4p_test_dir, t + ".npy"))]
+    if limit:
+        tiles = tiles[:limit]                                # subset (e.g. quick preds dump)
     print(f"[eval_selfmask] {len(tiles)} tiles (op_thr={op_thr}, masker s={masker.s})",
           flush=True)
 
     P_masks, P_scores, P_boxes, G_masks, G_boxes = [], [], [], [], []
     Ign_mask, Ign_box = [], []
     sem_tp = sem_fp = sem_fn = 0
+    preds_out = None
+    if save_preds_dir:
+        from pycocotools import mask as maskUtils
+        preds_out = {}
     for k, tid in enumerate(tiles):
         feat = np.load(os.path.join(feat4p_test_dir, tid + ".npy")).astype(np.float32)
         g = feat.shape[-1]                                    # 256 (masker AND detector)
@@ -100,6 +106,16 @@ def eval_4p_selfmask(ckpt_path, feat4p_test_dir, test_gt_path, em_path, out_json
         gm = np.array(E.raster(gt[tid]["trees"]))
         can = np.array(E.raster(gt[tid]["canopy"]))
         can = can.any(0) if len(can) else np.zeros((E.RES, E.RES), bool)
+        if preds_out is not None:                            # save BOTH boxes + masks
+            ci = np.array([bool(m.sum()) and (m & can).sum() / m.sum() > 0.5
+                           for m in pm]) if len(pm) else np.zeros(0, bool)
+            preds_out[tid] = {
+                "boxes_2048": np.round(bx, 2).tolist(),      # xyxy, 2048px tile coords
+                "scores": np.round(sc, 4).tolist(),
+                "canopy_ignore": ci.tolist(),                # >50% in canopy -> not a FP
+                "masks_rle": [{"size": [E.RES, E.RES], "counts": maskUtils.encode(
+                    np.asfortranarray(m.astype(np.uint8)))["counts"].decode("ascii")}
+                    for m in pm]}                            # COCO RLE at mask_res (E.RES)
         pbox = bx / E.SCALE
         P_masks.append(pm); P_scores.append(sc); P_boxes.append(pbox)
         G_masks.append(gm)
@@ -142,6 +158,22 @@ def eval_4p_selfmask(ckpt_path, feat4p_test_dir, test_gt_path, em_path, out_json
     print(json.dumps(res, indent=2), flush=True)
     print(f"[eval_selfmask] mask_thr={mask_thr} INSTANCE-SEG mask mAP50={seg['mask_mAP50']} "
           f"mAP50-95={seg['mask_mAP50_95']} (β=0@0.5 was 0.5794/0.1948)", flush=True)
+    if preds_out is not None:
+        os.makedirs(save_preds_dir, exist_ok=True)
+        meta = {"model": "4phase_L24 detector + β=0 self-mask masker",
+                "det": os.path.basename(ckpt_path), "em": os.path.basename(em_path),
+                "mask_thr": mask_thr, "op_thr": op_thr, "tile_px": 2048,
+                "mask_res": E.RES, "scale_box_to_mask": float(E.SCALE),
+                "n_tiles": len(preds_out),
+                "notes": ("per tile: boxes_2048 = xyxy in 2048px tile coords; masks_rle = "
+                          "pycocotools RLE at mask_res (divide boxes by scale_box_to_mask "
+                          "to align with masks); scores = detector confidence (filter "
+                          ">= op_thr for the operating point); canopy_ignore[i]=True means "
+                          "pred i sits >50% in canopy (ignored, not a false positive).")}
+        out_fp = os.path.join(save_preds_dir, "preds.json")
+        json.dump({"meta": meta, "preds": preds_out}, open(out_fp, "w"))
+        print(f"[eval_selfmask] saved predictions ({len(preds_out)} tiles, boxes+masks) "
+              f"-> {out_fp}", flush=True)
     return res
 
 

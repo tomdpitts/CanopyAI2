@@ -49,3 +49,10 @@ boxinst_commonality_tcd_04/mps_tcd_multiseed_sam/
 
 # masker lab outputs (machine-local, not tracked)
 boxinst_commonality_tcd_04/mps_tcd_multiseed_4phase/masker_lab/*
+
+# phase4 savepreds experiment: 50-tile subset preds/results + run logs (not committed;
+# regenerable from the canonical 439 run. run_savepreds.sh itself IS tracked)
+boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/savepreds*.log
+boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/run_savepreds_orch.log
+boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds_b0_thr025_s0_first50.json
+boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/*_50subset.json

@@ -315,7 +315,8 @@ def fit_masker_4p(n_tiles: int = 120, seed: int = 0, beta: float = 0.5):
 
 @app.function(gpu="A100", image=image, volumes={"/vol": vol}, timeout=4 * 3600,
               cpu=8, memory=65536)
-def eval_selfmask(seed: int = 0, beta: float = 0.0, mask_thr: float = 0.25):
+def eval_selfmask(seed: int = 0, beta: float = 0.0, mask_thr: float = 0.25,
+                  save_preds: bool = False, limit: int = 0):
     """Eval seed-s 4-phase detector with the REFIT 4-phase masker (self-mask) at the given
     beta and mask_thr. beta=0 + mask_thr=0.5 is the current headline (mask 0.5794/0.1948);
     lowering mask_thr toward ~0.25 grows masks to recover small crowns that under-cover
@@ -331,9 +332,11 @@ def eval_selfmask(seed: int = 0, beta: float = 0.0, mask_thr: float = 0.25):
     assert os.path.exists(npz), f"{npz} missing — run fit_masker_4p --beta {beta} first"
     tag = f"phase4_L24_s{seed}"
     ckpt = os.path.join(OUT, f"det_{tag}.pt")
+    preds_dir = os.path.join(OUT, f"preds_selfmask{bt}{tt}_{tag}") if save_preds else None
     res = L.eval_4p_selfmask(ckpt, FEAT_4P_TEST, TEST_GT, npz,
                              os.path.join(OUT, f"eval_selfmask{bt}{tt}_{tag}.json"),
-                             mask_thr=mask_thr, device="cuda")
+                             mask_thr=mask_thr, device="cuda", save_preds_dir=preds_dir,
+                             limit=(limit or None))
     res.update({"tag": tag, "seed": seed, "beta": beta, "mask_thr": mask_thr})
     json.dump(res, open(os.path.join(OUT, f"results_selfmask{bt}{tt}_{tag}.json"), "w"),
               indent=2)
