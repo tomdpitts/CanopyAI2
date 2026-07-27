@@ -8,9 +8,10 @@ in-distribution to the 4-phase boxes.
 
 Reuses em.fit VERBATIM (identical PCA-whiten -> spherical_kmeans bg/fg -> contrastive
 EM) via monkeypatch: only `load_train` (tile-based, reads feat_4p_train +
-train_tiles_gt.json) and MODEL_PATH/ART are swapped. The geometry label helpers are
-copied here (verbatim from em.py, with a grid-generalised canopy_cell_mask) so the fit
-needs no boxinst_tcd.cache — nothing shared is imported for its side effects.
+train_tiles_gt.json), MODEL_PATH/ART, and `cell_origin_frac=1.0` are swapped. The
+geometry label helpers are copied here (from em.py, with a grid-generalised
+canopy_cell_mask AND origin=s for the interleaved 8px grid — see the loader comment) so
+the fit needs no boxinst_tcd.cache — nothing shared is imported for its side effects.
 
 Memory: the EM assumes each tile's features are the FULL grid in raster order (it
 locates in-box cells by grid geometry), so cells can't be subsampled within a tile.
@@ -50,8 +51,13 @@ def _raster_canopy(polys, res):
     return np.asarray(m, bool)
 
 
-def _cell_labels(boxes, canopy_px, g, s):          # == em.cell_labels_canopy
-    cy, cx = np.mgrid[0:g, 0:g] * s + s / 2.0
+# INTERLEAVED-GRID origin: asm cell X's feature lives at pixel s*X + s (=8X+8), NOT
+# s/2 — the 4 phases interleave two 16px grids offset by 8 (phase4_features_tcd.
+# interleave). Using s/2 mis-registered the masker half a cell up-left (top-left-fill /
+# bottom-right-carve bias). These loaders feed em.fit, which uses cell_origin_frac=1.0
+# for the matching inst geometry (see fit_masker_4p).
+def _cell_labels(boxes, canopy_px, g, s):          # == em.cell_labels_canopy (origin=s)
+    cy, cx = np.mgrid[0:g, 0:g] * s + s
     inbox = np.zeros((g, g), bool); near = np.zeros((g, g), bool)
     for x0, y0, x1, y1 in boxes:
         inbox |= (cx >= x0) & (cx < x1) & (cy >= y0) & (cy < y1)
@@ -62,8 +68,8 @@ def _cell_labels(boxes, canopy_px, g, s):          # == em.cell_labels_canopy
     return lab.ravel()
 
 
-def _ring_cells(boxes, canopy_px, g, s):           # == em.ring_cells_canopy
-    cy, cx = np.mgrid[0:g, 0:g] * s + s / 2.0
+def _ring_cells(boxes, canopy_px, g, s):           # == em.ring_cells_canopy (origin=s)
+    cy, cx = np.mgrid[0:g, 0:g] * s + s
     inbox = np.zeros((g, g), bool); near = np.zeros((g, g), bool)
     for x0, y0, x1, y1 in boxes:
         inbox |= (cx >= x0) & (cx < x1) & (cy >= y0) & (cy < y1)
@@ -119,7 +125,7 @@ def fit_masker_4p(feat_dir, gt_path, out_dir, out_npz, n_tiles=120, seed=0, pca=
     args = argparse.Namespace(seed=seed, feat_dir=feat_dir, pca=pca, k=k, k_bg=k_bg,
                               bins=bins, kappa=kappa, iters=iters, prune_after=5,
                               prune_frac=0.25, contrastive_beta=contrastive_beta,
-                              no_contrast=no_contrast)
+                              no_contrast=no_contrast, cell_origin_frac=1.0)
     print(f"[fit_masker_4p] {n} 4-phase L24 tiles (g=256,s=8) pca={pca} k={k} "
           f"k_bg={k_bg} beta={contrastive_beta} no_contrast={no_contrast} -> {out_npz}",
           flush=True)

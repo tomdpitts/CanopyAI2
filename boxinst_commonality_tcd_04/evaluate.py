@@ -60,11 +60,24 @@ def mask_iou(pred, gt):
 def pred_instance_masks(masker, zn, g, boxes, res=RES, scale=SCALE, mask_thr=0.5):
     """EM posterior per box -> (N,res,res) bool instance masks at scoring res."""
     out = []
+    # The g-grid resize places cell X at the standard-grid position (origin s/2). If the
+    # masker's cells actually live at a different origin (interleaved 8px grid: s*X + s),
+    # translate the rendered posterior by that offset so the painted mask lands on the
+    # cells' TRUE pixels. delta=0 for standard-grid maskers -> render byte-identical.
+    origin = getattr(masker, "origin", getattr(masker, "s", 2 * scale) / 2.0)
+    s = getattr(masker, "s", 2 * scale)
+    delta = int(round((origin - s / 2.0) / scale))          # px @res, down-right (+)
     for b in boxes:
         idx, r = masker.box_mask(zn, g, b)
         grid = np.zeros(g * g, np.float32); grid[idx] = r
         prob = np.array(Image.fromarray(grid.reshape(g, g)).resize(
             (res, res), Image.BILINEAR))
+        if delta:                                           # zero-filled translate
+            shifted = np.zeros_like(prob)
+            src = slice(max(0, -delta), res - max(0, delta))
+            dst = slice(max(0, delta), res - max(0, -delta))
+            shifted[dst, dst] = prob[src, src]
+            prob = shifted
         m = prob >= mask_thr
         # confine to the box (posterior can bleed one pad-cell past the border)
         x0, y0, x1, y1 = (np.asarray(b) / scale)

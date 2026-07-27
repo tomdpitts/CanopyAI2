@@ -33,10 +33,16 @@ ART = os.path.join(OUT, "artifacts")
 MODEL_PATH = os.path.join(ART, "em_model.npz")
 
 
-def cell_labels_canopy(boxes, canopy_px, g, s):
+def cell_labels_canopy(boxes, canopy_px, g, s, origin=None):
     """(g*g,) int8: 1 in a tree box, 0 clear background (>=1 cell from any box AND
-    not canopy), -1 near-box / canopy / pad. Canopy is IGNORE, never background."""
-    cy, cx = np.mgrid[0:g, 0:g] * s + s / 2.0
+    not canopy), -1 near-box / canopy / pad. Canopy is IGNORE, never background.
+
+    `origin` = pixel offset of cell (0,0)'s CENTER (default s/2 = standard grid). The
+    4-phase interleaved 8px grid has centers at s*idx + s (=8X+8), NOT s/2 (see
+    phase4_features_tcd.interleave), so callers on that grid pass origin=s."""
+    if origin is None:
+        origin = s / 2.0
+    cy, cx = np.mgrid[0:g, 0:g] * s + origin
     inbox = np.zeros((g, g), bool)
     near = np.zeros((g, g), bool)
     for x0, y0, x1, y1 in boxes:
@@ -50,10 +56,13 @@ def cell_labels_canopy(boxes, canopy_px, g, s):
     return lab.ravel()
 
 
-def ring_cells_canopy(boxes, canopy_px, g, s):
+def ring_cells_canopy(boxes, canopy_px, g, s, origin=None):
     """Near-box cells that are OUTSIDE every box and NOT canopy (context-matched
-    non-tree background for the bg mixture / contrastive negatives)."""
-    cy, cx = np.mgrid[0:g, 0:g] * s + s / 2.0
+    non-tree background for the bg mixture / contrastive negatives). `origin` as in
+    cell_labels_canopy (default s/2; interleaved 8px grid passes origin=s)."""
+    if origin is None:
+        origin = s / 2.0
+    cy, cx = np.mgrid[0:g, 0:g] * s + origin
     inbox = np.zeros((g, g), bool)
     near = np.zeros((g, g), bool)
     for x0, y0, x1, y1 in boxes:
@@ -76,6 +85,11 @@ class TCDMasker:
         self.pi, self.kappa = d["pi"], float(d["kappa"])
         self.size_edges = d["size_edges"]
         self.s = int(d["s_px"])
+        # pixel offset of cell (0,0)'s center. Models fit on the standard grid have no
+        # cell_origin key -> default s/2 (backward-compatible). The 4-phase interleaved
+        # 8px masker stores cell_origin=s (=8X+8), fixing the half-cell up-left
+        # mis-registration that biased masks top-left / carved bottom-right.
+        self.origin = float(d["cell_origin"]) if "cell_origin" in d else self.s / 2.0
         self.NB = self.pi.shape[2]
 
     def project(self, feat):
@@ -94,7 +108,7 @@ class TCDMasker:
     def box_mask(self, zn, g, box, contrast=True):
         """zn:(g*g,D) whitened cells; box xyxy in tile px. -> (idx, P(fg))."""
         s = self.s
-        cy, cx = np.mgrid[0:g, 0:g] * s + s / 2.0
+        cy, cx = np.mgrid[0:g, 0:g] * s + self.origin
         x0, y0, x1, y1 = box
         pad = s / 2.0
         m = ((cx >= x0 - pad) & (cx < x1 + pad) &
@@ -138,7 +152,12 @@ def fit(args):
     rng = np.random.default_rng(args.seed)
     np.random.seed(args.seed)
     tiles, feats, labs, rings, boxes, g, s = load_train(args.feat_dir)
-    print(f"TCD train crops={len(tiles)} grid={g} stride={s}px", flush=True)
+    # cell-center pixel offset. Default s/2 (standard grid); the 4-phase loader sets
+    # cell_origin_frac=1.0 -> origin=s (=8X+8), the interleaved grid's true centers.
+    # MUST match the origin `load_train` used for labs/rings so fit stays self-consistent.
+    origin = getattr(args, "cell_origin_frac", 0.5) * s
+    print(f"TCD train crops={len(tiles)} grid={g} stride={s}px origin={origin}px",
+          flush=True)
 
     # centred, whitened PCA on tree+clear-bg cells (canopy excluded)
     mu_acc, nv = 0.0, 0
@@ -177,7 +196,7 @@ def fit(args):
     # in-box instance cells (strict centre-in-box)
     inst = []
     for ti, bx in enumerate(boxes):
-        cy, cx = np.mgrid[0:g, 0:g] * s + s / 2.0
+        cy, cx = np.mgrid[0:g, 0:g] * s + origin
         for b in bx:
             x0, y0, x1, y1 = b
             m = (cx >= x0) & (cx < x1) & (cy >= y0) & (cy < y1)
@@ -238,8 +257,9 @@ def fit(args):
 
     os.makedirs(ART, exist_ok=True)
     np.savez(MODEL_PATH, mu=mu, U=U, scale=scale, C=C, Gbg=Gbg, wbg=wbg, pi=pi,
-             kappa=kappa, size_edges=size_edges, s_px=s)
+             kappa=kappa, size_edges=size_edges, s_px=s, cell_origin=origin)
     json.dump({"seed": args.seed, "feat_dir": args.feat_dir, "stride_px": int(s),
+               "cell_origin_px": float(origin),
                "pca": args.pca, "k_init": args.k, "k_effective": int(C.shape[0]),
                "k_bg": args.k_bg, "bins": args.bins, "kappa": args.kappa,
                "contrastive_beta": args.contrastive_beta,
