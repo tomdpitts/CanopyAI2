@@ -2,12 +2,13 @@
 
 > ## ⭐ BEST RESULT — the settled pipeline
 > **4-phase real-8px interleave (L24) detector + β=0.5 self-mask masker, geometry-FIXED grid
-> (`cell_origin=s`), @ `mask_thr=0.25`**, seed-0, single-scale, OAM-TCD 439:
-> - **Detection:** box mAP50 **0.605** / mAP40 0.669 · best-F1@IoU0.4 **0.682** (NEON-linked)
-> - **Instance-seg:** mask mAP50 **0.620** · mAP50-95 **0.244** · mask F1@0.5 0.654 · semantic F1 0.577
+> (`cell_origin=s`), @ `mask_thr=0.25`**, single-scale, OAM-TCD 439. **5-seed band (seeds 0–4):**
+> - **Instance-seg:** mask mAP50 **0.615 ± 0.011** (seed-0 0.620; range 0.601–0.625) · mAP50-95 **0.238 ± 0.005**
+> - **Detection:** box mAP50 **0.597 ± 0.010** (seed-0 0.605) / mAP40 0.669 · best-F1@IoU0.4 **0.682** (NEON-linked)
 >
-> Beats the fully-supervised Restor Mask R-CNN (mask 0.432) and the vaulted multiscale headline
-> (0.504). Full tables in **[SETTLED PIPELINE + tables](#settled-pipeline--tables)**.
+> Every seed clears mask mAP50 0.60. Beats the fully-supervised Restor Mask R-CNN (mask 0.432), the
+> vaulted multiscale headline (0.504), and the old β=0 headline (0.583). Full tables + per-seed band in
+> **[SETTLED PIPELINE + tables](#settled-pipeline--tables)**.
 >
 > **⚠️ β=0.5 only wins AFTER the grid-registration fix (2026-07-27).** Before the fix, a 4px
 > half-cell mis-registration made β=0.5's carve collapse (biased top-left), so β=0 looked best —
@@ -16,16 +17,19 @@
 ## 🧭 HANDOFF — state, artifacts & paths (read this first)
 
 **Current state:** detector **settled** (4-phase 8px L24, box mAP50 0.605); masker settled to
-**β=0.5 self-mask on the geometry-FIXED grid** (`--fix`, `cell_origin=s`, mask_thr=0.25). Only
-**seed 0** trained/evaluated. Everything on Modal A100; detector features cached — **do not
-re-extract**. The maskers are seed-independent (reuse across seeds).
+**β=0.5 self-mask on the geometry-FIXED grid** (`--fix`, `cell_origin=s`, mask_thr=0.25). **All 5
+seeds (0–4) trained/evaluated** — band mask mAP50 **0.615 ± 0.011**. Everything on Modal A100;
+detector features cached — **do not re-extract**. The maskers are seed-independent (reuse across seeds).
 
 **Grid fix verified complete.** The β=0-FIXED prior is dihedrally symmetric (quadrants ≈0.25),
 and a local render-offset sweep confirms the `+1px@512` raster shift is OPTIMAL (|asym| minimized
 at delta=1; delta=0 leaves masks strongly TL-biased — do NOT reduce it).
 
-**One OPEN thread (doesn't block the result):** 5-seed variance — only seed 0 done. Run the band
-on the β=0.5-fixed config for the deployable mean ± std.
+**5-seed band DONE (2026-07-27):** β=0.5-fixed, mask mAP50 **0.615 ± 0.011** (per-seed 0.620 / 0.625 /
+0.624 / 0.605 / 0.601), box mAP50 0.597 ± 0.010. Ran as 4 parallel single-seed A100s (seed 0 reused).
+Caveat: seed 2's first run was silently undertrained by a **Modal spot preemption** — `train_4p`'s
+`if ckpt exists: skip` reused the preemption-partial ep10 checkpoint; deleting it + rerunning gave 0.624.
+A preemption-safe completion marker for `train_4p` is a known (unaddressed) follow-up.
 
 **Modal Volume `tcd04-phase4-vol`** (pull any: `modal volume get tcd04-phase4-vol <path> <dest>`):
 
@@ -47,7 +51,8 @@ Local copies of the fixed results + preds are pulled into `phase4/` (`results_b0
 - **Best eval (β=0.5, fixed grid, mask_thr 0.25):** `modal run phase4_modal.py::eval_selfmask --beta 0.5 --fix`
   · add `--save-preds` to dump boxes+masks · `--limit N` for a subset · `--beta 0` for the fill masker.
 - **Refit a fixed masker:** `modal run phase4_modal.py::fit_masker_4p --beta {0|0.5} --fix` (CPU, ~6 min).
-- 5-seed band (currently wired to β=0-fixed masker path — see note in `band_selfmask`): `::band_selfmask`.
+- **5-seed band (β=0.5-fixed, the default):** `::band_selfmask --seeds 0,1,2,3,4` (one instance), or run
+  `--seeds N` per seed for parallel A100s (as done for the 0.615 ± 0.011 band); done seeds are skipped/reused.
 - `--fix` routes to `_fix` npz/preds/results so the pre-fix mis-registered models are preserved.
 - Preds JSON format: `{meta, preds[tile]}` → `boxes_2048` (xyxy@2048px), `scores`, `canopy_ignore`,
   `masks_rle` (pycocotools RLE @512; boxes/`meta.scale_box_to_mask` to align). Decode:
@@ -180,6 +185,22 @@ box→mask gap means the carved masks match GT crowns *better* than the boxes ma
 the geometry fix — on a mis-registered grid the carve compounds the placement error and loses; see the
 [reversal section](#registration-bug-and-fix--the-reversal-2026-07-27).
 
+### 5-seed band — β=0.5 FIXED, mask_thr 0.25, 439 TCD (the deployable number)
+
+| seed | mask mAP50 | mask mAP50-95 | box mAP50 | best_epoch |
+|---|---|---|---|---|
+| 0 | 0.6203 | 0.2440 | 0.6050 | 20 |
+| 1 | 0.6253 | 0.2362 | 0.5981 | 15 |
+| 2 | 0.6241 | 0.2411 | 0.6066 | 20 |
+| 3 | 0.6045 | 0.2368 | 0.5942 | 25 |
+| 4 | 0.6011 | 0.2300 | 0.5819 | 20 |
+| **mean ± std** | **0.615 ± 0.011** | **0.238 ± 0.005** | **0.597 ± 0.010** | |
+
+Tight spread (σ ≈ 0.011, well within the ~0.025 5-seed expectation); every seed beats the old β=0 headline
+(0.583). Run as 4 parallel single-seed A100s + reused seed 0 (`::band_selfmask --seeds N --beta 0.5 --fix`
+per seed, or `--seeds 0,1,2,3,4` for one sequential instance). Per-seed result JSONs on the volume are the
+source of truth (the single-seed runs overwrite the shared `band_selfmask_fix_thr025.json` summary).
+
 ### Method lesson
 
 Evaluate masker knobs on **PREDICTED boxes, not GT boxes** (the GT-box proxy mis-called the mask_thr
@@ -189,10 +210,13 @@ probe (crown mass should sit at box-centre 0.5) is the cheap check that catches 
 
 ## Open next steps
 
-- **5-seed variance (the one open thread):** `band_selfmask` now defaults to the **β=0.5-fixed** config
-  (`em_model_4p_fix.npz`, beta=0.5, fix=True, mask_thr=0.25, save_preds); result filenames match
-  `eval_selfmask` so seed 0 is reused. Run `modal run phase4_modal.py::band_selfmask --seeds 0,1,2,3,4` to
-  add seeds 1–4 and get the 5-seed band (mean ± std). Only seed 0 done.
+- **5-seed variance — DONE:** band mask mAP50 **0.615 ± 0.011** (see table above). `band_selfmask` defaults
+  to the β=0.5-fixed config (`em_model_4p_fix.npz`, beta=0.5, fix=True, mask_thr=0.25, save_preds); result
+  filenames match `eval_selfmask` so a done seed is skipped/reused. Preds for all 5 seeds are on the volume
+  (`out/preds_selfmask_fix_thr025_phase4_L24_s{0..4}/`).
+- **Preemption-safe `train_4p` (follow-up, unaddressed):** the `if ckpt exists: skip` guard reuses a
+  preemption-partial checkpoint as if training finished (silently undertrained seed 2 on its first run).
+  Mark completion (store/check the stop-criterion, or a `.done` sentinel) before treating a ckpt as reusable.
 - **Promote to code defaults:** once render-offset + 5-seed settle, rename the `_fix` maskers to the
   canonical paths and flip `eval_selfmask`'s default to `--beta 0.5`. Not yet done (premature).
 - **Same-env interp-L24 baseline** (never run): clean same-env real-vs-interp box A/B.
