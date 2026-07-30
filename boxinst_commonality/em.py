@@ -190,7 +190,7 @@ def contrastive_update(newC, negZ, kappa, beta):
     return C / (np.linalg.norm(C, axis=1, keepdims=True) + 1e-8)
 
 
-def estep(z, pis, kappa, C, bgll, contrast=True):
+def estep(z, pis, kappa, C, bgll, contrast=True, prior_weight=1.0):
     """Shared E-step for the cells of ONE box.
 
     z (n,D) cells; pis (K,n) spatial prior at each cell's (u,v) bin; bgll (n,).
@@ -201,6 +201,12 @@ def estep(z, pis, kappa, C, bgll, contrast=True):
     the within-box ordering carries the local crown-vs-soil signal (verified
     against a supervised brightness ceiling). Wide spread (crown+soil box) ->
     carving; narrow spread (dense canopy) -> box stays filled.
+
+    prior_weight (default 1.0 = original) scales the box-normalized spatial-prior
+    logit. <1 relaxes trust in the (possibly imprecise) box so the box-INDEPENDENT
+    appearance term A drives — a box-robustness knob for imprecise PREDICTED boxes
+    (fit/train paths keep the default). Sharpening the appearance term is done by the
+    caller scaling `kappa` (both zc and bgll), not here.
     """
     zc = kappa * (z @ C.T)                              # (n,K)
     psum = np.clip(pis.sum(0), 1e-4, 1 - 1e-4)
@@ -208,7 +214,7 @@ def estep(z, pis, kappa, C, bgll, contrast=True):
     A = logsumexp(lw, 1) - bgll                         # appearance log-ratio
     if contrast and len(A) > 1:
         A = A - A.mean()
-    pfg = 1.0 / (1.0 + np.exp(-(A + np.log(psum / (1 - psum)))))
+    pfg = 1.0 / (1.0 + np.exp(-(A + prior_weight * np.log(psum / (1 - psum)))))
     e = lw - lw.max(1, keepdims=True)
     wk = np.exp(e)
     wk /= wk.sum(1, keepdims=True)

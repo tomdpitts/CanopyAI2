@@ -63,7 +63,8 @@ def train_4p(feat_dir, out_dir, gt_path=None, tag="phase4_L24_s0", seed=0, epoch
 
 @torch.no_grad()
 def eval_4p_selfmask(ckpt_path, feat4p_test_dir, test_gt_path, em_path, out_json,
-                     mask_thr=0.25, device="cuda", save_preds_dir=None, limit=None):
+                     mask_thr=0.25, device="cuda", save_preds_dir=None, limit=None,
+                     prior_weight=None, kappa_scale=None):
     """Single-scale box+mask eval where the EM masker reads the SAME 4-phase L24
     features as the detector (self-mask) — masker refit on 4-phase cells, so both
     detection and mask conversion are in-distribution. No native-4096 needed.
@@ -102,7 +103,8 @@ def eval_4p_selfmask(ckpt_path, feat4p_test_dir, test_gt_path, em_path, out_json
         bx, sc = decode(det.cpu(), score_thr=0.05, stride=STRIDE8, topk=600)
         bx, sc = bx.numpy(), sc.numpy()
         zn = masker.project(feat)                            # self-mask: same 4-phase feats
-        pm = E.pred_instance_masks(masker, zn, g, bx, mask_thr=mask_thr)
+        pm = E.pred_instance_masks(masker, zn, g, bx, mask_thr=mask_thr,
+                                   prior_weight=prior_weight, kappa_scale=kappa_scale)
         gm = np.array(E.raster(gt[tid]["trees"]))
         can = np.array(E.raster(gt[tid]["canopy"]))
         can = can.any(0) if len(can) else np.zeros((E.RES, E.RES), bool)

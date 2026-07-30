@@ -57,8 +57,13 @@ def mask_iou(pred, gt):
     return inter / (p.sum(1)[:, None] + g.sum(1)[None] - inter + 1e-9)
 
 
-def pred_instance_masks(masker, zn, g, boxes, res=RES, scale=SCALE, mask_thr=0.5):
-    """EM posterior per box -> (N,res,res) bool instance masks at scoring res."""
+def pred_instance_masks(masker, zn, g, boxes, res=RES, scale=SCALE, mask_thr=0.5,
+                        prior_weight=None, kappa_scale=None):
+    """EM posterior per box -> (N,res,res) bool instance masks at scoring res.
+
+    prior_weight / kappa_scale pass through to box_mask; **default None = use the masker's
+    OWN stored knobs** (the box→mask component carries its calibration). Pass explicit values
+    to override — box-robustness knobs validated on PREDICTED boxes (see BOX2MASK_LEVERS.md)."""
     out = []
     # The g-grid resize places cell X at the standard-grid position (origin s/2). If the
     # masker's cells actually live at a different origin (interleaved 8px grid: s*X + s),
@@ -68,7 +73,8 @@ def pred_instance_masks(masker, zn, g, boxes, res=RES, scale=SCALE, mask_thr=0.5
     s = getattr(masker, "s", 2 * scale)
     delta = int(round((origin - s / 2.0) / scale))          # px @res, down-right (+)
     for b in boxes:
-        idx, r = masker.box_mask(zn, g, b)
+        idx, r = masker.box_mask(zn, g, b, prior_weight=prior_weight,
+                                 kappa_scale=kappa_scale)
         grid = np.zeros(g * g, np.float32); grid[idx] = r
         prob = np.array(Image.fromarray(grid.reshape(g, g)).resize(
             (res, res), Image.BILINEAR))

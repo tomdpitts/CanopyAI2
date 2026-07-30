@@ -90,6 +90,12 @@ class TCDMasker:
         # 8px masker stores cell_origin=s (=8X+8), fixing the half-cell up-left
         # mis-registration that biased masks top-left / carved bottom-right.
         self.origin = float(d["cell_origin"]) if "cell_origin" in d else self.s / 2.0
+        # box-robustness knobs CARRIED BY THE MASKER (component 3 self-describes its
+        # calibration): prior_weight (α, relax the imprecise-box spatial prior) and
+        # kappa_scale (κ, sharpen the appearance vMF). Absent in old npz -> 1.0 (neutral).
+        # box_mask applies these by default; callers may still override per-call.
+        self.prior_weight = float(d["prior_weight"]) if "prior_weight" in d else 1.0
+        self.kappa_scale = float(d["kappa_scale"]) if "kappa_scale" in d else 1.0
         self.NB = self.pi.shape[2]
 
     def project(self, feat):
@@ -97,16 +103,25 @@ class TCDMasker:
             @ self.U / self.scale
         return z / (np.linalg.norm(z, axis=1, keepdims=True) + 1e-8)
 
-    def bg_ll(self, zn):
-        return logsumexp(np.log(self.wbg)[None] + self.kappa * (zn @ self.Gbg.T), 1)
+    def bg_ll(self, zn, kappa=None):
+        k = self.kappa if kappa is None else kappa
+        return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
 
     def size_bin(self, box):
         return int(np.searchsorted(self.size_edges,
                                    np.sqrt(max(box[2] - box[0], 1) *
                                            max(box[3] - box[1], 1))))
 
-    def box_mask(self, zn, g, box, contrast=True):
-        """zn:(g*g,D) whitened cells; box xyxy in tile px. -> (idx, P(fg))."""
+    def box_mask(self, zn, g, box, contrast=True, prior_weight=None, kappa_scale=None):
+        """zn:(g*g,D) whitened cells; box xyxy in tile px. -> (idx, P(fg)).
+
+        prior_weight (<1) relaxes the box-normalized spatial prior -> robustness to
+        imprecise PREDICTED boxes; kappa_scale (>1) sharpens the appearance vMF (both zc
+        and bg_ll). **Default None = use the masker's OWN stored knobs** (`self.prior_weight`
+        / `self.kappa_scale`, read from the npz) — the box→mask component carries its own
+        calibration. Pass an explicit value to override per-call."""
+        prior_weight = self.prior_weight if prior_weight is None else prior_weight
+        kappa_scale = self.kappa_scale if kappa_scale is None else kappa_scale
         s = self.s
         cy, cx = np.mgrid[0:g, 0:g] * s + self.origin
         x0, y0, x1, y1 = box
@@ -122,8 +137,9 @@ class TCDMasker:
         bu = np.minimum((u * self.NB).astype(int), self.NB - 1)
         bv = np.minimum((v * self.NB).astype(int), self.NB - 1)
         sb = self.size_bin(box)
-        pfg, _ = estep(zn[idx], self.pi[sb][:, bv, bu], self.kappa, self.C,
-                       self.bg_ll(zn[idx]), contrast)
+        k = self.kappa * kappa_scale
+        pfg, _ = estep(zn[idx], self.pi[sb][:, bv, bu], k, self.C,
+                       self.bg_ll(zn[idx], kappa=k), contrast, prior_weight=prior_weight)
         return idx, pfg
 
 
@@ -256,10 +272,17 @@ def fit(args):
             print(f"  it{it+1:2d}: mean P(fg)={trace[-1]:.3f}", flush=True)
 
     os.makedirs(ART, exist_ok=True)
+    # box-robustness knobs carried by the masker (component-3 self-calibration). Default to
+    # the validated tree-ITC values (α=0.3, κ×1.6); a new dataset re-tunes then re-writes them
+    # (via em.set_masker_knobs) without refitting. Absent-key old npz load as 1.0 (neutral).
+    prior_weight = float(getattr(args, "prior_weight", 0.3))
+    kappa_scale = float(getattr(args, "kappa_scale", 1.6))
     np.savez(MODEL_PATH, mu=mu, U=U, scale=scale, C=C, Gbg=Gbg, wbg=wbg, pi=pi,
-             kappa=kappa, size_edges=size_edges, s_px=s, cell_origin=origin)
+             kappa=kappa, size_edges=size_edges, s_px=s, cell_origin=origin,
+             prior_weight=prior_weight, kappa_scale=kappa_scale)
     json.dump({"seed": args.seed, "feat_dir": args.feat_dir, "stride_px": int(s),
                "cell_origin_px": float(origin),
+               "prior_weight": prior_weight, "kappa_scale": kappa_scale,
                "pca": args.pca, "k_init": args.k, "k_effective": int(C.shape[0]),
                "k_bg": args.k_bg, "bins": args.bins, "kappa": args.kappa,
                "contrastive_beta": args.contrastive_beta,
@@ -268,6 +291,18 @@ def fit(args):
                "note": "boxes-only, canopy-ignore, no polygon ever read"},
               open(os.path.join(ART, "em_fit_report.json"), "w"), indent=2)
     print(f"saved {MODEL_PATH}  (K={C.shape[0]})", flush=True)
+
+
+def set_masker_knobs(npz_path, prior_weight, kappa_scale):
+    """Write the box-robustness knobs (α=prior_weight, κ=kappa_scale) INTO an existing masker
+    npz — no refit. Use after per-dataset tuning so the box→mask component carries its own
+    calibration (TCDMasker then applies them by default). All other arrays preserved."""
+    d = dict(np.load(npz_path, allow_pickle=False))
+    d["prior_weight"] = np.float64(prior_weight)
+    d["kappa_scale"] = np.float64(kappa_scale)
+    np.savez(npz_path, **d)
+    print(f"set knobs on {npz_path}: prior_weight={prior_weight} kappa_scale={kappa_scale}",
+          flush=True)
 
 
 def main():

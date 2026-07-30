@@ -22,14 +22,14 @@ def logsumexp(a, axis):
     return (m + np.log(np.exp(a - m).sum(axis=axis, keepdims=True))).squeeze(axis)
 
 
-def estep(z, pis, kappa, C, bgll, contrast=True):
+def estep(z, pis, kappa, C, bgll, contrast=True, prior_weight=1.0):
     zc = kappa * (z @ C.T)
     psum = np.clip(pis.sum(0), 1e-4, 1 - 1e-4)
     lw = zc + np.log((pis / psum).T + 1e-9)
     A = logsumexp(lw, 1) - bgll
     if contrast and len(A) > 1:
         A = A - A.mean()
-    pfg = 1.0 / (1.0 + np.exp(-(A + np.log(psum / (1 - psum)))))
+    pfg = 1.0 / (1.0 + np.exp(-(A + prior_weight * np.log(psum / (1 - psum)))))
     e = lw - lw.max(1, keepdims=True)
     wk = np.exp(e)
     wk /= wk.sum(1, keepdims=True)

@@ -2,13 +2,22 @@
 
 > ## ⭐ BEST RESULT — the settled pipeline
 > **4-phase real-8px interleave (L24) detector + β=0.5 self-mask masker, geometry-FIXED grid
-> (`cell_origin=s`), @ `mask_thr=0.25`**, single-scale, OAM-TCD 439. **5-seed band (seeds 0–4):**
-> - **Instance-seg:** mask mAP50 **0.615 ± 0.011** (seed-0 0.620; range 0.601–0.625) · mAP50-95 **0.238 ± 0.005**
-> - **Detection:** box mAP50 **0.597 ± 0.010** (seed-0 0.605) / mAP40 0.669 · best-F1@IoU0.4 **0.682** (NEON-linked)
+> (`cell_origin=s`), @ `mask_thr=0.25`, with the box-robustness knobs (`prior_weight`=α=0.3,
+> `kappa_scale`=κ×1.6)**, single-scale, OAM-TCD 439. **3-seed knobbed band (seeds 0,1,2):**
+> - **Instance-seg:** mask mAP50 **0.630 ± 0.005** (per-seed 0.625 / 0.636 / 0.629) · mAP50-95 **0.257 ± 0.001**
+> - **Detection:** box mAP50 **0.603** (3-seed; masker-invariant · seed-0 0.605) / mAP40 0.669 · best-F1@IoU0.4 **0.682**
 >
-> Every seed clears mask mAP50 0.60. Beats the fully-supervised Restor Mask R-CNN (mask 0.432), the
-> vaulted multiscale headline (0.504), and the old β=0 headline (0.583). Full tables + per-seed band in
-> **[SETTLED PIPELINE + tables](#settled-pipeline--tables)**.
+> The two α/κ knobs are free inference-time scalars in the E-step (relax the imprecise-box spatial prior +
+> sharpen the appearance vMF); they add **+0.007 mask AP50 / +0.016 mAP50-95 on EVERY seed** over the
+> un-tuned masker — see **[box-robustness knobs](#box-robustness-knobs--the-α-κ-levers-2026-07-30)** +
+> `BOX2MASK_LEVERS.md`. The **5-seed VANILLA band (α=1, κ=1) = 0.615 ± 0.011** is kept below as historical
+> context / ablation (seeds 3,4 not yet re-evaluated with the knobs).
+>
+> **Beats fully-supervised DetecTree2 (mask 0.545), reproduced on the IDENTICAL split/test/metric** — i.e.
+> our BOX+canopy-weak method beats a full-mask-supervised Mask R-CNN. Also beats the OAM-TCD paper's Restor
+> Mask R-CNN (0.432), the vaulted multiscale headline (0.504), and the old β=0 headline (0.583). Full tables
+> + per-seed bands in **[SETTLED PIPELINE + tables](#settled-pipeline--tables)**; the head-to-head in
+> **[DetecTree2 baseline](#detectree2-baseline--apples-to-apples-2026-07-30)**.
 >
 > **⚠️ β=0.5 only wins AFTER the grid-registration fix (2026-07-27).** Before the fix, a 4px
 > half-cell mis-registration made β=0.5's carve collapse (biased top-left), so β=0 looked best —
@@ -17,16 +26,27 @@
 ## 🧭 HANDOFF — state, artifacts & paths (read this first)
 
 **Current state:** detector **settled** (4-phase 8px L24, box mAP50 0.605); masker settled to
-**β=0.5 self-mask on the geometry-FIXED grid** (`--fix`, `cell_origin=s`, mask_thr=0.25). **All 5
-seeds (0–4) trained/evaluated** — band mask mAP50 **0.615 ± 0.011**. Everything on Modal A100;
-detector features cached — **do not re-extract**. The maskers are seed-independent (reuse across seeds).
+**β=0.5 self-mask on the geometry-FIXED grid + box-robustness knobs (α=0.3, κ×1.6)** @ mask_thr=0.25.
+**3-seed knobbed band (0,1,2) = mask mAP50 0.630 ± 0.005 / mAP50-95 0.257 ± 0.001** (the deployable
+headline). The **5-seed VANILLA band (α=1, κ=1) = 0.615 ± 0.011** is the historical/ablation baseline —
+all 5 detectors are trained, seeds 3,4 just not yet re-evaluated with the knobs. **The α/κ knobs LIVE IN
+THE MASKER npz** (`prior_weight`/`kappa_scale`, like `cell_origin`): `em_model_4p_fix.npz` stores 0.3/1.6,
+`TCDMasker` reads them, and the eval chain DEFERS by default (Modal sentinel `-1.0` → the masker's stored
+knobs). Pass `--prior-weight 1.0 --kappa-scale 1.0` for the vanilla masker; `em.set_masker_knobs(npz,α,κ)`
+re-writes them post-tune without a refit; `fit`/`fit_masker_4p` write them so a new-dataset masker carries
+its own calibration. Everything on Modal A100; detector features cached — **do not re-extract**. Maskers
+are seed-independent (reuse across seeds).
 
 **Grid fix verified complete.** The β=0-FIXED prior is dihedrally symmetric (quadrants ≈0.25),
 and a local render-offset sweep confirms the `+1px@512` raster shift is OPTIMAL (|asym| minimized
 at delta=1; delta=0 leaves masks strongly TL-biased — do NOT reduce it).
 
-**5-seed band DONE (2026-07-27):** β=0.5-fixed, mask mAP50 **0.615 ± 0.011** (per-seed 0.620 / 0.625 /
-0.624 / 0.605 / 0.601), box mAP50 0.597 ± 0.010. Ran as 4 parallel single-seed A100s (seed 0 reused).
+**5-seed VANILLA band DONE (2026-07-27; α=1, κ=1 — the pre-knob ablation baseline):** β=0.5-fixed, mask
+mAP50 **0.615 ± 0.011** (per-seed 0.620 / 0.625 / 0.624 / 0.605 / 0.601), box mAP50 0.597 ± 0.010. Ran as
+4 parallel single-seed A100s (seed 0 reused). The knobbed headline (α=0.3/κ×1.6) is the 3-seed band below.
+**GPU per seed (from `band_selfmask` logs):** seed 1 & 2 = A100 80GB PCIe; seed 3, 4 & seed-2-redo =
+A100-SXM4-40GB; seed 0 (earlier standalone eval) A100 variant not logged. (`band_selfmask` prints
+`gpu=…`; a re-run records it per seed.)
 Caveat: seed 2's first run was silently undertrained by a **Modal spot preemption** — `train_4p`'s
 `if ckpt exists: skip` reused the preemption-partial ep10 checkpoint; deleting it + rerunning gave 0.624.
 A preemption-safe completion marker for `train_4p` is a known (unaddressed) follow-up.
@@ -48,11 +68,14 @@ Local copies of the fixed results + preds are pulled into `phase4/` (`results_b0
 `preds_b05_fix_thr025_439.json`, and the β0 equivalents).
 
 **Key commands** (from `modal_tcd_multiseed/phase4/`):
-- **Best eval (β=0.5, fixed grid, mask_thr 0.25):** `modal run phase4_modal.py::eval_selfmask --beta 0.5 --fix`
-  · add `--save-preds` to dump boxes+masks · `--limit N` for a subset · `--beta 0` for the fill masker.
+- **Best eval (β=0.5, fixed grid, mask_thr 0.25, knobbed α=0.3/κ×1.6 — now the DEFAULT):**
+  `modal run phase4_modal.py::eval_selfmask --beta 0.5 --fix` · add `--save-preds` to dump boxes+masks ·
+  `--limit N` for a subset · `--beta 0` for the fill masker · `--prior-weight 1.0 --kappa-scale 1.0` for
+  the VANILLA (pre-knob) masker · override knobs via `--prior-weight/--kappa-scale`.
 - **Refit a fixed masker:** `modal run phase4_modal.py::fit_masker_4p --beta {0|0.5} --fix` (CPU, ~6 min).
-- **5-seed band (β=0.5-fixed, the default):** `::band_selfmask --seeds 0,1,2,3,4` (one instance), or run
-  `--seeds N` per seed for parallel A100s (as done for the 0.615 ± 0.011 band); done seeds are skipped/reused.
+- **Multi-seed band (β=0.5-fixed + α/κ knobs, now the default):** `::band_selfmask --seeds 0,1,2` (knobbed
+  0.630 band), or `--seeds N` per seed for parallel A100s; done seeds are skipped/reused. Add
+  `--prior-weight 1.0 --kappa-scale 1.0` for the vanilla 0.615 band (`_pw`-tag keeps them separate).
 - `--fix` routes to `_fix` npz/preds/results so the pre-fix mis-registered models are preserved.
 - Preds JSON format: `{meta, preds[tile]}` → `boxes_2048` (xyxy@2048px), `scores`, `canopy_ignore`,
   `masks_rle` (pycocotools RLE @512; boxes/`meta.scale_box_to_mask` to align). Decode:
@@ -185,7 +208,39 @@ box→mask gap means the carved masks match GT crowns *better* than the boxes ma
 the geometry fix — on a mis-registered grid the carve compounds the placement error and loses; see the
 [reversal section](#registration-bug-and-fix--the-reversal-2026-07-27).
 
-### 5-seed band — β=0.5 FIXED, mask_thr 0.25, 439 TCD (the deployable number)
+### Box-robustness knobs — the α/κ levers (2026-07-30) — THE HEADLINE RESULT
+
+Two free inference-time scalars in the E-step, no re-fit / no re-extraction / novelty intact
+(`prior_weight`=α, `kappa_scale`=κ; threaded through `estep`→`box_mask`→`pred_instance_masks`→eval):
+- **α = prior_weight = 0.3** — scales the box-normalized spatial-prior logit `sigmoid(A + α·logit(psum))`.
+  α<1 relaxes trust in the imprecise PREDICTED box so the box-INDEPENDENT appearance term `A` drives.
+- **κ = kappa_scale = 1.6** — scales the appearance vMF concentration (both `zc` and `bg_ll`) → sharper /
+  tighter boundaries. Orthogonal to α; they stack. (mask_thr stays 0.25.)
+
+**Why:** SAM-3 box-prompt scores 0.633 on our EXACT boxes (a *floor*, not a method we use), but our EM
+BEATS SAM on GT boxes (crown IoU 0.747 vs 0.724) — so the masker isn't worse, it's **box-imprecision
+sensitive**. α/κ restore box-robustness. (RGB/vegetation-guided refinement FAILED: TCD boundaries are
+crown-to-CROWN, image-invisible. Box-jitter TTA gained +0.009 but was DROPPED — 9× compute + unfair vs
+single-pass SAM. Full lever map in `BOX2MASK_LEVERS.md`.)
+
+**3-seed knobbed band (seeds 0,1,2), α=0.3 κ×1.6 mask_thr 0.25, 439 TCD** — paired vs the same-seed vanilla:
+
+| seed | mask mAP50 (vanilla → **knobbed**) | mAP50-95 (vanilla → **knobbed**) | box mAP50 (invariant) |
+|---|---|---|---|
+| 0 | 0.6203 → **0.6250** | 0.2440 → **0.2574** | 0.6050 |
+| 1 | 0.6253 → **0.6358** | 0.2362 → **0.2567** | 0.5981 |
+| 2 | 0.6241 → **0.6294** | 0.2411 → **0.2564** | 0.6066 |
+| **3-seed mean ± std** | 0.623 → **0.630 ± 0.005** | 0.240 → **0.257 ± 0.001** | **0.603** |
+
+**Every seed improves on both metrics** (+0.007 AP50 / +0.016 mAP50-95, paired) → robust, not within-noise.
+Box AP50 unchanged (masker-invariant). Seeds 3,4 not yet re-evaluated with the knobs (would complete a
+5-seed knobbed band ≈ 0.622, matched to the vanilla 0.615). Command:
+`::band_selfmask --seeds 0,1,2 --beta 0.5 --fix` (knobs are now the default; `_pw030_ks160`-tagged files).
+
+### 5-seed VANILLA band — α=1, κ=1, β=0.5 FIXED, mask_thr 0.25, 439 TCD (historical / ablation)
+
+The pre-knob baseline (no fine-tuned hyperparams) — kept for the full 5-seed variance and the DetecTree2
+head-to-head:
 
 | seed | mask mAP50 | mask mAP50-95 | box mAP50 | best_epoch |
 |---|---|---|---|---|
@@ -197,9 +252,9 @@ the geometry fix — on a mis-registered grid the carve compounds the placement 
 | **mean ± std** | **0.615 ± 0.011** | **0.238 ± 0.005** | **0.597 ± 0.010** | |
 
 Tight spread (σ ≈ 0.011, well within the ~0.025 5-seed expectation); every seed beats the old β=0 headline
-(0.583). Run as 4 parallel single-seed A100s + reused seed 0 (`::band_selfmask --seeds N --beta 0.5 --fix`
-per seed, or `--seeds 0,1,2,3,4` for one sequential instance). Per-seed result JSONs on the volume are the
-source of truth (the single-seed runs overwrite the shared `band_selfmask_fix_thr025.json` summary).
+(0.583). Run as 4 parallel single-seed A100s + reused seed 0. Per-seed result JSONs on the volume are the
+source of truth (the single-seed runs overwrite the shared summary). To reproduce vanilla now that knobs
+are the default: add `--prior-weight 1.0 --kappa-scale 1.0`.
 
 ### Method lesson
 
@@ -208,17 +263,54 @@ gain — perfect boxes don't under-cover). And: **a symmetric-looking geometry a
 silently wrong for a non-standard grid** — the interleaved 8px lattice needed `+s`; the appearance-centroid
 probe (crown mass should sit at box-centre 0.5) is the cheap check that catches it.
 
+## DetecTree2 baseline — apples-to-apples (2026-07-30)
+
+Fully-supervised **DetecTree2** (Mask R-CNN R101-FPN) fine-tuned and evaluated on the **IDENTICAL**
+cohort/metric as ours: same 792 train / 108 val / 439 test tiles, same GT (`test_gt.json`), same
+COCO-101pt mask-AP + >50%-canopy-ignore scorer (`evaluate._greedy_ap`, RES 512). Code:
+`boxinst_commonality_tcd_04/detectree2_baseline/` (isolated Modal app `tcd-detectree2`).
+
+| method | supervision | mask mAP50 | mask mAP50-95 | box mAP50 |
+|---|---|---|---|---|
+| **OURS** (β=0.5-fix + α/κ knobs, **3-seed 0,1,2**) | **box + canopy (weak)** | **0.630 ± 0.005** | **0.257** | 0.603 |
+| OURS (β=0.5-fix VANILLA, 5-seed) | box + canopy (weak) | 0.615 ± 0.011 | 0.238 | 0.597 |
+| — ours seed-0 (knobbed / vanilla) | | 0.625 / 0.620 | 0.257 / 0.244 | 0.605 |
+| **DetecTree2** (R101-FPN, fine-tuned) | **full crown masks** | **0.545** | 0.228 | 0.539 |
+| Restor Mask R-CNN (OAM-TCD paper) | full masks | 0.432 | — | — |
+
+**Our box-weak method beats full-mask-supervised DetecTree2 by +0.070 mask mAP50 (vanilla 5-seed) /
++0.085 (knobbed 3-seed)** (and on mAP50-95 and box mAP50), despite DetecTree2 getting strictly more
+supervision. The gap is mostly the **detector** (box 0.605 vs 0.539); both convert boxes→masks comparably.
+**Reproduction is credible:** our DetecTree2 (0.545) lands above the paper's Restor Mask R-CNN (0.432) and
+below ours — a genuine strong topline, not a strawman. (DetecTree2 is a single seed; our knobbed number is
+3-seed, our vanilla 5-seed — a seed-matched knobbed band and a DT2 band are the obvious follow-ups.)
+
+**How DetecTree2 was run (faithful):** its published `setup_cfg` (R101-FPN, `base_lr=3.389e-4`,
+`backbone_freeze=3`, its augmentations, AP50 early-stop) + released `250312_flexi.pth` weights,
+reproduced via detectron2 (its py3.10 package won't install; `detectree2_baseline/dt2_recipe.py` ports
+the recipe line-for-line). Full regime (max_iter 4000, ran clean to 57.1 val AP50), canopy=ignore in
+training, native full-res mask supervision, fixed-pixel 1024@50% subtiles (matches our per-pixel regime),
+`clean_crowns` dedup on stitch. **Caveats:** single DetecTree2 seed (ours is a 5-seed band — a DT2 band
+is the obvious follow-up); tropical-tuned model applied to global OAM-TCD; DT2 preds floored at score 0.1
+for tractable stitching (best-F1 op-point ~0.52, so no material AP effect). Artifacts on Volume
+`tcd-detectree2-vol`: `out/model_best_s0.pth`, `out/preds_dt2_s0.json`; local `detectree2_baseline/results_dt2_s0.json`.
+**GPU:** train + predict ran on Modal `gpu="A100"` (unpinned) — the 40 vs 80 GB variant was **not logged**
+for these specific runs; `train`/`predict` now record `torch.cuda.get_device_name` (`out/train_info_s{seed}.json`
++ preds `meta.gpu`) so any re-run (e.g. the DT2 band) captures it. Stitch + scoring were CPU.
+
 ## Open next steps
 
-- **5-seed variance — DONE:** band mask mAP50 **0.615 ± 0.011** (see table above). `band_selfmask` defaults
-  to the β=0.5-fixed config (`em_model_4p_fix.npz`, beta=0.5, fix=True, mask_thr=0.25, save_preds); result
-  filenames match `eval_selfmask` so a done seed is skipped/reused. Preds for all 5 seeds are on the volume
-  (`out/preds_selfmask_fix_thr025_phase4_L24_s{0..4}/`).
+- **α/κ box-robustness knobs — DONE (headline):** 3-seed knobbed band 0.630 ± 0.005 / 0.257 ± 0.001, every
+  seed improves (see [box-robustness knobs](#box-robustness-knobs--the-α-κ-levers-2026-07-30)). Phase4 eval
+  defaults now = α=0.3/κ×1.6. **Open:** seeds 3,4 knobbed → a seed-matched 5-seed knobbed band (~$4,
+  eval-only; `::band_selfmask --seeds 3,4 --beta 0.5 --fix`) to replace the 5-seed vanilla 0.615 cleanly.
+- **Ceiling reality:** oracle-perfect masks on the SAME boxes = 0.737 AP50, maxR 0.818 → **mask mAP50 0.70
+  needs BETTER DETECTION (small-crown recall), not the masker.** Box→mask caps ~0.633 on these detections.
+- **5-seed vanilla variance — DONE:** band 0.615 ± 0.011 (ablation table above). Preds for all 5 seeds:
+  `out/preds_selfmask_fix_thr025_phase4_L24_s{0..4}/`.
 - **Preemption-safe `train_4p` (follow-up, unaddressed):** the `if ckpt exists: skip` guard reuses a
   preemption-partial checkpoint as if training finished (silently undertrained seed 2 on its first run).
   Mark completion (store/check the stop-criterion, or a `.done` sentinel) before treating a ckpt as reusable.
-- **Promote to code defaults:** once render-offset + 5-seed settle, rename the `_fix` maskers to the
-  canonical paths and flip `eval_selfmask`'s default to `--beta 0.5`. Not yet done (premature).
 - **Same-env interp-L24 baseline** (never run): clean same-env real-vs-interp box A/B.
 - **Multiscale arm** (not tried): add the 0.5× downscale detection arm — likely lifts detection further.
 

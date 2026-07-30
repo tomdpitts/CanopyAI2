@@ -95,6 +95,22 @@ def _selfmask_npz(beta, fix=False):
             else f"{OUT}/em_model_4p_b{beta:g}{suf}.npz")
 
 
+def _eff_knobs(npz_path, prior_weight, kappa_scale):
+    """Resolve the EFFECTIVE box-robustness knobs for result-file tagging. CLI values <0 are
+    the sentinel for 'use the masker's own stored knobs' (component-3 self-calibration) — read
+    them from the npz (default 1.0 if absent). Returns (pw_eff, ks_eff, pw_arg, ks_arg) where
+    the *_arg are what to pass down (None = defer to masker)."""
+    import numpy as np
+    d = np.load(npz_path, allow_pickle=False)
+    stored_pw = float(d["prior_weight"]) if "prior_weight" in d else 1.0
+    stored_ks = float(d["kappa_scale"]) if "kappa_scale" in d else 1.0
+    pw_eff = stored_pw if prior_weight < 0 else prior_weight
+    ks_eff = stored_ks if kappa_scale < 0 else kappa_scale
+    pw_arg = None if prior_weight < 0 else prior_weight
+    ks_arg = None if kappa_scale < 0 else kappa_scale
+    return pw_eff, ks_eff, pw_arg, ks_arg
+
+
 def _btag(beta):
     return "" if beta == 0.5 else f"_b{beta:g}"
 MANIFEST = f"{PH4_R}/manifest.json"
@@ -323,7 +339,8 @@ def fit_masker_4p(n_tiles: int = 120, seed: int = 0, beta: float = 0.5,
 @app.function(gpu="A100", image=image, volumes={"/vol": vol}, timeout=4 * 3600,
               cpu=8, memory=65536)
 def eval_selfmask(seed: int = 0, beta: float = 0.0, mask_thr: float = 0.25,
-                  save_preds: bool = False, limit: int = 0, fix: bool = False):
+                  save_preds: bool = False, limit: int = 0, fix: bool = False,
+                  prior_weight: float = -1.0, kappa_scale: float = -1.0):
     """Eval seed-s 4-phase detector with the REFIT 4-phase masker (self-mask) at the given
     beta and mask_thr. beta=0 + mask_thr=0.5 is the current headline (mask 0.5794/0.1948);
     lowering mask_thr toward ~0.25 grows masks to recover small crowns that under-cover
@@ -331,17 +348,27 @@ def eval_selfmask(seed: int = 0, beta: float = 0.0, mask_thr: float = 0.25,
     thresholds write their own files so the 0.5 record is preserved.
 
     fix=True: use the geometry-corrected `_fix` masker (cell_origin=s) + its +1px render
-    shift; writes `_fix`-suffixed results/preds so the mis-registered baseline is kept."""
+    shift; writes `_fix`-suffixed results/preds so the mis-registered baseline is kept.
+
+    prior_weight / kappa_scale: box-robustness knobs (see BOX2MASK_LEVERS.md). **Default -1.0 =
+    use the masker's OWN stored knobs** (the box→mask npz carries its calibration; em_model_4p_fix
+    stores α=0.3/κ×1.6 → the 0.630 headline). Pass explicit values to override (e.g. `1.0 1.0`
+    for the vanilla ablation); the EFFECTIVE knobs get a `_pwNN_ksNN` result/preds tag so records
+    stay separate."""
     import torch
     _setup_path()
     assert torch.cuda.is_available(), "no CUDA"
     from boxinst_commonality_tcd_04.modal_tcd_multiseed.phase4 import phase4_lib_tcd as L
     npz = _selfmask_npz(beta, fix)
-    bt = _btag(beta)
-    ft = "_fix" if fix else ""
-    tt = "" if mask_thr == 0.5 else f"_thr{int(round(mask_thr*100)):03d}"
     assert os.path.exists(npz), (f"{npz} missing — run fit_masker_4p --beta {beta}"
                                  f"{' --fix' if fix else ''} first")
+    pw_eff, ks_eff, pw_arg, ks_arg = _eff_knobs(npz, prior_weight, kappa_scale)
+    bt = _btag(beta)
+    ft = "_fix" if fix else ""
+    pk = "" if (pw_eff == 1.0 and ks_eff == 1.0) else \
+        f"_pw{int(round(pw_eff*100)):03d}_ks{int(round(ks_eff*100)):03d}"
+    tt = "" if mask_thr == 0.5 else f"_thr{int(round(mask_thr*100)):03d}"
+    ft = ft + pk
     tag = f"phase4_L24_s{seed}"
     ckpt = os.path.join(OUT, f"det_{tag}.pt")
     preds_dir = (os.path.join(OUT, f"preds_selfmask{bt}{ft}{tt}_{tag}")
@@ -349,8 +376,10 @@ def eval_selfmask(seed: int = 0, beta: float = 0.0, mask_thr: float = 0.25,
     res = L.eval_4p_selfmask(ckpt, FEAT_4P_TEST, TEST_GT, npz,
                              os.path.join(OUT, f"eval_selfmask{bt}{ft}{tt}_{tag}.json"),
                              mask_thr=mask_thr, device="cuda", save_preds_dir=preds_dir,
-                             limit=(limit or None))
-    res.update({"tag": tag, "seed": seed, "beta": beta, "mask_thr": mask_thr, "fix": fix})
+                             limit=(limit or None), prior_weight=pw_arg,
+                             kappa_scale=ks_arg)
+    res.update({"tag": tag, "seed": seed, "beta": beta, "mask_thr": mask_thr, "fix": fix,
+                "prior_weight": pw_eff, "kappa_scale": ks_eff})
     json.dump(res, open(os.path.join(OUT, f"results_selfmask{bt}{ft}{tt}_{tag}.json"), "w"),
               indent=2)
     vol.commit()
@@ -363,14 +392,19 @@ def eval_selfmask(seed: int = 0, beta: float = 0.0, mask_thr: float = 0.25,
 @app.function(gpu="A100", image=image, volumes={"/vol": vol}, timeout=12 * 3600,
               cpu=8, memory=65536)
 def band_selfmask(seeds: str = "0,1,2,3,4", beta: float = 0.5, fix: bool = True,
-                  mask_thr: float = 0.25, epochs: int = 40, save_preds: bool = True):
+                  mask_thr: float = 0.25, epochs: int = 40, save_preds: bool = True,
+                  prior_weight: float = -1.0, kappa_scale: float = -1.0):
     """THE DEPLOYABLE multi-seed pipeline: 4-phase L24 detector + β self-mask masker
     (geometry-FIXED grid when fix=True) @ mask_thr. DEFAULT = the settled β=0.5-fixed winner
-    (seed-0 mask 0.620 / box 0.605). Per seed: train the detector (skip if ckpt exists) +
-    eval_4p_selfmask. Reuses the seed-independent masker + cached features; per-seed
-    idempotent — result filenames match `eval_selfmask`, so seed 0 from the single-seed run
-    is reused (skipped, not recomputed). `--seeds 0,1,2,3,4` adds seeds 1–4 to the existing
-    seed 0 and reports the full 5-seed band (mean ± std)."""
+    with the masker's OWN stored knobs (α=0.3/κ×1.6 → 0.630). Per seed: train the detector
+    (skip if ckpt exists) + eval_4p_selfmask. Reuses the seed-independent masker + cached
+    features; per-seed idempotent — result filenames match `eval_selfmask`, so a done seed is
+    reused (skipped, not recomputed). `--seeds 0,1,2,3,4` gives the full 5-seed band (mean ± std).
+
+    prior_weight/kappa_scale: box-robustness knobs, **default -1.0 = use the masker's stored
+    knobs**; eval-only, so a band REUSES the 5 trained detectors (training skipped) — it just
+    re-evals each seed's boxes. Pass `1.0 1.0` for the vanilla ablation. The EFFECTIVE knobs
+    tag the result files (`_pw_ks`), so vanilla and knobbed bands never collide."""
     import time
 
     import numpy as np
@@ -382,8 +416,13 @@ def band_selfmask(seeds: str = "0,1,2,3,4", beta: float = 0.5, fix: bool = True,
     assert os.path.exists(npz), (f"{npz} missing — run fit_masker_4p --beta {beta}"
                                  f"{' --fix' if fix else ''} first")
     os.makedirs(OUT, exist_ok=True)
+    pw_eff, ks_eff, pw_arg, ks_arg = _eff_knobs(npz, prior_weight, kappa_scale)
+    prior_weight, kappa_scale = pw_arg, ks_arg      # pass-through (None = masker's stored)
     bt = _btag(beta)
     ft = "_fix" if fix else ""
+    pk = "" if (pw_eff == 1.0 and ks_eff == 1.0) else \
+        f"_pw{int(round(pw_eff*100)):03d}_ks{int(round(ks_eff*100)):03d}"
+    ft = ft + pk
     tt = "" if mask_thr == 0.5 else f"_thr{int(round(mask_thr*100)):03d}"
     sl = [int(s) for s in str(seeds).split(",") if s.strip() != ""]
     print(f"[band_selfmask] gpu={torch.cuda.get_device_name(0)} seeds={sl} beta={beta} "
@@ -404,9 +443,12 @@ def band_selfmask(seeds: str = "0,1,2,3,4", beta: float = 0.5, fix: bool = True,
         res = L.eval_4p_selfmask(os.path.join(OUT, f"det_{tag}.pt"), FEAT_4P_TEST,
                                  TEST_GT, npz,
                                  os.path.join(OUT, f"eval_selfmask{bt}{ft}{tt}_{tag}.json"),
-                                 mask_thr=mask_thr, device="cuda", save_preds_dir=preds_dir)
+                                 mask_thr=mask_thr, device="cuda", save_preds_dir=preds_dir,
+                                 prior_weight=prior_weight, kappa_scale=kappa_scale)
         res.update({"tag": tag, "seed": seed, "beta": beta, "fix": fix,
-                    "mask_thr": mask_thr, "seed_min": round((time.time() - ts) / 60, 1)})
+                    "mask_thr": mask_thr, "prior_weight": pw_eff,
+                    "kappa_scale": ks_eff,
+                    "seed_min": round((time.time() - ts) / 60, 1)})
         json.dump(res, open(res_fp, "w"), indent=2)
         vol.commit()
         out[seed] = res

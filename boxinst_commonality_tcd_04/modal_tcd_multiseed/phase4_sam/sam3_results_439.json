@@ -1,0 +1,100 @@
+{
+  "model": "sam3_image (box-prompt)",
+  "n_tiles": 439,
+  "n_gt_trees": 25705,
+  "op_thr": 0.39999999999999997,
+  "ap_ranking": "detector_scores (primary)",
+  "uncropped": {
+    "det_score_ranked": {
+      "mask_mAP50": 0.6326,
+      "mask_mAP50_95": 0.2683,
+      "iou0.50": {
+        "op": {
+          "P": 0.7657,
+          "R": 0.5464,
+          "F1": 0.6377
+        },
+        "best": {
+          "P": 0.6775,
+          "R": 0.6469,
+          "F1": 0.6618,
+          "thr": 0.34
+        },
+        "maxR": 0.8179
+      }
+    },
+    "sam_score_ranked": {
+      "mask_mAP50": 0.5611,
+      "mask_mAP50_95": 0.2674,
+      "iou0.50": {
+        "op": {
+          "P": 0.2275,
+          "R": 0.8179,
+          "F1": 0.356
+        },
+        "best": {
+          "P": 0.5958,
+          "R": 0.6019,
+          "F1": 0.5989,
+          "thr": 0.812
+        },
+        "maxR": 0.8179
+      }
+    },
+    "semantic": {
+      "F1": 0.5802,
+      "P": 0.8209,
+      "R": 0.4486
+    }
+  },
+  "box_clipped": {
+    "det_score_ranked": {
+      "mask_mAP50": 0.6333,
+      "mask_mAP50_95": 0.2672,
+      "iou0.50": {
+        "op": {
+          "P": 0.7661,
+          "R": 0.5466,
+          "F1": 0.638
+        },
+        "best": {
+          "P": 0.6784,
+          "R": 0.6475,
+          "F1": 0.6626,
+          "thr": 0.34
+        },
+        "maxR": 0.8173
+      }
+    },
+    "sam_score_ranked": {
+      "mask_mAP50": 0.5598,
+      "mask_mAP50_95": 0.2613,
+      "iou0.50": {
+        "op": {
+          "P": 0.2274,
+          "R": 0.8172,
+          "F1": 0.3558
+        },
+        "best": {
+          "P": 0.5962,
+          "R": 0.5996,
+          "F1": 0.5979,
+          "thr": 0.816
+        },
+        "maxR": 0.8173
+      }
+    },
+    "semantic": {
+      "F1": 0.5771,
+      "P": 0.8263,
+      "R": 0.4434
+    }
+  },
+  "sam3_commit": "46957e47805eaa273f4aa7bbbd25a88bca9108ce",
+  "wall_min": 97.3,
+  "compare": {
+    "ours_beta0.5_fixed_seed0": 0.62,
+    "ours_beta0_fixed_seed0": 0.579,
+    "note": "same boxes; mask mAP50, det-score-ranked"
+  }
+}
