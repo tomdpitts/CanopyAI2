@@ -40,9 +40,19 @@ class Detector4Phase(Detector8):
 
 
 def train_4p(feat_dir, out_dir, gt_path=None, tag="phase4_L24_s0", seed=0, epochs=40,
-             device="cuda"):
+             device="cuda", early_stop=True, min_epochs=12, es_patience=2,
+             es_min_delta=0.005):
     """Reuse train_detector_tiles.train VERBATIM but with Detector4Phase + the 4-phase
-    L24 cache. in_dim auto-detects 1024 from the features; canvas 2048 -> target grid 256."""
+    L24 cache. in_dim auto-detects 1024 from the features; canvas 2048 -> target grid 256.
+
+    gt_path overrides train_tiles_gt.json (TileData's default) — required for a
+    non-TCD dataset; None keeps the TCD default so existing runs are unchanged.
+
+    early_stop/min_epochs/es_patience/es_min_delta default to the TCD values, so existing
+    runs are byte-identical. They are exposed because the stopping rule is calibrated to
+    TCD's convergence curve: with eval_every=5, patience=2 means a run can stop at epoch 15
+    if two consecutive evals gain <es_min_delta. On a dataset with far fewer unique training
+    objects that fires while the model is still improving."""
     import boxinst_commonality_tcd_04.train_detector_tiles as T
     ckpt = os.path.join(out_dir, f"det_{tag}.pt")
     if os.path.exists(ckpt):
@@ -53,8 +63,9 @@ def train_4p(feat_dir, out_dir, gt_path=None, tag="phase4_L24_s0", seed=0, epoch
     T.ART = out_dir
     args = argparse.Namespace(
         tag=tag, epochs=epochs, seed=seed, lr=1e-3, wd=1e-4, bs=3, width=256, tower=3,
-        eval_every=5, arm="web", device=device, canvas=2048,
-        early_stop=True, min_epochs=12, es_patience=2, es_min_delta=0.005)
+        eval_every=5, arm="web", device=device, canvas=2048, gt_path=gt_path,
+        early_stop=early_stop, min_epochs=min_epochs, es_patience=es_patience,
+        es_min_delta=es_min_delta)
     print(f"[{tag}] TRAIN Detector4Phase real-8px L24 (det_t8 recipe+ES) -> {ckpt}",
           flush=True)
     T.train(args)
