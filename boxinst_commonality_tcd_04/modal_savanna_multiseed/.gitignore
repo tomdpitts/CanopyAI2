@@ -1,0 +1,8 @@
+# SavannaTree transfer run: only the phase4 write-up is tracked.
+# Everything else here (pipeline code, Modal app, GT/split JSON, caches, figures)
+# is machine-local or regenerable and is deliberately kept out of git.
+*
+!.gitignore
+!phase4/
+phase4/*
+!phase4/README.md
