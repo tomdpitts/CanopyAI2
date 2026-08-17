@@ -57,6 +57,48 @@ the frozen backbone can be the public **web** DINOv3 or a **DAPT** variant, and 
 DAPT-vs-web comparison is the outstanding thematic question this pipeline is built to
 answer.
 
+## Environment
+
+Two isolated environments, both CPython 3.10, both rebuildable from pinned manifests:
+
+```bash
+# interpreter: 3.10.20 exactly (brew's python@3.10 formula only ships 3.10.21).
+# openssl is not optional — without it CPython's _ssl fails to build and pip
+# cannot reach PyPI.
+brew install pyenv openssl@3 readline xz zlib
+pyenv install 3.10.20
+
+# main env — local analysis/eval, MPS training, launching Modal jobs
+~/.pyenv/versions/3.10.20/bin/python -m venv .venv
+.venv/bin/pip install -r requirements.txt
+
+# DeepForest env — ONLY for scoring NEON with the benchmark authors' own
+# evaluate_boxes (df_scorer.py). CPU, runs on saved prediction JSONs.
+cd boxinst_commonality_tcd_04/modal_neon_multiseed
+~/.pyenv/versions/3.10.20/bin/python -m venv .venv_df
+.venv_df/bin/pip install -r requirements-deepforest.txt
+```
+
+The split keeps DeepForest's ~50-package surface (lightning, kornia, timm, geopandas,
+rasterio) out of the main env. At these pinned versions the two do not actually clash —
+it is deliberate insurance against future upgrades, not a live conflict.
+
+Both paths are load-bearing: roughly fourteen docs and `run_*.sh` scripts hardcode
+`.venv/bin/python`, `.venv/bin/modal` and `.venv_df/bin/python`.
+
+**Three things to know before running anything locally:**
+
+- **Local and Modal are different environments, on purpose.** Modal images are pinned
+  in code (`phase4_modal.py`: python 3.11, torch 2.12.1, transformers 4.57.1); local
+  runs transformers 5.12.1. Frozen-DINOv3 features from the two agree only at cos 0.86,
+  so **never bit-compare local features to Modal features** — this has bitten the
+  project before (see the phase4 "layers-trap" caveat).
+- **Modal entrypoints need only the `modal` client locally.** `torch`, `datasets` and
+  `detectron2` are imported inside the remote functions, never at module scope, so they
+  are deliberately not in `requirements.txt`.
+- **The Hugging Face cache does not survive a machine move.** DINOv3 ViT-L/16 weights
+  (~1.1 GB) re-download on the first local backbone call.
+
 ## Quick start (flagship result)
 
 ```bash

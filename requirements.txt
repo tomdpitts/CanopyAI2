@@ -1,4 +1,53 @@
-numpy>=1.24
-scipy>=1.10
-torch>=2.0
+# Main environment (.venv) — CPython 3.10. Local analysis/eval, MPS training scripts,
+# and launching Modal jobs. Covers TCD, SavannaTree, dapt and NEON *training*.
+#
+# NEON *scoring* uses a second, isolated env — see
+# boxinst_commonality_tcd_04/modal_neon_multiseed/requirements-deepforest.txt — which
+# keeps DeepForest's ~50-package surface out of this one.
+#
+# This is NOT the environment Modal runs execute in: those images are pinned in code
+# (e.g. phase4_modal.py: python 3.11, torch 2.12.1, transformers 4.57.1) and built
+# remotely. Modal entrypoints import only `modal` at module scope; torch, datasets and
+# detectron2 live inside the remote functions, so they are deliberately absent here.
+#
+# REBUILD (path is load-bearing — ~14 docs and run_*.sh hardcode .venv/bin/python):
+#   pyenv install 3.10.20
+#   ~/.pyenv/versions/3.10.20/bin/python -m venv .venv
+#   .venv/bin/pip install -r requirements.txt
+#
+# --- PROVENANCE -----------------------------------------------------------------
+# Reconstructed 2026-08-17 after a machine migration destroyed the original .venv.
+# The pins are evidenced, not guessed:
+#   transformers 5.12.1  <- recorded in 23 dapt/**/ckpt/*/config.json written BY the
+#                           original .venv. The load-bearing pin: local DINOv3
+#                           features agree with the Modal side (4.57.1) only at
+#                           cos 0.86, so never bit-compare local to Modal features.
+#   the rest             <- read from the surviving .venv_df dist-info, built on the
+#                           same machine and agreeing with the ckpt configs on
+#                           transformers. That file also holds the full transitive
+#                           closure if you need exactness beyond direct deps.
+# Interpreter was Homebrew python@3.10 3.10.20; brew now ships only 3.10.21, so use
+# pyenv to get 3.10.20 exactly.
+# ---------------------------------------------------------------------------------
+
+torch==2.13.0
+torchvision==0.28.0
+transformers==5.12.1
+numpy==2.2.6
+scipy==1.15.3
+pillow==12.3.0
+matplotlib==3.10.9
+
+# NO VERSION EVIDENCE SURVIVED for the three below — they were in the original .venv
+# but not in .venv_df, so there is nothing to read a version off. Left unpinned rather
+# than inventing provenance:
+#   pycocotools — RLE encode/decode is stable across 2.0.x; low risk.
+#   modal       — a network client. An old pin risks server-side rejection, and it has
+#                 no effect on numerics. Track latest deliberately.
+#   pytest      — test runner, carried over from the pre-migration file.
+pycocotools
+modal
 pytest>=7.0
+
+# Optional: only dapt/ssl/recover_won_coords.py imports cv2. Install on demand.
+# opencv-python==5.0.0.93

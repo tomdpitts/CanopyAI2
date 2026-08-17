@@ -4,6 +4,8 @@ __pycache__/
 .pytest_cache/
 artifacts/*.json
 .DS_Store
+._*
+CLAUDE.md
 
 # Datasets — machine-local; keep code and docs visible to git
 data/**
