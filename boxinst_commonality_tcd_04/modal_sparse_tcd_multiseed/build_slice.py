@@ -49,6 +49,10 @@ Image.MAX_IMAGE_PIXELS = None
 DST = os.path.join(REPO, "data/tcd_sparse")
 DST_TEST = os.path.join(DST, "test")
 SLICE_MANIFEST = os.path.join(DST, "slice_manifest.json")
+# data/** is gitignored, so the copy under DST cannot survive a fresh clone. Write a second,
+# TRACKED copy next to the code: it is the only record of biome / scene_clean / source /
+# bounds, i.e. everything the reported cuts are defined by. 135 KB, no images.
+SLICE_MANIFEST_TRACKED = os.path.join(HERE, "slice_manifest.json")
 GT_OUT = os.path.join(DST, "sparse_gt.json")
 HF_MANIFEST = os.path.join(HERE, "manifest_sparse.json")
 SHA_CACHE = os.path.join(HERE, "rgb_sha1.json")
@@ -289,6 +293,7 @@ def main():
             "scene_id", "scene_clean")} | cache[r["tid"]] for r in recs},
     }
     json.dump(out, open(SLICE_MANIFEST, "w"), indent=1)
+    json.dump(out, open(SLICE_MANIFEST_TRACKED, "w"), indent=1)   # the git-recoverable copy
     print(f"[done] {len(recs)} tiles -> {os.path.relpath(DST, REPO)}  "
           f"({out['counts']['scene_clean']} scene-clean, {n_trees} GT crowns)")
 

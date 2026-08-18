@@ -75,6 +75,33 @@ named gate to fail:
   download); `tcd_tile_1878` is one of the 900, so it sits outside gate 3's pixel comparison, though
   gates 1 and 2 still cover it. The HF rows are fine — only the local copies are empty.
 
+## Recovering this slice from git alone (if the local data is wiped)
+
+`data/**` is gitignored, so **nothing in this directory except this README survives a fresh clone**
+— not the .tif/.png, not `slice_manifest.json`, not `sparse_gt.json`. The slice is still fully
+recoverable, because two tracked files under
+`boxinst_commonality_tcd_04/modal_sparse_tcd_multiseed/` carry the complete record:
+
+| tracked file | what it pins |
+|---|---|
+| `manifest_sparse.json` | the **236 `image_id`s** (the split itself), `width`/`height`, `n_cat2`, and **`rgb_sha1` per tile** |
+| `slice_manifest.json` | `biome`, `biome_name`, `source`, `scene_id`, `scene_clean`, `bounds`, `crs`, coverage fractions — everything the reported cuts are defined by |
+
+Recovery:
+
+1. `git pull` → both manifests.
+2. Re-fetch the 236 rows from HF `restor/tcd` **by `image_id`** (the join key; never by filename).
+   Both HF splits are needed — 220 tiles are in `train`, 16 in `test`.
+3. **Verify byte-identity**: sha1 of each 2048×2048 RGB array must equal that tile's `rgb_sha1`.
+   This is the guarantee that recovery is exact rather than approximate — it is the same check
+   `sparse_modal.py::verify` runs, which passed on all 236.
+4. Regenerate `sparse_gt.json` with `build_slice.py`'s `build_gt` (deterministic from each tile's
+   `coco_annotations` via `prepare_test.seg_rings`), or rebuild the whole slice with
+   `build_slice.py` once `data/tcd/{train,test}` is restored.
+
+So: **the split recovers perfectly and provably; the derived GT and pixels re-derive from HF.** The
+only thing that cannot come back from git is the imagery itself, which is not ours to store.
+
 ## Reproduce
 
 ```

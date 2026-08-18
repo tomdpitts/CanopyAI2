@@ -26,7 +26,11 @@ from boxinst_commonality_tcd_04 import evaluate as E
 from boxinst_commonality_tcd_04.modal_sparse_tcd_multiseed.tile_index import BIOME, REPO
 
 GT = os.path.join(REPO, "data/tcd_sparse/sparse_gt.json")
-SLICE = os.path.join(REPO, "data/tcd_sparse/slice_manifest.json")
+_HERE = os.path.dirname(os.path.abspath(__file__))
+# the tracked copy first: data/** is gitignored, so only this one survives a fresh clone
+SLICE = (os.path.join(_HERE, "slice_manifest.json")
+         if os.path.exists(os.path.join(_HERE, "slice_manifest.json"))
+         else os.path.join(REPO, "data/tcd_sparse/slice_manifest.json"))
 
 
 def _decode(rle):

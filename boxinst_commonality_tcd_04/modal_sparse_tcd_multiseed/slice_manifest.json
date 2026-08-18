@@ -1,0 +1,6894 @@
+{
+ "criteria": {
+  "biomes": [
+   7,
+   8,
+   9,
+   10,
+   12,
+   13
+  ],
+  "biome_names": {
+   "7": "Trop/Subtrop Grassland, Savanna & Shrubland",
+   "8": "Temperate Grassland, Savanna & Shrubland",
+   "9": "Flooded Grassland & Savanna",
+   "10": "Montane Grassland & Shrubland",
+   "12": "Mediterranean Forest, Woodland & Scrub",
+   "13": "Desert & Xeric Shrubland"
+  },
+  "exclude": "the 900 seen tiles, by tile_id + image_id + rgb_sha1",
+  "sources": "unseen part of data/tcd/train + matching tiles of the official 439",
+  "scene_disjoint": false,
+  "dropped_unreadable": [
+   "tcd_tile_231"
+  ],
+  "scene_link_m": 300.0,
+  "coverage": "canopy_frac/crown_frac are RLE-safe UNION areas; the COCO `area` field is 0 on RLE anns and must not be summed",
+  "built_utc": "2026-08-18T02:23:45+00:00",
+  "src_commit": "bbe4cbd4b86e6223c380964a247f70b6c72bae75"
+ },
+ "counts": {
+  "n": 236,
+  "by_biome": {
+   "7": 102,
+   "8": 31,
+   "9": 7,
+   "10": 16,
+   "12": 56,
+   "13": 24
+  },
+  "by_source": {
+   "official_test": 16,
+   "train_pool": 220
+  },
+  "scene_clean": 106,
+  "gt_tree_rings": 14937,
+  "n_crowns": 14937
+ },
+ "tiles": {
+  "tcd_tile_1024": {
+   "image_id": 622,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6157767.0,
+    -1801268.875,
+    -6157562.0,
+    -1801064.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 26,
+   "scene_clean": true,
+   "rgb_sha1": "0b38733eeaf34b051442fa7a65759901d0441e96",
+   "valid_frac": 0.9217,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1028": {
+   "image_id": 573,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Low Monte",
+   "country": null,
+   "bounds": [
+    -7576691.0,
+    -4684928.5,
+    -7576486.0,
+    -4684723.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 279,
+   "canopy_frac": 0.10635,
+   "crown_frac": 0.08582,
+   "scene_id": 30,
+   "scene_clean": true,
+   "rgb_sha1": "ea0adbb5574765a1e179b101627bed0e9f842f6d",
+   "valid_frac": 0.5748,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1045": {
+   "image_id": 38,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Pontic steppe",
+   "country": null,
+   "bounds": [
+    3905023.25,
+    6149727.5,
+    3905228.0,
+    6149932.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 66,
+   "canopy_frac": 0.12256,
+   "crown_frac": 0.03115,
+   "scene_id": 47,
+   "scene_clean": false,
+   "rgb_sha1": "6beeea6398aacb28cb16cbb5e98eaf00d96b5320",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_106": {
+   "image_id": 882,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Central Mexican matorral",
+   "country": null,
+   "bounds": [
+    -11039045.0,
+    2181799.25,
+    -11038840.0,
+    2182004.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 44,
+   "canopy_frac": 0.24505,
+   "crown_frac": 0.068,
+   "scene_id": 73,
+   "scene_clean": false,
+   "rgb_sha1": "cc0ebfe74eca9b9314134416cd5dc4ee4b490d82",
+   "valid_frac": 0.7908,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1080": {
+   "image_id": 787,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1509075.0,
+    809747.5,
+    1509279.75,
+    809952.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 70,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.01922,
+   "scene_id": 82,
+   "scene_clean": false,
+   "rgb_sha1": "f6cc3824d1fb6737d9e687225a85a1732bfe1eed",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1083": {
+   "image_id": 243,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Mesopotamian shrub desert",
+   "country": null,
+   "bounds": [
+    3901768.5,
+    3655459.75,
+    3901973.25,
+    3655664.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 360,
+   "canopy_frac": 0.21746,
+   "crown_frac": 0.23777,
+   "scene_id": 85,
+   "scene_clean": false,
+   "rgb_sha1": "4ff107229a759e021d020f6fcccb2d9f5877e91b",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1084": {
+   "image_id": 321,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California coastal sage and chaparral",
+   "country": null,
+   "bounds": [
+    -13064255.0,
+    3893703.75,
+    -13064050.0,
+    3893908.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 116,
+   "canopy_frac": 0.00971,
+   "crown_frac": 0.07951,
+   "scene_id": 86,
+   "scene_clean": false,
+   "rgb_sha1": "68ca8af96b6a11a7fec6c8c170f83782fdee14eb",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1114": {
+   "image_id": 152,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Sechura desert",
+   "country": null,
+   "bounds": [
+    -8723619.0,
+    -987473.375,
+    -8723414.0,
+    -987268.5625
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 37,
+   "canopy_frac": 0.16831,
+   "crown_frac": 0.01844,
+   "scene_id": 110,
+   "scene_clean": true,
+   "rgb_sha1": "b57f4dc367747aa6378d9e8c34a30c52d52a2083",
+   "valid_frac": 0.6988,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1201": {
+   "image_id": 255,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7304596.5,
+    -1981410.5,
+    -7304391.5,
+    -1981205.625
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 15,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00871,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "003a23959b4120f539bb929e9a1ce8ab3b4fe0c4",
+   "valid_frac": 0.873,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1204": {
+   "image_id": 116,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    238105.09375,
+    1503389.75,
+    238309.890625,
+    1503594.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 38,
+   "canopy_frac": 0.01675,
+   "crown_frac": 0.03936,
+   "scene_id": 183,
+   "scene_clean": false,
+   "rgb_sha1": "8c103da37520efd8f5c3fd684f7fa17d27ebe583",
+   "valid_frac": 0.5193,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1209": {
+   "image_id": 489,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7304391.5,
+    -1980386.5,
+    -7304187.0,
+    -1980181.625
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 30,
+   "canopy_frac": 0.01085,
+   "crown_frac": 0.03698,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "6c534b3e09cc374d27733fead777a48229566cc5",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1216": {
+   "image_id": 1370,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California coastal sage and chaparral",
+   "country": null,
+   "bounds": [
+    -13064255.0,
+    3893089.5,
+    -13064050.0,
+    3893294.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 86,
+   "scene_clean": false,
+   "rgb_sha1": "773610c04073e50351033287a4bd6c9aec84537b",
+   "valid_frac": 0.8519,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1241": {
+   "image_id": 1243,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7304596.5,
+    -1980181.625,
+    -7304391.5,
+    -1979976.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 28,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0262,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "482394f89dbb332cb23d1284760cc8e4fc50d0e9",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1242": {
+   "image_id": 287,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -116764.6875,
+    1072852.625,
+    -116559.890625,
+    1073057.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 7,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00874,
+   "scene_id": 208,
+   "scene_clean": false,
+   "rgb_sha1": "44c652343c869ebe531f4a279ad3c0e0907e0dc7",
+   "valid_frac": 0.5088,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1247": {
+   "image_id": 134,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6156128.5,
+    -1801883.25,
+    -6155924.0,
+    -1801678.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 212,
+   "scene_clean": false,
+   "rgb_sha1": "5f0946f3f294ac4ffd44d6ea7c596a3c40eca43c",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1301": {
+   "image_id": 1287,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6251661.5,
+    -1730406.125,
+    -6251457.0,
+    -1730201.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 62,
+   "canopy_frac": 0.04701,
+   "crown_frac": 0.01658,
+   "scene_id": 249,
+   "scene_clean": false,
+   "rgb_sha1": "0881a98ff8dcfd484f061a0ab8f32e8c38e137ef",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_133": {
+   "image_id": 818,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Southern Anatolian montane conifer and deciduous forests",
+   "country": null,
+   "bounds": [
+    3782651.25,
+    4346803.0,
+    3782856.0,
+    4347007.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 58,
+   "canopy_frac": 0.30376,
+   "crown_frac": 0.02024,
+   "scene_id": 269,
+   "scene_clean": true,
+   "rgb_sha1": "511b47425a89179392514ab10d184e4c6588d359",
+   "valid_frac": 0.7344,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1347": {
+   "image_id": 684,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6156128.5,
+    -1802292.875,
+    -6155924.0,
+    -1802088.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 275,
+   "scene_clean": true,
+   "rgb_sha1": "f2c92b4250886d8571db46290e748a0eb7434dcb",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1350": {
+   "image_id": 550,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Pontic steppe",
+   "country": null,
+   "bounds": [
+    3904818.5,
+    6149932.5,
+    3905023.25,
+    6150137.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 35,
+   "canopy_frac": 0.06233,
+   "crown_frac": 0.04004,
+   "scene_id": 47,
+   "scene_clean": false,
+   "rgb_sha1": "d0ee3a78037e2d17e44cffd227468277e6f16fe1",
+   "valid_frac": 0.9921,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1374": {
+   "image_id": 1373,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1510508.625,
+    811181.0625,
+    1510713.375,
+    811385.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 95,
+   "canopy_frac": 0.03504,
+   "crown_frac": 0.06412,
+   "scene_id": 290,
+   "scene_clean": true,
+   "rgb_sha1": "ce37381dcb1154e5fcea53476759a88cd15363e6",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1389": {
+   "image_id": 824,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Iberian sclerophyllous and semi-deciduous forests",
+   "country": null,
+   "bounds": [
+    -194638.78125,
+    4603396.5,
+    -194433.984375,
+    4603601.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 870,
+   "canopy_frac": 0.00582,
+   "crown_frac": 0.22892,
+   "scene_id": 299,
+   "scene_clean": true,
+   "rgb_sha1": "a1bc717fbe19758c5f074c06864b6f6de5accb08",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1392": {
+   "image_id": 132,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5320398.0,
+    -2196552.75,
+    -5320193.0,
+    -2196348.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 302,
+   "scene_clean": true,
+   "rgb_sha1": "685d95265ad63fcd15c7c42d5e55e28ae9da020e",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1394": {
+   "image_id": 1283,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Northeastern Spain and Southern France Mediterranean forests",
+   "country": null,
+   "bounds": [
+    698558.25,
+    5466457.0,
+    698763.0,
+    5466661.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 43,
+   "canopy_frac": 0.18124,
+   "crown_frac": 0.0414,
+   "scene_id": 303,
+   "scene_clean": true,
+   "rgb_sha1": "e44f9c9708a45a0f82941016aa4648bc1019da0b",
+   "valid_frac": 0.9578,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1421": {
+   "image_id": 618,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7861767.5,
+    -3931822.0,
+    -7861562.5,
+    -3931617.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 117,
+   "canopy_frac": 0.06898,
+   "crown_frac": 0.05733,
+   "scene_id": 319,
+   "scene_clean": true,
+   "rgb_sha1": "5bb18bab11412cb2ced6bde9ffec3452a749de39",
+   "valid_frac": 0.8993,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1453": {
+   "image_id": 363,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean dry puna",
+   "country": null,
+   "bounds": [
+    -7363078.0,
+    -2397054.25,
+    -7362873.0,
+    -2396849.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 334,
+   "scene_clean": true,
+   "rgb_sha1": "a6465b79decdff466f9e95f0461abab187d03cc6",
+   "valid_frac": 0.7344,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1454": {
+   "image_id": 1016,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7827598.0,
+    -3147679.0,
+    -7827393.0,
+    -3147474.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 166,
+   "scene_clean": false,
+   "rgb_sha1": "8fbc9d756313aa5f0348685a7529cbb370b69e8e",
+   "valid_frac": 0.545,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1472": {
+   "image_id": 937,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13590056.0,
+    4454372.0,
+    -13589851.0,
+    4454577.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 8,
+   "canopy_frac": 0.03987,
+   "crown_frac": 0.01361,
+   "scene_id": 339,
+   "scene_clean": false,
+   "rgb_sha1": "7adac49c7a4f5362ec9eca9ff6ec77da60d626bd",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1489": {
+   "image_id": 699,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    237900.296875,
+    1503799.375,
+    238105.09375,
+    1504004.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 90,
+   "canopy_frac": 0.05205,
+   "crown_frac": 0.07238,
+   "scene_id": 183,
+   "scene_clean": false,
+   "rgb_sha1": "808aa7fd7cef1bf0f1ea4828fbbfba5bc8f1631b",
+   "valid_frac": 0.5608,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1516": {
+   "image_id": 256,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5483830.0,
+    -1774662.5,
+    -5483625.5,
+    -1774457.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 2,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00172,
+   "scene_id": 359,
+   "scene_clean": false,
+   "rgb_sha1": "34bd4eb8f12f6170a3ac6e284ba3c67756faf960",
+   "valid_frac": 0.67,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1540": {
+   "image_id": 634,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 9,
+   "biome_name": "Tigris-Euphrates alluvial salt marsh",
+   "country": null,
+   "bounds": [
+    5279978.0,
+    3611900.75,
+    5280182.5,
+    3612105.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 4,
+   "canopy_frac": 0.00816,
+   "crown_frac": 0.00264,
+   "scene_id": 372,
+   "scene_clean": true,
+   "rgb_sha1": "55237900405c93eceb239efb9d49e03221fc94c1",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1571": {
+   "image_id": 156,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Pontic steppe",
+   "country": null,
+   "bounds": [
+    3904613.5,
+    6149522.5,
+    3904818.5,
+    6149727.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 49,
+   "canopy_frac": 0.52229,
+   "crown_frac": 0.02009,
+   "scene_id": 47,
+   "scene_clean": false,
+   "rgb_sha1": "7023963f78b2c3f94464a038eed3a152c2eba77b",
+   "valid_frac": 0.6832,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_160": {
+   "image_id": 1198,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Iberian sclerophyllous and semi-deciduous forests",
+   "country": null,
+   "bounds": [
+    -14503.103515625,
+    4967055.5,
+    -14298.3037109375,
+    4967260.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 58,
+   "canopy_frac": 0.39366,
+   "crown_frac": 0.03579,
+   "scene_id": 405,
+   "scene_clean": false,
+   "rgb_sha1": "af9a5358a245315cf303c888c8bf6412e1dd8473",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1607": {
+   "image_id": 780,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Snake-Columbia shrub steppe",
+   "country": null,
+   "bounds": [
+    -13312830.0,
+    5956104.5,
+    -13312625.0,
+    5956309.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 13,
+   "canopy_frac": 0.09904,
+   "crown_frac": 0.00627,
+   "scene_id": 404,
+   "scene_clean": false,
+   "rgb_sha1": "1e3fac4fb6b1cb20874d0689a7a810efa0779447",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1622": {
+   "image_id": 276,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Zambezian and Mopane woodlands",
+   "country": null,
+   "bounds": [
+    3211017.5,
+    -1787205.0,
+    3211222.25,
+    -1787000.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 20,
+   "canopy_frac": 0.04284,
+   "crown_frac": 0.01377,
+   "scene_id": 408,
+   "scene_clean": false,
+   "rgb_sha1": "3c6b90e7188b36e1dedf99fdd938d76576975cf1",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1635": {
+   "image_id": 163,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California coastal sage and chaparral",
+   "country": null,
+   "bounds": [
+    -13063845.0,
+    3893294.25,
+    -13063641.0,
+    3893499.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 82,
+   "canopy_frac": 0.01691,
+   "crown_frac": 0.10357,
+   "scene_id": 86,
+   "scene_clean": false,
+   "rgb_sha1": "d902b4152aeea35db62fc429fda3db648a1de509",
+   "valid_frac": 0.821,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1638": {
+   "image_id": 311,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Northeastern Spain and Southern France Mediterranean forests",
+   "country": null,
+   "bounds": [
+    698353.4375,
+    5466866.5,
+    698558.25,
+    5467071.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 21,
+   "canopy_frac": 0.272,
+   "crown_frac": 0.02469,
+   "scene_id": 303,
+   "scene_clean": true,
+   "rgb_sha1": "1d20020c36747590f97c63fe447f6bc92181a93f",
+   "valid_frac": 0.8344,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1657": {
+   "image_id": 357,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7827598.0,
+    -3148088.75,
+    -7827393.0,
+    -3147884.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 126,
+   "canopy_frac": 0.00478,
+   "crown_frac": 0.04883,
+   "scene_id": 166,
+   "scene_clean": false,
+   "rgb_sha1": "d7274ceb389f201736439f30a5330a646e66307b",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1658": {
+   "image_id": 1192,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7827598.0,
+    -3147884.0,
+    -7827393.0,
+    -3147679.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 22,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00339,
+   "scene_id": 166,
+   "scene_clean": false,
+   "rgb_sha1": "fe303cb6c8be9d9a6a245182a320dbed80b32406",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1762": {
+   "image_id": 544,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13451499.0,
+    4351083.5,
+    -13451294.0,
+    4351288.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 20,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.01294,
+   "scene_id": 470,
+   "scene_clean": false,
+   "rgb_sha1": "ddb8f39cd30cba789a90eea3e358f765393ffff4",
+   "valid_frac": 0.9831,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1778": {
+   "image_id": 817,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean dry puna",
+   "country": null,
+   "bounds": [
+    -7363282.5,
+    -2397054.25,
+    -7363078.0,
+    -2396849.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 1,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00012,
+   "scene_id": 334,
+   "scene_clean": true,
+   "rgb_sha1": "a0850714fcb919d097f16cb759d0fa07cb44367b",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1809": {
+   "image_id": 910,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1508870.25,
+    809747.5,
+    1509075.0,
+    809952.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 27,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00585,
+   "scene_id": 82,
+   "scene_clean": false,
+   "rgb_sha1": "09c5e6c718c4eab1a3f01c20a1af2a6c404768ce",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1850": {
+   "image_id": 1216,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Humid Pampas",
+   "country": null,
+   "bounds": [
+    -6569514.5,
+    -4025143.25,
+    -6569310.0,
+    -4024938.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 17,
+   "canopy_frac": 0.1179,
+   "crown_frac": 0.01361,
+   "scene_id": 507,
+   "scene_clean": false,
+   "rgb_sha1": "f0df910ce76f9b8526db1f4ff984bb1a7bb4d010",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1857": {
+   "image_id": 242,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Central forest-grasslands transition",
+   "country": null,
+   "bounds": [
+    -10804334.0,
+    3891069.5,
+    -10804129.0,
+    3891274.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 33,
+   "canopy_frac": 0.08712,
+   "crown_frac": 0.08233,
+   "scene_id": 510,
+   "scene_clean": true,
+   "rgb_sha1": "283e0a3c803f291605054eef0415871447e90258",
+   "valid_frac": 0.8314,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1863": {
+   "image_id": 964,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5484239.5,
+    -1774867.375,
+    -5484035.0,
+    -1774662.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 20,
+   "canopy_frac": 0.33685,
+   "crown_frac": 0.01104,
+   "scene_id": 359,
+   "scene_clean": false,
+   "rgb_sha1": "eacd3bebf837adde9c1082715ac880e526c1c7c5",
+   "valid_frac": 0.8925,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1900": {
+   "image_id": 810,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7305006.0,
+    -1980386.5,
+    -7304801.0,
+    -1980181.625
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 7,
+   "canopy_frac": 0.03605,
+   "crown_frac": 0.00359,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "76eeff147ee989634229fa6aaefcffa7bd9d8677",
+   "valid_frac": 0.5862,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1902": {
+   "image_id": 210,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1510303.75,
+    811181.0625,
+    1510508.625,
+    811385.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 96,
+   "canopy_frac": 0.01678,
+   "crown_frac": 0.03662,
+   "scene_id": 290,
+   "scene_clean": true,
+   "rgb_sha1": "c36363c54e536301a462fe9f745b67c59b7de7f6",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1942": {
+   "image_id": 1057,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6157767.0,
+    -1802292.875,
+    -6157562.0,
+    -1802088.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 14,
+   "canopy_frac": 0.09645,
+   "crown_frac": 0.00698,
+   "scene_id": 545,
+   "scene_clean": true,
+   "rgb_sha1": "f6f3c1c748cff59daa67f46abd67aa4f63e09b04",
+   "valid_frac": 0.9368,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1948": {
+   "image_id": 3,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Zambezian and Mopane woodlands",
+   "country": null,
+   "bounds": [
+    3211017.5,
+    -1787409.875,
+    3211222.25,
+    -1787205.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 23,
+   "canopy_frac": 0.23249,
+   "crown_frac": 0.02057,
+   "scene_id": 408,
+   "scene_clean": false,
+   "rgb_sha1": "51fd5d76994ecdd1346aa97c1bbc815213546ef2",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_1961": {
+   "image_id": 1135,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -888025.125,
+    1404462.125,
+    -887820.375,
+    1404666.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 65,
+   "canopy_frac": 0.0259,
+   "crown_frac": 0.05426,
+   "scene_id": 550,
+   "scene_clean": false,
+   "rgb_sha1": "c6ff1d86fec19d542a812b67edff62147b134ed6",
+   "valid_frac": 0.6122,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2009": {
+   "image_id": 869,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Acacia-Commiphora bushlands and thickets",
+   "country": null,
+   "bounds": [
+    3867875.5,
+    414084.75,
+    3868080.25,
+    414289.5625
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 23,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00958,
+   "scene_id": 566,
+   "scene_clean": true,
+   "rgb_sha1": "714743f968ca9b46cd3fa6ac8ee254ce5cf185c9",
+   "valid_frac": 0.5417,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2013": {
+   "image_id": 605,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California coastal sage and chaparral",
+   "country": null,
+   "bounds": [
+    -13064050.0,
+    3893499.0,
+    -13063845.0,
+    3893703.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 58,
+   "canopy_frac": 0.01269,
+   "crown_frac": 0.06454,
+   "scene_id": 86,
+   "scene_clean": false,
+   "rgb_sha1": "aa65bb271618e617c4dfc43da5a244fe128f184a",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2020": {
+   "image_id": 414,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5494079.5,
+    -1903169.75,
+    -5493875.0,
+    -1902965.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 13,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.01521,
+   "scene_id": 573,
+   "scene_clean": false,
+   "rgb_sha1": "d34b471eea64ead011681860836240e3531476ee",
+   "valid_frac": 0.949,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2097": {
+   "image_id": 1241,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5483830.0,
+    -1774867.375,
+    -5483625.5,
+    -1774662.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 12,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00976,
+   "scene_id": 359,
+   "scene_clean": false,
+   "rgb_sha1": "0097661b77d45b414349d4841887b198afe80adc",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2101": {
+   "image_id": 1300,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Iberian sclerophyllous and semi-deciduous forests",
+   "country": null,
+   "bounds": [
+    -14298.3037109375,
+    4966645.5,
+    -14093.50390625,
+    4966850.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 300,
+   "canopy_frac": 0.21257,
+   "crown_frac": 0.11708,
+   "scene_id": 405,
+   "scene_clean": false,
+   "rgb_sha1": "135f8a330de98dce5421a3aa7678b7790de5951a",
+   "valid_frac": 0.8911,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2102": {
+   "image_id": 159,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6156333.5,
+    -1802497.75,
+    -6156128.5,
+    -1802292.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 44,
+   "canopy_frac": 0.41519,
+   "crown_frac": 0.0179,
+   "scene_id": 275,
+   "scene_clean": true,
+   "rgb_sha1": "c1511da08892d8a4778eac32ff64c82a6ea19586",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2133": {
+   "image_id": 878,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean dry puna",
+   "country": null,
+   "bounds": [
+    -7363282.5,
+    -2396849.5,
+    -7363078.0,
+    -2396644.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 11,
+   "canopy_frac": 0.00034,
+   "crown_frac": 0.00071,
+   "scene_id": 334,
+   "scene_clean": true,
+   "rgb_sha1": "884b6a6a19e98a115e11b04a4fedcad9de8b2df9",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2136": {
+   "image_id": 477,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13589646.0,
+    4455191.0,
+    -13589441.0,
+    4455396.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 21,
+   "canopy_frac": 0.00724,
+   "crown_frac": 0.02897,
+   "scene_id": 489,
+   "scene_clean": false,
+   "rgb_sha1": "31f952bcb5986ddfcd09da51e6526d709069859b",
+   "valid_frac": 0.9258,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2142": {
+   "image_id": 399,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13422403.0,
+    4227638.0,
+    -13422198.0,
+    4227843.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 10,
+   "canopy_frac": 0.00234,
+   "crown_frac": 0.00175,
+   "scene_id": 107,
+   "scene_clean": false,
+   "rgb_sha1": "f91763ad42858d56dc3d4af3c162174c5dbbc1d3",
+   "valid_frac": 0.7318,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2157": {
+   "image_id": 705,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Iberian sclerophyllous and semi-deciduous forests",
+   "country": null,
+   "bounds": [
+    -195048.390625,
+    4603806.5,
+    -194843.578125,
+    4604011.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 476,
+   "canopy_frac": 0.0262,
+   "crown_frac": 0.12527,
+   "scene_id": 626,
+   "scene_clean": true,
+   "rgb_sha1": "a5ca445aa832a2c0488d287805880277247da7d6",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2199": {
+   "image_id": 187,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5483830.0,
+    -1775072.125,
+    -5483625.5,
+    -1774867.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 15,
+   "canopy_frac": 0.27318,
+   "crown_frac": 0.00877,
+   "scene_id": 359,
+   "scene_clean": false,
+   "rgb_sha1": "8d84081b19601cbfae70e653f722100feb4fcae8",
+   "valid_frac": 0.7606,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2209": {
+   "image_id": 664,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1510099.0,
+    809747.5,
+    1510303.75,
+    809952.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 118,
+   "canopy_frac": 0.03287,
+   "crown_frac": 0.05332,
+   "scene_id": 642,
+   "scene_clean": true,
+   "rgb_sha1": "1d7ce397906a2e1791eb6c1072887ee6bcb805a0",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2217": {
+   "image_id": 1070,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6008616.0,
+    -1834901.625,
+    -6008411.0,
+    -1834696.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 9,
+   "canopy_frac": 0.32465,
+   "crown_frac": 0.01863,
+   "scene_id": 644,
+   "scene_clean": true,
+   "rgb_sha1": "d9f800916ba2b9f49e14fabed0f39da0512ea86b",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_222": {
+   "image_id": 881,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Eastern Mediterranean conifer-sclerophyllous-broadleaf forests",
+   "country": null,
+   "bounds": [
+    3902178.0,
+    3655459.75,
+    3902383.0,
+    3655664.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 149,
+   "canopy_frac": 0.1384,
+   "crown_frac": 0.11043,
+   "scene_id": 85,
+   "scene_clean": false,
+   "rgb_sha1": "44c0627a23bde2dd1bd81d05f9798ba63612801c",
+   "valid_frac": 0.7758,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2225": {
+   "image_id": 1197,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean dry puna",
+   "country": null,
+   "bounds": [
+    -7363282.5,
+    -2396644.75,
+    -7363078.0,
+    -2396440.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 64,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00209,
+   "scene_id": 334,
+   "scene_clean": true,
+   "rgb_sha1": "26b68a576575b5410bad4dc48de964d33579f9b9",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2232": {
+   "image_id": 392,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean dry puna",
+   "country": null,
+   "bounds": [
+    -7363078.0,
+    -2396849.5,
+    -7362873.0,
+    -2396644.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.01238,
+   "crown_frac": 0.0,
+   "scene_id": 334,
+   "scene_clean": true,
+   "rgb_sha1": "1b2bfee64945f819c8244f4f914ace875fb9ccc9",
+   "valid_frac": 0.7344,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2242": {
+   "image_id": 1348,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13422813.0,
+    4227843.0,
+    -13422608.0,
+    4228048.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 130,
+   "canopy_frac": 0.01722,
+   "crown_frac": 0.03249,
+   "scene_id": 107,
+   "scene_clean": false,
+   "rgb_sha1": "abff6392bb74f54c2af78ee82d2a3d2e82e816a2",
+   "valid_frac": 0.8748,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_225": {
+   "image_id": 689,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Iberian sclerophyllous and semi-deciduous forests",
+   "country": null,
+   "bounds": [
+    -14707.9033203125,
+    4966850.5,
+    -14503.103515625,
+    4967055.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 161,
+   "canopy_frac": 0.11682,
+   "crown_frac": 0.05771,
+   "scene_id": 405,
+   "scene_clean": false,
+   "rgb_sha1": "6336b1af6a20ee78c9525f8e1bf583c077ee1630",
+   "valid_frac": 0.5403,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2254": {
+   "image_id": 1295,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -117379.0859375,
+    1073262.25,
+    -117174.2890625,
+    1073467.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 75,
+   "canopy_frac": 0.13269,
+   "crown_frac": 0.09803,
+   "scene_id": 208,
+   "scene_clean": false,
+   "rgb_sha1": "8b0d1d13fc951ab49db6ba81be15a96d26ed993c",
+   "valid_frac": 0.766,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2268": {
+   "image_id": 859,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Snake-Columbia shrub steppe",
+   "country": null,
+   "bounds": [
+    -13312420.0,
+    5956309.5,
+    -13312215.0,
+    5956514.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 41,
+   "canopy_frac": 0.1887,
+   "crown_frac": 0.03262,
+   "scene_id": 404,
+   "scene_clean": false,
+   "rgb_sha1": "f5d0835c2fa847a062f2767a05f3569645445a98",
+   "valid_frac": 0.9974,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2317": {
+   "image_id": 847,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    238514.703125,
+    1504004.125,
+    238719.5,
+    1504209.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 9,
+   "canopy_frac": 0.00055,
+   "crown_frac": 0.00405,
+   "scene_id": 183,
+   "scene_clean": false,
+   "rgb_sha1": "36d8ecafb1175fde1b538fbe3d90c4f11a99db3c",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2321": {
+   "image_id": 1225,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Acacia-Commiphora bushlands and thickets",
+   "country": null,
+   "bounds": [
+    3868899.5,
+    416337.5625,
+    3869104.25,
+    416542.34375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 32,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.01055,
+   "scene_id": 680,
+   "scene_clean": true,
+   "rgb_sha1": "6a7e08071410a073bda5ccf4632afd28c2e1aa58",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2322": {
+   "image_id": 644,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5321012.5,
+    -2195528.75,
+    -5320807.5,
+    -2195324.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 681,
+   "scene_clean": true,
+   "rgb_sha1": "49e567432df899dc0a659838cc92348bdb49bc94",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2353": {
+   "image_id": 1375,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Iberian sclerophyllous and semi-deciduous forests",
+   "country": null,
+   "bounds": [
+    -14707.9033203125,
+    4966645.5,
+    -14503.103515625,
+    4966850.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 226,
+   "canopy_frac": 0.02123,
+   "crown_frac": 0.13505,
+   "scene_id": 405,
+   "scene_clean": false,
+   "rgb_sha1": "56fff895f84bf670b4adb1644ba2e2c54ecde419",
+   "valid_frac": 0.7617,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2360": {
+   "image_id": 46,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1510508.625,
+    810771.5,
+    1510713.375,
+    810976.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 39,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.01495,
+   "scene_id": 290,
+   "scene_clean": true,
+   "rgb_sha1": "38a57f0493075c9c053752d8146df5d23f3b8a88",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2361": {
+   "image_id": 790,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Pontic steppe",
+   "country": null,
+   "bounds": [
+    3904613.5,
+    6149932.5,
+    3904818.5,
+    6150137.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 22,
+   "canopy_frac": 0.01607,
+   "crown_frac": 0.02926,
+   "scene_id": 47,
+   "scene_clean": false,
+   "rgb_sha1": "496926b64786e97d54ad6fb5c754fd8b710dc4f8",
+   "valid_frac": 0.7946,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2399": {
+   "image_id": 1366,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5688483.0,
+    -1669950.25,
+    -5688278.0,
+    -1669745.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 69,
+   "canopy_frac": 0.0443,
+   "crown_frac": 0.05033,
+   "scene_id": 701,
+   "scene_clean": true,
+   "rgb_sha1": "028c56da960e761ce4186da7eebe67ca490c145a",
+   "valid_frac": 0.9016,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2424": {
+   "image_id": 421,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Northeastern Spain and Southern France Mediterranean forests",
+   "country": null,
+   "bounds": [
+    698558.25,
+    5466047.0,
+    698763.0,
+    5466252.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 92,
+   "canopy_frac": 0.10315,
+   "crown_frac": 0.06596,
+   "scene_id": 709,
+   "scene_clean": true,
+   "rgb_sha1": "556214a63d02f59b6a266de8689be394c4610425",
+   "valid_frac": 0.8339,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2448": {
+   "image_id": 343,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7827393.0,
+    -3147884.0,
+    -7827188.5,
+    -3147679.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 20,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00366,
+   "scene_id": 166,
+   "scene_clean": false,
+   "rgb_sha1": "7a1e45e6a5714939e5ea693e52e6599d2fa24683",
+   "valid_frac": 0.7097,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2471": {
+   "image_id": 867,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 9,
+   "biome_name": "Tigris-Euphrates alluvial salt marsh",
+   "country": null,
+   "bounds": [
+    5278954.0,
+    3611900.75,
+    5279158.5,
+    3612105.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 55,
+   "canopy_frac": 0.01197,
+   "crown_frac": 0.01544,
+   "scene_id": 315,
+   "scene_clean": false,
+   "rgb_sha1": "434adbce7d84c2fbcff75739c74c9f496f961c9a",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2480": {
+   "image_id": 151,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Iberian sclerophyllous and semi-deciduous forests",
+   "country": null,
+   "bounds": [
+    -195253.1875,
+    4603601.5,
+    -195048.390625,
+    4603806.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 153,
+   "canopy_frac": 0.00432,
+   "crown_frac": 0.07059,
+   "scene_id": 626,
+   "scene_clean": true,
+   "rgb_sha1": "30862334c3d34a1250f87cbe1d09e825a6e1a50e",
+   "valid_frac": 0.6414,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2499": {
+   "image_id": 422,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "South Siberian forest steppe",
+   "country": null,
+   "bounds": [
+    10332279.0,
+    7525351.0,
+    10332484.0,
+    7525556.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 130,
+   "canopy_frac": 0.12374,
+   "crown_frac": 0.11105,
+   "scene_id": 728,
+   "scene_clean": false,
+   "rgb_sha1": "e3c00334dedd5543526eeb2f9d075a3fecf0133e",
+   "valid_frac": 0.9865,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2517": {
+   "image_id": 179,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6155924.0,
+    -1802702.5,
+    -6155719.0,
+    -1802497.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 1,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00191,
+   "scene_id": 733,
+   "scene_clean": true,
+   "rgb_sha1": "e8ef290fecad603225f2844027e8a34ef3d1414e",
+   "valid_frac": 0.9655,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2527": {
+   "image_id": 299,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Northeastern Spain and Southern France Mediterranean forests",
+   "country": null,
+   "bounds": [
+    698558.25,
+    5465842.5,
+    698763.0,
+    5466047.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 27,
+   "canopy_frac": 0.16112,
+   "crown_frac": 0.01416,
+   "scene_id": 709,
+   "scene_clean": true,
+   "rgb_sha1": "d0d978cb55c948bd6e495215ef923b254c9ec339",
+   "valid_frac": 0.5134,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2533": {
+   "image_id": 968,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5483625.5,
+    -1774867.375,
+    -5483420.5,
+    -1774662.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 30,
+   "canopy_frac": 0.21656,
+   "crown_frac": 0.02253,
+   "scene_id": 359,
+   "scene_clean": false,
+   "rgb_sha1": "df7a2c5dd7dc8372b073ef217181d4e80620353e",
+   "valid_frac": 0.9707,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2560": {
+   "image_id": 965,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6156128.5,
+    -1801268.875,
+    -6155924.0,
+    -1801064.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 743,
+   "scene_clean": true,
+   "rgb_sha1": "a616e7f3465e8eecdc305f4f81445b160e000326",
+   "valid_frac": 0.8087,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2584": {
+   "image_id": 455,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -8087358.5,
+    -4659629.0,
+    -8087153.5,
+    -4659424.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 40,
+   "canopy_frac": 0.08089,
+   "crown_frac": 0.04973,
+   "scene_id": 625,
+   "scene_clean": false,
+   "rgb_sha1": "c38dfe501f973a11519b2e4487e1797c1eea10b1",
+   "valid_frac": 0.5367,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2599": {
+   "image_id": 535,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Central and Southern mixed grasslands",
+   "country": null,
+   "bounds": [
+    -11114797.0,
+    3826684.5,
+    -11114592.0,
+    3826889.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 76,
+   "canopy_frac": 0.21118,
+   "crown_frac": 0.09734,
+   "scene_id": 761,
+   "scene_clean": true,
+   "rgb_sha1": "3e5e84f14c6ba38bf3025147160fa460a5f70684",
+   "valid_frac": 0.6079,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2664": {
+   "image_id": 1220,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Central Zambezian Miombo woodlands",
+   "country": null,
+   "bounds": [
+    3272530.75,
+    -1520702.875,
+    3272735.5,
+    -1520498.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 24,
+   "canopy_frac": 0.15089,
+   "crown_frac": 0.00796,
+   "scene_id": 777,
+   "scene_clean": true,
+   "rgb_sha1": "496719d9f9861b8d569225dcd155e6d8a743e099",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2707": {
+   "image_id": 639,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Central Zambezian Miombo woodlands",
+   "country": null,
+   "bounds": [
+    3768360.25,
+    -1561883.25,
+    3768565.0,
+    -1561678.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 93,
+   "canopy_frac": 0.00627,
+   "crown_frac": 0.02049,
+   "scene_id": 119,
+   "scene_clean": false,
+   "rgb_sha1": "e9a0af35cb9b455b57960912dbc6458fbe72dbe5",
+   "valid_frac": 0.7801,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2715": {
+   "image_id": 284,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5321217.0,
+    -2195324.0,
+    -5321012.5,
+    -2195119.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 681,
+   "scene_clean": true,
+   "rgb_sha1": "a5e3674f0e34caacab4a2411429ef12e5dedf9ff",
+   "valid_frac": 0.8148,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2745": {
+   "image_id": 425,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Central forest-grasslands transition",
+   "country": null,
+   "bounds": [
+    -10804334.0,
+    3890864.5,
+    -10804129.0,
+    3891069.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 35,
+   "canopy_frac": 0.18582,
+   "crown_frac": 0.01562,
+   "scene_id": 510,
+   "scene_clean": true,
+   "rgb_sha1": "d494cd939bbd622788eed982521a806ae44122bd",
+   "valid_frac": 0.8872,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2757": {
+   "image_id": 460,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6251661.5,
+    -1730610.875,
+    -6251457.0,
+    -1730406.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 22,
+   "canopy_frac": 0.09733,
+   "crown_frac": 0.01937,
+   "scene_id": 249,
+   "scene_clean": false,
+   "rgb_sha1": "0fb9a5c4e95e9029ce42b116283691f825648c07",
+   "valid_frac": 0.9685,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2764": {
+   "image_id": 624,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6251661.5,
+    -1730201.375,
+    -6251457.0,
+    -1729996.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 147,
+   "canopy_frac": 0.06335,
+   "crown_frac": 0.01832,
+   "scene_id": 249,
+   "scene_clean": false,
+   "rgb_sha1": "da83f456006c934cb019c17ab448a4da91c73242",
+   "valid_frac": 0.5262,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2775": {
+   "image_id": 547,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "South Siberian forest steppe",
+   "country": null,
+   "bounds": [
+    10332074.0,
+    7525351.0,
+    10332279.0,
+    7525556.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 97,
+   "canopy_frac": 0.00826,
+   "crown_frac": 0.06192,
+   "scene_id": 728,
+   "scene_clean": false,
+   "rgb_sha1": "4a34a96d4ecfd3868e615af44f13baadb9438484",
+   "valid_frac": 0.7832,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2810": {
+   "image_id": 479,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Sonoran desert",
+   "country": null,
+   "bounds": [
+    -12372738.0,
+    3793229.0,
+    -12372533.0,
+    3793433.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 127,
+   "canopy_frac": 0.04296,
+   "crown_frac": 0.1201,
+   "scene_id": 808,
+   "scene_clean": false,
+   "rgb_sha1": "6b95ce5b9ffae30d731abadb2508786f76737ae3",
+   "valid_frac": 0.7861,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2841": {
+   "image_id": 1167,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Central forest-grasslands transition",
+   "country": null,
+   "bounds": [
+    -10804539.0,
+    3891069.5,
+    -10804334.0,
+    3891274.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 57,
+   "canopy_frac": 0.16768,
+   "crown_frac": 0.07069,
+   "scene_id": 510,
+   "scene_clean": true,
+   "rgb_sha1": "f3e1f877287746fa27727726fc33161c3f3ddaed",
+   "valid_frac": 0.9237,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2842": {
+   "image_id": 642,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7304596.5,
+    -1980591.25,
+    -7304391.5,
+    -1980386.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 14,
+   "canopy_frac": 0.06792,
+   "crown_frac": 0.02062,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "a60f32ad8998c2181b01b418b641c4d8d6361cf9",
+   "valid_frac": 0.9999,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2854": {
+   "image_id": 767,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Zambezian and Mopane woodlands",
+   "country": null,
+   "bounds": [
+    3210812.75,
+    -1787205.0,
+    3211017.5,
+    -1787000.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 6,
+   "canopy_frac": 0.08716,
+   "crown_frac": 0.00269,
+   "scene_id": 408,
+   "scene_clean": false,
+   "rgb_sha1": "0d5a61415503bc3fdc1d99fa52f89fa7c8be39c5",
+   "valid_frac": 0.9677,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2855": {
+   "image_id": 1009,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    238719.5,
+    1503389.75,
+    238924.296875,
+    1503594.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 120,
+   "canopy_frac": 0.24134,
+   "crown_frac": 0.05569,
+   "scene_id": 820,
+   "scene_clean": true,
+   "rgb_sha1": "6f7a4dc49650604c7a7303c3008401625d9fc126",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2857": {
+   "image_id": 1209,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7828417.0,
+    -3147884.0,
+    -7828212.5,
+    -3147679.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 822,
+   "scene_clean": true,
+   "rgb_sha1": "4e08ace4a3902f8f3cc88fa2334bc5527a2bd5b5",
+   "valid_frac": 0.7615,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2858": {
+   "image_id": 1307,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Snake-Columbia shrub steppe",
+   "country": null,
+   "bounds": [
+    -13313035.0,
+    5956514.0,
+    -13312830.0,
+    5956719.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 59,
+   "canopy_frac": 0.0307,
+   "crown_frac": 0.02876,
+   "scene_id": 404,
+   "scene_clean": false,
+   "rgb_sha1": "21a951c3b34e9c3cd63fb725ebc433d90b49368d",
+   "valid_frac": 0.5774,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2879": {
+   "image_id": 4,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Central and Southern mixed grasslands",
+   "country": null,
+   "bounds": [
+    -11114592.0,
+    3826684.5,
+    -11114387.0,
+    3826889.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 33,
+   "canopy_frac": 0.38643,
+   "crown_frac": 0.03287,
+   "scene_id": 761,
+   "scene_clean": true,
+   "rgb_sha1": "658fc250ed7cec390e414fea1b77fd4a9bcdaca9",
+   "valid_frac": 0.6092,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2896": {
+   "image_id": 1074,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5493875.0,
+    -1903169.75,
+    -5493670.0,
+    -1902965.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 1,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00062,
+   "scene_id": 573,
+   "scene_clean": false,
+   "rgb_sha1": "32f2bda6b5829d73801ea64d2ee05feb6d873994",
+   "valid_frac": 0.6404,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2898": {
+   "image_id": 656,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    238105.09375,
+    1503799.375,
+    238309.890625,
+    1504004.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 120,
+   "canopy_frac": 0.02815,
+   "crown_frac": 0.11038,
+   "scene_id": 183,
+   "scene_clean": false,
+   "rgb_sha1": "feda74314b76ceb7e9fdbda581209ae4c9c7d0d6",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_290": {
+   "image_id": 1096,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1508460.625,
+    810771.5,
+    1508665.375,
+    810976.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 107,
+   "canopy_frac": 0.00297,
+   "crown_frac": 0.0309,
+   "scene_id": 833,
+   "scene_clean": true,
+   "rgb_sha1": "5759ec8c6706d2926d82cca212f0013f21908a46",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2910": {
+   "image_id": 494,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean dry puna",
+   "country": null,
+   "bounds": [
+    -7363078.0,
+    -2396644.75,
+    -7362873.0,
+    -2396440.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 334,
+   "scene_clean": true,
+   "rgb_sha1": "a81f1b687461a3e280c29a4537b1cc0194ad9da4",
+   "valid_frac": 0.7344,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2915": {
+   "image_id": 763,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5320193.0,
+    -2195733.75,
+    -5319988.5,
+    -2195528.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 835,
+   "scene_clean": true,
+   "rgb_sha1": "ed9b3a8dc95c46814a652a3644209b4b81463362",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2919": {
+   "image_id": 675,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -117379.0859375,
+    1072852.625,
+    -117174.2890625,
+    1073057.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 37,
+   "canopy_frac": 0.02701,
+   "crown_frac": 0.06398,
+   "scene_id": 208,
+   "scene_clean": false,
+   "rgb_sha1": "3a2bb100c50c49bc80672128f36e3766537a0c08",
+   "valid_frac": 0.9755,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2954": {
+   "image_id": 1038,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5321012.5,
+    -2196348.0,
+    -5320807.5,
+    -2196143.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 7,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00335,
+   "scene_id": 844,
+   "scene_clean": true,
+   "rgb_sha1": "9b26e674b301a5616a1333c7c60e2a04b1bded48",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2973": {
+   "image_id": 887,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "East Sudanian savanna",
+   "country": null,
+   "bounds": [
+    3481344.5,
+    360028.1875,
+    3481549.25,
+    360233.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 16,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00135,
+   "scene_id": 847,
+   "scene_clean": true,
+   "rgb_sha1": "2f432a25e9c77f412c697fed36fdd81446115469",
+   "valid_frac": 0.7522,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2976": {
+   "image_id": 841,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Snake-Columbia shrub steppe",
+   "country": null,
+   "bounds": [
+    -13313035.0,
+    5956309.5,
+    -13312830.0,
+    5956514.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 62,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.03726,
+   "scene_id": 404,
+   "scene_clean": false,
+   "rgb_sha1": "28be3ec68f8c8aea27f375c3608788bf23fc7b70",
+   "valid_frac": 0.9137,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_2980": {
+   "image_id": 1139,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Eastern Mediterranean conifer-sclerophyllous-broadleaf forests",
+   "country": null,
+   "bounds": [
+    3869401.75,
+    3714485.5,
+    3869606.5,
+    3714690.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 34,
+   "canopy_frac": 0.0023,
+   "crown_frac": 0.01313,
+   "scene_id": 532,
+   "scene_clean": false,
+   "rgb_sha1": "ac00053fc0d9426ada92219dcdef65d865ac6a0f",
+   "valid_frac": 0.8102,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3004": {
+   "image_id": 1020,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6252071.5,
+    -1731020.5,
+    -6251866.5,
+    -1730815.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 117,
+   "canopy_frac": 0.06473,
+   "crown_frac": 0.01857,
+   "scene_id": 249,
+   "scene_clean": false,
+   "rgb_sha1": "392a515c3ffc01d1f3d3dd821187025ca2ccf94a",
+   "valid_frac": 0.6738,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3012": {
+   "image_id": 319,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "South Siberian forest steppe",
+   "country": null,
+   "bounds": [
+    10331870.0,
+    7525351.0,
+    10332074.0,
+    7525556.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 37,
+   "canopy_frac": 0.06908,
+   "crown_frac": 0.04285,
+   "scene_id": 728,
+   "scene_clean": false,
+   "rgb_sha1": "ce9ba68edc754b295dcc0bb148500847e3c6e14e",
+   "valid_frac": 0.8417,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3038": {
+   "image_id": 295,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5319988.5,
+    -2196552.75,
+    -5319783.5,
+    -2196348.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 302,
+   "scene_clean": true,
+   "rgb_sha1": "9aa621a4af3320ce397ff0e5ae44df02dd056bfd",
+   "valid_frac": 0.7352,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3051": {
+   "image_id": 410,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -8087358.5,
+    -4659833.5,
+    -8087153.5,
+    -4659629.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 71,
+   "canopy_frac": 0.21166,
+   "crown_frac": 0.06057,
+   "scene_id": 625,
+   "scene_clean": false,
+   "rgb_sha1": "96df5181db9831e78b93f8a4c451cd67cc33ec2b",
+   "valid_frac": 0.7634,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3088": {
+   "image_id": 1260,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Snake-Columbia shrub steppe",
+   "country": null,
+   "bounds": [
+    -13312625.0,
+    5955900.0,
+    -13312420.0,
+    5956104.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 44,
+   "canopy_frac": 0.31869,
+   "crown_frac": 0.01528,
+   "scene_id": 404,
+   "scene_clean": false,
+   "rgb_sha1": "8243ba120be1f0f6df00d1615e9722aeb9e9fe06",
+   "valid_frac": 0.9629,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3090": {
+   "image_id": 564,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5484035.0,
+    -1774867.375,
+    -5483830.0,
+    -1774662.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 27,
+   "canopy_frac": 0.06936,
+   "crown_frac": 0.03009,
+   "scene_id": 359,
+   "scene_clean": false,
+   "rgb_sha1": "c1abbde4b4a6064ec443a3ea0f097b356e32fe47",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3122": {
+   "image_id": 2524,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Zambezian and Mopane woodlands",
+   "country": null,
+   "bounds": [
+    3210812.75,
+    -1787000.25,
+    3211017.5,
+    -1786795.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 95,
+   "canopy_frac": 0.14577,
+   "crown_frac": 0.0176,
+   "scene_id": 408,
+   "scene_clean": false,
+   "rgb_sha1": "79ab50ae63375060e9f65a3c30b2183b7a948246",
+   "valid_frac": 0.815,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_314": {
+   "image_id": 289,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6156538.0,
+    -1801268.875,
+    -6156333.5,
+    -1801064.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 882,
+   "scene_clean": true,
+   "rgb_sha1": "9adbae74c447a5e09bd93c95d83d7c500b8ed469",
+   "valid_frac": 0.7494,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3142": {
+   "image_id": 1279,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7827802.5,
+    -3148293.5,
+    -7827598.0,
+    -3148088.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 69,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.03025,
+   "scene_id": 166,
+   "scene_clean": false,
+   "rgb_sha1": "3aec21a4e261e1a86b3acf68287546b17739425f",
+   "valid_frac": 0.9495,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3175": {
+   "image_id": 732,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7828007.5,
+    -3147884.0,
+    -7827802.5,
+    -3147679.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 16,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00367,
+   "scene_id": 166,
+   "scene_clean": false,
+   "rgb_sha1": "e30f79bb50183e964760db7847613329675a177e",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_318": {
+   "image_id": 1350,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Acacia-Commiphora bushlands and thickets",
+   "country": null,
+   "bounds": [
+    3867261.0,
+    416337.5625,
+    3867465.75,
+    416542.34375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 20,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.01022,
+   "scene_id": 893,
+   "scene_clean": true,
+   "rgb_sha1": "ee61519aafcc58a6013c235338445afc3d6384f3",
+   "valid_frac": 0.965,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3188": {
+   "image_id": 217,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Eastern Mediterranean conifer-sclerophyllous-broadleaf forests",
+   "country": null,
+   "bounds": [
+    3869606.5,
+    3714485.5,
+    3869811.25,
+    3714690.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 94,
+   "canopy_frac": 0.00785,
+   "crown_frac": 0.07125,
+   "scene_id": 532,
+   "scene_clean": false,
+   "rgb_sha1": "f29e5d2fce6f70775b352d3b60094d57e2fca631",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3192": {
+   "image_id": 1142,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1508870.25,
+    810771.5,
+    1509075.0,
+    810976.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 65,
+   "canopy_frac": 0.00775,
+   "crown_frac": 0.01715,
+   "scene_id": 894,
+   "scene_clean": true,
+   "rgb_sha1": "47914e41236d567a97661dfc13b70b793713f874",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3209": {
+   "image_id": 2400,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Zambezian and Mopane woodlands",
+   "country": null,
+   "bounds": [
+    3210812.75,
+    -1787409.875,
+    3211017.5,
+    -1787205.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 88,
+   "canopy_frac": 0.45534,
+   "crown_frac": 0.04087,
+   "scene_id": 408,
+   "scene_clean": false,
+   "rgb_sha1": "de8cb12db18e157294b8c6f0677b63f0f04a6fea",
+   "valid_frac": 0.8042,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3235": {
+   "image_id": 1274,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13589646.0,
+    4454781.5,
+    -13589441.0,
+    4454986.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 489,
+   "scene_clean": false,
+   "rgb_sha1": "84c0f01d7f9f7d8885e5432bb2b0c0be1a9aff91",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_325": {
+   "image_id": 416,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5483625.5,
+    -1774662.5,
+    -5483420.5,
+    -1774457.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 16,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00305,
+   "scene_id": 359,
+   "scene_clean": false,
+   "rgb_sha1": "5a619029ed05e3e50bfe22a18c48e14c1facd249",
+   "valid_frac": 0.941,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3265": {
+   "image_id": 508,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13589851.0,
+    4454781.5,
+    -13589646.0,
+    4454986.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 8,
+   "canopy_frac": 0.00221,
+   "crown_frac": 0.00983,
+   "scene_id": 489,
+   "scene_clean": false,
+   "rgb_sha1": "56c7ed7594590b77c86357ca4dca7c70a03f59e5",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3271": {
+   "image_id": 327,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Central forest-grasslands transition",
+   "country": null,
+   "bounds": [
+    -10804539.0,
+    3890864.5,
+    -10804334.0,
+    3891069.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 88,
+   "canopy_frac": 0.08542,
+   "crown_frac": 0.1139,
+   "scene_id": 510,
+   "scene_clean": true,
+   "rgb_sha1": "8b9bad71d2aad058bcc2ecd57544efac3055d548",
+   "valid_frac": 0.9577,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3295": {
+   "image_id": 1078,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Northern mixed grasslands",
+   "country": null,
+   "bounds": [
+    -11229051.0,
+    6161230.5,
+    -11228846.0,
+    6161435.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 30,
+   "canopy_frac": 0.01827,
+   "crown_frac": 0.01475,
+   "scene_id": 926,
+   "scene_clean": true,
+   "rgb_sha1": "5558ba2e30e7a9158e1e2eb03838ba96cff5888a",
+   "valid_frac": 0.6039,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3309": {
+   "image_id": 11,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7304801.0,
+    -1980591.25,
+    -7304596.5,
+    -1980386.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 23,
+   "canopy_frac": 0.10281,
+   "crown_frac": 0.01885,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "e7f5029326bb7b5c54b9e784a4a6aefdc24479a4",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_333": {
+   "image_id": 685,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1510303.75,
+    809952.25,
+    1510508.625,
+    810157.0625
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 35,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00627,
+   "scene_id": 642,
+   "scene_clean": true,
+   "rgb_sha1": "8603ba0196cb5751709115315ff59d58f7799b6f",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3344": {
+   "image_id": 1329,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Mesopotamian shrub desert",
+   "country": null,
+   "bounds": [
+    3901768.5,
+    3655254.75,
+    3901973.25,
+    3655459.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 261,
+   "canopy_frac": 0.23253,
+   "crown_frac": 0.18684,
+   "scene_id": 85,
+   "scene_clean": false,
+   "rgb_sha1": "fca9d4515f23f99e6dd60f729b60b422b4c504b9",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3352": {
+   "image_id": 54,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California coastal sage and chaparral",
+   "country": null,
+   "bounds": [
+    -13064255.0,
+    3893294.25,
+    -13064050.0,
+    3893499.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 16,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00435,
+   "scene_id": 86,
+   "scene_clean": false,
+   "rgb_sha1": "aeb487b8e3154882660ece44e71c2ba8a6a8af84",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3373": {
+   "image_id": 390,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 9,
+   "biome_name": "Tigris-Euphrates alluvial salt marsh",
+   "country": null,
+   "bounds": [
+    5278749.0,
+    3611286.25,
+    5278954.0,
+    3611491.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 29,
+   "canopy_frac": 0.00543,
+   "crown_frac": 0.00773,
+   "scene_id": 945,
+   "scene_clean": true,
+   "rgb_sha1": "80a330434f62fc06718dd2da2017184040ac2829",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3397": {
+   "image_id": 1062,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1510713.375,
+    810976.25,
+    1510918.25,
+    811181.0625
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 137,
+   "canopy_frac": 0.06062,
+   "crown_frac": 0.1128,
+   "scene_id": 290,
+   "scene_clean": true,
+   "rgb_sha1": "af06c15e92c0fadd12bea666d135ac2b2aecf376",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3417": {
+   "image_id": 871,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Eastern Mediterranean conifer-sclerophyllous-broadleaf forests",
+   "country": null,
+   "bounds": [
+    3901973.25,
+    3655254.75,
+    3902178.0,
+    3655459.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 245,
+   "canopy_frac": 0.09914,
+   "crown_frac": 0.23953,
+   "scene_id": 85,
+   "scene_clean": false,
+   "rgb_sha1": "aff26ee85ebb1de702c04e25c282bdfecd069328",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_342": {
+   "image_id": 431,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California coastal sage and chaparral",
+   "country": null,
+   "bounds": [
+    -13064665.0,
+    3893908.75,
+    -13064460.0,
+    3894113.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 952,
+   "scene_clean": true,
+   "rgb_sha1": "e1664991c2efc4438b654f3c9d2a0a5ff0f11fc8",
+   "valid_frac": 0.5613,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3421": {
+   "image_id": 184,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6156948.0,
+    -1801268.875,
+    -6156743.0,
+    -1801064.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 38,
+   "canopy_frac": 0.0334,
+   "crown_frac": 0.04077,
+   "scene_id": 951,
+   "scene_clean": true,
+   "rgb_sha1": "036f940f1bf60cb62f30aee5bc4d171201abf760",
+   "valid_frac": 0.7941,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3449": {
+   "image_id": 717,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7304801.0,
+    -1980796.0,
+    -7304596.5,
+    -1980591.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 41,
+   "canopy_frac": 0.05845,
+   "crown_frac": 0.03885,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "428de25d871c6554a6903116a5e68c8be554b90d",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3464": {
+   "image_id": 629,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    238105.09375,
+    1503594.5,
+    238309.890625,
+    1503799.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 128,
+   "canopy_frac": 0.00852,
+   "crown_frac": 0.09595,
+   "scene_id": 183,
+   "scene_clean": false,
+   "rgb_sha1": "b5178d5c6f7212cfa0e63924ba4bfa2c6f291f10",
+   "valid_frac": 0.9958,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3482": {
+   "image_id": 1317,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Snake-Columbia shrub steppe",
+   "country": null,
+   "bounds": [
+    -13312420.0,
+    5956514.0,
+    -13312215.0,
+    5956719.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 41,
+   "canopy_frac": 0.56492,
+   "crown_frac": 0.02556,
+   "scene_id": 404,
+   "scene_clean": false,
+   "rgb_sha1": "5a4975ba691a9b3054a12a2b39a88b24a70e8bbb",
+   "valid_frac": 0.8924,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3488": {
+   "image_id": 1301,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 9,
+   "biome_name": "Tigris-Euphrates alluvial salt marsh",
+   "country": null,
+   "bounds": [
+    5279978.0,
+    3611491.0,
+    5280182.5,
+    3611695.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 11,
+   "canopy_frac": 0.0188,
+   "crown_frac": 0.0024,
+   "scene_id": 960,
+   "scene_clean": true,
+   "rgb_sha1": "1de63a99d81c202c6158d53377e304c494867c63",
+   "valid_frac": 0.8181,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_354": {
+   "image_id": 906,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5689097.5,
+    -1669950.25,
+    -5688892.5,
+    -1669745.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.20473,
+   "crown_frac": 0.0,
+   "scene_id": 971,
+   "scene_clean": true,
+   "rgb_sha1": "92eb02ce0b5e909a6693a58d063ecc8e40a7b9c9",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3564": {
+   "image_id": 796,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Central Zambezian Miombo woodlands",
+   "country": null,
+   "bounds": [
+    3768565.0,
+    -1561883.25,
+    3768769.75,
+    -1561678.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 148,
+   "canopy_frac": 0.00545,
+   "crown_frac": 0.04684,
+   "scene_id": 119,
+   "scene_clean": false,
+   "rgb_sha1": "96e2c04357dc6b9b39b405f8c8081bb11fe9505a",
+   "valid_frac": 0.7503,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3569": {
+   "image_id": 501,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Acacia-Commiphora bushlands and thickets",
+   "country": null,
+   "bounds": [
+    3867261.0,
+    414903.9375,
+    3867465.75,
+    415108.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 96,
+   "canopy_frac": 0.00214,
+   "crown_frac": 0.03471,
+   "scene_id": 424,
+   "scene_clean": false,
+   "rgb_sha1": "7251d6bbd3c85fffe67878a94aa55535f2e33487",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3574": {
+   "image_id": 500,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Central and Southern mixed grasslands",
+   "country": null,
+   "bounds": [
+    -11114592.0,
+    3826889.25,
+    -11114387.0,
+    3827094.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 100,
+   "canopy_frac": 0.15282,
+   "crown_frac": 0.07795,
+   "scene_id": 761,
+   "scene_clean": true,
+   "rgb_sha1": "bc5d3e76806c3dad9b21a9acac91fb31760d73e4",
+   "valid_frac": 0.6317,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3644": {
+   "image_id": 691,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Sonoran desert",
+   "country": null,
+   "bounds": [
+    -12372533.0,
+    3793229.0,
+    -12372328.0,
+    3793433.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 130,
+   "canopy_frac": 0.00857,
+   "crown_frac": 0.08837,
+   "scene_id": 808,
+   "scene_clean": false,
+   "rgb_sha1": "5dc44b822d19a51428e0a82517ec68fae29a0acc",
+   "valid_frac": 0.7799,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3654": {
+   "image_id": 351,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 9,
+   "biome_name": "Tigris-Euphrates alluvial salt marsh",
+   "country": null,
+   "bounds": [
+    5278544.0,
+    3611081.5,
+    5278749.0,
+    3611286.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 26,
+   "canopy_frac": 0.00097,
+   "crown_frac": 0.0113,
+   "scene_id": 945,
+   "scene_clean": true,
+   "rgb_sha1": "a45966b72efb32de1acfcbfa72701038d3ced57b",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3673": {
+   "image_id": 978,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Pontic steppe",
+   "country": null,
+   "bounds": [
+    3905228.0,
+    6149727.5,
+    3905432.75,
+    6149932.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 20,
+   "canopy_frac": 0.39216,
+   "crown_frac": 0.02127,
+   "scene_id": 47,
+   "scene_clean": false,
+   "rgb_sha1": "235595d85f8fef26cca924edab329d04f0855401",
+   "valid_frac": 0.8163,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3680": {
+   "image_id": 708,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6157152.5,
+    -1802292.875,
+    -6156948.0,
+    -1802088.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 12,
+   "canopy_frac": 0.50283,
+   "crown_frac": 0.01007,
+   "scene_id": 996,
+   "scene_clean": true,
+   "rgb_sha1": "e04a7cc57ce5eae0993a9ceabce1cfd6654274f9",
+   "valid_frac": 0.9734,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3714": {
+   "image_id": 804,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "South Siberian forest steppe",
+   "country": null,
+   "bounds": [
+    10332279.0,
+    7525146.5,
+    10332484.0,
+    7525351.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 121,
+   "canopy_frac": 0.1079,
+   "crown_frac": 0.05667,
+   "scene_id": 728,
+   "scene_clean": false,
+   "rgb_sha1": "86241faf19069c5debb60edbd4cf95dcd9863bc7",
+   "valid_frac": 0.7723,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3716": {
+   "image_id": 481,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Iberian sclerophyllous and semi-deciduous forests",
+   "country": null,
+   "bounds": [
+    -194638.78125,
+    4603601.5,
+    -194433.984375,
+    4603806.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 687,
+   "canopy_frac": 0.00486,
+   "crown_frac": 0.15925,
+   "scene_id": 299,
+   "scene_clean": true,
+   "rgb_sha1": "e2f190c35febebe5906379fde39976bb71424a6f",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3742": {
+   "image_id": 22,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Gulf of Oman desert and semi-desert",
+   "country": null,
+   "bounds": [
+    6166292.5,
+    2873600.0,
+    6166497.5,
+    2873804.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 55,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.01667,
+   "scene_id": 1004,
+   "scene_clean": true,
+   "rgb_sha1": "15dac251ad86fae724112edd35671ecd24497bdd",
+   "valid_frac": 0.6114,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3763": {
+   "image_id": 921,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13589646.0,
+    4454577.0,
+    -13589441.0,
+    4454781.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 489,
+   "scene_clean": false,
+   "rgb_sha1": "4ca3e76447f68c1321136152630868105af8fed5",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3770": {
+   "image_id": 282,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Central and Southern mixed grasslands",
+   "country": null,
+   "bounds": [
+    -10862359.0,
+    4185297.75,
+    -10862154.0,
+    4185502.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 55,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.05145,
+   "scene_id": 1013,
+   "scene_clean": true,
+   "rgb_sha1": "fbb51b0efcddc9ee4928ca719771e7d21392160b",
+   "valid_frac": 0.6413,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3776": {
+   "image_id": 680,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6252071.5,
+    -1730815.75,
+    -6251866.5,
+    -1730610.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 51,
+   "canopy_frac": 0.06853,
+   "crown_frac": 0.02137,
+   "scene_id": 249,
+   "scene_clean": false,
+   "rgb_sha1": "42200954f64928f0874638d8c26cb80bf5b34831",
+   "valid_frac": 0.6435,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3789": {
+   "image_id": 3668,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Zambezian and Mopane woodlands",
+   "country": null,
+   "bounds": [
+    3211017.5,
+    -1787000.25,
+    3211222.25,
+    -1786795.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 161,
+   "canopy_frac": 0.08549,
+   "crown_frac": 0.0442,
+   "scene_id": 408,
+   "scene_clean": false,
+   "rgb_sha1": "a6652d8fcd96f1d72272ae9013deb68fd1db0daa",
+   "valid_frac": 0.9064,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_38": {
+   "image_id": 561,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Eastern Mediterranean conifer-sclerophyllous-broadleaf forests",
+   "country": null,
+   "bounds": [
+    3869401.75,
+    3714690.5,
+    3869606.5,
+    3714895.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 25,
+   "canopy_frac": 0.02619,
+   "crown_frac": 0.00806,
+   "scene_id": 532,
+   "scene_clean": false,
+   "rgb_sha1": "f613f185b3d84136a8fd1047578689d72f08293d",
+   "valid_frac": 0.5326,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3808": {
+   "image_id": 519,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Italian sclerophyllous and semi-deciduous forests",
+   "country": null,
+   "bounds": [
+    1836828.625,
+    4910622.5,
+    1837033.375,
+    4910827.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 13,
+   "canopy_frac": 0.12682,
+   "crown_frac": 0.02796,
+   "scene_id": 1020,
+   "scene_clean": true,
+   "rgb_sha1": "fb703c7560e58a4e3e7c6b47d9c8742dcf4f990b",
+   "valid_frac": 0.9116,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3813": {
+   "image_id": 1811,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6251457.0,
+    -1730406.125,
+    -6251252.0,
+    -1730201.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 15,
+   "canopy_frac": 0.38193,
+   "crown_frac": 0.00367,
+   "scene_id": 249,
+   "scene_clean": false,
+   "rgb_sha1": "669ac21c6af323d48842a5d3ab311f13f6c60092",
+   "valid_frac": 0.5179,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3824": {
+   "image_id": 718,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6008820.5,
+    -1834901.625,
+    -6008616.0,
+    -1834696.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 14,
+   "canopy_frac": 0.72378,
+   "crown_frac": 0.01216,
+   "scene_id": 644,
+   "scene_clean": true,
+   "rgb_sha1": "e6714ccf2e9547d14c8369bd7f47171cac5610f3",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3835": {
+   "image_id": 405,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    238514.703125,
+    1503389.75,
+    238719.5,
+    1503594.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 102,
+   "canopy_frac": 0.02066,
+   "crown_frac": 0.1005,
+   "scene_id": 820,
+   "scene_clean": true,
+   "rgb_sha1": "452359f50b95e24d969b3026065b4143f4ff817f",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3837": {
+   "image_id": 474,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7304596.5,
+    -1979976.875,
+    -7304391.5,
+    -1979772.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 2,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00374,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "cc735506d797a4e88ce665c1693ae9235dacda4f",
+   "valid_frac": 0.8138,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3840": {
+   "image_id": 848,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7827598.0,
+    -3148293.5,
+    -7827393.0,
+    -3148088.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 31,
+   "canopy_frac": 0.0006,
+   "crown_frac": 0.01339,
+   "scene_id": 166,
+   "scene_clean": false,
+   "rgb_sha1": "fef3cfa071550beab8568ddab5bfc94d2e818452",
+   "valid_frac": 0.5437,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3881": {
+   "image_id": 1040,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5689507.0,
+    -1670155.0,
+    -5689302.0,
+    -1669950.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.30979,
+   "crown_frac": 0.0,
+   "scene_id": 1029,
+   "scene_clean": true,
+   "rgb_sha1": "31a9f45280af5c85147145c89965ae988adf5aee",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3885": {
+   "image_id": 140,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Central Mexican matorral",
+   "country": null,
+   "bounds": [
+    -11038840.0,
+    2181799.25,
+    -11038636.0,
+    2182004.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 40,
+   "canopy_frac": 0.18965,
+   "crown_frac": 0.03058,
+   "scene_id": 73,
+   "scene_clean": false,
+   "rgb_sha1": "1d0d0b012f1b64452c8691ce3f2d1cd8b677be13",
+   "valid_frac": 0.7955,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3903": {
+   "image_id": 820,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6251457.0,
+    -1730201.375,
+    -6251252.0,
+    -1729996.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 73,
+   "canopy_frac": 0.05226,
+   "crown_frac": 0.02147,
+   "scene_id": 249,
+   "scene_clean": false,
+   "rgb_sha1": "7d1f29d18585a5b57dd5776ee96fcb6ff5ae25e8",
+   "valid_frac": 0.6141,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3968": {
+   "image_id": 1191,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -116969.4921875,
+    1073262.25,
+    -116764.6875,
+    1073467.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 45,
+   "canopy_frac": 0.02242,
+   "crown_frac": 0.04724,
+   "scene_id": 208,
+   "scene_clean": false,
+   "rgb_sha1": "d06f6fc1f98d4d12d4d0b81c5969d9d4640f69a2",
+   "valid_frac": 0.9535,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3969": {
+   "image_id": 844,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "East Sudanian savanna",
+   "country": null,
+   "bounds": [
+    3481139.75,
+    360233.0,
+    3481344.5,
+    360437.8125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 36,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.01032,
+   "scene_id": 847,
+   "scene_clean": true,
+   "rgb_sha1": "8928c9faa0ef391af3cc479ea0e89d68c4a32ea5",
+   "valid_frac": 0.5906,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_3986": {
+   "image_id": 901,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Chilean matorral",
+   "country": null,
+   "bounds": [
+    -7828212.5,
+    -3148498.25,
+    -7828007.5,
+    -3148293.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 55,
+   "canopy_frac": 0.01226,
+   "crown_frac": 0.03117,
+   "scene_id": 679,
+   "scene_clean": true,
+   "rgb_sha1": "3eb53f28904af0a83932da65c0b83105d51a362b",
+   "valid_frac": 0.6875,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_399": {
+   "image_id": 539,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Pontic steppe",
+   "country": null,
+   "bounds": [
+    3904818.5,
+    6149727.5,
+    3905023.25,
+    6149932.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 98,
+   "canopy_frac": 0.02643,
+   "crown_frac": 0.06098,
+   "scene_id": 47,
+   "scene_clean": false,
+   "rgb_sha1": "434aaf8409263b6331c70818bf143c5819ea351f",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4022": {
+   "image_id": 1264,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Pontic steppe",
+   "country": null,
+   "bounds": [
+    3905023.25,
+    6149522.5,
+    3905228.0,
+    6149727.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 168,
+   "canopy_frac": 0.123,
+   "crown_frac": 0.06812,
+   "scene_id": 47,
+   "scene_clean": false,
+   "rgb_sha1": "2ca8f92ff78c87b01d86b4a2f23db9bd12763cef",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4058": {
+   "image_id": 1342,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Eastern Mediterranean conifer-sclerophyllous-broadleaf forests",
+   "country": null,
+   "bounds": [
+    3901973.25,
+    3655664.5,
+    3902178.0,
+    3655869.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 189,
+   "canopy_frac": 0.11669,
+   "crown_frac": 0.12739,
+   "scene_id": 85,
+   "scene_clean": false,
+   "rgb_sha1": "f7dff4de9935b562b778a02fd793068e6c6763af",
+   "valid_frac": 0.6179,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4065": {
+   "image_id": 774,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13422813.0,
+    4227638.0,
+    -13422608.0,
+    4227843.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 177,
+   "canopy_frac": 0.08169,
+   "crown_frac": 0.08202,
+   "scene_id": 107,
+   "scene_clean": false,
+   "rgb_sha1": "a5d03af8a59a1969304319736c564b345f398ead",
+   "valid_frac": 0.7948,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4081": {
+   "image_id": 1333,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California coastal sage and chaparral",
+   "country": null,
+   "bounds": [
+    -13064460.0,
+    3893499.0,
+    -13064255.0,
+    3893703.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 86,
+   "scene_clean": false,
+   "rgb_sha1": "30fb36080636c0356276e92447e6b24bf5ed17e2",
+   "valid_frac": 0.9843,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4117": {
+   "image_id": 754,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Northeastern Spain and Southern France Mediterranean forests",
+   "country": null,
+   "bounds": [
+    698558.25,
+    5466661.5,
+    698763.0,
+    5466866.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 33,
+   "canopy_frac": 0.23899,
+   "crown_frac": 0.04274,
+   "scene_id": 303,
+   "scene_clean": true,
+   "rgb_sha1": "85b3f906e9e3685119bc6c7f06561ec9b5d56846",
+   "valid_frac": 0.7903,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4127": {
+   "image_id": 736,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Snake-Columbia shrub steppe",
+   "country": null,
+   "bounds": [
+    -13312625.0,
+    5956104.5,
+    -13312420.0,
+    5956309.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 7,
+   "canopy_frac": 0.65451,
+   "crown_frac": 0.03807,
+   "scene_id": 404,
+   "scene_clean": false,
+   "rgb_sha1": "a9ad3c75cc3d09cabf55fdb0f4ae11bdbeef75ae",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_413": {
+   "image_id": 856,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1508870.25,
+    809952.25,
+    1509075.0,
+    810157.0625
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 42,
+   "canopy_frac": 0.00065,
+   "crown_frac": 0.02291,
+   "scene_id": 82,
+   "scene_clean": false,
+   "rgb_sha1": "a5e0ec0d5e0cc4414160e54f2b34b073595a481c",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4132": {
+   "image_id": 356,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Northern mixed grasslands",
+   "country": null,
+   "bounds": [
+    -11229255.0,
+    6161230.5,
+    -11229051.0,
+    6161435.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 15,
+   "canopy_frac": 0.04103,
+   "crown_frac": 0.02573,
+   "scene_id": 926,
+   "scene_clean": true,
+   "rgb_sha1": "4941f9081a86e881a0c5d14d3da408e841992b9b",
+   "valid_frac": 0.8877,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4133": {
+   "image_id": 117,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5687049.5,
+    -1669335.75,
+    -5686844.5,
+    -1669131.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 2,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00051,
+   "scene_id": 1067,
+   "scene_clean": true,
+   "rgb_sha1": "5166378d53a727cfa26d8e769fe778852d449b11",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4136": {
+   "image_id": 1353,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Pontic steppe",
+   "country": null,
+   "bounds": [
+    3905228.0,
+    6149318.0,
+    3905432.75,
+    6149522.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 77,
+   "canopy_frac": 0.02059,
+   "crown_frac": 0.05384,
+   "scene_id": 47,
+   "scene_clean": false,
+   "rgb_sha1": "b86f43c76428d5dc37f6e256388bbb507c205048",
+   "valid_frac": 0.7254,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4153": {
+   "image_id": 257,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Snake-Columbia shrub steppe",
+   "country": null,
+   "bounds": [
+    -13312420.0,
+    5956104.5,
+    -13312215.0,
+    5956309.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 36,
+   "canopy_frac": 0.00158,
+   "crown_frac": 0.00661,
+   "scene_id": 404,
+   "scene_clean": false,
+   "rgb_sha1": "0f3dfdb5e068c29eb1cb691ac1ef60e9b6227ca0",
+   "valid_frac": 0.7283,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_4163": {
+   "image_id": 39,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Mesopotamian shrub desert",
+   "country": null,
+   "bounds": [
+    3901563.75,
+    3655459.75,
+    3901768.5,
+    3655664.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 181,
+   "canopy_frac": 0.15312,
+   "crown_frac": 0.1243,
+   "scene_id": 85,
+   "scene_clean": false,
+   "rgb_sha1": "ad6021ddf2d20239aa14c0fa00b6233e8e252342",
+   "valid_frac": 0.6744,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_426": {
+   "image_id": 402,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -116764.6875,
+    1073057.375,
+    -116559.890625,
+    1073262.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 38,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.03428,
+   "scene_id": 208,
+   "scene_clean": false,
+   "rgb_sha1": "6bb195c8c19e9f38770a261106371c65445c0d47",
+   "valid_frac": 0.9164,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_46": {
+   "image_id": 1159,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -116764.6875,
+    1073262.25,
+    -116559.890625,
+    1073467.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 13,
+   "canopy_frac": 0.22329,
+   "crown_frac": 0.00606,
+   "scene_id": 208,
+   "scene_clean": false,
+   "rgb_sha1": "f891937503098a24f1bd607dc49bd176a6a94670",
+   "valid_frac": 0.8435,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_469": {
+   "image_id": 18,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "South Siberian forest steppe",
+   "country": null,
+   "bounds": [
+    10331665.0,
+    7525351.0,
+    10331870.0,
+    7525556.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 11,
+   "canopy_frac": 0.03749,
+   "crown_frac": 0.01268,
+   "scene_id": 728,
+   "scene_clean": false,
+   "rgb_sha1": "6e9bb1bb1862143ad74a1cfc33b247688e03204b",
+   "valid_frac": 0.5559,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_49": {
+   "image_id": 136,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1509484.625,
+    810157.0625,
+    1509689.375,
+    810361.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 117,
+   "canopy_frac": 0.00656,
+   "crown_frac": 0.02531,
+   "scene_id": 1091,
+   "scene_clean": true,
+   "rgb_sha1": "0240b47b5103846655bd7c4c9068bf25f016a07e",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_516": {
+   "image_id": 677,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7304801.0,
+    -1981000.875,
+    -7304596.5,
+    -1980796.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 22,
+   "canopy_frac": 0.02074,
+   "crown_frac": 0.02144,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "cd281aa0582382c0bdd3d5218d1b3ee40ceec5e5",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_528": {
+   "image_id": 990,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Southern Anatolian montane conifer and deciduous forests",
+   "country": null,
+   "bounds": [
+    3782651.25,
+    4346598.0,
+    3782856.0,
+    4346803.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 25,
+   "canopy_frac": 0.39137,
+   "crown_frac": 0.01022,
+   "scene_id": 269,
+   "scene_clean": true,
+   "rgb_sha1": "bb489011735b264b682d23db2f80eef3cb726a2c",
+   "valid_frac": 0.9626,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_557": {
+   "image_id": 79,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Brigalow tropical savanna",
+   "country": null,
+   "bounds": [
+    16676370.0,
+    -2937549.0,
+    16676575.0,
+    -2937344.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 16,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00986,
+   "scene_id": 807,
+   "scene_clean": false,
+   "rgb_sha1": "f36b4c76037f9c537a45ba32d14ab5ffb3a073eb",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_559": {
+   "image_id": 336,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    238514.703125,
+    1502775.375,
+    238719.5,
+    1502980.125
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 77,
+   "canopy_frac": 0.06349,
+   "crown_frac": 0.03515,
+   "scene_id": 1107,
+   "scene_clean": true,
+   "rgb_sha1": "133be69f7d4176f74150b5c505058a127c3de909",
+   "valid_frac": 0.8179,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_567": {
+   "image_id": 436,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5320807.5,
+    -2195324.0,
+    -5320603.0,
+    -2195119.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 681,
+   "scene_clean": true,
+   "rgb_sha1": "d56911793222dcc2066302c3bfa236957c855099",
+   "valid_frac": 0.8657,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_583": {
+   "image_id": 1351,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Central Zambezian Miombo woodlands",
+   "country": null,
+   "bounds": [
+    3768360.25,
+    -1561678.5,
+    3768565.0,
+    -1561473.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 44,
+   "canopy_frac": 0.0001,
+   "crown_frac": 0.00821,
+   "scene_id": 119,
+   "scene_clean": false,
+   "rgb_sha1": "346d43178bfa03a25ee03684f2a1d2ee1825d1dc",
+   "valid_frac": 0.7672,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_609": {
+   "image_id": 809,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Mesopotamian shrub desert",
+   "country": null,
+   "bounds": [
+    3901973.25,
+    3655050.0,
+    3902178.0,
+    3655254.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 103,
+   "canopy_frac": 0.02119,
+   "crown_frac": 0.0823,
+   "scene_id": 85,
+   "scene_clean": false,
+   "rgb_sha1": "62d3bfbebae1e6462b97af129a5fcde2c5b01f98",
+   "valid_frac": 0.9031,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_652": {
+   "image_id": 1358,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Pontic steppe",
+   "country": null,
+   "bounds": [
+    3904818.5,
+    6149522.5,
+    3905023.25,
+    6149727.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 141,
+   "canopy_frac": 0.12758,
+   "crown_frac": 0.10536,
+   "scene_id": 47,
+   "scene_clean": false,
+   "rgb_sha1": "994099ea3eb4c38c0f479f2a79176fcfa8f09915",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_678": {
+   "image_id": 1059,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Mesopotamian shrub desert",
+   "country": null,
+   "bounds": [
+    3901563.75,
+    3655254.75,
+    3901768.5,
+    3655459.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 287,
+   "canopy_frac": 0.12229,
+   "crown_frac": 0.22167,
+   "scene_id": 85,
+   "scene_clean": false,
+   "rgb_sha1": "05f909975c08b0e45a9e105bcc106ea2b31585f6",
+   "valid_frac": 0.9043,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_689": {
+   "image_id": 47,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5319783.5,
+    -2195938.5,
+    -5319579.0,
+    -2195733.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 1129,
+   "scene_clean": true,
+   "rgb_sha1": "f0cd46d991686ccb5c02204977d066e1a3320bed",
+   "valid_frac": 0.9927,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_709": {
+   "image_id": 143,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California coastal sage and chaparral",
+   "country": null,
+   "bounds": [
+    -13044877.0,
+    4007162.0,
+    -13044672.0,
+    4007366.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 34,
+   "canopy_frac": 0.20691,
+   "crown_frac": 0.04065,
+   "scene_id": 1133,
+   "scene_clean": true,
+   "rgb_sha1": "5866b7bcc0d1a2e1d12b7c3d4970067a3209624a",
+   "valid_frac": 0.7354,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_716": {
+   "image_id": 969,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "California coastal sage and chaparral",
+   "country": null,
+   "bounds": [
+    -13064255.0,
+    3893908.75,
+    -13064050.0,
+    3894113.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 7,
+   "canopy_frac": 0.04299,
+   "crown_frac": 0.005,
+   "scene_id": 86,
+   "scene_clean": false,
+   "rgb_sha1": "d41393957213637f7c57ed8ab373c59736e4c7d1",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_739": {
+   "image_id": 571,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "South Siberian forest steppe",
+   "country": null,
+   "bounds": [
+    10331870.0,
+    7525146.5,
+    10332074.0,
+    7525351.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 35,
+   "canopy_frac": 0.05255,
+   "crown_frac": 0.02519,
+   "scene_id": 728,
+   "scene_clean": false,
+   "rgb_sha1": "1992a7ad5c906331a728f2cdad3f298ec31c1741",
+   "valid_frac": 0.8521,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_752": {
+   "image_id": 925,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Northeastern Spain and Southern France Mediterranean forests",
+   "country": null,
+   "bounds": [
+    -46189.5390625,
+    4718967.5,
+    -45984.73828125,
+    4719172.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 504,
+   "canopy_frac": 0.22052,
+   "crown_frac": 0.0784,
+   "scene_id": 1139,
+   "scene_clean": true,
+   "rgb_sha1": "bea3341cabd394a1b56686c019668ea984c01c8d",
+   "valid_frac": 0.7503,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_795": {
+   "image_id": 511,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Humid Pampas",
+   "country": null,
+   "bounds": [
+    -6569719.5,
+    -4025143.25,
+    -6569514.5,
+    -4024938.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 15,
+   "canopy_frac": 0.01157,
+   "crown_frac": 0.00782,
+   "scene_id": 507,
+   "scene_clean": false,
+   "rgb_sha1": "5a6dc030810b54ad67d43ddd7c641043c47caa13",
+   "valid_frac": 0.9999,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_811": {
+   "image_id": 125,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 10,
+   "biome_name": "Central Andean puna",
+   "country": null,
+   "bounds": [
+    -7304391.5,
+    -1979976.875,
+    -7304187.0,
+    -1979772.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 2,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00031,
+   "scene_id": 180,
+   "scene_clean": false,
+   "rgb_sha1": "228e57bba456ed9ef58e338800be49b50261a4d0",
+   "valid_frac": 0.9633,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_820": {
+   "image_id": 176,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 8,
+   "biome_name": "Humid Pampas",
+   "country": null,
+   "bounds": [
+    -6569310.0,
+    -4025143.25,
+    -6569105.0,
+    -4024938.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 37,
+   "canopy_frac": 0.07262,
+   "crown_frac": 0.00871,
+   "scene_id": 507,
+   "scene_clean": false,
+   "rgb_sha1": "a72d58f211340ca85aaadcd7d0b16e69f4dae05d",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_836": {
+   "image_id": 659,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -117379.0859375,
+    1073057.375,
+    -117174.2890625,
+    1073262.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 40,
+   "canopy_frac": 0.11461,
+   "crown_frac": 0.07477,
+   "scene_id": 208,
+   "scene_clean": false,
+   "rgb_sha1": "0116ec953526745148c6b529896c1643233b6288",
+   "valid_frac": 0.9811,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_844": {
+   "image_id": 496,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 9,
+   "biome_name": "Tigris-Euphrates alluvial salt marsh",
+   "country": null,
+   "bounds": [
+    5279158.5,
+    3611900.75,
+    5279363.5,
+    3612105.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 74,
+   "canopy_frac": 0.0099,
+   "crown_frac": 0.02107,
+   "scene_id": 315,
+   "scene_clean": false,
+   "rgb_sha1": "a44c99c7bbd886275e38adedc6a0106670ebca88",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_874": {
+   "image_id": 502,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5690326.0,
+    -1670359.75,
+    -5690121.5,
+    -1670155.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 1170,
+   "scene_clean": true,
+   "rgb_sha1": "4d0486a76b823911a6b6ab757259ddb48e9d6b5c",
+   "valid_frac": 0.5391,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_884": {
+   "image_id": 1227,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5320193.0,
+    -2196348.0,
+    -5319988.5,
+    -2196143.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 302,
+   "scene_clean": true,
+   "rgb_sha1": "152e531fe2d7ad9e9b8bda54abd9912900f8fa8c",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_912": {
+   "image_id": 730,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 12,
+   "biome_name": "Southern Anatolian montane conifer and deciduous forests",
+   "country": null,
+   "bounds": [
+    3782446.5,
+    4346803.0,
+    3782651.25,
+    4347007.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 66,
+   "canopy_frac": 0.16281,
+   "crown_frac": 0.0291,
+   "scene_id": 269,
+   "scene_clean": true,
+   "rgb_sha1": "1240afacacdc8652968973c54f7b825863d4f1dc",
+   "valid_frac": 0.7146,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_915": {
+   "image_id": 1084,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 9,
+   "biome_name": "Tigris-Euphrates alluvial salt marsh",
+   "country": null,
+   "bounds": [
+    5278339.5,
+    3611286.25,
+    5278544.0,
+    3611491.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 24,
+   "canopy_frac": 0.00154,
+   "crown_frac": 0.01082,
+   "scene_id": 945,
+   "scene_clean": true,
+   "rgb_sha1": "979fa0cf536bfba63a6993baa4dba51691b828ee",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_919": {
+   "image_id": 775,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -116969.4921875,
+    1073057.375,
+    -116764.6875,
+    1073262.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 34,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.03857,
+   "scene_id": 208,
+   "scene_clean": false,
+   "rgb_sha1": "8249067777e7d26dbf25e82d23caee10f987c40f",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_921": {
+   "image_id": 607,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1509894.25,
+    811181.0625,
+    1510099.0,
+    811385.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 193,
+   "canopy_frac": 0.09448,
+   "crown_frac": 0.06762,
+   "scene_id": 1182,
+   "scene_clean": true,
+   "rgb_sha1": "c217c19e18d9f33b42c6d1ca8a2ddb17eabd6375",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_925": {
+   "image_id": 84,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -6251866.5,
+    -1730406.125,
+    -6251661.5,
+    -1730201.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 101,
+   "canopy_frac": 0.12128,
+   "crown_frac": 0.00861,
+   "scene_id": 249,
+   "scene_clean": false,
+   "rgb_sha1": "368374c39d7a2433ded68010b30d211b21b90acc",
+   "valid_frac": 0.5449,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_926": {
+   "image_id": 43,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Northern Congolian forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    1509689.375,
+    810157.0625,
+    1509894.25,
+    810361.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 42,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.01363,
+   "scene_id": 1091,
+   "scene_clean": true,
+   "rgb_sha1": "1174b057a1f08cdf198280f36f84a63637dd826b",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_943": {
+   "image_id": 789,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Central Zambezian Miombo woodlands",
+   "country": null,
+   "bounds": [
+    3273145.25,
+    -1521317.25,
+    3273350.0,
+    -1521112.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 172,
+   "canopy_frac": 0.33072,
+   "crown_frac": 0.02968,
+   "scene_id": 1185,
+   "scene_clean": true,
+   "rgb_sha1": "70e3323fce54c9e0a186f411bf3e9ebb03806611",
+   "valid_frac": 0.9793,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_95": {
+   "image_id": 1325,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "West Sudanian savanna",
+   "country": null,
+   "bounds": [
+    -116969.4921875,
+    1072852.625,
+    -116764.6875,
+    1073057.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 40,
+   "canopy_frac": 0.01404,
+   "crown_frac": 0.05952,
+   "scene_id": 208,
+   "scene_clean": false,
+   "rgb_sha1": "3151ebccfe7b8a4a8a1504374a07c458913bf5fa",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_986": {
+   "image_id": 914,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 13,
+   "biome_name": "Mesopotamian shrub desert",
+   "country": null,
+   "bounds": [
+    3901768.5,
+    3655050.0,
+    3901973.25,
+    3655254.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 61,
+   "canopy_frac": 0.30634,
+   "crown_frac": 0.04091,
+   "scene_id": 85,
+   "scene_clean": false,
+   "rgb_sha1": "e0529fde3556857a61f71faf43b44eaacc1904f7",
+   "valid_frac": 0.6873,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_tile_993": {
+   "image_id": 716,
+   "split": "train",
+   "source": "train_pool",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5689302.0,
+    -1669335.75,
+    -5689097.5,
+    -1669131.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.6939,
+   "crown_frac": 0.0,
+   "scene_id": 1193,
+   "scene_clean": true,
+   "rgb_sha1": "769986212aee685006e251541140aef1c9a24588",
+   "valid_frac": 0.7009,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_126": {
+   "image_id": 546,
+   "split": "test",
+   "source": "official_test",
+   "biome": 13,
+   "biome_name": "Sonoran desert",
+   "country": null,
+   "bounds": [
+    -12906458.0,
+    3940703.5,
+    -12906254.0,
+    3940908.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 13,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0058,
+   "scene_id": 1221,
+   "scene_clean": true,
+   "rgb_sha1": "62dacff950054cf758643eb747a51d9170c1f00e",
+   "valid_frac": 0.968,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_128": {
+   "image_id": 106,
+   "split": "test",
+   "source": "official_test",
+   "biome": 13,
+   "biome_name": "Sonoran desert",
+   "country": null,
+   "bounds": [
+    -12906254.0,
+    3940703.5,
+    -12906049.0,
+    3940908.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 34,
+   "canopy_frac": 0.05524,
+   "crown_frac": 0.02289,
+   "scene_id": 1221,
+   "scene_clean": true,
+   "rgb_sha1": "7680fce236ae12b9cfe9125591f3e155d90b85fe",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_129": {
+   "image_id": 523,
+   "split": "test",
+   "source": "official_test",
+   "biome": 12,
+   "biome_name": "California interior chaparral and woodlands",
+   "country": null,
+   "bounds": [
+    -13563198.0,
+    4506086.0,
+    -13562993.0,
+    4506291.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 85,
+   "canopy_frac": 0.16919,
+   "crown_frac": 0.05804,
+   "scene_id": 1223,
+   "scene_clean": true,
+   "rgb_sha1": "3942cfeaa434b98aebee1c68ba04d4ae53cdc1ee",
+   "valid_frac": 0.9306,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_17": {
+   "image_id": 339,
+   "split": "test",
+   "source": "official_test",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5743886.0,
+    -1751000.625,
+    -5743681.5,
+    -1750795.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 22,
+   "canopy_frac": 0.17933,
+   "crown_frac": 0.01684,
+   "scene_id": 1252,
+   "scene_clean": true,
+   "rgb_sha1": "6068095aaee2c352a03df5ccb903bcce4f8c3ea0",
+   "valid_frac": 0.9824,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_210": {
+   "image_id": 972,
+   "split": "test",
+   "source": "official_test",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5742248.0,
+    -1749362.25,
+    -5742043.0,
+    -1749157.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.2216,
+   "crown_frac": 0.0,
+   "scene_id": 1265,
+   "scene_clean": true,
+   "rgb_sha1": "e3ba8b95ddb5902faf77ebf5bf56fe5c22d03967",
+   "valid_frac": 0.5112,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_262": {
+   "image_id": 599,
+   "split": "test",
+   "source": "official_test",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5743067.0,
+    -1750386.25,
+    -5742862.0,
+    -1750181.375
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 13,
+   "canopy_frac": 0.00317,
+   "crown_frac": 0.02661,
+   "scene_id": 1281,
+   "scene_clean": true,
+   "rgb_sha1": "b8a9c36e9d375617f4c10485d1ca778dd2f2c430",
+   "valid_frac": 0.8687,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_291": {
+   "image_id": 157,
+   "split": "test",
+   "source": "official_test",
+   "biome": 8,
+   "biome_name": "Humid Pampas",
+   "country": null,
+   "bounds": [
+    -6748390.5,
+    -3871294.75,
+    -6748185.5,
+    -3871090.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 26,
+   "canopy_frac": 0.00598,
+   "crown_frac": 0.02665,
+   "scene_id": 1291,
+   "scene_clean": true,
+   "rgb_sha1": "1b1f6c2d8b478be8f3f292404a4d4cb75dfc7786",
+   "valid_frac": 0.7376,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_341": {
+   "image_id": 294,
+   "split": "test",
+   "source": "official_test",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5744091.0,
+    -1751000.625,
+    -5743886.0,
+    -1750795.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 14,
+   "canopy_frac": 0.1751,
+   "crown_frac": 0.01716,
+   "scene_id": 1252,
+   "scene_clean": true,
+   "rgb_sha1": "1e7e4b73a8c79c3e9cffca9aab99ada9fdcd8bfe",
+   "valid_frac": 0.9573,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_356": {
+   "image_id": 1234,
+   "split": "test",
+   "source": "official_test",
+   "biome": 8,
+   "biome_name": "Humid Pampas",
+   "country": null,
+   "bounds": [
+    -6748185.5,
+    -3871499.75,
+    -6747980.5,
+    -3871294.75
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 61,
+   "canopy_frac": 0.09602,
+   "crown_frac": 0.02125,
+   "scene_id": 1291,
+   "scene_clean": true,
+   "rgb_sha1": "1e95b77383c2230d845db74372b1eb9a232e7ede",
+   "valid_frac": 0.934,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_362": {
+   "image_id": 1080,
+   "split": "test",
+   "source": "official_test",
+   "biome": 13,
+   "biome_name": "Sonoran desert",
+   "country": null,
+   "bounds": [
+    -12906663.0,
+    3940703.5,
+    -12906458.0,
+    3940908.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.0,
+   "scene_id": 1221,
+   "scene_clean": true,
+   "rgb_sha1": "4c2ecfab0b128274c8e2af3dba98be585f7449d4",
+   "valid_frac": 0.515,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_389": {
+   "image_id": 1312,
+   "split": "test",
+   "source": "official_test",
+   "biome": 7,
+   "biome_name": "Guinean forest-savanna mosaic",
+   "country": null,
+   "bounds": [
+    -1837131.625,
+    1537925.125,
+    -1836926.875,
+    1538129.875
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 30,
+   "canopy_frac": 0.30551,
+   "crown_frac": 0.01408,
+   "scene_id": 1318,
+   "scene_clean": true,
+   "rgb_sha1": "273144734d3d07de74893f03078c976d92d066fd",
+   "valid_frac": 0.7954,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_425": {
+   "image_id": 14,
+   "split": "test",
+   "source": "official_test",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5743476.5,
+    -1750795.875,
+    -5743272.0,
+    -1750591.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 2,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00743,
+   "scene_id": 1252,
+   "scene_clean": true,
+   "rgb_sha1": "ca4ac15c2c5634b31aab89b84e63ea44b9be4fb3",
+   "valid_frac": 0.626,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_46": {
+   "image_id": 1364,
+   "split": "test",
+   "source": "official_test",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5743681.5,
+    -1750795.875,
+    -5743476.5,
+    -1750591.0
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 0,
+   "canopy_frac": 0.00111,
+   "crown_frac": 0.0,
+   "scene_id": 1252,
+   "scene_clean": true,
+   "rgb_sha1": "f462f1853663f2fece2a866bb0db1b61e0e442cd",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_57": {
+   "image_id": 23,
+   "split": "test",
+   "source": "official_test",
+   "biome": 7,
+   "biome_name": "Cerrado",
+   "country": null,
+   "bounds": [
+    -5743476.5,
+    -1750591.0,
+    -5743272.0,
+    -1750386.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 1,
+   "canopy_frac": 0.0,
+   "crown_frac": 0.00755,
+   "scene_id": 1252,
+   "scene_clean": true,
+   "rgb_sha1": "b4089ffd172cb60c1d5fcca8db4cf39b5b9e7541",
+   "valid_frac": 1.0,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_83": {
+   "image_id": 748,
+   "split": "test",
+   "source": "official_test",
+   "biome": 12,
+   "biome_name": "Mount Lofty woodlands",
+   "country": null,
+   "bounds": [
+    15418459.0,
+    -4122311.0,
+    15418664.0,
+    -4122106.25
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 26,
+   "canopy_frac": 0.0261,
+   "crown_frac": 0.02051,
+   "scene_id": 1340,
+   "scene_clean": true,
+   "rgb_sha1": "a4d47ea6f9cb5a880c680e5229634578110268f8",
+   "valid_frac": 0.8128,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  },
+  "tcd_val_tile_96": {
+   "image_id": 973,
+   "split": "test",
+   "source": "official_test",
+   "biome": 13,
+   "biome_name": "Sonoran desert",
+   "country": null,
+   "bounds": [
+    -12906254.0,
+    3940498.75,
+    -12906049.0,
+    3940703.5
+   ],
+   "crs": "EPSG:3395",
+   "width": 2048,
+   "height": 2048,
+   "n_crowns": 50,
+   "canopy_frac": 0.03754,
+   "crown_frac": 0.0205,
+   "scene_id": 1221,
+   "scene_clean": true,
+   "rgb_sha1": "45cc215137f5da73b78721627eaa4dc61dd2b317",
+   "valid_frac": 0.5397,
+   "rgb_shape": [
+    2048,
+    2048,
+    3
+   ]
+  }
+ }
+}
