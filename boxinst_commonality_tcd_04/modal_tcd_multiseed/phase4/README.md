@@ -9,11 +9,12 @@
 >
 > The two α/κ knobs are free inference-time scalars in the E-step (relax the imprecise-box spatial prior +
 > sharpen the appearance vMF); they add **+0.007 mask AP50 / +0.016 mAP50-95 on EVERY seed** over the
-> un-tuned masker — see **[box-robustness knobs](#box-robustness-knobs--the-α-κ-levers-2026-07-30)** +
-> `BOX2MASK_LEVERS.md`. The **5-seed VANILLA band (α=1, κ=1) = 0.615 ± 0.011** is kept below as historical
+> un-tuned masker, and their values are **selected on the held-out 108-tile val split** (pre-registered
+> rule; (0.3, 1.6) is the val argmax — so the band below is select-on-val / report-on-test) — see
+> **[box-robustness knobs](#box-robustness-knobs--the-α-κ-levers-2026-07-30)** + `BOX2MASK_LEVERS.md`. The **5-seed VANILLA band (α=1, κ=1) = 0.615 ± 0.011** is kept below as historical
 > context / ablation (seeds 3,4 not yet re-evaluated with the knobs).
 >
-> **Beats fully-supervised DetecTree2 (mask 0.545), reproduced on the IDENTICAL split/test/metric** — i.e.
+> **Beats fully-supervised DetecTree2 (mask 0.535), reproduced on the IDENTICAL split/test/metric** — i.e.
 > our BOX+canopy-weak method beats a full-mask-supervised Mask R-CNN. Also beats the OAM-TCD paper's Restor
 > Mask R-CNN (0.432), the vaulted multiscale headline (0.504), and the old β=0 headline (0.583). Full tables
 > + per-seed bands in **[SETTLED PIPELINE + tables](#settled-pipeline--tables)**; the head-to-head in
@@ -217,6 +218,20 @@ Two free inference-time scalars in the E-step, no re-fit / no re-extraction / no
 - **κ = kappa_scale = 1.6** — scales the appearance vMF concentration (both `zc` and `bg_ll`) → sharper /
   tighter boundaries. Orthogonal to α; they stack. (mask_thr stays 0.25.)
 
+**Selected on VAL, not on test (2026-08-18).** The original sweep chose α/κ on TEST tiles (40-tile
+pilot of the 439 → 130 → all 439), which made 0.630 a tuned-on-test number. `sweep_val_knobs` re-ran
+the same grid on the held-out **108-tile val split** (7041 crowns, `val_gt.json` built by
+`make_val_gt.py` in the prepare_test convention, identical AP core) under a rule pre-registered in
+`BOX2MASK_LEVERS.md` before any val cell was read. **(α=0.3, κ×1.6, thr=0.25) is the outright val
+argmax on both mask AP50 and mAP50-95** → the 3-seed 439 band below is select-on-val /
+report-on-test, and **no test eval was re-run**. Caveat, stated plainly: the val surface is a broad
+plateau (runner-up within 0.0003 mAP50-95; the whole α≤0.4/κ≥1.3 corner within 0.002), so this shows
+the knobs were not chosen on the eval set — NOT that (0.3, 1.6) is uniquely optimal. What is robust
+across the surface: α<1 beats α=1 at every κ, κ>1 beats κ=1 at every α. Val is held out for the
+masker knobs but was used for detector early-stopping (box AP is masker-invariant, so selection is
+uncontaminated), and the 2 scalars are fitted against 108 tiles of MASK labels — describe as "two
+inference scalars selected on 108 held-out images", not as fully mask-label-free.
+
 **Why:** SAM-3 box-prompt scores 0.633 on our EXACT boxes (a *floor*, not a method we use), but our EM
 BEATS SAM on GT boxes (crown IoU 0.747 vs 0.724) — so the masker isn't worse, it's **box-imprecision
 sensitive**. α/κ restore box-robustness. (RGB/vegetation-guided refinement FAILED: TCD boundaries are
@@ -263,7 +278,44 @@ gain — perfect boxes don't under-cover). And: **a symmetric-looking geometry a
 silently wrong for a non-standard grid** — the interleaved 8px lattice needed `+s`; the appearance-centroid
 probe (crown mass should sit at box-centre 0.5) is the cheap check that catches it.
 
-## DetecTree2 baseline — apples-to-apples (2026-07-30)
+## DetecTree2 baseline — apples-to-apples (2026-07-30; **corrected 2026-08-18**)
+
+> ### 📌 2026-08-18 — prediction-coverage bug fixed; DetecTree2 439 numbers restated
+>
+> **DetecTree2's 439 figures dropped: mask mAP50 0.5448 → `0.5345`, mAP50-95 0.2277 → `0.2235`,
+> box mAP50 0.5392 → `0.5290`, box mAP40 0.5951 → `0.5836`.** Our numbers are UNCHANGED — the bug
+> was in the DetecTree2 subtiling path only.
+>
+> **Cause.** `build_coco.build_tile` dropped any 1024 subtile carrying no crown and no canopy
+> annotation. That is correct for TRAINING (empty-sky subtiles skew background stats) but it was
+> also applied to the TEST set, so DetecTree2 was never inferred on those regions and never charged
+> for false positives there: **3189/3951 subtiles = 80.7% coverage**. Our method has no subtiling —
+> it runs on the whole 2048 tile (256-cell grid × 8px = 2048px) and keeps zero-GT tiles (73 of the
+> 439) — so it was always charged everywhere. The comparison was asymmetric in DetecTree2's favour.
+>
+> **Fix.** `build_tile(..., keep_empty=True)` for prediction builds (default `False`, so training
+> and the original build stay byte-identical). Re-predicted at full 9/9 coverage: **3951 subtiles,
+> 147310 → 152690 crowns (+5380)**.
+>
+> **The mechanism checks out exactly:** recall is IDENTICAL to 4 dp (mask best-F1 R 0.5544 →
+> 0.5544; box 0.5508 → 0.5508) while precision falls (0.6004 → 0.5847). The added predictions match
+> no new GT — they are pure false positives in regions that were previously invisible. That is the
+> signature this bug must produce, and it does.
+>
+> **Also fixed (same date): a silent tile-drop in both scorers.** `score_detectree2.py` and
+> `compare_subsets.py` selected `[t for t in sorted(gt) if t in preds]`, so a tile a model produced
+> nothing for was removed from the GT denominator rather than scored as zero recall — which would
+> hide a partial prediction run. Now every GT tile is scored, missing ones as zero-prediction, with
+> a loud warning. Verified: dropping 4 of 12 tiles holds `n_gt` at 1090 and moves mask AP50
+> 0.6528 → 0.5996 (previously it would have silently rescored on the surviving 8). **This did not
+> change any published number** — every run here had predictions for all tiles.
+>
+> **Artifacts.** New: `out/preds_dt2_s0_fullcov.json` + `detectree2_baseline/results_dt2_s0_fullcov.json`.
+> The published `out/preds_dt2_s0.json` (0.5448) is untouched for provenance. ⚠ `out/pred_raw_s0/`
+> is now the full-coverage superset (3951 files), so it no longer reproduces the old 0.5448 preds
+> exactly — the 762 added subtiles are the difference. Restated numbers come from the fullcov files.
+> Cost of the correction ≈ $0.6 (762 new subtiles on A100 + CPU stitch; the 3189 existing raw
+> predictions were reused).
 
 Fully-supervised **DetecTree2** (Mask R-CNN R101-FPN) fine-tuned and evaluated on the **IDENTICAL**
 cohort/metric as ours: same 792 train / 108 val / 439 test tiles, same GT (`test_gt.json`), same
@@ -275,13 +327,13 @@ COCO-101pt mask-AP + >50%-canopy-ignore scorer (`evaluate._greedy_ap`, RES 512).
 | **OURS** (β=0.5-fix + α/κ knobs, **3-seed 0,1,2**) | **box + canopy (weak)** | **0.630 ± 0.005** | **0.257** | 0.603 |
 | OURS (β=0.5-fix VANILLA, 5-seed) | box + canopy (weak) | 0.615 ± 0.011 | 0.238 | 0.597 |
 | — ours seed-0 (knobbed / vanilla) | | 0.625 / 0.620 | 0.257 / 0.244 | 0.605 |
-| **DetecTree2** (R101-FPN, fine-tuned) | **full crown masks** | **0.545** | 0.228 | 0.539 |
+| **DetecTree2** (R101-FPN, fine-tuned) | **full crown masks** | **0.535** | 0.224 | 0.529 |
 | Restor Mask R-CNN (OAM-TCD paper) | full masks | 0.432 | — | — |
 
-**Our box-weak method beats full-mask-supervised DetecTree2 by +0.070 mask mAP50 (vanilla 5-seed) /
-+0.085 (knobbed 3-seed)** (and on mAP50-95 and box mAP50), despite DetecTree2 getting strictly more
-supervision. The gap is mostly the **detector** (box 0.605 vs 0.539); both convert boxes→masks comparably.
-**Reproduction is credible:** our DetecTree2 (0.545) lands above the paper's Restor Mask R-CNN (0.432) and
+**Our box-weak method beats full-mask-supervised DetecTree2 by +0.080 mask mAP50 (vanilla 5-seed) /
++0.095 (knobbed 3-seed)** (and on mAP50-95 and box mAP50), despite DetecTree2 getting strictly more
+supervision. The gap is mostly the **detector** (box 0.605 vs 0.529); both convert boxes→masks comparably.
+**Reproduction is credible:** our DetecTree2 (0.535) lands above the paper's Restor Mask R-CNN (0.432) and
 below ours — a genuine strong topline, not a strawman. (DetecTree2 is a single seed; our knobbed number is
 3-seed, our vanilla 5-seed — a seed-matched knobbed band and a DT2 band are the obvious follow-ups.)
 
@@ -290,7 +342,8 @@ below ours — a genuine strong topline, not a strawman. (DetecTree2 is a single
 reproduced via detectron2 (its py3.10 package won't install; `detectree2_baseline/dt2_recipe.py` ports
 the recipe line-for-line). Full regime (max_iter 4000, ran clean to 57.1 val AP50), canopy=ignore in
 training, native full-res mask supervision, fixed-pixel 1024@50% subtiles (matches our per-pixel regime),
-`clean_crowns` dedup on stitch. **Caveats:** single DetecTree2 seed (ours is a 5-seed band — a DT2 band
+`clean_crowns` dedup on stitch, **full 9/9 subtile coverage (corrected 2026-08-18)**.
+**Caveats:** single DetecTree2 seed (ours is a 5-seed band — a DT2 band
 is the obvious follow-up); tropical-tuned model applied to global OAM-TCD; DT2 preds floored at score 0.1
 for tractable stitching (best-F1 op-point ~0.52, so no material AP effect). Artifacts on Volume
 `tcd-detectree2-vol`: `out/model_best_s0.pth`, `out/preds_dt2_s0.json`; local `detectree2_baseline/results_dt2_s0.json`.
@@ -311,6 +364,10 @@ for these specific runs; `train`/`predict` now record `torch.cuda.get_device_nam
 - **Preemption-safe `train_4p` (follow-up, unaddressed):** the `if ckpt exists: skip` guard reuses a
   preemption-partial checkpoint as if training finished (silently undertrained seed 2 on its first run).
   Mark completion (store/check the stop-criterion, or a `.done` sentinel) before treating a ckpt as reusable.
+- **α/κ selected off-test — DONE (2026-08-18):** val-grid sweep (`::sweep_val_knobs`, 108 tiles) picks
+  (0.3, 1.6, 0.25) = the settled values, under a pre-registered rule → no test re-runs. Surface + caveats
+  in `BOX2MASK_LEVERS.md`. **Open:** the sweep ran on seed 0 only (knobs are masker-level, so seed-0
+  selection is applied to all seeds); a full val thr sweep was not run (only thr 0.30 spot-checks).
 - **Same-env interp-L24 baseline** (never run): clean same-env real-vs-interp box A/B.
 - **Multiscale arm** (not tried): add the 0.5× downscale detection arm — likely lifts detection further.
 
@@ -325,6 +382,7 @@ for these specific runs; `train`/`predict` now record `torch.cuda.get_device_nam
 | `../../../boxinst_commonality_tcd_04/em.py` | `TCDMasker` (reads `cell_origin`) + `fit` (writes `cell_origin`, reads `cell_origin_frac`) + `cell_labels_canopy`/`ring_cells_canopy` (origin param) — the geometry fix lives here + in `evaluate.pred_instance_masks` (raster shift) |
 | `stubs/boxinst_commonality/em.py` | Modal masker deps (REAL `logsumexp`/`estep`/`spherical_kmeans`/`contrastive_update`/`softmax`) — **keep** |
 | `test_interleave_tcd.py`, `ref_feat_tcd.npz` | pure-numpy geometry test · layers-trap parity ref |
+| `make_val_gt.py` | build `val_gt.json` — crown polygons for the 108 VAL tiles only (prepare_test convention) for OFF-TEST knob selection |
 | `run_*.sh` | autonomous orchestrators w/ heartbeats + `app stop` on runaway |
 | `results_*_fix_*.json`, `preds_*_fix_*.json` (local pulls) | geometry-fixed metrics + predictions; canonical copies on the Volume |
 

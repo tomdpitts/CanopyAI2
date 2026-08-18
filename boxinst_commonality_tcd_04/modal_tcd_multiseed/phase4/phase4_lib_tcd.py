@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import time
 
 import numpy as np
 import torch
@@ -187,6 +188,97 @@ def eval_4p_selfmask(ckpt_path, feat4p_test_dir, test_gt_path, em_path, out_json
         json.dump({"meta": meta, "preds": preds_out}, open(out_fp, "w"))
         print(f"[eval_selfmask] saved predictions ({len(preds_out)} tiles, boxes+masks) "
               f"-> {out_fp}", flush=True)
+    return res
+
+
+@torch.no_grad()
+def sweep_4p_selfmask(ckpt_path, feat_dir, gt_path, em_path, out_json, grid,
+                      device="cuda", limit=None):
+    """Box-robustness knob sweep on a HELD-OUT split (val), scored by the same AP core.
+
+    One detector + feature + projection pass per tile; every (prior_weight, kappa_scale,
+    mask_thr) config in `grid` is then scored from the SAME boxes, so the sweep costs one
+    pass over the split plus one masker pass per config. Mask IoU matrices are reduced per
+    tile (never keeping (N,512,512) masks for every config), so memory is flat in |grid|.
+
+    Only MASK metrics vary: the boxes are masker-invariant, so box AP is reported once.
+    Purpose: choose alpha/kappa off-test (see BOX2MASK_LEVERS.md, where they were chosen on
+    test tiles) — the sweep never writes a model, it only ranks configs.
+    """
+    device = pick_device(device)
+    ck = torch.load(ckpt_path, map_location="cpu", weights_only=False)
+    cfg = ck["cfg"]
+    op_thr = cfg["score_thr"]
+    model = Detector4Phase(cfg["in_dim"], width=cfg["width"], tower=cfg["tower"]
+                           ).to(device).eval()
+    model.load_state_dict(ck["state"])
+    masker = E.TCDMasker(em_path)
+    gt = json.load(open(gt_path))
+    tiles = [t for t in sorted(gt) if os.path.exists(os.path.join(feat_dir, t + ".npy"))]
+    if limit:
+        tiles = tiles[:limit]
+    grid = [tuple(c) for c in grid]
+    print(f"[sweep] {len(tiles)} tiles x {len(grid)} configs (op_thr={op_thr}, "
+          f"masker s={masker.s}, origin={masker.origin})", flush=True)
+
+    mI = {c: [] for c in grid}                       # per-config mask IoU matrices
+    Ign_m = {c: [] for c in grid}
+    bI, P_scores, Ign_b = [], [], []
+    n_gt = 0
+    t0 = time.time()
+    for k, tid in enumerate(tiles):
+        feat = np.load(os.path.join(feat_dir, tid + ".npy")).astype(np.float32)
+        g = feat.shape[-1]
+        det = model(torch.from_numpy(feat)[None].to(device))
+        bx, sc = decode(det.cpu(), score_thr=0.05, stride=STRIDE8, topk=600)
+        bx, sc = bx.numpy(), sc.numpy()
+        zn = masker.project(feat)
+        gm = np.array(E.raster(gt[tid]["trees"]))
+        can = np.array(E.raster(gt[tid]["canopy"]))
+        can = can.any(0) if len(can) else np.zeros((E.RES, E.RES), bool)
+        gb = np.array([[*(np.asarray(t).reshape(-1, 2).min(0)),
+                        *(np.asarray(t).reshape(-1, 2).max(0))]
+                       for t in gt[tid]["trees"]], np.float32).reshape(-1, 4) / E.SCALE \
+            if gt[tid]["trees"] else np.zeros((0, 4), np.float32)
+        n_gt += len(gm)
+        pbox = bx / E.SCALE
+        ign_b = np.zeros(len(pbox), bool)
+        for i, (x0, y0, x1, y1) in enumerate(pbox):
+            sub = can[slice(max(0, int(y0)), int(np.ceil(y1))),
+                      slice(max(0, int(x0)), int(np.ceil(x1)))]
+            ign_b[i] = sub.size > 0 and sub.mean() > 0.5
+        from dapt.eval import iou_matrix
+        bI.append(iou_matrix(pbox, gb)); P_scores.append(sc); Ign_b.append(ign_b)
+        for c in grid:
+            pw, ks, thr = c
+            pm = E.pred_instance_masks(masker, zn, g, bx, mask_thr=thr,
+                                       prior_weight=pw, kappa_scale=ks)
+            mI[c].append(E.mask_iou(pm, gm))
+            Ign_m[c].append(np.array([bool(m.sum()) and (m & can).sum() / m.sum() > 0.5
+                                      for m in pm]) if len(pm) else np.zeros(0, bool))
+        if (k + 1) % 10 == 0 or k + 1 == len(tiles):
+            print(f"  {k+1}/{len(tiles)} tiles ({time.time()-t0:.0f}s)", flush=True)
+
+    rows = []
+    for c in grid:
+        pw, ks, thr = c
+        ap50 = round(E._greedy_ap(mI[c], P_scores, Ign_m[c], n_gt, 0.5), 4)
+        ap = round(float(np.nanmean([E._greedy_ap(mI[c], P_scores, Ign_m[c], n_gt, t)
+                                     for t in E.IOU_50_95])), 4)
+        rows.append({"prior_weight": pw, "kappa_scale": ks, "mask_thr": thr,
+                     "mask_mAP50": ap50, "mask_mAP50_95": ap})
+        print(f"  a={pw:<4} k={ks:<4} thr={thr:<5} -> mask AP50 {ap50}  mAP50-95 {ap}",
+              flush=True)
+    best50 = max(rows, key=lambda r: r["mask_mAP50"])
+    best5095 = max(rows, key=lambda r: r["mask_mAP50_95"])
+    res = {"split": os.path.basename(gt_path), "n_tiles": len(tiles), "n_gt_trees": n_gt,
+           "em": os.path.basename(em_path), "det": os.path.basename(ckpt_path),
+           "op_thr": op_thr,
+           "box_mAP50": round(E._greedy_ap(bI, P_scores, Ign_b, n_gt, 0.5), 4),
+           "grid": rows, "best_by_AP50": best50, "best_by_AP50_95": best5095}
+    if out_json:
+        json.dump(res, open(out_json, "w"), indent=2)
+    print(json.dumps({k: v for k, v in res.items() if k != "grid"}, indent=2), flush=True)
     return res
 
 

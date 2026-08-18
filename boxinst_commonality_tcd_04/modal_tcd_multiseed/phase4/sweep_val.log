@@ -1,0 +1,155 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-sFKZl0fho1LnWuTRuI8HoP
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/val_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/ref_feat_tcd.npz
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_fit_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/vault/em_model.np
+│   z
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function verify.
+├── 🔨 Created function extract_4p.
+├── 🔨 Created function train_eval_4p.
+├── 🔨 Created function fit_masker_4p.
+├── 🔨 Created function eval_selfmask.
+├── 🔨 Created function sweep_val_knobs.
+├── 🔨 Created function band_selfmask.
+└── 🔨 Created function band_4p.
+[sweep] 108 tiles x 22 configs (op_thr=0.39999999999999997, masker s=8, origin=8.0)
+  10/108 tiles (494s)
+  20/108 tiles (931s)
+  30/108 tiles (1368s)
+  40/108 tiles (1781s)
+  50/108 tiles (2325s)
+  60/108 tiles (2684s)
+  70/108 tiles (3048s)
+  80/108 tiles (3355s)
+  90/108 tiles (3611s)
+  100/108 tiles (4050s)
+  108/108 tiles (4318s)
+  a=0.3  k=1.0  thr=0.25  -> mask AP50 0.6348  mAP50-95 0.2647
+  a=0.4  k=1.0  thr=0.25  -> mask AP50 0.635  mAP50-95 0.2624
+  a=0.5  k=1.0  thr=0.25  -> mask AP50 0.6346  mAP50-95 0.2585
+  a=0.7  k=1.0  thr=0.25  -> mask AP50 0.6338  mAP50-95 0.2537
+  a=1.0  k=1.0  thr=0.25  -> mask AP50 0.6304  mAP50-95 0.249
+  a=0.3  k=1.3  thr=0.25  -> mask AP50 0.6366  mAP50-95 0.2666
+  a=0.4  k=1.3  thr=0.25  -> mask AP50 0.6361  mAP50-95 0.2649
+  a=0.5  k=1.3  thr=0.25  -> mask AP50 0.6353  mAP50-95 0.2623
+  a=0.7  k=1.3  thr=0.25  -> mask AP50 0.6348  mAP50-95 0.2566
+  a=1.0  k=1.3  thr=0.25  -> mask AP50 0.632  mAP50-95 0.2512
+  a=0.3  k=1.6  thr=0.25  -> mask AP50 0.6392  mAP50-95 0.268
+  a=0.4  k=1.6  thr=0.25  -> mask AP50 0.6382  mAP50-95 0.2661
+  a=0.5  k=1.6  thr=0.25  -> mask AP50 0.6367  mAP50-95 0.2635
+  a=0.7  k=1.6  thr=0.25  -> mask AP50 0.6347  mAP50-95 0.2589
+  a=1.0  k=1.6  thr=0.25  -> mask AP50 0.6326  mAP50-95 0.2534
+  a=0.3  k=2.0  thr=0.25  -> mask AP50 0.6382  mAP50-95 0.2677
+  a=0.4  k=2.0  thr=0.25  -> mask AP50 0.6383  mAP50-95 0.2673
+  a=0.5  k=2.0  thr=0.25  -> mask AP50 0.6375  mAP50-95 0.2651
+  a=0.7  k=2.0  thr=0.25  -> mask AP50 0.6367  mAP50-95 0.2622
+  a=1.0  k=2.0  thr=0.25  -> mask AP50 0.6329  mAP50-95 0.256
+  a=0.3  k=1.6  thr=0.3   -> mask AP50 0.6386  mAP50-95 0.2639
+  a=0.4  k=1.6  thr=0.3   -> mask AP50 0.6366  mAP50-95 0.261
+{
+  "split": "val_gt.json",
+  "n_tiles": 108,
+  "n_gt_trees": 7041,
+  "em": "em_model_4p_fix.npz",
+  "det": "det_phase4_L24_s0.pt",
+  "op_thr": 0.39999999999999997,
+  "box_mAP50": 0.6065,
+  "best_by_AP50": {
+    "prior_weight": 0.3,
+    "kappa_scale": 1.6,
+    "mask_thr": 0.25,
+    "mask_mAP50": 0.6392,
+    "mask_mAP50_95": 0.268
+  },
+  "best_by_AP50_95": {
+    "prior_weight": 0.3,
+    "kappa_scale": 1.6,
+    "mask_thr": 0.25,
+    "mask_mAP50": 0.6392,
+    "mask_mAP50_95": 0.268
+  }
+}
+[sweep_val_knobs] best AP50 {'prior_weight': 0.3, 'kappa_scale': 1.6, 'mask_thr': 0.25, 'mask_mAP50': 0.6392, 'mask_mAP50_95': 0.268} | best AP50-95 {'prior_weight': 0.3, 'kappa_scale': 1.6, 'mask_thr': 0.25, 'mask_mAP50': 0.6392, 'mask_mAP50_95': 0.268}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/tomdpitts/main/ap-sFKZl0fho1LnWuTRuI8HoP

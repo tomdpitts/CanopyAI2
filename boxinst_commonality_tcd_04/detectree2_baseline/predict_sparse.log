@@ -1,0 +1,96 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-i41Tk24X24gLcSAki8iAPk
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/detectree2_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/sparse_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/build_coco.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/dt2_recipe.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_sparse_tcd_
+│   multiseed/manifest_sparse.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/stitch.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created function build_shard.
+├── 🔨 Created function build_data.
+├── 🔨 Created function build_shard_sparse.
+├── 🔨 Created function build_data_sparse.
+├── 🔨 Created function validate_data.
+├── 🔨 Created function stitch_cpu.
+├── 🔨 Created function fetch_weights.
+├── 🔨 Created function imports_ok.
+├── 🔨 Created function train.
+└── 🔨 Created function predict.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.1.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+[predict] dataset=sparse: 2124 subtiles on gpu=NVIDIA A100-SXM4-40GB, score_thr=0.05 dets=500
+/opt/conda/lib/python3.10/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /opt/conda/conda-bld/pytorch_1695392067780/work/aten/src/ATen/native/TensorShape.cpp:3526.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+  predicted 300/2124
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.1.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+  predicted 600/2124
+  predicted 900/2124
+  predicted 1200/2124
+  predicted 1500/2124
+[modal-client] 2026-08-18T15:46:45+1000 Loop attempt for _run_app.<locals>.heartbeat failed
+Traceback (most recent call last):
+  File "/Users/tompitts/dphil/CanopyAI2/.venv/lib/python3.10/site-packages/modal/_utils/async_utils.py", line 588, in loop_coro
+    await asyncio.wait_for(async_f(), timeout=timeout)
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/asyncio/tasks.py", line 445, in wait_for
+    return fut.result()
+  File "/Users/tompitts/dphil/CanopyAI2/.venv/lib/python3.10/site-packages/modal/runner.py", line 66, in _heartbeat
+    await client.stub.AppHeartbeat(request, retry=Retry(attempt_timeout=HEARTBEAT_TIMEOUT))
+  File "/Users/tompitts/dphil/CanopyAI2/.venv/lib/python3.10/site-packages/modal/_grpc_client.py", line 128, in __call__
+    with grpc_error_converter():
+  File "/Users/tompitts/dphil/CanopyAI2/.venv/lib/python3.10/site-packages/modal/_grpc_client.py", line 63, in __exit__
+    raise modal_exc from None  # from None to skip the grpc-internal cause
+modal.exception.ConflictError: App state is APP_STATE_STOPPED
+  predicted 1800/2124
+[modal-client] 2026-08-18T05:32:57+0000 Received a cancellation signal while processing input ('in-01M09M2272E07TAKM9SWPVXP5R:1787029424354-0',)
+[modal-client] 2026-08-18T05:32:57+0000 Successfully canceled input ('in-01M09M2272E07TAKM9SWPVXP5R:1787029424354-0',)
+Stopping app - local client disconnected. Use `modal run --detach` to keep apps running even if your local client disconnects.
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ Function call was cancelled by user or a failure.                            │
+╰──────────────────────────────────────────────────────────────────────────────╯

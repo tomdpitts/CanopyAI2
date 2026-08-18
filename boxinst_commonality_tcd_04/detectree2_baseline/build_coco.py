@@ -63,13 +63,20 @@ def _mask_to_rle(m):
 
 
 def build_tile(tid, img, anns, img_id0, ann_id0, sub=SUB, stride=STRIDE,
-               min_area=MIN_AREA, want_pixels=True):
+               min_area=MIN_AREA, want_pixels=True, keep_empty=False):
     """One 2048 tile -> per-subtile COCO records.
 
     img: (2048,2048,3) uint8. anns: raw coco_annotations list (each {category_id,
     segmentation,...}); cat 2 = crown (positive), cat 1 = canopy (iscrowd ignore).
     Returns (images, annotations, crops) where crops[k]=(file_name,(SUB,SUB,3) uint8)
     aligned to images[k]; img_id/ann_id continue from img_id0/ann_id0.
+
+    keep_empty=False (default, unchanged) drops subtiles with no crown and no canopy — right
+    for TRAINING, where empty-sky subtiles skew background stats.
+    keep_empty=True is required for PREDICTION: a dropped subtile is never inferred on, so
+    false positives there are never counted, which silently inflates precision. On the sparse
+    slice that hid 16.4% of tile area on average (34.4% in biome 10), concentrated in exactly
+    the low-crown-density biomes — i.e. it biases an open-canopy comparison.
     """
     h, w = img.shape[:2]
     # precompute full-tile masks once per ann (cat 1 & 2 only)
@@ -98,7 +105,7 @@ def build_tile(tid, img, anns, img_id0, ann_id0, sub=SUB, stride=STRIDE,
             aid += 1
         # keep a subtile only if it carries at least one crown OR canopy (comprehensive
         # tiles); empty-sky subtiles add nothing and skew the background stats
-        if not sub_anns:
+        if not sub_anns and not keep_empty:
             continue
         images.append({"id": iid, "file_name": fn, "width": sub, "height": sub,
                        "tile_id": tid, "oy": oy, "ox": ox})

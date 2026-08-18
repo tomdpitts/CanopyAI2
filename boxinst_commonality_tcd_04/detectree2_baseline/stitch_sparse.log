@@ -1,0 +1,45 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-8cUCSjwPXJF57FP61rbXg0
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/detectree2_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/sparse_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_sparse_tcd_
+│   multiseed/manifest_sparse.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/dt2_recipe.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/stitch.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/build_coco.py
+├── 🔨 Created function build_shard.
+├── 🔨 Created function build_data.
+├── 🔨 Created function build_shard_sparse.
+├── 🔨 Created function build_data_sparse.
+├── 🔨 Created function validate_data.
+├── 🔨 Created function stitch_cpu.
+├── 🔨 Created function fetch_weights.
+├── 🔨 Created function imports_ok.
+├── 🔨 Created function train.
+└── 🔨 Created function predict.
+  stitched 25/236 tiles
+  stitched 50/236 tiles
+  stitched 75/236 tiles
+  stitched 100/236 tiles
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ Connection lost                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯

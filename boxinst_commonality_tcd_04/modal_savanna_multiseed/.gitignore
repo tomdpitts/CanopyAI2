@@ -1,8 +1,30 @@
-# SavannaTree transfer run: only the phase4 write-up is tracked.
-# Everything else here (pipeline code, Modal app, GT/split JSON, caches, figures)
-# is machine-local or regenerable and is deliberately kept out of git.
+# SavannaTree transfer runs.
+#
+# phase4/ is the FROZEN 2026-07/08 thread: only its write-up is tracked, because its
+# pipeline code, Modal app, GT/split JSON, caches and figures are machine-local or
+# regenerable.
+#
+# v2/ is the current thread and IS tracked (source, GT, calibration and results only --
+# checkpoints, features and rasters stay out). The reason v2 is tracked at all is that
+# phase4's blanket ignore is why nothing of that run survived on this machine.
 *
 !.gitignore
 !phase4/
 phase4/*
 !phase4/README.md
+
+!v2/
+v2/*
+!v2/*.py
+!v2/*.md
+!v2/*.sh
+!v2/gt_test.json
+!v2/gt_train_all.json
+!v2/gt_train_polys.json
+!v2/split.json
+!v2/calib/
+!v2/calib/*.json
+!v2/results/
+!v2/results/*.json
+!v2/results/REGISTER.jsonl
+!v2/results/GATES.md

@@ -47,6 +47,10 @@ data_image = (
     .add_local_file(os.path.join(PKG, "test_gt.json"), f"{PKG_R}/test_gt.json")
     .add_local_file(os.path.join(PKG, "modal_tcd_multiseed", "phase4", "manifest.json"),
                     f"{DT2_R}/manifest.json")
+    .add_local_file(os.path.join(PKG, "modal_sparse_tcd_multiseed", "manifest_sparse.json"),
+                    f"{DT2_R}/manifest_sparse.json")
+    .add_local_file(os.path.join(REPO, "data/tcd_sparse/sparse_gt.json"),
+                    f"{DT2_R}/sparse_gt.json")          # stitch_cpu resolves tids from this
 )
 
 # --- heavy GPU image: Modal's in-container runtime needs Python>=3.10, which rules out the
@@ -67,6 +71,8 @@ dt2_image = (
     .add_local_file(os.path.join(HERE, "stitch.py"), f"{DT2_R}/stitch.py")
     .add_local_file(os.path.join(HERE, "dt2_recipe.py"), f"{DT2_R}/dt2_recipe.py")
     .add_local_file(os.path.join(PKG, "test_gt.json"), f"{PKG_R}/test_gt.json")
+    .add_local_file(os.path.join(REPO, "data/tcd_sparse/sparse_gt.json"),
+                    f"{DT2_R}/sparse_gt.json")
 )
 
 VOL = "/vol"
@@ -97,6 +103,31 @@ def _load_hf():
 
 
 N_SHARDS = 10                                    # parallel data-build containers (cost cap)
+
+
+SPARSE_MANIFEST = f"{DT2_R}/manifest_sparse.json"
+
+
+def _paths(dataset, seed):
+    """Per-dataset image dir / GT / raw-pred dir / preds file.
+
+    dataset='tcd' reproduces the ORIGINAL hardcoded paths exactly, so the settled 439 run
+    (out/preds_dt2_s0.json, 0.545) is untouched and re-runnable. Any other dataset gets its
+    own subtree — nothing can overwrite /vol/data/test/images."""
+    if dataset == "tcd":
+        return (f"{DATA}/test/images", f"{PKG_R}/test_gt.json",
+                f"{OUT}/pred_raw_s{seed}", f"{OUT}/preds_dt2_s{seed}.json")
+    return (f"{DATA}/{dataset}/images", f"{DT2_R}/{dataset}_gt.json",
+            f"{OUT}/pred_raw_{dataset}_s{seed}", f"{OUT}/preds_dt2_{dataset}_s{seed}.json")
+
+
+def _sparse_items():
+    """[(hf_split, image_id, tid)] for the 236-tile sparse slice.
+
+    The slice draws from BOTH HF splits (220 from `train`, 16 from `test`), so the split is
+    resolved per-tile from the image_id index rather than assumed."""
+    man = json.load(open(SPARSE_MANIFEST))["feat_test"]
+    return [("sparse", rec["image_id"], tid) for tid, rec in sorted(man.items())]
 
 
 def _cohort_items():
@@ -175,6 +206,90 @@ def build_data():
     return out
 
 
+@app.function(image=data_image, volumes={"/vol": vol, "/hfdata": hfvol}, timeout=3600,
+              cpu=2, memory=16384, secrets=[hf_secret], max_containers=10)
+def build_shard_sparse(shard):
+    """Write 1024@50% subtile PNGs for one shard, into {DATA}/{subdir}/images.
+
+    Prediction needs images only -- no COCO records. keep_empty=True: ALL 9 subtiles, so the
+    model is charged for false positives in label-free regions (see build_coco.build_tile)."""
+    import numpy as np
+    from PIL import Image
+    import sys
+    sys.path.insert(0, DT2_R)
+    import build_coco as B
+    idx, ds = _load_hf()
+    n = 0
+    for (subdir, image_id, tid) in shard:
+        os.makedirs(f"{DATA}/{subdir}/images", exist_ok=True)
+        hfs, row_i = idx[int(image_id)]                  # split resolved from the image_id
+        row = ds[hfs][row_i]
+        img = np.asarray(row["image"].convert("RGB"))
+        ca = json.loads(row["coco_annotations"])
+        # keep_empty=True: predict on ALL 9 subtiles. Skipping label-free subtiles would
+        # never charge DetecTree2 for false positives there, while our method (whole-tile,
+        # no subtiling) IS charged — an unfair asymmetry in an open-canopy comparison.
+        _, _, crops = B.build_tile(tid, img, ca, 0, 0, keep_empty=True)
+        for fn, arr in crops:
+            Image.fromarray(arr).save(os.path.join(f"{DATA}/{subdir}/images", fn))
+        n += len(crops)
+    vol.commit()
+    return n
+
+
+@app.function(image=data_image, volumes={"/vol": vol}, timeout=3600, cpu=4, memory=16384)
+def build_data_sparse():
+    """Fan the 236 sparse tiles out over N_SHARDS containers -> 2124 subtile PNGs.
+
+    Writes to /vol/data/sparse/ -- /vol/data/test/ (the 439) is never touched."""
+    items = _sparse_items()
+    want = len(items) * 9
+    imgdir = f"{DATA}/sparse/images"
+    vol.reload()                      # shards commit from OTHER containers; refresh this view
+    have = len(os.listdir(imgdir)) if os.path.isdir(imgdir) else 0
+    if have == want:
+        print(f"[build_data_sparse] {have} subtiles already on volume -> skip", flush=True)
+        return {"tiles": len(items), "subtiles": have, "skipped": True}
+    shards = [items[i::N_SHARDS] for i in range(N_SHARDS)]
+    print(f"[build_data_sparse] {len(items)} tiles over {N_SHARDS} shards "
+          f"({have}/{want} present)", flush=True)
+    n = sum(build_shard_sparse.map(shards))
+    vol.reload()
+    have = len(os.listdir(imgdir))
+    print(f"[build_data_sparse] wrote {n} subtiles; on volume: {have}", flush=True)
+    assert have == len(items) * 9, f"expected {len(items) * 9} subtiles, found {have}"
+    return {"tiles": len(items), "subtiles": have}
+
+
+@app.function(image=data_image, volumes={"/vol": vol}, timeout=3600, cpu=4, memory=16384)
+def build_test_fullcov():
+    """Re-emit the 439 TEST subtiles with keep_empty=True -> full 9/9 coverage (3951).
+
+    The original build dropped subtiles carrying no crown and no canopy, so DetecTree2 was
+    never inferred on those regions and never charged for false positives there (3189/3951 =
+    80.7% coverage), while our whole-tile method always is. This makes the 439 baseline
+    directly comparable to the sparse run, which is already full-coverage.
+
+    Additive: the existing 3189 PNGs are rewritten identically and 762 are added. The
+    published out/preds_dt2_s0.json is NOT touched -- stitch to a new name."""
+    man = json.load(open(MANIFEST))["feat_test"]
+    items = [("test", rec["image_id"], tid) for tid, rec in sorted(man.items())]
+    want = len(items) * 9
+    vol.reload()
+    have = len(os.listdir(f"{DATA}/test/images"))
+    print(f"[build_test_fullcov] {len(items)} tiles, {have}/{want} subtiles present", flush=True)
+    if have == want:
+        print("[build_test_fullcov] already full coverage -> skip", flush=True)
+        return {"tiles": len(items), "subtiles": have, "skipped": True}
+    shards = [items[i::N_SHARDS] for i in range(N_SHARDS)]
+    n = sum(build_shard_sparse.map(shards))
+    vol.reload()
+    have = len(os.listdir(f"{DATA}/test/images"))
+    print(f"[build_test_fullcov] wrote {n}; on volume: {have}", flush=True)
+    assert have == want, f"expected {want}, found {have}"
+    return {"tiles": len(items), "subtiles": have}
+
+
 @app.function(image=data_image, volumes={"/vol": vol}, timeout=3600, cpu=8)
 def validate_data():
     """Cheap CPU gate before the A100: parse each split's coco.json and fully load EVERY
@@ -208,7 +323,7 @@ def validate_data():
 @app.function(image=data_image, volumes={"/vol": vol}, timeout=6 * 3600, cpu=8,
               memory=32768)
 def stitch_cpu(seed: int = 0, iou_thr: float = 0.7, cont_thr: float = 0.85,
-               min_score: float = 0.1):
+               min_score: float = 0.1, dataset: str = "tcd", out_name: str = ""):
     """Single-container CPU stitch of the committed raw per-subtile predictions -> our preds
     schema (avoids paying A100 rates for the mask-decode/dedup CPU work, and avoids the flaky
     .map-from-within-a-function path). min_score drops junk low-conf preds before decode so the
@@ -216,11 +331,15 @@ def stitch_cpu(seed: int = 0, iou_thr: float = 0.7, cont_thr: float = 0.85,
     import sys
     sys.path.insert(0, DT2_R)
     import stitch
-    tids = sorted(json.load(open(f"{PKG_R}/test_gt.json")).keys())
-    res = stitch.stitch_all(f"{OUT}/pred_raw_s{seed}", tids, iou_thr=iou_thr,
+    _, gt_path, raw, fp = _paths(dataset, seed)
+    if out_name:                       # never clobber a published preds file
+        fp = f"{OUT}/{out_name}"
+    tids = sorted(json.load(open(gt_path)).keys())
+    res = stitch.stitch_all(raw, tids, iou_thr=iou_thr,
                             cont_thr=cont_thr, min_score=min_score)
     res["meta"]["seed"] = seed
-    fp = f"{OUT}/preds_dt2_s{seed}.json"
+    res["meta"]["dataset"] = dataset
+    res["meta"]["min_score"] = min_score
     json.dump(res, open(fp, "w"))
     vol.commit()
     n = sum(len(p["scores"]) for p in res["preds"].values())
@@ -361,9 +480,19 @@ def train(seed: int = 0, max_iter: int = 4000, eval_period: int = 500, patience:
 
 @app.function(image=dt2_image, gpu="A100", volumes={"/vol": vol}, timeout=4 * 3600)
 def predict(seed: int = 0, score_thr: float = 0.05, dets: int = 500,
-            iou_thr: float = 0.7, cont_thr: float = 0.85):
-    """Predict crowns on the 439 test subtiles with the fine-tuned model, stitch to whole
-    tiles (clean_crowns dedup), and SAVE predictions in our schema -> out/preds_dt2_s{seed}.json."""
+            iou_thr: float = 0.7, cont_thr: float = 0.85, dataset: str = "tcd",
+            stitch_inline: bool = True):
+    """Predict crowns with the fine-tuned model, stitch to whole tiles (clean_crowns dedup),
+    and SAVE predictions in our schema.
+
+    dataset='tcd' (default) = the original 439 test run, byte-identical paths.
+    dataset='sparse' = the 236-tile unseen open-canopy slice (data/tcd_sparse). The model is
+    UNCHANGED — same model_best_s{seed}.pth fine-tuned on the 792/108, which is disjoint from
+    the sparse slice by construction, so this is a genuine zero-shot transfer measurement.
+
+    stitch_inline=False stops after committing the raw per-subtile predictions, so the
+    mask-decode/dedup can run via stitch_cpu at CPU rates instead of A100 rates (that CPU
+    work dominated the 439 run). Default True keeps the original one-shot behaviour."""
     import sys
     sys.path.insert(0, DT2_R)
     from PIL import ImageFile
@@ -386,12 +515,12 @@ def predict(seed: int = 0, score_thr: float = 0.05, dets: int = 500,
     predictor = DefaultPredictor(cfg)
     gpu = torch.cuda.get_device_name(0)                     # record exact A100 variant
 
-    raw = f"{OUT}/pred_raw_s{seed}"
+    imgdir, gt_path, raw, fp = _paths(dataset, seed)
     os.makedirs(raw, exist_ok=True)
-    imgdir = f"{DATA}/test/images"
+    assert os.path.isdir(imgdir), f"{imgdir} missing — run build_data{'_sparse' if dataset != 'tcd' else ''}"
     files = sorted(f for f in os.listdir(imgdir) if f.endswith(".png"))
-    print(f"[predict] {len(files)} test subtiles on gpu={gpu}, score_thr={score_thr} dets={dets}",
-          flush=True)
+    print(f"[predict] dataset={dataset}: {len(files)} subtiles on gpu={gpu}, "
+          f"score_thr={score_thr} dets={dets}", flush=True)
     for k, fn in enumerate(files):
         stem = fn[:-4]
         outp = os.path.join(raw, f"Prediction_{stem}.json")
@@ -401,21 +530,31 @@ def predict(seed: int = 0, score_thr: float = 0.05, dets: int = 500,
         inst = predictor(img)["instances"].to("cpu")
         json.dump(instances_to_coco_json(inst, stem), open(outp, "w"))
         if (k + 1) % 300 == 0 or k + 1 == len(files):
+            # commit as we go: an ephemeral app dies with the local client, and an
+            # end-of-loop-only commit throws away everything since the last flush.
+            vol.commit()
             print(f"  predicted {k+1}/{len(files)}", flush=True)
     vol.commit()
 
-    tids = sorted(json.load(open(f"{PKG_R}/test_gt.json")).keys())
+    if not stitch_inline:
+        print(f"[predict] raw predictions committed to {raw}; "
+              f"run stitch_cpu --dataset {dataset} to finish (CPU rates)", flush=True)
+        return {"seed": seed, "dataset": dataset, "gpu": gpu, "raw": raw,
+                "n_subtiles": len(files), "stitched": False}
+
+    tids = sorted(json.load(open(gt_path)).keys())
     res = stitch.stitch_all(raw, tids, iou_thr=iou_thr, cont_thr=cont_thr)
     res["meta"]["seed"] = seed
     res["meta"]["score_thr"] = score_thr
     res["meta"]["gpu"] = gpu
-    fp = f"{OUT}/preds_dt2_s{seed}.json"
+    res["meta"]["dataset"] = dataset
     json.dump(res, open(fp, "w"))
     vol.commit()
     n = sum(len(p["scores"]) for p in res["preds"].values())
     print(f"[predict] saved {fp} (gpu={gpu}): {len(res['preds'])} tiles, {n} crowns total",
           flush=True)
-    return {"seed": seed, "gpu": gpu, "preds": fp, "n_tiles": len(res["preds"]), "n_crowns": n}
+    return {"seed": seed, "dataset": dataset, "gpu": gpu, "preds": fp,
+            "n_tiles": len(res["preds"]), "n_crowns": n}
 
 
 @app.local_entrypoint()

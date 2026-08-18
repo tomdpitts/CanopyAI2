@@ -1,0 +1,318 @@
+{
+  "label": "DetecTree2 (fine-tuned on the 900, seed 0)",
+  "preds": [
+    "boxinst_commonality_tcd_04/modal_sparse_tcd_multiseed/preds/dt2_sparse_s0.json"
+  ],
+  "pred_meta": [
+    {
+      "model": "DetecTree2 (Mask R-CNN R101-FPN) fine-tuned on 792/108, 1024@50% subtiles, clean_crowns dedup",
+      "mask_res": 512,
+      "scale_box_to_mask": 4.0,
+      "n_tiles": 236,
+      "dedup": {
+        "iou_thr": 0.7,
+        "cont_thr": 0.85,
+        "min_score": 0.1
+      },
+      "seed": 0,
+      "dataset": "sparse",
+      "min_score": 0.1
+    }
+  ],
+  "per_run": [
+    {
+      "all": {
+        "n_tiles": 236,
+        "n_gt": 14937,
+        "mask_mAP50": 0.5672,
+        "mask_mAP50_95": 0.241,
+        "box_mAP50": 0.5718,
+        "box_mAP40": 0.6188,
+        "n_pred": 77112
+      },
+      "scene_clean": {
+        "n_tiles": 106,
+        "n_gt": 6590,
+        "mask_mAP50": 0.6309,
+        "mask_mAP50_95": 0.2644,
+        "box_mAP50": 0.6368,
+        "box_mAP40": 0.6825,
+        "n_pred": 31821
+      },
+      "train_pool": {
+        "n_tiles": 220,
+        "n_gt": 14560,
+        "mask_mAP50": 0.568,
+        "mask_mAP50_95": 0.2406,
+        "box_mAP50": 0.5727,
+        "box_mAP40": 0.6198,
+        "n_pred": 73512
+      },
+      "scene_clean_and_train_pool": {
+        "n_tiles": 90,
+        "n_gt": 6213,
+        "mask_mAP50": 0.6359,
+        "mask_mAP50_95": 0.2642,
+        "box_mAP50": 0.6419,
+        "box_mAP40": 0.6874,
+        "n_pred": 28221
+      },
+      "biome_7": {
+        "n_tiles": 102,
+        "n_gt": 4390,
+        "mask_mAP50": 0.5358,
+        "mask_mAP50_95": 0.2339,
+        "box_mAP50": 0.5323,
+        "box_mAP40": 0.5771,
+        "n_pred": 32982
+      },
+      "biome_8": {
+        "n_tiles": 31,
+        "n_gt": 2064,
+        "mask_mAP50": 0.5106,
+        "mask_mAP50_95": 0.2208,
+        "box_mAP50": 0.513,
+        "box_mAP40": 0.5623,
+        "n_pred": 10389
+      },
+      "biome_9": {
+        "n_tiles": 7,
+        "n_gt": 223,
+        "mask_mAP50": 0.4716,
+        "mask_mAP50_95": 0.1966,
+        "box_mAP50": 0.4922,
+        "box_mAP40": 0.574,
+        "n_pred": 1634
+      },
+      "biome_10": {
+        "n_tiles": 16,
+        "n_gt": 260,
+        "mask_mAP50": 0.2651,
+        "mask_mAP50_95": 0.1254,
+        "box_mAP50": 0.2662,
+        "box_mAP40": 0.2926,
+        "n_pred": 3071
+      },
+      "biome_12": {
+        "n_tiles": 56,
+        "n_gt": 5914,
+        "mask_mAP50": 0.6344,
+        "mask_mAP50_95": 0.264,
+        "box_mAP50": 0.6465,
+        "box_mAP40": 0.6962,
+        "n_pred": 20404
+      },
+      "biome_13": {
+        "n_tiles": 24,
+        "n_gt": 2086,
+        "mask_mAP50": 0.6006,
+        "mask_mAP50_95": 0.263,
+        "box_mAP50": 0.6132,
+        "box_mAP40": 0.6597,
+        "n_pred": 8632
+      }
+    }
+  ],
+  "band_mean_std": {
+    "all": {
+      "n_tiles": 236,
+      "n_gt": 14937,
+      "mask_mAP50": [
+        0.5672,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.241,
+        0.0
+      ],
+      "box_mAP50": [
+        0.5718,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6188,
+        0.0
+      ]
+    },
+    "scene_clean": {
+      "n_tiles": 106,
+      "n_gt": 6590,
+      "mask_mAP50": [
+        0.6309,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2644,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6368,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6825,
+        0.0
+      ]
+    },
+    "train_pool": {
+      "n_tiles": 220,
+      "n_gt": 14560,
+      "mask_mAP50": [
+        0.568,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2406,
+        0.0
+      ],
+      "box_mAP50": [
+        0.5727,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6198,
+        0.0
+      ]
+    },
+    "scene_clean_and_train_pool": {
+      "n_tiles": 90,
+      "n_gt": 6213,
+      "mask_mAP50": [
+        0.6359,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2642,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6419,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6874,
+        0.0
+      ]
+    },
+    "biome_7": {
+      "n_tiles": 102,
+      "n_gt": 4390,
+      "mask_mAP50": [
+        0.5358,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2339,
+        0.0
+      ],
+      "box_mAP50": [
+        0.5323,
+        0.0
+      ],
+      "box_mAP40": [
+        0.5771,
+        0.0
+      ]
+    },
+    "biome_8": {
+      "n_tiles": 31,
+      "n_gt": 2064,
+      "mask_mAP50": [
+        0.5106,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2208,
+        0.0
+      ],
+      "box_mAP50": [
+        0.513,
+        0.0
+      ],
+      "box_mAP40": [
+        0.5623,
+        0.0
+      ]
+    },
+    "biome_9": {
+      "n_tiles": 7,
+      "n_gt": 223,
+      "mask_mAP50": [
+        0.4716,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.1966,
+        0.0
+      ],
+      "box_mAP50": [
+        0.4922,
+        0.0
+      ],
+      "box_mAP40": [
+        0.574,
+        0.0
+      ]
+    },
+    "biome_10": {
+      "n_tiles": 16,
+      "n_gt": 260,
+      "mask_mAP50": [
+        0.2651,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.1254,
+        0.0
+      ],
+      "box_mAP50": [
+        0.2662,
+        0.0
+      ],
+      "box_mAP40": [
+        0.2926,
+        0.0
+      ]
+    },
+    "biome_12": {
+      "n_tiles": 56,
+      "n_gt": 5914,
+      "mask_mAP50": [
+        0.6344,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.264,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6465,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6962,
+        0.0
+      ]
+    },
+    "biome_13": {
+      "n_tiles": 24,
+      "n_gt": 2086,
+      "mask_mAP50": [
+        0.6006,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.263,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6132,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6597,
+        0.0
+      ]
+    }
+  }
+}

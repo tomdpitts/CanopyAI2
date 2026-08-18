@@ -1,0 +1,435 @@
+{
+  "per_seed": {
+    "0": {
+      "all": {
+        "n_tiles": 236,
+        "n_gt": 14937,
+        "mask_mAP50": 0.6699,
+        "mask_mAP50_95": 0.2957,
+        "box_mAP50": 0.6442,
+        "box_mAP40": 0.7037
+      },
+      "scene_clean": {
+        "n_tiles": 106,
+        "n_gt": 6590,
+        "mask_mAP50": 0.6836,
+        "mask_mAP50_95": 0.3141,
+        "box_mAP50": 0.662,
+        "box_mAP40": 0.7117
+      },
+      "train_pool": {
+        "n_tiles": 220,
+        "n_gt": 14560,
+        "mask_mAP50": 0.6701,
+        "mask_mAP50_95": 0.2955,
+        "box_mAP50": 0.6442,
+        "box_mAP40": 0.7042
+      },
+      "scene_clean_and_train_pool": {
+        "n_tiles": 90,
+        "n_gt": 6213,
+        "mask_mAP50": 0.6827,
+        "mask_mAP50_95": 0.3145,
+        "box_mAP50": 0.66,
+        "box_mAP40": 0.7107
+      },
+      "biome_7": {
+        "n_tiles": 102,
+        "n_gt": 4390,
+        "mask_mAP50": 0.6449,
+        "mask_mAP50_95": 0.2828,
+        "box_mAP50": 0.6189,
+        "box_mAP40": 0.6797
+      },
+      "biome_8": {
+        "n_tiles": 31,
+        "n_gt": 2064,
+        "mask_mAP50": 0.6709,
+        "mask_mAP50_95": 0.2954,
+        "box_mAP50": 0.6533,
+        "box_mAP40": 0.7124
+      },
+      "biome_9": {
+        "n_tiles": 7,
+        "n_gt": 223,
+        "mask_mAP50": 0.5317,
+        "mask_mAP50_95": 0.2075,
+        "box_mAP50": 0.5829,
+        "box_mAP40": 0.6511
+      },
+      "biome_10": {
+        "n_tiles": 16,
+        "n_gt": 260,
+        "mask_mAP50": 0.1786,
+        "mask_mAP50_95": 0.0772,
+        "box_mAP50": 0.1785,
+        "box_mAP40": 0.2018
+      },
+      "biome_12": {
+        "n_tiles": 56,
+        "n_gt": 5914,
+        "mask_mAP50": 0.709,
+        "mask_mAP50_95": 0.3186,
+        "box_mAP50": 0.6829,
+        "box_mAP40": 0.7389
+      },
+      "biome_13": {
+        "n_tiles": 24,
+        "n_gt": 2086,
+        "mask_mAP50": 0.7346,
+        "mask_mAP50_95": 0.3247,
+        "box_mAP50": 0.6963,
+        "box_mAP40": 0.7728
+      }
+    },
+    "1": {
+      "all": {
+        "n_tiles": 236,
+        "n_gt": 14937,
+        "mask_mAP50": 0.6476,
+        "mask_mAP50_95": 0.2828,
+        "box_mAP50": 0.6177,
+        "box_mAP40": 0.6793
+      },
+      "scene_clean": {
+        "n_tiles": 106,
+        "n_gt": 6590,
+        "mask_mAP50": 0.6733,
+        "mask_mAP50_95": 0.3051,
+        "box_mAP50": 0.6469,
+        "box_mAP40": 0.7011
+      },
+      "train_pool": {
+        "n_tiles": 220,
+        "n_gt": 14560,
+        "mask_mAP50": 0.6464,
+        "mask_mAP50_95": 0.2824,
+        "box_mAP50": 0.6164,
+        "box_mAP40": 0.6785
+      },
+      "scene_clean_and_train_pool": {
+        "n_tiles": 90,
+        "n_gt": 6213,
+        "mask_mAP50": 0.673,
+        "mask_mAP50_95": 0.3054,
+        "box_mAP50": 0.6438,
+        "box_mAP40": 0.7006
+      },
+      "biome_7": {
+        "n_tiles": 102,
+        "n_gt": 4390,
+        "mask_mAP50": 0.613,
+        "mask_mAP50_95": 0.2625,
+        "box_mAP50": 0.5816,
+        "box_mAP40": 0.6469
+      },
+      "biome_8": {
+        "n_tiles": 31,
+        "n_gt": 2064,
+        "mask_mAP50": 0.6548,
+        "mask_mAP50_95": 0.2799,
+        "box_mAP50": 0.6135,
+        "box_mAP40": 0.6962
+      },
+      "biome_9": {
+        "n_tiles": 7,
+        "n_gt": 223,
+        "mask_mAP50": 0.5345,
+        "mask_mAP50_95": 0.2033,
+        "box_mAP50": 0.5625,
+        "box_mAP40": 0.6405
+      },
+      "biome_10": {
+        "n_tiles": 16,
+        "n_gt": 260,
+        "mask_mAP50": 0.1439,
+        "mask_mAP50_95": 0.0563,
+        "box_mAP50": 0.1334,
+        "box_mAP40": 0.1546
+      },
+      "biome_12": {
+        "n_tiles": 56,
+        "n_gt": 5914,
+        "mask_mAP50": 0.7126,
+        "mask_mAP50_95": 0.3185,
+        "box_mAP50": 0.6869,
+        "box_mAP40": 0.741
+      },
+      "biome_13": {
+        "n_tiles": 24,
+        "n_gt": 2086,
+        "mask_mAP50": 0.7262,
+        "mask_mAP50_95": 0.32,
+        "box_mAP50": 0.6837,
+        "box_mAP40": 0.7593
+      }
+    },
+    "2": {
+      "all": {
+        "n_tiles": 236,
+        "n_gt": 14937,
+        "mask_mAP50": 0.6504,
+        "mask_mAP50_95": 0.287,
+        "box_mAP50": 0.6311,
+        "box_mAP40": 0.6881
+      },
+      "scene_clean": {
+        "n_tiles": 106,
+        "n_gt": 6590,
+        "mask_mAP50": 0.6791,
+        "mask_mAP50_95": 0.313,
+        "box_mAP50": 0.6651,
+        "box_mAP40": 0.7128
+      },
+      "train_pool": {
+        "n_tiles": 220,
+        "n_gt": 14560,
+        "mask_mAP50": 0.6506,
+        "mask_mAP50_95": 0.2869,
+        "box_mAP50": 0.6305,
+        "box_mAP40": 0.688
+      },
+      "scene_clean_and_train_pool": {
+        "n_tiles": 90,
+        "n_gt": 6213,
+        "mask_mAP50": 0.6807,
+        "mask_mAP50_95": 0.3138,
+        "box_mAP50": 0.6631,
+        "box_mAP40": 0.7113
+      },
+      "biome_7": {
+        "n_tiles": 102,
+        "n_gt": 4390,
+        "mask_mAP50": 0.6117,
+        "mask_mAP50_95": 0.2646,
+        "box_mAP50": 0.5963,
+        "box_mAP40": 0.6465
+      },
+      "biome_8": {
+        "n_tiles": 31,
+        "n_gt": 2064,
+        "mask_mAP50": 0.6471,
+        "mask_mAP50_95": 0.2809,
+        "box_mAP50": 0.6268,
+        "box_mAP40": 0.6944
+      },
+      "biome_9": {
+        "n_tiles": 7,
+        "n_gt": 223,
+        "mask_mAP50": 0.5656,
+        "mask_mAP50_95": 0.2135,
+        "box_mAP50": 0.6165,
+        "box_mAP40": 0.6858
+      },
+      "biome_10": {
+        "n_tiles": 16,
+        "n_gt": 260,
+        "mask_mAP50": 0.1982,
+        "mask_mAP50_95": 0.083,
+        "box_mAP50": 0.1921,
+        "box_mAP40": 0.2188
+      },
+      "biome_12": {
+        "n_tiles": 56,
+        "n_gt": 5914,
+        "mask_mAP50": 0.709,
+        "mask_mAP50_95": 0.3186,
+        "box_mAP50": 0.6849,
+        "box_mAP40": 0.7458
+      },
+      "biome_13": {
+        "n_tiles": 24,
+        "n_gt": 2086,
+        "mask_mAP50": 0.6816,
+        "mask_mAP50_95": 0.3074,
+        "box_mAP50": 0.6613,
+        "box_mAP40": 0.7207
+      }
+    }
+  },
+  "band_mean_std": {
+    "all": {
+      "n_tiles": 236,
+      "n_gt": 14937,
+      "mask_mAP50": [
+        0.656,
+        0.0099
+      ],
+      "mask_mAP50_95": [
+        0.2885,
+        0.0054
+      ],
+      "box_mAP50": [
+        0.631,
+        0.0108
+      ]
+    },
+    "scene_clean": {
+      "n_tiles": 106,
+      "n_gt": 6590,
+      "mask_mAP50": [
+        0.6787,
+        0.0042
+      ],
+      "mask_mAP50_95": [
+        0.3107,
+        0.004
+      ],
+      "box_mAP50": [
+        0.658,
+        0.008
+      ]
+    },
+    "train_pool": {
+      "n_tiles": 220,
+      "n_gt": 14560,
+      "mask_mAP50": [
+        0.6557,
+        0.0103
+      ],
+      "mask_mAP50_95": [
+        0.2883,
+        0.0054
+      ],
+      "box_mAP50": [
+        0.6304,
+        0.0113
+      ]
+    },
+    "scene_clean_and_train_pool": {
+      "n_tiles": 90,
+      "n_gt": 6213,
+      "mask_mAP50": [
+        0.6788,
+        0.0042
+      ],
+      "mask_mAP50_95": [
+        0.3112,
+        0.0041
+      ],
+      "box_mAP50": [
+        0.6556,
+        0.0085
+      ]
+    },
+    "biome_7": {
+      "n_tiles": 102,
+      "n_gt": 4390,
+      "mask_mAP50": [
+        0.6232,
+        0.0154
+      ],
+      "mask_mAP50_95": [
+        0.27,
+        0.0091
+      ],
+      "box_mAP50": [
+        0.5989,
+        0.0153
+      ]
+    },
+    "biome_8": {
+      "n_tiles": 31,
+      "n_gt": 2064,
+      "mask_mAP50": [
+        0.6576,
+        0.0099
+      ],
+      "mask_mAP50_95": [
+        0.2854,
+        0.0071
+      ],
+      "box_mAP50": [
+        0.6312,
+        0.0165
+      ]
+    },
+    "biome_9": {
+      "n_tiles": 7,
+      "n_gt": 223,
+      "mask_mAP50": [
+        0.5439,
+        0.0154
+      ],
+      "mask_mAP50_95": [
+        0.2081,
+        0.0042
+      ],
+      "box_mAP50": [
+        0.5873,
+        0.0223
+      ]
+    },
+    "biome_10": {
+      "n_tiles": 16,
+      "n_gt": 260,
+      "mask_mAP50": [
+        0.1736,
+        0.0225
+      ],
+      "mask_mAP50_95": [
+        0.0722,
+        0.0115
+      ],
+      "box_mAP50": [
+        0.168,
+        0.0251
+      ]
+    },
+    "biome_12": {
+      "n_tiles": 56,
+      "n_gt": 5914,
+      "mask_mAP50": [
+        0.7102,
+        0.0017
+      ],
+      "mask_mAP50_95": [
+        0.3186,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6849,
+        0.0016
+      ]
+    },
+    "biome_13": {
+      "n_tiles": 24,
+      "n_gt": 2086,
+      "mask_mAP50": [
+        0.7141,
+        0.0233
+      ],
+      "mask_mAP50_95": [
+        0.3174,
+        0.0073
+      ],
+      "box_mAP50": [
+        0.6804,
+        0.0145
+      ]
+    }
+  },
+  "reference_439": {
+    "config": "beta0.5-fixed, alpha=0.3, kappa=1.6, mask_thr=0.25",
+    "seed0": {
+      "mask_mAP50": 0.625,
+      "mask_mAP50_95": 0.2574,
+      "box_mAP50": 0.605
+    },
+    "band_012": {
+      "mask_mAP50": 0.63,
+      "mask_mAP50_95": 0.257,
+      "box_mAP50": 0.603
+    }
+  },
+  "reference_used": {
+    "mask_mAP50": 0.63,
+    "mask_mAP50_95": 0.257,
+    "box_mAP50": 0.603
+  },
+  "delta_vs_439_all": {
+    "mask_mAP50": 0.026,
+    "mask_mAP50_95": 0.0315,
+    "box_mAP50": 0.028
+  }
+}

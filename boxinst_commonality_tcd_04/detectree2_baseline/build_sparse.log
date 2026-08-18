@@ -1,0 +1,96 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-iy2D1KObCyho2QRXOla5ip
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/detectree2_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_sparse_tcd_
+│   multiseed/manifest_sparse.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/sparse_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/stitch.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/dt2_recipe.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/build_coco.py
+├── 🔨 Created function build_shard.
+├── 🔨 Created function build_data.
+├── 🔨 Created function build_shard_sparse.
+├── 🔨 Created function build_data_sparse.
+├── 🔨 Created function validate_data.
+├── 🔨 Created function stitch_cpu.
+├── 🔨 Created function fetch_weights.
+├── 🔨 Created function imports_ok.
+├── 🔨 Created function train.
+└── 🔨 Created function predict.
+[build_data_sparse] 236 tiles over 10 shards
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Using the latest cached version of the dataset since restor/tcd couldn't be found on the Hugging Face Hub (offline mode is enabled).
+Found the latest cached dataset configuration 'default' at /hfdata/hf_cache/datasets/restor___tcd/default/0.0.0/d97d4da0ebbb6e249ae95ac5e19656babd972eb2 (last modified on Tue Jun  9 02:57:23 2026).
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 977, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 187, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 265, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/detectree2_modal.py", line 242, in build_data_sparse
+    have = len(os.listdir(f"{DATA}/sparse/images"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/vol/data/sparse/images'
+Stopping app - uncaught exception raised in remote container: FileNotFoundError(2, 'No such file or directory').
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ [Errno 2] No such file or directory: '/vol/data/sparse/images'               │
+╰──────────────────────────────────────────────────────────────────────────────╯

@@ -1,0 +1,182 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-077qM6pyPrMxWUW6TvlCmP
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_sparse_tcd_
+│   multiseed/sparse_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/slice_manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_sparse_tcd_
+│   multiseed/manifest_sparse.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/sparse_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_sparse_tcd_
+│   multiseed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/ref_feat_tcd.npz
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_fit_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/vault/em_model.np
+│   z
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function verify.
+├── 🔨 Created function extract_4p.
+├── 🔨 Created function eval_sparse.
+├── 🔨 Created function band_sparse.
+└── 🔨 Created function score_subsets.
+[band_sparse] gpu=NVIDIA A100-SXM4-40GB seeds=[0] mask_thr=0.25 em=em_model_4p_fix.npz n_tiles=236
+[eval_selfmask] 236 tiles (op_thr=0.39999999999999997, masker s=8)
+  50/236 tiles
+  100/236 tiles
+  150/236 tiles
+  200/236 tiles
+  236/236 tiles
+{
+  "variant": "4phase_L24_selfmask",
+  "scale": "single",
+  "op_thr": 0.39999999999999997,
+  "mask_thr": 0.25,
+  "em": "em_model_4p_fix.npz",
+  "n_tiles": 236,
+  "n_gt_trees": 14937,
+  "mask_mAP50": 0.6699,
+  "mask_mAP50_95": 0.2957,
+  "box_mAP50": 0.6442,
+  "box_mAP50_95": 0.2834,
+  "box_minus_mask_mAP50": -0.0257,
+  "detection": {
+    "box_mAP50": 0.6442,
+    "box_mAP40": 0.7036,
+    "box_mAP50_95": 0.2834,
+    "iou0.40": {
+      "op": {
+        "P": 0.7521,
+        "R": 0.6576,
+        "F1": 0.7017
+      },
+      "best": {
+        "P": 0.722,
+        "R": 0.6946,
+        "F1": 0.708,
+        "thr": 0.38
+      },
+      "maxR": 0.8693
+    },
+    "iou0.50": {
+      "op": {
+        "P": 0.7201,
+        "R": 0.6296,
+        "F1": 0.6718
+      },
+      "best": {
+        "P": 0.6899,
+        "R": 0.6616,
+        "F1": 0.6754,
+        "thr": 0.381
+      },
+      "maxR": 0.8097
+    }
+  },
+  "instance_seg": {
+    "mask_mAP50": 0.6699,
+    "mask_mAP50_95": 0.2957,
+    "iou0.50": {
+      "op": {
+        "P": 0.7352,
+        "R": 0.6419,
+        "F1": 0.6854
+      },
+      "best": {
+        "P": 0.7039,
+        "R": 0.676,
+        "F1": 0.6897,
+        "thr": 0.38
+      },
+      "maxR": 0.832
+    }
+  },
+  "semantic_F1": 0.645,
+  "semantic_P": 0.7916,
+  "semantic_R": 0.5442,
+  "best_epoch": 20
+}
+[eval_selfmask] mask_thr=0.25 INSTANCE-SEG mask mAP50=0.6699 mAP50-95=0.2957 (β=0@0.5 was 0.5794/0.1948)
+[eval_selfmask] saved predictions (236 tiles, boxes+masks) -> /vol/out/preds_sparse_L24_s0/preds.json
+[band_sparse] seed 0: mask=0.6699/0.2957 box=0.6442 (12.9min)
+[band_sparse] total 12.9 min
+[band_sparse] {'mask_mAP50': (0.6699, 0.0), 'mask_mAP50_95': (0.2957, 0.0), 'box_mAP50': (0.6442, 0.0)}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/tomdpitts/main/ap-077qM6pyPrMxWUW6TvlCmP

@@ -1,0 +1,60 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-lt9CSBdktKhx9qQoofwdHG
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/detectree2_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/sparse_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_sparse_tcd_
+│   multiseed/manifest_sparse.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/stitch.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/build_coco.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/dt2_recipe.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created function build_shard.
+├── 🔨 Created function build_data.
+├── 🔨 Created function build_shard_sparse.
+├── 🔨 Created function build_data_sparse.
+├── 🔨 Created function build_test_fullcov.
+├── 🔨 Created function validate_data.
+├── 🔨 Created function stitch_cpu.
+├── 🔨 Created function fetch_weights.
+├── 🔨 Created function imports_ok.
+├── 🔨 Created function train.
+└── 🔨 Created function predict.
+  stitched 25/439 tiles
+  stitched 50/439 tiles
+  stitched 75/439 tiles
+  stitched 100/439 tiles
+  stitched 125/439 tiles
+  stitched 150/439 tiles
+  stitched 175/439 tiles
+  stitched 200/439 tiles
+  stitched 225/439 tiles
+  stitched 250/439 tiles
+  stitched 275/439 tiles
+  stitched 300/439 tiles
+  stitched 325/439 tiles
+  stitched 350/439 tiles
+  stitched 375/439 tiles
+  stitched 400/439 tiles
+  stitched 425/439 tiles
+  stitched 439/439 tiles
+[stitch_cpu] saved /vol/out/preds_dt2_s0_fullcov.json: 439 tiles, 152690 crowns
+✓ App completed. View run at 
+https://modal.com/apps/tomdpitts/main/ap-lt9CSBdktKhx9qQoofwdHG

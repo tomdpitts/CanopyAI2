@@ -1,0 +1,271 @@
+{
+  "per_seed": {
+    "0": {
+      "all": {
+        "n_tiles": 236,
+        "n_gt": 14937,
+        "mask_mAP50": 0.6699,
+        "mask_mAP50_95": 0.2957,
+        "box_mAP50": 0.6442,
+        "box_mAP40": 0.7037
+      },
+      "scene_clean": {
+        "n_tiles": 106,
+        "n_gt": 6590,
+        "mask_mAP50": 0.6836,
+        "mask_mAP50_95": 0.3141,
+        "box_mAP50": 0.662,
+        "box_mAP40": 0.7117
+      },
+      "train_pool": {
+        "n_tiles": 220,
+        "n_gt": 14560,
+        "mask_mAP50": 0.6701,
+        "mask_mAP50_95": 0.2955,
+        "box_mAP50": 0.6442,
+        "box_mAP40": 0.7042
+      },
+      "scene_clean_and_train_pool": {
+        "n_tiles": 90,
+        "n_gt": 6213,
+        "mask_mAP50": 0.6827,
+        "mask_mAP50_95": 0.3145,
+        "box_mAP50": 0.66,
+        "box_mAP40": 0.7107
+      },
+      "biome_7": {
+        "n_tiles": 102,
+        "n_gt": 4390,
+        "mask_mAP50": 0.6449,
+        "mask_mAP50_95": 0.2828,
+        "box_mAP50": 0.6189,
+        "box_mAP40": 0.6797
+      },
+      "biome_8": {
+        "n_tiles": 31,
+        "n_gt": 2064,
+        "mask_mAP50": 0.6709,
+        "mask_mAP50_95": 0.2954,
+        "box_mAP50": 0.6533,
+        "box_mAP40": 0.7124
+      },
+      "biome_9": {
+        "n_tiles": 7,
+        "n_gt": 223,
+        "mask_mAP50": 0.5317,
+        "mask_mAP50_95": 0.2075,
+        "box_mAP50": 0.5829,
+        "box_mAP40": 0.6511
+      },
+      "biome_10": {
+        "n_tiles": 16,
+        "n_gt": 260,
+        "mask_mAP50": 0.1786,
+        "mask_mAP50_95": 0.0772,
+        "box_mAP50": 0.1785,
+        "box_mAP40": 0.2018
+      },
+      "biome_12": {
+        "n_tiles": 56,
+        "n_gt": 5914,
+        "mask_mAP50": 0.709,
+        "mask_mAP50_95": 0.3186,
+        "box_mAP50": 0.6829,
+        "box_mAP40": 0.7389
+      },
+      "biome_13": {
+        "n_tiles": 24,
+        "n_gt": 2086,
+        "mask_mAP50": 0.7346,
+        "mask_mAP50_95": 0.3247,
+        "box_mAP50": 0.6963,
+        "box_mAP40": 0.7728
+      }
+    }
+  },
+  "band_mean_std": {
+    "all": {
+      "n_tiles": 236,
+      "n_gt": 14937,
+      "mask_mAP50": [
+        0.6699,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2957,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6442,
+        0.0
+      ]
+    },
+    "scene_clean": {
+      "n_tiles": 106,
+      "n_gt": 6590,
+      "mask_mAP50": [
+        0.6836,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.3141,
+        0.0
+      ],
+      "box_mAP50": [
+        0.662,
+        0.0
+      ]
+    },
+    "train_pool": {
+      "n_tiles": 220,
+      "n_gt": 14560,
+      "mask_mAP50": [
+        0.6701,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2955,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6442,
+        0.0
+      ]
+    },
+    "scene_clean_and_train_pool": {
+      "n_tiles": 90,
+      "n_gt": 6213,
+      "mask_mAP50": [
+        0.6827,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.3145,
+        0.0
+      ],
+      "box_mAP50": [
+        0.66,
+        0.0
+      ]
+    },
+    "biome_7": {
+      "n_tiles": 102,
+      "n_gt": 4390,
+      "mask_mAP50": [
+        0.6449,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2828,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6189,
+        0.0
+      ]
+    },
+    "biome_8": {
+      "n_tiles": 31,
+      "n_gt": 2064,
+      "mask_mAP50": [
+        0.6709,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2954,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6533,
+        0.0
+      ]
+    },
+    "biome_9": {
+      "n_tiles": 7,
+      "n_gt": 223,
+      "mask_mAP50": [
+        0.5317,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2075,
+        0.0
+      ],
+      "box_mAP50": [
+        0.5829,
+        0.0
+      ]
+    },
+    "biome_10": {
+      "n_tiles": 16,
+      "n_gt": 260,
+      "mask_mAP50": [
+        0.1786,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.0772,
+        0.0
+      ],
+      "box_mAP50": [
+        0.1785,
+        0.0
+      ]
+    },
+    "biome_12": {
+      "n_tiles": 56,
+      "n_gt": 5914,
+      "mask_mAP50": [
+        0.709,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.3186,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6829,
+        0.0
+      ]
+    },
+    "biome_13": {
+      "n_tiles": 24,
+      "n_gt": 2086,
+      "mask_mAP50": [
+        0.7346,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.3247,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6963,
+        0.0
+      ]
+    }
+  },
+  "reference_439": {
+    "config": "beta0.5-fixed, alpha=0.3, kappa=1.6, mask_thr=0.25",
+    "seed0": {
+      "mask_mAP50": 0.625,
+      "mask_mAP50_95": 0.2574,
+      "box_mAP50": 0.605
+    },
+    "band_012": {
+      "mask_mAP50": 0.63,
+      "mask_mAP50_95": 0.257,
+      "box_mAP50": 0.603
+    }
+  },
+  "reference_used": {
+    "mask_mAP50": 0.625,
+    "mask_mAP50_95": 0.2574,
+    "box_mAP50": 0.605
+  },
+  "delta_vs_439_all": {
+    "mask_mAP50": 0.0449,
+    "mask_mAP50_95": 0.0383,
+    "box_mAP50": 0.0392
+  }
+}

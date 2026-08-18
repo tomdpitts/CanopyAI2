@@ -24,20 +24,25 @@ with the >50%-canopy-ignore scorer (`evaluate._greedy_ap`, RES 512).
 | method | supervision | mask mAP50 | mask mAP50-95 | box mAP50 |
 |---|---|---|---|---|
 | **OURS** (β=0.5-fix + α/κ knobs, 3-seed) | **box + canopy (weak)** | **0.630 ± 0.005** | **0.257** | 0.603 |
-| **DetecTree2** (Mask R-CNN R101-FPN, fine-tuned) | full crown masks | 0.545 | 0.228 | 0.539 |
+| **DetecTree2** (Mask R-CNN R101-FPN, fine-tuned) | full crown masks | 0.535 | 0.224 | 0.529 |
 | Restor Mask R-CNN (OAM-TCD paper, *their* protocol) | full masks | 0.432 | — | — |
 
 **Our box-weak method beats full-mask-supervised DetecTree2 by +0.085 mask mAP50**, and on
 mAP50-95 and box mAP50 too, despite DetecTree2 getting strictly more supervision. The gap is
 mostly the **detector** (box 0.605 vs 0.539); both convert boxes→masks comparably. The DetecTree2
-reproduction is credible rather than a strawman: 0.545 lands above the paper's Restor number and
+reproduction is credible rather than a strawman: 0.535 lands above the paper's Restor number and
 below ours. DetecTree2 is a single seed.
 
 > ⚠️ **The Restor 0.432 row is the paper's published figure under Restor's own protocol — we have
 > never re-scored their released `restor/tcd-mask-rcnn-r50` checkpoint under our canopy-`iscrowd=1`
 > scorer.** No such replication exists anywhere in this repo (the checkpoint is in the local HF
 > cache but no code reads it). The only Mask R-CNN we have run under our exact protocol is the
-> DetecTree2 row (0.545). Treat 0.432 as cross-protocol context, not a like-for-like comparison.
+> DetecTree2 row (0.535). Treat 0.432 as cross-protocol context, not a like-for-like comparison.
+
+> 📌 **2026-08-18:** the DetecTree2 439 figures were restated (0.5448 → 0.5345 mask mAP50) after a
+> prediction-coverage bug was fixed — its test subtiles with no annotations were never inferred on,
+> so it was never charged for false positives there (80.7% coverage). Ours are unchanged. Full
+> account in `README.md` § DetecTree2 baseline.
 
 ## Why it works — the two load-bearing pieces
 

@@ -100,3 +100,68 @@ Seeds 3,4 not run (user chose 3 seeds). Defaults NOT yet promoted (still 1.0).
   the two-scalar change in `boxinst_commonality.em.estep` (novelty intact).
 - Deferred (rips up floorboards): finer real-4px features (Modal re-extraction) for more
   boundary precision; better DETECTION is the only route past ~0.633→0.70 (SAM maxR 0.818).
+
+## Selection protocol for α/κ — PRE-REGISTERED 2026-08-18, before the val grid landed
+
+Everything above chose α/κ on TEST tiles (40-tile pilot of the 439 → 130 → all 439), so the
+settled 0.630 is a tuned-on-test number. `sweep_val_knobs` re-runs the same neighbourhood on
+the held-out 108-tile VAL split (7041 crowns; `val_gt.json`, prepare_test convention, scored
+by the identical AP core). This rule was written to disk while that sweep was at 60/108 tiles
+and NO val cell had been read:
+
+> Select the (α, κ) maximising val mask **mAP50-95** — the metric that held stable across the
+> 40→130→439 scaling, where the AP50 gain decayed (+0.016→+0.009→+0.005). If any grid point
+> within **0.002 mAP50-95** of the val maximum has already been evaluated on test, report that
+> point: ties inside the noise band break toward the pre-existing evaluation.
+
+Rationale for the tie band: the test sweep found a BROAD optimum (0.634–0.636 across
+α∈[0.3,0.4], κ∈[1.3,2.0], thr∈[0.25,0.30]), so the grid argmax is a near-coin-toss among
+~6 plateau points, and val carries ~1.9× the test's sampling noise (7041 vs 25705 crowns).
+The band is fixed HERE at 0.002 so it cannot be widened afterwards to capture a preferred
+answer.
+
+**If the val optimum falls outside the band**, the honest cost is 3 test evals at the val-chosen
+setting (~$6, ~1 h as parallel single-seed containers) — NOT retaining (0.3, 1.6) because its
+test number already exists. Retaining it in that case would be the same tuned-on-test problem
+in val-shaped disguise.
+
+Report the FULL val surface alongside whichever point is selected, so the plateau is visible.
+
+### Val-grid RESULT (2026-08-18) — the pre-registered rule selects (α=0.3, κ×1.6, thr=0.25)
+
+`sweep_val_knobs`, seed-0 detector, β=0.5-fixed masker, 108 val tiles / 7041 crowns
+(val box mAP50 0.6065). Full surface, mask mAP50-95 (mask AP50 in brackets):
+
+| α \ κ | 1.0 | 1.3 | **1.6** | 2.0 |
+|---|---|---|---|---|
+| **0.3** | 0.2647 (0.6348) | 0.2666 (0.6366) | **0.2680 (0.6392)** | 0.2677 (0.6382) |
+| 0.4 | 0.2624 (0.6350) | 0.2649 (0.6361) | 0.2661 (0.6382) | 0.2673 (0.6383) |
+| 0.5 | 0.2585 (0.6346) | 0.2623 (0.6353) | 0.2635 (0.6367) | 0.2651 (0.6375) |
+| 0.7 | 0.2537 (0.6338) | 0.2566 (0.6348) | 0.2589 (0.6347) | 0.2622 (0.6367) |
+| 1.0 (vanilla) | 0.2490 (0.6304) | 0.2512 (0.6320) | 0.2534 (0.6326) | 0.2560 (0.6329) |
+
+thr=0.30 variants: (0.3, 1.6) 0.2639 (0.6386); (0.4, 1.6) 0.2610 (0.6366) — both below their
+thr=0.25 counterparts, so thr 0.25 survives on val too.
+
+**(0.3, 1.6, 0.25) is the outright val argmax on BOTH metrics** — the tie-break clause was never
+needed. The test-side choice is therefore reproduced by a selection that never touches test data,
+and the existing 3-seed 439 band (0.630 ± 0.005 / 0.257 ± 0.001) stands as select-on-val /
+report-on-test. **No test re-evaluation was required.**
+
+**What this does and does NOT establish.** It does establish that α/κ were not chosen on the
+evaluation set — the tuned-on-test objection is answered. It does NOT establish that (0.3, 1.6) is
+uniquely optimal: the margin over the runner-up (0.3, 2.0) is **0.0003 mAP50-95**, far inside
+noise, and the whole α≤0.4 / κ≥1.3 corner sits within 0.002. The honest reading is a **broad
+plateau whose corner the rule happens to land in**; any point in it would give materially the same
+test number. What IS robust across the surface: α<1 beats α=1 at every κ (+0.012–0.016 mAP50-95),
+and κ>1 beats κ=1 at every α — i.e. both knobs help monotonically in their useful range, which is
+the claim the paper should make.
+
+**Residual caveats (disclose in the paper).** (1) Val tiles come from the same OAM-TCD train pool,
+not an independent site. (2) The seed-0 detector early-stopped on these val tiles, so val is held
+out for the MASKER knobs but not for detection — box AP is masker-invariant so the selection is
+uncontaminated, though val boxes may be marginally better-fit than test boxes. (3) Selection used
+val CROWN POLYGONS: 2 scalars are fitted against 108 tiles of mask labels, so "box+canopy-weak" is
+exact for training and near-exact overall — state it as "two inference scalars selected on 108
+held-out images". (4) `mask_thr=0.25` was originally chosen test-side; the two thr=0.30 cells above
+re-confirm 0.25 on val, but a full thr sweep on val was not run.

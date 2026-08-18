@@ -1,0 +1,29 @@
+{
+  "model": "DetecTree2 (Mask R-CNN R101-FPN) fine-tuned on 792/108, 1024@50% subtiles, clean_crowns dedup",
+  "n_tiles": 439,
+  "n_gt_trees": 25705,
+  "n_pred": 152690,
+  "mask_mAP50": 0.5345,
+  "mask_mAP50_95": 0.2235,
+  "box_mAP50": 0.529,
+  "box_mAP40": 0.5836,
+  "box_mAP50_95": 0.2425,
+  "mask_bestF1@0.5": {
+    "P": 0.5847,
+    "R": 0.5544,
+    "F1": 0.5691,
+    "thr": 0.516
+  },
+  "box_bestF1@0.4": {
+    "P": 0.6137,
+    "R": 0.583,
+    "F1": 0.5979,
+    "thr": 0.516
+  },
+  "box_bestF1@0.5": {
+    "P": 0.5798,
+    "R": 0.5508,
+    "F1": 0.5649,
+    "thr": 0.516
+  }
+}

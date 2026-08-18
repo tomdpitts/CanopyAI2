@@ -65,7 +65,7 @@ for rel in ("__init__.py",):
     image = image.add_local_file(os.path.join(MTS, rel),
                                  f"{PKG_R}/modal_tcd_multiseed/{rel}")
 for rel in ("__init__.py", "phase4_features_tcd.py", "phase4_lib_tcd.py",
-            "phase4_fit_tcd.py", "manifest.json", "ref_feat_tcd.npz"):
+            "phase4_fit_tcd.py", "manifest.json", "ref_feat_tcd.npz", "val_gt.json"):
     image = image.add_local_file(os.path.join(HERE, rel), f"{PH4_R}/{rel}")
 STUB_FILES = {
     "boxinst": ("__init__.py", "cache_feats.py"),
@@ -386,6 +386,48 @@ def eval_selfmask(seed: int = 0, beta: float = 0.0, mask_thr: float = 0.25,
     print(f"[eval_selfmask] {tag} beta={beta} mask_thr={mask_thr}: "
           f"mask={res['mask_mAP50']}/{res['mask_mAP50_95']} box={res['box_mAP50']}",
           flush=True)
+    return res
+
+
+@app.function(gpu="A100", image=image, volumes={"/vol": vol}, timeout=8 * 3600,
+              cpu=8, memory=65536)
+def sweep_val_knobs(seed: int = 0, beta: float = 0.5, fix: bool = True,
+                    grid: str = "", limit: int = 0):
+    """Choose the box-robustness knobs (alpha, kappa) on the HELD-OUT 108-tile VAL split.
+
+    BOX2MASK_LEVERS.md selected alpha=0.3/kappa=1.6 on TEST tiles (a 40-tile pilot of the
+    439, then 130, then all 439), so the settled 0.630 is a tuned-on-test number. This
+    re-runs the same grid on the val tiles instead (features already on the volume in
+    feat_4p_train; crown-polygon GT = val_gt.json, built by make_val_gt.py in the exact
+    prepare_test convention). If the val optimum agrees with (0.3, 1.6), the EXISTING
+    3-seed 439 results stand as a clean select-on-val / report-on-test result and nothing
+    needs re-evaluating on test.
+
+    grid: "pw:ks:thr,..." (default = the BOX2MASK sweep neighbourhood). Only the masker
+    changes across configs, so one detector pass covers the whole grid.
+    """
+    import torch
+    _setup_path()
+    assert torch.cuda.is_available(), "no CUDA"
+    from boxinst_commonality_tcd_04.modal_tcd_multiseed.phase4 import phase4_lib_tcd as L
+    npz = _selfmask_npz(beta, fix)
+    assert os.path.exists(npz), f"{npz} missing"
+    if grid:
+        cells = [tuple(float(x) for x in c.split(":")) for c in grid.split(",")]
+    else:
+        cells = [(pw, ks, 0.25) for ks in (1.0, 1.3, 1.6, 2.0)
+                 for pw in (0.3, 0.4, 0.5, 0.7, 1.0)] + [(0.3, 1.6, 0.30),
+                                                         (0.4, 1.6, 0.30)]
+    tag = f"phase4_L24_s{seed}"
+    out = os.path.join(OUT, f"sweep_val_knobs{_btag(beta)}{'_fix' if fix else ''}_{tag}.json")
+    res = L.sweep_4p_selfmask(os.path.join(OUT, f"det_{tag}.pt"), FEAT_4P_TRAIN,
+                              f"{PH4_R}/val_gt.json", npz, out, cells,
+                              device="cuda", limit=(limit or None))
+    res.update({"tag": tag, "seed": seed, "beta": beta, "fix": fix})
+    json.dump(res, open(out, "w"), indent=2)
+    vol.commit()
+    print(f"[sweep_val_knobs] best AP50 {res['best_by_AP50']} | "
+          f"best AP50-95 {res['best_by_AP50_95']}", flush=True)
     return res
 
 

@@ -30,14 +30,21 @@ def score(preds_path, gt_path, op_thr=0.5, out_json=None):
     P = json.load(open(preds_path))
     preds = P["preds"]
     gt = json.load(open(gt_path))
-    tids = [t for t in sorted(gt) if t in preds]
+    # Score EVERY GT tile. A tile with no prediction entry means the model output nothing
+    # there -- zero recall on its crowns, not a tile to omit. The old `if t in preds` filter
+    # shrank the GT denominator instead, which would hide a partial prediction run.
+    tids = sorted(gt)
+    missing = [t for t in tids if t not in preds]
+    if missing:
+        print(f"[score] WARNING: {len(missing)}/{len(tids)} GT tiles have NO predictions; "
+              f"scored as zero-prediction (recall penalised): {missing[:5]}", flush=True)
     print(f"[score] {len(tids)} tiles (gt {len(gt)}, pred {len(preds)})", flush=True)
 
     mI, bI = [], []                      # per-tile IoU matrices (small); masks discarded
     P_scores, Ign_mask, Ign_box = [], [], []
     n_mask = n_box = 0
     for k, tid in enumerate(tids):
-        rec = preds[tid]
+        rec = preds.get(tid, {"masks_rle": [], "scores": [], "boxes_2048": []})
         pm = (np.stack([_decode(r) for r in rec["masks_rle"]])
               if rec["masks_rle"] else np.zeros((0, E.RES, E.RES), bool))
         sc = np.array(rec["scores"], np.float32)
