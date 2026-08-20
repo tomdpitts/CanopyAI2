@@ -322,20 +322,37 @@ cohort/metric as ours: same 792 train / 108 val / 439 test tiles, same GT (`test
 COCO-101pt mask-AP + >50%-canopy-ignore scorer (`evaluate._greedy_ap`, RES 512). Code:
 `boxinst_commonality_tcd_04/detectree2_baseline/` (isolated Modal app `tcd-detectree2`).
 
-| method | supervision | mask mAP50 | mask mAP50-95 | box mAP50 |
-|---|---|---|---|---|
-| **OURS** (β=0.5-fix + α/κ knobs, **3-seed 0,1,2**) | **box + canopy (weak)** | **0.630 ± 0.005** | **0.257** | 0.603 |
-| OURS (β=0.5-fix VANILLA, 5-seed) | box + canopy (weak) | 0.615 ± 0.011 | 0.238 | 0.597 |
-| — ours seed-0 (knobbed / vanilla) | | 0.625 / 0.620 | 0.257 / 0.244 | 0.605 |
-| **DetecTree2** (R101-FPN, fine-tuned) | **full crown masks** | **0.535** | 0.224 | 0.529 |
-| Restor Mask R-CNN (OAM-TCD paper) | full masks | 0.432 | — | — |
+| method | supervision | OAM-TCD imgs | ign AP50 | ign AP50-95 | no-ign AP50 | no-ign AP50-95 | box AP50 |
+|---|---|---|---|---|---|---|---|
+| **OURS** (β=0.5-fix + α/κ knobs, 3-seed) | **boxes + canopy-ignore (no mask labels)** | 900 | **0.630 ± 0.005** | **0.257 ± 0.001** | **0.485 ± 0.002** | **0.202 ± 0.002** | 0.603 |
+| OURS boxes → SAM 3 (frozen, box-prompt) | boxes (ours) + SAM pretrain (frozen) | 900 | 0.633 | 0.268 | | | 0.605 |
+| Restor Mask R-CNN (OAM-TCD paper) \*\* | full crown masks | 4,169 | | | 0.432 | | |
+| **DetecTree2** (R101-FPN, fine-tuned by us) | **full crown masks** | 900 | **0.535** | 0.224 | 0.421 | 0.180 | 0.529 |
+| SelvaBox→SAM3, both FT (SelvaMask) \* | boxes + **SelvaMask masks** + SAM pretrain | ~3,335 | | **0.185** | | | |
+| SelvaBox→SAM3, frozen SAM \* | boxes + SAM pretrain (frozen) | ~3,335 | | 0.122 | | | |
 
-**Our box-weak method beats full-mask-supervised DetecTree2 by +0.080 mask mAP50 (vanilla 5-seed) /
-+0.095 (knobbed 3-seed)** (and on mAP50-95 and box mAP50), despite DetecTree2 getting strictly more
-supervision. The gap is mostly the **detector** (box 0.605 vs 0.529); both convert boxes→masks comparably.
-**Reproduction is credible:** our DetecTree2 (0.535) lands above the paper's Restor Mask R-CNN (0.432) and
-below ours — a genuine strong topline, not a strawman. (DetecTree2 is a single seed; our knobbed number is
-3-seed, our vanilla 5-seed — a seed-matched knobbed band and a DT2 band are the obvious follow-ups.)
+**ign** = canopy neutralised; **no-ign** = canopy predictions count as false positives. Ours is a
+3-seed band (mean ± std); DetecTree2 and the SAM 3 row are single-seed; published rows do not state
+seed counts. The 5-seed vanilla band (α=1, κ=1) is tabulated separately below. SelvaMask's zero-shot
+rows are omitted — no OAM-TCD training data, so they measure generalisation, not this benchmark.
+
+**\* SelvaMask protocol — same 439 source images, different and easier test set.** They delete the
+canopy category and black out its pixels (equivalent in effect to our ignore rule, hence the `ign`
+column), cut to 1024 px @ 0.5 overlap, drop tiles left empty or >80% black (2,527 of 3,951 survive),
+and average AP per tile. Our 439 keeps 73 zero-GT tiles. Their 439 is a genuine holdout for them
+(official `validation_fold`), and their OAM-TCD baselines are **zero-shot** while ours are fine-tuned.
+**\*\* Restor protocol** — the OAM-TCD paper's own Mask R-CNN, no canopy-ignore, AP50.
+Full account, evidence and the master table: `RESULTS.md` § SelvaMask / CanopyRS.
+
+**Our box-weak method beats full-mask-supervised DetecTree2 by +0.080 mask AP50 (vanilla 5-seed) /
++0.096 (knobbed 3-seed)**, and the win survives dropping canopy-ignore (+0.064 AP50 / +0.021 AP50-95),
+despite DetecTree2 getting strictly more supervision. The gap is mostly the **detector**
+(box 0.603 vs 0.529); both convert boxes→masks comparably.
+**Reproduction is credible:** on the column-matched no-ignore AP50, our DetecTree2 (0.421) lands just
+beside the OAM-TCD paper's own Restor Mask R-CNN (0.432), while ours clears both (0.485) — a faithful
+repro, not a strawman. (Earlier text here compared our ign 0.535 against Restor's no-ign 0.432, which
+was not like-for-like.) DetecTree2 is a single seed; our knobbed number is 3-seed, our vanilla 5-seed —
+a seed-matched knobbed band and a DT2 band are the obvious follow-ups.
 
 **How DetecTree2 was run (faithful):** its published `setup_cfg` (R101-FPN, `base_lr=3.389e-4`,
 `backbone_freeze=3`, its augmentations, AP50 early-stop) + released `250312_flexi.pth` weights,

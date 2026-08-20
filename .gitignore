@@ -70,3 +70,7 @@ boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds_*_fix_*.json
 boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/em_model_4p*_fix.npz
 
 boxinst_commonality_tcd_04/modal_savanna_multiseed/
+# phase4 no-ignore protocol sensitivity: 84 MB of predictions pulled from tcd04-phase4-vol
+# (regenerable — `modal volume get tcd04-phase4-vol out/preds_selfmask_fix_pw030_ks160_thr025_*`).
+# The scorer + its result table ARE tracked.
+boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/
