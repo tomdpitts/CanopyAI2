@@ -1,0 +1,23 @@
+{
+  "label": "tablenotes snippet for the 439 master table",
+  "action_required": "PASTE into the tablenotes block of modal_tcd_multiseed/phase4/table_439.tex and table_439_mdpi.tex -- this script does not edit them",
+  "targets": [
+    "modal_tcd_multiseed/phase4/table_439.tex",
+    "modal_tcd_multiseed/phase4/table_439_mdpi.tex"
+  ],
+  "facts_asserted": {
+    "lace_seeds": [
+      0,
+      1,
+      2
+    ],
+    "detectree2_seeds": [
+      0
+    ],
+    "sam3_seeds": [
+      0
+    ],
+    "sd_convention": "ddof=1",
+    "mps_multiseed_readme_band_is_ddof0": true
+  }
+}

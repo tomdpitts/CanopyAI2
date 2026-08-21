@@ -1,0 +1,109 @@
+{
+  "label": "Shape proxies vs published AP, 439 OAM-TCD, masker arms on one detector",
+  "purpose": "establish whether corner/fill/centre track segmentation accuracy, so the dryland whitening ablation (reported only in these proxies) can be read directionally",
+  "caveats": [
+    "dryland proxies were GT-box prompted; these arms are predicted-box",
+    "AP range spanned is narrow (0.579-0.636)",
+    "arms differ in the MASKER only (same detector family), so this speaks to masker changes, not to cross-architecture comparison",
+    "3 of the 5 arms are seeds of one configuration, so they cluster in AP"
+  ],
+  "dryland_reference": {
+    "whiten": {
+      "fill": 0.72,
+      "corner": 0.37,
+      "centre": 0.91
+    },
+    "no_whiten": {
+      "fill": 0.75,
+      "corner": 0.44,
+      "centre": 0.91
+    },
+    "no_within_box_contrast": {
+      "fill": 0.89,
+      "corner": 0.61,
+      "centre": 0.86
+    },
+    "source": "boxinst_commonality/README.md:107-119 (seed 0, 16px, 359 GT-box crowns, 33 tiles)"
+  },
+  "correlations": {
+    "fill": {
+      "pearson_vs_AP50": -0.875,
+      "spearman_vs_AP50": 0.0,
+      "spearman_vs_AP50_95": -0.3
+    },
+    "corner": {
+      "pearson_vs_AP50": -0.865,
+      "spearman_vs_AP50": -0.1,
+      "spearman_vs_AP50_95": -0.4
+    },
+    "centre": {
+      "pearson_vs_AP50": -0.696,
+      "spearman_vs_AP50": -0.3,
+      "spearman_vs_AP50_95": 0.0
+    }
+  },
+  "arms": [
+    {
+      "arm": "beta=0 (fill)",
+      "preds": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds_b0_fix_thr025_439.json",
+      "n_instances": 159687,
+      "mask_mAP50": 0.579,
+      "mask_mAP50_95": 0.2003,
+      "ap_provenance": "results_b0_fix_thr025_439.json",
+      "fill": 0.9799,
+      "corner": 0.9392,
+      "centre": 0.9994
+    },
+    {
+      "arm": "beta=0.5 vanilla",
+      "preds": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds_b05_fix_thr025_439.json",
+      "n_instances": 159687,
+      "mask_mAP50": 0.6203,
+      "mask_mAP50_95": 0.2436,
+      "ap_provenance": "results_b05_fix_thr025_439.json",
+      "fill": 0.7615,
+      "corner": 0.2316,
+      "centre": 0.9892
+    },
+    {
+      "arm": "beta=0.5 knobbed s0",
+      "preds": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s0.json",
+      "n_instances": 159687,
+      "mask_mAP50": 0.625,
+      "mask_mAP50_95": 0.2574,
+      "ap_provenance": "preds/ref_knobbed_s0.json",
+      "fill": 0.8112,
+      "corner": 0.4124,
+      "centre": 0.9957
+    },
+    {
+      "arm": "beta=0.5 knobbed s1",
+      "preds": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s1.json",
+      "n_instances": 162017,
+      "mask_mAP50": 0.6358,
+      "mask_mAP50_95": 0.2567,
+      "ap_provenance": "preds/ref_knobbed_s1.json",
+      "fill": 0.8174,
+      "corner": 0.416,
+      "centre": 0.9935
+    },
+    {
+      "arm": "beta=0.5 knobbed s2",
+      "preds": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s2.json",
+      "n_instances": 177598,
+      "mask_mAP50": 0.6294,
+      "mask_mAP50_95": 0.2564,
+      "ap_provenance": "preds/ref_knobbed_s2.json",
+      "fill": 0.812,
+      "corner": 0.4241,
+      "centre": 0.9921
+    }
+  ],
+  "verdict": {
+    "headline": "NEGATIVE for ranking. `corner` separates a gross box-filler from a working masker, but does NOT rank working configurations.",
+    "evidence": "Pearson(corner, AP50) = -0.865 looks strong, but it is carried entirely by the single beta=0 outlier (corner 0.939, AP50 0.579). Spearman is -0.100, i.e. no rank relationship. Within the four beta=0.5 arms, corner RISES 0.232 -> 0.424 while AP50 also rises 0.6203 -> 0.6294: over the working range the proxy moves WITH accuracy, opposite to the assumed direction. n=5 arms, 3 of them seeds of one configuration, so the rank statistic is weak regardless.",
+    "consequence_for_whitening": "The dryland -whiten delta (corner 0.37 -> 0.44) sits in the WORKING range, not the gross-failure range (the within-box-contrast failure is 0.61, and beta=0's box-filler is 0.94 here). Since the proxy does not rank working configurations, that shift cannot be read as an AP degradation, and the earlier '~30% of the way to the failure mode' reading is NOT supported. The dryland whitening ablation shows whitening changes the posterior's shape; it does not establish that whitening improves accuracy. Settling it needs the TCD refit (deferred item 1, ~$8).",
+    "what_it_does_establish": "The proxy is a valid DEGENERACY detector: beta=0's fill 0.98 / corner 0.94 / centre 0.999 is the box-filler signature, cleanly separated from every beta=0.5 arm. Used that way -- as a failure-mode flag, not a quality score -- it is sound."
+  },
+  "sanity": "beta=0, beta=0.5 vanilla and knobbed s0 all report 159,687 instances: the same detector seed 0 boxes, masker varied. Box count is masker-invariant, as expected."
+}

@@ -1,0 +1,180 @@
+{
+  "label": "EM convergence + degeneracy diagnostics, deployed TCD masker",
+  "deployed_model": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/em_model_4p_fix.npz",
+  "provenance_gap": "No fit log or fit report survives for em_model_4p_fix.npz. em_fit_report_4p.json and fit.log describe em_model_4p.npz, a DIFFERENT fit -- every learned array differs between the two files, so the fix model is a genuine refit rather than a field rewrite, and it is the OLDER of the two on disk. The traces below are same-recipe lineage evidence, NOT the deployed fit's own trace.",
+  "no_convergence_criterion": "The fit loop is `for it in range(args.iters)` with no tolerance and no early break (boxinst_commonality_tcd_04/em.py:245); iters=30 is fixed a priori. Convergence below is assessed post hoc from the logged fg-mass trace.",
+  "static_from_deployed_npz": {
+    "fg_prototypes": {
+      "K": 16,
+      "effective_rank": 1.656,
+      "top_singular_frac": 0.8866,
+      "pairwise_cos_mean": 0.9935,
+      "pairwise_cos_max": 1.0,
+      "pairwise_cos_p90": 0.9998,
+      "frac_pairs_over_0.9": 1.0,
+      "frac_pairs_over_0.99": 0.625,
+      "n_pairs": 120,
+      "was_L2_normalised": true,
+      "label": "deployed em_model_4p_fix.npz (beta=0.5)"
+    },
+    "bg_mixture": {
+      "K": 12,
+      "effective_rank": 11.513,
+      "top_singular_frac": 0.0982,
+      "pairwise_cos_mean": -0.0851,
+      "pairwise_cos_max": 0.065,
+      "pairwise_cos_p90": -0.0273,
+      "frac_pairs_over_0.9": 0.0,
+      "frac_pairs_over_0.99": 0.0,
+      "n_pairs": 66,
+      "was_L2_normalised": true,
+      "label": "deployed background mixture (frozen after init)"
+    },
+    "bg_weights": {
+      "n": 12,
+      "min": 0.0506,
+      "max": 0.1059,
+      "entropy_nats": 2.465,
+      "max_entropy_nats": 2.4849
+    },
+    "spatial_prior": {
+      "shape": [
+        3,
+        16,
+        8,
+        8
+      ],
+      "axes": "(size band, K, u bin, v bin)",
+      "mean_fg_mass_per_bin": 0.6899,
+      "per_size_band": [
+        0.705,
+        0.6792,
+        0.6854
+      ],
+      "pinned_target_FG_PRIOR_MASS": 0.7854,
+      "shortfall_vs_target": 0.0955,
+      "bin_max": 0.324,
+      "note": "each M-step pins pi[s].sum(0).mean() to pi/4 (em.py:422), then caps any bin at BIN_CAP=0.95 (em.py:423-426); the cap is why the realised mass sits slightly below the target"
+    },
+    "whitening": {
+      "pca_dim": 128,
+      "singular_value_scale_max": 0.22982,
+      "singular_value_scale_min": 0.02688,
+      "condition_number": 8.55,
+      "participation_ratio": 86.02,
+      "note": "condition number is the anisotropy whitening removes: 1.0 would mean whitening is a no-op. participation ratio is the effective number of directions out of pca_dim."
+    },
+    "knobs": {
+      "prior_weight": 0.3,
+      "kappa_scale": 1.6,
+      "kappa": 10.0,
+      "cell_origin": 8.0,
+      "s_px": 8.0
+    }
+  },
+  "prototype_collapse_cohort": {
+    "em_model_4p.npz": {
+      "K": 16,
+      "effective_rank": 1.777,
+      "top_singular_frac": 0.8687,
+      "pairwise_cos_mean": 0.9915,
+      "pairwise_cos_max": 1.0,
+      "pairwise_cos_p90": 0.9997,
+      "frac_pairs_over_0.9": 1.0,
+      "frac_pairs_over_0.99": 0.5,
+      "n_pairs": 120,
+      "was_L2_normalised": true,
+      "label": "em_model_4p.npz"
+    },
+    "em_model_4p_b0.npz": {
+      "K": 16,
+      "effective_rank": 12.33,
+      "top_singular_frac": 0.1735,
+      "pairwise_cos_mean": 0.2225,
+      "pairwise_cos_max": 0.9804,
+      "pairwise_cos_p90": 0.595,
+      "frac_pairs_over_0.9": 0.0083,
+      "frac_pairs_over_0.99": 0.0,
+      "n_pairs": 120,
+      "was_L2_normalised": true,
+      "label": "em_model_4p_b0.npz"
+    },
+    "em_model_4p_b0_fix.npz": {
+      "K": 14,
+      "effective_rank": 10.833,
+      "top_singular_frac": 0.1809,
+      "pairwise_cos_mean": 0.2178,
+      "pairwise_cos_max": 0.985,
+      "pairwise_cos_p90": 0.6975,
+      "frac_pairs_over_0.9": 0.033,
+      "frac_pairs_over_0.99": 0.0,
+      "n_pairs": 91,
+      "was_L2_normalised": true,
+      "label": "em_model_4p_b0_fix.npz"
+    },
+    "em_model_4p_fix.npz": {
+      "K": 16,
+      "effective_rank": 1.656,
+      "top_singular_frac": 0.8866,
+      "pairwise_cos_mean": 0.9935,
+      "pairwise_cos_max": 1.0,
+      "pairwise_cos_p90": 0.9998,
+      "frac_pairs_over_0.9": 1.0,
+      "frac_pairs_over_0.99": 0.625,
+      "n_pairs": 120,
+      "was_L2_normalised": true,
+      "label": "em_model_4p_fix.npz"
+    }
+  },
+  "collapse_reading": "Pruning keys on responsibility SHARE (em.py:431-438), which is blind to redundancy: near-duplicate prototypes each keep a healthy share, so none is pruned and K stays at its initial value. The reported K is therefore nominal, not an effective count. This also predicts a k_init sweep would be nearly flat, and it does not by itself imply worse masks -- the mask comes from the fg-vs-bg log-ratio, so a degenerate fg mixture still yields a usable posterior.",
+  "traces_same_recipe_not_deployed": {
+    "beta0.5 lineage (em_model_4p.npz -- NOT the deployed fit)": {
+      "log": "fit.log",
+      "iters_logged": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "fg_mass": [
+        0.677,
+        0.66,
+        0.655,
+        0.655,
+        0.656,
+        0.656
+      ],
+      "final_fg_mass": 0.656,
+      "abs_delta_last_step": 0.0,
+      "total_drift_after_it10": 0.004,
+      "converged_by_iter_tol1e-3": 30,
+      "note": "logged every 5th iteration; 'converged' = all later steps move <1e-3"
+    },
+    "beta0 lineage (em_model_4p_b0.npz)": {
+      "log": "fit_b0.log",
+      "iters_logged": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        30
+      ],
+      "fg_mass": [
+        0.929,
+        0.933,
+        0.933,
+        0.933,
+        0.933,
+        0.934
+      ],
+      "final_fg_mass": 0.934,
+      "abs_delta_last_step": 0.001,
+      "total_drift_after_it10": 0.001,
+      "converged_by_iter_tol1e-3": null,
+      "note": "logged every 5th iteration; 'converged' = all later steps move <1e-3"
+    }
+  }
+}

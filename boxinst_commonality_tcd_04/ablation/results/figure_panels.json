@@ -1,0 +1,50 @@
+{
+  "label": "qualitative panels, deployed masker",
+  "provenance": "rendered from preds/knobbed_s0.json -- the predictions behind the published 0.630 band. Existing panels in claude_outputs/ depict the PRE-registration-fix maskers (em_model_4p.npz / em_model_4p_b0.npz) and were not reused.",
+  "selection": "measured from results/strata_instance_rows_s0.json, >=25 matched TPs",
+  "not_included": "a soft EM posterior heatmap: saved preds carry only RLE masks thresholded at 0.25, and recomputing the posterior locally would use DINOv3 features that differ from the Modal ones (cos 0.86), so it would not depict the deployed model",
+  "panels": [
+    {
+      "role": "best",
+      "tid": "tcd_val_tile_270",
+      "mean_mask_iou": 0.7885,
+      "touching_frac": 0.4366,
+      "n_matched_tp": 71,
+      "n_pred": 594,
+      "n_gt": 72,
+      "n_tp": 71,
+      "n_drawn_at_op": 97,
+      "n_tp_at_op": 60,
+      "op_thr": 0.4,
+      "gt_touching_frac": 0.431
+    },
+    {
+      "role": "crowded",
+      "tid": "tcd_val_tile_326",
+      "mean_mask_iou": 0.6935,
+      "touching_frac": 1.0,
+      "n_matched_tp": 71,
+      "n_pred": 597,
+      "n_gt": 90,
+      "n_tp": 71,
+      "n_drawn_at_op": 105,
+      "n_tp_at_op": 46,
+      "op_thr": 0.4,
+      "gt_touching_frac": 1.0
+    },
+    {
+      "role": "worst (failure case)",
+      "tid": "tcd_val_tile_12",
+      "mean_mask_iou": 0.6189,
+      "touching_frac": 0.12,
+      "n_matched_tp": 25,
+      "n_pred": 182,
+      "n_gt": 43,
+      "n_tp": 25,
+      "n_drawn_at_op": 21,
+      "n_tp_at_op": 13,
+      "op_thr": 0.4,
+      "gt_touching_frac": 0.233
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "label": "Collapse vs accuracy vs box precision; alpha/kappa surface",
+  "SUPERSEDED": {
+    "status": "HEADLINE RETRACTED -- the data below is valid, the conclusion was not.",
+    "retracted_claim": "The sign of the collapse effect flips with box precision; collapse buys box-robustness and only pays when boxes are imprecise.",
+    "why": "This file inferred a sign flip by comparing a 16px/local/GT-box arm with an 8px/Modal/predicted-box arm, confounding box precision with stride and stack. phase4_collapse Stage 2 tested it at ONE configuration and found NO flip: beta=0 -> beta=0.5 raises mean crown IoU by +0.0483 with oracle boxes and +0.0476 with predicted boxes, agreeing to 0.0007.",
+    "superseded_by": [
+      "modal_tcd_multiseed/phase4_collapse/results/stage2_gate.json",
+      "modal_tcd_multiseed/phase4_collapse/results/factorial_summary.json"
+    ],
+    "still_usable": "gt_box_16px is the only multi-beta evidence in the project and its monotone rank-vs-beta trend is real, but it is a 16px local GT-box arm whose AP levels are not comparable to the deployed 8px numbers. alpha_kappa_val and predicted_box_8px are unaffected."
+  },
+  "headline": "RETRACTED -- see SUPERSEDED. Retained for provenance only.",
+  "confound": "The GT-box arm is 16px/local, the predicted-box arm is 8px/Modal. Stride and stack vary alongside box precision, so this documents the flip without isolating its cause. Also: the GT-box AP50 values (~0.77-0.97) are not comparable in level to the predicted-box ones (~0.58-0.62) -- perfect boxes inflate AP. Only the SLOPES are comparable.",
+  "gt_box_16px": [
+    {
+      "beta": 0.0,
+      "K": 16,
+      "eff_rank": 13.02,
+      "proto_cos": 0.241,
+      "mask_ap50": 0.9693403202430971,
+      "mean_iou": 0.7411645788941364
+    },
+    {
+      "beta": 0.1,
+      "K": 16,
+      "eff_rank": 11.103,
+      "proto_cos": 0.3553,
+      "mask_ap50": 0.8745724875156713,
+      "mean_iou": 0.7063538187538799
+    },
+    {
+      "beta": 0.25,
+      "K": 9,
+      "eff_rank": 5.363,
+      "proto_cos": 0.5843,
+      "mask_ap50": 0.8543871029940839,
+      "mean_iou": 0.6962683165295358
+    },
+    {
+      "beta": 0.5,
+      "K": 2,
+      "eff_rank": 1.728,
+      "proto_cos": 0.8251,
+      "mask_ap50": 0.7706914133016258,
+      "mean_iou": 0.6589651831874516
+    }
+  ],
+  "predicted_box_8px": [
+    {
+      "beta": 0.0,
+      "K": 14,
+      "eff_rank": 10.833,
+      "mask_ap50": 0.579,
+      "mask_ap50_95": 0.2003
+    },
+    {
+      "beta": 0.5,
+      "K": 16,
+      "eff_rank": 1.656,
+      "mask_ap50": 0.6203,
+      "mask_ap50_95": 0.2436
+    }
+  ],
+  "alpha_kappa_val": {
+    "alpha": [
+      0.3,
+      0.4,
+      0.5,
+      0.7,
+      1.0
+    ],
+    "kappa": [
+      1.0,
+      1.3,
+      1.6,
+      2.0
+    ],
+    "mask_ap50": [
+      [
+        0.6348,
+        0.6366,
+        0.6392,
+        0.6382
+      ],
+      [
+        0.635,
+        0.6361,
+        0.6382,
+        0.6383
+      ],
+      [
+        0.6346,
+        0.6353,
+        0.6367,
+        0.6375
+      ],
+      [
+        0.6338,
+        0.6348,
+        0.6347,
+        0.6367
+      ],
+      [
+        0.6304,
+        0.632,
+        0.6326,
+        0.6329
+      ]
+    ],
+    "argmax": {
+      "alpha": 0.3,
+      "kappa": 1.6,
+      "mask_ap50": 0.6392
+    }
+  }
+}

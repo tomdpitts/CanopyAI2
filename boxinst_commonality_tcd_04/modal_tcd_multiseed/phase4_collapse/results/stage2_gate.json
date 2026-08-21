@@ -1,0 +1,73 @@
+{
+  "label": "Stage 2 -- collapse vs box precision at ONE config (8px deployed, 108 val tiles)",
+  "verdict": "NO SIGN FLIP -- the box-robustness hypothesis is NOT supported",
+  "reading": "beta=0 -> beta=0.5 raises mean crown IoU by +0.0483 with PERFECT boxes and +0.0476 with PREDICTED boxes -- the same benefit to within 0.0007. Collapse helps by an amount independent of box precision, so it does not buy box-robustness. The apparent sign flip in the prior evidence was a STRIDE/STACK artefact: the GT-box arm showing collapse hurting (masker_lab, crown IoU 0.7412 -> 0.6590) is 16px/local, while the deployed config is 8px/Modal. Note beta=0 scores nearly identically at both strides (0.7402 here vs 0.7412 in the lab); it is beta=0.5 that differs (0.7885 vs 0.6590).",
+  "reproduction_gate": "b05_pred_all reproduces the recorded val cell EXACTLY: AP50 0.6392 and mAP50-95 0.2680 vs sweep_val_knobs_s0.json (alpha=0.3, kappa=1.6, thr=0.25) 0.6392 / 0.2680. The new box-source eval path is scoring identically to the published one.",
+  "what_survives": "Collapse is beneficial at the deployed 8px config regardless of box precision, and (Stage 1) the mixture reduces to K=2 with no change. What is NOT supported is any claim that the benefit comes from robustness to imprecise boxes. Whether the 16px-vs-8px reversal is caused by stride or by the local/Modal stack is untested and confounded.",
+  "deltas": {
+    "gt_box": 0.0483,
+    "pred_box": 0.0476
+  },
+  "arms": {
+    "b0_pred_all": {
+      "em": "em_model_4p_b0_fix.npz",
+      "box_source": "pred",
+      "n_tiles": 108,
+      "n_matched_crowns": 5428,
+      "n_gt": 7041,
+      "mean_crown_iou": 0.6717,
+      "median_crown_iou": 0.6849,
+      "mask_mAP50": 0.5941,
+      "mask_mAP50_95": 0.2063,
+      "mask_thr": 0.25,
+      "prior_weight": null,
+      "kappa_scale": null,
+      "n_excluded": 0
+    },
+    "b05_gt_all": {
+      "em": "em_model_4p_fix.npz",
+      "box_source": "gt",
+      "n_tiles": 108,
+      "n_matched_crowns": 7041,
+      "n_gt": 7041,
+      "mean_crown_iou": 0.7885,
+      "median_crown_iou": 0.8077,
+      "mask_mAP50": 0.9666,
+      "mask_mAP50_95": 0.5303,
+      "mask_thr": 0.25,
+      "prior_weight": null,
+      "kappa_scale": null,
+      "n_excluded": 0
+    },
+    "b05_pred_all": {
+      "em": "em_model_4p_fix.npz",
+      "box_source": "pred",
+      "n_tiles": 108,
+      "n_matched_crowns": 5428,
+      "n_gt": 7041,
+      "mean_crown_iou": 0.7193,
+      "median_crown_iou": 0.7308,
+      "mask_mAP50": 0.6392,
+      "mask_mAP50_95": 0.268,
+      "mask_thr": 0.25,
+      "prior_weight": null,
+      "kappa_scale": null,
+      "n_excluded": 0
+    },
+    "b0_gt_all": {
+      "em": "em_model_4p_b0_fix.npz",
+      "box_source": "gt",
+      "n_tiles": 108,
+      "n_matched_crowns": 7041,
+      "n_gt": 7041,
+      "mean_crown_iou": 0.7402,
+      "median_crown_iou": 0.749,
+      "mask_mAP50": 0.9678,
+      "mask_mAP50_95": 0.4279,
+      "mask_thr": 0.25,
+      "prior_weight": null,
+      "kappa_scale": null,
+      "n_excluded": 0
+    }
+  }
+}

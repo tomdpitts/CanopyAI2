@@ -1,0 +1,158 @@
+{
+  "label": "synthetic prototype collapse -- update rule in isolation",
+  "setup": {
+    "K": 16,
+    "D": 128,
+    "M_negatives": 4096,
+    "kappa": 16.0,
+    "iters": 30,
+    "seeds": 5,
+    "data": "i.i.d. random unit vectors; no imagery, no DINO"
+  },
+  "rows": [
+    {
+      "beta": 0.0,
+      "eff_rank_mean": 14.81,
+      "eff_rank_sd": 0.087
+    },
+    {
+      "beta": 0.25,
+      "eff_rank_mean": 1.056,
+      "eff_rank_sd": 0.001
+    },
+    {
+      "beta": 0.5,
+      "eff_rank_mean": 1.0,
+      "eff_rank_sd": 0.0
+    },
+    {
+      "beta": 0.75,
+      "eff_rank_mean": 1.0,
+      "eff_rank_sd": 0.0
+    },
+    {
+      "beta": 1.0,
+      "eff_rank_mean": 1.0,
+      "eff_rank_sd": 0.0
+    }
+  ],
+  "grid_concentration_x_beta": [
+    {
+      "concentration": 0.0,
+      "beta_0": 15.773,
+      "beta_0_sd": 0.019,
+      "beta_0.25": 2.02,
+      "beta_0.25_sd": 0.204,
+      "beta_0.5": 4.403,
+      "beta_0.5_sd": 0.305,
+      "beta_0.75": 6.898,
+      "beta_0.75_sd": 0.228,
+      "beta_1": 9.545,
+      "beta_1_sd": 0.205
+    },
+    {
+      "concentration": 1.0,
+      "beta_0": 15.767,
+      "beta_0_sd": 0.023,
+      "beta_0.25": 1.0,
+      "beta_0.25_sd": 0.0,
+      "beta_0.5": 1.0,
+      "beta_0.5_sd": 0.0,
+      "beta_0.75": 1.0,
+      "beta_0.75_sd": 0.0,
+      "beta_1": 1.0,
+      "beta_1_sd": 0.0
+    },
+    {
+      "concentration": 2.0,
+      "beta_0": 15.752,
+      "beta_0_sd": 0.03,
+      "beta_0.25": 1.002,
+      "beta_0.25_sd": 0.0,
+      "beta_0.5": 1.0,
+      "beta_0.5_sd": 0.0,
+      "beta_0.75": 1.0,
+      "beta_0.75_sd": 0.0,
+      "beta_1": 1.0,
+      "beta_1_sd": 0.0
+    },
+    {
+      "concentration": 4.0,
+      "beta_0": 15.602,
+      "beta_0_sd": 0.051,
+      "beta_0.25": 1.015,
+      "beta_0.25_sd": 0.0,
+      "beta_0.5": 1.0,
+      "beta_0.5_sd": 0.0,
+      "beta_0.75": 1.0,
+      "beta_0.75_sd": 0.0,
+      "beta_1": 1.0,
+      "beta_1_sd": 0.0
+    },
+    {
+      "concentration": 8.0,
+      "beta_0": 14.81,
+      "beta_0_sd": 0.087,
+      "beta_0.25": 1.056,
+      "beta_0.25_sd": 0.001,
+      "beta_0.5": 1.0,
+      "beta_0.5_sd": 0.0,
+      "beta_0.75": 1.0,
+      "beta_0.75_sd": 0.0,
+      "beta_1": 1.0,
+      "beta_1_sd": 0.0
+    },
+    {
+      "concentration": 16.0,
+      "beta_0": 12.62,
+      "beta_0_sd": 0.113,
+      "beta_0.25": 1.136,
+      "beta_0.25_sd": 0.002,
+      "beta_0.5": 1.001,
+      "beta_0.5_sd": 0.0,
+      "beta_0.75": 1.0,
+      "beta_0.75_sd": 0.0,
+      "beta_1": 1.0,
+      "beta_1_sd": 0.0
+    }
+  ],
+  "beta05_rank_trace": [
+    15.776,
+    15.428,
+    13.707,
+    11.185,
+    8.44,
+    6.005,
+    4.182,
+    2.97,
+    2.216,
+    1.758,
+    1.478,
+    1.305,
+    1.196,
+    1.127,
+    1.082,
+    1.053,
+    1.035,
+    1.023,
+    1.015,
+    1.01,
+    1.006,
+    1.004,
+    1.003,
+    1.002,
+    1.001,
+    1.001,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "real_reference": {
+    "beta0_eff_rank": 11.43,
+    "beta05_eff_rank": 1.66,
+    "whitening_condition_number": 8.55,
+    "whitening_participation_ratio": 86.02
+  },
+  "reading": "Collapse reproduces with no imagery and no DINO, so it is a property of the update rule. The enabling condition is CONCENTRATION: once the vectors share a dominant direction, every beta>0 drives the prototypes to effective rank ~1 while beta=0 stays diverse. Isotropic vectors (concentration 0) do NOT collapse cleanly -- in 128-d they are near-orthogonal, an artefact rather than a model of whitened ViT cells, whose residual anisotropy the deployed masker measures at condition number 8.55 and participation ratio 86/128."
+}

@@ -1,0 +1,46 @@
+[
+  {
+    "config": "beta=0   absolute ",
+    "k_init": 16,
+    "k_final": 14,
+    "effective_rank": 10.83,
+    "pairwise_cos": 0.218,
+    "crown_iou_gt": 0.7402,
+    "ap50_gt": 0.9678,
+    "crown_iou_pred": 0.6717,
+    "ap50_pred": 0.5941
+  },
+  {
+    "config": "beta=0   recentred",
+    "k_init": 16,
+    "k_final": 16,
+    "effective_rank": 11.43,
+    "pairwise_cos": 0.234,
+    "crown_iou_gt": 0.7895,
+    "ap50_gt": 0.9693,
+    "crown_iou_pred": 0.7188,
+    "ap50_pred": 0.6406
+  },
+  {
+    "config": "beta=0.5 absolute ",
+    "k_init": 16,
+    "k_final": 16,
+    "effective_rank": 1.75,
+    "pairwise_cos": 0.992,
+    "crown_iou_gt": 0.7758,
+    "ap50_gt": 0.9825,
+    "crown_iou_pred": 0.7063,
+    "ap50_pred": 0.6224
+  },
+  {
+    "config": "beta=0.5 recentred",
+    "k_init": 16,
+    "k_final": 16,
+    "effective_rank": 1.66,
+    "pairwise_cos": 0.994,
+    "crown_iou_gt": 0.7885,
+    "ap50_gt": 0.9666,
+    "crown_iou_pred": 0.7193,
+    "ap50_pred": 0.6392
+  }
+]

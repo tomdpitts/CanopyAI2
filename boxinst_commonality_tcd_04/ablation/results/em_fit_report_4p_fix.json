@@ -1,0 +1,22 @@
+{
+  "RECONSTRUCTED": true,
+  "what": "Static fit report for the deployed em_model_4p_fix.npz, derived from the npz itself by ablation/scripts/t05_convergence.py. The original fit's report and log are absent from phase4/; this is NOT a recovered file and contains no per-iteration trace, because none survives.",
+  "model": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/em_model_4p_fix.npz",
+  "k_effective": 16,
+  "k_bg": 12,
+  "pca": 128,
+  "whiten": true,
+  "kappa": 10.0,
+  "s_px": 8,
+  "cell_origin_px": 8.0,
+  "prior_weight": 0.3,
+  "kappa_scale": 1.6,
+  "size_edges_px": [
+    25.14,
+    50.82
+  ],
+  "bins": 8,
+  "size_bands": 3,
+  "mean_fg_mass_per_bin": 0.6899,
+  "prototype_pairwise_cos_mean": 0.9935
+}

@@ -1,0 +1,70 @@
+{
+  "label": "2x2 component ablation: M-step repulsion x E-step recentring, with prototype geometry",
+  "config": "k=16, EM seed 0, detector seed 0, 108 val tiles, alpha=0.3/kappa=1.6/thr=0.25",
+  "headline": "Collapse is caused by the M-step repulsion alone (effective rank ~11 at beta=0 under BOTH E-steps, ~1.7 at beta=0.5 under both). Accuracy is driven mainly by the E-step recentring (+0.047..+0.049 crown IoU vs +0.035 for repulsion), and the two are substitutes (interaction -0.034..-0.037). Given recentring, the repulsion adds +0.0010 (oracle) and -0.0005 (predicted) -- a tie. So the non-collapsed configuration (beta=0 + recentring, rank 11.43) matches the deployed collapsed one (rank 1.66) on accuracy.",
+  "caveat": "Single EM seed and single detector seed, on val. The ties are far inside any plausible noise band but a band has not been measured for these cells. alpha/kappa were also selected on val using the beta=0.5 masker and may not be optimal for beta=0.",
+  "cells": [
+    {
+      "m_step": "generative",
+      "beta": 0.0,
+      "e_step": "absolute",
+      "K": 14,
+      "rank": 10.83,
+      "cos": 0.218,
+      "oracle_crown_iou": 0.7402,
+      "oracle_ap50": 0.9678,
+      "pred_crown_iou": 0.6717,
+      "pred_ap50": 0.5941
+    },
+    {
+      "m_step": "generative",
+      "beta": 0.0,
+      "e_step": "recentred",
+      "K": 16,
+      "rank": 11.4339,
+      "cos": 0.2342,
+      "oracle_crown_iou": 0.7895,
+      "oracle_ap50": 0.9693,
+      "pred_crown_iou": 0.7188,
+      "pred_ap50": 0.6406
+    },
+    {
+      "m_step": "contrastive",
+      "beta": 0.5,
+      "e_step": "absolute",
+      "K": 16,
+      "rank": 1.7477,
+      "cos": 0.9919,
+      "oracle_crown_iou": 0.7758,
+      "oracle_ap50": 0.9825,
+      "pred_crown_iou": 0.7063,
+      "pred_ap50": 0.6224
+    },
+    {
+      "m_step": "contrastive",
+      "beta": 0.5,
+      "e_step": "recentred",
+      "K": 16,
+      "rank": 1.66,
+      "cos": 0.9935,
+      "oracle_crown_iou": 0.7885,
+      "oracle_ap50": 0.9666,
+      "pred_crown_iou": 0.7193,
+      "pred_ap50": 0.6392
+    }
+  ],
+  "effects": {
+    "oracle": {
+      "recentring_alone": 0.0493,
+      "repulsion_alone": 0.0356,
+      "joint": 0.0483,
+      "interaction": -0.0366
+    },
+    "predicted": {
+      "recentring_alone": 0.0471,
+      "repulsion_alone": 0.0346,
+      "joint": 0.0476,
+      "interaction": -0.0341
+    }
+  }
+}

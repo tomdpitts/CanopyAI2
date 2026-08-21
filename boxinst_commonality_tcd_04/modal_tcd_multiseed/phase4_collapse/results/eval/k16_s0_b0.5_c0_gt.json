@@ -1,0 +1,27 @@
+{
+  "em": "em_k16_s0_b0.5_c0_fix.npz",
+  "box_source": "gt",
+  "n_tiles": 108,
+  "n_matched_crowns": 7041,
+  "n_gt": 7041,
+  "mean_crown_iou": 0.7758,
+  "median_crown_iou": 0.7854,
+  "mask_mAP50": 0.9825,
+  "mask_mAP50_95": 0.5001,
+  "per_iou": [
+    0.9825,
+    0.963,
+    0.9152,
+    0.8212,
+    0.6529,
+    0.4112,
+    0.1968,
+    0.0531,
+    0.0048,
+    0.0003
+  ],
+  "mask_thr": 0.25,
+  "prior_weight": null,
+  "kappa_scale": null,
+  "n_excluded": 0
+}

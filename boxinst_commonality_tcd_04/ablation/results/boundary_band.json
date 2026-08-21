@@ -1,0 +1,211 @@
+{
+  "label": "Boundary-F1 on matched TPs, 439 OAM-TCD tiles, deployed knobbed masker",
+  "supersedes": {
+    "file": "phase4_research/figures/boundary_f1.json",
+    "why": "its 'ours' arm is crown_mask (the RGB-guided-filter variant recorded as FAILED in phase4/README.md), on 13 tiles of size-filtered crowns with GT boxes at 2048px. Not the deployed EM masker; do not quote its 0.286 as LACE's boundary quality."
+  },
+  "protocol": {
+    "matching": "greedy, score-ordered, mask IoU>=0.5, identical to evaluate._greedy_ap",
+    "conditioning": "matched TPs only -- isolates boundary quality from detection recall; a method cannot win by detecting less",
+    "raster": "512px (tile is 2048px, so tolerance t here = 4t tile px)",
+    "tolerances_512px": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "tolerances_2048px_equiv": [
+      4,
+      8,
+      12,
+      20
+    ],
+    "paired": "ours and boxfill share the identical matched pairs; dt2 has its own",
+    "discriminative_tolerance": "BF saturates above 1px on the 512 raster (>=0.90 at 2px, >=0.99 at 5px), because a matched TP at IoU>=0.5 is already well aligned at that granularity. BF@1px (= 4 tile px) is the informative column; the wider tolerances are reported for completeness, not for ranking. A finer comparison would need GT rasterised at the full 2048.",
+    "dt2_population_caveat": "DetecTree2 is scored on ITS OWN matched set (19,217 TPs vs our ~20,750), because its detector differs. ours-vs-boxfill is a paired comparison on identical pairs and is exact; ours-vs-dt2 compares means over different instance populations and should be read as approximate."
+  },
+  "band_mean_std": {
+    "ours": {
+      "tol1": [
+        0.7611,
+        0.002
+      ],
+      "tol2": [
+        0.9019,
+        0.0004
+      ],
+      "tol3": [
+        0.9588,
+        0.0011
+      ],
+      "tol5": [
+        0.9888,
+        0.001
+      ]
+    },
+    "boxfill": {
+      "tol1": [
+        0.6576,
+        0.022
+      ],
+      "tol2": [
+        0.8306,
+        0.0175
+      ],
+      "tol3": [
+        0.9219,
+        0.0112
+      ],
+      "tol5": [
+        0.9793,
+        0.0042
+      ]
+    }
+  },
+  "per_arm": {
+    "ours_s0": {
+      "label": "ours knobbed s0",
+      "preds": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s0.json",
+      "n_matched_tp": 20807,
+      "n_gt": 25705,
+      "ap": {
+        "mask_mAP50": 0.625,
+        "mask_mAP50_95": 0.2574,
+        "per_iou": [
+          0.625,
+          0.5728,
+          0.5031,
+          0.4029,
+          0.2762,
+          0.1379,
+          0.0482,
+          0.0073,
+          0.0008,
+          0.0
+        ]
+      },
+      "bf": {
+        "ours": {
+          "tol1": 0.7634,
+          "tol2": 0.9022,
+          "tol3": 0.9578,
+          "tol5": 0.988
+        },
+        "boxfill": {
+          "tol1": 0.6471,
+          "tol2": 0.819,
+          "tol3": 0.9127,
+          "tol5": 0.9754
+        }
+      }
+    },
+    "ours_s1": {
+      "label": "ours knobbed s1",
+      "preds": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s1.json",
+      "n_matched_tp": 20642,
+      "n_gt": 25705,
+      "ap": {
+        "mask_mAP50": 0.6358,
+        "mask_mAP50_95": 0.2567,
+        "per_iou": [
+          0.6358,
+          0.5782,
+          0.5049,
+          0.3966,
+          0.2634,
+          0.1315,
+          0.0481,
+          0.0078,
+          0.0005,
+          0.0
+        ]
+      },
+      "bf": {
+        "ours": {
+          "tol1": 0.7605,
+          "tol2": 0.9019,
+          "tol3": 0.96,
+          "tol5": 0.9899
+        },
+        "boxfill": {
+          "tol1": 0.6829,
+          "tol2": 0.8507,
+          "tol3": 0.9343,
+          "tol5": 0.9837
+        }
+      }
+    },
+    "ours_s2": {
+      "label": "ours knobbed s2",
+      "preds": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s2.json",
+      "n_matched_tp": 20780,
+      "n_gt": 25705,
+      "ap": {
+        "mask_mAP50": 0.6294,
+        "mask_mAP50_95": 0.2564,
+        "per_iou": [
+          0.6294,
+          0.5738,
+          0.5009,
+          0.3929,
+          0.2681,
+          0.1378,
+          0.0529,
+          0.0073,
+          0.0004,
+          0.0
+        ]
+      },
+      "bf": {
+        "ours": {
+          "tol1": 0.7595,
+          "tol2": 0.9015,
+          "tol3": 0.9585,
+          "tol5": 0.9886
+        },
+        "boxfill": {
+          "tol1": 0.6428,
+          "tol2": 0.8222,
+          "tol3": 0.9186,
+          "tol5": 0.9788
+        }
+      }
+    },
+    "dt2_s0": {
+      "label": "DetecTree2 s0 (mask-supervised)",
+      "preds": "boxinst_commonality_tcd_04/detectree2_baseline/preds_dt2_s0_fullcov.json",
+      "n_matched_tp": 19217,
+      "n_gt": 25705,
+      "ap": {
+        "mask_mAP50": 0.5345,
+        "mask_mAP50_95": 0.2235,
+        "per_iou": [
+          0.5345,
+          0.483,
+          0.4186,
+          0.3331,
+          0.2384,
+          0.139,
+          0.0665,
+          0.0189,
+          0.0027,
+          0.0003
+        ]
+      },
+      "bf": {
+        "ours": {
+          "tol1": 0.7666,
+          "tol2": 0.9082,
+          "tol3": 0.9639,
+          "tol5": 0.9913
+        },
+        "boxfill": {
+          "tol1": 0.7315,
+          "tol2": 0.8719,
+          "tol3": 0.94,
+          "tol5": 0.9835
+        }
+      }
+    }
+  }
+}

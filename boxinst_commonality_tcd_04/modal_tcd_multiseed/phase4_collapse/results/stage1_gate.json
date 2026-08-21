@@ -1,0 +1,84 @@
+{
+  "label": "Stage 1 -- K x EM-seed masker fits, beta=0.5, 8px 4-phase, 120 train tiles",
+  "verdict": "MIXTURE REMOVABLE",
+  "reading": "Fitting with k=2 reaches the same foreground direction as fitting with k=16: cross agreement cos(C_bar) = 0.9942 sits ABOVE the within-k=16 between-seed floor [0.9915, 0.9922]. The k=2-vs-k=16 difference is smaller than the difference between two random seeds of k=16, so over-provisioning is decoration, not scaffolding: it changes neither where the fit lands nor the rank of the solution.",
+  "em_init_variance": {
+    "note": "First measurement of masker-init variance in this project. The published +/-0.005 band is DETECTOR variance only -- the masker is fit once at seed 0 and shared across detector seeds. Direction agreement is high, so masker init is stable; this bounds direction, not AP.",
+    "within_k16_cos_mean": 0.9922,
+    "within_k16_cos_min": 0.9915,
+    "within_k2_cos_mean": 0.9912,
+    "within_k2_cos_min": 0.9908,
+    "cross_cos_mean": 0.9942,
+    "cross_cos_min": 0.9912
+  },
+  "pruning": "Pruning fires RARELY and seed-dependently: k=16 seed 1 pruned to K_eff=15; seeds 0 and 2 did not prune. Earlier phrasing 'pruning never fires' was based on the deployed model and the two archived fit logs, which happened to be non-pruning runs. The conclusion is unchanged -- pruning removes at most one prototype and never approaches the effective rank (~1.3-2.0), because it tests starvation, not redundancy.",
+  "sanity_gate": "k=16 seed 0 refit reproduces the deployed em_model_4p_fix.npz: effective rank 1.6562 vs 1.66, pairwise cosine 0.9935 vs 0.9935. The fit recipe reproduces the shipped model.",
+  "per_fit": [
+    {
+      "K": 16,
+      "effective_rank": 1.6562,
+      "pairwise_cos_mean": 0.9935,
+      "pairwise_cos_max": 1.0,
+      "frac_pairs_over_0.9": 1.0,
+      "k_init": 16,
+      "em_seed": 0,
+      "beta": 0.5,
+      "npz": "/vol/collapse/k16_s0_b0.5/em_k16_s0_b0.5_fix.npz"
+    },
+    {
+      "K": 15,
+      "effective_rank": 1.8852,
+      "pairwise_cos_mean": 0.9867,
+      "pairwise_cos_max": 1.0,
+      "frac_pairs_over_0.9": 1.0,
+      "k_init": 16,
+      "em_seed": 1,
+      "beta": 0.5,
+      "npz": "/vol/collapse/k16_s1_b0.5/em_k16_s1_b0.5_fix.npz"
+    },
+    {
+      "K": 16,
+      "effective_rank": 2.0069,
+      "pairwise_cos_mean": 0.9854,
+      "pairwise_cos_max": 1.0,
+      "frac_pairs_over_0.9": 1.0,
+      "k_init": 16,
+      "em_seed": 2,
+      "beta": 0.5,
+      "npz": "/vol/collapse/k16_s2_b0.5/em_k16_s2_b0.5_fix.npz"
+    },
+    {
+      "K": 2,
+      "effective_rank": 1.3004,
+      "pairwise_cos_mean": 0.9875,
+      "pairwise_cos_max": 0.9875,
+      "frac_pairs_over_0.9": 1.0,
+      "k_init": 2,
+      "em_seed": 0,
+      "beta": 0.5,
+      "npz": "/vol/collapse/k2_s0_b0.5/em_k2_s0_b0.5_fix.npz"
+    },
+    {
+      "K": 2,
+      "effective_rank": 1.2973,
+      "pairwise_cos_mean": 0.9878,
+      "pairwise_cos_max": 0.9878,
+      "frac_pairs_over_0.9": 1.0,
+      "k_init": 2,
+      "em_seed": 1,
+      "beta": 0.5,
+      "npz": "/vol/collapse/k2_s1_b0.5/em_k2_s1_b0.5_fix.npz"
+    },
+    {
+      "K": 2,
+      "effective_rank": 1.3107,
+      "pairwise_cos_mean": 0.9863,
+      "pairwise_cos_max": 0.9863,
+      "frac_pairs_over_0.9": 1.0,
+      "k_init": 2,
+      "em_seed": 2,
+      "beta": 0.5,
+      "npz": "/vol/collapse/k2_s2_b0.5/em_k2_s2_b0.5_fix.npz"
+    }
+  ]
+}

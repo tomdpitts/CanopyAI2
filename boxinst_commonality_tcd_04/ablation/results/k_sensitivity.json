@@ -1,0 +1,142 @@
+{
+  "label": "Does K matter? Parameter-space prediction from the deployed prototypes",
+  "deployed": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/em_model_4p_fix.npz",
+  "fit_data": "120 4-phase L24 train tiles (fit.log); NO test data enters this analysis",
+  "effective_kappa": 16.0,
+  "prototype_mass_gini": -0.3859,
+  "how_to_read": "mean_shift is absorbable by the existing alpha / mask_thr knobs -- a constant offset in A just moves the sigmoid's operating point. sd_shift (and max_abs_residual_after_offset) is the part NO knob can absorb; that is the only quantity that can change the mask shape, and therefore AP.",
+  "verdict_inputs": {
+    "k1_sd": 0.0349,
+    "k2_sd": 0.038
+  },
+  "rows": [
+    {
+      "mode": "mass",
+      "k": 1,
+      "mean_shift_nats": 0.0019,
+      "sd_shift_nats": 0.0349,
+      "max_abs_residual_after_offset": 0.1096,
+      "equiv_sigmoid_shift_at_A0": 0.0005
+    },
+    {
+      "mode": "mass",
+      "k": 2,
+      "mean_shift_nats": 0.001,
+      "sd_shift_nats": 0.038,
+      "max_abs_residual_after_offset": 0.1301,
+      "equiv_sigmoid_shift_at_A0": 0.0003
+    },
+    {
+      "mode": "mass",
+      "k": 3,
+      "mean_shift_nats": 0.0011,
+      "sd_shift_nats": 0.0239,
+      "max_abs_residual_after_offset": 0.0891,
+      "equiv_sigmoid_shift_at_A0": 0.0003
+    },
+    {
+      "mode": "mass",
+      "k": 4,
+      "mean_shift_nats": 0.0003,
+      "sd_shift_nats": 0.0135,
+      "max_abs_residual_after_offset": 0.0328,
+      "equiv_sigmoid_shift_at_A0": 0.0001
+    },
+    {
+      "mode": "mass",
+      "k": 6,
+      "mean_shift_nats": 0.0004,
+      "sd_shift_nats": 0.0039,
+      "max_abs_residual_after_offset": 0.0091,
+      "equiv_sigmoid_shift_at_A0": 0.0001
+    },
+    {
+      "mode": "mass",
+      "k": 8,
+      "mean_shift_nats": 0.0002,
+      "sd_shift_nats": 0.0044,
+      "max_abs_residual_after_offset": 0.0165,
+      "equiv_sigmoid_shift_at_A0": 0.0
+    },
+    {
+      "mode": "mass",
+      "k": 12,
+      "mean_shift_nats": -0.0002,
+      "sd_shift_nats": 0.0013,
+      "max_abs_residual_after_offset": 0.0047,
+      "equiv_sigmoid_shift_at_A0": -0.0
+    },
+    {
+      "mode": "mass",
+      "k": 16,
+      "mean_shift_nats": 0.0,
+      "sd_shift_nats": 0.0,
+      "max_abs_residual_after_offset": 0.0,
+      "equiv_sigmoid_shift_at_A0": 0.0
+    },
+    {
+      "mode": "spread",
+      "k": 1,
+      "mean_shift_nats": 0.0019,
+      "sd_shift_nats": 0.0349,
+      "max_abs_residual_after_offset": 0.1096,
+      "equiv_sigmoid_shift_at_A0": 0.0005
+    },
+    {
+      "mode": "spread",
+      "k": 2,
+      "mean_shift_nats": 0.0018,
+      "sd_shift_nats": 0.025,
+      "max_abs_residual_after_offset": 0.0811,
+      "equiv_sigmoid_shift_at_A0": 0.0005
+    },
+    {
+      "mode": "spread",
+      "k": 3,
+      "mean_shift_nats": 0.001,
+      "sd_shift_nats": 0.0188,
+      "max_abs_residual_after_offset": 0.0467,
+      "equiv_sigmoid_shift_at_A0": 0.0003
+    },
+    {
+      "mode": "spread",
+      "k": 4,
+      "mean_shift_nats": 0.0004,
+      "sd_shift_nats": 0.0133,
+      "max_abs_residual_after_offset": 0.0402,
+      "equiv_sigmoid_shift_at_A0": 0.0001
+    },
+    {
+      "mode": "spread",
+      "k": 6,
+      "mean_shift_nats": 0.0001,
+      "sd_shift_nats": 0.0116,
+      "max_abs_residual_after_offset": 0.0369,
+      "equiv_sigmoid_shift_at_A0": 0.0
+    },
+    {
+      "mode": "spread",
+      "k": 8,
+      "mean_shift_nats": -0.0007,
+      "sd_shift_nats": 0.0037,
+      "max_abs_residual_after_offset": 0.0139,
+      "equiv_sigmoid_shift_at_A0": -0.0002
+    },
+    {
+      "mode": "spread",
+      "k": 12,
+      "mean_shift_nats": -0.0002,
+      "sd_shift_nats": 0.0062,
+      "max_abs_residual_after_offset": 0.0251,
+      "equiv_sigmoid_shift_at_A0": -0.0
+    },
+    {
+      "mode": "spread",
+      "k": 16,
+      "mean_shift_nats": 0.0,
+      "sd_shift_nats": 0.0,
+      "max_abs_residual_after_offset": 0.0,
+      "equiv_sigmoid_shift_at_A0": 0.0
+    }
+  ]
+}
