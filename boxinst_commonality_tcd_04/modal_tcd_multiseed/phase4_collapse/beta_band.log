@@ -1,0 +1,147 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-KjnR1RDLbwQPFiOHYwxLVH
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4_collapse/collapse_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4_collapse/collapse_lib.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/val_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4_collapse/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_fit_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/vault/em_model.np
+│   z
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function _fit_one.
+└── 🔨 Created function _eval_one.
+[beta_band] fitting 2 missing beta=0 cells
+[fit_masker_4p] 120 4-phase L24 tiles (g=256,s=8) pca=128 k=16 k_bg=12 beta=0.0 no_contrast=False -> /vol/collapse/k16_s1_b0_c1/em_k16_s1_b0_c1_fix.npz
+[fit_masker_4p] 120 4-phase L24 tiles (g=256,s=8) pca=128 k=16 k_bg=12 beta=0.0 no_contrast=False -> /vol/collapse/k16_s2_b0_c1/em_k16_s2_b0_c1_fix.npz
+  loaded 20/120
+  loaded 20/120
+  loaded 40/120
+  loaded 60/120
+  loaded 40/120
+  loaded 80/120
+  loaded 60/120
+  loaded 100/120
+  loaded 120/120
+TCD train crops=120 grid=256 stride=8px origin=8.0px
+  loaded 80/120
+  loaded 100/120
+  loaded 120/120
+TCD train crops=120 grid=256 stride=8px origin=8.0px
+PCA 128, whitened
+bg mixture K_bg=12 on 6329268 clear + 190231 ring
+EM over 9135 boxes / 444698 cells; size terciles [25.1 50.8]px
+  it 5: mean P(fg)=0.667
+  it10: mean P(fg)=0.670
+  it15: mean P(fg)=0.676
+  it20: mean P(fg)=0.678
+  it25: mean P(fg)=0.680
+  it28: prune -> K=15
+  it30: mean P(fg)=0.682
+saved /vol/collapse/k16_s1_b0_c1/em_k16_s1_b0_c1_fix.npz  (K=15)
+[fit] k=16 s=1 b=0 contrast=True done in 5.0min
+[fit] k=16 s=1: K_eff=15 rank=11.3515 cos=0.2521
+  fitted k16_s1_b0_c1: K_eff=15 rank=11.351
+PCA 128, whitened
+bg mixture K_bg=12 on 6329268 clear + 190231 ring
+EM over 9135 boxes / 444698 cells; size terciles [25.1 50.8]px
+  it 5: mean P(fg)=0.671
+  it10: mean P(fg)=0.674
+  it15: mean P(fg)=0.678
+  it20: mean P(fg)=0.680
+  it25: mean P(fg)=0.683
+  it30: mean P(fg)=0.686
+saved /vol/collapse/k16_s2_b0_c1/em_k16_s2_b0_c1_fix.npz  (K=16)
+[fit] k=16 s=2 b=0 contrast=True done in 7.0min
+[fit] k=16 s=2: K_eff=16 rank=11.8774 cos=0.2446
+  fitted k16_s2_b0_c1: K_eff=16 rank=11.877
+  skip k16_s0_b0_c1_pred (already measured, 0.7188 -- not overwriting)
+[beta_band] spawning 5 predicted-box evals
+  spawned k16_s0_b0.5_pred  (fc-01M0RQREY4C6TB26YYPB902BRZ)
+  spawned k16_s1_b0_c1_pred  (fc-01M0RQRF6MBG8E96M4GTPYXFGQ)
+  spawned k16_s1_b0.5_pred  (fc-01M0RQRFFHH1Q4KNZMT7VEVADP)
+  spawned k16_s2_b0_c1_pred  (fc-01M0RQRFRW9WT16DKHYDZRVRXB)
+  spawned k16_s2_b0.5_pred  (fc-01M0RQRG196TKY89FY4BCPTNPE)
+[beta_band] client exiting; poll the volume for eval/*.json
+[modal-client] 2026-08-24T11:57:11+1000 Timed out waiting for final app logs.
+✓ App completed. View run at 
+https://modal.com/apps/tomdpitts/main/ap-KjnR1RDLbwQPFiOHYwxLVH

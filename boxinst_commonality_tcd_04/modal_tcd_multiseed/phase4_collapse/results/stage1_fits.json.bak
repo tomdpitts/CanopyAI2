@@ -138,10 +138,7 @@
     "k_init": 16,
     "em_seed": 0,
     "beta": 0.5,
-    "npz": "/vol/collapse/k16_s0_b0.5/em_k16_s0_b0.5_fix.npz",
-    "contrast": true,
-    "contrast_provenance": "contrast backfilled, not recorded at fit time: these cells were fitted before the E-step axis was exposed, when the code used no_contrast=(beta==0), so beta=0.5 implies recentring ON. Verified empirically rather than inferred -- the seed-0 cell is bit-equivalent to the explicitly-fitted k16_s0_b0.5_c1 (max |dC| 1.3e-08, prototype cos 1.000000) and clearly distinct from k16_s0_b0.5_c0 (max |dC| 5.6e-02, cos 0.991).",
-    "cell": "k16_s0_b0.5"
+    "npz": "/vol/collapse/k16_s0_b0.5/em_k16_s0_b0.5_fix.npz"
   },
   {
     "K": 15,
@@ -282,10 +279,7 @@
     "k_init": 16,
     "em_seed": 1,
     "beta": 0.5,
-    "npz": "/vol/collapse/k16_s1_b0.5/em_k16_s1_b0.5_fix.npz",
-    "contrast": true,
-    "contrast_provenance": "contrast backfilled, not recorded at fit time: these cells were fitted before the E-step axis was exposed, when the code used no_contrast=(beta==0), so beta=0.5 implies recentring ON. Verified empirically rather than inferred -- the seed-0 cell is bit-equivalent to the explicitly-fitted k16_s0_b0.5_c1 (max |dC| 1.3e-08, prototype cos 1.000000) and clearly distinct from k16_s0_b0.5_c0 (max |dC| 5.6e-02, cos 0.991).",
-    "cell": "k16_s1_b0.5"
+    "npz": "/vol/collapse/k16_s1_b0.5/em_k16_s1_b0.5_fix.npz"
   },
   {
     "K": 16,
@@ -426,10 +420,7 @@
     "k_init": 16,
     "em_seed": 2,
     "beta": 0.5,
-    "npz": "/vol/collapse/k16_s2_b0.5/em_k16_s2_b0.5_fix.npz",
-    "contrast": true,
-    "contrast_provenance": "contrast backfilled, not recorded at fit time: these cells were fitted before the E-step axis was exposed, when the code used no_contrast=(beta==0), so beta=0.5 implies recentring ON. Verified empirically rather than inferred -- the seed-0 cell is bit-equivalent to the explicitly-fitted k16_s0_b0.5_c1 (max |dC| 1.3e-08, prototype cos 1.000000) and clearly distinct from k16_s0_b0.5_c0 (max |dC| 5.6e-02, cos 0.991).",
-    "cell": "k16_s2_b0.5"
+    "npz": "/vol/collapse/k16_s2_b0.5/em_k16_s2_b0.5_fix.npz"
   },
   {
     "K": 2,
@@ -570,10 +561,7 @@
     "k_init": 2,
     "em_seed": 0,
     "beta": 0.5,
-    "npz": "/vol/collapse/k2_s0_b0.5/em_k2_s0_b0.5_fix.npz",
-    "contrast": true,
-    "contrast_provenance": "contrast backfilled, not recorded at fit time: these cells were fitted before the E-step axis was exposed, when the code used no_contrast=(beta==0), so beta=0.5 implies recentring ON. Verified empirically rather than inferred -- the seed-0 cell is bit-equivalent to the explicitly-fitted k16_s0_b0.5_c1 (max |dC| 1.3e-08, prototype cos 1.000000) and clearly distinct from k16_s0_b0.5_c0 (max |dC| 5.6e-02, cos 0.991).",
-    "cell": "k2_s0_b0.5"
+    "npz": "/vol/collapse/k2_s0_b0.5/em_k2_s0_b0.5_fix.npz"
   },
   {
     "K": 2,
@@ -714,10 +702,7 @@
     "k_init": 2,
     "em_seed": 1,
     "beta": 0.5,
-    "npz": "/vol/collapse/k2_s1_b0.5/em_k2_s1_b0.5_fix.npz",
-    "contrast": true,
-    "contrast_provenance": "contrast backfilled, not recorded at fit time: these cells were fitted before the E-step axis was exposed, when the code used no_contrast=(beta==0), so beta=0.5 implies recentring ON. Verified empirically rather than inferred -- the seed-0 cell is bit-equivalent to the explicitly-fitted k16_s0_b0.5_c1 (max |dC| 1.3e-08, prototype cos 1.000000) and clearly distinct from k16_s0_b0.5_c0 (max |dC| 5.6e-02, cos 0.991).",
-    "cell": "k2_s1_b0.5"
+    "npz": "/vol/collapse/k2_s1_b0.5/em_k2_s1_b0.5_fix.npz"
   },
   {
     "K": 2,
@@ -858,9 +843,6 @@
     "k_init": 2,
     "em_seed": 2,
     "beta": 0.5,
-    "npz": "/vol/collapse/k2_s2_b0.5/em_k2_s2_b0.5_fix.npz",
-    "contrast": true,
-    "contrast_provenance": "contrast backfilled, not recorded at fit time: these cells were fitted before the E-step axis was exposed, when the code used no_contrast=(beta==0), so beta=0.5 implies recentring ON. Verified empirically rather than inferred -- the seed-0 cell is bit-equivalent to the explicitly-fitted k16_s0_b0.5_c1 (max |dC| 1.3e-08, prototype cos 1.000000) and clearly distinct from k16_s0_b0.5_c0 (max |dC| 5.6e-02, cos 0.991).",
-    "cell": "k2_s2_b0.5"
+    "npz": "/vol/collapse/k2_s2_b0.5/em_k2_s2_b0.5_fix.npz"
   }
 ]

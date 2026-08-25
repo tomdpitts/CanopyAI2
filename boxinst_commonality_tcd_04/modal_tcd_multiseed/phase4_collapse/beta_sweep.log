@@ -1,0 +1,214 @@
+Note that running a local entrypoint in detached mode only keeps the last triggered Modal function alive after the parent process has been killed or disconnected.
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-m2oLMfXWsS68XGUw2Ep7pN
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4_collapse/collapse_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4_collapse/collapse_lib.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4_collapse/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/val_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_fit_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/vault/em_model.np
+│   z
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function _eval_one.
+└── 🔨 Created function _fit_one.
+[beta_sweep] k=16 seed=0 betas=[0.1, 0.25, 0.5] contrast=True
+[fit_masker_4p] 120 4-phase L24 tiles (g=256,s=8) pca=128 k=16 k_bg=12 beta=0.1 no_contrast=False -> /vol/collapse/k16_s0_b0.1_c1/em_k16_s0_b0.1_c1_fix.npz
+[fit_masker_4p] 120 4-phase L24 tiles (g=256,s=8) pca=128 k=16 k_bg=12 beta=0.25 no_contrast=False -> /vol/collapse/k16_s0_b0.25_c1/em_k16_s0_b0.25_c1_fix.npz[fit_masker_4p] 120 4-phase L24 tiles (g=256,s=8) pca=128 k=16 k_bg=12 beta=0.5 no_contrast=False -> /vol/collapse/k16_s0_b0.5_c1/em_k16_s0_b0.5_c1_fix.npz
+
+  loaded 20/120
+  loaded 20/120
+  loaded 20/120
+  loaded 40/120
+  loaded 40/120
+  loaded 40/120
+  loaded 60/120
+  loaded 60/120
+  loaded 60/120
+  loaded 80/120
+  loaded 80/120
+  loaded 80/120
+  loaded 100/120
+  loaded 100/120
+  loaded 100/120
+  loaded 120/120
+TCD train crops=120 grid=256 stride=8px origin=8.0px
+  loaded 120/120
+TCD train crops=120 grid=256 stride=8px origin=8.0px
+  loaded 120/120
+TCD train crops=120 grid=256 stride=8px origin=8.0px
+PCA 128, whitened
+bg mixture K_bg=12 on 6329268 clear + 190231 ring
+EM over 9135 boxes / 444698 cells; size terciles [25.1 50.8]px
+  it 5: mean P(fg)=0.676
+PCA 128, whitened  it10: mean P(fg)=0.676
+
+  it15: mean P(fg)=0.677
+bg mixture K_bg=12 on 6329268 clear + 190231 ring
+EM over 9135 boxes / 444698 cells; size terciles [25.1 50.8]px
+  it20: mean P(fg)=0.675
+  it 5: mean P(fg)=0.671
+  it25: mean P(fg)=0.676
+  it10: mean P(fg)=0.673
+  it30: mean P(fg)=0.677
+saved /vol/collapse/k16_s0_b0.5_c1/em_k16_s0_b0.5_c1_fix.npz  (K=16)
+[fit] k=16 s=0 b=0.5 contrast=True done in 6.9min
+  it12: prune -> K=15
+[fit] k=16 s=0: K_eff=16 rank=1.6562 cos=0.9935
+  it15: mean P(fg)=0.676
+  it17: prune -> K=14
+  it18: prune -> K=13
+  it20: mean P(fg)=0.676
+  it25: mean P(fg)=0.676
+  it30: mean P(fg)=0.677
+saved /vol/collapse/k16_s0_b0.25_c1/em_k16_s0_b0.25_c1_fix.npz  (K=13)
+[fit] k=16 s=0 b=0.25 contrast=True done in 7.3min
+[fit] k=16 s=0: K_eff=13 rank=6.374 cos=0.5251
+PCA 128, whitened
+bg mixture K_bg=12 on 6329268 clear + 190231 ring
+EM over 9135 boxes / 444698 cells; size terciles [25.1 50.8]px
+  it 5: mean P(fg)=0.672
+  it10: mean P(fg)=0.676
+  it15: mean P(fg)=0.678
+  it20: mean P(fg)=0.679
+  it25: mean P(fg)=0.681
+  it29: prune -> K=15
+  it30: mean P(fg)=0.674
+saved /vol/collapse/k16_s0_b0.1_c1/em_k16_s0_b0.1_c1_fix.npz  (K=15)
+[fit] k=16 s=0 b=0.1 contrast=True done in 8.5min
+
+cell                      K_eff  eff rank  cos mean
+k16_s0_b0.1_c1               15     9.414    0.3339
+k16_s0_b0.25_c1              13     6.374    0.5251
+k16_s0_b0.5_c1               16     1.656    0.9935
+[fit] k=16 s=0: K_eff=15 rank=9.414 cos=0.3339
+[eval_boxsource] gt boxes, 108 tiles, em=em_k16_s0_b0.1_c1_fix.npz
+[eval_boxsource] gt boxes, 108 tiles, em=em_k16_s0_b0.25_c1_fix.npz
+[eval_boxsource] pred boxes, 108 tiles, em=em_k16_s0_b0.1_c1_fix.npz
+[eval_boxsource] pred boxes, 108 tiles, em=em_k16_s0_b0.25_c1_fix.npz
+[eval_boxsource] gt boxes, 108 tiles, em=em_k16_s0_b0.5_c1_fix.npz
+[eval_boxsource] pred boxes, 108 tiles, em=em_k16_s0_b0.5_c1_fix.npz
+    25/108
+    25/108
+    50/108
+    50/108
+    25/108
+    75/108
+    75/108
+    100/108
+    50/108
+    100/108
+    108/108
+    25/108
+    25/108
+    108/108
+    25/108
+    75/108
+    100/108
+    108/108
+    50/108
+  -> crownIoU 0.7901  AP50 0.9684  AP50-95 0.5316
+    50/108
+    50/108
+  -> crownIoU 0.79  AP50 0.9692  AP50-95 0.5312
+    75/108
+    75/108
+    75/108
+  -> crownIoU 0.7885  AP50 0.9666  AP50-95 0.5302
+    100/108
+    100/108
+    100/108
+    108/108
+    108/108
+    108/108
+  -> crownIoU 0.7194  AP50 0.6404  AP50-95 0.2687
+  -> crownIoU 0.7199  AP50 0.6376  AP50-95 0.2684
+  -> crownIoU 0.7193  AP50 0.6392  AP50-95 0.268
+
+  beta   oracle IoU   pred IoU
+  0.00       0.7895     0.7188
+  0.10       0.7900     0.7194
+  0.25       0.7901     0.7199
+  0.50       0.7885     0.7193
+
+-> best predicted-box beta = 0.25  INTERIOR OPTIMUM
+✓ App completed. View run at 
+https://modal.com/apps/tomdpitts/main/ap-m2oLMfXWsS68XGUw2Ep7pN

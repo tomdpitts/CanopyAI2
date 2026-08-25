@@ -399,3 +399,136 @@ def _report_factorial(ev):
         dom = "RECENTRING" if (rec_only - lo) > (rep_only - lo) else "REPULSION"
         print(f"         -> {dom} dominates; interaction "
               f"{(hi - lo) - (rec_only - lo) - (rep_only - lo):+.4f}")
+
+
+@app.local_entrypoint()
+def beta_sweep(betas: str = "0.1,0.25,0.5", k: int = 16, em_seed: int = 0, evals: str = "1"):
+    """Single-axis beta sweep at 8px with E-step recentring HELD ON for every arm.
+
+    No previous sweep did this. masker_lab/sweep.py (16px) sets no_contrast=(beta == 0), so its
+    beta=0 row is generative+absolute while the rest are contrastive+recentred -- the 0->0.1
+    drop there conflates adding recentring with adding repulsion. Holding contrast=True across
+    all beta isolates the repulsion term, which the `contrast` axis now makes possible.
+
+    Motivation: with recentring on, the two endpoints TIE at 8px (predicted-box crown IoU
+    0.7188 at beta=0 vs 0.7193 at beta=0.5), and the 16px sweep shows collapse is graded rather
+    than binary (effective rank 13.0 / 11.1 / 5.4 / 1.7 at beta 0 / 0.1 / 0.25 / 0.5). Equal
+    endpoints plus graded geometry is the shape in which an interior optimum can hide.
+
+    beta=0 and beta=0.5 at contrast=True already exist and are reused, not refitted.
+    """
+    bl = [float(b) for b in betas.split(",")]
+    print(f"[beta_sweep] k={k} seed={em_seed} betas={bl} contrast=True", flush=True)
+    for b in bl:
+        _assert_isolated(_npz(k, em_seed, b, True))
+    rows = list(_fit_one.starmap([(k, em_seed, b, FIT_TILES, True) for b in bl]))
+    os.makedirs(os.path.join(HERE, "results"), exist_ok=True)
+    json.dump(rows, open(os.path.join(HERE, "results", "beta_sweep_fits.json"), "w"), indent=2)
+    print(f"\n{'cell':<24}{'K_eff':>7}{'eff rank':>10}{'cos mean':>10}")
+    for r in sorted(rows, key=lambda x: x["beta"]):
+        print(f"{r['cell']:<24}{r['K']:>7}{r['effective_rank']:>10.3f}"
+              f"{r['pairwise_cos_mean']:>10.4f}")
+    if evals != "1":
+        return
+    jobs = []
+    for b in bl:
+        em, tag = _npz(k, em_seed, b, True), _cell(k, em_seed, b, True)
+        for src in ("gt", "pred"):
+            jobs.append((em, src, f"{tag}_{src}", []))
+    ev = list(_eval_one.starmap(jobs))
+    json.dump(ev, open(os.path.join(HERE, "results", "beta_sweep_evals.json"), "w"), indent=2)
+    # Fallbacks only. beta=0 was fitted by THIS harness in the factorial run
+    # (cell k16_s0_b0_c1); the deployed beta=0.5 model was fitted by phase4, so if 0.5 is in
+    # the sweep it is refitted here and the freshly measured value must win.
+    known = {0.0: (0.7895, 0.7188)}
+    got = {}
+    for r in ev:
+        b = float(r["tag"].split("_b")[1].split("_c")[0])
+        got.setdefault(b, {})["gt" if r["tag"].endswith("_gt") else "pred"] = r["mean_crown_iou"]
+    for b, (o, pr) in known.items():
+        g = got.setdefault(b, {})
+        g.setdefault("gt", o)          # setdefault, not update: never clobber a measured cell
+        g.setdefault("pred", pr)
+    print(f"\n{'beta':>6}{'oracle IoU':>13}{'pred IoU':>11}")
+    for b in sorted(got):
+        g = got[b]
+        print(f"{b:>6.2f}{g.get('gt', float('nan')):>13.4f}{g.get('pred', float('nan')):>11.4f}")
+    best = max(got, key=lambda b: got[b].get("pred", -1))
+    interior = best not in (min(got), max(got))
+    print(f"\n-> best predicted-box beta = {best:g}"
+          f"{'  INTERIOR OPTIMUM' if interior else '  (endpoint; no interior optimum)'}")
+
+
+@app.local_entrypoint()
+def eval_cell(k: int = 2, em_seed: int = 0, beta: float = 0.0, contrast: str = "1",
+              src: str = "pred"):
+    """Re-run ONE eval cell, disconnect-proof.
+
+    Uses .spawn() rather than .remote()/.starmap(): the local client dispatches and exits
+    immediately, so nothing client-side is holding the app open and a dropped connection
+    cannot take the run down with it. That is what killed the k2 predicted-box eval at
+    100/108 -- --detach alone did not survive it, because the entrypoint was still iterating
+    starmap results when the socket died.
+
+    Writes exactly one file, /vol/collapse/eval/<cell>_<src>.json. Check with
+    `modal volume ls tcd04-phase4-vol collapse/eval` that it does not already exist -- this
+    does not guard against overwriting, because the volume is not visible from the client.
+    """
+    c = bool(int(contrast))
+    em = _npz(k, em_seed, beta, c)
+    tag = f"{_cell(k, em_seed, beta, c)}_{src}"
+    out = f"{COLLAPSE}/eval/{tag}.json"
+    _assert_isolated(em, out)
+    assert src in ("gt", "pred")
+    print(f"[eval_cell] em  = {em}")
+    print(f"[eval_cell] out = {out}")
+    call = _eval_one.spawn(em, src, tag, [])
+    print(f"[eval_cell] spawned {call.object_id} -- client exiting; poll the volume for the "
+          f"output file.")
+
+
+@app.local_entrypoint()
+def beta_band(seeds: str = "0,1,2"):
+    """3-EM-seed band for beta=0 vs beta=0.5 at K=16 -- the noise floor AND the beta claim.
+
+    Two quantities from one run:
+      1. Masker-seed variance. The published 0.630 +/- 0.005 varies the DETECTOR and holds one
+         masker (em_model_4p_fix.npz, EM seed 0) fixed, so it contains no masker variance at
+         all. Every masker-swap comparison in this folder has therefore been judged without a
+         floor. Refitting at three EM seeds with the detector fixed isolates it.
+      2. The beta claim with error bars. The beta sweep (0/0.1/0.25/0.5, spread 0.0011 while
+         effective rank falls 11.4 -> 1.7) is single-seed; banding the two endpoints is what
+         makes "beta is inert" reportable rather than observational.
+
+    Reuses everything already on the volume: the three beta=0.5 fits from fit_grid, the beta=0
+    seed-0 fit from factorial, and its predicted-box eval. Only the two missing beta=0 fits and
+    the five missing evals are run. Nothing existing is overwritten -- verified against a live
+    volume listing before launch.
+    """
+    sl = [int(x) for x in seeds.split(",")]
+    # beta=0 arms are tagged _c1; beta=0.5 arms are the untagged fit_grid cells (contrast is
+    # implicitly True there, since phase4 couples no_contrast = beta == 0)
+    need_fits = [(16, s, 0.0, FIT_TILES, True) for s in sl if s != 0]
+    for a in need_fits:
+        _assert_isolated(_npz(a[0], a[1], a[2], a[4]))
+    if need_fits:
+        print(f"[beta_band] fitting {len(need_fits)} missing beta=0 cells", flush=True)
+        for r in _fit_one.starmap(need_fits):
+            print(f"  fitted {r['cell']}: K_eff={r['K']} rank={r['effective_rank']:.3f}",
+                  flush=True)
+
+    jobs = []
+    for s in sl:
+        for beta, contrast in ((0.0, True), (0.5, None)):
+            em = _npz(16, s, beta, contrast)
+            tag = f"{_cell(16, s, beta, contrast)}_pred"
+            if beta == 0.0 and s == 0:
+                print(f"  skip {tag} (already measured, 0.7188 -- not overwriting)", flush=True)
+                continue
+            _assert_isolated(em, f"{COLLAPSE}/eval/{tag}.json")
+            jobs.append((em, tag))
+    print(f"[beta_band] spawning {len(jobs)} predicted-box evals", flush=True)
+    for em, tag in jobs:
+        call = _eval_one.spawn(em, "pred", tag, [])
+        print(f"  spawned {tag}  ({call.object_id})", flush=True)
+    print("[beta_band] client exiting; poll the volume for eval/*.json", flush=True)
