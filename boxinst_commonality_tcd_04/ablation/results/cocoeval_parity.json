@@ -1,0 +1,41 @@
+{
+  "label": "AP-core parity: evaluate._greedy_ap vs pycocotools COCOeval",
+  "arm": "canopy=FP (ignore disabled) -- the only arm where the two scorers see identical inputs, since COCOeval has no equivalent of our per-prediction canopy-ignore rule",
+  "seed": 0,
+  "n_tiles": 439,
+  "n_gt": 25705,
+  "n_det": 159687,
+  "max_dets": 600,
+  "iou_type": "segm",
+  "mask_res": 512,
+  "reference": {
+    "value": {
+      "mask_mAP50": 0.4867,
+      "mask_mAP50_95": 0.2041
+    },
+    "source": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/results_no_ignore_band.json",
+    "path_in_file": "per_seed.0.no_ignore"
+  },
+  "greedy_ap": {
+    "mask_mAP50": 0.4867,
+    "mask_mAP50_95": 0.2041
+  },
+  "cocoeval": {
+    "mask_mAP50": 0.4867,
+    "mask_mAP50_95": 0.2049
+  },
+  "delta_cocoeval_minus_ours": {
+    "mask_mAP50": 0.0,
+    "mask_mAP50_95": 0.0008
+  },
+  "verdict": "AP50 agrees EXACTLY to 4dp -- greedy matching, cross-image pooling and the 101-point precision envelope match COCO. The AP50:95 delta of +0.0008 is the matching-fallback difference: _greedy_ap (evaluate.py:108-112) takes the best-IoU GT and gives up if it is already matched, whereas COCOeval falls back to the best UNMATCHED GT above threshold. Ours is therefore strictly conservative -- it under-counts TPs where crowns compete, never over-counts. 0.0008 is about a third of the 3-seed sigma (0.005 on AP50).",
+  "scope": {
+    "establishes": "our AP ARITHMETIC is the COCO arithmetic; 0.630 is on the same scale as published COCO-convention numbers",
+    "does_not_establish": [
+      "that our PROTOCOL is standard -- whole 2048^2 tiles, 512^2 mask raster, maxDets 600 (COCO default 100) and canopy-ignore all remain ours",
+      "anything about the Restor Mask R-CNN or SelvaBox rows of tab:oamtcd439, which were never re-scored here; whether they used COCOeval is unknown to this repo"
+    ],
+    "paper_sentence": "Our AP implementation was cross-validated against pycocotools COCOeval on the canopy-as-FP arm, where no ignore rule applies: AP50 agrees exactly (0.4867 for both) and AP50:95 to 0.0008."
+  },
+  "note_macos": "mask_iou (evaluate.py:56) emits spurious overflow/invalid-value matmul warnings under Apple Accelerate. Verified harmless: finite, no NaN, values in [0,1]. Warnings are suppressed by this script."
+}

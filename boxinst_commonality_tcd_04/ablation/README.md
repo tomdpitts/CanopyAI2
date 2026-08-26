@@ -16,7 +16,11 @@ Run order (each is independent except T0.6, which needs T0.4's per-instance tabl
 .venv/bin/python -m boxinst_commonality_tcd_04.ablation.scripts.t07_grid_8v16
 .venv/bin/python -m boxinst_commonality_tcd_04.ablation.scripts.t08_table_notes
 .venv/bin/python -m boxinst_commonality_tcd_04.ablation.scripts.t09_proxy_calibration
+.venv/bin/python -m boxinst_commonality_tcd_04.ablation.scripts.t13_cocoeval_parity
 ```
+
+T0.13 is the slowest at ~5 min (it RLE-encodes 185k masks so COCOeval can read them); the
+rest are seconds to low minutes. All are CPU-only.
 
 Every re-scoring script runs a **reproduction gate** first (`lib/gate.py`): it re-scores the
 same predictions and asserts it reproduces the published per-seed numbers
@@ -158,6 +162,45 @@ should not be presented as one.
 Also found: `mps_multiseed/README.md` quotes that band as ±0.0231, which is `ddof=0`; the
 headline 0.630 ± 0.005 band is `ddof=1`. The same seeds give ±0.0259 under `ddof=1`.
 Bands quoted across this project's READMEs are not directly comparable as written.
+
+### 6b. Our AP core agrees with pycocotools COCOeval
+
+`results/cocoeval_parity.json`, `scripts/t13_cocoeval_parity.py`. Every AP in this project
+comes from `evaluate._greedy_ap`, a hand-written COCO-101pt implementation — `pycocotools`
+is imported all over the repo but **only** as `pycocotools.mask` for RLE; `COCOeval` was
+never called anywhere. The gates prove our numbers are *reproducible*; nothing proved they
+were on the same *scale* as the published rows sitting beside them in `tab:oamtcd439`.
+
+Scored on the **canopy=FP arm** (seed 0, 439 tiles, 25,705 GT, 159,687 detections,
+`maxDets` 600, `iouType=segm`). That arm is the right one because `Ignore` is all-False, so
+both scorers see identical inputs — COCOeval has no equivalent of our per-prediction
+canopy-ignore rule, so any other arm would produce an uninterpretable delta.
+
+| scorer | AP50 | AP50:95 |
+|---|---|---|
+| `_greedy_ap` (published) | 0.4867 | 0.2041 |
+| **pycocotools COCOeval** | **0.4867** | **0.2049** |
+| delta | **+0.0000** | **+0.0008** |
+
+**AP50 agrees exactly to 4 dp.** Greedy matching, cross-image pooling and the 101-point
+precision envelope all match COCO.
+
+The +0.0008 on AP50:95 is a real, understood difference in the matching rule.
+`_greedy_ap` (`evaluate.py:108-112`) takes `argmax(iou[i])` — the **best-IoU** GT — and
+gives up if that GT is already matched; COCOeval falls back to the best **unmatched** GT
+above threshold. So a detection whose best overlap is with an already-claimed crown becomes
+a FP for us even when it clears threshold against a free one. Invisible at IoU 0.5, appears
+only at stricter thresholds where crowns compete. **It biases our numbers down, never up** —
+we report a marginally conservative AP. 0.0008 is ~⅓ of the 3-seed σ.
+
+**Quotable without re-running:** *"Our AP implementation was cross-validated against
+pycocotools COCOeval on the canopy-as-FP arm, where no ignore rule applies: AP50 agrees
+exactly (0.4867 for both) and AP50:95 to 0.0008."*
+
+**Scope.** This validates the *arithmetic*, not the *protocol* — whole 2048² tiles, 512²
+mask raster, `maxDets` 600 (COCO's default is 100) and canopy-ignore all remain ours, and
+the `tab:oamtcd439` notes must keep saying so. It says nothing about the Restor or SelvaBox
+rows, which were never re-scored here; whether **they** used COCOeval is unknown to this repo.
 
 ### 7. Figures
 

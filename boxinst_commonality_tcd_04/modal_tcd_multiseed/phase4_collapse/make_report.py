@@ -133,9 +133,11 @@ for b, cell in ((0.0, "k2_s0_b0_c1"), (0.0, "k16_s0_b0_c1"),
 w("")
 w("At β=0 the K=2 fit is a genuine two-component mixture (effective rank 2.00 of a possible "
   "2.00, cos 0.05) and still matches K=16's rank-11.4 mixture. The extra fourteen components "
-  "buy ≈0.0007. At β=0.5 both collapse, and K=2 was never evaluated for accuracy — the "
-  "equivalence there rests on direction agreement, `cos(C̄_K2, C̄_K16) = 0.9942`, which exceeds "
-  "the between-seed agreement within K=16 itself (0.9915–0.9922).\n")
+  "buy ≈0.0007. At β=0.5 both collapse, and K=2 matches K=16 there too, on accuracy as well as "
+  "direction: `cos(C̄_K2, C̄_K16) = 0.9942`, exceeding the between-seed agreement within "
+  "K=16 itself (0.9915–0.9922). Across all six configurations predicted-box crown IoU "
+  "spans 0.0018 — less than twice the masker-seed band — while effective rank spans "
+  "2.00–11.88 and pairwise cosine 0.053–0.994, close to the full available range.\n")
 
 # ---------------------------------------------------------------- 4. box precision
 w("## 4. Box precision — is collapse a robustness mechanism?\n")

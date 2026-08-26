@@ -165,6 +165,31 @@ def _fit_clean_val_tiles():
     return sorted(va - fit_tiles), sorted(va & fit_tiles)
 
 
+def _save(name, rows, key="cell"):
+    """Merge `rows` into results/<name> instead of replacing it.
+
+    Every entrypoint used to json.dump straight over a fixed filename, so re-running one with
+    different parameters silently discarded the previous run's records -- which is exactly what
+    happened when a beta=0/K=2 run overwrote a four-cell beta sweep. The per-cell records on the
+    volume made that recoverable, but the local file was wrong until noticed. Merging on `key`
+    makes these writes idempotent and additive; the volume remains the source of truth.
+    """
+    path = os.path.join(HERE, "results", name)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    old = []
+    if os.path.exists(path):
+        try:
+            prev = json.load(open(path))
+            old = prev if isinstance(prev, list) else [prev]
+        except (ValueError, OSError):
+            old = []
+    rows = [r for r in rows if r]
+    fresh = {r.get(key) for r in rows if isinstance(r, dict)}
+    merged = rows + [r for r in old if isinstance(r, dict) and r.get(key) not in fresh]
+    json.dump(merged, open(path, "w"), indent=2)
+    return merged
+
+
 @app.function(image=image, volumes={"/vol": vol}, timeout=4 * 3600, cpu=8, memory=131072)
 def _fit_one(k: int, em_seed: int, beta: float = BETA, n_tiles: int = FIT_TILES,
              contrast: bool = None):
@@ -210,7 +235,7 @@ def fit_grid(ks: str = "2,16", seeds: str = "0,1,2", beta: float = BETA):
     print(f"[fit_grid] {len(cells)} fits: k={kl} x seed={sl} beta={beta}", flush=True)
     rows = list(_fit_one.starmap([(k, s, beta) for k, s in cells]))
     os.makedirs(os.path.join(HERE, "results"), exist_ok=True)
-    json.dump(rows, open(os.path.join(HERE, "results", "stage1_fits.json"), "w"), indent=2)
+    _save("stage1_fits.json", rows)
     _report_gate1(rows)
 
 
@@ -313,8 +338,7 @@ def eval_grid(include_k2: str = ""):
             for src in ("gt", "pred")]
     rows = list(_eval_one.starmap(jobs))
     os.makedirs(os.path.join(HERE, "results"), exist_ok=True)
-    json.dump(rows, open(os.path.join(HERE, "results", "stage2_boxsource.json"), "w"),
-              indent=2)
+    _save("stage2_boxsource.json", rows, key="tag")
     print(f"\n{'arm':<18}{'crownIoU':>10}{'AP50':>9}{'AP50-95':>10}{'nTile':>7}")
     for r in rows:
         print(f"{r['tag']:<18}{r['mean_crown_iou']:>10.4f}{r['mask_mAP50']:>9.4f}"
@@ -360,7 +384,7 @@ def factorial(k: int = 16, em_seed: int = 0, evals: str = "1"):
         _assert_isolated(_npz(k, em_seed, beta, contrast))
     rows = list(_fit_one.starmap([(k, em_seed, b, FIT_TILES, c) for b, c in cells]))
     os.makedirs(os.path.join(HERE, "results"), exist_ok=True)
-    json.dump(rows, open(os.path.join(HERE, "results", "factorial_fits.json"), "w"), indent=2)
+    _save("factorial_fits.json", rows)
     print(f"\n{'cell':<22}{'K_eff':>7}{'eff rank':>10}{'cos mean':>10}")
     for r in rows:
         print(f"{r['cell']:<22}{r['K']:>7}{r['effective_rank']:>10.3f}"
@@ -374,7 +398,7 @@ def factorial(k: int = 16, em_seed: int = 0, evals: str = "1"):
         for src in ("gt", "pred"):
             jobs.append((em, src, f"{tag}_{src}", []))
     ev = list(_eval_one.starmap(jobs))
-    json.dump(ev, open(os.path.join(HERE, "results", "factorial_evals.json"), "w"), indent=2)
+    _save("factorial_evals.json", ev, key="tag")
     print(f"\n{'arm':<28}{'crownIoU':>10}{'AP50':>9}")
     for r in ev:
         print(f"{r['tag']:<28}{r['mean_crown_iou']:>10.4f}{r['mask_mAP50']:>9.4f}")
@@ -423,7 +447,7 @@ def beta_sweep(betas: str = "0.1,0.25,0.5", k: int = 16, em_seed: int = 0, evals
         _assert_isolated(_npz(k, em_seed, b, True))
     rows = list(_fit_one.starmap([(k, em_seed, b, FIT_TILES, True) for b in bl]))
     os.makedirs(os.path.join(HERE, "results"), exist_ok=True)
-    json.dump(rows, open(os.path.join(HERE, "results", "beta_sweep_fits.json"), "w"), indent=2)
+    _save("beta_sweep_fits.json", rows)
     print(f"\n{'cell':<24}{'K_eff':>7}{'eff rank':>10}{'cos mean':>10}")
     for r in sorted(rows, key=lambda x: x["beta"]):
         print(f"{r['cell']:<24}{r['K']:>7}{r['effective_rank']:>10.3f}"
@@ -436,7 +460,7 @@ def beta_sweep(betas: str = "0.1,0.25,0.5", k: int = 16, em_seed: int = 0, evals
         for src in ("gt", "pred"):
             jobs.append((em, src, f"{tag}_{src}", []))
     ev = list(_eval_one.starmap(jobs))
-    json.dump(ev, open(os.path.join(HERE, "results", "beta_sweep_evals.json"), "w"), indent=2)
+    _save("beta_sweep_evals.json", ev, key="tag")
     # Fallbacks only. beta=0 was fitted by THIS harness in the factorial run
     # (cell k16_s0_b0_c1); the deployed beta=0.5 model was fitted by phase4, so if 0.5 is in
     # the sweep it is refitted here and the freshly measured value must win.
@@ -474,7 +498,9 @@ def eval_cell(k: int = 2, em_seed: int = 0, beta: float = 0.0, contrast: str = "
     `modal volume ls tcd04-phase4-vol collapse/eval` that it does not already exist -- this
     does not guard against overwriting, because the volume is not visible from the client.
     """
-    c = bool(int(contrast))
+    # "none" targets a cell fitted before the contrast axis existed, whose path carries no _c
+    # tag; its resolved setting is contrast == (beta != 0). Anything else is 0/1.
+    c = None if contrast.lower() in ("none", "-", "") else bool(int(contrast))
     em = _npz(k, em_seed, beta, c)
     tag = f"{_cell(k, em_seed, beta, c)}_{src}"
     out = f"{COLLAPSE}/eval/{tag}.json"

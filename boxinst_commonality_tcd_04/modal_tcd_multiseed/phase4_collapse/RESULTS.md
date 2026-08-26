@@ -40,11 +40,11 @@ Single-axis: no previous sweep held the E-step fixed. `masker_lab/sweep.py` (16 
 | β | K_eff | eff. rank | cos | oracle IoU | pred IoU | pred AP50 | pred AP50:95 |
 |---|---|---|---|---|---|---|---|
 | 0 | 16 | 11.43 | 0.234 | 0.7895 | 0.7188 | 0.6406 | 0.2680 |
-| 0.1 | -- | -- | -- | -- | -- | -- | -- |
-| 0.25 | -- | -- | -- | -- | -- | -- | -- |
-| 0.5 | -- | -- | -- | -- | -- | -- | -- |
+| 0.1 | 15 | 9.41 | 0.334 | 0.7900 | 0.7194 | 0.6404 | 0.2687 |
+| 0.25 | 13 | 6.37 | 0.525 | 0.7901 | 0.7199 | 0.6376 | 0.2684 |
+| 0.5 | 16 | 1.66 | 0.994 | 0.7885 | 0.7193 | 0.6392 | 0.2680 |
 
-Effective rank falls **11.4 → 1.7** (a ~7× reduction in distinct foreground directions) while predicted-box crown IoU spans **0.0000**. β is a geometry knob with no accuracy consequence.
+Effective rank falls **11.4 → 1.7** (a ~7× reduction in distinct foreground directions) while predicted-box crown IoU spans **0.0011**. β is a geometry knob with no accuracy consequence.
 
 ## 3. Component count
 
@@ -52,10 +52,10 @@ Effective rank falls **11.4 → 1.7** (a ~7× reduction in distinct foreground d
 |---|---|---|---|---|---|---|---|
 | 0 | 2 | 2 | 2.00 | 0.053 | 0.7888 | 0.7181 | 0.6369 |
 | 0 | 16 | 16 | 11.43 | 0.234 | 0.7895 | 0.7188 | 0.6406 |
-| 0.5 | 2 | 2 | 1.30 | 0.988 | -- | -- | -- |
-| 0.5 | 16 | -- | -- | -- | -- | -- | -- |
+| 0.5 | 2 | 2 | 1.30 | 0.988 | 0.7891 | 0.7196 | 0.6384 |
+| 0.5 | 16 | 16 | 1.66 | 0.994 | 0.7885 | 0.7193 | 0.6392 |
 
-At β=0 the K=2 fit is a genuine two-component mixture (effective rank 2.00 of a possible 2.00, cos 0.05) and still matches K=16's rank-11.4 mixture. The extra fourteen components buy ≈0.0007. At β=0.5 both collapse, and K=2 was never evaluated for accuracy — the equivalence there rests on direction agreement, `cos(C̄_K2, C̄_K16) = 0.9942`, which exceeds the between-seed agreement within K=16 itself (0.9915–0.9922).
+At β=0 the K=2 fit is a genuine two-component mixture (effective rank 2.00 of a possible 2.00, cos 0.05) and still matches K=16's rank-11.4 mixture. The extra fourteen components buy ≈0.0007. At β=0.5 both collapse, and K=2 matches K=16 there too, on accuracy as well as direction: `cos(C̄_K2, C̄_K16) = 0.9942`, exceeding the between-seed agreement within K=16 itself (0.9915–0.9922). Across all six configurations predicted-box crown IoU spans 0.0018 — less than twice the masker-seed band — while effective rank spans 2.00–11.88 and pairwise cosine 0.053–0.994, close to the full available range.
 
 ## 4. Box precision — is collapse a robustness mechanism?
 
