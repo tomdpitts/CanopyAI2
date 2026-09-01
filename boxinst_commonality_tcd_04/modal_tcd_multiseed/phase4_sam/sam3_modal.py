@@ -109,13 +109,30 @@ def eval_sam3(limit: int = 0, chunk: int = 64):
         return ds[idx[iid]]["image"].convert("RGB")
 
     t1 = time.time()
-    res = EV.evaluate_sam(preds, gt, get_rgb, op_thr, chunk=chunk)
+    res = EV.evaluate_sam(preds, gt, get_rgb, op_thr, chunk=chunk, collect=True)
     res["sam3_commit"] = SAM3_COMMIT
     res["wall_min"] = round((time.time() - t1) / 60, 1)
     res["compare"] = {"ours_beta0.5_fixed_seed0": 0.620, "ours_beta0_fixed_seed0": 0.579,
                       "note": "same boxes; mask mAP50, det-score-ranked"}
 
-    out_fp = os.path.join(OUT, f"sam3_results{'_lim'+str(limit) if limit else ''}.json")
+    suf = f"_lim{limit}" if limit else ""
+    # The masks themselves, in the repo's preds schema, so the run can be re-scored under
+    # the frozen score_coco.py COCOeval protocol without a second A100 pass.
+    sam_preds = res.pop("preds")
+    preds_fp = os.path.join(OUT, f"preds_sam3_s0{suf}.json")
+    json.dump({"meta": {"model": "SAM 3 image (box-prompt), seed-0 LACE boxes",
+                        "sam3_commit": SAM3_COMMIT, "src_preds": PREDS,
+                        "op_thr": op_thr, "tile_px": 2048, "mask_res": EV.RES,
+                        "scale_box_to_mask": EV.SCALE, "n_tiles": len(sam_preds),
+                        "crop": "uncropped (headline); box-clipped is a no-op here",
+                        "notes": "scores = LACE detector confidence (the ranking used for "
+                                 "the headline row); sam_scores = SAM's own per-mask score, "
+                                 "kept so SAM can be ranked by its own confidence too."},
+               "preds": sam_preds}, open(preds_fp, "w"))
+    print(f"[sam3] wrote {preds_fp} "
+          f"({sum(len(v['masks_rle']) for v in sam_preds.values())} masks)", flush=True)
+
+    out_fp = os.path.join(OUT, f"sam3_results{suf}.json")
     json.dump(res, open(out_fp, "w"), indent=2)
     vol.commit()
     u = res["uncropped"]["det_score_ranked"]; c = res["box_clipped"]["det_score_ranked"]

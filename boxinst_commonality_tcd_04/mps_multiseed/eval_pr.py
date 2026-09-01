@@ -37,18 +37,13 @@ def pr_counts(iou, ign, iou_thr):
     """Greedy match preds (rows, already score-desc-sorted) to GT (cols) at iou_thr.
     Returns (tp, fp, matched_gt_mask). Unmatched preds flagged ign are dropped."""
     ng = iou.shape[1]
+    # Rows arrive already score-desc-sorted; match_tile re-sorts stably, which is a no-op
+    # on an already-sorted key, so `order` is the identity and can be ignored here.
+    sc = np.arange(iou.shape[0], 0, -1).astype(np.float32)   # preserve the caller's order
+    _, _, tpv, keep, gidx = E.match_tile(iou, sc, ign, iou_thr)   # THE shared matcher
     matched = np.zeros(ng, bool)
-    tp = fp = 0
-    for i in range(iou.shape[0]):
-        j = int(np.argmax(iou[i])) if ng else -1
-        if j >= 0 and iou[i, j] >= iou_thr and not matched[j]:
-            matched[j] = True
-            tp += 1
-        elif ign[i]:
-            continue                     # unmatched, in canopy -> ignore (not FP)
-        else:
-            fp += 1
-    return tp, fp, matched
+    matched[gidx[gidx >= 0]] = True
+    return int(tpv.sum()), int((~tpv & keep).sum()), matched
 
 
 @torch.no_grad()

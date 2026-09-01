@@ -124,18 +124,7 @@ def _ap_one(iou, sc, ign, n_gt, thr):
         return float("nan")
     if len(sc) == 0:
         return 0.0
-    o = np.argsort(-sc)
-    iou, sc, ign = iou[o], sc[o], ign[o]
-    matched = np.zeros(iou.shape[1], bool)
-    tp = np.zeros(len(sc), bool)
-    keep = np.ones(len(sc), bool)
-    for i in range(len(sc)):
-        j = int(np.argmax(iou[i])) if iou.shape[1] else -1
-        if j >= 0 and iou[i, j] >= thr and not matched[j]:
-            matched[j] = True
-            tp[i] = True
-        elif ign[i]:
-            keep[i] = False
+    _, sc, tp, keep, _ = E.match_tile(iou, sc, ign, thr)    # THE shared matcher
     return A._ap101(sc[keep], tp[keep], n_gt)
 
 

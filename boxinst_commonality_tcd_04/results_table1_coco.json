@@ -1,0 +1,225 @@
+{
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 512,
+    "max_dets": 600,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "rows": {
+    "LACE (ours) s0": {
+      "preds_file": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s0.json",
+      "model": "4phase_L24 detector + \u03b2=0 self-mask masker",
+      "protocol": {
+        "scorer": "pycocotools COCOeval",
+        "res": 512,
+        "max_dets": 600,
+        "score_floor": 0.05,
+        "n_tiles": 439,
+        "iou_thrs": "linspace(0.5,0.95,10)",
+        "rec_thrs": 101,
+        "area_rng": "all only"
+      },
+      "n_gt_trees": 25705,
+      "canopy_fp": {
+        "mask": {
+          "AP50": 0.4867,
+          "AP75": 0.1189,
+          "AP50_95": 0.2049,
+          "n_det": 159687
+        }
+      },
+      "canopy_neutral_crowd": {
+        "mask": {
+          "AP50": 0.625,
+          "AP75": 0.1433,
+          "AP50_95": 0.2578,
+          "n_det": 159687
+        },
+        "box": {
+          "AP50": 0.6211,
+          "AP75": 0.1086,
+          "AP50_95": 0.2361,
+          "n_det": 159687
+        }
+      },
+      "canopy_neutral_legacy": {
+        "mask": {
+          "AP50": 0.625,
+          "AP75": 0.1445,
+          "AP50_95": 0.2585,
+          "n_gt": 25705
+        }
+      }
+    },
+    "LACE (ours) s1": {
+      "preds_file": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s1.json",
+      "model": "4phase_L24 detector + \u03b2=0 self-mask masker",
+      "protocol": {
+        "scorer": "pycocotools COCOeval",
+        "res": 512,
+        "max_dets": 600,
+        "score_floor": 0.05,
+        "n_tiles": 439,
+        "iou_thrs": "linspace(0.5,0.95,10)",
+        "rec_thrs": 101,
+        "area_rng": "all only"
+      },
+      "n_gt_trees": 25705,
+      "canopy_fp": {
+        "mask": {
+          "AP50": 0.4838,
+          "AP75": 0.1129,
+          "AP50_95": 0.2005,
+          "n_det": 162017
+        }
+      },
+      "canopy_neutral_crowd": {
+        "mask": {
+          "AP50": 0.6358,
+          "AP75": 0.1376,
+          "AP50_95": 0.2575,
+          "n_det": 162017
+        },
+        "box": {
+          "AP50": 0.5835,
+          "AP75": 0.0683,
+          "AP50_95": 0.1968,
+          "n_det": 162017
+        }
+      },
+      "canopy_neutral_legacy": {
+        "mask": {
+          "AP50": 0.6358,
+          "AP75": 0.1384,
+          "AP50_95": 0.2579,
+          "n_gt": 25705
+        }
+      }
+    },
+    "LACE (ours) s2": {
+      "preds_file": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s2.json",
+      "model": "4phase_L24 detector + \u03b2=0 self-mask masker",
+      "protocol": {
+        "scorer": "pycocotools COCOeval",
+        "res": 512,
+        "max_dets": 600,
+        "score_floor": 0.05,
+        "n_tiles": 439,
+        "iou_thrs": "linspace(0.5,0.95,10)",
+        "rec_thrs": 101,
+        "area_rng": "all only"
+      },
+      "n_gt_trees": 25705,
+      "canopy_fp": {
+        "mask": {
+          "AP50": 0.4846,
+          "AP75": 0.1175,
+          "AP50_95": 0.2021,
+          "n_det": 177598
+        }
+      },
+      "canopy_neutral_crowd": {
+        "mask": {
+          "AP50": 0.6293,
+          "AP75": 0.1417,
+          "AP50_95": 0.2567,
+          "n_det": 177598
+        },
+        "box": {
+          "AP50": 0.623,
+          "AP75": 0.1101,
+          "AP50_95": 0.2362,
+          "n_det": 177598
+        }
+      },
+      "canopy_neutral_legacy": {
+        "mask": {
+          "AP50": 0.6294,
+          "AP75": 0.1429,
+          "AP50_95": 0.2573,
+          "n_gt": 25705
+        }
+      }
+    },
+    "DetecTree2 s0": {
+      "preds_file": "boxinst_commonality_tcd_04/detectree2_baseline/preds_dt2_s0_fullcov.json",
+      "model": "DetecTree2 (Mask R-CNN R101-FPN) fine-tuned on 792/108, 1024@50% subtiles, clean_crowns dedup",
+      "protocol": {
+        "scorer": "pycocotools COCOeval",
+        "res": 512,
+        "max_dets": 600,
+        "score_floor": 0.05,
+        "n_tiles": 439,
+        "iou_thrs": "linspace(0.5,0.95,10)",
+        "rec_thrs": 101,
+        "area_rng": "all only"
+      },
+      "n_gt_trees": 25705,
+      "canopy_fp": {
+        "mask": {
+          "AP50": 0.4214,
+          "AP75": 0.1213,
+          "AP50_95": 0.181,
+          "n_det": 152690
+        }
+      },
+      "canopy_neutral_crowd": {
+        "mask": {
+          "AP50": 0.5344,
+          "AP75": 0.1435,
+          "AP50_95": 0.224,
+          "n_det": 152690
+        },
+        "box": {
+          "AP50": 0.531,
+          "AP75": 0.1472,
+          "AP50_95": 0.2203,
+          "n_det": 152690
+        }
+      },
+      "canopy_neutral_legacy": {
+        "mask": {
+          "AP50": 0.5344,
+          "AP75": 0.1439,
+          "AP50_95": 0.2243,
+          "n_gt": 25705
+        }
+      }
+    }
+  },
+  "lace_3seed_mean_sd_ddof1": {
+    "cn_ap50": [
+      0.6300333333333333,
+      0.005437217425607839
+    ],
+    "cn_ap5095": [
+      0.25733333333333336,
+      0.0005686240703077319
+    ],
+    "fp_ap50": [
+      0.48503333333333337,
+      0.0014977761292440772
+    ],
+    "fp_ap5095": [
+      0.20249999999999999,
+      0.002227105745132003
+    ],
+    "box_ap50": [
+      0.6092000000000001,
+      0.02227711830556186
+    ],
+    "legacy_ap50": [
+      0.6300666666666667,
+      0.005430776494511033
+    ],
+    "legacy_ap5095": [
+      0.25789999999999996,
+      0.0006000000000000172
+    ]
+  },
+  "markdown": "### Table 1 rows, frozen COCOeval protocol (res 512, maxDets 600, floor 0.05)\n\nCanopy-neutral = COCO `iscrowd`. Legacy fixed-50% arm shown below for comparison.\n\n| Method | CN AP50 | CN AP50:95 | FP AP50 | FP AP50:95 | Box AP50 |\n|---|---|---|---|---|---|\n| LACE (ours) s0 | 0.6250 | 0.2578 | 0.4867 | 0.2049 | 0.6211 |\n| LACE (ours) s1 | 0.6358 | 0.2575 | 0.4838 | 0.2005 | 0.5835 |\n| LACE (ours) s2 | 0.6293 | 0.2567 | 0.4846 | 0.2021 | 0.6230 |\n| DetecTree2 s0 | 0.5344 | 0.2240 | 0.4214 | 0.1810 | 0.5310 |\n| **LACE 3-seed mean \u00b1 sd** | **0.6300 \u00b1 0.0054** | **0.2573 \u00b1 0.0006** | **0.4850 \u00b1 0.0015** | **0.2025 \u00b1 0.0022** | **0.6092 \u00b1 0.0223** |\n\n**crowd vs legacy canopy-ignore** (same predictions, same matcher, only the ignore rule differs):\n\n| Method | AP50 crowd | AP50 legacy | \u0394 | AP50:95 crowd | AP50:95 legacy | \u0394 |\n|---|---|---|---|---|---|---|\n| LACE (ours) s0 | 0.6250 | 0.6250 | +0.0000 | 0.2578 | 0.2585 | -0.0007 |\n| LACE (ours) s1 | 0.6358 | 0.6358 | +0.0000 | 0.2575 | 0.2579 | -0.0004 |\n| LACE (ours) s2 | 0.6293 | 0.6294 | -0.0001 | 0.2567 | 0.2573 | -0.0006 |\n| DetecTree2 s0 | 0.5344 | 0.5344 | +0.0000 | 0.2240 | 0.2243 | -0.0003 |"
+}

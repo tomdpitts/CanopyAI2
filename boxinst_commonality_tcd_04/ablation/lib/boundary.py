@@ -17,6 +17,8 @@ TOLERANCE: computed on the 512 raster, so a tolerance of t px here corresponds t
 import numpy as np
 from scipy import ndimage
 
+from boxinst_commonality_tcd_04 import evaluate as E
+
 
 def bf(pred, gt, tol=3):
     """Boundary F1 within `tol` px. Ported from phase4_research/boundary_f1.py:17."""
@@ -40,15 +42,9 @@ def match_tps(iou, scores, ignore, iou_thr=0.5):
     """
     if len(scores) == 0 or iou.shape[1] == 0:
         return []
-    order = np.argsort(-scores)
-    matched = np.zeros(iou.shape[1], bool)
-    out = []
-    for i in order:
-        j = int(np.argmax(iou[i]))
-        if iou[i, j] >= iou_thr and not matched[j]:
-            matched[j] = True
-            out.append((int(i), j))
-    return out
+    order, _, _, _, gidx = E.match_tile(                  # THE shared matcher
+        iou, scores, np.zeros(len(scores), bool), iou_thr)
+    return [(int(order[r]), int(j)) for r, j in enumerate(gidx) if j >= 0]
 
 
 def box_fill_mask(box_2048, res=512, scale=4.0):

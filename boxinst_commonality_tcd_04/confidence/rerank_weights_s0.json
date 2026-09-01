@@ -1,0 +1,31 @@
+{
+  "rerank": {
+    "features": [
+      "logit_s",
+      "a_mean",
+      "a_std",
+      "a_p90",
+      "a_max",
+      "bimod",
+      "pfg_mean",
+      "log_cells"
+    ],
+    "fit_split": "val(108)",
+    "target": "box IoU>=0.5 vs GT boxes",
+    "weights_standardised": {
+      "bias": -3.37035,
+      "logit_s": 1.8799,
+      "a_mean": 0.17818,
+      "a_std": -0.0627,
+      "a_p90": 0.10685,
+      "a_max": -0.12971,
+      "bimod": 0.53474,
+      "pfg_mean": 0.06118,
+      "log_cells": 0.09143
+    }
+  },
+  "source_preds": "modal_tcd_multiseed/phase4/preds/knobbed_s0.json",
+  "em_diag": "Modal vol tcd04-phase4-vol:/out/em_diag/{em_diag_s0,em_diag_val_s0}.json",
+  "rebuild": "python -m boxinst_commonality_tcd_04.confidence.rerank_val",
+  "scored": "results_439/rerank_val_scored.json"
+}

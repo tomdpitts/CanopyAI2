@@ -366,29 +366,20 @@ def eval_4p(ckpt_path, feat4p_test_dir, native_test_dir, test_gt_path, em_path,
 
 
 def _instance_pr(Ious, Scores, Ignore, n_gt, iou_thr, op_thr):
-    """Instance P/R/F1 from greedy matching at iou_thr (mirrors evaluate._greedy_ap's
-    matching + canopy-ignore exactly), reported BOTH at the val-picked op_thr and at the
+    """Instance P/R/F1 from greedy matching at iou_thr (shares evaluate.match_tile with
+    _greedy_ap, so matching + canopy-ignore cannot drift), reported BOTH at the op_thr and at the
     best-F1 operating point (the DeepForest/NEON convention). Also returns maxR."""
     scores_all, tp_all = [], []
     for iou, ps, ign in zip(Ious, Scores, Ignore):
         if len(ps) == 0:
             continue
-        order = np.argsort(-ps)
-        iou, ps, ign = iou[order], ps[order], ign[order]
-        matched = np.zeros(iou.shape[1], bool)
-        tp = np.zeros(len(ps), bool); keep = np.ones(len(ps), bool)
-        for i in range(len(ps)):
-            j = int(np.argmax(iou[i])) if iou.shape[1] else -1
-            if j >= 0 and iou[i, j] >= iou_thr and not matched[j]:
-                matched[j] = True; tp[i] = True
-            elif ign[i]:
-                keep[i] = False
+        _, ps, tp, keep, _ = E.match_tile(iou, ps, ign, iou_thr)  # THE shared matcher
         scores_all.append(ps[keep]); tp_all.append(tp[keep])
     z = {"P": 0.0, "R": 0.0, "F1": 0.0}
     if not scores_all or n_gt == 0:
         return {"op": z, "best": {**z, "thr": 0.0}, "maxR": 0.0}
     s = np.concatenate(scores_all); tp = np.concatenate(tp_all)
-    o = np.argsort(-s); s, tp = s[o], tp[o]
+    o = np.argsort(-s, kind="mergesort"); s, tp = s[o], tp[o]
     tpc = np.cumsum(tp); fpc = np.cumsum(~tp)
     prec = tpc / (tpc + fpc + 1e-9); rec = tpc / n_gt
     f1 = 2 * prec * rec / (prec + rec + 1e-9)

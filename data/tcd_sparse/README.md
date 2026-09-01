@@ -55,8 +55,10 @@ named gate to fail:
   single-linkage spatial cluster contains no training tile). The other 130 are adjacent crops of an
   OpenAerialMap ortho the model has already seen. **Report the scene-clean cut as the honest
   headline**; the full 236 is the optimistic one. One filter: `[t for t in tiles if t.scene_clean]`.
-- **16 tiles come from the official 439.** Never trained on, but they *were* used to tune `mask_thr`
-  and the α/κ knobs. `source == "train_pool"` (220) drops them.
+- **16 tiles come from the official 439.** Never trained on, and **not** used to select α/κ — those
+  were picked off-test on the 108-tile val split (`sweep_val_knobs`, `make_val_gt.py`). The one
+  quantity with 439 exposure is `mask_thr`, whose 0.5→0.25 move predates the val protocol and was
+  argued on 439 numbers. `source == "train_pool"` (220) drops these tiles if you want them gone.
 - **Biome is geography, not canopy density.** Biome 13 (Desert & Xeric) averages 99.5 crowns/tile
   and 17.8% labelled canopy here — denser than several closed-canopy biomes; visually its tiles are
   olive/oak woodland. Biome 7 is the genuinely open one (8.4% canopy, 2.4% crown pixels).

@@ -45,6 +45,30 @@ def mask_iou(pred, gt):
     return inter / (p.sum(1)[:, None] + g.sum(1)[None] - inter + 1e-9)
 
 
+def match_tile(iou, ps, ign, iou_thr):
+    """VERBATIM from evaluate.match_tile -- see there for the rule and its provenance.
+    Best still-UNMATCHED GT above threshold (COCOeval.evaluateImg), stable score sort."""
+    order = np.argsort(-ps, kind="mergesort")
+    iou, ps, ign = iou[order], ps[order], ign[order]
+    n_gt_tile = iou.shape[1] if iou.ndim == 2 else 0
+    matched = np.zeros(n_gt_tile, bool)
+    tp = np.zeros(len(ps), bool); keep = np.ones(len(ps), bool)
+    gt_idx = np.full(len(ps), -1, int)
+    for i in range(len(ps)):
+        j = -1
+        if n_gt_tile:
+            free = np.flatnonzero(~matched)
+            if len(free):
+                cand = free[int(np.argmax(iou[i, free]))]
+                if iou[i, cand] >= iou_thr:
+                    j = int(cand)
+        if j >= 0:
+            matched[j] = True; tp[i] = True; gt_idx[i] = j
+        elif ign[i]:
+            keep[i] = False
+    return order, ps, tp, keep, gt_idx
+
+
 def _greedy_ap(Ious, Scores, Ignore, n_gt, iou_thr):
     """Shared COCO 101-pt AP core (verbatim). Identical matching for our masker and SAM,
     so the mask-AP gap is purely the mask shape."""
@@ -52,23 +76,14 @@ def _greedy_ap(Ious, Scores, Ignore, n_gt, iou_thr):
     for iou, ps, ign in zip(Ious, Scores, Ignore):
         if len(ps) == 0:
             continue
-        order = np.argsort(-ps)
-        iou, ps, ign = iou[order], ps[order], ign[order]
-        matched = np.zeros(iou.shape[1], bool)
-        tp = np.zeros(len(ps), bool); keep = np.ones(len(ps), bool)
-        for i in range(len(ps)):
-            j = int(np.argmax(iou[i])) if iou.shape[1] else -1
-            if j >= 0 and iou[i, j] >= iou_thr and not matched[j]:
-                matched[j] = True; tp[i] = True
-            elif ign[i]:
-                keep[i] = False
+        _, ps, tp, keep, _ = match_tile(iou, ps, ign, iou_thr)
         scores_all.append(ps[keep]); tp_all.append(tp[keep])
     if n_gt == 0:
         return float("nan")
     if not scores_all:
         return 0.0
     s = np.concatenate(scores_all); tp = np.concatenate(tp_all)
-    o = np.argsort(-s); tp = tp[o]
+    o = np.argsort(-s, kind="mergesort"); tp = tp[o]
     tpc, fpc = np.cumsum(tp), np.cumsum(~tp)
     rec, prec = tpc / n_gt, tpc / (tpc + fpc + 1e-9)
     return float(sum((prec[rec >= r].max() if np.any(rec >= r) else 0.0)
@@ -81,22 +96,13 @@ def _instance_pr(Ious, Scores, Ignore, n_gt, iou_thr, op_thr):
     for iou, ps, ign in zip(Ious, Scores, Ignore):
         if len(ps) == 0:
             continue
-        order = np.argsort(-ps)
-        iou, ps, ign = iou[order], ps[order], ign[order]
-        matched = np.zeros(iou.shape[1], bool)
-        tp = np.zeros(len(ps), bool); keep = np.ones(len(ps), bool)
-        for i in range(len(ps)):
-            j = int(np.argmax(iou[i])) if iou.shape[1] else -1
-            if j >= 0 and iou[i, j] >= iou_thr and not matched[j]:
-                matched[j] = True; tp[i] = True
-            elif ign[i]:
-                keep[i] = False
+        _, ps, tp, keep, _ = match_tile(iou, ps, ign, iou_thr)
         scores_all.append(ps[keep]); tp_all.append(tp[keep])
     z = {"P": 0.0, "R": 0.0, "F1": 0.0}
     if not scores_all or n_gt == 0:
         return {"op": z, "best": {**z, "thr": 0.0}, "maxR": 0.0}
     s = np.concatenate(scores_all); tp = np.concatenate(tp_all)
-    o = np.argsort(-s); s, tp = s[o], tp[o]
+    o = np.argsort(-s, kind="mergesort"); s, tp = s[o], tp[o]
     tpc = np.cumsum(tp); fpc = np.cumsum(~tp)
     prec = tpc / (tpc + fpc + 1e-9); rec = tpc / n_gt
     f1 = 2 * prec * rec / (prec + rec + 1e-9)
@@ -126,7 +132,27 @@ def _parity_check():
     gm = rng.random((4, RES, RES)) > 0.5
     assert np.allclose(mask_iou(pm, gm), E.mask_iou(pm, gm)), "mask_iou drift"
     assert E.RES == RES and E.SCALE == SCALE, "RES/SCALE drift"
-    return "OK (mask_iou + RES/SCALE match evaluate.py)"
+    assert np.array_equal(IOU_50_95, E.IOU_50_95), "IOU_50_95 drift"
+    # The 2026-08-26 audit found the matching rule had drifted here unnoticed because this
+    # guard only covered mask_iou. Exercise the SCORING PATH itself on synthetic tiles with
+    # deliberately competing crowns -- the case where the two matching rules disagree.
+    for seed in range(8):
+        r = np.random.default_rng(seed)
+        n_p, n_g = int(r.integers(0, 9)), int(r.integers(0, 7))
+        Ious = [r.random((n_p, n_g))]
+        S = [r.random(n_p).astype(np.float32)]
+        IG = [r.random(n_p) > 0.7]
+        for t in IOU_50_95:
+            a = _greedy_ap(Ious, S, IG, n_g, t)
+            b = E._greedy_ap(Ious, S, IG, n_g, t)
+            assert (np.isnan(a) and np.isnan(b)) or np.isclose(a, b), \
+                f"_greedy_ap drift at seed={seed} thr={t}: {a} vs {b}"
+        if n_p and n_g:
+            o1 = match_tile(Ious[0], S[0], IG[0], 0.5)
+            o2 = E.match_tile(Ious[0], S[0], IG[0], 0.5)
+            for x, y in zip(o1, o2):
+                assert np.array_equal(x, y), f"match_tile drift at seed={seed}"
+    return "OK (match_tile + _greedy_ap + mask_iou + RES/SCALE match evaluate.py)"
 
 
 def sam_masks_for_tile(model, processor, pil_img, boxes_2048, chunk=64):
@@ -162,17 +188,25 @@ def _box_rect_512(box_2048):
     return r
 
 
-def evaluate_sam(preds, gt, get_rgb, op_thr, chunk=64, log_every=25):
+def evaluate_sam(preds, gt, get_rgb, op_thr, chunk=64, log_every=25, collect=False):
     """Run SAM 3 over all tiles in `preds` and score UNCROPPED + box-CLIPPED, ranked by
     BOTH our detector scores (primary, fair) and SAM's own scores (secondary).
 
     preds: {tile: {"boxes_2048", "scores", ...}} (saved seed-0 β=0.5-fixed detections).
     gt:    test_gt.json {tile: {"trees", "canopy", ...}}.
     get_rgb(tile) -> PIL 2048 RGB.
-    Mirrors eval_4p_selfmask's P_masks/P_scores/G_masks/Ign_mask construction exactly."""
+    Mirrors eval_4p_selfmask's P_masks/P_scores/G_masks/Ign_mask construction exactly.
+
+    `collect=True` also returns, under key "preds", the UNCROPPED masks in the repo's
+    preds schema (`boxes_2048` / `scores` / `sam_scores` / `canopy_ignore` / `masks_rle`
+    at RES) so the run can be re-scored by the frozen `score_coco.py` COCOeval protocol
+    without a second A100 pass. RLEs are encoded per tile as we go -- they are compact, so
+    this does not change the dense-accumulation memory ceiling that already bounds this fn."""
+    from pycocotools import mask as maskUtils
     tiles = [t for t in preds if t in gt]
     Pm_un, Pm_cl, P_det, P_sam, G_masks = [], [], [], [], []
     Ign_un, Ign_cl = [], []
+    out_preds = {} if collect else None
     sem = {"un": [0, 0, 0], "cl": [0, 0, 0]}     # tp, fp, fn
     for k, tid in enumerate(tiles):
         boxes = np.asarray(preds[tid]["boxes_2048"], np.float32).reshape(-1, 4)
@@ -195,6 +229,15 @@ def evaluate_sam(preds, gt, get_rgb, op_thr, chunk=64, log_every=25):
             gf = (gm.any(0) if len(gm) else np.zeros((RES, RES), bool)) & ~can
             sem[tag][0] += int((pf & gf).sum()); sem[tag][1] += int((pf & ~gf).sum())
             sem[tag][2] += int((~pf & gf).sum())
+        if collect:
+            rles = [maskUtils.encode(np.asfortranarray(m.astype(np.uint8))) for m in masks]
+            out_preds[tid] = {
+                "boxes_2048": np.asarray(boxes, np.float32).tolist(),
+                "scores": det_sc.astype(np.float32).tolist(),
+                "sam_scores": np.asarray(sam_sc, np.float32).tolist(),
+                "canopy_ignore": Ign_un[-1].tolist(),
+                "masks_rle": [{"size": list(r["size"]),
+                               "counts": r["counts"].decode("ascii")} for r in rles]}
         if (k + 1) % log_every == 0 or k + 1 == len(tiles):
             print(f"  [sam3] {k+1}/{len(tiles)} tiles", flush=True)
 
@@ -224,6 +267,8 @@ def evaluate_sam(preds, gt, get_rgb, op_thr, chunk=64, log_every=25):
                         "sam_score_ranked": _mask_table(Pm_cl, Ign_cl, P_sam),
                         "semantic": _sem("cl")},
     }
+    if collect:
+        res["preds"] = out_preds
     return res
 
 

@@ -166,18 +166,8 @@ def match(T, key, iou_thr, maxdets):
             out.append((np.zeros(0, np.float32), np.zeros(0, bool),
                         np.zeros(0, bool), t["n_gt"]))
             continue
-        order = np.argsort(-sc)
-        iou, sc, ign = iou[order], sc[order], ign[order]
-        matched = np.zeros(iou.shape[1], bool)
-        tp = np.zeros(len(sc), bool)
-        drop = np.zeros(len(sc), bool)
-        for i in range(len(sc)):
-            j = int(np.argmax(iou[i])) if iou.shape[1] else -1
-            if j >= 0 and iou[i, j] >= iou_thr and not matched[j]:
-                matched[j] = True
-                tp[i] = True
-            elif ign[i]:
-                drop[i] = True          # unmatched + in canopy -> neither TP nor FP
+        _, sc, tp, keep, _ = E.match_tile(iou, sc, ign, iou_thr)   # THE shared matcher
+        drop = ~keep                    # unmatched + in canopy -> neither TP nor FP
         out.append((sc, tp, drop, t["n_gt"]))
     return out
 

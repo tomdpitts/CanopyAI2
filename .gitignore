@@ -74,3 +74,20 @@ boxinst_commonality_tcd_04/modal_savanna_multiseed/
 # (regenerable — `modal volume get tcd04-phase4-vol out/preds_selfmask_fix_pw030_ks160_thr025_*`).
 # The scorer + its result table ARE tracked.
 boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/
+
+# LaTeX: only the working paper is tracked (drafts, backups, fragments are not)
+*.tex
+!boxinst_commonality_tcd_04/ablation/results/paper.tex
+
+# 439 re-eval: prediction dumps and EM diagnostics are large and regenerable.
+# Keep the CODE, the READMEs and the scored result tables; drop the bulk artifacts.
+#   - preds_*.json      re-run the relevant Modal app
+#   - em_diag_*.json    mirrored on Modal vol tcd04-phase4-vol:/out/em_diag/
+#   - *_reranked.json   rebuilt in seconds by confidence/rerank_val.py
+boxinst_commonality_tcd_04/restor_baseline/preds_*.json
+boxinst_commonality_tcd_04/selvabox_baseline/preds_*.json
+boxinst_commonality_tcd_04/confidence/em_diag_*.json
+boxinst_commonality_tcd_04/confidence/preds_*_reranked.json
+boxinst_commonality_tcd_04/confidence/preds_*_product.json
+#   - _ap_cache_s0.pkl  score-invariant mask-IoU cache, rebuilt by confidence/ablation.py
+boxinst_commonality_tcd_04/confidence/_ap_cache_s0.pkl

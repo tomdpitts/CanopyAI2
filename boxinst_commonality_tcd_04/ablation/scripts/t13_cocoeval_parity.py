@@ -31,19 +31,41 @@ RESULT (recorded 2026-08-25, seed 0, 439 tiles, 25705 GT, 159687 detections)
     AP50 agrees EXACTLY to 4dp. Greedy matching, pooling across images and the 101-point
     precision envelope are all doing what COCO does.
 
-    The +0.0008 on AP50:95 is a real and understood difference in the matching rule:
+    The +0.0008 on AP50:95 was ORIGINALLY attributed here to the matching rule (our
+    argmax-then-give-up vs COCOeval's fall-back-to-best-unmatched). THAT ATTRIBUTION WAS
+    WRONG and was retracted on 2026-08-26 after being tested directly: re-scoring all 439
+    tiles with COCOeval's matching rule changes NOTHING -- zero differing matches at all
+    ten IoU thresholds, in both the canopy-ignore and canopy-FP arms, AP identical to 5dp.
+    NMS at IoU 0.5 has already removed the competing duplicates, so a detection whose best
+    crown is taken essentially never has a second crown above threshold. (The matcher was
+    nonetheless aligned to COCO's rule and centralised in `evaluate.match_tile`, since the
+    null result is a property of this dataset's NMS, not of the rule.)
 
-        _greedy_ap (evaluate.py:108-112) takes j = argmax(iou[i]) -- the BEST-IoU GT --
-        and gives up if that GT is already matched. COCOeval instead picks the best
-        UNMATCHED GT above threshold, i.e. it FALLS BACK to the second-best crown.
+    The +0.0008 is instead a NUMERICAL knife-edge, in two parts, both confirmed by
+    ablating them independently on the canopy=FP arm:
 
-    So a detection whose best overlap is with an already-claimed crown becomes a FP for
-    us even when it clears the threshold against a different, free crown. This is
-    invisible at IoU 0.5 (overlaps are loose enough that the best match is usually still
-    available) and appears only at the stricter thresholds. It biases OUR numbers DOWN,
-    never up -- we report a marginally conservative AP. Magnitude 0.0008, roughly a third
-    of the 3-seed sigma (0.005 on AP50), so it is immaterial but should not be described
-    as "identical".
+      1. evaluate.py:36 sets IOU_50_95 = np.arange(0.5, 0.96, 0.05). Accumulated
+         floating-point error puts 0.60, 0.75 and 0.85 ONE ULP ABOVE nominal, so an IoU
+         landing exactly on one of those values is rejected. COCO uses
+         np.linspace(.5, .95, 10), where they are exact. Masks rasterised at 512^2 produce
+         exact-ratio IoUs constantly, so this is hit often, not rarely.
+      2. evaluate.py:56 computes the IoU matmul in FLOAT32 (max deviation from exact
+         rational IoU: 3.0e-08). That flips 293 threshold crossings under arange
+         thresholds, 137 under linspace.
+
+        thresholds x IoU dtype        AP50      AP50:95
+        arange   x float32 (ours)     0.48673   0.20408
+        arange   x exact int          0.48673   0.20352
+        linspace x float32            0.48673   0.20461
+        linspace x exact int (COCO)   0.48673   0.20493   <- matches COCOeval's 0.2049
+
+    Worst single threshold is 0.75: 0.1137 -> 0.11894. AP50 is immune under every
+    combination, because 0.5 is exactly representable and is arange's first step.
+
+    Direction is unchanged from the original note -- ours is conservative by ~0.0009 on
+    AP50:95, about a fifth of the 3-seed sigma (0.005 on AP50). The NUMBER stood; only the
+    EXPLANATION was wrong. The linspace/float64 fix is deliberately NOT applied: it would
+    move every AP50:95 in the repo and trip the reproduction gates for a sub-sigma gain.
 
 WHAT THIS DOES AND DOES NOT ESTABLISH
     DOES:     our AP arithmetic is the COCO arithmetic. 0.630 is on the same scale as any
@@ -180,12 +202,24 @@ def main():
             "mask_mAP50_95": round(csw - ours["mask_mAP50_95"], 4)},
         "verdict": (
             "AP50 agrees EXACTLY to 4dp -- greedy matching, cross-image pooling and the "
-            "101-point precision envelope match COCO. The AP50:95 delta of +0.0008 is the "
-            "matching-fallback difference: _greedy_ap (evaluate.py:108-112) takes the "
-            "best-IoU GT and gives up if it is already matched, whereas COCOeval falls "
-            "back to the best UNMATCHED GT above threshold. Ours is therefore strictly "
-            "conservative -- it under-counts TPs where crowns compete, never over-counts. "
-            "0.0008 is about a third of the 3-seed sigma (0.005 on AP50)."),
+            "101-point precision envelope match COCO. The AP50:95 delta of +0.0008 is a "
+            "NUMERICAL knife-edge, not a matching difference: (1) IOU_50_95 uses "
+            "np.arange(0.5,0.96,0.05), whose 0.60/0.75/0.85 sit one ulp above nominal and "
+            "reject IoUs landing exactly there (COCO uses np.linspace, where they are "
+            "exact); (2) the IoU matmul is float32 (max deviation 3.0e-08), flipping 293 "
+            "threshold crossings. Switching both to linspace + exact integer IoU gives "
+            "AP50:95 0.20493, reproducing COCOeval's 0.2049. AP50 is 0.48673 under all "
+            "four combinations. Ours is conservative by ~0.0009, about a fifth of the "
+            "3-seed sigma (0.005 on AP50)."),
+        "retracted_2026_08_26": (
+            "An earlier version of this record attributed the +0.0008 to the matching "
+            "rule -- our argmax-then-give-up vs COCOeval's fall-back-to-best-unmatched. "
+            "That was WRONG. Re-scoring all 439 tiles under COCOeval's rule changes "
+            "nothing: 0 differing matches at all 10 IoU thresholds in both canopy arms, "
+            "AP identical to 5dp, because NMS at IoU 0.5 has already removed the "
+            "competing duplicates. The matcher was nonetheless aligned to COCO's rule and "
+            "centralised in evaluate.match_tile, since that null result is a property of "
+            "this dataset's NMS rather than of the rule."),
         "scope": {
             "establishes": "our AP ARITHMETIC is the COCO arithmetic; 0.630 is on the "
                            "same scale as published COCO-convention numbers",

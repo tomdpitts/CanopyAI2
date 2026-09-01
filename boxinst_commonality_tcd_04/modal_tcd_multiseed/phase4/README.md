@@ -1,5 +1,49 @@
 # 4-phase real-8px L24 — TCD instance seg (Modal A100)
 
+> ## ⭐ HEADLINE (2026-08-28) — every baseline re-run by us, one frozen scorer
+> **LACE + posterior-product confidence, 3 seeds: OAM-TCD 439 canopy-neutral mask AP50 =
+> 0.6625 ± 0.0012; held-out sparse 236 = 0.6913 ± 0.0095 (DetecTree2 0.5531).**
+> Every row below was produced and scored by us under one protocol (`score_coco.py`,
+> pycocotools COCOeval, 439 whole 2048² tiles, masks 512², maxDets 600, floor 0.05, canopy as
+> `iscrowd`). **No number is quoted from another paper.** Full spec + table:
+> **`../../PROTOCOL_439.md`**; artifacts in **`../../results_439/`**.
+>
+> | Method | Superv. | Imgs | CN AP50 | CN AP75 | CN AP50:95 | Box AP50 |
+> |---|---|---|---|---|---|---|
+> | **LACE + posterior product, 3-seed** | box | 900 | **0.6625 ±0.0012** | 0.1649 | **0.2790** | 0.6396 |
+> | LACE 3-seed baseline | box | 900 | 0.6300 ±0.0054 | 0.1409 | 0.2573 | 0.6092 |
+> | **Restor Mask R-CNN @ rpn 1000** | masks | 4169 | 0.6255 | **0.1872** | 0.2766 | 0.6536 |
+> | SelvaBox → SAM 3 (both FT) | box+SAM | ~3335 | 0.5687 | 0.0746 | 0.2028 | **0.7297** |
+> | DetecTree2 (fine-tuned) | masks | 900 | 0.5344 | 0.1435 | 0.2240 | 0.5310 |
+>
+> **Three corrections to the previous headline, all against us:**
+> 1. **Restor's published 0.432 was an under-configured model.** Their shipped config caps the
+>    RPN at `topk 512` — half detectron2's FPN default — starving it to 98 dets/tile and
+>    recall 0.6442. Re-run at the framework default (1000) the released checkpoint scores
+>    **0.6255**, not 0.432. "Beats Restor by a wide margin" no longer holds.
+> 2. **The un-reranked LACE baseline TIES Restor** — 0.6250 (s0) vs 0.6255. The entire margin
+>    in the headline comes from the confidence fix, not from the detector or masker.
+> 3. **Restor still wins strict-IoU mask quality** — CN AP75 0.1872 vs our 0.1718. Pixel-level
+>    mask supervision buys boundary precision that reranking cannot manufacture.
+>
+> **What stands:** beating DetecTree2 (0.5344) on the identical split/test/metric, from boxes
+> only; and matching/beating a model trained on 4.6× the images with full crown polygons.
+>
+> **The confidence fix is banded and generalises** (2026-08-28): +0.0325 CN AP50 on all three
+> seeds of the 439, **+0.0354 on the held-out sparse 236** where no tile is shared with the 900
+> training images — the gain is *larger* off-distribution, not smaller. It also cuts seed
+> variance 4.5× (sd 0.0054 → 0.0012). Sparse table: `../../results_439/sparse236/`.
+>
+> ⚠️ **Caveats carried, not hidden:** ~two thirds of the confidence gain is a box-size prior,
+> so the masker-specific increment is ≈ +0.012 (`../../confidence/README.md`). SelvaBox's
+> canopy=FP figures are not comparable (it trains with canopy deleted; 83% of its detections
+> land in canopy here). Restor keeps strict-IoU mask quality (CN AP75 0.1872 vs our 0.1649).
+
+> ## Previous headline — LACE numbers unchanged, baseline comparisons superseded
+> *The per-seed LACE figures below reproduce EXACTLY under the new scorer (0.625 / 0.636 /
+> 0.629 → mean 0.630). Only the claims about Restor are superseded — see the 2026-08-28 block
+> above and the dated update at the end of this file.*
+
 > ## ⭐ BEST RESULT — the settled pipeline
 > **4-phase real-8px interleave (L24) detector + β=0.5 self-mask masker, geometry-FIXED grid
 > (`cell_origin=s`), @ `mask_thr=0.25`, with the box-robustness knobs (`prior_weight`=α=0.3,
@@ -15,8 +59,11 @@
 > context / ablation (seeds 3,4 not yet re-evaluated with the knobs).
 >
 > **Beats fully-supervised DetecTree2 (mask 0.535), reproduced on the IDENTICAL split/test/metric** — i.e.
-> our BOX+canopy-weak method beats a full-mask-supervised Mask R-CNN. Also beats the OAM-TCD paper's Restor
-> Mask R-CNN (0.432), the vaulted multiscale headline (0.504), and the old β=0 headline (0.583). Full tables
+> our BOX+canopy-weak method beats a full-mask-supervised Mask R-CNN. ~~Also beats the OAM-TCD paper's Restor
+> Mask R-CNN (0.432)~~ — **WITHDRAWN 2026-08-28: 0.432 is their published figure for an under-configured
+> model (RPN capped at half detectron2's default). Re-run by us at the framework default the released
+> checkpoint scores 0.6255, and the un-reranked LACE baseline TIES it. See the headline block above.**
+> Still beats the vaulted multiscale headline (0.504) and the old β=0 headline (0.583). Full tables
 > + per-seed bands in **[SETTLED PIPELINE + tables](#settled-pipeline--tables)**; the head-to-head in
 > **[DetecTree2 baseline](#detectree2-baseline--apples-to-apples-2026-07-30)**.
 >
@@ -326,7 +373,7 @@ COCO-101pt mask-AP + >50%-canopy-ignore scorer (`evaluate._greedy_ap`, RES 512).
 |---|---|---|---|---|---|---|---|
 | **OURS** (β=0.5-fix + α/κ knobs, 3-seed) | **boxes + canopy-ignore (no mask labels)** | 900 | **0.630 ± 0.005** | **0.257 ± 0.001** | **0.485 ± 0.002** | **0.202 ± 0.002** | 0.603 |
 | OURS boxes → SAM 3 (frozen, box-prompt) | boxes (ours) + SAM pretrain (frozen) | 900 | 0.633 | 0.268 | | | 0.605 |
-| Restor Mask R-CNN (OAM-TCD paper) \*\* | full crown masks | 4,169 | | | 0.432 | | |
+| Restor Mask R-CNN (OAM-TCD paper) \*\* ~~0.432~~ | full crown masks | 4,169 | | | **see ↑ headline: 0.6255 re-run by us** | | |
 | **DetecTree2** (R101-FPN, fine-tuned by us) | **full crown masks** | 900 | **0.535** | 0.224 | 0.421 | 0.180 | 0.529 |
 | SelvaBox→SAM3, both FT (SelvaMask) \* | boxes + **SelvaMask masks** + SAM pretrain | ~3,335 | | **0.185** | | | |
 | SelvaBox→SAM3, frozen SAM \* | boxes + SAM pretrain (frozen) | ~3,335 | | 0.122 | | | |
@@ -349,7 +396,9 @@ Full account, evidence and the master table: `RESULTS.md` § SelvaMask / CanopyR
 despite DetecTree2 getting strictly more supervision. The gap is mostly the **detector**
 (box 0.603 vs 0.529); both convert boxes→masks comparably.
 **Reproduction is credible:** on the column-matched no-ignore AP50, our DetecTree2 (0.421) lands just
-beside the OAM-TCD paper's own Restor Mask R-CNN (0.432), while ours clears both (0.485) — a faithful
+beside the OAM-TCD paper's own Restor Mask R-CNN (0.432 — **their published figure for an
+under-configured model; we now measure 0.6255 for the released checkpoint at detectron2's default
+proposal budget, see the 2026-08-28 headline**), while ours clears both (0.485) — a faithful
 repro, not a strawman. (Earlier text here compared our ign 0.535 against Restor's no-ign 0.432, which
 was not like-for-like.) DetecTree2 is a single seed; our knobbed number is 3-seed, our vanilla 5-seed —
 a seed-matched knobbed band and a DT2 band are the obvious follow-ups.
@@ -369,6 +418,19 @@ for these specific runs; `train`/`predict` now record `torch.cuda.get_device_nam
 + preds `meta.gpu`) so any re-run (e.g. the DT2 band) captures it. Stitch + scoring were CPU.
 
 ## Open next steps
+
+- **Confidence (posterior product) — DONE 2026-08-28:** `s · bimod · pfg_mean`, zero fitted
+  parameters. 3-seed 439 band **0.6625 ± 0.0012** (+0.0325, every seed and metric); held-out
+  sparse 236 **0.6913 ± 0.0095** (+0.0354, larger off-distribution). Seed variance cut 4.5×.
+  `../../confidence/README.md`, `../../results_439/sparse236/`.
+- **All Table-1 baselines re-run by us — DONE 2026-08-28:** Restor (rpn 512/1000/2000, tree-only
+  and pooled), SelvaBox → SAM 3 (both FT), DetecTree2, under one frozen scorer.
+  `../../PROTOCOL_439.md`.
+- **Open:** SelvaBox → SAM 3 (frozen SAM) is NOT re-run — their detector pairing is not
+  recoverable from source; cite with an asterisk or omit.
+- **Open:** the `preds/knobbed_s*.json` meta strings say "β=0 self-mask masker"; the files are
+  **β=0.5**. Stale label predating the 2026-07-27 registration fix; worth a one-line correction
+  since these are the paper's provenance record.
 
 - **α/κ box-robustness knobs — DONE (headline):** 3-seed knobbed band 0.630 ± 0.005 / 0.257 ± 0.001, every
   seed improves (see [box-robustness knobs](#box-robustness-knobs--the-α-κ-levers-2026-07-30)). Phase4 eval
@@ -418,3 +480,50 @@ for these specific runs; `train`/`predict` now record `torch.cuda.get_device_nam
   *not* the catastrophic layers-default trap (cos 0.17). Gate relaxed to >0.5 after reg-test passes.
 - **Mask-eval crash**: feat_ablation's `boxinst_commonality.em` stub was a no-op (box-only); replaced with
   a minimal real one (`logsumexp`+`estep`, parity-checked).
+
+## Update 2026-08-28 — all baselines re-run under one scorer (`PROTOCOL_439.md`)
+
+Everything in Table 1 is now measured by us. Previously the Restor and SelvaBox rows were
+published figures under their own protocols; both are replaced.
+
+**Frozen scorer.** `score_coco.py`: pycocotools `COCOeval` (not the hand-rolled
+`evaluate._greedy_ap`), 439 whole 2048² tiles, masks at 512², maxDets 600, score floor 0.05,
+`iouThrs = linspace(0.5, 0.95, 10)`, canopy as `iscrowd=1`. Validation: the canopy=FP arm
+reproduces `results_dt2_s0_fullcov_noignore.json` to **4 dp**, and the residual +0.0008 on
+AP50:95 is exactly the `np.arange`-vs-`linspace` ULP defect recorded in
+`ablation/results/cocoeval_parity.json`. COCO's crowd rule was confirmed identical to our
+>50%-in-canopy rule at IoU 0.50 on all four rows (Δ = 0.0000).
+
+**Restor Mask R-CNN — run by us for the first time.** `restor/tcd-mask-rcnn-r50`, whole 2048²
+tiles (their own test config), `SCORE_THRESH_TEST` 0.2→0.05, `DETECTIONS_PER_IMAGE` 512→600.
+The decisive knob was `RPN.PRE/POST_NMS_TOPK_TEST`:
+
+| rpn topk | dets/tile | recall@0.5 | CN AP50 |
+|---|---|---|---|
+| 512 (their shipped cfg) | 98 | 0.6442 | 0.5706 |
+| **1000 (detectron2 default — published point)** | **163** | — | **0.6255** |
+| 2000 (2× default, sensitivity only) | — | 0.7804 | 0.6605 |
+
+512 proposals against tiles holding up to 450 GT crowns is proposal starvation, not a
+scoring choice: lifting it recovers **3,503 true positives** while the top of the ranking is
+untouched (max score identical at 0.9964). 1000 is the framework default — chosen by neither
+party — and is the number we publish.
+
+**SelvaBox → SAM 3 (both FT) — run by us.** Their OAM-TCD benchmark tiling (1024²@0.5, native
+0.1 m/px), IoU-NMS 0.7, no edge-band cull, SAM 3 FT at their `target_tile_size` 1777.
+439/439 tiles, 491,847 crowns. **Best detector in the table (box AP50 0.7297) and the worst
+masker (CN AP75 0.0746).** Our measured AP50:95 of 0.2050 sits close to their published
+0.185, indicating a faithful reproduction. Their maxDets budget (1600 per 2048²-equivalent)
+vs our 600 is worth only **+0.008**, so the shared cap needs no asterisk.
+
+**Confidence fix (`../../confidence/README.md`).** LACE ranks masks by the CenterNet heatmap
+peak alone, which answers "is there a crown centre here", not "is this box real". Multiplying
+the masker's own posterior back in — `score' = s · bimod · pfg_mean`, **zero fitted
+parameters** — gives +0.0365 CN AP50 with no training, no mask labels and no change to what
+is detected or segmented. Honest floor: a box-size prior alone recovers +0.0244 of that, so
+the masker-specific increment is ≈ +0.012.
+
+**Also corrected here:** the `preds/knobbed_s*.json` meta strings say "β=0 self-mask masker";
+they are **β=0.5** (`em_model_4p_fix.npz`, per `RESULTS.md:133/228/237`, and the scored
+numbers reproduce the β=0.5 row exactly). Stale label from before the 2026-07-27 registration
+fix — worth correcting since these files are the paper's provenance record.

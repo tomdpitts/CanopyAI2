@@ -93,6 +93,50 @@ def pred_instance_masks(masker, zn, g, boxes, res=RES, scale=SCALE, mask_thr=0.5
     return np.array(out) if out else np.zeros((0, res, res), bool)
 
 
+def match_tile(iou, ps, ign, iou_thr):
+    """Greedy score-ordered matching for ONE tile -> (order, scores, tp, keep, gt_idx).
+
+    THE single matcher: every AP / P-R / crown-pairing call site in the repo routes through
+    here, so the matching rule cannot drift between them. All five returns are in DESCENDING
+    SCORE order; `order` maps that back to the caller's input indices, and `gt_idx[r]` is the
+    GT index claimed by rank r, or -1 if unmatched. Callers that only need TP/FP ignore the
+    last two; callers pairing predictions to specific crowns use `order` and `gt_idx` rather
+    than re-deriving the assignment.
+
+    Follows COCOeval.evaluateImg: each prediction, in descending score order, claims the
+    best still-UNMATCHED GT whose IoU clears the threshold. It does NOT take the best-IoU
+    GT and give up when that one is already claimed -- that variant (used here until
+    2026-08-26) turns a prediction into a false positive even when a different, free crown
+    clears the threshold, so it under-counts TPs wherever crowns compete. On OAM-TCD the
+    two rules agree exactly (NMS at IoU 0.5 removes the competing duplicates, measured: 0
+    differing matches across all 10 thresholds, both canopy arms), but that is a property
+    of this dataset's NMS, not of the rule -- see ablation/results/cocoeval_parity.json.
+
+    `ign[i]` marks 'this prediction sits >50% in unlabelled canopy'. An ignored prediction
+    that fails to match is dropped entirely (keep=False) rather than counted as a FP.
+    Ties in `ps` are broken by mergesort (stable, input order), matching COCO's accumulate.
+    """
+    order = np.argsort(-ps, kind="mergesort")
+    iou, ps, ign = iou[order], ps[order], ign[order]
+    n_gt_tile = iou.shape[1] if iou.ndim == 2 else 0
+    matched = np.zeros(n_gt_tile, bool)
+    tp = np.zeros(len(ps), bool); keep = np.ones(len(ps), bool)
+    gt_idx = np.full(len(ps), -1, int)
+    for i in range(len(ps)):
+        j = -1
+        if n_gt_tile:
+            free = np.flatnonzero(~matched)
+            if len(free):
+                cand = free[int(np.argmax(iou[i, free]))]
+                if iou[i, cand] >= iou_thr:
+                    j = int(cand)
+        if j >= 0:
+            matched[j] = True; tp[i] = True; gt_idx[i] = j
+        elif ign[i]:
+            keep[i] = False                           # unmatched, in canopy -> ignore
+    return order, ps, tp, keep, gt_idx
+
+
 def _greedy_ap(Ious, Scores, Ignore, n_gt, iou_thr):
     """Shared COCO 101-pt AP core. Per tile: iou (Npred,Ngt), scores (Npred,),
     ignore (Npred,) bool = 'unmatched pred sits in canopy -> drop, not FP'.
@@ -101,23 +145,14 @@ def _greedy_ap(Ious, Scores, Ignore, n_gt, iou_thr):
     for iou, ps, ign in zip(Ious, Scores, Ignore):
         if len(ps) == 0:
             continue
-        order = np.argsort(-ps)
-        iou, ps, ign = iou[order], ps[order], ign[order]
-        matched = np.zeros(iou.shape[1], bool)
-        tp = np.zeros(len(ps), bool); keep = np.ones(len(ps), bool)
-        for i in range(len(ps)):
-            j = int(np.argmax(iou[i])) if iou.shape[1] else -1
-            if j >= 0 and iou[i, j] >= iou_thr and not matched[j]:
-                matched[j] = True; tp[i] = True
-            elif ign[i]:
-                keep[i] = False                       # unmatched, in canopy -> ignore
+        _, ps, tp, keep, _ = match_tile(iou, ps, ign, iou_thr)
         scores_all.append(ps[keep]); tp_all.append(tp[keep])
     if n_gt == 0:
         return float("nan")
     if not scores_all:
         return 0.0
     s = np.concatenate(scores_all); tp = np.concatenate(tp_all)
-    o = np.argsort(-s); tp = tp[o]
+    o = np.argsort(-s, kind="mergesort"); tp = tp[o]
     tpc, fpc = np.cumsum(tp), np.cumsum(~tp)
     rec, prec = tpc / n_gt, tpc / (tpc + fpc + 1e-9)
     return float(sum((prec[rec >= r].max() if np.any(rec >= r) else 0.0)

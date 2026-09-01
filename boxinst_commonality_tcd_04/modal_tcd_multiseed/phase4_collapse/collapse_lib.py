@@ -143,16 +143,21 @@ def eval_boxsource(em_path, feat_dir, gt_path, box_source, out_json,
                     ious.append(float((pm[i] & gm[i]).sum() / u) if u else 0.0)
                     n_match += 1
             else:                                    # greedy box-IoU match, then mask IoU
+                # Same matcher as the AP core (evaluate.match_tile): claim the best still
+                # -UNMATCHED crown, not the best-IoU one. Re-typing this loop is how the
+                # pre-2026-08-26 argmax-give-up rule survived here after the AP core was
+                # audited -- route through the shared helper instead.
                 bmat = box_iou_mat(bx, gb)
                 if len(sc) and bmat.shape[1]:
-                    order = np.argsort(-sc); taken = np.zeros(bmat.shape[1], bool)
-                    for i in order:
-                        j = int(np.argmax(bmat[i]))
-                        if bmat[i, j] >= 0.5 and not taken[j]:
-                            taken[j] = True
-                            u = (pm[i] | gm[j]).sum()
-                            ious.append(float((pm[i] & gm[j]).sum() / u) if u else 0.0)
-                            n_match += 1
+                    order, _, _, _, gidx = E.match_tile(
+                        bmat, sc, np.zeros(len(sc), bool), 0.5)
+                    for rank, j in enumerate(gidx):
+                        if j < 0:
+                            continue
+                        i = int(order[rank])
+                        u = (pm[i] | gm[j]).sum()
+                        ious.append(float((pm[i] & gm[j]).sum() / u) if u else 0.0)
+                        n_match += 1
 
             ign = (np.array([bool(m.sum()) and (m & can).sum() / m.sum() > 0.5 for m in pm])
                    if len(pm) else np.zeros(0, bool))

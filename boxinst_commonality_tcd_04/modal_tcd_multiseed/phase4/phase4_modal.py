@@ -391,6 +391,61 @@ def eval_selfmask(seed: int = 0, beta: float = 0.0, mask_thr: float = 0.25,
 
 @app.function(gpu="A100", image=image, volumes={"/vol": vol}, timeout=8 * 3600,
               cpu=8, memory=65536)
+def sweep_val_tau(seed: int = 0, beta: float = 0.5, fix: bool = True,
+                  taus: str = "0.05,0.10,0.15,0.20,0.25,0.30,0.35,0.40,0.45,0.50,0.60,0.70",
+                  prior_weight: float = 0.3, kappa_scale: float = 1.6, limit: int = 0):
+    """Sweep the mask threshold tau ALONE on the held-out 108-tile val split.
+
+    Deliberately isolated from `sweep_val_knobs`: alpha and kappa are pinned to the
+    deployed values and only tau moves, and the result is written to its own path
+    (`sweep_val_tau*.json`) so neither entrypoint can clobber the other's output.
+
+    WHY THIS EXISTS
+        tau was moved 0.5 -> 0.25 before the val protocol was fixed, and the val grid that
+        followed only ever spanned {0.25, 0.30} -- so it is the least evidenced of the three
+        inference scalars. This walks it across a wide range at fixed (alpha, kappa) to say
+        whether 0.25 sits on a plateau or on a slope.
+
+        tau is a blunt lever: it thresholds the SAME posterior, so lowering it fattens every
+        mask and raising it thins every mask. Expect AP50 and AP50:95 to disagree about the
+        optimum -- fatter masks clear the 0.5 bar more often while overshooting at strict
+        IoU -- and read `best_by_AP50` / `best_by_AP50_95` accordingly.
+
+        Nothing here touches the ranking rule: `s' = s * pbar * m` reads the posterior
+        before any threshold, so the confidence result is tau-invariant.
+
+    Run:
+        modal run phase4_modal.py::sweep_val_tau
+        modal run phase4_modal.py::sweep_val_tau --taus 0.20,0.25,0.30 --limit 8
+    """
+    import torch
+    _setup_path()
+    assert torch.cuda.is_available(), "no CUDA"
+    from boxinst_commonality_tcd_04.modal_tcd_multiseed.phase4 import phase4_lib_tcd as L
+    npz = _selfmask_npz(beta, fix)
+    assert os.path.exists(npz), f"{npz} missing"
+    cells = [(prior_weight, kappa_scale, float(t)) for t in taus.split(",")]
+    tag = f"phase4_L24_s{seed}"
+    out = os.path.join(OUT, f"sweep_val_tau{_btag(beta)}{'_fix' if fix else ''}_{tag}.json")
+    print(f"[sweep_val_tau] {len(cells)} tau values at alpha={prior_weight} "
+          f"kappa_scale={kappa_scale}, em={os.path.basename(npz)} -> {os.path.basename(out)}",
+          flush=True)
+    res = L.sweep_4p_selfmask(os.path.join(OUT, f"det_{tag}.pt"), FEAT_4P_TRAIN,
+                              f"{PH4_R}/val_gt.json", npz, out, cells,
+                              device="cuda", limit=(limit or None))
+    res.update({"tag": tag, "seed": seed, "beta": beta, "fix": fix, "swept": "mask_thr",
+                "held_fixed": {"prior_weight": prior_weight, "kappa_scale": kappa_scale}})
+    json.dump(res, open(out, "w"), indent=2)
+    vol.commit()
+    b50, b95 = res["best_by_AP50"], res["best_by_AP50_95"]
+    print(f"[sweep_val_tau] best AP50    tau={b50['mask_thr']} -> {b50['mask_mAP50']}\n"
+          f"[sweep_val_tau] best AP50-95 tau={b95['mask_thr']} -> {b95['mask_mAP50_95']}",
+          flush=True)
+    return res
+
+
+@app.function(gpu="A100", image=image, volumes={"/vol": vol}, timeout=8 * 3600,
+              cpu=8, memory=65536)
 def sweep_val_knobs(seed: int = 0, beta: float = 0.5, fix: bool = True,
                     grid: str = "", limit: int = 0):
     """Choose the box-robustness knobs (alpha, kappa) on the HELD-OUT 108-tile VAL split.
