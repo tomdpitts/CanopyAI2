@@ -30,8 +30,21 @@ from ..lib import strata as S
 def main():
     ap_ = argparse.ArgumentParser()
     ap_.add_argument("--seeds", default="0,1,2")
-    ap_.add_argument("--out", default=os.path.join(io.RESULTS, "strata_tile.json"))
+    ap_.add_argument("--out", default=None)
+    ap_.add_argument("--product", action="store_true",
+                     help="score the posterior-product ranking (s'=s*bimod*pfg_mean) instead "
+                          "of the bare detector score. Same predictions and masks; only the "
+                          "ranking key differs, so the pooled-all gate against ref_knobbed "
+                          "does not apply and is skipped.")
     a = ap_.parse_args()
+    if a.out is None:
+        a.out = os.path.join(io.RESULTS,
+                             "strata_tile_product.json" if a.product else "strata_tile.json")
+
+    def preds_of(seed):
+        if not a.product:
+            return io.knobbed(seed)
+        return os.path.join(io.HERE, "confidence", f"preds_knobbed_s{seed}_product.json")
     seeds = [int(s) for s in a.seeds.split(",")]
 
     gt = io.load_gt()
@@ -60,10 +73,13 @@ def main():
     per_seed = {}
     for s in seeds:
         print(f"[s{s}] scoring 439 tiles", flush=True)
-        per = S.collect(io.knobbed(s), gt)
+        per = S.collect(preds_of(s), gt)
         overall = S.pooled_ap(per, sorted(gt))[0]
-        gate.check({"mask_mAP50": round(overall, 4)}, io.ref_knobbed(s),
-                   keys=("mask_mAP50",), label=f"s{s} pooled-all")
+        if a.product:
+            print(f"[s{s}] pooled-all mask AP50 {overall:.4f} (product ranking; gate skipped)")
+        else:
+            gate.check({"mask_mAP50": round(overall, 4)}, io.ref_knobbed(s),
+                       keys=("mask_mAP50",), label=f"s{s} pooled-all")
         res = {}
         for axis, g in groups.items():
             res[axis] = {}
@@ -103,7 +119,8 @@ def main():
             trend[axis] = round(float(np.corrcoef(
                 np.argsort(np.argsort(xr)), np.argsort(np.argsort(yr)))[0, 1]), 3)
 
-    out = {"label": "Tile-level stratification, 439 OAM-TCD, knobbed masker, 3 seeds",
+    out = {"label": ("Tile-level stratification, 439 OAM-TCD, knobbed masker, 3 seeds"
+                     + (", posterior-product ranking" if a.product else "")),
            "protocol": {
                "ap": "pooled within bin against that bin's own n_gt (subsets_sparse_band convention)",
                "source": "modal_sparse_tcd_multiseed/tile_index.json",
@@ -122,7 +139,7 @@ def main():
            "spearman_bin_rank_vs_ap50": trend,
            "band_mean_std": bands, "per_seed": per_seed}
     json.dump(out, open(a.out, "w"), indent=2)
-    io.record_inputs([io.GT, S.TILE_INDEX] + [io.knobbed(s) for s in seeds])
+    io.record_inputs([io.GT, S.TILE_INDEX] + [preds_of(s) for s in seeds])
 
     for axis in groups:
         print(f"\n=== {axis} ===")

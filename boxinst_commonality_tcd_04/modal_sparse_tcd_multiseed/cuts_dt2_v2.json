@@ -1,0 +1,319 @@
+{
+  "label": "DetecTree2 v2 (fine-tuned on the 900, seed 0, converged)",
+  "preds": [
+    "boxinst_commonality_tcd_04/modal_sparse_tcd_multiseed/preds/dt2_sparse_s0v2.json"
+  ],
+  "pred_meta": [
+    {
+      "model": "DetecTree2 (Mask R-CNN R101-FPN) fine-tuned on 792/108, 1024@50% subtiles, clean_crowns dedup",
+      "mask_res": 512,
+      "scale_box_to_mask": 4.0,
+      "n_tiles": 236,
+      "seed": 0,
+      "tag": "v2",
+      "dataset": "sparse",
+      "min_score": 0.05,
+      "dedup": {
+        "iou_thr": 0.7,
+        "cont_thr": 0.85,
+        "min_score": 0.05
+      }
+    }
+  ],
+  "per_run": [
+    {
+      "all": {
+        "n_tiles": 236,
+        "n_gt": 14937,
+        "mask_mAP50": 0.6281,
+        "mask_mAP50_95": 0.2856,
+        "box_mAP50": 0.6304,
+        "box_mAP40": 0.6716,
+        "n_pred": 99558
+      },
+      "scene_clean": {
+        "n_tiles": 106,
+        "n_gt": 6590,
+        "mask_mAP50": 0.6737,
+        "mask_mAP50_95": 0.3053,
+        "box_mAP50": 0.6801,
+        "box_mAP40": 0.7142,
+        "n_pred": 39902
+      },
+      "train_pool": {
+        "n_tiles": 220,
+        "n_gt": 14560,
+        "mask_mAP50": 0.6281,
+        "mask_mAP50_95": 0.285,
+        "box_mAP50": 0.6305,
+        "box_mAP40": 0.6725,
+        "n_pred": 94783
+      },
+      "scene_clean_and_train_pool": {
+        "n_tiles": 90,
+        "n_gt": 6213,
+        "mask_mAP50": 0.676,
+        "mask_mAP50_95": 0.3048,
+        "box_mAP50": 0.6832,
+        "box_mAP40": 0.7181,
+        "n_pred": 35127
+      },
+      "biome_7": {
+        "n_tiles": 102,
+        "n_gt": 4390,
+        "mask_mAP50": 0.591,
+        "mask_mAP50_95": 0.27,
+        "box_mAP50": 0.5903,
+        "box_mAP40": 0.6262,
+        "n_pred": 43403
+      },
+      "biome_8": {
+        "n_tiles": 31,
+        "n_gt": 2064,
+        "mask_mAP50": 0.5995,
+        "mask_mAP50_95": 0.2714,
+        "box_mAP50": 0.5994,
+        "box_mAP40": 0.6374,
+        "n_pred": 13135
+      },
+      "biome_9": {
+        "n_tiles": 7,
+        "n_gt": 223,
+        "mask_mAP50": 0.5773,
+        "mask_mAP50_95": 0.2445,
+        "box_mAP50": 0.5937,
+        "box_mAP40": 0.6417,
+        "n_pred": 1869
+      },
+      "biome_10": {
+        "n_tiles": 16,
+        "n_gt": 260,
+        "mask_mAP50": 0.325,
+        "mask_mAP50_95": 0.1646,
+        "box_mAP50": 0.3259,
+        "box_mAP40": 0.36,
+        "n_pred": 4233
+      },
+      "biome_12": {
+        "n_tiles": 56,
+        "n_gt": 5914,
+        "mask_mAP50": 0.6906,
+        "mask_mAP50_95": 0.3118,
+        "box_mAP50": 0.6984,
+        "box_mAP40": 0.7436,
+        "n_pred": 25277
+      },
+      "biome_13": {
+        "n_tiles": 24,
+        "n_gt": 2086,
+        "mask_mAP50": 0.6469,
+        "mask_mAP50_95": 0.3064,
+        "box_mAP50": 0.6486,
+        "box_mAP40": 0.6889,
+        "n_pred": 11641
+      }
+    }
+  ],
+  "band_mean_std": {
+    "all": {
+      "n_tiles": 236,
+      "n_gt": 14937,
+      "mask_mAP50": [
+        0.6281,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2856,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6304,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6716,
+        0.0
+      ]
+    },
+    "scene_clean": {
+      "n_tiles": 106,
+      "n_gt": 6590,
+      "mask_mAP50": [
+        0.6737,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.3053,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6801,
+        0.0
+      ],
+      "box_mAP40": [
+        0.7142,
+        0.0
+      ]
+    },
+    "train_pool": {
+      "n_tiles": 220,
+      "n_gt": 14560,
+      "mask_mAP50": [
+        0.6281,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.285,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6305,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6725,
+        0.0
+      ]
+    },
+    "scene_clean_and_train_pool": {
+      "n_tiles": 90,
+      "n_gt": 6213,
+      "mask_mAP50": [
+        0.676,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.3048,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6832,
+        0.0
+      ],
+      "box_mAP40": [
+        0.7181,
+        0.0
+      ]
+    },
+    "biome_7": {
+      "n_tiles": 102,
+      "n_gt": 4390,
+      "mask_mAP50": [
+        0.591,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.27,
+        0.0
+      ],
+      "box_mAP50": [
+        0.5903,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6262,
+        0.0
+      ]
+    },
+    "biome_8": {
+      "n_tiles": 31,
+      "n_gt": 2064,
+      "mask_mAP50": [
+        0.5995,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2714,
+        0.0
+      ],
+      "box_mAP50": [
+        0.5994,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6374,
+        0.0
+      ]
+    },
+    "biome_9": {
+      "n_tiles": 7,
+      "n_gt": 223,
+      "mask_mAP50": [
+        0.5773,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.2445,
+        0.0
+      ],
+      "box_mAP50": [
+        0.5937,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6417,
+        0.0
+      ]
+    },
+    "biome_10": {
+      "n_tiles": 16,
+      "n_gt": 260,
+      "mask_mAP50": [
+        0.325,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.1646,
+        0.0
+      ],
+      "box_mAP50": [
+        0.3259,
+        0.0
+      ],
+      "box_mAP40": [
+        0.36,
+        0.0
+      ]
+    },
+    "biome_12": {
+      "n_tiles": 56,
+      "n_gt": 5914,
+      "mask_mAP50": [
+        0.6906,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.3118,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6984,
+        0.0
+      ],
+      "box_mAP40": [
+        0.7436,
+        0.0
+      ]
+    },
+    "biome_13": {
+      "n_tiles": 24,
+      "n_gt": 2086,
+      "mask_mAP50": [
+        0.6469,
+        0.0
+      ],
+      "mask_mAP50_95": [
+        0.3064,
+        0.0
+      ],
+      "box_mAP50": [
+        0.6486,
+        0.0
+      ],
+      "box_mAP40": [
+        0.6889,
+        0.0
+      ]
+    }
+  }
+}

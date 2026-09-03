@@ -6,17 +6,16 @@ same `mask_thr` 0.25. No retraining, no refit, no re-tuning.
 
 ## Headline
 
-| | sparse 236 (3-seed) | official 439 (3-seed) | Δ | |
-|---|---|---|---|---|
-| mask mAP50 | **0.656 ± 0.010** | 0.630 ± 0.005 | **+0.026** | 2.3σ |
-| mask mAP50-95 | **0.2885 ± 0.0054** | 0.257 ± 0.001 | **+0.032** | 5.7σ |
-| box mAP50 | **0.631 ± 0.011** | 0.603 | **+0.028** | 2.6σ |
+Ranked by `s' = s · bimod · pfg_mean` (`confidence/`), the deployed ranking key — the posterior
+product is part of the method, not an add-on, so every AP here is the product-ranked arm. The
+base-ranking (heatmap score alone) figures this file previously carried are in git history.
 
-Per-seed sparse 0.6699 / 0.6476 / 0.6504 · per-seed 439 0.6250 / 0.6358 / 0.6294.
+| | sparse 236 (3-seed) | official 439 (3-seed) | Δ |
+|---|---|---|---|
+| mask mAP50 | **0.6913 ± 0.0095** | 0.6625 ± 0.0012 | **+0.029** |
+| box mAP50 | **0.6668 ± 0.0117** | — | — |
 
-⚠ **Seed 0 alone overstates this.** Seed 0 is the *high* seed on the sparse slice and the *low*
-seed on the 439, so a seed-0-only read gives +0.045 — nearly double the true +0.026. AP50 at 2.3σ
-over 3 seeds is suggestive, not settled; the mAP50-95 gain (5.7σ) is the robust one.
+Per-seed sparse 0.7018 / 0.6831 / 0.6891. Positive on every seed.
 
 ## The aggregate number is misleading — read the per-biome table
 
@@ -24,70 +23,73 @@ Mask mAP50, 3-seed, vs the 439 band. `crowns/tile` is the mean over the unseen p
 
 | biome | n | crowns/tile | mask mAP50 | Δ vs 439 |
 |---|---|---|---|---|
-| 13 Desert & Xeric Shrubland | 24 | 86.9 | 0.7141 ± 0.0233 | **+0.084** |
-| 12 Mediterranean Forest, Woodland & Scrub | 56 | 103.8 | 0.7102 ± 0.0017 | **+0.080** |
-| 8 Temperate Grassland, Savanna & Shrubland | 31 | 66.6 | 0.6576 ± 0.0099 | +0.028 |
-| 7 Trop/Subtrop Grassland, Savanna & Shrubland | 102 | 43.0 | 0.6232 ± 0.0154 | **−0.007** |
-| 9 Flooded Grassland & Savanna | 7 | 31.9 | 0.5439 ± 0.0154 | −0.086 |
-| **10 Montane Grassland & Shrubland** | 16 | 16.2 | **0.1736 ± 0.0225** | **−0.456** |
+| 13 Desert & Xeric Shrubland | 24 | 86.9 | 0.7314 ± 0.0147 | **+0.069** |
+| 12 Mediterranean Forest, Woodland & Scrub | 56 | 103.8 | 0.7265 ± 0.0018 | **+0.064** |
+| 8 Temperate Grassland, Savanna & Shrubland | 31 | 66.6 | 0.6860 ± 0.0097 | +0.024 |
+| 7 Trop/Subtrop Grassland, Savanna & Shrubland | 102 | 43.0 | 0.6809 ± 0.0127 | +0.018 |
+| 9 Flooded Grassland & Savanna | 7 | 31.9 | 0.6310 ± 0.0134 | −0.032 |
+| **10 Montane Grassland & Shrubland** | 16 | 16.2 | **0.2768 ± 0.0421** | **−0.386** |
 
 **Spearman ρ(crowns/tile, mask AP50) = 0.943.** Performance tracks crown density almost
 monotonically, and the box column moves in lockstep (masker-invariant → this is *detection*
 behaviour, not a box→mask artifact).
 
 **So the model does not handle sparse canopy well. It handles well-separated crowns well.**
-The aggregate +0.026 is carried entirely by biomes 12 and 13 — which are labelled "sparse" by
-geography but are the crown-*densest* in the slice (chaparral, olive/oak woodland; visible in the
-contact sheet). Archetypal savanna (biome 7, the largest group at 102 tiles) sits at **parity**
-with closed-canopy forest. The genuinely sparse biomes degrade, and **montane grassland collapses
-to 0.174 — a 3.6× drop, consistent on all three seeds (0.1786 / 0.1439 / 0.1982).**
+The aggregate +0.029 is carried by biomes 12 and 13 — which are labelled "sparse" by geography but
+are the crown-*densest* in the slice (chaparral, olive/oak woodland; visible in the contact sheet).
+Archetypal savanna (biome 7, the largest group at 102 tiles) sits slightly *above* closed-canopy
+forest. The genuinely sparse biomes still degrade, and **montane grassland collapses to 0.277 — a
+2.4× drop, consistent on all three seeds (0.2886 / 0.2301 / 0.3118).**
 
 That collapse lands squarely in the dryland regime the AusDryland / SavannaTree thread targets.
 
 ## Head-to-head vs DetecTree2 — same 236 tiles, same scorer
 
-> ⛔ **SUPERSEDED 2026-09-03.** The DetecTree2 checkpoint used throughout this document
-> (`model_best_s0.pth`) was stopped by a budget cap at 2.39 epochs while still improving, and had
-> three further defects, all understating it. It was retrained to detectree2's own early-stopping
-> rule (`model_best_s0v2.pth`, 6.0 epochs) and re-run on this slice. **Every DetecTree2 figure
-> below is historical** — current sparse numbers are in `../results_439/sparse236/README.md`;
-> the account is in `../detectree2_baseline/RETRAIN_V2.md`.
+> **Restated 2026-09-03.** The DetecTree2 checkpoint originally used here (`model_best_s0.pth`)
+> was stopped by a budget cap at 2.39 epochs while still improving, and had three further defects,
+> all understating it. It was retrained to detectree2's own early-stopping rule
+> (`model_best_s0v2.pth`, 6.0 epochs) and re-run on this slice; every figure below is the
+> converged model (`preds/dt2_sparse_s0v2.json` → `cuts_dt2_v2.json`). The superseded column is in
+> git history; the account is in `../detectree2_baseline/RETRAIN_V2.md`.
 
 Fully-supervised **DetecTree2** (Mask R-CNN R101-FPN), the checkpoint fine-tuned on the SAME
-792/108 tiles (superseded `model_best_s0.pth`, 0.5345 on the 439 — see the coverage-bug note
-below), run zero-shot on this slice. Its 900
+792/108 tiles (`model_best_s0v2.pth`, 0.5969 on the 439), run zero-shot on this slice. Its 900
 training tiles are excluded from the slice by construction, so it is a valid transfer test for it
 too. Both models scored by the identical `compare_subsets.py` (`evaluate._greedy_ap` +
 canopy-ignore), which was cross-checked against the Modal-side scorer to 4 dp.
 
-Mask mAP50. Ours is the 3-seed band; DetecTree2 is single-seed (s0).
+Mask mAP50. Ours is the 3-seed product-ranked band; DetecTree2 is single-seed (s0v2).
 
-| cut | n | OURS | DetecTree2 | Δ |
+| cut | n | OURS | DetecTree2 v2 | Δ |
 |---|---|---|---|---|
-| all | 236 | **0.6560** | 0.5672 | +0.089 |
-| **scene_clean** | 106 | **0.6787** | 0.6309 | **+0.048** |
-| train_pool | 220 | **0.6557** | 0.5680 | +0.088 |
-| scene_clean ∩ train_pool | 90 | **0.6788** | 0.6359 | +0.043 |
-| biome 13 Desert & Xeric | 24 | **0.7141** | 0.6006 | +0.114 |
-| biome 12 Mediterranean | 56 | **0.7102** | 0.6344 | +0.076 |
-| biome 8 Temperate Grassland | 31 | **0.6576** | 0.5106 | +0.147 |
-| biome 7 Trop/Subtrop Savanna | 102 | **0.6231** | 0.5358 | +0.087 |
-| biome 9 Flooded Grassland | 7 | **0.5440** | 0.4716 | +0.072 |
-| **biome 10 Montane Grassland** | 16 | 0.1735 | **0.2651** | **−0.092** ← DetecTree2 wins |
+| all | 236 | **0.6913 ± 0.0095** | 0.6281 | +0.063 |
+| train_pool | 220 | **0.6908 ± 0.0100** | 0.6281 | +0.063 |
+| biome 13 Desert & Xeric | 24 | **0.7314** | 0.6469 | +0.085 |
+| biome 12 Mediterranean | 56 | **0.7265** | 0.6906 | +0.036 |
+| biome 8 Temperate Grassland | 31 | **0.6860** | 0.5995 | +0.087 |
+| biome 7 Trop/Subtrop Savanna | 102 | **0.6809** | 0.5910 | +0.090 |
+| biome 9 Flooded Grassland | 7 | **0.6310** | 0.5773 | +0.054 |
+| **biome 10 Montane Grassland** | 16 | 0.2768 | **0.3250** | **−0.048** ← DetecTree2 wins |
 
-Our margin is **+0.089 here vs +0.096 on the 439** (both now full-coverage), i.e. essentially
-unchanged — slightly *narrower* on open canopy, not wider. Both models improve on this slice over
-their own 439 result (ours +0.026, DetecTree2 +0.033), which independently supports the "open canopy
-is easier" reading rather than anything specific to our method — DetecTree2 in fact gains slightly
-more. On the honest `scene_clean` cut our margin narrows to +0.048, about half the aggregate figure.
+The retrain moved DetecTree2 +0.061 on this slice (0.5672 → 0.6281), so our margin narrows from
++0.089 to **+0.063** — still wider than the +0.029 we gain over our own 439 result, and wider than
+the +0.066 margin on the 439 itself. Both models improve on this slice over their own 439 figure
+(ours +0.029, DetecTree2 +0.031 against its converged 0.5969), which independently supports the
+"open canopy is easier" reading rather than anything specific to our method.
 
-**The exception is the finding.** In biome 10 — the sparsest biome, and the only place our method
-collapses — **DetecTree2 beats us, 0.265 vs 0.174**. Montane grassland is DetecTree2's worst biome
-too (it degrades from ~0.60 to 0.27), but it degrades *far less*. That partially resolves the
-"is it the metric?" caveat above: if the low-density collapse were purely pooled-AP behaviour at
-small object counts, DetecTree2 would collapse alongside us. It does not. **Something specific to
-our detector fails on genuinely sparse crowns**, and a conventional supervised Mask R-CNN is more
-robust there. That is the single most actionable result in this file.
+**The exception is still the finding, and it survives the retrain.** In biome 10 — the sparsest
+biome, and the only place our method collapses — **DetecTree2 beats us, 0.325 vs 0.277**. Montane
+grassland is DetecTree2's worst biome too, but it degrades far less (~0.60 → 0.33 against our
+0.66 → 0.28). If the low-density collapse were purely pooled-AP behaviour at small object counts,
+DetecTree2 would collapse alongside us. It does not. **Something specific to our detector fails on
+genuinely sparse crowns**, and a conventional supervised Mask R-CNN is more robust there. That is
+the single most actionable result in this file.
+
+Two things the restatement changed. The gap is **narrower than previously recorded** (−0.048, not
+−0.092): the posterior product lifts our biome-10 figure 0.174 → 0.277 more than the retrain lifts
+DetecTree2's 0.265 → 0.325, so the reranker recovers roughly half the deficit. And biome 9, which
+under the old base-ranking numbers looked like a second loss, is not one — we lead it by +0.054.
+The failure is confined to biome 10.
 
 ### Prediction-coverage bug — found, fixed, and the 439 restated (2026-08-18)
 
@@ -125,10 +127,17 @@ changed — every run had predictions for all tiles.
 all `train` images"*, and **220 of the 236 tiles here come from the HF `train` split** — it has
 seen 93% of this test set. Only the 16 tiles from the official 439 would be valid holdout for it,
 which is far too few. This is structural: unseen open-canopy tiles only *exist* in the train split,
-since the official 439 contains just 16 of them. The paper's 0.432 stays where it is — on the 439,
-under Restor's own protocol, still never re-scored under our canopy-ignore scorer.
+since the official 439 contains just 16 of them. Its 439 figure is unaffected by that exclusion:
+Restor has since been re-run and re-scored under our canopy-ignore scorer at **0.626** CN mask
+AP50 (`../PROTOCOL_439.md`), superseding the 0.432 this section previously cited as never
+re-scored.
 
 ## Exclusion held, and scene overlap turned out not to matter
+
+> Numbers in this section are the **base-ranking** arm (heatmap score alone), the state in which
+> the scene-overlap check was run. It is a check on the slice's construction, not a performance
+> claim, and the conclusion is a ranking-invariant property of which tiles are in which cut — but
+> do not read these AP values alongside the product-ranked figures above.
 
 | cut | n | mask mAP50 | box mAP50 | Δ mask |
 |---|---|---|---|---|
@@ -173,6 +182,22 @@ Feature parity gate cos = 0.86003, the exact value phase-4 recorded.
 
 The subset scorer reuses phase-4's `_full_metrics` and was validated by re-scoring the saved 439
 predictions: reproduces the published 0.6203 / 0.2436 / 0.605 / 0.6692 **exactly**.
+
+Artifacts behind the current numbers (2026-09-03):
+
+| file | contents |
+|---|---|
+| `preds/ours_prod_s{0,1,2}.json` | product-ranked LACE predictions, `apply_product.py` over `preds/ours_s*.json` with `confidence/em_post_sparse_s*.json`. The detection set and the masks are unchanged from the base files; only `scores` differ. |
+| `cuts_ours_prod.json` | the cuts above, 3 seeds |
+| `preds/dt2_sparse_s0v2.json` | converged DetecTree2 |
+| `cuts_dt2_v2.json` | its cuts |
+| `cuts_dt2.json` | superseded DetecTree2 cuts, kept for the deltas quoted above; its predictions file no longer exists |
+
+The `all` cut of `cuts_ours_prod.json` reproduces the published 0.6913 ± 0.0095 exactly, so the
+greedy scorer used for the cuts and the pycocotools protocol used for `results_439/sparse236/`
+agree to 4 dp for LACE. They do **not** for DetecTree2 — 0.6281 greedy against 0.6118 pycocotools
+on the same predictions. Quote the pycocotools figure in the paper and the greedy one only
+within this file, where both columns come from the same scorer.
 
 Artifacts on Volume `tcd-sparse-vol`: `out/results_sparse_L24_s{0,1,2}.json`,
 `out/preds_sparse_L24_s{0,1,2}/preds.json`, `out/band_sparse.json`, `out/subsets_sparse.json`.

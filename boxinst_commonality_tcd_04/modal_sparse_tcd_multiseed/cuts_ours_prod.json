@@ -1,0 +1,544 @@
+{
+  "label": "LACE (ours) + posterior product, 3 seeds",
+  "preds": [
+    "boxinst_commonality_tcd_04/modal_sparse_tcd_multiseed/preds/ours_prod_s0.json",
+    "boxinst_commonality_tcd_04/modal_sparse_tcd_multiseed/preds/ours_prod_s1.json",
+    "boxinst_commonality_tcd_04/modal_sparse_tcd_multiseed/preds/ours_prod_s2.json"
+  ],
+  "pred_meta": [
+    {
+      "model": "4phase_L24 detector + \u03b2=0 self-mask masker + posterior product (s x bimod x pfg_mean)",
+      "det": "det_phase4_L24_s0.pt",
+      "em": "em_model_4p_fix.npz",
+      "mask_thr": 0.25,
+      "op_thr": 0.39999999999999997,
+      "tile_px": 2048,
+      "mask_res": 512,
+      "scale_box_to_mask": 4.0,
+      "n_tiles": 236,
+      "notes": "per tile: boxes_2048 = xyxy in 2048px tile coords; masks_rle = pycocotools RLE at mask_res (divide boxes by scale_box_to_mask to align with masks); scores = detector confidence (filter >= op_thr for the operating point); canopy_ignore[i]=True means pred i sits >50% in canopy (ignored, not a false positive).",
+      "confidence": {
+        "form": "s * bimod * pfg_mean",
+        "fitted_parameters": 0,
+        "post_file": "em_post_sparse_s0.json",
+        "score_with": "--score_floor 0 (set frozen, ordering only)"
+      }
+    },
+    {
+      "model": "4phase_L24 detector + \u03b2=0 self-mask masker + posterior product (s x bimod x pfg_mean)",
+      "det": "det_phase4_L24_s1.pt",
+      "em": "em_model_4p_fix.npz",
+      "mask_thr": 0.25,
+      "op_thr": 0.35,
+      "tile_px": 2048,
+      "mask_res": 512,
+      "scale_box_to_mask": 4.0,
+      "n_tiles": 236,
+      "notes": "per tile: boxes_2048 = xyxy in 2048px tile coords; masks_rle = pycocotools RLE at mask_res (divide boxes by scale_box_to_mask to align with masks); scores = detector confidence (filter >= op_thr for the operating point); canopy_ignore[i]=True means pred i sits >50% in canopy (ignored, not a false positive).",
+      "confidence": {
+        "form": "s * bimod * pfg_mean",
+        "fitted_parameters": 0,
+        "post_file": "em_post_sparse_s1.json",
+        "score_with": "--score_floor 0 (set frozen, ordering only)"
+      }
+    },
+    {
+      "model": "4phase_L24 detector + \u03b2=0 self-mask masker + posterior product (s x bimod x pfg_mean)",
+      "det": "det_phase4_L24_s2.pt",
+      "em": "em_model_4p_fix.npz",
+      "mask_thr": 0.25,
+      "op_thr": 0.35,
+      "tile_px": 2048,
+      "mask_res": 512,
+      "scale_box_to_mask": 4.0,
+      "n_tiles": 236,
+      "notes": "per tile: boxes_2048 = xyxy in 2048px tile coords; masks_rle = pycocotools RLE at mask_res (divide boxes by scale_box_to_mask to align with masks); scores = detector confidence (filter >= op_thr for the operating point); canopy_ignore[i]=True means pred i sits >50% in canopy (ignored, not a false positive).",
+      "confidence": {
+        "form": "s * bimod * pfg_mean",
+        "fitted_parameters": 0,
+        "post_file": "em_post_sparse_s2.json",
+        "score_with": "--score_floor 0 (set frozen, ordering only)"
+      }
+    }
+  ],
+  "per_run": [
+    {
+      "all": {
+        "n_tiles": 236,
+        "n_gt": 14937,
+        "mask_mAP50": 0.7018,
+        "mask_mAP50_95": 0.3208,
+        "box_mAP50": 0.6767,
+        "box_mAP40": 0.737,
+        "n_pred": 79562
+      },
+      "scene_clean": {
+        "n_tiles": 106,
+        "n_gt": 6590,
+        "mask_mAP50": 0.7181,
+        "mask_mAP50_95": 0.3399,
+        "box_mAP50": 0.6966,
+        "box_mAP40": 0.7469,
+        "n_pred": 34085
+      },
+      "train_pool": {
+        "n_tiles": 220,
+        "n_gt": 14560,
+        "mask_mAP50": 0.7016,
+        "mask_mAP50_95": 0.3204,
+        "box_mAP50": 0.6761,
+        "box_mAP40": 0.7369,
+        "n_pred": 75997
+      },
+      "scene_clean_and_train_pool": {
+        "n_tiles": 90,
+        "n_gt": 6213,
+        "mask_mAP50": 0.7165,
+        "mask_mAP50_95": 0.3401,
+        "box_mAP50": 0.6937,
+        "box_mAP40": 0.7449,
+        "n_pred": 30520
+      },
+      "biome_7": {
+        "n_tiles": 102,
+        "n_gt": 4390,
+        "mask_mAP50": 0.6951,
+        "mask_mAP50_95": 0.3207,
+        "box_mAP50": 0.6699,
+        "box_mAP40": 0.7307,
+        "n_pred": 31950
+      },
+      "biome_8": {
+        "n_tiles": 31,
+        "n_gt": 2064,
+        "mask_mAP50": 0.6969,
+        "mask_mAP50_95": 0.3147,
+        "box_mAP50": 0.6803,
+        "box_mAP40": 0.7406,
+        "n_pred": 11252
+      },
+      "biome_9": {
+        "n_tiles": 7,
+        "n_gt": 223,
+        "mask_mAP50": 0.6174,
+        "mask_mAP50_95": 0.2524,
+        "box_mAP50": 0.6637,
+        "box_mAP40": 0.7354,
+        "n_pred": 1760
+      },
+      "biome_10": {
+        "n_tiles": 16,
+        "n_gt": 260,
+        "mask_mAP50": 0.2886,
+        "mask_mAP50_95": 0.135,
+        "box_mAP50": 0.2888,
+        "box_mAP40": 0.3198,
+        "n_pred": 4292
+      },
+      "biome_12": {
+        "n_tiles": 56,
+        "n_gt": 5914,
+        "mask_mAP50": 0.7285,
+        "mask_mAP50_95": 0.3372,
+        "box_mAP50": 0.703,
+        "box_mAP40": 0.7595,
+        "n_pred": 21416
+      },
+      "biome_13": {
+        "n_tiles": 24,
+        "n_gt": 2086,
+        "mask_mAP50": 0.7439,
+        "mask_mAP50_95": 0.3331,
+        "box_mAP50": 0.7078,
+        "box_mAP40": 0.7821,
+        "n_pred": 8892
+      }
+    },
+    {
+      "all": {
+        "n_tiles": 236,
+        "n_gt": 14937,
+        "mask_mAP50": 0.6831,
+        "mask_mAP50_95": 0.3071,
+        "box_mAP50": 0.6538,
+        "box_mAP40": 0.7169,
+        "n_pred": 86784
+      },
+      "scene_clean": {
+        "n_tiles": 106,
+        "n_gt": 6590,
+        "mask_mAP50": 0.7077,
+        "mask_mAP50_95": 0.3291,
+        "box_mAP50": 0.6819,
+        "box_mAP40": 0.7372,
+        "n_pred": 36042
+      },
+      "train_pool": {
+        "n_tiles": 220,
+        "n_gt": 14560,
+        "mask_mAP50": 0.6818,
+        "mask_mAP50_95": 0.3067,
+        "box_mAP50": 0.6525,
+        "box_mAP40": 0.7158,
+        "n_pred": 82901
+      },
+      "scene_clean_and_train_pool": {
+        "n_tiles": 90,
+        "n_gt": 6213,
+        "mask_mAP50": 0.7071,
+        "mask_mAP50_95": 0.3293,
+        "box_mAP50": 0.6791,
+        "box_mAP40": 0.7362,
+        "n_pred": 32159
+      },
+      "biome_7": {
+        "n_tiles": 102,
+        "n_gt": 4390,
+        "mask_mAP50": 0.6707,
+        "mask_mAP50_95": 0.3008,
+        "box_mAP50": 0.6422,
+        "box_mAP40": 0.7068,
+        "n_pred": 34243
+      },
+      "biome_8": {
+        "n_tiles": 31,
+        "n_gt": 2064,
+        "mask_mAP50": 0.6782,
+        "mask_mAP50_95": 0.2968,
+        "box_mAP50": 0.6369,
+        "box_mAP40": 0.7206,
+        "n_pred": 11355
+      },
+      "biome_9": {
+        "n_tiles": 7,
+        "n_gt": 223,
+        "mask_mAP50": 0.6316,
+        "mask_mAP50_95": 0.249,
+        "box_mAP50": 0.6571,
+        "box_mAP40": 0.741,
+        "n_pred": 2350
+      },
+      "biome_10": {
+        "n_tiles": 16,
+        "n_gt": 260,
+        "mask_mAP50": 0.2301,
+        "mask_mAP50_95": 0.0999,
+        "box_mAP50": 0.2157,
+        "box_mAP40": 0.2462,
+        "n_pred": 6099
+      },
+      "biome_12": {
+        "n_tiles": 56,
+        "n_gt": 5914,
+        "mask_mAP50": 0.7253,
+        "mask_mAP50_95": 0.3327,
+        "box_mAP50": 0.6995,
+        "box_mAP40": 0.755,
+        "n_pred": 23344
+      },
+      "biome_13": {
+        "n_tiles": 24,
+        "n_gt": 2086,
+        "mask_mAP50": 0.7352,
+        "mask_mAP50_95": 0.3257,
+        "box_mAP50": 0.6918,
+        "box_mAP40": 0.7701,
+        "n_pred": 9393
+      }
+    },
+    {
+      "all": {
+        "n_tiles": 236,
+        "n_gt": 14937,
+        "mask_mAP50": 0.6891,
+        "mask_mAP50_95": 0.3137,
+        "box_mAP50": 0.6698,
+        "box_mAP40": 0.7289,
+        "n_pred": 90526
+      },
+      "scene_clean": {
+        "n_tiles": 106,
+        "n_gt": 6590,
+        "mask_mAP50": 0.7138,
+        "mask_mAP50_95": 0.3366,
+        "box_mAP50": 0.6986,
+        "box_mAP40": 0.748,
+        "n_pred": 37044
+      },
+      "train_pool": {
+        "n_tiles": 220,
+        "n_gt": 14560,
+        "mask_mAP50": 0.6889,
+        "mask_mAP50_95": 0.3134,
+        "box_mAP50": 0.6687,
+        "box_mAP40": 0.7284,
+        "n_pred": 86151
+      },
+      "scene_clean_and_train_pool": {
+        "n_tiles": 90,
+        "n_gt": 6213,
+        "mask_mAP50": 0.7148,
+        "mask_mAP50_95": 0.337,
+        "box_mAP50": 0.6955,
+        "box_mAP40": 0.7455,
+        "n_pred": 32669
+      },
+      "biome_7": {
+        "n_tiles": 102,
+        "n_gt": 4390,
+        "mask_mAP50": 0.6768,
+        "mask_mAP50_95": 0.3107,
+        "box_mAP50": 0.6609,
+        "box_mAP40": 0.7139,
+        "n_pred": 36750
+      },
+      "biome_8": {
+        "n_tiles": 31,
+        "n_gt": 2064,
+        "mask_mAP50": 0.683,
+        "mask_mAP50_95": 0.3047,
+        "box_mAP50": 0.6625,
+        "box_mAP40": 0.7332,
+        "n_pred": 12829
+      },
+      "biome_9": {
+        "n_tiles": 7,
+        "n_gt": 223,
+        "mask_mAP50": 0.6441,
+        "mask_mAP50_95": 0.2535,
+        "box_mAP50": 0.6879,
+        "box_mAP40": 0.7634,
+        "n_pred": 2309
+      },
+      "biome_10": {
+        "n_tiles": 16,
+        "n_gt": 260,
+        "mask_mAP50": 0.3118,
+        "mask_mAP50_95": 0.1464,
+        "box_mAP50": 0.306,
+        "box_mAP40": 0.342,
+        "n_pred": 5045
+      },
+      "biome_12": {
+        "n_tiles": 56,
+        "n_gt": 5914,
+        "mask_mAP50": 0.7256,
+        "mask_mAP50_95": 0.3324,
+        "box_mAP50": 0.7015,
+        "box_mAP40": 0.7631,
+        "n_pred": 23518
+      },
+      "biome_13": {
+        "n_tiles": 24,
+        "n_gt": 2086,
+        "mask_mAP50": 0.7152,
+        "mask_mAP50_95": 0.3255,
+        "box_mAP50": 0.6934,
+        "box_mAP40": 0.7567,
+        "n_pred": 10075
+      }
+    }
+  ],
+  "band_mean_std": {
+    "all": {
+      "n_tiles": 236,
+      "n_gt": 14937,
+      "mask_mAP50": [
+        0.6913,
+        0.0078
+      ],
+      "mask_mAP50_95": [
+        0.3139,
+        0.0056
+      ],
+      "box_mAP50": [
+        0.6668,
+        0.0096
+      ],
+      "box_mAP40": [
+        0.7276,
+        0.0083
+      ]
+    },
+    "scene_clean": {
+      "n_tiles": 106,
+      "n_gt": 6590,
+      "mask_mAP50": [
+        0.7132,
+        0.0043
+      ],
+      "mask_mAP50_95": [
+        0.3352,
+        0.0045
+      ],
+      "box_mAP50": [
+        0.6924,
+        0.0074
+      ],
+      "box_mAP40": [
+        0.744,
+        0.0049
+      ]
+    },
+    "train_pool": {
+      "n_tiles": 220,
+      "n_gt": 14560,
+      "mask_mAP50": [
+        0.6908,
+        0.0082
+      ],
+      "mask_mAP50_95": [
+        0.3135,
+        0.0056
+      ],
+      "box_mAP50": [
+        0.6658,
+        0.0099
+      ],
+      "box_mAP40": [
+        0.727,
+        0.0087
+      ]
+    },
+    "scene_clean_and_train_pool": {
+      "n_tiles": 90,
+      "n_gt": 6213,
+      "mask_mAP50": [
+        0.7128,
+        0.0041
+      ],
+      "mask_mAP50_95": [
+        0.3355,
+        0.0045
+      ],
+      "box_mAP50": [
+        0.6894,
+        0.0073
+      ],
+      "box_mAP40": [
+        0.7422,
+        0.0042
+      ]
+    },
+    "biome_7": {
+      "n_tiles": 102,
+      "n_gt": 4390,
+      "mask_mAP50": [
+        0.6809,
+        0.0104
+      ],
+      "mask_mAP50_95": [
+        0.3107,
+        0.0081
+      ],
+      "box_mAP50": [
+        0.6577,
+        0.0115
+      ],
+      "box_mAP40": [
+        0.7171,
+        0.01
+      ]
+    },
+    "biome_8": {
+      "n_tiles": 31,
+      "n_gt": 2064,
+      "mask_mAP50": [
+        0.686,
+        0.0079
+      ],
+      "mask_mAP50_95": [
+        0.3054,
+        0.0073
+      ],
+      "box_mAP50": [
+        0.6599,
+        0.0178
+      ],
+      "box_mAP40": [
+        0.7315,
+        0.0083
+      ]
+    },
+    "biome_9": {
+      "n_tiles": 7,
+      "n_gt": 223,
+      "mask_mAP50": [
+        0.631,
+        0.0109
+      ],
+      "mask_mAP50_95": [
+        0.2516,
+        0.0019
+      ],
+      "box_mAP50": [
+        0.6696,
+        0.0132
+      ],
+      "box_mAP40": [
+        0.7466,
+        0.0121
+      ]
+    },
+    "biome_10": {
+      "n_tiles": 16,
+      "n_gt": 260,
+      "mask_mAP50": [
+        0.2768,
+        0.0344
+      ],
+      "mask_mAP50_95": [
+        0.1271,
+        0.0198
+      ],
+      "box_mAP50": [
+        0.2702,
+        0.0391
+      ],
+      "box_mAP40": [
+        0.3027,
+        0.0409
+      ]
+    },
+    "biome_12": {
+      "n_tiles": 56,
+      "n_gt": 5914,
+      "mask_mAP50": [
+        0.7265,
+        0.0014
+      ],
+      "mask_mAP50_95": [
+        0.3341,
+        0.0022
+      ],
+      "box_mAP50": [
+        0.7013,
+        0.0014
+      ],
+      "box_mAP40": [
+        0.7592,
+        0.0033
+      ]
+    },
+    "biome_13": {
+      "n_tiles": 24,
+      "n_gt": 2086,
+      "mask_mAP50": [
+        0.7314,
+        0.012
+      ],
+      "mask_mAP50_95": [
+        0.3281,
+        0.0035
+      ],
+      "box_mAP50": [
+        0.6977,
+        0.0072
+      ],
+      "box_mAP40": [
+        0.7696,
+        0.0104
+      ]
+    }
+  }
+}
