@@ -79,8 +79,8 @@ def main():
         arms[f"ours_s{s}"] = r
         used += [io.knobbed(s), io.ref_knobbed(s)]
 
-    dt2p = os.path.join(io.DT2, "preds_dt2_s0_fullcov.json")
-    dt2r = os.path.join(io.DT2, "results_dt2_s0_fullcov.json")
+    dt2p = os.path.join(io.DT2, "preds_dt2_s0v2.json")
+    dt2r = os.path.join(io.DT2, "results_dt2_s0v2.json")
     if os.path.exists(dt2p):
         print("[detectree2 s0]", flush=True)
         r, _ = run_arm(dt2p, gt, tols, "DetecTree2 s0 (mask-supervised)")

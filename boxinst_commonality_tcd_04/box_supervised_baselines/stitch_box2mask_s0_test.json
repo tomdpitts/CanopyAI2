@@ -1,0 +1,11 @@
+{
+  "dets_total": 117027,
+  "dets_per_tile_mean": 266.6,
+  "dets_per_tile_max": 522,
+  "tiles_over_maxdets_600": 0,
+  "canopy_landing_rate": 0.5096,
+  "preds": "/vol/boxinst/preds_box2mask_s0_test.json",
+  "iou_thr": 0.7,
+  "cont_thr": 0.85,
+  "min_score": 0.05
+}

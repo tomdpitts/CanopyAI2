@@ -1,0 +1,10 @@
+{
+  "out_dir": "/vol/boxinst/pred_raw_box2mask_s0_test",
+  "n_subtiles": 3951,
+  "n_inst": 269452,
+  "predict_min": 43.8,
+  "ckpt": "best_bbox_mAP_50_iter_13384.pth",
+  "query_cap": 100,
+  "subtiles_at_cap": 108,
+  "frac_subtiles_at_cap": 0.0273
+}

@@ -6,7 +6,7 @@ Streams tile-by-tile — decodes each tile's masks, computes the (Npred,Ngt) IoU
 DISCARDS the masks — so 147k predicted masks never sit in RAM at once (they'd be ~38 GB).
 
     .venv/bin/python -m boxinst_commonality_tcd_04.detectree2_baseline.score_detectree2 \
-        --preds .../preds_dt2_s0.json --gt boxinst_commonality_tcd_04/test_gt.json
+        --preds .../preds_dt2_s0v2.json --gt boxinst_commonality_tcd_04/test_gt.json
 """
 import argparse
 import json

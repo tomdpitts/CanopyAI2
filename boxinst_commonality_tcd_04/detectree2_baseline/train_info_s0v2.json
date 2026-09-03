@@ -1,0 +1,31 @@
+{
+  "seed": 0,
+  "tag": "v2",
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "best_ap50": 63.82728709717702,
+  "best_eval_idx": 5,
+  "best_iter": 10000,
+  "APs": [
+    58.593801060266145,
+    60.88563488631918,
+    62.1749669496351,
+    62.404626183983595,
+    63.82728709717702,
+    62.727369898681495,
+    63.099419909528585
+  ],
+  "stopped_iter": 9999,
+  "early_stopped": true,
+  "n_evals": 7,
+  "max_iter": 16000,
+  "eval_period": 2000,
+  "patience": 2,
+  "dets": 500,
+  "base_lr": 0.0003389,
+  "ims_per_batch": 4,
+  "val_subtiles": 896,
+  "min_size_test": 1000,
+  "max_size_test": 1333,
+  "weights": "250312_flexi.pth",
+  "model": "/vol/out/model_best_s0v2.pth"
+}

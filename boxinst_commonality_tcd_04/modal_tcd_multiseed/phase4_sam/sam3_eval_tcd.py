@@ -155,15 +155,21 @@ def _parity_check():
     return "OK (match_tile + _greedy_ap + mask_iou + RES/SCALE match evaluate.py)"
 
 
-def sam_masks_for_tile(model, processor, pil_img, boxes_2048, chunk=64):
-    """Box-prompt SAM 3 with each detector box -> (N, RES, RES) bool masks (UNCROPPED,
-    downsampled from the 2048 tile by 4x4 area-majority) + SAM's per-mask score.
+def sam_masks_for_tile(model, processor, pil_img, boxes_2048, chunk=64, res=RES):
+    """Box-prompt SAM 3 with each detector box -> (N, res, res) bool masks (UNCROPPED)
+    + SAM's per-mask score.
 
-    boxes_2048: (N,4) xyxy in 2048px tile coords (the saved seed-0 detections)."""
+    boxes_2048: (N,4) xyxy in 2048px tile coords (the saved seed-0 detections).
+
+    `res` defaults to RES (512), which 4x4 area-majority downsamples SAM's native 2048 output --
+    the behaviour every existing result was produced with. Pass res=2048 to keep SAM's own
+    resolution: the downsample discards a 4x finer boundary than our masker can express, so at
+    512 a strict-IoU comparison cannot see SAM's advantage (see
+    ablation/results/raster_quantum.json)."""
     import torch
     n = len(boxes_2048)
     if n == 0:
-        return np.zeros((0, RES, RES), bool), np.zeros(0, np.float32)
+        return np.zeros((0, res, res), bool), np.zeros(0, np.float32)
     W, H = pil_img.size
     assert (H, W) == (2048, 2048), f"expected 2048 tile, got {(H, W)}"
     state = processor.set_image(pil_img)
@@ -174,8 +180,10 @@ def sam_masks_for_tile(model, processor, pil_img, boxes_2048, chunk=64):
             m, sc, _ = model.predict_inst(state, point_coords=None, point_labels=None,
                                           box=bx, multimask_output=False)
             m = np.asarray(m).reshape(len(bx), H, W)          # (b,2048,2048) bool
-            # 4x4 area-majority downsample 2048 -> 512 (>=50% of the block is mask)
-            m = m.reshape(len(bx), RES, 4, RES, 4).mean((2, 4)) >= 0.5
+            if res != H:                                     # area-majority downsample
+                f = H // res
+                assert H % res == 0, f"{H} not divisible by res {res}"
+                m = m.reshape(len(bx), res, f, res, f).mean((2, 4)) >= 0.5
             masks_512.append(m)
             sam_sc.append(np.asarray(sc, np.float32).reshape(len(bx), -1)[:, 0])
     return np.concatenate(masks_512, 0), np.concatenate(sam_sc, 0)

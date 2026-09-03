@@ -5,27 +5,40 @@
 Every row was produced and scored **by us** under one frozen protocol — no figure here is
 quoted from another paper. `pycocotools COCOeval` · 439 whole 2048² tiles · masks at 512² ·
 maxDets 600 · score floor 0.05 · `iouThrs = linspace(0.5, 0.95, 10)` · canopy as `iscrowd`.
+**mask IoU** is the masker isolated: mean per-crown mask IoU on the 9,823 crowns EVERY row we
+still hold predictions for matched, at matched detection quality (box IoU ≥ 0.5), from
+`results_439/box_iou_strata.json`. It carries NO recall term and is not a system metric — see §5.
 CN = canopy-neutral: canopy polygons are `iscrowd` ground truth, so a prediction landing
 in unlabelled canopy is ignored rather than scored. It is the only arm reported.
 
-| Method | Superv. | Imgs | CN AP50 | CN AP75 | CN AP50:95 | Box AP50 | dets |
-|---|---|---|---|---|---|---|---|
-| LACE (ours), seed 0 | box | 900 | 0.6250 | 0.1433 | 0.2578 | 0.6211 | 159,687 |
-| LACE (ours), seed 1 | box | 900 | 0.6358 | 0.1376 | 0.2575 | 0.5835 | 162,017 |
-| LACE (ours), seed 2 | box | 900 | 0.6293 | 0.1417 | 0.2567 | 0.6230 | 177,598 |
-| _LACE 3-seed mean ± sd_ | box | 900 | 0.6300 ±0.0054 | 0.1409 ±0.0029 | 0.2573 ±0.0006 | 0.6092 ±0.0223 | 166,434 |
-| **LACE + posterior product, 3-seed** | box | 900 | **0.6625 ±0.0012** | 0.1649 ±0.0077 | **0.2790 ±0.0035** | 0.6396 ±0.0240 | 166,434 |
-| LACE + posterior product, seed 0 | box | 900 | 0.6615 | 0.1718 | 0.2821 | 0.6535 | 159,687 |
-| LACE + posterior product, seed 1 | box | 900 | 0.6639 | 0.1566 | 0.2752 | 0.6119 | 162,017 |
-| LACE + posterior product, seed 2 | box | 900 | 0.6622 | 0.1662 | 0.2798 | 0.6533 | 177,598 |
-| LACE + 8-feat logreg *(superseded)* | box | 900 | 0.6616 | 0.1648 | 0.2795 | 0.6525 | 159,687 |
-| Restor Mask R-CNN, shipped cfg (rpn 512) | masks | 4169 | 0.5706 | 0.1806 | 0.2575 | 0.5868 | 42,987 |
-| **Restor Mask R-CNN, rpn 1000** | masks | 4169 | 0.6255 | 0.1872 | 0.2766 | 0.6536 | 56,438 |
-| Restor, shipped cfg, classes pooled | masks | 4169 | 0.5620 | 0.1811 | 0.2555 | 0.5825 | 61,182 |
-| Restor, rpn 1000, classes pooled | masks | 4169 | 0.6137 | 0.1893 | 0.2738 | 0.6392 | 79,201 |
-| DetecTree2 (fine-tuned) | masks | 900 | 0.5344 | 0.1435 | 0.2240 | 0.5310 | 152,690 |
-| **SelvaBox → SAM 3 (both FT)** | box+SAM | ~3335 | 0.5687 | 0.0746 | 0.2028 | 0.7297 | 491,847 |
-| SelvaBox → SAM 3, maxDets 1600 | box+SAM | ~3335 | 0.5767 | 0.0754 | 0.2050 | 0.7480 | 491,847 |
+| Method | Superv. | Imgs | CN AP50 | CN AP75 | CN AP50:95 | Box AP50 | mask IoU | dets |
+|---|---|---|---|---|---|---|---|---|
+| LACE (ours), seed 0 | box | 900 | 0.6250 | 0.1433 | 0.2578 | 0.6211 | -- | 159,687 |
+| LACE (ours), seed 1 | box | 900 | 0.6358 | 0.1376 | 0.2575 | 0.5835 | -- | 162,017 |
+| LACE (ours), seed 2 | box | 900 | 0.6293 | 0.1417 | 0.2567 | 0.6230 | -- | 177,598 |
+| _LACE 3-seed mean ± sd_ | box | 900 | 0.6300 ±0.0054 | 0.1409 ±0.0029 | 0.2573 ±0.0006 | 0.6092 ±0.0223 | -- | 166,434 |
+| **LACE + posterior product, 3-seed** | box | 900 | **0.6625 ±0.0012** | 0.1649 ±0.0077 | **0.2790 ±0.0035** | 0.6396 ±0.0240 | 0.7430 ±0.0013 | 166,434 |
+| LACE + posterior product, seed 0 | box | 900 | 0.6615 | 0.1718 | 0.2821 | 0.6535 | 0.7445 | 159,687 |
+| LACE + posterior product, seed 1 | box | 900 | 0.6639 | 0.1566 | 0.2752 | 0.6119 | -- | 162,017 |
+| LACE + posterior product, seed 2 | box | 900 | 0.6622 | 0.1662 | 0.2798 | 0.6533 | -- | 177,598 |
+| LACE + 8-feat logreg *(superseded)* | box | 900 | 0.6616 | 0.1648 | 0.2795 | 0.6525 | -- | 159,687 |
+| Restor Mask R-CNN, shipped cfg (rpn 512) | masks | 4169 | 0.5706 | 0.1806 | 0.2575 | 0.5868 | -- | 42,987 |
+| **Restor Mask R-CNN, rpn 1000** | masks | 4169 | 0.6255 | 0.1872 | 0.2766 | 0.6536 | 0.7655 | 56,438 |
+| Restor, shipped cfg, classes pooled | masks | 4169 | 0.5620 | 0.1811 | 0.2555 | 0.5825 | -- | 61,182 |
+| Restor, rpn 1000, classes pooled | masks | 4169 | 0.6137 | 0.1893 | 0.2738 | 0.6392 | -- | 79,201 |
+| **DetecTree2 (fine-tuned, converged)** | masks | 900 | 0.5969 | 0.1748 | 0.2578 | 0.5913 | 0.7595 | 196,927 |
+| **SelvaBox → SAM 3 (both FT)** | box+SAM | 3024 | 0.5687 | 0.0746 | 0.2028 | 0.7297 | 0.6960 | 491,847 |
+| SelvaBox → SAM 3, maxDets 1600 | box+SAM | 3024 | 0.5767 | 0.0754 | 0.2050 | 0.7480 | -- | 491,847 |
+| **Box2Mask Swin-L (box-supervised)** | box | 900 | 0.5396 | 0.0884 | 0.1980 | 0.5821 | 0.6943 | 138,820 |
+| Box2Mask R-50 (backbone sensitivity) | box | 900 | 0.3865 | 0.0509 | 0.1299 | 0.4707 | 0.6436 | 117,027 |
+
+**Imgs, SelvaBox rows.** `3024`, not the earlier estimate `~3335` (which was 4169 × 4/5).
+Source: SelvaBox (arXiv:2507.00170v1) Appendix E.1 + Table 19 — "OAM-TCD provides five predefined
+cross-validation folds; we train on folds 0–3 and use fold 4 exclusively for validation", and
+Table 19 gives `# Train Images = 3024` at 2048 px for OAM-TCD, after their zero-annotation and
+pixel-cover tile removal. Tree-group (canopy) pixels are masked out of their training data. The
+detector additionally trains on NeonTreeEvaluation (912), QuebecTrees (148) and SelvaBox (585)
+tiles, which this column does not count.
 
 ### What the table says
 
@@ -48,8 +61,27 @@ in unlabelled canopy is ignored rather than scored. It is the only arm reported.
    training images, where the gain is *larger* than on the test set. It also cuts seed
    variance 4.5× (sd 0.0054 → 0.0012). Caveat that stands: roughly two thirds of the gain is
    a box-size prior, so the masker-specific increment is ≈ +0.012 (`confidence/README.md`).
-6. **Sparse 236 (`results_439/sparse236/`)**: LACE + product **0.6913 ± 0.0095** vs
-   DetecTree2 **0.5531** — +0.138 CN AP50, and ahead on every other metric too.
+6. **The box-supervised family is far behind, and it is not a training artefact.** Box2Mask
+   (TPAMI 2024), the strongest published box-supervised segmenter and the only row from LACE's
+   own supervision class, reaches 0.3865 CN AP50 against LACE's 0.6625 on identical crops, grid
+   and scorer. It was given a 9-epoch budget under LACE's own early-stopping rule, stopped
+   itself at epoch 6 and selected epoch 4, with four later evaluations below the peak while
+   train loss kept falling — its validation optimum, not a truncation. The gap is recall
+   (14,293 crowns matched vs DetecTree2's 19,603) and mask quality (0.6436, last at every
+   stratum). Full account: `box_supervised_baselines/PLAN.md` §5b–5c.
+7. **mask IoU is the masker isolated, and it reorders the table.** BOTH mask-supervised models
+   beat LACE's masker on it — Restor **0.7655** and DetecTree2 **0.7595** against LACE's
+   **0.7430 ± 0.0013** — while DetecTree2 trails LACE by 0.066 on CN AP50 and Restor by 0.037.
+   LACE's system lead therefore rests on detection and ranking, NOT on mask quality; state it
+   that way. (Before the 2026-09-03 DetecTree2 retrain this read as an "essential tie" at
+   0.7368 vs 0.7378 — the converged model overturns it.) The one place the masker leads
+   outright is on GT prompt boxes (`tab:gtbox`), a different question.
+8. **Sparse 236 (`results_439/sparse236/`)**: LACE + product **0.6913 ± 0.0095** vs the converged
+   DetecTree2 **0.6118** — **+0.080** CN AP50, and ahead on every other metric too. Worth stating
+   next to item 7: on the 439 the converged DetecTree2 beats LACE at AP75 (0.1748 vs 0.1649), but
+   on this open-canopy slice LACE still leads it (0.2326 vs 0.2155). The masker's strict-IoU
+   disadvantage against mask supervision is a dense-canopy effect, absent in the regime the paper
+   is about — and the margin is larger here (+0.080) than on the 439 (+0.066).
 
 Full per-row artifacts: `results_439/` (`build_table.py` regenerates `table_439.md`).
 The `rpn 2000` sensitivity row is omitted here; see §2.
@@ -60,6 +92,34 @@ which stays a cited figure under their protocol and is marked with an asterisk �
 Footnotes a and b in `ablation/results/paper.tex` collapse to "all rows re-scored by us under
 one protocol", plus that single asterisk.
 
+## 0b. The mask-IoU column — what it is and what it is not
+
+`box_iou_strata.py` → `results_439/box_iou_strata.json`. Every prediction is paired with the GT
+crown it matches on **box** IoU (greedy by score, threshold 0.5) and its mask IoU is recorded as
+the DEPENDENT variable, so mask quality plays no part in choosing the pairing. Stratifying on the
+DETECTION box, never the tight box of the predicted mask, is deliberate: a mask-derived box is
+partly determined by the mask, so an under-segmenting masker would be credited with a worse box,
+which is backwards. Canopy-landing predictions are dropped first by the project's >50% rule.
+
+Read it with three caveats:
+1. **No recall term.** It is mask quality GIVEN a detection at box IoU ≥ 0.5. A method that finds
+   few crowns is not charged for the ones it missed. AP is the system metric; this is not.
+2. **The value depends on the row set.** It is computed on the intersection — the 10,020 crowns
+   EVERY listed row matched — because the rows otherwise match different crowns and a
+   higher-recall method would be charged for the extra hard ones only it found. Add or remove a
+   row and every number moves. Recompute the whole column, never one cell.
+3. **All three LACE seeds are now included** (0.7430 ± 0.0013). Seeds 1–2 were briefly believed
+   lost to a session scratchpad; they were recovered from `tcd04-phase4-vol` on 2026-09-02 and
+   re-verified to reproduce their published AP and detection counts exactly. See
+   `confidence/PREDICTIONS.md` and `results_439/ARTIFACTS.md`.
+
+Recomputed WHOLE 2026-09-03 after the DetecTree2 retrain, per caveat 2: every cell in the column
+moved because the common subset shrank from 11,238 to 10,020 crowns. Per-bin counts sum to the
+common-subset size for every row; the top stratum (box IoU ≥ 0.9, i.e. near-GT boxes) sits slightly
+above the independent GT-box bake-off for the comparable arms, the expected direction since
+near-perfectly localised crowns are the easier ones. DetecTree2's own stratum profile rises
+monotonically 0.6163 → 0.8654 across the five box-IoU bins on 10,020 matched crowns.
+
 ## 1. Scorer (frozen)
 
 | knob | value | justification |
@@ -68,7 +128,7 @@ one protocol", plus that single asterisk.
 | scoring unit | 439 whole 2048² tiles | the benchmark's native unit |
 | mask raster | **512²**, RLE throughout | DECIDED: keep 512². Measured cost of the 4× downsample: +0.005 IoU on average and +2.9 pts of TP rate at IoU 0.75, and it flatters the COARSEST masker — ours (LACE's 8 px grid vs DetecTree2's 28×28 ROI head, finer than the 512 raster for 90% of crowns). AP50 is unaffected (~0.8 pts). Re-basing to 2048² is blocked by `phase4_lib_tcd.eval_selfmask`, which accumulates dense masks for all 439 tiles (~49 GB at 512² in a 64 GB container; 2048² would need ~780 GB). State the limitation in the paper rather than hide it |
 | maxDets | **600** | densest test tile holds 450 GT instances (421 trees + 29 canopy); only 3 of 439 tiles exceed 400. 600 is ~1.3× the densest tile and ~10× the median (42), i.e. comfortably past saturation |
-| score floor | 0.05 | COCO convention; no aggregator/deployment floors (0.2 / 0.4 / 0.5 / 0.6) anywhere in the path |
+| score floor | 0.05, **applied to the detector score** | COCO convention; no aggregator/deployment floors (0.2 / 0.4 / 0.5 / 0.6) anywhere in the path. The floor decides which detections EXIST; how the survivors are RANKED is a separate question, and AP is invariant to any monotone rescaling of the ranking key. So a reranked row is floored on the detector score `s` and then ranked by the reranked key — not floored on the reranked key. This matters only for the posterior-product rows: `s · bimod · pfg_mean` is a product of three sub-1 numbers, so flooring it directly would discard ~half of the 159,687 detections purely for living on a smaller scale (measured: CN AP50 0.6615 → 0.6461). Here `s ≥ 0.05` for all 159,687 detections, so the floor binds on nobody and the published figures are unaffected. Note the reranked artifacts (`results_439/rerank_product_*.json`) record `score_floor: 0.0` for exactly this reason — the filtering had already happened upstream |
 | canopy arms | **canopy-neutral only**, every metric, every row | The canopy=FP arm was dropped 2026-08-28. It charges a method for finding crowns the annotators chose to group rather than delineate, so its cost scales with detection volume: LACE emits 364 dets/tile against Restor's 129 and is penalised for the recall that the CN arm rewards. It is also not comparable across rows — Restor is 2-class, so scoring its tree class alone lets a learned canopy classifier pre-filter its own FPs (pooled, its canopy-landing rate is 42.2% against LACE's 42.5%: it is not avoiding canopy, only labelling it), while CanopyRS never saw canopy in training at all. `score_coco.py` still emits the arm and the per-row artifacts retain it; it is simply not reported |
 | canopy-neutral | canopy polygons as `iscrowd=1` GT | COCO's crowd rule (intersection-over-detection-area > t) equals our >50%-in-canopy rule **exactly at t = 0.50**, so AP50 transfers unchanged. Above t = 0.50 COCO is stricter — canopy-neutral **AP50:95 will move**. Verify numerically during the run |
 
@@ -80,7 +140,7 @@ No model is forced out of distribution; only the measurement is held fixed.
 |---|---|---|
 | LACE (ours), 3 seeds | whole 2048² | decoder capped at `topk 600` — see §4 |
 | Restor Mask R-CNN | whole 2048² | their released test config already does this (`MIN_SIZE_TEST: 0`, `MAX_SIZE_TEST: 2048`). Align `SCORE_THRESH_TEST` 0.2 → 0.05, `DETECTIONS_PER_IMAGE` 512 → 600, **`RPN.PRE/POST_NMS_TOPK_TEST` 512 → 1000** (see below). `NUM_CLASSES: 2` — emit all classes and choose at scoring time |
-| DetecTree2 (fine-tuned) | 1024² @ 0.5 overlap, 3×3 = 9 subtiles → stitch | already built; its native operating resolution |
+| DetecTree2 (fine-tuned, **retrained 2026-09-03**) | 1024² @ 0.5 overlap, 3×3 = 9 subtiles → stitch, `INPUT.MIN_SIZE_TEST` 1000 | its native operating resolution. `MIN_SIZE_TEST` is set to detectree2's own `MIN_SIZE_TRAIN` of 1000 rather than left at detectron2's inherited COCO default of 800, which downscaled our 1024 subtiles at test but not at train — an artefact of OUR subtiling, since detectree2's own tiles are smaller than 800 and the same default UPscales them. Stitched at the protocol floor 0.05. See `detectree2_baseline/RETRAIN_V2.md` |
 | SelvaBox → SAM 3 (both FT) — **RUN 2026-08-28** | 1024² @ 0.5 overlap at native 0.1 m/px → stitch | their **OAM-TCD benchmark** config (`OamTcdDataset`: `ground_resolution 0.1`, `test_tile_size 1024`, overlap 0.5) — identical grid to the DetecTree2 arm. **Not** the shipped 1777 px @ 0.045 m/px deployment preset, which is their dense-canopy UAV setting and would resample OAM-TCD 2.22× up at 64 passes/tile |
 | SelvaBox → SAM 3 (frozen SAM) | — **not re-run** | their published figure, cited with an asterisk, or omitted. The repo ships no frozen-SAM3 preset, so which detector they paired with frozen SAM is not recoverable from source; re-running it would mean guessing their configuration |
 
@@ -94,9 +154,13 @@ detections ≥0.5 barely move; the new detections are all low-confidence tail):
 
 | rpn topk | dets/tile | recall@0.5 | CN AP50 |
 |---|---|---|---|
-| 512 (shipped) | 98 | 0.6442 | 0.5706 |
-| **1000 (detectron2 default)** | **163** | — | **0.6255** |
-| 2000 (2× default) | 163→ | 0.7804 | 0.6605 |
+| 512 (shipped) | 97.9 | 0.6442 | 0.5706 |
+| **1000 (detectron2 default)** | **128.6** | — | **0.6255** |
+| 2000 (2× default) | 163.1 | 0.7804 | 0.6605 |
+
+dets/tile are `n_det`/439 from `results_439/restor_{coco512,rpn1000_tree,rpn2000}.json`:
+42,987 / 56,438 / 71,606. (Corrected 2026-09-03: the 1000 row previously read 163, which is
+the 2000 figure.)
 
 **Published operating point = 1000**: the framework default, chosen by neither party. 512 is
 Restor's deliberate reduction below it; 2000 is above it and was picked arbitrarily by us. Report
@@ -132,11 +196,20 @@ touch it.
 
 1. **Detection budget.** LACE is hard-capped at 600 proposals by its decoder (`--topk 600`;
    observed max is exactly 600 on 9–16 of 236 tiles). Baselines are free to fill the budget.
-   The cap can only understate LACE. Measured on DetecTree2: truncating 968 → 600 dets/tile
-   (7.0% of its detections) costs mask AP50 **0.5345 → 0.5344 (−0.0001)** and box AP50
-   **0.5290 → 0.5266 (−0.0024)**. The mask headline is 50× below LACE's ±0.005 seed band.
-2. **Seeds.** LACE has 3; the baselines are single released checkpoints with no seed variation
-   available. Report LACE's band *and* its worst seed so the comparison holds pessimistically.
+   The cap can only understate LACE. **Re-measured 2026-09-03 on the converged DetecTree2**,
+   where it now binds much harder: at the 0.05 stitch floor that row emits 448.6 dets/tile
+   (median 401, max 1511) and maxDets 600 discards **17.7% of its detections on 30.5% of
+   tiles**, against 7.0% before. Scoring it at maxDets 1200 instead of 600 gives mask AP50
+   **0.5969 → 0.6012 (+0.0043)**, AP75 +0.0001, AP50:95 +0.0010, box AP50 +0.0053. So the cap
+   costs DetecTree2 ≈0.004 AP50 — 43× the previously measured 0.0001, and it should be quoted
+   at the new value — but it remains an order of magnitude below LACE's +0.066 lead and cannot
+   account for it. `results_439/dt2_s0v2_coco512.json` is the maxDets-600 row; the 1200 arm is
+   a sensitivity, not a published figure.
+2. **Seeds.** LACE has 3; Restor and SelvaBox are single released checkpoints with no seed
+   variation available. **DetecTree2 and Box2Mask are different** — we train those ourselves, so
+   seeds ARE available and we simply did not buy them (~$18 of A100 for three DetecTree2 seeds).
+   Say that plainly rather than extending the released-checkpoint defence to cover them. Report
+   LACE's band *and* its worst seed so the comparison holds pessimistically.
 3. **Canopy-ignore is genuinely free.** An ignored detection is removed from both TP and FP
    counts, so a prediction landing > 50% inside unlabelled canopy costs nothing. Relevant to the
    SelvaBox row, whose model never saw canopy in training (CanopyRS deletes canopy annotations

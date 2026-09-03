@@ -4,7 +4,7 @@ mAP50 is generous. Reporting AP at every IoU threshold from 0.50 to 0.95 shows w
 method actually lives, and box-supervised methods are usually assumed to fall away fastest.
 Plot only -- both curves are already on disk:
   ours: phase4/results_no_ignore_band.json         (3 seeds x {with,no} ignore x 10 IoUs)
-  dt2:  detectree2_baseline/results_dt2_s0_fullcov_noignore.json  (1 seed)
+  dt2:  detectree2_baseline/results_dt2_s0v2_noignore.json  (1 seed, converged retrain)
 Published numbers are the WITH-ignore ones; the no-ignore variants are drawn faintly to
 show the protocol's sensitivity in the same frame.
 
@@ -24,7 +24,7 @@ from boxinst_commonality_tcd_04 import evaluate as E
 from ..lib import io
 
 OURS = os.path.join(io.PHASE4, "results_no_ignore_band.json")
-DT2 = os.path.join(io.DT2, "results_dt2_s0_fullcov_noignore.json")
+DT2 = os.path.join(io.DT2, "results_dt2_s0v2_noignore.json")
 
 
 def main():

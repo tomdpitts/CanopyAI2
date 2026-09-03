@@ -1,0 +1,47 @@
+{
+  "method": "box2mask",
+  "backbone": "swin-l",
+  "work_dir": "/vol/boxinst/box2mask_swin-l_s0",
+  "best": [
+    "best_bbox_mAP_50_iter_23422.pth"
+  ],
+  "train_min": 325.2,
+  "sched": {
+    "runner": "iter",
+    "epochs": 6,
+    "iters_per_epoch": 6692,
+    "backbone": "swin-l",
+    "eval_every": 3346,
+    "fp16": false,
+    "total_iters": 40152,
+    "micro_batch": 1,
+    "cumulative_iters": 16,
+    "effective_batch": 16,
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "decay_at": [
+      35691,
+      38665
+    ],
+    "num_queries": 100,
+    "max_per_image": 100,
+    "load_from": "/vol/boxinst/ckpt/box2mask_swin-l_lsj_8x1_50e_coco_nocls.pth",
+    "method": "box2mask",
+    "n_train": 6692,
+    "early_stop": {
+      "patience_evals": 4,
+      "min_epochs": 2,
+      "eval_every_iters": 3346
+    },
+    "max_hours": 5.0,
+    "coco_init": {
+      "loaded": 649,
+      "reinit_from_scratch": [
+        "panoptic_head.cls_embed.weight",
+        "panoptic_head.cls_embed.bias"
+      ],
+      "source": "box2mask_swin-l_lsj_8x1_50e_coco_nocls.pth"
+    }
+  },
+  "usd_at_2.10_per_h": 11.38
+}

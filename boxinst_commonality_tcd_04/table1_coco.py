@@ -4,7 +4,7 @@ the paper currently cites.
 
 Rows here are only the ones whose predictions already exist at 512^2:
     LACE (ours), knobbed seeds 0/1/2  -- phase4/preds/knobbed_s{0,1,2}.json
-    DetecTree2, seed 0                -- detectree2_baseline/preds_dt2_s0_fullcov.json
+    DetecTree2, seed 0                -- detectree2_baseline/preds_dt2_s0v2.json
 Restor Mask R-CNN and SelvaBox -> SAM 3 still need inference; see PROTOCOL_439.md.
 
 Canopy-neutral is reported from the COCO `iscrowd` arm (the frozen choice). The legacy
@@ -30,7 +30,7 @@ ROWS = [
     ("LACE (ours) s1", os.path.join(P4, "knobbed_s1.json")),
     ("LACE (ours) s2", os.path.join(P4, "knobbed_s2.json")),
     ("DetecTree2 s0", os.path.join(HERE, "detectree2_baseline",
-                                   "preds_dt2_s0_fullcov.json")),
+                                   "preds_dt2_s0v2.json")),
 ]
 
 

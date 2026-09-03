@@ -1,0 +1,14 @@
+{
+  "out_dir": "/vol/boxinst/pred_raw_box2mask_swin-l_s0_test",
+  "n_subtiles": 3951,
+  "n_inst": 274598,
+  "ckpt_candidates": {
+    "best_bbox_mAP_50_iter_23422.pth": 0.596,
+    "best_bbox_mAP_50_iter_30114.pth": 0.59
+  },
+  "predict_min": 25.8,
+  "ckpt": "best_bbox_mAP_50_iter_23422.pth",
+  "query_cap": 100,
+  "subtiles_at_cap": 1137,
+  "frac_subtiles_at_cap": 0.2878
+}

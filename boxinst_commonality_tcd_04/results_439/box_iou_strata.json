@@ -1,0 +1,519 @@
+{
+  "all_matches": {
+    "LACE s0 (product)": {
+      "n_matched": 19338,
+      "mean_box_iou": 0.7006,
+      "mean_mask_iou": 0.708,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 3805,
+          "mean_mask_iou": 0.6272
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 5800,
+          "mean_mask_iou": 0.6877
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 6086,
+          "mean_mask_iou": 0.7355
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 3258,
+          "mean_mask_iou": 0.7752
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 389,
+          "mean_mask_iou": 0.8078
+        }
+      ]
+    },
+    "LACE s1 (product)": {
+      "n_matched": 18433,
+      "mean_box_iou": 0.6813,
+      "mean_mask_iou": 0.7075,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 4615,
+          "mean_mask_iou": 0.6402
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 6001,
+          "mean_mask_iou": 0.6966
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 5205,
+          "mean_mask_iou": 0.7398
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 2375,
+          "mean_mask_iou": 0.7853
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 237,
+          "mean_mask_iou": 0.8061
+        }
+      ]
+    },
+    "LACE s2 (product)": {
+      "n_matched": 19274,
+      "mean_box_iou": 0.7005,
+      "mean_mask_iou": 0.7053,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 3756,
+          "mean_mask_iou": 0.6212
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 5735,
+          "mean_mask_iou": 0.6852
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 6171,
+          "mean_mask_iou": 0.7321
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 3227,
+          "mean_mask_iou": 0.7759
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 385,
+          "mean_mask_iou": 0.805
+        }
+      ]
+    },
+    "Restor MRCNN rpn1000": {
+      "n_matched": 18411,
+      "mean_box_iou": 0.7454,
+      "mean_mask_iou": 0.7242,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 2089,
+          "mean_mask_iou": 0.5615
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 3978,
+          "mean_mask_iou": 0.6549
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 5984,
+          "mean_mask_iou": 0.7345
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 5280,
+          "mean_mask_iou": 0.8024
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 1080,
+          "mean_mask_iou": 0.8549
+        }
+      ]
+    },
+    "DetecTree2 s0": {
+      "n_matched": 19603,
+      "mean_box_iou": 0.7216,
+      "mean_mask_iou": 0.7179,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 3785,
+          "mean_mask_iou": 0.5857
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 4906,
+          "mean_mask_iou": 0.6699
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 5025,
+          "mean_mask_iou": 0.7439
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 4205,
+          "mean_mask_iou": 0.8065
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 1682,
+          "mean_mask_iou": 0.8556
+        }
+      ]
+    },
+    "SelvaBox -> SAM 3": {
+      "n_matched": 22448,
+      "mean_box_iou": 0.7539,
+      "mean_mask_iou": 0.6166,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 2482,
+          "mean_mask_iou": 0.4442
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 4489,
+          "mean_mask_iou": 0.523
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 6920,
+          "mean_mask_iou": 0.6127
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 6639,
+          "mean_mask_iou": 0.7005
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 1918,
+          "mean_mask_iou": 0.7819
+        }
+      ]
+    },
+    "Box2Mask R-50": {
+      "n_matched": 14293,
+      "mean_box_iou": 0.7202,
+      "mean_mask_iou": 0.6275,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 2799,
+          "mean_mask_iou": 0.4984
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 3498,
+          "mean_mask_iou": 0.574
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 3770,
+          "mean_mask_iou": 0.6526
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 3098,
+          "mean_mask_iou": 0.7205
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 1128,
+          "mean_mask_iou": 0.7745
+        }
+      ]
+    },
+    "Box2Mask Swin-L": {
+      "n_matched": 17223,
+      "mean_box_iou": 0.7376,
+      "mean_mask_iou": 0.6672,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 2689,
+          "mean_mask_iou": 0.5351
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 3969,
+          "mean_mask_iou": 0.6108
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 4615,
+          "mean_mask_iou": 0.6783
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 4191,
+          "mean_mask_iou": 0.7402
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 1759,
+          "mean_mask_iou": 0.7938
+        }
+      ]
+    }
+  },
+  "common_subset": {
+    "LACE s0 (product)": {
+      "n_matched": 10020,
+      "mean_box_iou": 0.7354,
+      "mean_mask_iou": 0.7445,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 869,
+          "mean_mask_iou": 0.65
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 2717,
+          "mean_mask_iou": 0.7133
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 3716,
+          "mean_mask_iou": 0.7546
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 2415,
+          "mean_mask_iou": 0.7888
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 303,
+          "mean_mask_iou": 0.8188
+        }
+      ]
+    },
+    "LACE s1 (product)": {
+      "n_matched": 10020,
+      "mean_box_iou": 0.7069,
+      "mean_mask_iou": 0.7424,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 1627,
+          "mean_mask_iou": 0.6708
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 3148,
+          "mean_mask_iou": 0.721
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 3298,
+          "mean_mask_iou": 0.7611
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 1760,
+          "mean_mask_iou": 0.8031
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 187,
+          "mean_mask_iou": 0.8252
+        }
+      ]
+    },
+    "LACE s2 (product)": {
+      "n_matched": 10020,
+      "mean_box_iou": 0.7336,
+      "mean_mask_iou": 0.742,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 914,
+          "mean_mask_iou": 0.6428
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 2700,
+          "mean_mask_iou": 0.7092
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 3789,
+          "mean_mask_iou": 0.7526
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 2327,
+          "mean_mask_iou": 0.7918
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 290,
+          "mean_mask_iou": 0.8216
+        }
+      ]
+    },
+    "Restor MRCNN rpn1000": {
+      "n_matched": 10020,
+      "mean_box_iou": 0.7811,
+      "mean_mask_iou": 0.7655,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 385,
+          "mean_mask_iou": 0.5941
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 1554,
+          "mean_mask_iou": 0.6821
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 3482,
+          "mean_mask_iou": 0.749
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 3748,
+          "mean_mask_iou": 0.8111
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 851,
+          "mean_mask_iou": 0.8626
+        }
+      ]
+    },
+    "DetecTree2 s0": {
+      "n_matched": 10020,
+      "mean_box_iou": 0.7599,
+      "mean_mask_iou": 0.7595,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 941,
+          "mean_mask_iou": 0.6163
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 2111,
+          "mean_mask_iou": 0.6897
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 2951,
+          "mean_mask_iou": 0.7571
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 2846,
+          "mean_mask_iou": 0.8175
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 1171,
+          "mean_mask_iou": 0.8654
+        }
+      ]
+    },
+    "SelvaBox -> SAM 3": {
+      "n_matched": 10020,
+      "mean_box_iou": 0.7984,
+      "mean_mask_iou": 0.696,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 335,
+          "mean_mask_iou": 0.5243
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 1214,
+          "mean_mask_iou": 0.6008
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 3105,
+          "mean_mask_iou": 0.6644
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 3999,
+          "mean_mask_iou": 0.7281
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 1367,
+          "mean_mask_iou": 0.8003
+        }
+      ]
+    },
+    "Box2Mask R-50": {
+      "n_matched": 10020,
+      "mean_box_iou": 0.7423,
+      "mean_mask_iou": 0.6436,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 1345,
+          "mean_mask_iou": 0.4995
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 2256,
+          "mean_mask_iou": 0.5744
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 2937,
+          "mean_mask_iou": 0.6514
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 2523,
+          "mean_mask_iou": 0.7231
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 959,
+          "mean_mask_iou": 0.7754
+        }
+      ]
+    },
+    "Box2Mask Swin-L": {
+      "n_matched": 10020,
+      "mean_box_iou": 0.7718,
+      "mean_mask_iou": 0.6943,
+      "bins": [
+        {
+          "box_iou": "[0.5,0.6)",
+          "n": 754,
+          "mean_mask_iou": 0.548
+        },
+        {
+          "box_iou": "[0.6,0.7)",
+          "n": 1881,
+          "mean_mask_iou": 0.6167
+        },
+        {
+          "box_iou": "[0.7,0.8)",
+          "n": 3004,
+          "mean_mask_iou": 0.6834
+        },
+        {
+          "box_iou": "[0.8,0.9)",
+          "n": 3039,
+          "mean_mask_iou": 0.7443
+        },
+        {
+          "box_iou": "[0.9,1.0)",
+          "n": 1342,
+          "mean_mask_iou": 0.7967
+        }
+      ]
+    }
+  },
+  "n_common": 10020
+}

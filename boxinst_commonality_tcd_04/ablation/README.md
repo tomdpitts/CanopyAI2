@@ -46,19 +46,23 @@ Measured on the deployed masker (all 439 tiles, predicted boxes, matched TPs at 
 |---|---|---|---|---|
 | **LACE (3 seeds)** | **0.7611 ± 0.0020** | 0.9019 | 0.9588 | 0.9888 |
 | filled predicted box | 0.6576 ± 0.0220 | 0.8306 | 0.9219 | 0.9793 |
-| DetecTree2 (mask-supervised, 1 seed) | 0.7666 | 0.9082 | 0.9639 | 0.9913 |
+| DetecTree2 (mask-supervised, 1 seed, **converged 2026-09-03**) | **0.7928** | 0.9212 | 0.9694 | 0.9924 |
 
-LACE beats a filled box by **+0.104** at the tightest tolerance (≈50 seed-σ) and is within
-0.006 of mask-supervised DetecTree2. Tolerances ≥2px saturate; BF@1px is the informative
-column. `ours` vs `boxfill` is exactly paired; DetecTree2 has its own matched set (19,217
-TPs vs ~20,750) so that comparison is approximate.
+LACE beats a filled box by **+0.104** at the tightest tolerance (≈50 seed-σ) but sits **0.032
+below** mask-supervised DetecTree2 — against the superseded, under-trained DetecTree2 this read
+as "within 0.006", which no longer holds. Tolerances ≥2px saturate; BF@1px is the informative
+column. `ours` vs `boxfill` is exactly paired; DetecTree2 has its own matched set (20,897 TPs vs
+~20,743) so that comparison is approximate — though the two populations are now nearly the same
+size, where before DetecTree2 matched 1,500 fewer crowns.
 
 ### 2. Where LACE does pay: high IoU
 
-`results/per_iou.json`, `figures/per_iou.pdf`. LACE leads DetecTree2 by +0.096 at IoU 0.50,
-the lead decays monotonically, and **DetecTree2 overtakes at IoU 0.75**. Consistent with
-(1): the masks are well-placed but not tight enough for strict IoU. This is the honest
-statement of what box supervision costs here.
+`results/per_iou.json`, `figures/per_iou.pdf`. LACE leads DetecTree2 by +0.029 at IoU 0.50,
+the lead decays monotonically, and **DetecTree2 overtakes at IoU 0.70** (was +0.096 and 0.75
+against the superseded DetecTree2). Consistent with (1): the masks are well-placed but not tight
+enough for strict IoU. This is the honest statement of what box supervision costs here, and the
+converged baseline makes the cost larger than previously reported. Note this arm compares the
+UN-reranked LACE baseline (0.630 ± 0.005); the published headline is the posterior-product row.
 
 ### 3. The masker is not what degrades across strata — detection is
 

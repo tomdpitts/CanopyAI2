@@ -109,13 +109,31 @@
       "n_det": 61182
     },
     "DetecTree2 s0": {
-      "cn50": 0.5344,
-      "cn75": 0.1435,
-      "cn5095": 0.224,
-      "fp50": 0.4214,
-      "fp5095": 0.181,
-      "box50": 0.531,
-      "n_det": 152690
+      "cn50": 0.5969,
+      "cn75": 0.1748,
+      "cn5095": 0.2578,
+      "fp50": 0.4863,
+      "fp5095": 0.2147,
+      "box50": 0.5913,
+      "n_det": 196927
+    },
+    "Box2Mask Swin-L (box-supervised)": {
+      "cn50": 0.5396,
+      "cn75": 0.0884,
+      "cn5095": 0.198,
+      "fp50": 0.2801,
+      "fp5095": 0.1079,
+      "box50": 0.5821,
+      "n_det": 138820
+    },
+    "Box2Mask R-50 (box-supervised)": {
+      "cn50": 0.3865,
+      "cn75": 0.0509,
+      "cn5095": 0.1299,
+      "fp50": 0.1945,
+      "fp5095": 0.0699,
+      "box50": 0.4707,
+      "n_det": 117027
     },
     "SelvaBox -> SAM 3 (both FT)": {
       "cn50": 0.5687,
@@ -185,7 +203,9 @@
     "Restor MRCNN, 2x default (rpn 2000)": "above framework default; sensitivity only",
     "Restor, default, pooled classes": "canopy predictions counted as instances -- the fair canopy=FP comparison",
     "Restor, released, pooled classes": "as above at their shipped rpn 512",
-    "DetecTree2 s0": "floored at 0.1 by its stitcher",
+    "DetecTree2 s0": "Retrained 2026-09-03 to detectree2's OWN AP50 early-stopping rule: it stopped itself at iter 14000 (two evals past the best) and selected iter 10000 = 6.0 epochs, well inside a 16000 budget. Selection on all 896 val subtiles. INPUT.MIN_SIZE_TEST set to 1000 to match detectree2's own MIN_SIZE_TRAIN, instead of detectron2's inherited COCO default of 800, which silently downscaled our 1024 subtiles at test but not at train. Stitched at the protocol floor 0.05, not 0.1. The SUPERSEDED row (max_iter 4000 = 2.39 epochs and still improving; 256/896 val; scale 800; floor 0.1) scored 0.5344 / 0.1435 / 0.2240 / 0.5310 on 152,690 dets -- all four defects understated it. See detectree2_baseline/RETRAIN_V2.md",
+    "Box2Mask Swin-L (box-supervised)": "THE box-supervised row to quote: Box2Mask's STRONGEST released backbone (42.5 COCO mask AP). Same crops, grid, stitcher and scorer as DetecTree2; initialised from their COCO box-supervised checkpoint so the row is box-supervised end to end. Batch/LR (effective 16, lr 1e-4) are OUR choice matching the R-50 arm, because their published Swin-L config is self-inconsistent. Peaked at epoch 3.5 (val box AP50 0.596) with three later evals below the peak. +0.153 mask AP50 over R-50. Wins AP50 but loses at strict IoU (AP75 0.088 vs DetecTree2 0.144): finds crowns well, delineates them coarsely. num_queries=100 binds on 1.16% of test subtiles (PLAN.md section 5d)",
+    "Box2Mask R-50 (box-supervised)": "the only box-supervised competitor in the table -- LACE's own supervision class. Their published LSJ recipe, fine-tuned from their COCO box-supervised checkpoint (box annotations only, so no mask leakage) on the same 792/108 crops as DetecTree2, same 1024@0.5 grid and stitcher. Trained under a 9-epoch budget with early stopping on val box AP50; it stopped itself at epoch 6 and selected epoch 4 (val AP50 0.479), with four later evaluations all below the peak while train loss kept falling -- so this is its validation optimum, not a truncation. Its boxes match DetecTree2's quality on the crowns it finds (mean box IoU 0.7365); the AP gap is recall (14,293 crowns matched vs DetecTree2's 19,603) plus the weakest masks at every matched box-IoU stratum (box_iou_strata.json). Capped at 100 instances per 1024 subtile by num_queries; that ceiling exceeds the GT crown count on all but 1.16% of test subtiles, so it is a footnote not a confound (box_supervised_baselines/PLAN.md sections 5, 5b and 10)",
     "SelvaBox -> SAM 3 (both FT)": "their OAM-TCD benchmark tiling (1024 @0.5, native GSD); maxDets 600 like every other row. READ THE CANOPY-NEUTRAL COLUMNS ONLY -- see note below",
     "SelvaBox -> SAM 3, maxDets 1600": "their own budget (tile_level_eval_maxDets 400 per 1024^2 = 1600 per 2048^2-equiv). Sensitivity: shows what our 600 cap costs them",
     "LACE 3-seed mean": "heatmap score alone",

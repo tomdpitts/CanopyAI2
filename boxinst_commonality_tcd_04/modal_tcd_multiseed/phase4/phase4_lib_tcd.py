@@ -8,11 +8,19 @@ The ONLY differences vs the native/interp path:
 Everything else — TargetConfig(grid=256, stride=8), encode/decode, det_loss, Adam
 lr1e-3 wd1e-4, cosine, bs3, eval_every5, early-stop(min12,p2,delta5e-3) — is reused
 VERBATIM from train_detector_tiles via monkeypatch, so this is a clean real-vs-interp
-A/B at layer 24. The box->mask EM masker stays the FIXED 4096-dim vault model, fed the
-FULL 4096-dim native test features (only the detector sees the 1024-dim real-8px grid).
+A/B at layer 24.
+
+DEPRECATED MASKER DESCRIPTION -- DO NOT CITE FOR THE PUBLISHED PIPELINE (2026-09-03).
+In THIS arm the box->mask EM masker stays the FIXED 4096-dim vault model, fed the FULL
+4096-dim native test features, while only the detector sees the 1024-dim real-8px grid.
+That was deliberate here: holding the masker fixed is what makes the detector A/B clean.
+It is NOT what the paper reports. The DEPLOYED masker is refit on the 4-phase L24 cells
+by `phase4_fit_tcd.py` and is 1024-dim, so detector and masker share one feature space.
+Anyone describing the published pipeline should read `phase4_fit_tcd.py`, not this file.
 
 Eval is single-scale (no downscale arm) -> compare to native single-scale 0.499 mask /
-0.555 box, and to the interp-L24 probe (0.502 / 0.540).
+0.555 box, and to the interp-L24 probe (0.502 / 0.540). Those mask figures belong to the
+fixed-vault masker of this arm and are SUPERSEDED by the self-mask refit.
 """
 from __future__ import annotations
 

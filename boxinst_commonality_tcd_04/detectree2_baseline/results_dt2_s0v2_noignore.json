@@ -1,0 +1,69 @@
+{
+  "label": "DetecTree2 s0v2, 439 full-coverage, converged retrain",
+  "preds": [
+    "boxinst_commonality_tcd_04/detectree2_baseline/preds_dt2_s0v2.json"
+  ],
+  "note": "SENSITIVITY ONLY. Published numbers are the with_ignore ones. no_ignore removes the >50%-in-canopy ignore rule so canopy predictions count as FP, which is what baselines lacking a canopy class (e.g. SelvaMask/CanopyRS) implicitly do. It does NOT reproduce their full protocol (tiling, per-tile vs pooled AP, maxDets, mask resolution all still differ).",
+  "per_seed": {
+    "0": {
+      "with_ignore": {
+        "mask_mAP50": 0.6011,
+        "mask_mAP50_95": 0.258,
+        "per_iou": [
+          0.6011,
+          0.5472,
+          0.4796,
+          0.3881,
+          0.2831,
+          0.1697,
+          0.0848,
+          0.0239,
+          0.0026,
+          0.0002
+        ]
+      },
+      "no_ignore": {
+        "mask_mAP50": 0.4889,
+        "mask_mAP50_95": 0.2145,
+        "per_iou": [
+          0.4889,
+          0.4485,
+          0.3964,
+          0.3248,
+          0.2403,
+          0.1469,
+          0.0752,
+          0.0217,
+          0.0024,
+          0.0002
+        ]
+      },
+      "n_gt": 25705,
+      "n_pred": 196927,
+      "n_canopy_ignored": 78426,
+      "pct_ignored": 39.8
+    }
+  },
+  "band_mean_std": {
+    "with_ignore": {
+      "mask_mAP50": [
+        0.6011,
+        NaN
+      ],
+      "mask_mAP50_95": [
+        0.258,
+        NaN
+      ]
+    },
+    "no_ignore": {
+      "mask_mAP50": [
+        0.4889,
+        NaN
+      ],
+      "mask_mAP50_95": [
+        0.2145,
+        NaN
+      ]
+    }
+  }
+}

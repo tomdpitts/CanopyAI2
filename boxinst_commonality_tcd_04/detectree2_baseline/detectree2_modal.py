@@ -108,17 +108,20 @@ N_SHARDS = 10                                    # parallel data-build container
 SPARSE_MANIFEST = f"{DT2_R}/manifest_sparse.json"
 
 
-def _paths(dataset, seed):
+def _paths(dataset, seed, tag=""):
     """Per-dataset image dir / GT / raw-pred dir / preds file.
 
-    dataset='tcd' reproduces the ORIGINAL hardcoded paths exactly, so the settled 439 run
-    (out/preds_dt2_s0.json, 0.545) is untouched and re-runnable. Any other dataset gets its
-    own subtree — nothing can overwrite /vol/data/test/images."""
+    dataset='tcd' with tag='' reproduces the ORIGINAL hardcoded paths exactly, so the
+    SUPERSEDED first 439 run (out/preds_dt2_s0.json) is untouched and re-runnable. Any other dataset gets
+    its own subtree — nothing can overwrite /vol/data/test/images. `tag` namespaces a RE-RUN of
+    the same dataset (e.g. tag='v2', the converged retrain) so no published artefact is ever
+    clobbered."""
     if dataset == "tcd":
         return (f"{DATA}/test/images", f"{PKG_R}/test_gt.json",
-                f"{OUT}/pred_raw_s{seed}", f"{OUT}/preds_dt2_s{seed}.json")
+                f"{OUT}/pred_raw_s{seed}{tag}", f"{OUT}/preds_dt2_s{seed}{tag}.json")
     return (f"{DATA}/{dataset}/images", f"{DT2_R}/{dataset}_gt.json",
-            f"{OUT}/pred_raw_{dataset}_s{seed}", f"{OUT}/preds_dt2_{dataset}_s{seed}.json")
+            f"{OUT}/pred_raw_{dataset}_s{seed}{tag}",
+            f"{OUT}/preds_dt2_{dataset}_s{seed}{tag}.json")
 
 
 def _sparse_items():
@@ -271,7 +274,7 @@ def build_test_fullcov():
     directly comparable to the sparse run, which is already full-coverage.
 
     Additive: the existing 3189 PNGs are rewritten identically and 762 are added. The
-    published out/preds_dt2_s0.json is NOT touched -- stitch to a new name."""
+    superseded out/preds_dt2_s0.json is NOT touched -- stitch to a new name."""
     man = json.load(open(MANIFEST))["feat_test"]
     items = [("test", rec["image_id"], tid) for tid, rec in sorted(man.items())]
     want = len(items) * 9
@@ -323,7 +326,8 @@ def validate_data():
 @app.function(image=data_image, volumes={"/vol": vol}, timeout=6 * 3600, cpu=8,
               memory=32768)
 def stitch_cpu(seed: int = 0, iou_thr: float = 0.7, cont_thr: float = 0.85,
-               min_score: float = 0.1, dataset: str = "tcd", out_name: str = ""):
+               min_score: float = 0.1, dataset: str = "tcd", out_name: str = "",
+               tag: str = ""):
     """Single-container CPU stitch of the committed raw per-subtile predictions -> our preds
     schema (avoids paying A100 rates for the mask-decode/dedup CPU work, and avoids the flaky
     .map-from-within-a-function path). min_score drops junk low-conf preds before decode so the
@@ -331,7 +335,7 @@ def stitch_cpu(seed: int = 0, iou_thr: float = 0.7, cont_thr: float = 0.85,
     import sys
     sys.path.insert(0, DT2_R)
     import stitch
-    _, gt_path, raw, fp = _paths(dataset, seed)
+    _, gt_path, raw, fp = _paths(dataset, seed, tag)
     if out_name:                       # never clobber a published preds file
         fp = f"{OUT}/{out_name}"
     tids = sorted(json.load(open(gt_path)).keys())
@@ -344,6 +348,61 @@ def stitch_cpu(seed: int = 0, iou_thr: float = 0.7, cont_thr: float = 0.85,
     vol.commit()
     n = sum(len(p["scores"]) for p in res["preds"].values())
     print(f"[stitch_cpu] saved {fp}: {len(res['preds'])} tiles, {n} crowns", flush=True)
+    return {"preds": fp, "n_tiles": len(res["preds"]), "n_crowns": n}
+
+
+@app.function(image=data_image, volumes={"/vol": vol}, timeout=6 * 3600, cpu=1,
+              memory=6144, max_containers=24)
+def stitch_shard(job):
+    """Stitch one shard of tiles. Identical maths to `stitch_cpu` -- `stitch.dedup` is
+    per-tile, so sharding by tile is exact, not an approximation."""
+    import sys
+    sys.path.insert(0, DT2_R)
+    import stitch
+    raw, tids, iou_thr, cont_thr, min_score = job
+    out = {}
+    for k, tid in enumerate(tids):
+        crowns = stitch.dedup(stitch.load_tile_crowns(raw, tid, min_score), iou_thr, cont_thr)
+        out[tid] = stitch.serialize_tile(crowns)
+        if (k + 1) % 10 == 0 or k + 1 == len(tids):
+            print(f"  shard {k+1}/{len(tids)}", flush=True)
+    return out
+
+
+@app.function(image=data_image, volumes={"/vol": vol}, timeout=6 * 3600, cpu=1, memory=8192)
+def stitch_par(seed: int = 0, iou_thr: float = 0.7, cont_thr: float = 0.85,
+               min_score: float = 0.05, dataset: str = "tcd", out_name: str = "",
+               tag: str = "", shards: int = 20):
+    """Parallel version of `stitch_cpu`: fan the tiles out over `shards` CPU containers.
+
+    Same per-tile clean_crowns dedup, same output schema -- only the scheduling differs, and
+    dedup never crosses a tile boundary, so the result is identical to the serial path. Needed
+    because dropping the stitch floor from 0.1 to the protocol's 0.05 roughly doubles the
+    crowns per tile and the dedup is quadratic in them."""
+    import sys
+    sys.path.insert(0, DT2_R)
+    _, gt_path, raw, fp = _paths(dataset, seed, tag)
+    if out_name:                       # never clobber a published preds file
+        fp = f"{OUT}/{out_name}"
+    tids = sorted(json.load(open(gt_path)).keys())
+    jobs = [(raw, tids[i::shards], iou_thr, cont_thr, min_score) for i in range(shards)]
+    jobs = [j for j in jobs if j[1]]
+    print(f"[stitch_par] {len(tids)} tiles over {len(jobs)} shards from {raw} "
+          f"@ min_score={min_score} -> {fp}", flush=True)
+    preds = {}
+    for part in stitch_shard.map(jobs):
+        preds.update(part)
+    assert len(preds) == len(tids), f"got {len(preds)} tiles, want {len(tids)}"
+    meta = {"model": "DetecTree2 (Mask R-CNN R101-FPN) fine-tuned on 792/108, "
+                     "1024@50% subtiles, clean_crowns dedup", "mask_res": 512,
+            "scale_box_to_mask": 4.0, "n_tiles": len(preds), "seed": seed, "tag": tag,
+            "dataset": dataset, "min_score": min_score,
+            "dedup": {"iou_thr": iou_thr, "cont_thr": cont_thr, "min_score": min_score}}
+    res = {"meta": meta, "preds": {t: preds[t] for t in tids}}
+    json.dump(res, open(fp, "w"))
+    vol.commit()
+    n = sum(len(p["scores"]) for p in res["preds"].values())
+    print(f"[stitch_par] saved {fp}: {len(res['preds'])} tiles, {n} crowns", flush=True)
     return {"preds": fp, "n_tiles": len(res["preds"]), "n_crowns": n}
 
 
@@ -361,6 +420,31 @@ def fetch_weights():
     vol.commit()
     print(f"[fetch_weights] saved {dst} ({os.path.getsize(dst)/1e6:.0f} MB)", flush=True)
     return {"path": dst, "mb": round(os.path.getsize(dst) / 1e6)}
+
+
+@app.function(image=data_image, volumes={"/vol": vol}, timeout=1800, cpu=2)
+def check_weights():
+    """Provenance gate on the initialisation checkpoint.
+
+    Zenodo record 15014353 ("detectree2 trained models", Ball, 2025-03-12) publishes
+    250312_flexi.pth with md5 5451438786a4339a8b956830534cad40 and lists its training sites as
+    Harapan, Danum, Paracou, Cambridge and Sepilok (model_garden/README.md). None of those is
+    OAM-TCD / OpenAerialMap / Restor, so the fine-tuned DetecTree2 arm cannot have seen any of
+    our 439 test tiles through its initialisation. Assert the hash so the claim is about the
+    bytes we actually trained from."""
+    import hashlib
+    p = f"{WEIGHTS}/{FLEXI}"
+    h = hashlib.md5()
+    with open(p, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 22), b""):
+            h.update(chunk)
+    got, want = h.hexdigest(), "5451438786a4339a8b956830534cad40"
+    out = {"file": p, "bytes": os.path.getsize(p), "md5": got, "zenodo_md5": want,
+           "match": got == want, "zenodo_record": "https://zenodo.org/records/15014353",
+           "train_sites": ["Harapan", "Danum", "Paracou", "Cambridge", "Sepilok"]}
+    print(json.dumps(out, indent=2), flush=True)
+    assert got == want, f"md5 mismatch: {got} != {want}"
+    return out
 
 
 @app.function(image=dt2_image, gpu="A100", volumes={"/vol": vol}, timeout=1800)
@@ -393,15 +477,27 @@ def _register(name, split):
     MetadataCatalog.get(name).thing_classes = ["tree"]
 
 
-@app.function(image=dt2_image, gpu="A100", volumes={"/vol": vol}, timeout=6 * 3600)
+@app.function(image=dt2_image, gpu="A100", volumes={"/vol": vol}, timeout=10 * 3600)
 def train(seed: int = 0, max_iter: int = 4000, eval_period: int = 500, patience: int = 6,
-          dets: int = 500, ims_per_batch: int = 4, val_eval_n: int = 256):
+          dets: int = 500, ims_per_batch: int = 4, val_eval_n: int = 256, tag: str = "",
+          min_size_test: int = 0):
     """Fine-tune DetecTree2 (R101-FPN + released 250312_flexi.pth) on the 6,692 train subtiles,
-    model-select by segm AP50 on a val-eval SUBSET (early-stop). Full training regime; only the
-    in-training eval is trimmed (subset + eval_period 500) for speed — final report is on all 439
-    test tiles. PREEMPTION-SAFE: checkpoints + AP history are committed to the volume every
-    eval_period iters and resume=True continues from the last committed checkpoint on a restart.
-    Saves best -> out/model_best_s{seed}.pth."""
+    model-select by segm AP50 on val (early-stop). PREEMPTION-SAFE: checkpoints + AP history are
+    committed to the volume every eval_period iters and resume=True continues from the last
+    committed checkpoint on a restart. Saves best -> out/model_best_s{seed}{tag}.pth.
+
+    val_eval_n=0 uses ALL 896 val subtiles for selection (the converged `v2` retrain);
+    val_eval_n>0 keeps the original strided subset behaviour so the published s0 run stays
+    re-runnable byte-for-byte.
+
+    min_size_test>0 sets INPUT.MIN_SIZE_TEST/MAX_SIZE_TEST for the in-training val evals.
+    Neither detectree2's setup_cfg nor ours sets it, so it defaults to detectron2's 800 — which
+    silently downscales our 1024 subtiles at eval while training sees them at MIN_SIZE_TRAIN
+    1000. That mismatch is an artefact of OUR 1024 subtiling (detectree2's own tiles are smaller
+    than 800 and get UPscaled by the same default), so `v2` sets 1000 to remove it.
+
+    `tag` namespaces the output dir and best checkpoint so a re-run never clobbers a published
+    artefact."""
     import sys
     sys.path.insert(0, DT2_R)
     from PIL import ImageFile
@@ -417,23 +513,29 @@ def train(seed: int = 0, max_iter: int = 4000, eval_period: int = 500, patience:
     assert os.path.exists(f"{DATA}/train/coco.json"), "run build_data first"
     assert os.path.exists(f"{WEIGHTS}/{FLEXI}"), "run fetch_weights first"
     _register("trees_train", "train")
-    # val-eval SUBSET: a strided ~val_eval_n-subtile slice of the 896 val subtiles — a fast,
-    # representative AP50 signal for model selection (each full-val eval is ~10min; this ~3min).
-    # Model SELECTION only; the reported comparison is on the full 439 test tiles via our scorer.
     vf = json.load(open(f"{DATA}/val/coco.json"))
-    step = max(1, len(vf["images"]) // val_eval_n)
-    vimgs = vf["images"][::step][:val_eval_n]
-    keep = {im["id"] for im in vimgs}
-    os.makedirs(f"{DATA}/val_eval", exist_ok=True)
-    json.dump({"images": vimgs,
-               "annotations": [a for a in vf["annotations"] if a["image_id"] in keep],
-               "categories": vf["categories"]}, open(f"{DATA}/val_eval/coco.json", "w"))
-    if "trees_val" not in DatasetCatalog.list():
-        register_coco_instances("trees_val", {}, f"{DATA}/val_eval/coco.json",
-                                f"{DATA}/val/images")
-        MetadataCatalog.get("trees_val").thing_classes = ["tree"]
-    outdir = f"{OUT}/train_s{seed}"
-    cfg = dt2_recipe.setup_cfg(trains=("trees_train",), tests=("trees_val",),
+    if val_eval_n <= 0:
+        # FULL val: all 896 subtiles of the 108 held-out tiles — the same held-out split LACE
+        # selects on. Selection signal is then the whole val set, not a strided sample of it.
+        val_json = f"{DATA}/val/coco.json"
+        vimgs = vf["images"]
+    else:
+        # ORIGINAL behaviour: a strided ~val_eval_n-subtile slice, for re-runnability of the
+        # published s0 run only.
+        step = max(1, len(vf["images"]) // val_eval_n)
+        vimgs = vf["images"][::step][:val_eval_n]
+        keep = {im["id"] for im in vimgs}
+        os.makedirs(f"{DATA}/val_eval", exist_ok=True)
+        json.dump({"images": vimgs,
+                   "annotations": [a for a in vf["annotations"] if a["image_id"] in keep],
+                   "categories": vf["categories"]}, open(f"{DATA}/val_eval/coco.json", "w"))
+        val_json = f"{DATA}/val_eval/coco.json"
+    vname = f"trees_val{tag}"
+    if vname not in DatasetCatalog.list():
+        register_coco_instances(vname, {}, val_json, f"{DATA}/val/images")
+        MetadataCatalog.get(vname).thing_classes = ["tree"]
+    outdir = f"{OUT}/train_s{seed}{tag}"
+    cfg = dt2_recipe.setup_cfg(trains=("trees_train",), tests=(vname,),
                               update_model=f"{WEIGHTS}/{FLEXI}", max_iter=max_iter,
                               eval_period=eval_period, out_dir=outdir,
                               ims_per_batch=ims_per_batch, workers=8)
@@ -445,10 +547,14 @@ def train(seed: int = 0, max_iter: int = 4000, eval_period: int = 500, patience:
     cfg.MODEL.RPN.POST_NMS_TOPK_TRAIN = 2000
     cfg.MODEL.RPN.POST_NMS_TOPK_TEST = 1500
     cfg.SOLVER.CHECKPOINT_PERIOD = eval_period           # periodic resume points
+    if min_size_test:
+        cfg.INPUT.MIN_SIZE_TEST = min_size_test          # else detectron2's 800 downscales 1024
+        cfg.INPUT.MAX_SIZE_TEST = max(1333, min_size_test)
     gpu = torch.cuda.get_device_name(0)                  # record exact A100 variant (40 vs 80GB)
-    print(f"[train] seed={seed} gpu={gpu} base_lr={cfg.SOLVER.BASE_LR} "
+    print(f"[train] seed={seed}{tag} gpu={gpu} base_lr={cfg.SOLVER.BASE_LR} "
           f"freeze={cfg.MODEL.BACKBONE.FREEZE_AT} max_iter={max_iter} eval_every={eval_period} "
-          f"patience={patience} dets={dets} val_eval={len(vimgs)}/{len(vf['images'])} subtiles",
+          f"patience={patience} dets={dets} val_eval={len(vimgs)}/{len(vf['images'])} subtiles "
+          f"min_size_test={cfg.INPUT.MIN_SIZE_TEST} max_size_test={cfg.INPUT.MAX_SIZE_TEST}",
           flush=True)
     trainer = dt2_recipe.MyTrainer(cfg, patience)
 
@@ -465,23 +571,81 @@ def train(seed: int = 0, max_iter: int = 4000, eval_period: int = 500, patience:
     trainer.register_hooks([_CommitHook(eval_period)])   # runs last -> after checkpoint writes
     trainer.resume_or_load(resume=True)                  # continue from last commit if preempted
     trainer.train()
-    best = f"{OUT}/model_best_s{seed}.pth"
-    DetectionCheckpointer(trainer.model, save_dir=OUT).save(f"model_best_s{seed}")
-    info = {"seed": seed, "gpu": gpu, "best_ap50": max(trainer.APs) if trainer.APs else None,
-            "n_evals": len(trainer.APs), "max_iter": max_iter, "eval_period": eval_period,
+    best = f"{OUT}/model_best_s{seed}{tag}.pth"
+    DetectionCheckpointer(trainer.model, save_dir=OUT).save(f"model_best_s{seed}{tag}")
+    aps = list(trainer.APs)
+    info = {"seed": seed, "tag": tag, "gpu": gpu, "best_ap50": max(aps) if aps else None,
+            "best_eval_idx": (aps.index(max(aps)) + 1) if aps else None,
+            "best_iter": ((aps.index(max(aps)) + 1) * eval_period) if aps else None,
+            "APs": aps, "stopped_iter": trainer.iter, "early_stopped": trainer.early_stop,
+            "n_evals": len(aps), "max_iter": max_iter, "eval_period": eval_period,
             "patience": patience, "dets": dets, "base_lr": cfg.SOLVER.BASE_LR,
+            "ims_per_batch": ims_per_batch, "val_subtiles": len(vimgs),
+            "min_size_test": cfg.INPUT.MIN_SIZE_TEST, "max_size_test": cfg.INPUT.MAX_SIZE_TEST,
             "weights": FLEXI, "model": best}
-    json.dump(info, open(f"{OUT}/train_info_s{seed}.json", "w"), indent=2)   # durable run record
+    json.dump(info, open(f"{OUT}/train_info_s{seed}{tag}.json", "w"), indent=2)   # run record
     vol.commit()
     print(f"[train] done -> {best}  gpu={gpu}  "
           f"best_AP50={max(trainer.APs) if trainer.APs else None}", flush=True)
     return info
 
 
+@app.function(image=dt2_image, gpu="A100", volumes={"/vol": vol}, timeout=2 * 3600)
+def eval_val(seed: int = 0, tag: str = "", min_size_test: int = 0, dets: int = 500):
+    """Score one saved checkpoint on the FULL 896-subtile val set with detectron2's COCOEvaluator.
+
+    Its only job is the test-time input-scale decision: neither detectree2's setup_cfg nor ours
+    sets INPUT.MIN_SIZE_TEST, so detectron2's default 800 downscales our 1024 subtiles while
+    training sees them at 1000. Run this at 800 and at 1000 on the SELECTED checkpoint and take
+    the winner on VAL — the test split plays no part."""
+    import sys
+    sys.path.insert(0, DT2_R)
+    from PIL import ImageFile
+    ImageFile.LOAD_TRUNCATED_IMAGES = True
+    import torch
+    from detectron2.data.datasets import register_coco_instances
+    from detectron2.data import MetadataCatalog, DatasetCatalog, build_detection_test_loader
+    from detectron2.evaluation import COCOEvaluator, inference_on_dataset
+    from detectron2.modeling import build_model
+    from detectron2.checkpoint import DetectionCheckpointer
+    import dt2_recipe
+    assert torch.cuda.is_available(), "no CUDA"
+    model_p = f"{OUT}/model_best_s{seed}{tag}.pth"
+    assert os.path.exists(model_p), f"{model_p} missing"
+    name = f"trees_val_eval{tag}_{min_size_test}"
+    if name not in DatasetCatalog.list():
+        register_coco_instances(name, {}, f"{DATA}/val/coco.json", f"{DATA}/val/images")
+        MetadataCatalog.get(name).thing_classes = ["tree"]
+    outdir = f"{OUT}/eval_s{seed}{tag}_{min_size_test}"
+    cfg = dt2_recipe.setup_cfg(tests=(name,), update_model=model_p, out_dir=outdir)
+    cfg.INPUT.MASK_FORMAT = "bitmask"
+    cfg.TEST.DETECTIONS_PER_IMAGE = dets
+    cfg.MODEL.RPN.PRE_NMS_TOPK_TEST = 2000
+    cfg.MODEL.RPN.POST_NMS_TOPK_TEST = 1500
+    if min_size_test:
+        cfg.INPUT.MIN_SIZE_TEST = min_size_test
+        cfg.INPUT.MAX_SIZE_TEST = max(1333, min_size_test)
+    model = build_model(cfg)
+    DetectionCheckpointer(model).load(model_p)
+    model.eval()
+    print(f"[eval_val] {model_p} min_size_test={cfg.INPUT.MIN_SIZE_TEST} "
+          f"max_size_test={cfg.INPUT.MAX_SIZE_TEST} dets={dets}", flush=True)
+    loader = build_detection_test_loader(cfg, name)
+    res = inference_on_dataset(model, loader, COCOEvaluator(name, output_dir=outdir))
+    out = {"model": model_p, "min_size_test": cfg.INPUT.MIN_SIZE_TEST, "dets": dets,
+           "segm": {k: float(v) for k, v in res["segm"].items()},
+           "bbox": {k: float(v) for k, v in res["bbox"].items()}}
+    json.dump(out, open(f"{OUT}/eval_val_s{seed}{tag}_{cfg.INPUT.MIN_SIZE_TEST}.json", "w"),
+              indent=2)
+    vol.commit()
+    print(json.dumps(out, indent=2), flush=True)
+    return out
+
+
 @app.function(image=dt2_image, gpu="A100", volumes={"/vol": vol}, timeout=4 * 3600)
 def predict(seed: int = 0, score_thr: float = 0.05, dets: int = 500,
             iou_thr: float = 0.7, cont_thr: float = 0.85, dataset: str = "tcd",
-            stitch_inline: bool = True):
+            stitch_inline: bool = True, tag: str = "", min_size_test: int = 0):
     """Predict crowns with the fine-tuned model, stitch to whole tiles (clean_crowns dedup),
     and SAVE predictions in our schema.
 
@@ -504,23 +668,27 @@ def predict(seed: int = 0, score_thr: float = 0.05, dets: int = 500,
     import dt2_recipe
     import stitch
     assert torch.cuda.is_available(), "no CUDA"
-    model = f"{OUT}/model_best_s{seed}.pth"
-    assert os.path.exists(model), f"{model} missing — run train --seed {seed}"
-    cfg = dt2_recipe.setup_cfg(update_model=model, out_dir=f"{OUT}/pred_s{seed}")
+    model = f"{OUT}/model_best_s{seed}{tag}.pth"
+    assert os.path.exists(model), f"{model} missing — run train --seed {seed} --tag {tag}"
+    cfg = dt2_recipe.setup_cfg(update_model=model, out_dir=f"{OUT}/pred_s{seed}{tag}")
     cfg.INPUT.MASK_FORMAT = "bitmask"
     cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = score_thr
     cfg.TEST.DETECTIONS_PER_IMAGE = dets
     cfg.MODEL.RPN.PRE_NMS_TOPK_TEST = 2000
     cfg.MODEL.RPN.POST_NMS_TOPK_TEST = 1500
+    if min_size_test:                       # else detectron2's 800 downscales our 1024 subtiles
+        cfg.INPUT.MIN_SIZE_TEST = min_size_test
+        cfg.INPUT.MAX_SIZE_TEST = max(1333, min_size_test)
     predictor = DefaultPredictor(cfg)
     gpu = torch.cuda.get_device_name(0)                     # record exact A100 variant
 
-    imgdir, gt_path, raw, fp = _paths(dataset, seed)
+    imgdir, gt_path, raw, fp = _paths(dataset, seed, tag)
     os.makedirs(raw, exist_ok=True)
     assert os.path.isdir(imgdir), f"{imgdir} missing — run build_data{'_sparse' if dataset != 'tcd' else ''}"
     files = sorted(f for f in os.listdir(imgdir) if f.endswith(".png"))
-    print(f"[predict] dataset={dataset}: {len(files)} subtiles on gpu={gpu}, "
-          f"score_thr={score_thr} dets={dets}", flush=True)
+    print(f"[predict] dataset={dataset} tag={tag!r}: {len(files)} subtiles on gpu={gpu}, "
+          f"score_thr={score_thr} dets={dets} min_size_test={cfg.INPUT.MIN_SIZE_TEST}",
+          flush=True)
     for k, fn in enumerate(files):
         stem = fn[:-4]
         outp = os.path.join(raw, f"Prediction_{stem}.json")

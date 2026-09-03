@@ -2,7 +2,7 @@
   "label": "AP vs IoU threshold, 439 OAM-TCD",
   "sources": {
     "ours": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/results_no_ignore_band.json",
-    "dt2": "boxinst_commonality_tcd_04/detectree2_baseline/results_dt2_s0_fullcov_noignore.json"
+    "dt2": "boxinst_commonality_tcd_04/detectree2_baseline/results_dt2_s0v2_noignore.json"
   },
   "iou_thresholds": [
     0.5,
@@ -41,29 +41,29 @@
     0.0
   ],
   "dt2_with_ignore": [
-    0.5345,
-    0.483,
-    0.4186,
-    0.3331,
-    0.2384,
-    0.139,
-    0.0665,
-    0.0189,
-    0.0027,
-    0.0003
+    0.6011,
+    0.5472,
+    0.4796,
+    0.3881,
+    0.2831,
+    0.1697,
+    0.0848,
+    0.0239,
+    0.0026,
+    0.0002
   ],
   "ours_minus_dt2": [
-    0.0956,
-    0.0919,
-    0.0844,
-    0.0644,
-    0.0308,
-    -0.0033,
-    -0.0168,
-    -0.0114,
-    -0.0021,
-    -0.0003
+    0.029,
+    0.0277,
+    0.0234,
+    0.0094,
+    -0.0139,
+    -0.034,
+    -0.0351,
+    -0.0164,
+    -0.002,
+    -0.0002
   ],
-  "crossover_iou": 0.75,
+  "crossover_iou": 0.7,
   "note": "published numbers are the canopy-ignore curves; the dashed no-ignore curves show protocol sensitivity. DetecTree2 is a single seed."
 }

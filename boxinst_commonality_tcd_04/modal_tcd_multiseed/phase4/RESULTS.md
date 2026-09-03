@@ -24,10 +24,10 @@ with the >50%-canopy-ignore scorer (`evaluate._greedy_ap`, RES 512).
 | method | supervision | ign AP50 | ign AP50-95 | no-ign AP50 | no-ign AP50-95 | box AP50 |
 |---|---|---|---|---|---|---|
 | **OURS** (β=0.5-fix + α/κ knobs, 3-seed) | **boxes + canopy-ignore (no mask labels)** | **0.630 ± 0.005** | **0.257 ± 0.001** | **0.485 ± 0.002** | **0.202 ± 0.002** | 0.603 |
-| **DetecTree2** (Mask R-CNN R101-FPN, fine-tuned) | full crown masks | 0.535 | 0.224 | 0.421 | 0.180 | 0.529 |
+| **DetecTree2** (Mask R-CNN R101-FPN, fine-tuned, **converged 2026-09-03**) | full crown masks | 0.601 | 0.258 | 0.489 | 0.215 | 0.597 |
 | Restor Mask R-CNN (OAM-TCD paper) | full crown masks | | | 0.432 | | |
 
-**Our box-weak method beats full-mask-supervised DetecTree2 by +0.096 mask AP50 (+0.033 AP50-95)**
+**Our box-weak method beats full-mask-supervised DetecTree2 by +0.029 mask AP50, and LOSES to it by −0.001 AP50-95** (was +0.096 / +0.033 against the superseded, under-trained DetecTree2)
 despite DetecTree2 getting strictly more supervision, and the win holds without canopy-ignore too
 (+0.064 / +0.021). The gap is mostly the **detector** (box 0.603 vs 0.529); both convert boxes→masks
 comparably. DetecTree2 is a single seed.
@@ -43,6 +43,12 @@ The full 10-model 439 table, including SelvaMask/CanopyRS, is below.
 > AP50**, so it is column-matched against our 0.485 and DetecTree2's 0.421, but the rest of its
 > protocol (tiling, AP aggregation) is unverified. Treat the alignment as indicative, not exact.
 
+> ⛔ **SUPERSEDED 2026-09-03:** the DetecTree2 arm was retrained (it had been stopped by a budget
+> cap at 2.39 epochs while still improving, plus three further defects, all understating it).
+> Current: mask AP50 **0.5969** under the frozen scorer, 0.6011 under `evaluate.py`. The dated note
+> below records an earlier, real fix to a model that no longer exists — do not quote its figures.
+> See `../../detectree2_baseline/RETRAIN_V2.md`.
+>
 > 📌 **2026-08-18:** the DetecTree2 439 figures were restated (0.5448 → 0.5345 mask mAP50) after a
 > prediction-coverage bug was fixed — its test subtiles with no annotations were never inferred on,
 > so it was never charged for false positives there (80.7% coverage). Ours are unchanged. Full
@@ -74,15 +80,18 @@ the same: 0.2436 → 0.1931.)
 | method | mask mAP50 (ignore → none) | mask mAP50-95 (ignore → none) | % preds in canopy |
 |---|---|---|---|
 | **OURS** (knobbed 3-seed) | 0.630 → 0.485 | 0.257 → 0.202 | 42.5 |
-| **DetecTree2** (s0, fullcov) | 0.535 → 0.421 | 0.224 → 0.180 | 39.7 |
-| **our margin** | **+0.096 → +0.064** | **+0.033 → +0.021** | |
+| **DetecTree2** (s0v2, fullcov, converged) | 0.601 → 0.489 | 0.258 → 0.215 | 39.8 |
+| **our margin** | **+0.029 → −0.004** | **−0.001 → −0.013** | |
 
-**We win under BOTH protocols — but the rule is not ranking-neutral.** We lose more by dropping it
-than DetecTree2 does (−0.055 vs −0.043 mAP50-95), so **roughly a third of the headline margin is
-protocol**: +0.096 → +0.064 mAP50. Mechanism: we emit more predictions (159,687 vs 152,690, topk 600
-@ score 0.05) and a larger share land in canopy (42.5% vs 39.7%), so our low-confidence tail converts
-to false positives under no-ignore. **Report both columns** — the win survives the stricter protocol,
-and disclosing the narrowing pre-empts the obvious objection.
+**The un-reranked baseline no longer beats DetecTree2 except at AP50 under canopy-ignore, and even
+that flips under no-ignore.** Against the converged DetecTree2 (2026-09-03) the margins are +0.029
+mAP50 with ignore and **−0.004 without**; at mAP50-95 it is negative under both (−0.001, −0.013).
+The rule is not ranking-neutral and we lose more by dropping it than DetecTree2 does, because we
+emit more predictions (159,687 vs 196,927 — note DetecTree2 now emits MORE) with a larger share in
+canopy (42.5% vs 39.8%). **Report both columns.** Note this table is the UN-reranked LACE baseline;
+the published headline is the posterior-product row (0.6625 ± 0.0012 under the frozen COCOeval
+protocol), which does still lead DetecTree2's 0.5969 by +0.066. Do not quote this section's numbers
+as the paper's result — see `../../PROTOCOL_439.md`.
 
 ### SelvaMask / CanopyRS — corrected reading (2026-08-19)
 
@@ -133,7 +142,7 @@ the model saw. Blank = never measured under that protocol.
 | 1 | **OURS — LACE** (β=0.5-fix, α=0.3 κ×1.6) | boxes + canopy-ignore (no mask labels) | 900 | **0.630 ± 0.005** | **0.257 ± 0.001** | **0.485 ± 0.002** | **0.202 ± 0.002** | **0.603** |
 | 2 | OURS boxes → SAM 3 (box-prompt, frozen) | boxes (ours) + SAM pretrain (frozen) | 900 (detector) | 0.633 | 0.268 | | | 0.605 † |
 | 3 | Restor Mask R-CNN (OAM-TCD paper) \*\* | full crown masks | 4,169 | | | 0.432 | | |
-| 4 | **DetecTree2** R101-FPN, fine-tuned by us | **full crown masks** | 900 | 0.535 | 0.224 | 0.421 | 0.180 | 0.529 |
+| 4 | **DetecTree2** R101-FPN, fine-tuned by us (**converged 2026-09-03**) | **full crown masks** | 900 | 0.601 | 0.258 | 0.489 | 0.215 | 0.597 |
 | 5 | **SelvaBox → SAM 3**, both FT (SelvaMask) \* | boxes + **SelvaMask masks** + SAM pretrain | ~3,335 | | **0.185** | | | |
 | 6 | SelvaBox → SAM 3, frozen SAM \* | boxes + SAM pretrain (frozen) | ~3,335 | | 0.122 | | | |
 
@@ -185,12 +194,14 @@ identically, reported under both protocols:
 | | ign AP50 | ign AP50-95 | no-ign AP50 | no-ign AP50-95 |
 |---|---|---|---|---|
 | OURS (row 1) | 0.630 | 0.257 | 0.485 | 0.202 |
-| DetecTree2 (row 4) | 0.535 | 0.224 | 0.421 | 0.180 |
-| **margin** | **+0.096** | **+0.033** | **+0.064** | **+0.021** |
+| DetecTree2 (row 4, converged) | 0.601 | 0.258 | 0.489 | 0.215 |
+| **margin** | **+0.029** | **−0.001** | **−0.004** | **−0.013** |
 
-We win under both protocols. The margin narrows by ~⅓ without canopy-ignore, because we emit more
-predictions (159,687 vs 152,690) and a larger share fall in canopy (42.5% vs 39.7%) — so our
-low-confidence tail converts to false positives when the rule is dropped. Report both columns.
+**The un-reranked baseline no longer wins under both protocols.** Against the converged DetecTree2
+it leads only at ign AP50 (+0.029) and loses the other three. DetecTree2 now emits MORE predictions
+than we do (196,927 vs 159,687) with a slightly smaller share in canopy (39.8% vs 42.5%). Report
+both columns. The published headline is the posterior-product row (0.6625 ± 0.0012 under the frozen
+COCOeval protocol) against DetecTree2's 0.5969, a +0.066 lead — not this table.
 
 ## Why it works — the two load-bearing pieces
 

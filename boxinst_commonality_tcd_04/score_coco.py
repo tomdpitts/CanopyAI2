@@ -35,7 +35,7 @@ all 439 tiles, ~49 GB at 512) cannot go above 512 in a 64 GB container.
 
 Usage:
     .venv/bin/python -m boxinst_commonality_tcd_04.score_coco \
-        --preds boxinst_commonality_tcd_04/detectree2_baseline/preds_dt2_s0_fullcov.json \
+        --preds boxinst_commonality_tcd_04/detectree2_baseline/preds_dt2_s0v2.json \
         --res 512 --out results.json
 """
 from __future__ import annotations

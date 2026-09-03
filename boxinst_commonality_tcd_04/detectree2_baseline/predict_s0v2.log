@@ -1,0 +1,91 @@
+✓ Initialized. View run at 
+https://modal.com/apps/tomdpitts/main/ap-FkV0LVvDrrKrsYN290YN5o
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/detectree2_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/sparse_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_sparse_tcd_
+│   multiseed/manifest_sparse.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/dt2_recipe.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/stitch.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/build_coco.py
+├── 🔨 Created function build_shard.
+├── 🔨 Created function build_data.
+├── 🔨 Created function build_shard_sparse.
+├── 🔨 Created function build_data_sparse.
+├── 🔨 Created function build_test_fullcov.
+├── 🔨 Created function validate_data.
+├── 🔨 Created function stitch_cpu.
+├── 🔨 Created function stitch_shard.
+├── 🔨 Created function stitch_par.
+├── 🔨 Created function fetch_weights.
+├── 🔨 Created function check_weights.
+├── 🔨 Created function imports_ok.
+├── 🔨 Created function train.
+├── 🔨 Created function eval_val.
+└── 🔨 Created function predict.
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.1.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+[predict] dataset=tcd tag='v2': 3951 subtiles on gpu=NVIDIA A100-SXM4-40GB, score_thr=0.05 dets=500 min_size_test=1000
+/opt/conda/lib/python3.10/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /opt/conda/conda-bld/pytorch_1695392067780/work/aten/src/ATen/native/TensorShape.cpp:3526.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+  predicted 900/3951
+  predicted 1200/3951
+  predicted 1500/3951
+  predicted 1800/3951
+
+==========
+== CUDA ==
+==========
+
+CUDA Version 12.1.1
+
+Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+
+This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+By pulling and using the container, you accept the terms and conditions of this license:
+https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+
+A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+
+  predicted 2100/3951
+  predicted 2400/3951
+  predicted 2700/3951
+  predicted 3000/3951
+  predicted 3300/3951
+  predicted 3600/3951
+  predicted 3900/3951
+  predicted 3951/3951
+[predict] raw predictions committed to /vol/out/pred_raw_s0v2; run stitch_cpu --dataset tcd to finish (CPU rates)
+✓ App completed. View run at 
+https://modal.com/apps/tomdpitts/main/ap-FkV0LVvDrrKrsYN290YN5o

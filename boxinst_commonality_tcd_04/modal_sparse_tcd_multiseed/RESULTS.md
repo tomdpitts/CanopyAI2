@@ -46,9 +46,16 @@ That collapse lands squarely in the dryland regime the AusDryland / SavannaTree 
 
 ## Head-to-head vs DetecTree2 — same 236 tiles, same scorer
 
+> ⛔ **SUPERSEDED 2026-09-03.** The DetecTree2 checkpoint used throughout this document
+> (`model_best_s0.pth`) was stopped by a budget cap at 2.39 epochs while still improving, and had
+> three further defects, all understating it. It was retrained to detectree2's own early-stopping
+> rule (`model_best_s0v2.pth`, 6.0 epochs) and re-run on this slice. **Every DetecTree2 figure
+> below is historical** — current sparse numbers are in `../results_439/sparse236/README.md`;
+> the account is in `../detectree2_baseline/RETRAIN_V2.md`.
+
 Fully-supervised **DetecTree2** (Mask R-CNN R101-FPN), the checkpoint fine-tuned on the SAME
-792/108 tiles (`model_best_s0.pth`, **0.5345** on the 439 — see the coverage-bug note below), run
-zero-shot on this slice. Its 900
+792/108 tiles (superseded `model_best_s0.pth`, 0.5345 on the 439 — see the coverage-bug note
+below), run zero-shot on this slice. Its 900
 training tiles are excluded from the slice by construction, so it is a valid transfer test for it
 too. Both models scored by the identical `compare_subsets.py` (`evaluate._greedy_ap` +
 canopy-ignore), which was cross-checked against the Modal-side scorer to 4 dp.
@@ -102,8 +109,9 @@ and the existing 439 build byte-identical). The sparse run above uses **full 9/9
 DetecTree2's 439 figures dropped 0.5448 → **0.5345** mask mAP50 (mAP50-95 0.2277 → 0.2235, box
 0.5392 → 0.5290): +5,380 predictions in the previously-invisible regions, with recall IDENTICAL to
 4 dp and precision falling 0.6004 → 0.5847 — pure false positives, exactly the expected signature.
-Ours are unchanged (no subtiling). Artifacts: `preds_dt2_s0_fullcov.json`,
-`results_dt2_s0_fullcov.json`; the published 0.5448 files are kept for provenance. Full account in
+Ours are unchanged (no subtiling). Those artifacts (`preds_dt2_s0_fullcov.json`,
+`results_dt2_s0_fullcov.json`) were themselves superseded by the 2026-09-03 retrain and deleted
+from the working tree; they remain in git history. Full account in
 `phase4/README.md` § DetecTree2 baseline.
 
 **Scorer hardening (same date).** Both scorers previously selected `[t for t in sorted(gt) if t in

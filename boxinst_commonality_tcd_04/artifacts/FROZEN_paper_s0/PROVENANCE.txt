@@ -1,3 +1,15 @@
+DEPRECATED 2026-09-03 — DO NOT CITE. These artifacts are the SUPERSEDED single-scale
+native-4096 pipeline: mask mAP50 0.499, box mAP50 0.555, masker fit on 4096-dim
+(layers 21-24) features (em_model.npz: mu (4096,), U (4096,128)).
+
+The published pipeline is NOT this one. It uses 4-phase real-8px interlaced L24
+features (1024-dim) for BOTH the detector and the masker, the latter refit by
+modal_tcd_multiseed/phase4/phase4_fit_tcd.py, and reaches 0.663 mask AP50 (3 seeds)
+on the 439 holdout. See PROTOCOL_439.md for the current numbers and CONFIG_AUDIT.md
+for how rows are verified. This directory is retained only so the earlier result
+stays reproducible; nothing here should be read as describing the paper.
+
+--- original header follows ---
 FROZEN headline artifacts — boxinst_commonality_tcd_04 mask mAP50 0.499
 git HEAD: 7ca10b7ba3f3ecc61bc184402f794e296eb0c316
 git status (dirty files):

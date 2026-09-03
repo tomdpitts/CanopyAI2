@@ -1,0 +1,45 @@
+{
+  "method": "box2mask",
+  "work_dir": "/vol/boxinst/box2mask_s0",
+  "best": [
+    "best_bbox_mAP_50_iter_13384.pth"
+  ],
+  "train_min": 268.8,
+  "sched": {
+    "runner": "iter",
+    "epochs": 9,
+    "iters_per_epoch": 3346,
+    "eval_every": 1673,
+    "fp16": false,
+    "total_iters": 30114,
+    "micro_batch": 2,
+    "cumulative_iters": 8,
+    "effective_batch": 16,
+    "optimizer": "AdamW",
+    "lr": 0.0001,
+    "decay_at": [
+      26768,
+      28999
+    ],
+    "num_queries": 100,
+    "max_per_image": 100,
+    "load_from": "/vol/boxinst/ckpt/box2mask_r50_lsj_8x2_50e_coco_nocls.pth",
+    "method": "box2mask",
+    "n_train": 6692,
+    "early_stop": {
+      "patience_evals": 4,
+      "min_epochs": 5,
+      "eval_every_iters": 1673
+    },
+    "max_hours": 7.0,
+    "coco_init": {
+      "loaded": 610,
+      "reinit_from_scratch": [
+        "panoptic_head.cls_embed.weight",
+        "panoptic_head.cls_embed.bias"
+      ],
+      "source": "box2mask_r50_lsj_8x2_50e_coco_nocls.pth"
+    }
+  },
+  "usd_at_2.10_per_h": 9.41
+}

@@ -1,0 +1,48 @@
+{
+  "n_tiles": 366,
+  "n_crowns": 25692,
+  "res": 512,
+  "prompt": "ground-truth crown boxes, identical across arms",
+  "rows": {
+    "LACE commonality-EM (shipped)": {
+      "n": 25692,
+      "mean_iou": 0.7856,
+      "rates": {
+        ">=0.5": 0.9862,
+        ">=0.75": 0.7096,
+        ">=0.9": 0.0891
+      },
+      "mean_double_assignment": 0.0358
+    },
+    "SAM 3, zero-shot": {
+      "n": 25692,
+      "mean_iou": 0.7493,
+      "rates": {
+        ">=0.5": 0.9775,
+        ">=0.75": 0.5649,
+        ">=0.9": 0.0373
+      },
+      "mean_double_assignment": 0.0084,
+      "paired_delta_vs_lace": {
+        "mean": -0.0363,
+        "win_rate": 0.3626,
+        "sd": 0.1186
+      }
+    },
+    "SAM 3, SelvaMask-FT": {
+      "n": 25692,
+      "mean_iou": 0.6048,
+      "rates": {
+        ">=0.5": 0.7688,
+        ">=0.75": 0.2343,
+        ">=0.9": 0.0076
+      },
+      "mean_double_assignment": 0.0022,
+      "paired_delta_vs_lace": {
+        "mean": -0.1808,
+        "win_rate": 0.1449,
+        "sd": 0.2022
+      }
+    }
+  }
+}

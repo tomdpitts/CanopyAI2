@@ -1,0 +1,68 @@
+{
+  "what": "Cost of the 512^2 scoring raster, from GT polygons only -- no masker involved.",
+  "n_tiles": 120,
+  "n_crowns": 7637,
+  "seed": 0,
+  "quantum": {
+    "note": "IoU between a mask and itself dilated by ONE raster pixel -- the smallest expressible boundary error.",
+    "512": {
+      "mean": 0.6913,
+      "median": 0.7099,
+      "frac_ge_0.75": 0.3856,
+      "frac_ge_0.9": 0.0132
+    },
+    "2048": {
+      "mean": 0.8852,
+      "median": 0.9017,
+      "frac_ge_0.75": 0.9514,
+      "frac_ge_0.9": 0.5134
+    }
+  },
+  "ceiling": {
+    "note": "IoU between the polygon at 2048 and the same polygon at 512 upsampled -- how much shape the 512 grid can represent.",
+    "512": {
+      "mean": 0.8395,
+      "median": 0.8624,
+      "frac_ge_0.75": 0.8438,
+      "frac_ge_0.9": 0.3139
+    }
+  },
+  "by_size": [
+    {
+      "diam_tile_px": "0-20",
+      "n": 1406,
+      "quantum_512_median": 0.5,
+      "quantum_2048_median": 0.7872,
+      "ceiling_512_mean": 0.6992
+    },
+    {
+      "diam_tile_px": "20-40",
+      "n": 2428,
+      "quantum_512_median": 0.6491,
+      "quantum_2048_median": 0.8759,
+      "ceiling_512_mean": 0.8205
+    },
+    {
+      "diam_tile_px": "40-80",
+      "n": 2841,
+      "quantum_512_median": 0.7743,
+      "quantum_2048_median": 0.9299,
+      "ceiling_512_mean": 0.8925
+    },
+    {
+      "diam_tile_px": "80-160",
+      "n": 883,
+      "quantum_512_median": 0.8522,
+      "quantum_2048_median": 0.9578,
+      "ceiling_512_mean": 0.934
+    },
+    {
+      "diam_tile_px": "160-inf",
+      "n": 79,
+      "quantum_512_median": 0.9185,
+      "quantum_2048_median": 0.978,
+      "ceiling_512_mean": 0.9619
+    }
+  ],
+  "verdict": "At 512 a one-pixel boundary error leaves median IoU 0.71 and only 1.3% of crowns above 0.9; at 2048 the same error leaves 0.90 and 51.4% above 0.9. An IoU>=0.9 threshold on the 512 raster therefore measures whether a mask is PIXEL-EXACT, not whether it is accurate, and it does so most severely on small crowns (<20 px diameter: median 0.50 after one pixel). Mean IoU and IoU>=0.5 are largely unaffected; IoU>=0.75 is compressed but still discriminative; IoU>=0.9 should be reported with this caveat or not at all. This is a property of the SCORER and is distinct from the 8 px feature grid, which is a property of the MODEL -- the two should not be conflated when attributing strict-IoU behaviour."
+}

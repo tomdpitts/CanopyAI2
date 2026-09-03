@@ -63,8 +63,8 @@ def _mdkey(md):
 # (label, preds path, recorded-reference path or None)
 RUNS = [(f"ours_s{s}", os.path.join(P4, f"knobbed_s{s}.json"),
          os.path.join(P4, f"ref_knobbed_s{s}.json")) for s in (0, 1, 2)] + \
-       [("detectree2_s0", os.path.join(DT2, "preds_dt2_s0_fullcov.json"),
-         os.path.join(DT2, "results_dt2_s0_fullcov.json"))]
+       [("detectree2_s0", os.path.join(DT2, "preds_dt2_s0v2.json"),
+         os.path.join(DT2, "results_dt2_s0v2.json"))]
 
 
 def _rle(r):

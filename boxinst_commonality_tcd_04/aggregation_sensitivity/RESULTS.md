@@ -23,20 +23,29 @@ DetecTree2 s0 full-coverage (`detectree2_baseline/preds_dt2_s0_fullcov.json`).
 
 | metric | OURS pooled | OURS per-tile | DT2 pooled | DT2 per-tile | margin pooled → per-tile |
 |---|---|---|---|---|---|
-| mask AP50 | 0.6301 | 0.5983 | 0.5345 | 0.5260 | **+0.096 → +0.072** |
-| mask AP50-95 | 0.2561 | 0.2594 | 0.2229 | 0.2508 | **+0.033 → +0.009** |
-| box AP50 | 0.6033 | 0.5703 | 0.5290 | 0.5194 | **+0.074 → +0.051** |
-| box AP50-95 | 0.2495 | 0.2492 | 0.2425 | 0.2659 | **+0.007 → −0.017** |
+| mask AP50 | 0.6301 | 0.5983 | 0.6011 | 0.5858 | **+0.029 → +0.013** |
+| mask AP50-95 | 0.2561 | 0.2594 | 0.2572 | 0.2854 | **−0.001 → −0.026** |
+| box AP50 | 0.6033 | 0.5703 | 0.5973 | 0.5822 | **+0.006 → −0.012** |
+| box AP50-95 | 0.2495 | 0.2492 | 0.2819 | 0.3068 | **−0.032 → −0.058** |
+
+> **Re-run 2026-09-03** against the converged DetecTree2 (`preds_dt2_s0v2.json`). The DT2 columns
+> and every margin moved; the OURS columns are unchanged. Note these are the **un-reranked** LACE
+> seeds, so this table is a protocol study, not the paper's headline — that is the
+> posterior-product row under the frozen COCOeval scorer (`../PROTOCOL_439.md`).
 
 Three things fall out, one of them unwelcome:
 
 1. **Per-tile averaging is not uniformly kinder.** It *lowers* AP50 for both models and
    *raises* AP50-95 for both. The prior expectation that it simply reads higher was wrong.
 2. **It is strongly non-neutral between models.** DetecTree2 gains +0.028 mask AP50-95 from
-   the switch; we gain +0.003. Our mask AP50-95 lead over it collapses from +0.033 to +0.009.
-3. **On box AP50-95 the switch flips the ranking**: DetecTree2 goes from 0.007 behind us to
-   0.017 ahead. Our box-AP50-95 lead over DetecTree2 is a pooled-aggregation artefact and
-   should not be claimed without naming the protocol.
+   the switch; we gain +0.003. Against the converged DetecTree2 we no longer lead on mask
+   AP50-95 under either aggregation: −0.001 pooled, −0.026 per-tile.
+3. **We do not lead on box AP50-95 under any aggregation.** DetecTree2 is 0.032 ahead pooled
+   and 0.058 ahead per-tile. (Before the 2026-09-03 retrain this read as a +0.007 pooled lead
+   flipping to −0.017 per-tile, i.e. an aggregation artefact; against the converged model there
+   is no lead to explain away.) The only margin that survives both aggregations is mask AP50,
+   +0.029 pooled and +0.013 per-tile — and that is the un-reranked baseline; the posterior
+   product leads by +0.066 pooled.
 
 The mask AP50 headline (+0.096 → +0.072) and box AP50 (+0.074 → +0.051) survive both
 protocols with room to spare. **Those are the claims to lead with.**
@@ -66,7 +75,7 @@ Pooled, ignore on, uncapped. `nonempty` drops the 73 zero-GT tiles.
 | | mask AP50 | mask AP50-95 | box AP50 | box AP50-95 |
 |---|---|---|---|---|
 | OURS all439 → nonempty | 0.6301 → 0.6345 | 0.2561 → 0.2578 | 0.6033 → 0.6075 | 0.2495 → 0.2513 |
-| DT2 all439 → nonempty | 0.5345 → 0.5435 | 0.2229 → 0.2266 | 0.5290 → 0.5380 | 0.2425 → 0.2465 |
+| DT2 all439 → nonempty | 0.6011 → 0.6090 | 0.2572 → 0.2605 | 0.5973 → 0.6052 | 0.2819 → 0.2855 |
 
 Keeping the 73 zero-GT tiles costs us **0.004 mask AP50** and DetecTree2 **0.009** — a real
 handicap against protocols that delete such tiles, but a *smaller* one for us than for
@@ -133,7 +142,7 @@ equality:
 | ours s0 | 0.6250 (=) | 0.2568 (−0.0006) | 0.6050 (=) | 0.2555 (=) |
 | ours s1 | 0.6358 (=) | 0.2560 (−0.0007) | 0.5982 (+0.0001) | 0.2396 (=) |
 | ours s2 | 0.6294 (=) | 0.2554 (−0.0010) | 0.6066 (=) | 0.2534 (−0.0001) |
-| DetecTree2 s0 | 0.5345 (=) | 0.2229 (−0.0006) | 0.5290 (=) | 0.2425 (=) |
+| DetecTree2 s0 (v2) | 0.6011 (=) | 0.2572 (−0.0008) | 0.5973 (=) | 0.2819 (=) |
 
 Every AP50 and every box AP50-95 reproduces exactly; mask AP50-95 sits 0.0006–0.0010 below
 the recorded value, in the direction and of the size the tie-breaking analysis predicts.
