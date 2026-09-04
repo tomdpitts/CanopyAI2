@@ -1,0 +1,599 @@
+%% ============================================================================
+%% lace.bib -- bibliography for the LACE manuscript (MDPI format)
+%%
+%% Style: MDPI numeric (Definitions/mdpi.bst). Journal names use the ISSN LTWA
+%% abbreviations required by MDPI. DOIs are given wherever one exists; arXiv
+%% preprints follow the MDPI preprint convention (journal = arXiv, note =
+%% arXiv:NNNN.NNNNN).
+%%
+%% Every entry below was checked against Crossref / arXiv / the publisher page.
+%% Entries marked "UNVERIFIED" in a comment could not be resolved -- see
+%% BIBLIOGRAPHY_NOTES.md.
+%% ============================================================================
+
+%% ---------------------------------------------------------------------------
+%% Datasets and benchmarks
+%% ---------------------------------------------------------------------------
+
+@inproceedings{oamtcd,
+  author    = {Veitch-Michaelis, Josh and Cottam, Andrew and Schweizer, Daniella and Broadbent, Eben N. and Dao, David and Zhang, Ce and Almeyda Zambrano, Angelica and Max, Simeon},
+  title     = {{OAM-TCD}: A Globally Diverse Dataset of High-Resolution Tree Cover Maps},
+  booktitle = {Advances in Neural Information Processing Systems 37 (NeurIPS 2024), Datasets and Benchmarks Track},
+  year      = {2024},
+  doi       = {10.48550/arXiv.2407.11743}
+}
+
+@article{neontreeeval,
+  author  = {Weinstein, Ben G. and Graves, Sarah J. and Marconi, Sergio and Singh, Aditya and Zare, Alina and Stewart, Dylan and Bohlman, Stephanie A. and White, Ethan P.},
+  title   = {A Benchmark Dataset for Canopy Crown Detection and Delineation in Co-Registered Airborne {RGB}, {LiDAR} and Hyperspectral Imagery from the {National Ecological Observation Network}},
+  journal = {PLoS Comput. Biol.},
+  year    = {2021},
+  volume  = {17},
+  number  = {7},
+  pages   = {e1009180},
+  doi     = {10.1371/journal.pcbi.1009180}
+}
+
+@inproceedings{selvabox,
+  author    = {Baudchon, Hugo and Ouaknine, Arthur and Weiss, Martin and Teng, M\'{e}lisande and Walla, Thomas R. and Caron-Guay, Antoine and Pal, Christopher and Lalibert\'{e}, Etienne},
+  title     = {{SelvaBox}: A High-Resolution Dataset for Tropical Tree Crown Detection},
+  booktitle = {Proceedings of the 14th International Conference on Learning Representations (ICLR 2026)},
+  year      = {2026},
+  doi       = {10.48550/arXiv.2507.00170},
+  note      = {arXiv:2507.00170}
+}
+
+@article{selvamask,
+  author  = {Duguay, Simon-Olivier and Baudchon, Hugo and Lalibert\'{e}, Etienne and Muller-Landau, Helene and Rivas-Torres, Gonzalo and Ouaknine, Arthur},
+  title   = {{SelvaMask}: Segmenting Trees in Tropical Forests and Beyond},
+  journal = {arXiv},
+  year    = {2026},
+  doi     = {10.48550/arXiv.2602.02426},
+  note    = {arXiv:2602.02426}
+}
+
+%% ---------------------------------------------------------------------------
+%% Tree crown detection and instance segmentation
+%% ---------------------------------------------------------------------------
+
+@article{ball2023,
+  author  = {Ball, James G. C. and Hickman, Sebastian H. M. and Jackson, Tobias D. and Koay, Xian Jing and Hirst, James and Jay, William and Archer, Matthew and Aubry-Kientz, M\'{e}laine and Vincent, Gr\'{e}goire and Coomes, David A.},
+  title   = {Accurate Delineation of Individual Tree Crowns in Tropical Forests from Aerial {RGB} Imagery Using {Mask R-CNN}},
+  journal = {Remote Sens. Ecol. Conserv.},
+  year    = {2023},
+  volume  = {9},
+  number  = {5},
+  pages   = {641--655},
+  doi     = {10.1002/rse2.332}
+}
+
+@article{weinstein2020,
+  author  = {Weinstein, Ben G. and Marconi, Sergio and Aubry-Kientz, M\'{e}laine and Vincent, Gregoire and Senyondo, Henry and White, Ethan P.},
+  title   = {{DeepForest}: A {Python} Package for {RGB} Deep Learning Tree Crown Delineation},
+  journal = {Methods Ecol. Evol.},
+  year    = {2020},
+  volume  = {11},
+  number  = {12},
+  pages   = {1743--1751},
+  doi     = {10.1111/2041-210X.13472}
+}
+
+@article{dersch2023,
+  author  = {Dersch, Stefan and Sch\"{o}ttl, Alfred and Krzystek, Peter and Heurich, Marco},
+  title   = {Towards Complete Tree Crown Delineation by Instance Segmentation with {Mask R-CNN} and {DETR} Using {UAV}-Based Multispectral Imagery and Lidar Data},
+  journal = {ISPRS Open J. Photogramm. Remote Sens.},
+  year    = {2023},
+  volume  = {8},
+  pages   = {100037},
+  doi     = {10.1016/j.ophoto.2023.100037}
+}
+
+@article{crownvim,
+  author  = {Shi, Ziyang and Xiong, Xuan and Li, Lin and Zhou, Guoxiong and Liu, Ruifeng and Yan, Yongming and Zhao, Benhan},
+  title   = {{CrownViM}: Context Clustering Meets Vision {Mamba} for Precise Tree Crown Segmentation in Aerial {RGB} Imagery},
+  journal = {Remote Sens.},
+  year    = {2026},
+  volume  = {18},
+  number  = {6},
+  pages   = {860},
+  doi     = {10.3390/rs18060860}
+}
+
+@article{tong2025,
+  author  = {Tong, Fei and Zhang, Yun},
+  title   = {Individual Tree Crown Delineation in High Resolution Aerial {RGB} Imagery Using {StarDist}-Based Model},
+  journal = {Remote Sens. Environ.},
+  year    = {2025},
+  volume  = {319},
+  pages   = {114618},
+  doi     = {10.1016/j.rse.2025.114618}
+}
+
+@article{fgtreeseg,
+  author  = {Chen, Pengyu and Lyu, Fangzheng and Wang, Sicheng and Wang, Cuizhen},
+  title   = {{FG-TreeSeg}: Flow-Guided Tree Crown Segmentation without Instance Annotations},
+  journal = {IEEE Geosci. Remote Sens. Lett.},
+  year    = {2026},
+  doi     = {10.48550/arXiv.2602.00470},
+  note    = {arXiv:2602.00470}
+}
+
+@article{alspseudo,
+  author  = {Pesonen, Julius and Rua, Stefan and Taher, Josef and Koivum\"{a}ki, Niko and Yu, Xiaowei and Honkavaara, Eija},
+  title   = {Learning Image-Based Tree Crown Segmentation from Enhanced Lidar-Based Pseudo-Labels},
+  journal = {arXiv},
+  year    = {2026},
+  doi     = {10.48550/arXiv.2602.13022},
+  note    = {arXiv:2602.13022}
+}
+
+%% ---------------------------------------------------------------------------
+%% Foundation-model prompting for tree crowns
+%% ---------------------------------------------------------------------------
+
+@inproceedings{teng2025,
+  author    = {Teng, M\'{e}lisande and Ouaknine, Arthur and Lalibert\'{e}, Etienne and Bengio, Yoshua and Rolnick, David and Larochelle, Hugo},
+  title     = {Bringing {SAM} to New Heights: Leveraging Elevation Data for Tree Crown Segmentation from Drone Imagery},
+  booktitle = {Advances in Neural Information Processing Systems 38 (NeurIPS 2025)},
+  year      = {2025},
+  doi       = {10.48550/arXiv.2506.04970},
+  note      = {arXiv:2506.04970}
+}
+
+@article{sam2lidar,
+  author  = {Zhu, Yun and Locke, William and Yuan, Jingyi and Zhang, Yunqian and Ma, Qin and Liang, Lu},
+  title   = {Leveraging {SAM 2} and {LiDAR} for Automated Individual Tree Crown Delineation: A Comparative Evaluation of Prompting Methods},
+  journal = {Inf. Geogr.},
+  year    = {2025},
+  volume  = {1},
+  number  = {2},
+  pages   = {100025},
+  doi     = {10.1016/j.infgeo.2025.100025}
+}
+
+@article{rsprompter,
+  author  = {Chen, Keyan and Liu, Chenyang and Chen, Hao and Zhang, Haotian and Li, Wenyuan and Zou, Zhengxia and Shi, Zhenwei},
+  title   = {{RSPrompter}: Learning to Prompt for Remote Sensing Instance Segmentation Based on Visual Foundation Model},
+  journal = {IEEE Trans. Geosci. Remote Sens.},
+  year    = {2024},
+  volume  = {62},
+  pages   = {1--17},
+  doi     = {10.1109/TGRS.2024.3356074}
+}
+
+%% ---------------------------------------------------------------------------
+%% Tree cover, carbon and dryland ecology
+%% ---------------------------------------------------------------------------
+
+@article{tucker2023,
+  author  = {Tucker, Compton and Brandt, Martin and Hiernaux, Pierre and Kariryaa, Ankit and Rasmussen, Kjeld and Small, Jennifer and Igel, Christian and Reiner, Florian and Melocik, Katherine and Meyer, Jesse and Sinno, Scott and Romero, Eric and Glennie, Erin and Fitts, Yasmin and Morin, August and Pinzon, Jorge and McClain, Devin and Morin, Paul and Porter, Claire and Loeffler, Shane and Kergoat, Laurent and Issoufou, Bil-Assanou and Savadogo, Patrice and Wigneron, Jean-Pierre and Poulter, Benjamin and Ciais, Philippe and Kaufmann, Robert and Myneni, Ranga and Saatchi, Sassan and Fensholt, Rasmus},
+  title   = {Sub-Continental-Scale Carbon Stocks of Individual Trees in {African} Drylands},
+  journal = {Nature},
+  year    = {2023},
+  volume  = {615},
+  number  = {7950},
+  pages   = {80--86},
+  doi     = {10.1038/s41586-022-05653-6}
+}
+
+@article{brandt2020,
+  author  = {Brandt, Martin and Tucker, Compton J. and Kariryaa, Ankit and Rasmussen, Kjeld and Abel, Christin and Small, Jennifer and Chave, Jerome and Rasmussen, Laura Vang and Hiernaux, Pierre and Diouf, Abdoul Aziz and Kergoat, Laurent and Mertz, Ole and Igel, Christian and Gieseke, Fabian and Sch\"{o}ning, Johannes and Li, Sizhuo and Melocik, Katherine and Meyer, Jesse and Sinno, Scott and Romero, Eric and Glennie, Erin and Montagu, Amandine and Dendoncker, Morgane and Fensholt, Rasmus},
+  title   = {An Unexpectedly Large Count of Trees in the {West African Sahara} and {Sahel}},
+  journal = {Nature},
+  year    = {2020},
+  volume  = {587},
+  number  = {7832},
+  pages   = {78--82},
+  doi     = {10.1038/s41586-020-2824-5}
+}
+
+@article{reiner2023,
+  author  = {Reiner, Florian and Brandt, Martin and Tong, Xiaoye and Skole, David and Kariryaa, Ankit and Ciais, Philippe and Davies, Andrew and Hiernaux, Pierre and Chave, J\'{e}r\^{o}me and Mugabowindekwe, Maurice and Igel, Christian and Oehmcke, Stefan and Gieseke, Fabian and Li, Sizhuo and Liu, Siyu and Saatchi, Sassan and Boucher, Peter and Singh, Jenia and Taugourdeau, Simon and Dendoncker, Morgane and Song, Xiao-Peng and Mertz, Ole and Tucker, Compton J. and Fensholt, Rasmus},
+  title   = {More than One Quarter of {Africa}'s Tree Cover Is Found Outside Areas Previously Classified as Forest},
+  journal = {Nat. Commun.},
+  year    = {2023},
+  volume  = {14},
+  pages   = {2258},
+  doi     = {10.1038/s41467-023-37880-4}
+}
+
+@article{mugabowindekwe2023,
+  author  = {Mugabowindekwe, Maurice and Brandt, Martin and Chave, J\'{e}r\^{o}me and Reiner, Florian and Skole, David L. and Kariryaa, Ankit and Igel, Christian and Hiernaux, Pierre and Ciais, Philippe and Mertz, Ole and Tong, Xiaoye and Li, Sizhuo and Rwanyiziri, Gaspard and Dushimiyimana, Thaulin and Ndoli, Alain and Uwizeyimana, Valens and Lilles\o, Jens-Peter Barnekow and Gieseke, Fabian and Tucker, Compton J. and Saatchi, Sassan and Fensholt, Rasmus},
+  title   = {Nation-Wide Mapping of Tree-Level Aboveground Carbon Stocks in {Rwanda}},
+  journal = {Nat. Clim. Change},
+  year    = {2023},
+  volume  = {13},
+  number  = {1},
+  pages   = {91--97},
+  doi     = {10.1038/s41558-022-01544-w}
+}
+
+@article{bastin2017,
+  author  = {Bastin, Jean-Fran\c{c}ois and Berrahmouni, Nora and Grainger, Alan and Maniatis, Danae and Mollicone, Danilo and Moore, Rebecca and Patriarca, Chiara and Picard, Nicolas and Sparrow, Ben and Abraham, Elena Maria and others},
+  title   = {The Extent of Forest in Dryland Biomes},
+  journal = {Science},
+  year    = {2017},
+  volume  = {356},
+  number  = {6338},
+  pages   = {635--638},
+  doi     = {10.1126/science.aam6527}
+}
+
+@article{crowther2015,
+  author  = {Crowther, T. W. and Glick, H. B. and Covey, K. R. and Bettigole, C. and Maynard, D. S. and Thomas, S. M. and Smith, J. R. and Hintler, G. and Duguid, M. C. and Amatulli, G. and Tuanmu, M.-N. and Jetz, W. and Salas, C. and Stam, C. and Piotto, D. and Tavani, R. and Green, S. and Bruce, G. and Williams, S. J. and Wiser, S. K. and Huber, M. O. and Hengeveld, G. M. and Nabuurs, G.-J. and Tikhonova, E. and Borchardt, P. and Li, C.-F. and Powrie, L. W. and Fischer, M. and Hemp, A. and Homeier, J. and Cho, P. and Vibrans, A. C. and Umunay, P. M. and Piao, S. L. and Rowe, C. W. and Ashton, M. S. and Crane, P. R. and Bradford, M. A.},
+  title   = {Mapping Tree Density at a Global Scale},
+  journal = {Nature},
+  year    = {2015},
+  volume  = {525},
+  number  = {7568},
+  pages   = {201--205},
+  doi     = {10.1038/nature14967}
+}
+
+@article{jucker2022,
+  author  = {Jucker, Tommaso and Fischer, Fabian J\"{o}rg and Chave, J\'{e}r\^{o}me and Coomes, David A. and Caspersen, John and Ali, Arshad and Loubota Panzou, Grace Jopaul and Feldpausch, Ted R. and Falster, Daniel and Usoltsev, Vladimir A. and others},
+  title   = {{Tallo}: A Global Tree Allometry and Crown Architecture Database},
+  journal = {Glob. Change Biol.},
+  year    = {2022},
+  volume  = {28},
+  number  = {17},
+  pages   = {5254--5268},
+  doi     = {10.1111/gcb.16302}
+}
+
+%% ---------------------------------------------------------------------------
+%% Object detection and instance segmentation architectures
+%% ---------------------------------------------------------------------------
+
+@article{maskrcnn,
+  author  = {He, Kaiming and Gkioxari, Georgia and Doll\'{a}r, Piotr and Girshick, Ross},
+  title   = {{Mask R-CNN}},
+  journal = {IEEE Trans. Pattern Anal. Mach. Intell.},
+  year    = {2020},
+  volume  = {42},
+  number  = {2},
+  pages   = {386--397},
+  doi     = {10.1109/TPAMI.2018.2844175}
+}
+
+@inproceedings{rcnn,
+  author    = {Girshick, Ross and Donahue, Jeff and Darrell, Trevor and Malik, Jitendra},
+  title     = {Rich Feature Hierarchies for Accurate Object Detection and Semantic Segmentation},
+  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2014},
+  pages     = {580--587},
+  doi       = {10.1109/CVPR.2014.81}
+}
+
+@inproceedings{retinanet,
+  author    = {Lin, Tsung-Yi and Goyal, Priya and Girshick, Ross and He, Kaiming and Doll\'{a}r, Piotr},
+  title     = {Focal Loss for Dense Object Detection},
+  booktitle = {Proceedings of the IEEE International Conference on Computer Vision (ICCV)},
+  year      = {2017},
+  pages     = {2980--2988},
+  doi       = {10.1109/ICCV.2017.324}
+}
+
+@inproceedings{yolo,
+  author    = {Redmon, Joseph and Divvala, Santosh and Girshick, Ross and Farhadi, Ali},
+  title     = {You Only Look Once: Unified, Real-Time Object Detection},
+  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2016},
+  pages     = {779--788},
+  doi       = {10.1109/CVPR.2016.91}
+}
+
+@article{yolov4,
+  author  = {Bochkovskiy, Alexey and Wang, Chien-Yao and Liao, Hong-Yuan Mark},
+  title   = {{YOLOv4}: Optimal Speed and Accuracy of Object Detection},
+  journal = {arXiv},
+  year    = {2020},
+  doi     = {10.48550/arXiv.2004.10934},
+  note    = {arXiv:2004.10934}
+}
+
+@inproceedings{efficientdet,
+  author    = {Tan, Mingxing and Pang, Ruoming and Le, Quoc V.},
+  title     = {{EfficientDet}: Scalable and Efficient Object Detection},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2020},
+  pages     = {10781--10790},
+  doi       = {10.1109/CVPR42600.2020.01079}
+}
+
+@article{centernet,
+  author  = {Zhou, Xingyi and Wang, Dequan and Kr\"{a}henb\"{u}hl, Philipp},
+  title   = {Objects as Points},
+  journal = {arXiv},
+  year    = {2019},
+  doi     = {10.48550/arXiv.1904.07850},
+  note    = {arXiv:1904.07850}
+}
+
+@inproceedings{unet,
+  author    = {Ronneberger, Olaf and Fischer, Philipp and Brox, Thomas},
+  title     = {{U-Net}: Convolutional Networks for Biomedical Image Segmentation},
+  booktitle = {Medical Image Computing and Computer-Assisted Intervention (MICCAI 2015)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {9351},
+  year      = {2015},
+  pages     = {234--241},
+  doi       = {10.1007/978-3-319-24574-4_28}
+}
+
+@inproceedings{stardist,
+  author    = {Schmidt, Uwe and Weigert, Martin and Broaddus, Coleman and Myers, Gene},
+  title     = {Cell Detection with Star-Convex Polygons},
+  booktitle = {Medical Image Computing and Computer-Assisted Intervention (MICCAI 2018)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {11071},
+  year      = {2018},
+  pages     = {265--273},
+  doi       = {10.1007/978-3-030-00934-2_30}
+}
+
+@inproceedings{soviany2018,
+  author    = {Soviany, Petru and Ionescu, Radu Tudor},
+  title     = {Optimizing the Trade-Off between Single-Stage and Two-Stage Deep Object Detectors Using Image Difficulty Prediction},
+  booktitle = {Proceedings of the 20th International Symposium on Symbolic and Numeric Algorithms for Scientific Computing (SYNASC)},
+  year      = {2018},
+  pages     = {209--214},
+  doi       = {10.1109/SYNASC.2018.00041}
+}
+
+@misc{detectron2,
+  author       = {Wu, Yuxin and Kirillov, Alexander and Massa, Francisco and Lo, Wan-Yen and Girshick, Ross},
+  title        = {{Detectron2}},
+  year         = {2019},
+  howpublished = {\url{https://github.com/facebookresearch/detectron2}},
+  note         = {Accessed on 4 September 2026}
+}
+
+%% ---------------------------------------------------------------------------
+%% Box-supervised and weakly supervised instance segmentation
+%% ---------------------------------------------------------------------------
+
+@inproceedings{mask2former,
+  author    = {Cheng, Bowen and Misra, Ishan and Schwing, Alexander G. and Kirillov, Alexander and Girdhar, Rohit},
+  title     = {Masked-Attention Mask Transformer for Universal Image Segmentation},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2022},
+  pages     = {1290--1299}
+}
+
+@inproceedings{boxinst,
+  author    = {Tian, Zhi and Shen, Chunhua and Wang, Xinlong and Chen, Hao},
+  title     = {{BoxInst}: High-Performance Instance Segmentation with Box Annotations},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2021},
+  pages     = {5443--5452},
+  doi       = {10.1109/CVPR46437.2021.00540}
+}
+
+@article{box2mask,
+  author  = {Li, Wentong and Liu, Wenyu and Zhu, Jianke and Cui, Miaomiao and Yu, Risheng and Hua, Xian-Sheng and Zhang, Lei},
+  title   = {{Box2Mask}: Box-Supervised Instance Segmentation via Level-Set Evolution},
+  journal = {IEEE Trans. Pattern Anal. Mach. Intell.},
+  year    = {2024},
+  volume  = {46},
+  number  = {7},
+  pages   = {5157--5173},
+  doi     = {10.1109/TPAMI.2024.3363054}
+}
+
+@inproceedings{boxteacher,
+  author    = {Cheng, Tianheng and Wang, Xinggang and Chen, Shaoyu and Zhang, Qian and Liu, Wenyu},
+  title     = {{BoxTeacher}: Exploring High-Quality Pseudo Labels for Weakly Supervised Instance Segmentation},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  year      = {2023},
+  pages     = {3145--3154},
+  doi       = {10.1109/CVPR52729.2023.00307}
+}
+
+@inproceedings{boxsnake,
+  author    = {Yang, Rui and Song, Lin and Ge, Yixiao and Li, Xiu},
+  title     = {{BoxSnake}: Polygonal Instance Segmentation with Box Supervision},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2023},
+  pages     = {766--776},
+  doi       = {10.1109/ICCV51070.2023.00077}
+}
+
+@inproceedings{discobox,
+  author    = {Lan, Shiyi and Yu, Zhiding and Choy, Christopher and Radhakrishnan, Subhashree and Liu, Guilin and Zhu, Yuke and Davis, Larry S. and Anandkumar, Anima},
+  title     = {{DiscoBox}: Weakly Supervised Instance Segmentation and Semantic Correspondence from Box Supervision},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2021},
+  pages     = {3406--3416},
+  doi       = {10.1109/ICCV48922.2021.00340}
+}
+
+@inproceedings{emadapt,
+  author    = {Papandreou, George and Chen, Liang-Chieh and Murphy, Kevin P. and Yuille, Alan L.},
+  title     = {Weakly- and Semi-Supervised Learning of a Deep Convolutional Network for Semantic Image Segmentation},
+  booktitle = {Proceedings of the IEEE International Conference on Computer Vision (ICCV)},
+  year      = {2015},
+  pages     = {1742--1750},
+  doi       = {10.1109/ICCV.2015.203}
+}
+
+@inproceedings{ddt,
+  author    = {Wei, Xiu-Shen and Zhang, Chen-Lin and Wu, Jianxin and Shen, Chunhua and Zhou, Zhi-Hua},
+  title     = {Deep Descriptor Transforming for Image Co-Localization},
+  booktitle = {Proceedings of the 26th International Joint Conference on Artificial Intelligence (IJCAI)},
+  year      = {2017},
+  pages     = {3048--3054},
+  doi       = {10.24963/ijcai.2017/425}
+}
+
+@inproceedings{stego,
+  author    = {Hamilton, Mark and Zhang, Zhoutong and Hariharan, Bharath and Snavely, Noah and Freeman, William T.},
+  title     = {Unsupervised Semantic Segmentation by Distilling Feature Correspondences},
+  booktitle = {Proceedings of the 10th International Conference on Learning Representations (ICLR)},
+  year      = {2022},
+  doi       = {10.48550/arXiv.2203.08414},
+  note      = {arXiv:2203.08414}
+}
+
+%% ---------------------------------------------------------------------------
+%% Self-supervised and foundation models
+%% ---------------------------------------------------------------------------
+
+@article{dinov3,
+  author  = {Sim\'{e}oni, Oriane and Vo, Huy V. and Seitzer, Maximilian and Baldassarre, Federico and Oquab, Maxime and Jose, Cijo and Khalidov, Vasil and Szafraniec, Marc and Yi, Seungeun and Ramamonjisoa, Micha\"{e}l and others},
+  title   = {{DINOv3}},
+  journal = {arXiv},
+  year    = {2025},
+  doi     = {10.48550/arXiv.2508.10104},
+  note    = {arXiv:2508.10104}
+}
+
+@article{dinov2,
+  author  = {Oquab, Maxime and Darcet, Timoth\'{e}e and Moutakanni, Th\'{e}o and Vo, Huy V. and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and others},
+  title   = {{DINOv2}: Learning Robust Visual Features without Supervision},
+  journal = {Trans. Mach. Learn. Res.},
+  year    = {2024},
+  doi     = {10.48550/arXiv.2304.07193},
+  note    = {arXiv:2304.07193}
+}
+
+@inproceedings{dino,
+  author    = {Caron, Mathilde and Touvron, Hugo and Misra, Ishan and J\'{e}gou, Herv\'{e} and Mairal, Julien and Bojanowski, Piotr and Joulin, Armand},
+  title     = {Emerging Properties in Self-Supervised Vision Transformers},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2021},
+  pages     = {9650--9660},
+  doi       = {10.1109/ICCV48922.2021.00951}
+}
+
+@inproceedings{ibot,
+  author    = {Zhou, Jinghao and Wei, Chen and Wang, Huiyu and Shen, Wei and Xie, Cihang and Yuille, Alan and Kong, Tao},
+  title     = {{iBOT}: Image {BERT} Pre-Training with Online Tokenizer},
+  booktitle = {Proceedings of the 10th International Conference on Learning Representations (ICLR)},
+  year      = {2022},
+  doi       = {10.48550/arXiv.2111.07832},
+  note      = {arXiv:2111.07832}
+}
+
+@inproceedings{clip,
+  author    = {Radford, Alec and Kim, Jong Wook and Hallacy, Chris and Ramesh, Aditya and Goh, Gabriel and Agarwal, Sandhini and Sastry, Girish and Askell, Amanda and Mishkin, Pamela and Clark, Jack and Krueger, Gretchen and Sutskever, Ilya},
+  title     = {Learning Transferable Visual Models from Natural Language Supervision},
+  booktitle = {Proceedings of the 38th International Conference on Machine Learning (ICML)},
+  year      = {2021},
+  pages     = {8748--8763}
+}
+
+@inproceedings{vit22b,
+  author    = {Dehghani, Mostafa and Djolonga, Josip and Mustafa, Basil and Padlewski, Piotr and Heek, Jonathan and Gilmer, Justin and Steiner, Andreas and Caron, Mathilde and Geirhos, Robert and Alabdulmohsin, Ibrahim and others},
+  title     = {Scaling Vision Transformers to 22 Billion Parameters},
+  booktitle = {Proceedings of the 40th International Conference on Machine Learning (ICML)},
+  year      = {2023},
+  pages     = {7480--7512}
+}
+
+@article{perceptionencoder,
+  author  = {Bolya, Daniel and Huang, Po-Yao and Sun, Peize and Cho, Jang Hyun and Madotto, Andrea and Wei, Chen and Ma, Tengyu and Zhi, Jiale and Rajasegaran, Jathushan and Rasheed, Hanoona and others},
+  title   = {Perception Encoder: The Best Visual Embeddings Are Not at the Output of the Network},
+  journal = {arXiv},
+  year    = {2025},
+  doi     = {10.48550/arXiv.2504.13181},
+  note    = {arXiv:2504.13181}
+}
+
+@inproceedings{sam,
+  author    = {Kirillov, Alexander and Mintun, Eric and Ravi, Nikhila and Mao, Hanzi and Rolland, Chloe and Gustafson, Laura and Xiao, Tete and Whitehead, Spencer and Berg, Alexander C. and Lo, Wan-Yen and Doll\'{a}r, Piotr and Girshick, Ross},
+  title     = {Segment Anything},
+  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+  year      = {2023},
+  pages     = {4015--4026},
+  doi       = {10.1109/ICCV51070.2023.00371}
+}
+
+@inproceedings{sam2,
+  author    = {Ravi, Nikhila and Gabeur, Valentin and Hu, Yuan-Ting and Hu, Ronghang and Ryali, Chaitanya and Ma, Tengyu and Khedr, Haitham and R\"{a}dle, Roman and Rolland, Chloe and Gustafson, Laura and Mintun, Eric and Pan, Junting and Alwala, Kalyan Vasudev and Carion, Nicolas and Wu, Chao-Yuan and Girshick, Ross and Doll\'{a}r, Piotr and Feichtenhofer, Christoph},
+  title     = {{SAM 2}: Segment Anything in Images and Videos},
+  booktitle = {Proceedings of the 13th International Conference on Learning Representations (ICLR)},
+  year      = {2025},
+  doi       = {10.48550/arXiv.2408.00714},
+  note      = {arXiv:2408.00714}
+}
+
+@article{sam3,
+  author  = {Carion, Nicolas and Gustafson, Laura and Lo, Wan-Yen and Mintun, Eric and Ravi, Nikhila and Rolland, Chloe and Doll\'{a}r, Piotr and Feichtenhofer, Christoph and Girshick, Ross and others},
+  title   = {{SAM 3}: Segment Anything with Concepts},
+  journal = {arXiv},
+  year    = {2025},
+  doi     = {10.48550/arXiv.2511.16719},
+  note    = {arXiv:2511.16719}
+}
+
+@inproceedings{geobench,
+  author    = {Lacoste, Alexandre and Lehmann, Nils and Rodriguez, Pau and Sherwin, Evan David and Kerner, Hannah and L\"{u}tjens, Bj\"{o}rn and Irvin, Jeremy Andrew and Dao, David and Alemohammad, Hamed and Drouin, Alexandre and Gunturkun, Mehmet and Huang, Gabriel and Vazquez, David and Newman, Dava and Bengio, Yoshua and Ermon, Stefano and Zhu, Xiao Xiang},
+  title     = {{GEO-Bench}: Toward Foundation Models for {Earth} Monitoring},
+  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS 2023), Datasets and Benchmarks Track},
+  year      = {2023},
+  doi       = {10.48550/arXiv.2306.03831},
+  note      = {arXiv:2306.03831}
+}
+
+@inproceedings{goldblum2023,
+  author    = {Goldblum, Micah and Souri, Hossein and Ni, Renkun and Shu, Manli and Prabhu, Viraj and Somepalli, Gowthami and Chattopadhyay, Prithvijit and Ibrahim, Mark and Bardes, Adrien and Hoffman, Judy and Chellappa, Rama and Wilson, Andrew Gordon and Goldstein, Tom},
+  title     = {Battle of the Backbones: A Large-Scale Comparison of Pretrained Models across Computer Vision Tasks},
+  booktitle = {Advances in Neural Information Processing Systems 36 (NeurIPS 2023)},
+  year      = {2023},
+  pages     = {29343--29371}
+}
+
+@article{jepa,
+  author  = {LeCun, Yann},
+  title   = {A Path towards Autonomous Machine Intelligence, Version 0.9.2},
+  journal = {OpenReview},
+  year    = {2022},
+  note    = {\url{https://openreview.net/forum?id=BZ5a1r-kVsf}}
+}
+
+%% ---------------------------------------------------------------------------
+%% Remote sensing reviews
+%% ---------------------------------------------------------------------------
+
+@article{zhu2017,
+  author  = {Zhu, Xiao Xiang and Tuia, Devis and Mou, Lichao and Xia, Gui-Song and Zhang, Liangpei and Xu, Feng and Fraundorfer, Friedrich},
+  title   = {Deep Learning in Remote Sensing: A Comprehensive Review and List of Resources},
+  journal = {IEEE Geosci. Remote Sens. Mag.},
+  year    = {2017},
+  volume  = {5},
+  number  = {4},
+  pages   = {8--36},
+  doi     = {10.1109/MGRS.2017.2762307}
+}
+
+@inproceedings{vit,
+  author    = {Dosovitskiy, Alexey and Beyer, Lucas and Kolesnikov, Alexander and Weissenborn, Dirk and Zhai, Xiaohua and Unterthiner, Thomas and Dehghani, Mostafa and Minderer, Matthias and Heigold, Georg and Gelly, Sylvain and Uszkoreit, Jakob and Houlsby, Neil},
+  title     = {An Image Is Worth 16x16 Words: Transformers for Image Recognition at Scale},
+  booktitle = {Proceedings of the 9th International Conference on Learning Representations (ICLR)},
+  year      = {2021},
+  doi       = {10.48550/arXiv.2010.11929},
+  note      = {arXiv:2010.11929}
+}
+
+@inproceedings{cornernet,
+  author    = {Law, Hei and Deng, Jia},
+  title     = {{CornerNet}: Detecting Objects as Paired Keypoints},
+  booktitle = {Proceedings of the European Conference on Computer Vision (ECCV)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {11218},
+  year      = {2018},
+  pages     = {765--781},
+  doi       = {10.1007/978-3-030-01264-9_45}
+}
+
+@article{silva2016,
+  author  = {Silva, Carlos A. and Hudak, Andrew T. and Vierling, Lee A. and Loudermilk, E. Louise and O'Brien, Joseph J. and Hiers, J. Kevin and Jack, Steve B. and Gonzalez-Benecke, Carlos and Lee, Heezin and Falkowski, Michael J. and Khosravipour, Anahita},
+  title   = {Imputation of Individual Longleaf Pine ({\it Pinus palustris} Mill.) Tree Attributes from Field and {LiDAR} Data},
+  journal = {Can. J. Remote Sens.},
+  year    = {2016},
+  volume  = {42},
+  number  = {5},
+  pages   = {554--573},
+  doi     = {10.1080/07038992.2016.1196582}
+}
