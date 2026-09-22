@@ -1,0 +1,26 @@
+{
+ "n_crowns": 25705,
+ "native_m_per_px": 0.1,
+ "rows": {
+  "0.5m": {
+   "frac_zero_enclosed_px": 0.0389,
+   "frac_zero_centre_in_px": 0.0005,
+   "frac_bbox_side_lt_1px": 0.001
+  },
+  "1.0m": {
+   "frac_zero_enclosed_px": 0.2502,
+   "frac_zero_centre_in_px": 0.0143,
+   "frac_bbox_side_lt_1px": 0.0317
+  },
+  "2.0m": {
+   "frac_zero_enclosed_px": 0.57,
+   "frac_zero_centre_in_px": 0.1311,
+   "frac_bbox_side_lt_1px": 0.2263
+  },
+  "3.0m": {
+   "frac_zero_enclosed_px": 0.7772,
+   "frac_zero_centre_in_px": 0.2643,
+   "frac_bbox_side_lt_1px": 0.3945
+  }
+ }
+}

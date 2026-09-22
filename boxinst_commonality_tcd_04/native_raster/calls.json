@@ -1,0 +1,30 @@
+[
+  {
+    "call_id": "fc-01M1WW2PKJZZ222ARKQ3NPRE6J",
+    "app": "tcd04-native-raster-valknobs",
+    "fn": "sweep",
+    "kwargs": {
+      "res": 2048
+    },
+    "note": "tau sweep @2048, alpha/kappa frozen"
+  },
+  {
+    "call_id": "fc-01M1XA6D8MDWDTQFJ6XTH3R70K",
+    "app": "tcd04-lace-multitau",
+    "fn": "render",
+    "kwargs": {
+      "seed": 0,
+      "limit": 3
+    },
+    "note": "SMOKE limit=3 gate check"
+  },
+  {
+    "call_id": "fc-01M1XAAGEM6392G79AXE0SEF26",
+    "app": "tcd04-lace-multitau",
+    "fn": "render",
+    "kwargs": {
+      "seed": 0
+    },
+    "note": "FULL 439 seed0 tau 0.35+0.40 @2048"
+  }
+]

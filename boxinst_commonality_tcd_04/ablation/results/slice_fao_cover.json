@@ -1,0 +1,15 @@
+{
+ "definition": "labelled cover = canopy_frac + crown_frac per tile, capped at 1; unseen tiles only",
+ "sparse_slice_biomes_7_8_9_10_12_13": {
+  "n": 237,
+  "median_cover": 0.0744,
+  "frac_below_10pct": 0.5949,
+  "frac_below_40pct": 0.9409
+ },
+ "forest_biomes_1_to_6": {
+  "n": 3264,
+  "median_cover": 0.2094,
+  "frac_below_10pct": 0.3097,
+  "frac_below_40pct": 0.7056
+ }
+}

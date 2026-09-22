@@ -91,3 +91,26 @@ boxinst_commonality_tcd_04/confidence/preds_*_reranked.json
 boxinst_commonality_tcd_04/confidence/preds_*_product.json
 #   - _ap_cache_s0.pkl  score-invariant mask-IoU cache, rebuilt by confidence/ablation.py
 boxinst_commonality_tcd_04/confidence/_ap_cache_s0.pkl
+
+# LaTeX build byproducts (tectonic / LaTeX Workshop), scoped to the paper directory so that
+# experiment *.log files elsewhere in the repo stay visible to git
+boxinst_commonality_tcd_04/ablation/results/**/*.aux
+boxinst_commonality_tcd_04/ablation/results/**/*.bbl
+boxinst_commonality_tcd_04/ablation/results/**/*.blg
+boxinst_commonality_tcd_04/ablation/results/**/*.log
+boxinst_commonality_tcd_04/ablation/results/**/*.out
+boxinst_commonality_tcd_04/ablation/results/**/*.synctex.gz
+boxinst_commonality_tcd_04/ablation/results/**/*.fls
+boxinst_commonality_tcd_04/ablation/results/**/*.fdb_latexmk
+boxinst_commonality_tcd_04/ablation/results/**/*.toc
+boxinst_commonality_tcd_04/ablation/results/paper.pdf
+boxinst_commonality_tcd_04/ablation/results/arxiv/paper_arxiv.tex
+boxinst_commonality_tcd_04/ablation/results/arxiv/paper_arxiv.pdf
+boxinst_commonality_tcd_04/ablation/results/arxiv/lace.bib
+boxinst_commonality_tcd_04/ablation/results/arxiv/submission/
+
+# native-raster prediction dumps (35-40 MB each, regenerable on Modal)
+boxinst_commonality_tcd_04/native_raster/preds_*.json
+boxinst_commonality_tcd_04/native_raster/preds_*.jsonl
+boxinst_commonality_tcd_04/native_raster/*_scored.json
+boxinst_commonality_tcd_04/native_raster/scored_*.json

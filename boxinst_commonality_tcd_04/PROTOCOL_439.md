@@ -155,12 +155,12 @@ detections ≥0.5 barely move; the new detections are all low-confidence tail):
 | rpn topk | dets/tile | recall@0.5 | CN AP50 |
 |---|---|---|---|
 | 512 (shipped) | 97.9 | 0.6442 | 0.5706 |
-| **1000 (detectron2 default)** | **128.6** | — | **0.6255** |
+| **1000 (detectron2 default)** | **128.6** | 0.7227 | **0.6255** |
 | 2000 (2× default) | 163.1 | 0.7804 | 0.6605 |
 
 dets/tile are `n_det`/439 from `results_439/restor_{coco512,rpn1000_tree,rpn2000}.json`:
 42,987 / 56,438 / 71,606. (Corrected 2026-09-03: the 1000 row previously read 163, which is
-the 2000 figure.)
+the 2000 figure. Recall for the 1000 row recovered 2026-09-22 from the stored predictions via `ablation/scripts/t_restor_rpn_recall.py`, gated on the 512/2000 values reproducing exactly; see `ablation/results/restor_rpn_recall.json`.)
 
 **Published operating point = 1000**: the framework default, chosen by neither party. 512 is
 Restor's deliberate reduction below it; 2000 is above it and was picked arbitrarily by us. Report

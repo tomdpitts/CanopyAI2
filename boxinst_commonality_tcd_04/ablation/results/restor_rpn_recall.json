@@ -1,0 +1,23 @@
+{
+ "512 (released)": {
+  "preds": "restor_baseline/preds_restor.json",
+  "n_det": 42987,
+  "dets_per_tile": 97.9,
+  "recall_at_iou50": 0.6442,
+  "AP50_check": 0.5706
+ },
+ "1000 (Detectron2 default)": {
+  "preds": "restor_baseline/preds_restor_rpn1000_treeonly.json",
+  "n_det": 56438,
+  "dets_per_tile": 128.6,
+  "recall_at_iou50": 0.7227,
+  "AP50_check": 0.6255
+ },
+ "2000": {
+  "preds": "restor_baseline/preds_restor_rpn2000.json",
+  "n_det": 71606,
+  "dets_per_tile": 163.1,
+  "recall_at_iou50": 0.7804,
+  "AP50_check": 0.6605
+ }
+}
