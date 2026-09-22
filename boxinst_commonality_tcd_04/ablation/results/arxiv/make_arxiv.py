@@ -80,7 +80,7 @@ preamble = r"""\ifdefined\XeTeXversion\else\pdfoutput=1\fi
 \providecommand{\xmark}{$\times$}
 
 \title{%s}
-\author{Thomas Pitts\thanks{Corresponding author: \texttt{thomas.pitts@uts.edu.au}}, \quad Kunqi Li, \quad Bin Liang\\[6pt]
+\author{Thomas Pitts\thanks{Corresponding author: \texttt{thomas.pitts@uts.edu.au}. ORCID: \href{https://orcid.org/0009-0000-8884-2381}{0009-0000-8884-2381}.}, \quad Kunqi Li, \quad Bin Liang\\[6pt]
 \normalsize Department of Data Science, University of Technology Sydney}
 \date{}
 \hypersetup{pdfauthor={Thomas Pitts, Kunqi Li, Bin Liang}}
@@ -125,6 +125,8 @@ final = preamble + front + body.rstrip() + "\n" + back
 final = final.replace(r"\texttt{edge\_band\_buffer\_percentage}", r"\texttt{edge\_band\_}\allowbreak\texttt{buffer\_}\allowbreak\texttt{percentage}")
 final = final.replace(r"\begin{table}[H]", r"\begin{table}[!htbp]")  # let text fill the page instead of [H] gaps
 final = re.sub(r"\n{3,}", "\n\n", final)
+bad = sorted({c for c in final if ord(c) > 127})
+assert not bad, f"non-ASCII characters would break pdflatex on arXiv: {bad}"
 dst.write_text(final)
 # bib: copy alongside, minus the %% header comments that mention the MDPI style
 bib = (here.parent / "lace.bib").read_text()
@@ -138,6 +140,7 @@ print("wrote", dst, len(final.split("\n")), "lines; leaks:", leak or "none")
 # plain-text abstract for the arXiv metadata form (TeX math kept, LaTeX macros stripped)
 a = abstract.replace("``", '"').replace("''", '"').replace("~", " ").replace(r"$\sim$", "~").replace(r"\%", "%").replace(r"\&", "&")
 a = re.sub(r"\\cite\{[^}]*\}", "", a)
+a = re.sub(r"\$([0-9.]+)%\$", r"\1%", a)  # a bare % inside $...$ is a MathJax comment; keep percentages outside math
 a = re.sub(r"\\(emph|textbf|textit)\{([^}]*)\}", r"\2", a)
 a = re.sub(r"\s+", " ", a).strip()
 (here / "abstract_for_form.txt").write_text(a + "\n")

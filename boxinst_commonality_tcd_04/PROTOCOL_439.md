@@ -147,7 +147,7 @@ No model is forced out of distribution; only the measurement is held fixed.
 ### Restor's proposal budget — DECIDED: rpn topk 1000
 
 Their config ships `RPN.PRE/POST_NMS_TOPK_TEST: 512`, **half** detectron2's FPN default of 1000,
-against tiles holding up to 450 GT crowns. Mask R-CNN can only detect what its RPN proposes, so
+against tiles holding up to 422 GT crowns (450 instances including canopy groups). Mask R-CNN can only detect what its RPN proposes, so
 this is a third truncation knob of exactly the same kind as `SCORE_THRESH_TEST`, which we already
 raise. Measured effect — it is proposal starvation, not rescoring (max score identical at 0.9964;
 detections ≥0.5 barely move; the new detections are all low-confidence tail):
