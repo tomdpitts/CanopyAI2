@@ -1,0 +1,34 @@
+{
+ "tile": "tcd_val_tile_147",
+ "crop_xywh": [
+  128,
+  768,
+  512
+ ],
+ "det": "boxinst_commonality_tcd_04/modal_savanna_multiseed/phase4/det_tcd_s0.pt",
+ "em": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/em_model_4p_fix.npz",
+ "preds": "boxinst_commonality_tcd_04/native_raster/preds_lace_s0_r2048_tau040.json",
+ "show_thr_sprime": 0.11,
+ "tau": 0.4,
+ "n_shown": 14,
+ "encoder_window_xywh": [
+  416,
+  784,
+  48
+ ],
+ "zoom": {
+  "box": [
+   433.20001220703125,
+   764.7999877929688,
+   533.4000244140625,
+   875.5999755859375
+  ],
+  "s": 0.49,
+  "pbar": 0.647,
+  "m": 0.814,
+  "s2": 0.258,
+  "band": 2
+ },
+ "partition": "same crop, GT boxes of this holdout tile (illustrates the fit's partition rule)",
+ "note": "deployed s0 weights + deployed Modal features; reproduces published boxes/s'"
+}

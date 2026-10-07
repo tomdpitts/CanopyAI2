@@ -1,0 +1,19 @@
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+Traceback (most recent call last):
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/score_coco.py", line 288, in <module>
+    main()
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/score_coco.py", line 279, in main
+    r = score(a.preds, a.gt, a.res, a.max_dets, a.score_floor)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/score_coco.py", line 236, in score
+    return score_many([preds_path], gt_path, res, max_dets, score_floor)[0]
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/score_coco.py", line 232, in score_many
+    return [_score_one(p, ctx, res, max_dets, score_floor) for p in preds_paths]
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/score_coco.py", line 232, in <listcomp>
+    return [_score_one(p, ctx, res, max_dets, score_floor) for p in preds_paths]
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/score_coco.py", line 241, in _score_one
+    P = json.load(open(preds_path))
+FileNotFoundError: [Errno 2] No such file or directory: 'boxinst_commonality_tcd_04/native_raster/preds_lace_s1 040_r2048_tau.json'

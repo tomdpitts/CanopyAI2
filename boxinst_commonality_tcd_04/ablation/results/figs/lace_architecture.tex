@@ -1,0 +1,353 @@
+% LACE architecture figure (pipeline + expanded box-to-mask module).
+% Build: tectonic lace_architecture.tex   (from this directory)
+% Every inset is one OAM-TCD holdout crop run through the deployed s0 pipeline; see
+% arch/make_arch_panels.py and arch/arch_meta.json for provenance.
+\documentclass[tikz,border=3pt]{standalone}
+\usepackage{amsmath,amssymb}
+\usepackage{mathspec}
+% Calibri for text and math letters/digits/Greek; Carlito (metric-identical open clone, in the
+% TeX bundle) when Calibri is not installed. macOS: Font Book > Calibri > Download, then rebuild.
+\IfFontExistsTF{Calibri}{%
+  \setmainfont{Calibri}\setsansfont{Calibri}%
+  \setmathsfont(Digits,Latin,Greek){Calibri}\setmathrm{Calibri}%
+}{%
+  \defaultfontfeatures{Extension=.ttf, UprightFont=*-Regular, BoldFont=*-Bold,
+                       ItalicFont=*-Italic, BoldItalicFont=*-BoldItalic}%
+  \setmainfont{Carlito}\setsansfont{Carlito}%
+  \setmathsfont(Digits,Latin,Greek){Carlito}\setmathrm{Carlito}%
+}
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+\usetikzlibrary{arrows.meta,calc}
+
+% palette (shared with lace_overview.tex)
+\definecolor{ink}{HTML}{2B2B2B}
+\definecolor{frz}{HTML}{3B6EA8}   % frozen
+\definecolor{trn}{HTML}{D9822B}   % trained on boxes
+\definecolor{ffit}{HTML}{3F8F5F}  % fitted from boxes, no gradients
+\definecolor{crown}{HTML}{5E9E4E}
+\definecolor{soil}{HTML}{C9A26B}
+\definecolor{panel}{HTML}{F6F6F6}
+\definecolor{bbg}{HTML}{8C510A}   % BrBG ends and centre
+\definecolor{bmid}{HTML}{F5F5F5}
+\definecolor{bfg}{HTML}{01665E}
+\definecolor{vlo}{HTML}{440154}   % viridis ends and centre
+\definecolor{vmid}{HTML}{21918C}
+\definecolor{vhi}{HTML}{FDE725}
+% encoder phases (dy,dx) = (0,0) (0,8) (8,0) (8,8)
+\definecolor{q0}{HTML}{3B6EA8}
+\definecolor{q1}{HTML}{B5477D}
+\definecolor{q2}{HTML}{2A9D8F}
+\definecolor{q3}{HTML}{C69214}
+
+\newcommand{\notesize}{\fontsize{5.8}{6.8}\selectfont}
+% frozen / learned markers (Font Awesome glyphs; colour emoji do not render in XeTeX)
+\definecolor{ice}{HTML}{3B8ED0}
+\definecolor{fire}{HTML}{E8590C}
+\newcommand{\frozenicon}{\raisebox{-0.12em}{\includegraphics[height=1.05em]{arch/snowflake_icon.png}}}  % supplied icon, cropped
+\newcommand{\fireicon}{\raisebox{-0.12em}{\includegraphics[height=1.05em]{arch/fire_icon.png}}}  % supplied icon, cropped
+% clockwise three-arrow cycle
+\newcommand{\cycleicon}{\tikz[baseline=-0.6ex, line width=0.55pt, line cap=round]{%
+  \foreach \a in {110,-10,-130}{\draw[-{Straight Barb[length=1.4pt,width=3.0pt,line width=0.55pt]}]
+    (\a:0.125) arc[start angle=\a, end angle=\a-92, radius=0.125];}}}
+\tikzset{
+  panel/.style={draw=ink!25, fill=panel, rounded corners=4pt, line width=0.4pt},
+  big/.style={draw=ffit!70, fill=ffit!4, rounded corners=5pt, line width=0.8pt},
+  sub/.style={draw=ink!20, fill=white, rounded corners=3pt, line width=0.4pt},
+  card/.style={draw=ink!15, fill=panel, rounded corners=2pt, line width=0.3pt},
+  title/.style={font=\small\bfseries, text=ink, anchor=north},
+  head/.style={font=\footnotesize\bfseries, text=ink, anchor=north west, inner sep=0pt},
+  chead/.style={font=\scriptsize\bfseries, text=ink, anchor=north west, inner sep=0pt},
+  lbl/.style={font=\scriptsize, text=ink!85, align=center, inner sep=1pt},
+  tlbl/.style={font=\notesize, text=ink!85, align=center, inner sep=1pt},
+  eq/.style={font=\scriptsize, text=ink, anchor=west, inner sep=1pt},
+  tag/.style={font=\tiny\bfseries, text=white, rounded corners=2pt, inner sep=1.5pt, inner xsep=3pt},
+  num/.style={circle, fill=ffit, text=white, font=\tiny\bfseries, inner sep=0.5pt, minimum size=8.5pt},
+  arr/.style={-{Stealth[length=5pt,width=4pt]}, line width=0.7pt, ink!70},
+  sarr/.style={-{Stealth[length=3.5pt,width=3pt]}, line width=0.5pt, ink!60},
+  img/.style={inner sep=0pt, draw=ink!40, line width=0.3pt},
+}
+
+\input{arch/zoom_cells.tex}
+\input{arch/rho_cells.tex}
+\input{arch/enc_window.tex}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\pgfmathsetmacro{\zmax}{max(\zoomnx,\zoomny)}
+
+% =================================================================== TOP ROW: pipeline
+\foreach \x/\w/\n in {0/2.9/A, 3.32/4.0/B, 7.74/3.6/C, 11.76/2.9/D, 15.08/2.9/E}{
+  \node[panel, minimum width=\w cm, minimum height=4.5cm, anchor=north west] (P\n) at (\x,0) {};
+}
+\draw[ffit!70, line width=0.8pt, rounded corners=4pt] (PD.north west) rectangle (PD.south east);
+
+% --- input
+\node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PA.north west) {Input tile};
+\node[img] at (1.45,-2.05) {\includegraphics[width=2.4cm]{arch/in_rgb.jpg}};
+% window shown in the encoding panel, with zoom lines to it
+\pgfmathsetmacro{\ips}{2.4/\cropS}
+\pgfmathsetmacro{\wxa}{0.25+\encwx*\ips}\pgfmathsetmacro{\wxb}{\wxa+\encws*\ips}
+\pgfmathsetmacro{\wya}{-0.85-\encwy*\ips}\pgfmathsetmacro{\wyb}{\wya-\encws*\ips}
+\draw[ink!50, line width=0.4pt] (\wxb,\wya) -- (3.5,-1.09);
+\draw[ink!50, line width=0.4pt] (\wxb,\wyb) -- (3.5,-3.01);
+\draw[white, line width=0.6pt] (\wxa,\wya) rectangle (\wxb,\wyb);
+\node[lbl] at (1.45,-3.85) {RGB, $0.1$\,m/px};
+
+% --- 1 dense encoding: four 16 px patch grids offset by 8 px, interlaced
+\node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PB.north west) {1)\;Interlaced encoding};
+\node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PB.north east) {\frozenicon};
+% 48 x 48 px image window at 0.04 cm/px; (px, py) with py measured downwards from the top
+\def\ex{3.5}\def\ey{-1.09}
+\node[inner sep=0, anchor=north west] at (\ex,\ey) {\includegraphics[width=1.92cm]{arch/enc_rgb.png}};
+\begin{scope}[shift={(\ex,\ey)}, x=0.04cm, y=-0.04cm, line width=1.0pt]
+  % light fill per patch
+  \foreach \dy/\dx/\c in {0/0/q0, 0/8/q1, 8/0/q2, 8/8/q3}{
+    \fill[\c, opacity=0.10] (16+\dx,16+\dy) rectangle ++(16,16);
+  }
+  % edge pieces owned by one patch: solid
+  \foreach \c/\ax/\ay/\bx/\by in {
+      q0/16/16/24/16, q0/16/32/24/32, q0/16/16/16/24, q0/32/16/32/24,
+      q1/32/16/40/16, q1/32/32/40/32, q1/24/16/24/24, q1/40/16/40/24,
+      q2/16/24/24/24, q2/16/40/24/40, q2/16/32/16/40, q2/32/32/32/40,
+      q3/32/24/40/24, q3/32/40/40/40, q3/24/32/24/40, q3/40/32/40/40}{
+    \draw[\c, line cap=rect] (\ax,\ay) -- (\bx,\by);
+  }
+  % edge pieces shared by two patches: alternating dashes of both colours
+  \foreach \c/\d/\ax/\ay/\bx/\by in {
+      q0/q1/24/16/32/16, q0/q1/24/32/32/32, q2/q3/24/24/32/24, q2/q3/24/40/32/40,
+      q0/q2/16/24/16/32, q0/q2/32/24/32/32, q1/q3/24/24/24/32, q1/q3/40/24/40/32}{
+    \draw[\c] (\ax,\ay) -- (\bx,\by);
+    \draw[\d, dash pattern=on 1.5pt off 1.5pt] (\ax,\ay) -- (\bx,\by);
+  }
+\end{scope}
+\foreach \dy/\dx/\c in {0/0/q0, 0/8/q1, 8/0/q2, 8/8/q3}{
+  \foreach \i in {0,1,2}{ \foreach \j in {0,1,2}{
+    \pgfmathtruncatemacro{\px}{\dx+8+16*\i}\pgfmathtruncatemacro{\py}{\dy+8+16*\j}
+    \ifnum\px<47 \ifnum\py<47
+      \fill[\c, draw=white, line width=0.3pt] ({\ex+0.04*\px},{\ey-0.04*\py}) circle (1.5pt);
+    \fi\fi
+  }}
+}
+\draw[ink!40, line width=0.3pt] (\ex,\ey) rectangle ++(1.92,-1.92);
+\node[lbl] at (4.46,-3.34) {$16$\,px patches\\offset by $8$\,px};
+\draw[arr] (5.55,-2.05) -- (5.95,-2.05);
+\begin{scope}[shift={(6.14,-2.5)}]
+  % 5 x 5, cell-for-cell the centre lattice of the image window on the left
+  \foreach \i in {0,...,4}{ \foreach \j in {0,...,4}{
+    \pgfmathtruncatemacro{\q}{mod(\i,2)+2*mod(4-\j,2)}
+    \ifcase\q \def\c{q0}\or\def\c{q1}\or\def\c{q2}\else\def\c{q3}\fi
+    \fill[\c!60] (0.18*\i,0.18*\j) rectangle ++(0.18,0.18);
+  }}
+  \draw[white, line width=0.4pt, step=0.18] (0,0) grid (0.9,0.9);
+\end{scope}
+\node[lbl] at (6.59,-3.34) {interlaced\\stride $8$\,px};
+\node[lbl] at (5.32,-3.99) {DINOv3 ViT-L/16, $4$ passes\\$\widetilde F\in\mathbb{R}^{1024\times256\times256}$};
+
+% --- 2 detection
+\node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PC.north west) {2)\;Detection};
+\node[tag, fill=trn, anchor=south east] at ([xshift=-0.15cm, yshift=0.15cm]PC.south east) {trained on boxes};
+\node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PC.north east) {\fireicon};
+\node[img] (heat) at (8.6,-2.05) {\includegraphics[width=1.5cm]{arch/det_heat.png}};
+\node[img] (dbox) at (10.48,-2.05) {\includegraphics[width=1.5cm]{arch/det_boxes.jpg}};
+\draw[arr] (heat.east) -- (dbox.west);
+\node[lbl] at (8.6,-3.2) {centre heatmap};
+\node[lbl] at (10.48,-3.2) {boxes};
+\node[lbl] at (9.54,-3.85) {CenterNet-style head};
+
+% --- 3 box-to-mask (summary)
+\node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PD.north west) {3)\;Box\,$\to$\,Mask};
+\node[tag, fill=ffit, anchor=south east] at ([xshift=-0.15cm, yshift=0.15cm]PD.south east) {fitted from boxes};
+\node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PD.north east) {\fireicon};
+\pgfmathsetmacro{\dsc}{1.55/\zmax}
+\pgfmathsetmacro{\dx}{13.21-0.5*\dsc*\zoomnx}
+\pgfmathsetmacro{\dyb}{-2.05-0.5*\zoomny*\dsc}
+\begin{scope}[shift={(\dx,\dyb)}, scale=\dsc]
+  \zoompfg
+  \draw[trn, line width=0.7pt] \zoombox;
+\end{scope}
+\node[lbl] at (13.21,-3.85) {$p_{fg}$ per cell};
+
+% --- output
+\node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PE.north west) {Output};
+\node[img] at (16.53,-2.05) {\includegraphics[width=2.3cm]{arch/out_masks.jpg}};
+\shade[left color=vlo, right color=vmid] (15.75,-3.4) rectangle (16.53,-3.3);
+\shade[left color=vmid, right color=vhi] (16.53,-3.4) rectangle (17.31,-3.3);
+\node[tlbl, anchor=east] at (15.73,-3.35) {low};
+\node[tlbl, anchor=west] at (17.33,-3.35) {high};
+\node[lbl] at (16.53,-3.85) {masks ranked by $s'$};
+
+% --- main arrows
+\foreach \a/\b in {PA/PB, PB/PC, PC/PD, PD/PE}{
+  \draw[arr] ([yshift=0.2cm]\a.east) -- ([yshift=0.2cm]\b.west);
+}
+\draw[arr, frz!80] (6.6,0) -- ++(0,0.3) -| (12.4,0);
+\node[lbl, text=frz, anchor=south] at (9.5,0.3) {$\widetilde F$};
+
+
+% =================================================================== BOTTOM: module
+% Every card uses local coordinates from its top-left corner: header row at y=-0.27
+% (badge centre x=0.27, title from x=0.47, icon 0.27 in from the right edge), content below y=-0.55.
+\node[big, minimum width=18cm, minimum height=8.8cm, anchor=north west] (BIG) at (0,-5.25) {};
+\node[head, font=\small\bfseries] at (0.25,-5.42) {3)\;Box\,$\to$\,Mask module};
+
+% ------------------------------------------------ FIT
+\node[sub, minimum width=11.45cm, minimum height=7.95cm, anchor=north west] (FIT) at (0.2,-5.95) {};
+\node[head] at (0.4,-6.12) {Fit once on training boxes};
+
+% --- (1) whiten
+\node[card, minimum width=2.95cm, minimum height=3.0cm, anchor=north west] (A1) at (0.4,-6.6) {};
+\begin{scope}[shift={(0.4,-6.6)}]
+  \node[num] at (0.27,-0.27) {1};
+  \node[chead, anchor=west] at (0.47,-0.27) {Whiten};
+  \begin{scope}[shift={(0.78,-1.35)}]
+    \shade[ball color=frz!10] (0,0) circle (0.55);
+    \draw[ink!45, line width=0.4pt] (0,0) circle (0.55);
+    \draw[ink!30, dashed, line width=0.3pt] (0,0) ellipse (0.55 and 0.16);
+    \foreach \a/\b in {20/0.35, 40/0.5, 55/0.3, 75/0.45, 30/0.6}{\fill[crown] ({0.55*cos(\a)*sqrt(1-\b*\b)},{0.55*\b}) circle (1.2pt);}
+    \foreach \a/\b in {200/-0.3, 230/-0.5, 250/-0.2, 215/0.1, 260/-0.6, 190/0.25}{\fill[soil] ({0.55*cos(\a)*sqrt(1-\b*\b)},{0.55*\b}) circle (1.2pt);}
+  \end{scope}
+  \node[eq] at (1.5,-0.95) {$a\in\mathbb{R}^{1024}$};
+  \draw[sarr] (1.95,-1.13) -- (1.95,-1.55);
+  \node[eq] at (1.5,-1.73) {$z\in\mathbb{S}^{127}$};
+  \node[eq] at (0.15,-2.55) {$z \propto (a-\mu)\,W/\lambda$, $\lVert z\rVert{=}1$};
+\end{scope}
+
+% --- (2) background mixture
+\node[card, minimum width=3.75cm, minimum height=3.0cm, anchor=north west] (A2) at (3.65,-6.6) {};
+\begin{scope}[shift={(3.65,-6.6)}]
+  \node[num] at (0.27,-0.27) {2};
+  \node[chead, anchor=west] at (0.47,-0.27) {Background mixture};
+  \node[img, anchor=north west] at (0.15,-0.58) {\includegraphics[width=1.4cm]{arch/fit_partition.jpg}};
+  \foreach \y/\c/\t/\o in {-0.68/crown/in-box/0.6, -0.88/trn/ring/0.85, -1.08/frz/clear/0.5}{
+    \fill[\c, opacity=\o] (1.8,\y-0.065) rectangle ++(0.15,0.13);
+    \node[tlbl, anchor=west] at (1.98,\y) {\t};
+  }
+  \draw[sarr] (1.68,-1.74) -- node[tlbl, above=1pt, anchor=south]{$k$-means} (2.44,-1.74);
+  \begin{scope}[shift={(2.52,-2.08)}]
+    \foreach \i in {0,...,11}{
+      \pgfmathtruncatemacro{\cx}{mod(\i,4)}\pgfmathtruncatemacro{\cy}{div(\i,4)}
+      \pgfmathsetmacro{\sh}{35+5*\i}
+      \fill[frz!\sh] (0.27*\cx,0.27*\cy) rectangle ++(0.21,0.21);
+    }
+  \end{scope}
+  \node[tlbl, anchor=north east] at (3.6,-2.12) {$K_{bg}{=}12$ centroids $G_j$};
+  \node[eq] at (0.12,-2.62) {$\ell_{bg}(z) = \log\textstyle\sum_j w_j\, e^{\kappa\, z^{\mathrm{T}} G_j}$};
+\end{scope}
+
+% --- (3) initialise foreground
+\node[card, minimum width=3.75cm, minimum height=3.0cm, anchor=north west] (A3) at (7.7,-6.6) {};
+\begin{scope}[shift={(7.7,-6.6)}]
+  \node[num] at (0.27,-0.27) {3};
+  \node[chead, anchor=west] at (0.47,-0.27) {Initialise foreground};
+  \node[tlbl, anchor=west] at (0.12,-0.68) {in-box cells ranked by $\ell_{bg}$};
+  \foreach \i/\L in {0/1.25,1/1.12,2/1.02,3/0.93,4/0.85,5/0.76,6/0.66,7/0.55,8/0.46,9/0.36}{
+    \pgfmathsetmacro{\yy}{-0.9-0.15*\i}
+    \ifnum\i<5 \fill[frz!35] (0.15,\yy) rectangle ++(\L,-0.1);
+    \else \fill[crown!80] (0.15,\yy) rectangle ++(\L,-0.1); \fi
+  }
+  \draw[ink!70, dashed, line width=0.5pt] (0.1,-1.625) -- (1.5,-1.625);
+  \node[tlbl, anchor=west] at (1.52,-1.625) {median};
+  \draw[sarr] (1.0,-2.12) -- node[tlbl, above, anchor=south]{$k$-means} (2.3,-2.12);
+  \begin{scope}[shift={(2.42,-2.5)}]
+    \foreach \i in {0,...,15}{
+      \pgfmathtruncatemacro{\cx}{mod(\i,4)}\pgfmathtruncatemacro{\cy}{div(\i,4)}
+      \pgfmathsetmacro{\sh}{45+3*\i}
+      \fill[crown!\sh] (0.26*\cx,0.26*\cy) rectangle ++(0.2,0.2);
+    }
+  \end{scope}
+  \node[tlbl, anchor=north east] at (3.6,-2.56) {$K_{fg}{=}16$ prototypes $C_k$};
+\end{scope}
+
+\draw[sarr, line width=0.7pt] (A1.east) -- (A2.west);
+\draw[sarr, line width=0.7pt] (A2.east) -- (A3.west);
+
+% --- (4) Expectation-Maximisation
+\node[card, fill=ffit!5, draw=ffit!45, minimum width=7.7cm, minimum height=3.75cm, anchor=north west] (EM) at (0.4,-9.95) {};
+\begin{scope}[shift={(0.4,-9.95)}]
+  \node[num] at (0.27,-0.27) {4};
+  \node[chead, anchor=west] at (0.47,-0.27) {Expectation-Maximisation\quad\cycleicon\,\normalfont×30};
+  \node[font=\footnotesize] at (7.43,-0.27) {\fireicon};
+  \node[chead, anchor=west, text=ffit!75!black] at (0.12,-0.75) {E-step\;\normalfont\textcolor{ink!60}{per box}};
+  \node[num, fill=bfg] at (0.27,-1.25) {a};
+  \node[eq] at (0.47,-1.25) {$A = \log\textstyle\sum_k \hat\rho_k\, e^{\kappa\, z^{\mathrm{T}} C_k} - \ell_{bg}$};
+  \node[num, fill=bfg] at (0.27,-1.85) {b};
+  \node[eq] at (0.47,-1.85) {$\bar A = A - \operatorname{mean}_{\text{box}} A$};
+  \node[num, fill=bfg] at (0.27,-2.45) {c};
+  \node[eq] at (0.47,-2.45) {$p_{fg} = \sigma\big(\bar A + \alpha\,\mathrm{logit}\textstyle\sum_k\rho_k\big)$};
+  \draw[ink!20, line width=0.4pt] (4.2,-0.6) -- (4.2,-2.7);
+  \node[chead, anchor=west, text=ffit!75!black] at (4.35,-0.75) {M-step\;\normalfont\textcolor{ink!60}{all boxes}};
+  \node[eq] at (4.35,-1.25) {$C_k \leftarrow \mathrm{norm}\big(P_k - \beta \bar N_k\big)$};
+  \node[eq] at (4.35,-1.85) {$\rho_k(\text{bin}) \leftarrow \operatorname{mean}_{\text{bin}}\, r_{nk}$};
+  \node[eq] at (4.35,-2.45) {Prune starved $C_k$};
+  \draw[arr, ffit] (2.0,-3.05) -- node[tlbl, above=1.5pt, text=ffit!75!black]{$r_{nk}$} (6.0,-3.05);
+  \draw[arr, ffit] (6.0,-3.35) -- node[tlbl, below=1.5pt, text=ffit!75!black]{$C_k,\ \rho$} (2.0,-3.35);
+\end{scope}
+\draw[arr, ffit] (7.95,-9.6) -- (7.95,-9.95);
+
+% --- fitted masker
+\node[card, fill=white, draw=ffit!60, line width=0.6pt, minimum width=2.65cm, minimum height=3.75cm, anchor=north west] (OUT) at (8.75,-9.95) {};
+\begin{scope}[shift={(8.75,-9.95)}]
+  \node[chead, anchor=west] at (0.15,-0.27) {Fitted masker};
+  \node[eq] at (0.12,-0.75) {$\{\mu, W, \lambda,\; G, w,\; C, \rho\}$};
+  \begin{scope}[shift={(0.525,-3.0)}, scale=0.2]
+    \rhocells
+    \draw[white, line width=0.25pt, step=1] (0,0) grid (8,8);
+    \draw[trn, line width=0.6pt] (0,0) rectangle (8,8);
+  \end{scope}
+  \node[tlbl] at (1.325,-3.3) {learned $\sum_k\rho_k$ in a box};
+\end{scope}
+\draw[arr] (EM.east) -- (OUT.west);
+
+% ------------------------------------------------ INFERENCE
+\node[sub, minimum width=6.0cm, minimum height=7.95cm, anchor=north west] (INF) at (11.8,-5.95) {};
+\node[head] at (12.0,-6.12) {Inference per predicted box};
+
+\pgfmathsetmacro{\cs}{1.85/\zmax}
+\pgfmathsetmacro{\zw}{\zoomnx*\cs}\pgfmathsetmacro{\zh}{\zoomny*\cs}
+\begin{scope}[shift={(12.05,-8.6)}]
+  \node[inner sep=0, anchor=south west] at (0,0) {\includegraphics[width=\zw cm, height=\zh cm]{arch/zoom_rgb.jpg}};
+  \begin{scope}[scale=\cs]
+    \draw[white, opacity=0.45, line width=0.25pt, step=1] (0,0) grid (\zoomnx,\zoomny);
+    \draw[trn, line width=0.9pt] \zoombox;
+  \end{scope}
+\end{scope}
+\node[eq] at (14.2,-7.2) {predicted box};
+\node[eq] at (14.2,-7.6) {$s = \zooms$};
+\node[eq] at (14.2,-8.0) {single E-step};
+
+\pgfmathsetmacro{\ms}{1.4/\zmax}
+\foreach \x/\m/\n/\t in {12.05/\zoomA/a/{$A$}, 13.95/\zoomAbar/b/{$\bar A$}, 15.85/\zoompfg/c/{$p_{fg}$}}{
+  \node[num, fill=bfg] at (\x+0.5,-9.1) {\n};
+  \node[eq] at (\x+0.68,-9.1) {\t};
+  \begin{scope}[shift={(\x,-10.8)}, scale=\ms]
+    \m
+    \draw[trn, line width=0.5pt] \zoombox;
+  \end{scope}
+}
+\draw[sarr] (13.5,-10.1) -- (13.9,-10.1);
+\draw[sarr] (15.4,-10.1) -- (15.8,-10.1);
+\shade[left color=bbg, right color=bmid] (12.95,-11.2) rectangle (14.95,-11.09);
+\shade[left color=bmid, right color=bfg] (14.95,-11.2) rectangle (16.95,-11.09);
+\node[tlbl, anchor=east] at (12.93,-11.15) {background};
+\node[tlbl, anchor=west] at (16.97,-11.15) {crown};
+
+\begin{scope}[shift={(12.05,-13.25)}, scale=\ms]
+  \zoommask
+  \draw[trn, line width=0.5pt] \zoombox;
+\end{scope}
+\node[tlbl, anchor=north] at (12.75,-13.3) {$p_{fg}\geq\tau$};
+\node[eq, font=\scriptsize\bfseries] at (13.6,-11.8) {Rescore};
+\node[eq] at (13.6,-12.2) {$\bar p = \operatorname{mean} p_{fg}$};
+\node[eq] at (13.6,-12.58) {$m = \operatorname{mean}\lvert 2p_{fg}-1\rvert$};
+\node[eq] at (13.6,-12.96) {$s' = s\,\bar p\,m$};
+\node[eq] at (13.6,-13.34) {$\phantom{s'} = \zooms\times\zoompbar\times\zoomm = \zoomsp$};
+
+\draw[arr] (OUT.east |- 0,-10.45) -- (INF.west |- 0,-10.45);
+
+% --- zoom guides: the top-row Box -> Mask stage is the Inference panel (the fit is offline)
+\draw[ffit!60, dashed, line width=0.5pt] (PD.south west) -- (INF.north west);
+\draw[ffit!60, dashed, line width=0.5pt] (PD.south east) -- (INF.north east);
+
+\end{tikzpicture}
+\end{document}

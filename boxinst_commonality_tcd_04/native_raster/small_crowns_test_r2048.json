@@ -1,0 +1,131 @@
+{
+  "n_gt": 25705,
+  "bins": [
+    "0-20px",
+    "20-30px",
+    "30-60px",
+    "60-infpx"
+  ],
+  "n_gt_per_bin": [
+    4880,
+    4174,
+    8146,
+    8505
+  ],
+  "rows": {
+    "LACE s0 (product, tau 0.40)": [
+      {
+        "box_TP": 0.46,
+        "box_near": 0.2041,
+        "box_FN": 0.3359,
+        "mask_recall_50": 0.4227,
+        "mask_recall_75": 0.043,
+        "mean_mask_iou_matched": 0.634,
+        "n_pred_boxes_in_size_range": 35716
+      },
+      {
+        "box_TP": 0.7849,
+        "box_near": 0.1207,
+        "box_FN": 0.0944,
+        "mask_recall_50": 0.7705,
+        "mask_recall_75": 0.1864,
+        "mean_mask_iou_matched": 0.6821,
+        "n_pred_boxes_in_size_range": 33981
+      },
+      {
+        "box_TP": 0.8577,
+        "box_near": 0.0905,
+        "box_FN": 0.0518,
+        "mask_recall_50": 0.8489,
+        "mask_recall_75": 0.3198,
+        "mean_mask_iou_matched": 0.7088,
+        "n_pred_boxes_in_size_range": 49611
+      },
+      {
+        "box_TP": 0.8951,
+        "box_near": 0.0687,
+        "box_FN": 0.0362,
+        "mask_recall_50": 0.9084,
+        "mask_recall_75": 0.3887,
+        "mean_mask_iou_matched": 0.7261,
+        "n_pred_boxes_in_size_range": 33926
+      }
+    ],
+    "Restor rpn1000 tree-only": [
+      {
+        "box_TP": 0.4443,
+        "box_near": 0.0535,
+        "box_FN": 0.5023,
+        "mask_recall_50": 0.4715,
+        "mask_recall_75": 0.2057,
+        "mean_mask_iou_matched": 0.7227,
+        "n_pred_boxes_in_size_range": 8139
+      },
+      {
+        "box_TP": 0.6766,
+        "box_near": 0.0551,
+        "box_FN": 0.2683,
+        "mask_recall_50": 0.6893,
+        "mask_recall_75": 0.3495,
+        "mean_mask_iou_matched": 0.7396,
+        "n_pred_boxes_in_size_range": 8601
+      },
+      {
+        "box_TP": 0.7753,
+        "box_near": 0.0506,
+        "box_FN": 0.1741,
+        "mask_recall_50": 0.7906,
+        "mask_recall_75": 0.474,
+        "mean_mask_iou_matched": 0.7608,
+        "n_pred_boxes_in_size_range": 17813
+      },
+      {
+        "box_TP": 0.8751,
+        "box_near": 0.0281,
+        "box_FN": 0.0968,
+        "mask_recall_50": 0.883,
+        "mask_recall_75": 0.6024,
+        "mean_mask_iou_matched": 0.7867,
+        "n_pred_boxes_in_size_range": 20705
+      }
+    ],
+    "Restor rpn2000 tree-only": [
+      {
+        "box_TP": 0.5379,
+        "box_near": 0.0777,
+        "box_FN": 0.3844,
+        "mask_recall_50": 0.577,
+        "mask_recall_75": 0.235,
+        "mean_mask_iou_matched": 0.716,
+        "n_pred_boxes_in_size_range": 12014
+      },
+      {
+        "box_TP": 0.746,
+        "box_near": 0.0676,
+        "box_FN": 0.1864,
+        "mask_recall_50": 0.7602,
+        "mask_recall_75": 0.3735,
+        "mean_mask_iou_matched": 0.7361,
+        "n_pred_boxes_in_size_range": 11394
+      },
+      {
+        "box_TP": 0.8327,
+        "box_near": 0.0536,
+        "box_FN": 0.1137,
+        "mask_recall_50": 0.8496,
+        "mask_recall_75": 0.501,
+        "mean_mask_iou_matched": 0.7582,
+        "n_pred_boxes_in_size_range": 22831
+      },
+      {
+        "box_TP": 0.9093,
+        "box_near": 0.0293,
+        "box_FN": 0.0614,
+        "mask_recall_50": 0.9184,
+        "mask_recall_75": 0.6196,
+        "mean_mask_iou_matched": 0.7844,
+        "n_pred_boxes_in_size_range": 23887
+      }
+    ]
+  }
+}

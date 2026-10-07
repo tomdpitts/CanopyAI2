@@ -1,0 +1,156 @@
+{
+ "set": "tcd439",
+ "tiles": [
+  "tcd_val_tile_24",
+  "tcd_val_tile_146",
+  "tcd_val_tile_431",
+  "tcd_val_tile_258"
+ ],
+ "thresholds": {
+  "LACE (ours)": {
+   "threshold": 0.11,
+   "f1": 0.6519619031809599,
+   "tp": 15710,
+   "fp": 6778,
+   "fn": 9995
+  },
+  "Restor Mask R-CNN": {
+   "threshold": 0.24,
+   "f1": 0.6878085986110554,
+   "tp": 17134,
+   "fp": 6983,
+   "fn": 8571
+  },
+  "Detectree2": {
+   "threshold": 0.49,
+   "f1": 0.6212994702399501,
+   "tp": 15950,
+   "fp": 9689,
+   "fn": 9755
+  },
+  "Box2Mask Swin-L": {
+   "threshold": 0.77,
+   "f1": 0.6214284199138791,
+   "tp": 14648,
+   "fp": 6790,
+   "fn": 11057
+  }
+ },
+ "crop_px": 768,
+ "crop_xy": {
+  "tcd_val_tile_24": [
+   1280,
+   0
+  ],
+  "tcd_val_tile_146": [
+   1280,
+   1216
+  ],
+  "tcd_val_tile_431": [
+   64,
+   1024
+  ],
+  "tcd_val_tile_258": [
+   1280,
+   0
+  ]
+ },
+ "counts": {
+  "tcd_val_tile_24|LACE (ours)": {
+   "f1": 0.8421,
+   "tp": 8,
+   "fp": 0,
+   "fn": 3
+  },
+  "tcd_val_tile_24|Restor Mask R-CNN": {
+   "f1": 0.8,
+   "tp": 10,
+   "fp": 4,
+   "fn": 1
+  },
+  "tcd_val_tile_24|Detectree2": {
+   "f1": 0.8696,
+   "tp": 10,
+   "fp": 2,
+   "fn": 1
+  },
+  "tcd_val_tile_24|Box2Mask Swin-L": {
+   "f1": 0.7619,
+   "tp": 8,
+   "fp": 2,
+   "fn": 3
+  },
+  "tcd_val_tile_146|LACE (ours)": {
+   "f1": 1.0,
+   "tp": 12,
+   "fp": 0,
+   "fn": 0
+  },
+  "tcd_val_tile_146|Restor Mask R-CNN": {
+   "f1": 0.9167,
+   "tp": 11,
+   "fp": 1,
+   "fn": 1
+  },
+  "tcd_val_tile_146|Detectree2": {
+   "f1": 0.8696,
+   "tp": 10,
+   "fp": 1,
+   "fn": 2
+  },
+  "tcd_val_tile_146|Box2Mask Swin-L": {
+   "f1": 0.9565,
+   "tp": 11,
+   "fp": 0,
+   "fn": 1
+  },
+  "tcd_val_tile_431|LACE (ours)": {
+   "f1": 0.7308,
+   "tp": 19,
+   "fp": 10,
+   "fn": 4
+  },
+  "tcd_val_tile_431|Restor Mask R-CNN": {
+   "f1": 0.8077,
+   "tp": 21,
+   "fp": 8,
+   "fn": 2
+  },
+  "tcd_val_tile_431|Detectree2": {
+   "f1": 0.6364,
+   "tp": 14,
+   "fp": 7,
+   "fn": 9
+  },
+  "tcd_val_tile_431|Box2Mask Swin-L": {
+   "f1": 0.6364,
+   "tp": 14,
+   "fp": 7,
+   "fn": 9
+  },
+  "tcd_val_tile_258|LACE (ours)": {
+   "f1": 0.68,
+   "tp": 17,
+   "fp": 4,
+   "fn": 12
+  },
+  "tcd_val_tile_258|Restor Mask R-CNN": {
+   "f1": 0.6531,
+   "tp": 16,
+   "fp": 4,
+   "fn": 13
+  },
+  "tcd_val_tile_258|Detectree2": {
+   "f1": 0.6522,
+   "tp": 15,
+   "fp": 2,
+   "fn": 14
+  },
+  "tcd_val_tile_258|Box2Mask Swin-L": {
+   "f1": 0.625,
+   "tp": 15,
+   "fp": 4,
+   "fn": 14
+  }
+ }
+}

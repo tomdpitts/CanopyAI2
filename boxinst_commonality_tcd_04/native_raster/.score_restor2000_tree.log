@@ -1,0 +1,82 @@
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_restor_rpn2000_r2048_treeonly.json: 71606 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=9.35s).
+Accumulating evaluation results...
+DONE (t=0.05s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=12.05s).
+Accumulating evaluation results...
+DONE (t=0.05s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=11.82s).
+Accumulating evaluation results...
+DONE (t=0.05s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/preds_restor_rpn2000_r2048_treeonly.json",
+  "model": "Restor Mask R-CNN R50-FPN (restor/tcd-mask-rcnn-r50), whole 2048 tiles, released checkpoint",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 600,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.5892,
+      "AP75": 0.2739,
+      "AP50_95": 0.3046,
+      "n_det": 71606
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.6846,
+      "AP75": 0.307,
+      "AP50_95": 0.3484,
+      "n_det": 71606
+    },
+    "box": {
+      "AP50": 0.705,
+      "AP75": 0.3493,
+      "AP50_95": 0.3713,
+      "n_det": 71606
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.6846,
+      "AP75": 0.3078,
+      "AP50_95": 0.3488,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/scored_restor_rpn2000_r2048_tree.json

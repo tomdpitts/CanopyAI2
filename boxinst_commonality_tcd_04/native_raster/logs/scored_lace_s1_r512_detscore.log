@@ -1,0 +1,82 @@
+[score_coco] rasterising GT at 512^2 (once, shared) ...
+[score_coco] knobbed_s1.json: 162017 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.03s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=17.06s).
+Accumulating evaluation results...
+DONE (t=0.11s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.03s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=23.16s).
+Accumulating evaluation results...
+DONE (t=0.10s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.71s).
+Accumulating evaluation results...
+DONE (t=0.11s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s1.json",
+  "model": "4phase_L24 detector + \u03b2=0 self-mask masker",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 512,
+    "max_dets": 600,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.4838,
+      "AP75": 0.1129,
+      "AP50_95": 0.2005,
+      "n_det": 162017
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.6358,
+      "AP75": 0.1376,
+      "AP50_95": 0.2575,
+      "n_det": 162017
+    },
+    "box": {
+      "AP50": 0.5835,
+      "AP75": 0.0683,
+      "AP50_95": 0.1968,
+      "n_det": 162017
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.6358,
+      "AP75": 0.1384,
+      "AP50_95": 0.2579,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/scored_lace_s1_r512_detscore.json

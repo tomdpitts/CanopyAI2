@@ -1,0 +1,102 @@
+[conf_ablation_res] res=2048 masks=/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/preds_lace_s0_r2048_tau040_detscore.json cache=/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/ablation_r2048/_ap_cache_s0_r2048.pkl
+[cache] rasterising 439 GT tiles at 2048^2 (once, ~2 min) ...
+  cache@2048 25/439
+  cache@2048 50/439
+  cache@2048 75/439
+  cache@2048 100/439
+  cache@2048 125/439
+  cache@2048 150/439
+  cache@2048 175/439
+  cache@2048 200/439
+  cache@2048 225/439
+  cache@2048 250/439
+  cache@2048 275/439
+  cache@2048 300/439
+  cache@2048 325/439
+  cache@2048 350/439
+  cache@2048 375/439
+  cache@2048 400/439
+  cache@2048 425/439
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:78: RuntimeWarning: divide by zero encountered in matmul
+  t = np.clip(Z @ w, -50, 50)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:78: RuntimeWarning: overflow encountered in matmul
+  t = np.clip(Z @ w, -50, 50)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:78: RuntimeWarning: invalid value encountered in matmul
+  t = np.clip(Z @ w, -50, 50)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:79: RuntimeWarning: divide by zero encountered in matmul
+  g = Z.T @ (1 / (1 + np.exp(-t)) - y) / len(y)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:79: RuntimeWarning: overflow encountered in matmul
+  g = Z.T @ (1 / (1 + np.exp(-t)) - y) / len(y)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:79: RuntimeWarning: invalid value encountered in matmul
+  g = Z.T @ (1 / (1 + np.exp(-t)) - y) / len(y)
+BASELINE (heatmap score alone)   CN AP50 0.5937   AP50:95 0.2330
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:86: RuntimeWarning: divide by zero encountered in matmul
+  np.c_[np.ones(len(A)), (A - mu) / sd] @ w, -50, 50)))), w
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:86: RuntimeWarning: overflow encountered in matmul
+  np.c_[np.ones(len(A)), (A - mu) / sd] @ w, -50, 50)))), w
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:86: RuntimeWarning: invalid value encountered in matmul
+  np.c_[np.ones(len(A)), (A - mu) / sd] @ w, -50, 50)))), w
+PUBLISHED 8-feature logreg       CN AP50 0.6319   AP50:95 0.2549   (8 fitted weights + bias)
+
+=== 1. ALL 128 EM FEATURE SUBSETS (detector score always in, val-fitted) ===
+  test CN AP50 over 128 subsets: min 0.5937  median 0.6289  max 0.6320
+  best k=1: 0.5937 (+0.0000)  (score only)
+  best k=2: 0.6246 (+0.0309)  a_p90
+  best k=3: 0.6303 (+0.0366)  a_p90+log_cells
+  best k=4: 0.6313 (+0.0376)  a_mean+bimod+log_cells
+  best k=5: 0.6317 (+0.0380)  a_mean+a_max+bimod+log_cells
+  best k=6: 0.6320 (+0.0383)  a_mean+a_max+bimod+pfg_mean+log_cells
+  best k=7: 0.6320 (+0.0383)  a_mean+a_p90+a_max+bimod+pfg_mean+log_cells
+  best k=8: 0.6319 (+0.0382)  a_mean+a_std+a_p90+a_max+bimod+pfg_mean+log_cells
+
+=== 2. MODEL FORM: fitted logreg vs an unfitted product ===
+ranking function                       fitted    AP50    delta    AP75  AP50:95
+s  (baseline)                               0  0.5937  +0.0000  0.1109   0.2330
+s * bimod                                   0  0.6180  +0.0243  0.1252   0.2469
+s * pfg_mean                                0  0.6178  +0.0241  0.1307   0.2492
+bimod * pfg_mean  (no detector)             0  0.5359  -0.0578  0.1163   0.2176
+s * bimod * pfg_mean                        0  0.6324  +0.0387  0.1404   0.2580
+logreg(s, bimod, pfg_mean)                  3  0.6260  +0.0323  0.1307   0.2521
+logreg(s, log bimod, log pfg)               3  0.6252  +0.0315  0.1295   0.2513
+logreg, published 8 features                9  0.6319  +0.0382  0.1328   0.2549
+
+  exponent surface  s * bimod^q * pfg^r  (AP is scale-free: s exponent fixed 1)
+        r=0.50   r=0.75   r=1.00   r=1.25   r=1.50   r=2.00   
+  q=0.500.6242   0.6278   0.6304   0.6320   0.6326   0.6322   
+  q=0.750.6264   0.6297   0.6321   0.6336   0.6344   0.6343   
+  q=1.000.6270   0.6302   0.6324   0.6338   0.6347   0.6350   
+  q=1.250.6268   0.6297   0.6318   0.6333   0.6342   0.6348   
+  q=1.500.6259   0.6286   0.6307   0.6321   0.6331   0.6338   
+  q=2.000.6230   0.6255   0.6274   0.6289   0.6301   0.6311   
+
+=== 3. HOW MUCH IS JUST A BOX-SIZE PRIOR? (SIZE = cubic in log n_cells) ===
+  s + SIZE                  [no masker at all]    0.6198  +0.0261
+  s + log bimod, log pfg    [masker only]         0.6252  +0.0315
+  s + SIZE + log bimod, log pfg                   0.6283  +0.0346
+  s + 6 EM stats (published minus log_cells)      0.6294  +0.0357
+  s + 6 EM stats + SIZE                           0.6317  +0.0380
+  s * bimod * pfg  + val-fitted SIZE correction   0.6311  +0.0374
+  s * bimod * pfg  (0 fitted numbers)             0.6324  +0.0387
+
+=== 4. VAL-SIDE SELECTION (108 held-out tiles, box AP -- no test data) ===
+zero-parameter form    VAL boxAP50  VAL boxAP50:95  | TEST AP50    delta
+s*bimod^0.5*pfg             0.5197          0.2333       0.6304  +0.0367
+s*bimod*pfg^0.5             0.5190          0.2313       0.6270  +0.0333
+s*bimod*pfg                 0.5177          0.2331       0.6324  +0.0387
+s*bimod                     0.5148          0.2276       0.6180  +0.0243
+s*pfg                       0.5094          0.2271       0.6178  +0.0241
+s*bimod*pfg^2               0.5063          0.2308       0.6350  +0.0413
+s*bimod^2*pfg               0.5051          0.2284       0.6274  +0.0337
+s                           0.4982          0.2165       0.5937  +0.0000
+
+=== 5. PAIRED TILE BOOTSTRAP (2000 resamples of the 439 tiles) ===
+  AP50:
+    product   vs baseline +0.0386  95% CI [+0.0325, +0.0449]
+    logreg8   vs baseline +0.0381  95% CI [+0.0327, +0.0438]
+    logreg8 - product      -0.00047  95% CI [-0.00211, +0.00105]  P(logreg8 better) 0.276
+  AP75:
+    product   vs baseline +0.0288  95% CI [+0.0234, +0.0337]
+    logreg8   vs baseline +0.0218  95% CI [+0.0184, +0.0255]
+    logreg8 - product      -0.00698  95% CI [-0.00907, -0.00408]  P(logreg8 better) 0.000
+
+-> boxinst_commonality_tcd_04/ablation/results_r2048/confidence_ablation_results_r2048.json

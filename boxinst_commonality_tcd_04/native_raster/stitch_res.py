@@ -87,7 +87,14 @@ def dedup(crowns, iou_thr=0.7, cont_thr=0.85):
         for km, ks, kbb, ka in kept:
             if not _bbox_overlap(bb, kbb):
                 continue
-            inter = int((m & km).sum())
+            # Same integer as int((m & km).sum()): pixels outside the two boxes' overlap
+            # window are False in at least one mask, so they never contribute. Cropping
+            # the AND to that window is what makes a 3,000-crown DetecTree2 tile tractable
+            # (the full-raster AND moved ~500 GB per tile). Byte-identical output; re-gated
+            # against the published Box2Mask stitch after this change (NATIVE_RASTER.md).
+            x0, y0 = max(bb[0], kbb[0]), max(bb[1], kbb[1])
+            x1, y1 = min(bb[2], kbb[2]), min(bb[3], kbb[3])
+            inter = int((m[y0:y1, x0:x1] & km[y0:y1, x0:x1]).sum())
             if inter == 0:
                 continue
             if inter / (a + ka - inter) > iou_thr or inter / a > cont_thr:

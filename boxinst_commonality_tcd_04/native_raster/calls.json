@@ -26,5 +26,137 @@
       "seed": 0
     },
     "note": "FULL 439 seed0 tau 0.35+0.40 @2048"
+  },
+  {
+    "call_id": "fc-01M37YCW500D7EFS7701K95KZV",
+    "app": "tcd04-lace-multitau",
+    "fn": "render",
+    "kwargs": {
+      "seed": 1
+    },
+    "note": "2048 render s1 resume (cancelled at 40 tiles 2026-09-23)"
+  },
+  {
+    "call_id": "fc-01M37YCWQ9S0T36S2A5PX11BA5",
+    "app": "tcd04-lace-multitau",
+    "fn": "render",
+    "kwargs": {
+      "seed": 2
+    },
+    "note": "2048 render s2 resume"
+  },
+  {
+    "call_id": "fc-01M37YCXA98ZC7Q62V7YFW5V3Q",
+    "app": "tcd04-restor-native",
+    "fn": "predict",
+    "kwargs": {
+      "rpn_topk": 512
+    },
+    "note": "Restor rpn512 (released cap) native 2048, resume"
+  },
+  {
+    "call_id": "fc-01M37YCXX8Y9VYNER2MV3RJ1PV",
+    "app": "tcd04-lace-sparse-native",
+    "fn": "render",
+    "kwargs": {
+      "seed": 0
+    },
+    "note": "sparse-236 2048 render s0 tau 0.25+0.40"
+  },
+  {
+    "call_id": "fc-01M37YCYGJ3PPV22N55KX1MXTJ",
+    "app": "tcd04-lace-sparse-native",
+    "fn": "render",
+    "kwargs": {
+      "seed": 1
+    },
+    "note": "sparse-236 2048 render s1 tau 0.25+0.40"
+  },
+  {
+    "call_id": "fc-01M37YCZ3X52PF2K4PVS99SFT6",
+    "app": "tcd04-lace-sparse-native",
+    "fn": "render",
+    "kwargs": {
+      "seed": 2
+    },
+    "note": "sparse-236 2048 render s2 tau 0.25+0.40"
+  },
+  {
+    "call_id": "fc-01M382ATSBX7AWQ84EDPCTD974",
+    "app": "tcd04-restor-native",
+    "fn": "predict",
+    "kwargs": {
+      "rpn_topk": 2000
+    },
+    "note": "Restor rpn2000 native 2048, resume after client-kill cancel"
+  },
+  {
+    "call_id": "fc-01M382EWV27MJM93PQSMSGKNSY",
+    "app": "tcd04-selvabox-native",
+    "fn": "predict",
+    "kwargs": {},
+    "note": "SelvaBox->SAM3 bench, native persistence (1777/2048/512 + raw dets)"
+  },
+  {
+    "call_id": "fc-01M386HZ97ARQ6TJKX4DSAD6KW",
+    "app": "tcd04-sam3-native",
+    "fn": "predict",
+    "kwargs": {},
+    "note": "SAM3 box-prompt on LACE s0 boxes, native 2048 + 512 persisted"
+  },
+  {
+    "call_id": "fc-01M38AE6WZ7BV64XN3KN2X9CAQ",
+    "app": "tcd04-restor-native",
+    "fn": "assemble",
+    "kwargs": {
+      "rpn_topk": 512
+    },
+    "note": "assemble rpn512 (512 incontainer file after client drop)"
+  },
+  {
+    "call_id": "fc-01M48AGN8XGDX95NWAPPEVAVTF",
+    "app": "tcd04-det-retrain",
+    "fn": "train",
+    "kwargs": {
+      "seed": 0
+    },
+    "note": "det retrain pilot v2 s0 (GIoU2 size0.5 ES boxAP50:95 20/3/60 d0.002)"
+  },
+  {
+    "call_id": "fc-01M4AP1BN9T4FRVDX756Y3QJFT",
+    "app": "tcd04-lace-guided",
+    "fn": "render",
+    "kwargs": {
+      "seed": 0,
+      "limit": 3
+    },
+    "note": "SMOKE guided r12 s0 lim3 (separate _smoke dir)"
+  },
+  {
+    "call_id": "fc-01M4AP4VHP6KQE0S5J17717D89",
+    "app": "tcd04-lace-guided",
+    "fn": "render",
+    "kwargs": {
+      "seed": 0
+    },
+    "note": "PREREG guided r12 eps1e-4 tau0.35 + bilinear tau0.40 gate, s0, 439 test"
+  },
+  {
+    "call_id": "fc-01M4AP4WS1A7R1F6N49X7BN48W",
+    "app": "tcd04-lace-guided",
+    "fn": "render",
+    "kwargs": {
+      "seed": 1
+    },
+    "note": "PREREG guided r12 eps1e-4 tau0.35 + bilinear tau0.40 gate, s1, 439 test"
+  },
+  {
+    "call_id": "fc-01M4AP4XWPD4QARYC2N921SGSD",
+    "app": "tcd04-lace-guided",
+    "fn": "render",
+    "kwargs": {
+      "seed": 2
+    },
+    "note": "PREREG guided r12 eps1e-4 tau0.35 + bilinear tau0.40 gate, s2, 439 test"
   }
 ]

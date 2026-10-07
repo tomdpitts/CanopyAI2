@@ -1,0 +1,40 @@
+[box_iou_strata_res] res=512 rows=['LACE s0 (product)', 'LACE s1 (product)', 'LACE s2 (product)', 'Restor MRCNN rpn1000', 'DetecTree2 s0', 'SelvaBox -> SAM 3', 'Box2Mask R-50', 'Box2Mask Swin-L']
+[strata] LACE s0 (product): 19338 matched
+[strata] LACE s1 (product): 18433 matched
+[strata] LACE s2 (product): 19274 matched
+[strata] Restor MRCNN rpn1000: 18411 matched
+[strata] DetecTree2 s0: 19603 matched
+[strata] SelvaBox -> SAM 3: 22448 matched
+[strata] Box2Mask R-50: 14293 matched
+[strata] Box2Mask Swin-L: 17223 matched
+[strata] common subset (matched by ALL 8 rows): 10020 crowns
+
+=== COMMON SUBSET -- the 10020 crowns EVERY row found (paired) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU              |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+--------------------------------------------------------------------------------------------------------------------------------------
+LACE s0 (product)    |   0.6500 (869)   |  0.7133 (2717)   |  0.7546 (3716)   |  0.7888 (2415)   |   0.8188 (303)   |  0.7445 (10020) 
+LACE s1 (product)    |  0.6708 (1627)   |  0.7210 (3148)   |  0.7611 (3298)   |  0.8031 (1760)   |   0.8252 (187)   |  0.7424 (10020) 
+LACE s2 (product)    |   0.6428 (914)   |  0.7092 (2700)   |  0.7526 (3789)   |  0.7918 (2327)   |   0.8216 (290)   |  0.7420 (10020) 
+Restor MRCNN rpn1000 |   0.5941 (385)   |  0.6821 (1554)   |  0.7490 (3482)   |  0.8111 (3748)   |   0.8626 (851)   |  0.7655 (10020) 
+DetecTree2 s0        |   0.6163 (941)   |  0.6897 (2111)   |  0.7571 (2951)   |  0.8175 (2846)   |  0.8654 (1171)   |  0.7595 (10020) 
+SelvaBox -> SAM 3    |   0.5243 (335)   |  0.6008 (1214)   |  0.6644 (3105)   |  0.7281 (3999)   |  0.8003 (1367)   |  0.6960 (10020) 
+Box2Mask R-50        |  0.4995 (1345)   |  0.5744 (2256)   |  0.6514 (2937)   |  0.7231 (2523)   |   0.7754 (959)   |  0.6436 (10020) 
+Box2Mask Swin-L      |   0.5480 (754)   |  0.6167 (1881)   |  0.6834 (3004)   |  0.7443 (3039)   |  0.7967 (1342)   |  0.6943 (10020) 
+mean box IoU: LACE s0 (product)=0.7354  LACE s1 (product)=0.7069  LACE s2 (product)=0.7336  Restor MRCNN rpn1000=0.7811  DetecTree2 s0=0.7599  SelvaBox -> SAM 3=0.7984  Box2Mask R-50=0.7423  Box2Mask Swin-L=0.7718
+
+=== ALL MATCHES (confounded: rows match different crowns) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU              |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+--------------------------------------------------------------------------------------------------------------------------------------
+LACE s0 (product)    |  0.6272 (3805)   |  0.6877 (5800)   |  0.7355 (6086)   |  0.7752 (3258)   |   0.8078 (389)   |  0.7080 (19338) 
+LACE s1 (product)    |  0.6402 (4615)   |  0.6966 (6001)   |  0.7398 (5205)   |  0.7853 (2375)   |   0.8061 (237)   |  0.7075 (18433) 
+LACE s2 (product)    |  0.6212 (3756)   |  0.6852 (5735)   |  0.7321 (6171)   |  0.7759 (3227)   |   0.8050 (385)   |  0.7053 (19274) 
+Restor MRCNN rpn1000 |  0.5615 (2089)   |  0.6549 (3978)   |  0.7345 (5984)   |  0.8024 (5280)   |  0.8549 (1080)   |  0.7242 (18411) 
+DetecTree2 s0        |  0.5857 (3785)   |  0.6699 (4906)   |  0.7439 (5025)   |  0.8065 (4205)   |  0.8556 (1682)   |  0.7179 (19603) 
+SelvaBox -> SAM 3    |  0.4442 (2482)   |  0.5230 (4489)   |  0.6127 (6920)   |  0.7005 (6639)   |  0.7819 (1918)   |  0.6166 (22448) 
+Box2Mask R-50        |  0.4984 (2799)   |  0.5740 (3498)   |  0.6526 (3770)   |  0.7205 (3098)   |  0.7745 (1128)   |  0.6275 (14293) 
+Box2Mask Swin-L      |  0.5351 (2689)   |  0.6108 (3969)   |  0.6783 (4615)   |  0.7402 (4191)   |  0.7938 (1759)   |  0.6672 (17223) 
+mean box IoU: LACE s0 (product)=0.7006  LACE s1 (product)=0.6813  LACE s2 (product)=0.7005  Restor MRCNN rpn1000=0.7454  DetecTree2 s0=0.7216  SelvaBox -> SAM 3=0.7539  Box2Mask R-50=0.7202  Box2Mask Swin-L=0.7376
+
+-> boxinst_commonality_tcd_04/native_raster/ablation_r2048/gate512_box_iou_strata.json

@@ -1,0 +1,91 @@
+[conf_ablation_res] res=512 masks=/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/preds/knobbed_s0.json cache=/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/ablation_r2048/_ap_cache_s0_r512.pkl
+[cache] rasterising 439 GT tiles at 512^2 (once, ~2 min) ...
+  cache@512 25/439
+  cache@512 50/439
+  cache@512 75/439
+  cache@512 100/439
+  cache@512 125/439
+  cache@512 150/439
+  cache@512 175/439
+  cache@512 200/439
+  cache@512 225/439
+  cache@512 250/439
+  cache@512 275/439
+  cache@512 300/439
+  cache@512 325/439
+  cache@512 350/439
+  cache@512 375/439
+  cache@512 400/439
+  cache@512 425/439
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:78: RuntimeWarning: divide by zero encountered in matmul
+  t = np.clip(Z @ w, -50, 50)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:78: RuntimeWarning: overflow encountered in matmul
+  t = np.clip(Z @ w, -50, 50)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:78: RuntimeWarning: invalid value encountered in matmul
+  t = np.clip(Z @ w, -50, 50)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:79: RuntimeWarning: divide by zero encountered in matmul
+  g = Z.T @ (1 / (1 + np.exp(-t)) - y) / len(y)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:79: RuntimeWarning: overflow encountered in matmul
+  g = Z.T @ (1 / (1 + np.exp(-t)) - y) / len(y)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:79: RuntimeWarning: invalid value encountered in matmul
+  g = Z.T @ (1 / (1 + np.exp(-t)) - y) / len(y)
+BASELINE (heatmap score alone)   CN AP50 0.6250   AP50:95 0.2581
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:86: RuntimeWarning: divide by zero encountered in matmul
+  np.c_[np.ones(len(A)), (A - mu) / sd] @ w, -50, 50)))), w
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:86: RuntimeWarning: overflow encountered in matmul
+  np.c_[np.ones(len(A)), (A - mu) / sd] @ w, -50, 50)))), w
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/confidence/ablation.py:86: RuntimeWarning: invalid value encountered in matmul
+  np.c_[np.ones(len(A)), (A - mu) / sd] @ w, -50, 50)))), w
+PUBLISHED 8-feature logreg       CN AP50 0.6616   AP50:95 0.2797   (8 fitted weights + bias)
+
+=== 2. MODEL FORM: fitted logreg vs an unfitted product ===
+ranking function                       fitted    AP50    delta    AP75  AP50:95
+s  (baseline)                               0  0.6250  -0.0000  0.1445   0.2581
+s * bimod                                   0  0.6484  +0.0234  0.1577   0.2719
+s * pfg_mean                                0  0.6472  +0.0222  0.1638   0.2737
+bimod * pfg_mean  (no detector)             0  0.5613  -0.0637  0.1413   0.2372
+s * bimod * pfg_mean                        0  0.6615  +0.0365  0.1728   0.2822
+logreg(s, bimod, pfg_mean)                  3  0.6557  +0.0307  0.1665   0.2775
+logreg(s, log bimod, log pfg)               3  0.6549  +0.0299  0.1628   0.2761
+logreg, published 8 features                9  0.6616  +0.0366  0.1658   0.2797
+
+  exponent surface  s * bimod^q * pfg^r  (AP is scale-free: s exponent fixed 1)
+        r=0.50   r=0.75   r=1.00   r=1.25   r=1.50   r=2.00   
+  q=0.500.6539   0.6573   0.6595   0.6609   0.6614   0.6606   
+  q=0.750.6562   0.6592   0.6612   0.6625   0.6631   0.6628   
+  q=1.000.6568   0.6596   0.6615   0.6628   0.6635   0.6635   
+  q=1.250.6566   0.6590   0.6610   0.6622   0.6631   0.6632   
+  q=1.500.6556   0.6579   0.6599   0.6611   0.6620   0.6624   
+  q=2.000.6527   0.6549   0.6567   0.6580   0.6589   0.6597   
+
+=== 3. HOW MUCH IS JUST A BOX-SIZE PRIOR? (SIZE = cubic in log n_cells) ===
+  s + SIZE                  [no masker at all]    0.6495  +0.0244
+  s + log bimod, log pfg    [masker only]         0.6549  +0.0299
+  s + SIZE + log bimod, log pfg                   0.6580  +0.0330
+  s + 6 EM stats (published minus log_cells)      0.6593  +0.0343
+  s + 6 EM stats + SIZE                           0.6616  +0.0366
+  s * bimod * pfg  + val-fitted SIZE correction   0.6605  +0.0355
+  s * bimod * pfg  (0 fitted numbers)             0.6615  +0.0365
+
+=== 4. VAL-SIDE SELECTION (108 held-out tiles, box AP -- no test data) ===
+zero-parameter form    VAL boxAP50  VAL boxAP50:95  | TEST AP50    delta
+s*bimod^0.5*pfg             0.5197          0.2333       0.6595  +0.0345
+s*bimod*pfg^0.5             0.5190          0.2313       0.6568  +0.0317
+s*bimod*pfg                 0.5177          0.2331       0.6615  +0.0365
+s*bimod                     0.5148          0.2276       0.6484  +0.0234
+s*pfg                       0.5094          0.2271       0.6472  +0.0222
+s*bimod*pfg^2               0.5063          0.2308       0.6635  +0.0385
+s*bimod^2*pfg               0.5051          0.2284       0.6567  +0.0316
+s                           0.4982          0.2165       0.6250  +0.0000
+
+=== 5. PAIRED TILE BOOTSTRAP (2000 resamples of the 439 tiles) ===
+  AP50:
+    product   vs baseline +0.0365  95% CI [+0.0304, +0.0429]
+    logreg8   vs baseline +0.0366  95% CI [+0.0310, +0.0422]
+    logreg8 - product      +0.00005  95% CI [-0.00162, +0.00157]  P(logreg8 better) 0.538
+  AP75:
+    product   vs baseline +0.0269  95% CI [+0.0218, +0.0321]
+    logreg8   vs baseline +0.0213  95% CI [+0.0179, +0.0249]
+    logreg8 - product      -0.00566  95% CI [-0.00817, -0.00297]  P(logreg8 better) 0.000
+
+-> boxinst_commonality_tcd_04/native_raster/ablation_r2048/gate512_ablation_results.json

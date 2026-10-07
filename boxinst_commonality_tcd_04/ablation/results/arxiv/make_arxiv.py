@@ -124,10 +124,20 @@ The authors declare no conflicts of interest.
 final = preamble + front + body.rstrip() + "\n" + back
 final = final.replace(r"\texttt{edge\_band\_buffer\_percentage}", r"\texttt{edge\_band\_}\allowbreak\texttt{buffer\_}\allowbreak\texttt{percentage}")
 final = final.replace(r"\begin{table}[H]", r"\begin{table}[!htbp]")  # let text fill the page instead of [H] gaps
+# MDPI full-width figure idiom (guarded in paper.tex): drop the guards, use \textwidth
+final = final.replace(r"\ifdefined\extralength\fulllength\else\textwidth\fi", r"\textwidth")
+final = re.sub(r"^\\ifdefined\\extralength.*\\fi[ \t]*\n", "", final, flags=re.M)
 final = re.sub(r"\n{3,}", "\n\n", final)
 bad = sorted({c for c in final if ord(c) > 127})
 assert not bad, f"non-ASCII characters would break pdflatex on arXiv: {bad}"
 dst.write_text(final)
+# figures: copy every \includegraphics target alongside (same relative path)
+import shutil
+for g in re.findall(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]+)\}", final):
+    src = here.parent / g
+    if src.exists():
+        (here / g).parent.mkdir(parents=True, exist_ok=True); shutil.copy(src, here / g)
+        print("copied figure", g)
 # bib: copy alongside, minus the %% header comments that mention the MDPI style
 bib = (here.parent / "lace.bib").read_text()
 (here / "lace.bib").write_text("\n".join(l for l in bib.split("\n") if not l.startswith("%%")).lstrip("\n"))

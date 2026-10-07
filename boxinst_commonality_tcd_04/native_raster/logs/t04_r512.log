@@ -1,0 +1,35 @@
+[rle_io] installed res=512 results_dir=boxinst_commonality_tcd_04/native_raster/ablation_r2048/side_t04_r512
+selftest OK: box_iou_mat == brute force on 200 random configurations
+[s0]
+    200/439
+    400/439
+    439/439
+  gate OK s0: reproduces 0.625/0.2574
+[s1]
+    200/439
+    400/439
+    439/439
+  gate OK s1: reproduces 0.6358/0.2567
+[s2]
+    200/439
+    400/439
+    439/439
+  gate OK s2: reproduces 0.6294/0.2564
+
+=== GT crowds: 39.3% of 25705 GT crowns touch another ===
+
+--- BOX-matched (can see mask failures; failure_analysis.py convention) ---
+group                  n   %boxTP  mask IoU  fail<0.5  gt size
+isolated (s0)      12073    59.7%    0.7169    0.0245     44.1
+touching (s0)       8147    40.3%    0.7103    0.0275     70.2
+isolated band                        0.7148    0.0252   (+-0.0019 / +-0.0008)
+touching band                        0.7093    0.0250   (+-0.0015 / +-0.0031)
+
+--- MASK-matched (fail rate vacuous by construction) ---
+group              n    %TPs  mask IoU  fail<0.5  gt size   cover
+isolated (s0)   12493   60.0%    0.7142    0.0000     43.7  1.0842
+touching (s0)    8314   40.0%    0.7104    0.0000     70.3  1.0242
+isolated band                    0.7119 +-0.0020
+touching band                    0.7071 +-0.0043
+
+-> boxinst_commonality_tcd_04/native_raster/ablation_r2048/gate512_strata_instance.json

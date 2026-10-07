@@ -39,6 +39,19 @@ def cmp(P, L, label, keys=("scores", "boxes_2048", "pred_classes")):
     return ok
 
 
+def _down_tile(item):
+    """Identical call to the in-container path: decode 2048 RLE -> PIL BILINEAR -> >=128."""
+    t, rec = item
+    rles = []
+    for r in rec["masks_rle"]:
+        m = maskUtils.decode({"size": r["size"], "counts": r["counts"].encode("ascii")}).astype(bool)
+        small = np.asarray(Image.fromarray(m.astype(np.uint8) * 255).resize((512, 512), Image.BILINEAR)) >= 128
+        e = maskUtils.encode(np.asfortranarray(small.astype(np.uint8)))
+        rles.append({"size": [512, 512], "counts": e["counts"].decode("ascii")})
+    return t, {"scores": rec["scores"], "boxes_2048": rec["boxes_2048"],
+               "pred_classes": rec["pred_classes"], "masks_rle": rles}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", required=True, help="local download of OUT_DIR")
@@ -51,16 +64,9 @@ def main():
 
     okA = cmp(pub["preds"], n512["preds"], "GATE A  container-512 vs published")
 
-    loc = {}
-    for t, rec in n2048["preds"].items():
-        rles = []
-        for r in rec["masks_rle"]:
-            m = maskUtils.decode({"size": r["size"], "counts": r["counts"].encode("ascii")}).astype(bool)
-            small = np.asarray(Image.fromarray(m.astype(np.uint8) * 255).resize((512, 512), Image.BILINEAR)) >= 128
-            e = maskUtils.encode(np.asfortranarray(small.astype(np.uint8)))
-            rles.append({"size": [512, 512], "counts": e["counts"].decode("ascii")})
-        loc[t] = {"scores": rec["scores"], "boxes_2048": rec["boxes_2048"],
-                  "pred_classes": rec["pred_classes"], "masks_rle": rles}
+    from multiprocessing import Pool
+    with Pool(12) as pool:
+        loc = dict(pool.imap_unordered(_down_tile, n2048["preds"].items(), chunksize=4))
     okB = cmp(n512["preds"], loc, "GATE B  local-512-from-2048 vs container-512")
 
     # tree-only derivation (== how preds_restor_rpn1000_treeonly.json was made; verified 439/439)

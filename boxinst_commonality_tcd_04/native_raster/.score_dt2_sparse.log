@@ -1,0 +1,82 @@
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_dt2_sparse_s0v2_r2048.json: 99900 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=9.37s).
+Accumulating evaluation results...
+DONE (t=0.05s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=11.52s).
+Accumulating evaluation results...
+DONE (t=0.05s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=11.48s).
+Accumulating evaluation results...
+DONE (t=0.05s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/preds_dt2_sparse_s0v2_r2048.json",
+  "model": "DetecTree2 (Mask R-CNN R101-FPN) fine-tuned on 792/108, 1024@50% subtiles, clean_crowns dedup; sparse-236, re-stitched at native 2048 (s0v2)",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 600,
+    "score_floor": 0.05,
+    "n_tiles": 236,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 14937,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.5784,
+      "AP75": 0.3336,
+      "AP50_95": 0.3229,
+      "n_det": 99900
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.6252,
+      "AP75": 0.3541,
+      "AP50_95": 0.346,
+      "n_det": 99900
+    },
+    "box": {
+      "AP50": 0.6331,
+      "AP75": 0.3302,
+      "AP50_95": 0.3408,
+      "n_det": 99900
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.6252,
+      "AP75": 0.3548,
+      "AP50_95": 0.3463,
+      "n_gt": 14937
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/scored_dt2_sparse_s0v2_r2048.json

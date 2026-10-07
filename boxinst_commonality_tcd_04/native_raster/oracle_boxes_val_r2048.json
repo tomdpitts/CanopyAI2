@@ -1,0 +1,88 @@
+{
+  "question": "ceiling on mask AP from perfect LOCALISATION, masker + recall + ranking fixed",
+  "res": 2048,
+  "tau": 0.4,
+  "prior_weight": 0.3,
+  "kappa_scale": 1.6,
+  "ranking": "detector score s in every arm",
+  "n_val_tiles": 108,
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "3.10.20",
+    "numpy": "2.2.6",
+    "torch": "2.13.0"
+  },
+  "arms": {
+    "as_is": {
+      "mask": {
+        "AP50": 0.6045,
+        "AP75": 0.1328,
+        "AP50_95": 0.2436,
+        "n_det": 40058
+      },
+      "box": {
+        "AP50": 0.6338,
+        "AP75": 0.1863,
+        "AP50_95": 0.2742,
+        "n_det": 40058
+      },
+      "n_snapped": 0,
+      "mean_box_iou_before_snap": null,
+      "secs": 416.0
+    },
+    "snap@0.50": {
+      "mask": {
+        "AP50": 0.6292,
+        "AP75": 0.3844,
+        "AP50_95": 0.3523,
+        "n_det": 40058
+      },
+      "box": {
+        "AP50": 0.6416,
+        "AP75": 0.6234,
+        "AP50_95": 0.5743,
+        "n_det": 40058
+      },
+      "n_snapped": 5428,
+      "mean_box_iou_before_snap": 0.7285,
+      "secs": 415.1
+    },
+    "snap@0.30": {
+      "mask": {
+        "AP50": 0.7044,
+        "AP75": 0.4293,
+        "AP50_95": 0.399,
+        "n_det": 40058
+      },
+      "box": {
+        "AP50": 0.7371,
+        "AP75": 0.7325,
+        "AP50_95": 0.6682,
+        "n_det": 40058
+      },
+      "n_snapped": 6212,
+      "mean_box_iou_before_snap": 0.6881,
+      "secs": 408.7
+    }
+  },
+  "n_det": 40058,
+  "gate": {
+    "ref_file": "val_knobs_tau_r2048_s0_local.json",
+    "cell": "0.40",
+    "ref_AP50": 0.6045,
+    "got_AP50": 0.6045,
+    "pass": true
+  },
+  "delta_vs_as_is": {
+    "snap@0.50": {
+      "AP50": 0.0247,
+      "AP75": 0.2516,
+      "AP50_95": 0.1087
+    },
+    "snap@0.30": {
+      "AP50": 0.0999,
+      "AP75": 0.2965,
+      "AP50_95": 0.1554
+    }
+  }
+}

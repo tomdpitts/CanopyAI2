@@ -1,0 +1,108 @@
+{
+  "split": "val (108 tiles)",
+  "res": 2048,
+  "tau": 0.4,
+  "prior_weight": 0.3,
+  "kappa_scale": 1.6,
+  "ranking": "detector score s",
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "3.10.20",
+    "numpy": "2.2.6",
+    "torch": "2.13.0"
+  },
+  "baseline": {
+    "det": "/Users/tompitts/dphil/feat_cache/det_phase4_L24_s0.pt",
+    "det_cfg": {
+      "tag": "phase4_L24_s0",
+      "seed": 0,
+      "in_dim": 1024,
+      "grid_stride": 8,
+      "width": 256,
+      "tower": 3,
+      "best_epoch": 20,
+      "score_thr": 0.39999999999999997,
+      "nms_iou": 0.5,
+      "n_train": 792,
+      "arm": "web",
+      "val_boxAP50": 0.4975,
+      "data": "full 2048 train tiles, no windowing"
+    },
+    "n_det": 40058,
+    "mask": {
+      "AP50": 0.6045,
+      "AP75": 0.1328,
+      "AP50_95": 0.2436,
+      "n_det": 40058
+    },
+    "box": {
+      "AP50": 0.6338,
+      "AP75": 0.1863,
+      "AP50_95": 0.2742,
+      "n_det": 40058
+    },
+    "secs": 686.5
+  },
+  "gate": {
+    "ref_file": "val_knobs_tau_r2048_s0_local.json",
+    "cell": "0.40",
+    "ref_AP50": 0.6045,
+    "got_AP50": 0.6045,
+    "n_det": 40058,
+    "pass": true
+  },
+  "candidate": {
+    "det": "/Users/tompitts/dphil/feat_cache/det_v2_L24_s0.pt",
+    "det_cfg": {
+      "tag": "v2_L24_s0",
+      "seed": 0,
+      "in_dim": 1024,
+      "grid_stride": 8,
+      "width": 256,
+      "tower": 3,
+      "best_epoch": 20,
+      "score_thr": 0.35,
+      "nms_iou": 0.5,
+      "n_train": 792,
+      "arm": "web",
+      "val_boxAP50": 0.5137,
+      "val_boxAP50_95": 0.2306,
+      "es_metric": "mAP50_95",
+      "w_size": 0.5,
+      "w_giou": 2.0,
+      "min_epochs": 20,
+      "es_patience": 3,
+      "es_min_delta": 0.002,
+      "epochs_cap": 60,
+      "resumed_from_epoch": null,
+      "recipe": "det_retrain_v2 (native_raster/NATIVE_RASTER.md)",
+      "data": "full 2048 train tiles, no windowing"
+    },
+    "n_det": 44103,
+    "mask": {
+      "AP50": 0.6132,
+      "AP75": 0.1404,
+      "AP50_95": 0.2495,
+      "n_det": 44103
+    },
+    "box": {
+      "AP50": 0.6501,
+      "AP75": 0.2063,
+      "AP50_95": 0.2909,
+      "n_det": 44103
+    },
+    "secs": 567.9
+  },
+  "delta": {
+    "mask": {
+      "AP50": 0.0087,
+      "AP75": 0.0076,
+      "AP50_95": 0.0059
+    },
+    "box": {
+      "AP50": 0.0163,
+      "AP75": 0.02,
+      "AP50_95": 0.0167
+    }
+  }
+}

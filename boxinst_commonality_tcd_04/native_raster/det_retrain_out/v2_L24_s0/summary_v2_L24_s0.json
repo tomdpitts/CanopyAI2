@@ -1,0 +1,12 @@
+{
+  "tag": "v2_L24_s0",
+  "best_epoch": 20,
+  "val": {
+    "mAP50": 0.5137311240257453,
+    "mAP50_95": 0.23060600412524468,
+    "f1": 0.5547631176770249
+  },
+  "es_metric": "mAP50_95",
+  "minutes_this_call": 91.1,
+  "est_cost_usd_this_call": 3.19
+}

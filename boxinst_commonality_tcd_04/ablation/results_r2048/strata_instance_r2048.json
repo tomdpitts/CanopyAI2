@@ -1,0 +1,266 @@
+{
+  "label": "Instance-level crown-overlap stratification, 439 OAM-TCD, knobbed, 3 seeds",
+  "definition": "touching = GT box has box-IoU > 0 with another GT box (masker_lab/failure_analysis.py:106)",
+  "gating": {
+    "ap": "reproduces published per-seed mask AP (lib/gate.py)",
+    "box_iou_mat": "exact vs brute force, 200 random configs",
+    "not_gated": "failure_analysis_results.json's 0.316/0.4614 profile is from a different model and cohort (200 tiles, 16px native-4096 beta=0, live det_t8, box-IoU matching) and is not reproducible from the deployed 8px knobbed preds"
+  },
+  "gt_level": {
+    "n_gt_crowns": 25705,
+    "touching_rate": 0.3932,
+    "note": "model-independent property of the OAM-TCD test annotations"
+  },
+  "matching_arms": {
+    "boxmatched": "preds matched to GT by BOX IoU>=0.5, then mask IoU measured. This is failure_analysis.py's convention and the only arm that can observe a mask failure. USE THIS ONE.",
+    "maskmatched": "preds matched by MASK IoU>=0.5. Its mask-fail rate is zero by construction and is reported only for completeness; its mean mask IoU is conditioned on the mask already having succeeded."
+  },
+  "band_mean_std_boxmatched": {
+    "touching": {
+      "mean_mask_iou": [
+        0.6925,
+        0.0041
+      ],
+      "mask_fail_rate_iou_lt_0.5": [
+        0.0418,
+        0.0024
+      ],
+      "frac_of_box_tps": [
+        0.3993,
+        0.0069
+      ]
+    },
+    "isolated": {
+      "mean_mask_iou": [
+        0.6944,
+        0.0025
+      ],
+      "mask_fail_rate_iou_lt_0.5": [
+        0.0493,
+        0.0025
+      ],
+      "frac_of_box_tps": [
+        0.6007,
+        0.0069
+      ]
+    }
+  },
+  "band_mean_std_maskmatched": {
+    "touching": {
+      "mean_mask_iou": [
+        0.6979,
+        0.0052
+      ],
+      "mask_fail_rate_iou_lt_0.5": [
+        0.0,
+        0.0
+      ],
+      "frac_of_tps": [
+        0.402,
+        0.0059
+      ]
+    },
+    "isolated": {
+      "mean_mask_iou": [
+        0.7022,
+        0.0027
+      ],
+      "mask_fail_rate_iou_lt_0.5": [
+        0.0,
+        0.0
+      ],
+      "frac_of_tps": [
+        0.598,
+        0.0059
+      ]
+    }
+  },
+  "per_seed": {
+    "0": {
+      "n_matched_tp": 19920,
+      "n_box_tp": 20220,
+      "ap": {
+        "mask_mAP50": 0.5937,
+        "mask_mAP50_95": 0.233,
+        "per_iou": [
+          0.5937,
+          0.5356,
+          0.4623,
+          0.3588,
+          0.2335,
+          0.1106,
+          0.0316,
+          0.0039,
+          0.0002,
+          0.0
+        ]
+      },
+      "by_touching_boxmatched": {
+        "touching": {
+          "n": 8147,
+          "frac_of_box_tps": 0.4029,
+          "mean_mask_iou": 0.6953,
+          "mask_fail_rate_iou_lt_0.5": 0.0441,
+          "mean_gt_size_px": 70.18
+        },
+        "isolated": {
+          "n": 12073,
+          "frac_of_box_tps": 0.5971,
+          "mean_mask_iou": 0.6971,
+          "mask_fail_rate_iou_lt_0.5": 0.0472,
+          "mean_gt_size_px": 44.08
+        }
+      },
+      "overall_mask_fail_rate_among_box_tps": 0.0459,
+      "by_touching": {
+        "touching": {
+          "n": 8056,
+          "frac_of_tps": 0.4044,
+          "mean_mask_iou": 0.7016,
+          "median_mask_iou": 0.708,
+          "mask_fail_rate_iou_lt_0.5": 0.0,
+          "mean_gt_size_px": 70.8635,
+          "mean_box_oversize": 0.9124,
+          "mean_gt_fill": 0.6976,
+          "mean_cover_ratio": 0.9836
+        },
+        "isolated": {
+          "n": 11864,
+          "frac_of_tps": 0.5956,
+          "mean_mask_iou": 0.7047,
+          "median_mask_iou": 0.7119,
+          "mask_fail_rate_iou_lt_0.5": 0.0,
+          "mean_gt_size_px": 44.6934,
+          "mean_box_oversize": 1.0215,
+          "mean_gt_fill": 0.7632,
+          "mean_cover_ratio": 1.0466
+        }
+      },
+      "delta_mean_mask_iou_isolated_minus_touching": 0.0031
+    },
+    "1": {
+      "n_matched_tp": 19565,
+      "n_box_tp": 19718,
+      "ap": {
+        "mask_mAP50": 0.5961,
+        "mask_mAP50_95": 0.2271,
+        "per_iou": [
+          0.5961,
+          0.5363,
+          0.4526,
+          0.3427,
+          0.2149,
+          0.098,
+          0.0261,
+          0.0033,
+          0.0011,
+          0.0
+        ]
+      },
+      "by_touching_boxmatched": {
+        "touching": {
+          "n": 7717,
+          "frac_of_box_tps": 0.3914,
+          "mean_mask_iou": 0.6878,
+          "mask_fail_rate_iou_lt_0.5": 0.0419,
+          "mean_gt_size_px": 68.66
+        },
+        "isolated": {
+          "n": 12001,
+          "frac_of_box_tps": 0.6086,
+          "mean_mask_iou": 0.6922,
+          "mask_fail_rate_iou_lt_0.5": 0.0487,
+          "mean_gt_size_px": 43.57
+        }
+      },
+      "overall_mask_fail_rate_among_box_tps": 0.046,
+      "by_touching": {
+        "touching": {
+          "n": 7735,
+          "frac_of_tps": 0.3953,
+          "mean_mask_iou": 0.692,
+          "median_mask_iou": 0.6957,
+          "mask_fail_rate_iou_lt_0.5": 0.0,
+          "mean_gt_size_px": 69.6046,
+          "mean_box_oversize": 0.8291,
+          "mean_gt_fill": 0.6955,
+          "mean_cover_ratio": 0.9154
+        },
+        "isolated": {
+          "n": 11830,
+          "frac_of_tps": 0.6047,
+          "mean_mask_iou": 0.6994,
+          "median_mask_iou": 0.7054,
+          "mask_fail_rate_iou_lt_0.5": 0.0,
+          "mean_gt_size_px": 44.2802,
+          "mean_box_oversize": 0.9718,
+          "mean_gt_fill": 0.7632,
+          "mean_cover_ratio": 1.0097
+        }
+      },
+      "delta_mean_mask_iou_isolated_minus_touching": 0.0074
+    },
+    "2": {
+      "n_matched_tp": 19831,
+      "n_box_tp": 20145,
+      "ap": {
+        "mask_mAP50": 0.5953,
+        "mask_mAP50_95": 0.2309,
+        "per_iou": [
+          0.5953,
+          0.5357,
+          0.4544,
+          0.3506,
+          0.2287,
+          0.1068,
+          0.0327,
+          0.0042,
+          0.0002,
+          0.0
+        ]
+      },
+      "by_touching_boxmatched": {
+        "touching": {
+          "n": 8132,
+          "frac_of_box_tps": 0.4037,
+          "mean_mask_iou": 0.6944,
+          "mask_fail_rate_iou_lt_0.5": 0.0394,
+          "mean_gt_size_px": 69.88
+        },
+        "isolated": {
+          "n": 12013,
+          "frac_of_box_tps": 0.5963,
+          "mean_mask_iou": 0.694,
+          "mask_fail_rate_iou_lt_0.5": 0.0521,
+          "mean_gt_size_px": 44.01
+        }
+      },
+      "overall_mask_fail_rate_among_box_tps": 0.047,
+      "by_touching": {
+        "touching": {
+          "n": 8057,
+          "frac_of_tps": 0.4063,
+          "mean_mask_iou": 0.7001,
+          "median_mask_iou": 0.7061,
+          "mask_fail_rate_iou_lt_0.5": 0.0,
+          "mean_gt_size_px": 70.5592,
+          "mean_box_oversize": 0.9028,
+          "mean_gt_fill": 0.6967,
+          "mean_cover_ratio": 0.9768
+        },
+        "isolated": {
+          "n": 11774,
+          "frac_of_tps": 0.5937,
+          "mean_mask_iou": 0.7025,
+          "median_mask_iou": 0.7091,
+          "mask_fail_rate_iou_lt_0.5": 0.0,
+          "mean_gt_size_px": 44.8001,
+          "mean_box_oversize": 1.0333,
+          "mean_gt_fill": 0.7624,
+          "mean_cover_ratio": 1.0583
+        }
+      },
+      "delta_mean_mask_iou_isolated_minus_touching": 0.0024
+    }
+  }
+}

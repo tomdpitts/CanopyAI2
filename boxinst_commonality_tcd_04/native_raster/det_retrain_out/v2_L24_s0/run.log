@@ -1,0 +1,16 @@
+10:00:43 [det_retrain] gpu=NVIDIA A100-SXM4-40GB args={'tag': 'v2_L24_s0', 'epochs': 60, 'seed': 0, 'lr': 0.001, 'wd': 0.0001, 'bs': 3, 'width': 256, 'tower': 3, 'eval_every': 5, 'arm': 'web', 'device': 'cuda', 'canvas': 2048, 'gt_path': None, 'min_epochs': 20, 'es_patience': 3, 'es_min_delta': 0.002, 'w_size': 0.5, 'w_giou': 2.0, 'es_metric': 'mAP50_95'}
+10:01:04 [v2_L24_s0] device=cuda in_dim=1024 params=3.22M train/val=792/108 seed=0 w_size=0.5 w_giou=2.0 es_metric=mAP50_95 min_ep=20 patience=3 min_delta=0.002 cap=60
+10:26:32   ep  5 hm=1.153 off=0.062 size=0.048 giou=0.702 | val boxAP50=0.4592 boxAP50:95=0.1837 F1=0.528@0.35 lr=9.8e-04
+10:26:32     ^ saved best ep5 mAP50_95=0.1837
+10:37:27   ep 10 hm=1.075 off=0.058 size=0.035 giou=0.638 | val boxAP50=0.4776 boxAP50:95=0.1927 F1=0.534@0.40 lr=9.3e-04
+10:37:27     ^ saved best ep10 mAP50_95=0.1927
+10:48:19   ep 15 hm=0.991 off=0.054 size=0.029 giou=0.596 | val boxAP50=0.5044 boxAP50:95=0.2171 F1=0.549@0.35 lr=8.5e-04
+10:48:19     ^ saved best ep15 mAP50_95=0.2171
+10:59:28   ep 20 hm=0.874 off=0.052 size=0.023 giou=0.559 | val boxAP50=0.5137 boxAP50:95=0.2306 F1=0.555@0.35 lr=7.5e-04
+10:59:28     ^ saved best ep20 mAP50_95=0.2306
+11:10:19   ep 25 hm=0.796 off=0.050 size=0.021 giou=0.534 | val boxAP50=0.4990 boxAP50:95=0.2229 F1=0.548@0.40 lr=6.3e-04
+11:21:01   ep 30 hm=0.695 off=0.048 size=0.017 giou=0.497 | val boxAP50=0.4788 boxAP50:95=0.2092 F1=0.537@0.40 lr=5.0e-04
+11:31:47   ep 35 hm=0.583 off=0.046 size=0.015 giou=0.473 | val boxAP50=0.4665 boxAP50:95=0.2064 F1=0.534@0.40 lr=3.7e-04
+11:31:47     early-stop: 3 evals without >0.002 improvement (best ep20)
+11:31:50 [v2_L24_s0] best ep20 val mAP50_95=0.2306 -> /vol/out/det_retrain/v2_L24_s0/det_v2_L24_s0.pt
+11:31:50 [det_retrain] DONE {"tag": "v2_L24_s0", "best_epoch": 20, "val": {"mAP50": 0.5137311240257453, "mAP50_95": 0.23060600412524468, "f1": 0.5547631176770249}, "es_metric": "mAP50_95", "minutes_this_call": 91.1, "est_cost_usd_this_call": 3.19}

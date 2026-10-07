@@ -1,0 +1,4 @@
+(a) {'weights_bitwise_equal': True, 'best_epoch': [1, 1], 'score_thr': [0.05, 0.05], 'val_boxAP50': [np.float64(0.0), np.float64(0.0)], 'pass': True}
+(b) {'resumed': True, 'best_ckpt_equal': True, 'final_weights_equal': True, 'pass': True}
+(c) {'weights_differ_from_legacy': True, 'cfg': {'w_size': 0.5, 'w_giou': 2.0, 'es_metric': 'mAP50_95', 'es_min_delta': 0.002, 'val_boxAP50_95': 0.0}, 'pass': True}
+GATE PASS -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/gate_det_retrain_v2.json

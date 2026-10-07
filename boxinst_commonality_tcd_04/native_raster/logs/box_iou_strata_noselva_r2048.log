@@ -1,0 +1,37 @@
+[box_iou_strata_res] res=2048 rows=['LACE s0 (product)', 'LACE s1 (product)', 'LACE s2 (product)', 'Restor MRCNN rpn1000', 'DetecTree2 s0', 'Box2Mask R-50', 'Box2Mask Swin-L']
+[strata] LACE s0 (product): 19814 matched
+[strata] LACE s1 (product): 19245 matched
+[strata] LACE s2 (product): 19716 matched
+[strata] Restor MRCNN rpn1000: 18630 matched
+[strata] DetecTree2 s0: 20738 matched
+[strata] Box2Mask R-50: 15036 matched
+[strata] Box2Mask Swin-L: 17777 matched
+[strata] common subset (matched by ALL 7 rows): 11126 crowns
+
+=== COMMON SUBSET -- the 11126 crowns EVERY row found (paired) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU              |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+--------------------------------------------------------------------------------------------------------------------------------------
+LACE s0 (product)    |   0.5901 (790)   |  0.6713 (2416)   |  0.7343 (4206)   |  0.7876 (3238)   |   0.8232 (476)   |  0.7297 (11126) 
+LACE s1 (product)    |  0.6012 (1326)   |  0.6751 (2889)   |  0.7368 (3945)   |  0.7952 (2622)   |   0.8337 (344)   |  0.7214 (11126) 
+LACE s2 (product)    |   0.5898 (841)   |  0.6695 (2614)   |  0.7345 (4148)   |  0.7899 (3073)   |   0.8268 (450)   |  0.7273 (11126) 
+Restor MRCNN rpn1000 |   0.6112 (385)   |  0.6947 (1305)   |  0.7645 (3478)   |  0.8254 (4666)   |  0.8715 (1292)   |  0.7890 (11126) 
+DetecTree2 s0        |   0.5993 (641)   |  0.6818 (1717)   |  0.7553 (3355)   |  0.8252 (4073)   |  0.8813 (1340)   |  0.7757 (11126) 
+Box2Mask R-50        |   0.5218 (938)   |  0.5889 (1953)   |  0.6453 (3413)   |  0.7120 (3676)   |  0.7858 (1146)   |  0.6615 (11126) 
+Box2Mask Swin-L      |   0.5494 (639)   |  0.6403 (1734)   |  0.7009 (3474)   |  0.7556 (4011)   |  0.8134 (1268)   |  0.7153 (11126) 
+mean box IoU: LACE s0 (product)=0.7516  LACE s1 (product)=0.7300  LACE s2 (product)=0.7473  Restor MRCNN rpn1000=0.7964  DetecTree2 s0=0.7827  Box2Mask R-50=0.7681  Box2Mask Swin-L=0.7813
+
+=== ALL MATCHES (confounded: rows match different crowns) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU              |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+--------------------------------------------------------------------------------------------------------------------------------------
+LACE s0 (product)    |  0.5585 (3028)   |  0.6493 (5057)   |  0.7206 (6737)   |  0.7781 (4415)   |   0.8178 (577)   |  0.6933 (19814) 
+LACE s1 (product)    |  0.5678 (3555)   |  0.6536 (5567)   |  0.7238 (6139)   |  0.7840 (3554)   |   0.8231 (430)   |  0.6880 (19245) 
+LACE s2 (product)    |  0.5579 (3126)   |  0.6501 (5217)   |  0.7200 (6548)   |  0.7787 (4249)   |   0.8187 (576)   |  0.6913 (19716) 
+Restor MRCNN rpn1000 |  0.5859 (1474)   |  0.6792 (2970)   |  0.7551 (5889)   |  0.8187 (6636)   |  0.8649 (1661)   |  0.7621 (18630) 
+DetecTree2 s0        |  0.5725 (2623)   |  0.6663 (4250)   |  0.7461 (6085)   |  0.8183 (6008)   |  0.8761 (1772)   |  0.7398 (20738) 
+Box2Mask R-50        |  0.5131 (1932)   |  0.5853 (3071)   |  0.6467 (4433)   |  0.7127 (4313)   |  0.7855 (1287)   |  0.6478 (15036) 
+Box2Mask Swin-L      |  0.5409 (2117)   |  0.6277 (3494)   |  0.6960 (5297)   |  0.7524 (5312)   |  0.8097 (1557)   |  0.6909 (17777) 
+mean box IoU: LACE s0 (product)=0.7209  LACE s1 (product)=0.7061  LACE s2 (product)=0.7185  Restor MRCNN rpn1000=0.7712  DetecTree2 s0=0.7489  Box2Mask R-50=0.7482  Box2Mask Swin-L=0.7530
+
+-> boxinst_commonality_tcd_04/ablation/results_r2048/box_iou_strata_noselva_r2048.json

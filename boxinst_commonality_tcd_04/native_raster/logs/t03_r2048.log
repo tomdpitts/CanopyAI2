@@ -1,0 +1,53 @@
+[rle_io] installed res=2048 results_dir=boxinst_commonality_tcd_04/ablation/results_r2048/side_t03_r2048
+[s0] scoring 439 tiles
+    100/439
+    200/439
+    300/439
+    400/439
+    439/439
+[s0] pooled-all mask AP50 0.6324 (product ranking; gate skipped)
+[s1] scoring 439 tiles
+    100/439
+    200/439
+    300/439
+    400/439
+    439/439
+[s1] pooled-all mask AP50 0.6263 (product ranking; gate skipped)
+[s2] scoring 439 tiles
+    100/439
+    200/439
+    300/439
+    400/439
+    439/439
+[s2] pooled-all mask AP50 0.6314 (product ranking; gate skipped)
+
+=== closure_canopy_frac ===
+bin                                 tiles    n_gt   mask50      sd    box50  mask-box
+[0, 0.1)                              196    7523   0.5490  0.0024   0.5610   -0.0120
+[0.1, 0.25)                            95    8630   0.6570  0.0023   0.6653   -0.0083
+[0.25, 0.5)                            86    7262   0.6862  0.0067   0.6900   -0.0038
+[0.5, 1.01)                            62    2290   0.6177  0.0124   0.6229   -0.0052
+  Spearman(bin rank, AP50) = +0.400
+
+=== density_n_crowns ===
+bin                                 tiles    n_gt   mask50      sd    box50  mask-box
+[0, 10)                               147     362   0.2750  0.0080   0.2666   +0.0084
+[10, 30)                               73    1365   0.5717  0.0084   0.5751   -0.0034
+[30, 80)                               95    4699   0.5350  0.0070   0.5463   -0.0112
+>=80                                  124   19279   0.6712  0.0028   0.6790   -0.0078
+  Spearman(bin rank, AP50) = +0.800
+
+=== biome ===
+bin                                 tiles    n_gt   mask50      sd    box50  mask-box
+-1                                     54    2244   0.6971  0.0056   0.6969   +0.0002
+1 Bahia coastal forests                15     329   0.6127  0.0079   0.6261   -0.0133
+1 Lower Gangetic Plains moist deciduous forests     15     401   0.2686  0.0262   0.2648   +0.0038
+1 Northern Zanzibar-Inhambane coastal forest mosaic    110   13105   0.7045  0.0031   0.7080   -0.0036
+4 East European forest steppe          19     623   0.4916  0.0086   0.4943   -0.0027
+4 Nihonkai montane deciduous forests     19     584   0.4778  0.0133   0.4790   -0.0011
+4 Pannonian mixed forests              16     222   0.6493  0.0172   0.6490   +0.0003
+4 Sarmatic mixed forests               26     867   0.5408  0.0126   0.5397   +0.0011
+4 Taiheiyo evergreen forests           18    1125   0.5075  0.0156   0.5171   -0.0096
+5 Puget lowland forests                23    1148   0.5843  0.0157   0.5804   +0.0039
+
+-> boxinst_commonality_tcd_04/ablation/results_r2048/strata_tile_product_r2048.json

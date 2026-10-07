@@ -1,0 +1,53 @@
+{
+  "tiles": [
+    "tcd_tile_1012",
+    "tcd_tile_1041",
+    "tcd_tile_1068",
+    "tcd_tile_1097",
+    "tcd_tile_1145"
+  ],
+  "tmp": "/var/folders/33/bvcxhlh93y7clygcy5dzxj240000gn/T/gate_v2_pjlunaxm",
+  "a_legacy": {
+    "weights_bitwise_equal": true,
+    "best_epoch": [
+      1,
+      1
+    ],
+    "score_thr": [
+      0.05,
+      0.05
+    ],
+    "val_boxAP50": [
+      0.0,
+      0.0
+    ],
+    "pass": true,
+    "published_log": [
+      "[pub] device=cpu in_dim=1024 params=3.22M grid=256 train/val=3/2 seed=0 tower=3 wd=0.0001 cosine early-stop",
+      "  ep  1 hm=2.619 off=0.281 size=0.090 giou=0.766 | val boxAP50=0.000 F1=0.000@0.05 lr=8.5e-04",
+      "    ^ saved best ep1 boxAP50=0.000",
+      "  ep  2 hm=5.068 off=0.378 size=0.078 giou=0.856 | val boxAP50=0.000 F1=0.000@0.05 lr=5.0e-04",
+      "  ep  3 hm=4.269 off=0.109 size=0.057 giou=0.678 | val boxAP50=0.000 F1=0.000@0.05 lr=1.5e-04",
+      "    early-stop: 2 evals without >0.005 improvement (best ep1)",
+      "[pub] best ep1 val boxAP50=0.000 -> det_pub.pt"
+    ]
+  },
+  "b_resume": {
+    "resumed": true,
+    "best_ckpt_equal": true,
+    "final_weights_equal": true,
+    "pass": true
+  },
+  "c_knobs_live": {
+    "weights_differ_from_legacy": true,
+    "cfg": {
+      "w_size": 0.5,
+      "w_giou": 2.0,
+      "es_metric": "mAP50_95",
+      "es_min_delta": 0.002,
+      "val_boxAP50_95": 0.0
+    },
+    "pass": true
+  },
+  "pass": true
+}

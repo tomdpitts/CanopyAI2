@@ -1,0 +1,462 @@
+{
+  "rows": [
+    {
+      "block": "439",
+      "row": "LACE s0 (tau 0.25@512 / 0.40@2048)",
+      "r512": {
+        "mask_AP50": 0.6615,
+        "mask_AP75": 0.1718,
+        "mask_AP50_95": 0.2821,
+        "box_AP50": 0.6535,
+        "n_det": 159687,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6324,
+        "mask_AP75": 0.1397,
+        "mask_AP50_95": 0.2577,
+        "box_AP50": 0.6748,
+        "n_det": 159687,
+        "res": 2048
+      },
+      "note": "same detections; tau val-selected per raster",
+      "src512": "native_raster/lace_s0_r512_control_scored.json",
+      "src2048": "native_raster/scored_lace_s0_r2048_tau040.json"
+    },
+    {
+      "block": "439",
+      "row": "LACE s1",
+      "r512": {
+        "mask_AP50": 0.6639,
+        "mask_AP75": 0.1566,
+        "mask_AP50_95": 0.2752,
+        "box_AP50": 0.6119,
+        "n_det": 162017,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6262,
+        "mask_AP75": 0.12,
+        "mask_AP50_95": 0.2472,
+        "box_AP50": 0.6543,
+        "n_det": 162017,
+        "res": 2048
+      },
+      "note": "",
+      "src512": "results_439/rerank_product_s1.json",
+      "src2048": "native_raster/scored_lace_s1_r2048_tau040.json"
+    },
+    {
+      "block": "439",
+      "row": "LACE s2",
+      "r512": {
+        "mask_AP50": 0.6622,
+        "mask_AP75": 0.1662,
+        "mask_AP50_95": 0.2798,
+        "box_AP50": 0.6533,
+        "n_det": 177598,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6314,
+        "mask_AP75": 0.1349,
+        "mask_AP50_95": 0.2552,
+        "box_AP50": 0.6706,
+        "n_det": 177598,
+        "res": 2048
+      },
+      "note": "",
+      "src512": "results_439/rerank_product_s2.json",
+      "src2048": "native_raster/scored_lace_s2_r2048_tau040.json"
+    },
+    {
+      "block": "439",
+      "row": "Restor rpn512 (released) tree-only",
+      "r512": {
+        "mask_AP50": 0.5706,
+        "mask_AP75": 0.1806,
+        "mask_AP50_95": 0.2575,
+        "box_AP50": 0.5868,
+        "n_det": 42987,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.5847,
+        "mask_AP75": 0.2829,
+        "mask_AP50_95": 0.3076,
+        "box_AP50": 0.597,
+        "n_det": 42987,
+        "res": 2048
+      },
+      "note": "same detections",
+      "src512": "results_439/restor_coco512.json",
+      "src2048": "native_raster/scored_restor_rpn512_r2048_tree.json"
+    },
+    {
+      "block": "439",
+      "row": "Restor rpn512 (released) pooled",
+      "r512": {
+        "mask_AP50": 0.562,
+        "mask_AP75": 0.1811,
+        "mask_AP50_95": 0.2555,
+        "box_AP50": 0.5825,
+        "n_det": 61182,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.5801,
+        "mask_AP75": 0.2785,
+        "mask_AP50_95": 0.3045,
+        "box_AP50": 0.5862,
+        "n_det": 61182,
+        "res": 2048
+      },
+      "note": "same detections",
+      "src512": "results_439/restor_allcls.json",
+      "src2048": "native_raster/scored_restor_rpn512_r2048_pooled.json"
+    },
+    {
+      "block": "439",
+      "row": "Restor rpn1000 tree-only",
+      "r512": {
+        "mask_AP50": 0.6255,
+        "mask_AP75": 0.1872,
+        "mask_AP50_95": 0.2766,
+        "box_AP50": 0.6536,
+        "n_det": 56438,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.648,
+        "mask_AP75": 0.2968,
+        "mask_AP50_95": 0.3332,
+        "box_AP50": 0.6646,
+        "n_det": 56438,
+        "res": 2048
+      },
+      "note": "same detections",
+      "src512": "results_439/restor_rpn1000_tree.json",
+      "src2048": "native_raster/scored_restor_rpn1000_r2048_tree.json"
+    },
+    {
+      "block": "439",
+      "row": "Restor rpn1000 pooled",
+      "r512": {
+        "mask_AP50": 0.6137,
+        "mask_AP75": 0.1893,
+        "mask_AP50_95": 0.2738,
+        "box_AP50": 0.6392,
+        "n_det": 79201,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6342,
+        "mask_AP75": 0.2946,
+        "mask_AP50_95": 0.3279,
+        "box_AP50": 0.649,
+        "n_det": 79201,
+        "res": 2048
+      },
+      "note": "same detections",
+      "src512": "results_439/restor_rpn1000_pooled.json",
+      "src2048": "native_raster/scored_restor_rpn1000_r2048_pooled.json"
+    },
+    {
+      "block": "439",
+      "row": "Restor rpn2000 tree-only",
+      "r512": {
+        "mask_AP50": 0.6605,
+        "mask_AP75": 0.1923,
+        "mask_AP50_95": 0.2887,
+        "box_AP50": 0.6934,
+        "n_det": 71606,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6846,
+        "mask_AP75": 0.307,
+        "mask_AP50_95": 0.3484,
+        "box_AP50": 0.705,
+        "n_det": 71606,
+        "res": 2048
+      },
+      "note": "same detections",
+      "src512": "results_439/restor_rpn2000.json",
+      "src2048": "native_raster/scored_restor_rpn2000_r2048_tree.json"
+    },
+    {
+      "block": "439",
+      "row": "DetecTree2 s0v2",
+      "r512": {
+        "mask_AP50": 0.5969,
+        "mask_AP75": 0.1748,
+        "mask_AP50_95": 0.2578,
+        "box_AP50": 0.5913,
+        "n_det": 196927,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6143,
+        "mask_AP75": 0.2534,
+        "mask_AP50_95": 0.3014,
+        "box_AP50": 0.6387,
+        "n_det": 197423,
+        "res": 2048
+      },
+      "note": "re-stitched: mask-space dedup drifts",
+      "src512": "results_439/dt2_s0v2_coco512.json",
+      "src2048": "native_raster/scored_dt2_s0v2_r2048.json"
+    },
+    {
+      "block": "439",
+      "row": "Box2Mask-T Swin-L",
+      "r512": {
+        "mask_AP50": 0.5396,
+        "mask_AP75": 0.0884,
+        "mask_AP50_95": 0.198,
+        "box_AP50": 0.5821,
+        "n_det": 138820,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.5625,
+        "mask_AP75": 0.1272,
+        "mask_AP50_95": 0.2309,
+        "box_AP50": 0.6017,
+        "n_det": 139328,
+        "res": 2048
+      },
+      "note": "re-stitched: mask-space dedup drifts",
+      "src512": "results_439/box2mask_swinl_s0_coco512.json",
+      "src2048": "native_raster/scored_box2mask_swinl_s0_r2048.json"
+    },
+    {
+      "block": "439",
+      "row": "Box2Mask-T R-50",
+      "r512": {
+        "mask_AP50": 0.3865,
+        "mask_AP75": 0.0509,
+        "mask_AP50_95": 0.1299,
+        "box_AP50": 0.4707,
+        "n_det": 117027,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.4332,
+        "mask_AP75": 0.0704,
+        "mask_AP50_95": 0.1566,
+        "box_AP50": 0.4972,
+        "n_det": 118102,
+        "res": 2048
+      },
+      "note": "re-stitched: mask-space dedup drifts",
+      "src512": "results_439/box2mask_s0_coco512.json",
+      "src2048": "native_raster/scored_box2mask_r50_s0_r2048.json"
+    },
+    {
+      "block": "439",
+      "row": "SelvaBox -> SAM 3 (bench, maxDets 600)",
+      "r512": {
+        "mask_AP50": 0.5687,
+        "mask_AP75": 0.0746,
+        "mask_AP50_95": 0.2028,
+        "box_AP50": 0.7297,
+        "n_det": 491847,
+        "res": 512
+      },
+      "r2048": null,
+      "note": "NOT PRODUCED: GPU run stopped at 145/439 (budget)",
+      "src512": "results_439/selvabox_bench_600.json",
+      "src2048": null
+    },
+    {
+      "block": "sparse236",
+      "row": "LACE s0 (tau 0.25@512 / 0.40@2048)",
+      "r512": {
+        "mask_AP50": 0.7018,
+        "mask_AP75": 0.2427,
+        "mask_AP50_95": 0.3218,
+        "box_AP50": 0.6543,
+        "n_det": 79562,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6785,
+        "mask_AP75": 0.2037,
+        "mask_AP50_95": 0.2979,
+        "box_AP50": 0.69,
+        "n_det": 79562,
+        "res": 2048
+      },
+      "note": "same detections",
+      "src512": "results_439/sparse236/lace_prod_s0.json",
+      "src2048": "native_raster/scored_lace_sparse_s0_r2048_tau040.json"
+    },
+    {
+      "block": "sparse236",
+      "row": "LACE s1",
+      "r512": {
+        "mask_AP50": 0.6831,
+        "mask_AP75": 0.2214,
+        "mask_AP50_95": 0.3081,
+        "box_AP50": 0.6134,
+        "n_det": 86784,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6562,
+        "mask_AP75": 0.1792,
+        "mask_AP50_95": 0.2822,
+        "box_AP50": 0.6612,
+        "n_det": 86784,
+        "res": 2048
+      },
+      "note": "",
+      "src512": "results_439/sparse236/lace_prod_s1.json",
+      "src2048": "native_raster/scored_lace_sparse_s1_r2048_tau040.json"
+    },
+    {
+      "block": "sparse236",
+      "row": "LACE s2",
+      "r512": {
+        "mask_AP50": 0.6891,
+        "mask_AP75": 0.2336,
+        "mask_AP50_95": 0.3146,
+        "box_AP50": 0.665,
+        "n_det": 90526,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6663,
+        "mask_AP75": 0.2066,
+        "mask_AP50_95": 0.2953,
+        "box_AP50": 0.6838,
+        "n_det": 90526,
+        "res": 2048
+      },
+      "note": "",
+      "src512": "results_439/sparse236/lace_prod_s2.json",
+      "src2048": "native_raster/scored_lace_sparse_s2_r2048_tau040.json"
+    },
+    {
+      "block": "sparse236",
+      "row": "LACE s0 @ tau 0.25 both rasters",
+      "r512": {
+        "mask_AP50": 0.7018,
+        "mask_AP75": 0.2427,
+        "mask_AP50_95": 0.3218,
+        "box_AP50": 0.6543,
+        "n_det": 79562,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6735,
+        "mask_AP75": 0.2103,
+        "mask_AP50_95": 0.298,
+        "box_AP50": 0.69,
+        "n_det": 79562,
+        "res": 2048
+      },
+      "note": "same tau: pure raster effect",
+      "src512": "results_439/sparse236/lace_prod_s0.json",
+      "src2048": "native_raster/scored_lace_sparse_s0_r2048_tau025.json"
+    },
+    {
+      "block": "sparse236",
+      "row": "DetecTree2 s0v2",
+      "r512": {
+        "mask_AP50": 0.6118,
+        "mask_AP75": 0.2155,
+        "mask_AP50_95": 0.28,
+        "box_AP50": 0.5897,
+        "n_det": 99558,
+        "res": 512
+      },
+      "r2048": {
+        "mask_AP50": 0.6252,
+        "mask_AP75": 0.3541,
+        "mask_AP50_95": 0.346,
+        "box_AP50": 0.6331,
+        "n_det": 99900,
+        "res": 2048
+      },
+      "note": "re-stitched",
+      "src512": "results_439/sparse236/dt2_s0v2.json",
+      "src2048": "native_raster/scored_dt2_sparse_s0v2_r2048.json"
+    }
+  ],
+  "lace_3seed_bands_ddof1": {
+    "439_r512": {
+      "mask_AP50": [
+        0.6625,
+        0.0012
+      ],
+      "mask_AP75": [
+        0.1649,
+        0.0077
+      ],
+      "mask_AP50_95": [
+        0.279,
+        0.0035
+      ],
+      "box_AP50": [
+        0.6396,
+        0.024
+      ]
+    },
+    "439_r2048": {
+      "mask_AP50": [
+        0.63,
+        0.0033
+      ],
+      "mask_AP75": [
+        0.1315,
+        0.0103
+      ],
+      "mask_AP50_95": [
+        0.2534,
+        0.0055
+      ],
+      "box_AP50": [
+        0.6666,
+        0.0108
+      ]
+    },
+    "sparse236_r512": {
+      "mask_AP50": [
+        0.6913,
+        0.0095
+      ],
+      "mask_AP75": [
+        0.2326,
+        0.0107
+      ],
+      "mask_AP50_95": [
+        0.3148,
+        0.0069
+      ],
+      "box_AP50": [
+        0.6442,
+        0.0272
+      ]
+    },
+    "sparse236_r2048": {
+      "mask_AP50": [
+        0.667,
+        0.0112
+      ],
+      "mask_AP75": [
+        0.1965,
+        0.0151
+      ],
+      "mask_AP50_95": [
+        0.2918,
+        0.0084
+      ],
+      "box_AP50": [
+        0.6783,
+        0.0152
+      ]
+    }
+  }
+}

@@ -114,3 +114,12 @@ boxinst_commonality_tcd_04/native_raster/preds_*.json
 boxinst_commonality_tcd_04/native_raster/preds_*.jsonl
 boxinst_commonality_tcd_04/native_raster/*_scored.json
 boxinst_commonality_tcd_04/native_raster/scored_*.json
+# native-raster r2048 bulk: raw per-tile jsonl preds (lace439/sparse, ~270 MB), Modal resume
+# checkpoints, and score-invariant AP caches. Canonical copies kept off-repo; code + scored tables tracked.
+boxinst_commonality_tcd_04/native_raster/*_raw/
+boxinst_commonality_tcd_04/native_raster/.ckpt_*
+boxinst_commonality_tcd_04/**/*.pkl
+# Figure sources: re-include so architecture/overview figures can be rebuilt (overrides *.tex / *.png above;
+# figs/arch/_cache/ stays ignored via *cache/)
+!boxinst_commonality_tcd_04/ablation/results/figs/**/*.tex
+!boxinst_commonality_tcd_04/ablation/results/figs/**/*.png
