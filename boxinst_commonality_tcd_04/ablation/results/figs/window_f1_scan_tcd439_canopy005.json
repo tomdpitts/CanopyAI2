@@ -1,0 +1,158 @@
+[
+ {
+  "tile": "tcd_val_tile_146",
+  "n_win": 12,
+  "canopy": 0.0014,
+  "crop": [
+   1280,
+   1216
+  ],
+  "LACE (ours)": 1.0,
+  "Restor Mask R-CNN": 0.9167,
+  "Detectree2": 0.8696,
+  "Box2Mask Swin-L": 0.9565
+ },
+ {
+  "tile": "tcd_val_tile_126",
+  "n_win": 11,
+  "canopy": 0.0,
+  "crop": [
+   1088,
+   0
+  ],
+  "LACE (ours)": 0.8571,
+  "Restor Mask R-CNN": 0.9524,
+  "Detectree2": 0.9091,
+  "Box2Mask Swin-L": 0.8
+ },
+ {
+  "tile": "tcd_val_tile_24",
+  "n_win": 11,
+  "canopy": 0.0,
+  "crop": [
+   1280,
+   0
+  ],
+  "LACE (ours)": 0.8421,
+  "Restor Mask R-CNN": 0.8,
+  "Detectree2": 0.8696,
+  "Box2Mask Swin-L": 0.7619
+ },
+ {
+  "tile": "tcd_val_tile_48",
+  "n_win": 46,
+  "canopy": 0.0014,
+  "crop": [
+   1280,
+   1216
+  ],
+  "LACE (ours)": 0.7865,
+  "Restor Mask R-CNN": 0.8764,
+  "Detectree2": 0.7619,
+  "Box2Mask Swin-L": 0.7727
+ },
+ {
+  "tile": "tcd_val_tile_162",
+  "n_win": 10,
+  "canopy": 0.0031,
+  "crop": [
+   1280,
+   832
+  ],
+  "LACE (ours)": 0.7778,
+  "Restor Mask R-CNN": 0.7059,
+  "Detectree2": 0.5882,
+  "Box2Mask Swin-L": 0.7
+ },
+ {
+  "tile": "tcd_val_tile_234",
+  "n_win": 21,
+  "canopy": 0.0046,
+  "crop": [
+   0,
+   192
+  ],
+  "LACE (ours)": 0.7647,
+  "Restor Mask R-CNN": 0.6667,
+  "Detectree2": 0.6857,
+  "Box2Mask Swin-L": 0.6111
+ },
+ {
+  "tile": "tcd_val_tile_122",
+  "n_win": 69,
+  "canopy": 0.0041,
+  "crop": [
+   0,
+   576
+  ],
+  "LACE (ours)": 0.6833,
+  "Restor Mask R-CNN": 0.5962,
+  "Detectree2": 0.5424,
+  "Box2Mask Swin-L": 0.6207
+ },
+ {
+  "tile": "tcd_val_tile_258",
+  "n_win": 29,
+  "canopy": 0.0013,
+  "crop": [
+   1280,
+   0
+  ],
+  "LACE (ours)": 0.68,
+  "Restor Mask R-CNN": 0.6531,
+  "Detectree2": 0.6522,
+  "Box2Mask Swin-L": 0.625
+ },
+ {
+  "tile": "tcd_val_tile_120",
+  "n_win": 8,
+  "canopy": 0.0004,
+  "crop": [
+   128,
+   896
+  ],
+  "LACE (ours)": 0.5333,
+  "Restor Mask R-CNN": 0.6667,
+  "Detectree2": 0.5556,
+  "Box2Mask Swin-L": 0.6154
+ },
+ {
+  "tile": "tcd_val_tile_180",
+  "n_win": 182,
+  "canopy": 0.0023,
+  "crop": [
+   1216,
+   576
+  ],
+  "LACE (ours)": 0.5226,
+  "Restor Mask R-CNN": 0.692,
+  "Detectree2": 0.5967,
+  "Box2Mask Swin-L": 0.539
+ },
+ {
+  "tile": "tcd_val_tile_112",
+  "n_win": 46,
+  "canopy": 0.0021,
+  "crop": [
+   384,
+   896
+  ],
+  "LACE (ours)": 0.4474,
+  "Restor Mask R-CNN": 0.6575,
+  "Detectree2": 0.4103,
+  "Box2Mask Swin-L": 0.4318
+ },
+ {
+  "tile": "tcd_val_tile_158",
+  "n_win": 10,
+  "canopy": 0.0,
+  "crop": [
+   1280,
+   0
+  ],
+  "LACE (ours)": 0.2857,
+  "Restor Mask R-CNN": 0.2105,
+  "Detectree2": 0.2353,
+  "Box2Mask Swin-L": 0.1818
+ }
+]

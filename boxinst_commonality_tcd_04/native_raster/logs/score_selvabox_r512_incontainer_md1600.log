@@ -1,0 +1,82 @@
+[score_coco] rasterising GT at 512^2 (once, shared) ...
+[score_coco] preds_selvabox_bench_r512_incontainer.json: 491847 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.10s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=46.52s).
+Accumulating evaluation results...
+DONE (t=0.33s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.10s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=64.48s).
+Accumulating evaluation results...
+DONE (t=0.32s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.10s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=60.84s).
+Accumulating evaluation results...
+DONE (t=0.33s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/preds_selvabox_bench_r512_incontainer.json",
+  "model": "SelvaBox DINO-Swin-L (NQOS-selvamask-FT) -> SAM 3 (selvamask-FT), 1024px @0.5 ovl @0.1 m/px, IoU-NMS 0.7, no edge-band cull",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 512,
+    "max_dets": 1600,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.2587,
+      "AP75": 0.0344,
+      "AP50_95": 0.0926,
+      "n_det": 491847
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.5769,
+      "AP75": 0.0756,
+      "AP50_95": 0.2051,
+      "n_det": 491847
+    },
+    "box": {
+      "AP50": 0.748,
+      "AP75": 0.3477,
+      "AP50_95": 0.3829,
+      "n_det": 491847
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.5768,
+      "AP75": 0.0762,
+      "AP50_95": 0.2055,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/scored_selvabox_bench_r512_incontainer_md1600.json

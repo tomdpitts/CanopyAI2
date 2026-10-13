@@ -9,7 +9,8 @@ pipeline:
   - detector det_phase4_L24_s0 (copy at modal_savanna_multiseed/phase4/det_tcd_s0.pt)
   - masker em_model_4p_fix.npz (beta=0.5, K_fg=16, alpha=0.3, kappa 10x1.6)
 Boxes, scores (product-reranked s') and native-2048 masks for the detection/output insets are
-the PUBLISHED ones (native_raster/preds_lace_s0_r2048_tau040.json), shown at the paper's
+the PUBLISHED ones (native_raster/preds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json, colour-guided
+render, 2026-10-08; the earlier bilinear-render panels are in _backup_pre_guided_2026-10-08/), shown at the paper's
 qualitative-figure threshold s' >= 0.11 (qualitative_thresholds_tcd439.json). The local run
 supplies the heatmap and the per-cell A / A-bar / p_fg of the zoomed box, and is checked against
 the published boxes and s' on every run.
@@ -40,11 +41,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 T04 = os.path.join(REPO, "boxinst_commonality_tcd_04")
 DET = os.path.join(T04, "modal_savanna_multiseed/phase4/det_tcd_s0.pt")
 EM = os.path.join(T04, "modal_tcd_multiseed/phase4/em_model_4p_fix.npz")
-PUB = os.path.join(T04, "native_raster/preds_lace_s0_r2048_tau040.json")
+PUB = os.path.join(T04, "native_raster/preds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json")
 TID = os.environ.get("TID", "tcd_val_tile_147")
 FEAT_CACHE = os.environ.get("FEAT_CACHE", os.path.join(HERE, "_cache"))
 CROP = [int(v) for v in os.environ.get("CROP", "128,768,512").split(",")]  # x0,y0,size
-TAU = 0.40          # native-2048 raster threshold of the published preds
+TAU = 0.35          # mask threshold of the deployed (colour-guided) render
 SHOW = 0.11         # display cut on s' (LACE row of qualitative_thresholds_tcd439.json)
 SPLO, SPHI = 0.15, 0.28   # s' colour range (shown masks span 0.17-0.26); TikZ bar is low..high
 PHASE_RGB = [(59, 110, 168), (181, 71, 125), (42, 157, 143), (198, 146, 20)]  # (0,0),(0,8),(8,0),(8,8)

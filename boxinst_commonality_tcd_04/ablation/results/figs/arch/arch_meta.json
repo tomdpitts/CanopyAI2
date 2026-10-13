@@ -7,9 +7,9 @@
  ],
  "det": "boxinst_commonality_tcd_04/modal_savanna_multiseed/phase4/det_tcd_s0.pt",
  "em": "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/em_model_4p_fix.npz",
- "preds": "boxinst_commonality_tcd_04/native_raster/preds_lace_s0_r2048_tau040.json",
+ "preds": "boxinst_commonality_tcd_04/native_raster/preds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json",
  "show_thr_sprime": 0.11,
- "tau": 0.4,
+ "tau": 0.35,
  "n_shown": 14,
  "encoder_window_xywh": [
   416,

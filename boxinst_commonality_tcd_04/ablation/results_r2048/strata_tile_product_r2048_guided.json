@@ -1,0 +1,854 @@
+{
+  "label": "Tile-level stratification, 439 OAM-TCD, knobbed masker, 3 seeds, posterior-product ranking",
+  "protocol": {
+    "ap": "pooled within bin against that bin's own n_gt (subsets_sparse_band convention)",
+    "source": "modal_sparse_tcd_multiseed/tile_index.json",
+    "join_check": "439/439 tids, all split=test & seen=False, sum(n_crowns)=25705=n_gt",
+    "closure_edges": [
+      0.0,
+      0.1,
+      0.25,
+      0.5,
+      1.01
+    ],
+    "density_edges": [
+      0,
+      10,
+      30,
+      80,
+      1000000000
+    ],
+    "biome_min_tiles": 15
+  },
+  "reading": "AP is LOWER on sparse/open tiles, the opposite of the naive commonality prediction. That is mostly a DETECTION effect: box AP moves the same way, so the mask-minus-box column is the masker-specific quantity. A flat mask-minus-box across strata means the masker is not what degrades. Pooled AP in low-n_gt bins is also inherently unstable -- the [0,10) crowns/tile bin holds 147 tiles but only ~362 GT crowns, so a few false positives dominate it. The assumption-relevant test is the instance-level touching split in results/strata_instance.json, not this tile-level proxy.",
+  "spearman_bin_rank_vs_ap50": {
+    "closure_canopy_frac": 0.4,
+    "density_n_crowns": 0.8
+  },
+  "band_mean_std": {
+    "closure_canopy_frac": {
+      "[0, 0.1)": {
+        "n_tiles": 196,
+        "n_gt": 7523,
+        "mask_mAP50": [
+          0.5667,
+          0.002
+        ],
+        "mask_mAP50_95": [
+          0.2416,
+          0.0025
+        ],
+        "box_mAP50": [
+          0.561,
+          0.0079
+        ],
+        "mask_minus_box_AP50": [
+          0.0057,
+          0.0092
+        ]
+      },
+      "[0.1, 0.25)": {
+        "n_tiles": 95,
+        "n_gt": 8630,
+        "mask_mAP50": [
+          0.675,
+          0.0011
+        ],
+        "mask_mAP50_95": [
+          0.2869,
+          0.0058
+        ],
+        "box_mAP50": [
+          0.6653,
+          0.0075
+        ],
+        "mask_minus_box_AP50": [
+          0.0097,
+          0.0064
+        ]
+      },
+      "[0.25, 0.5)": {
+        "n_tiles": 86,
+        "n_gt": 7262,
+        "mask_mAP50": [
+          0.6993,
+          0.008
+        ],
+        "mask_mAP50_95": [
+          0.3093,
+          0.0072
+        ],
+        "box_mAP50": [
+          0.6899,
+          0.009
+        ],
+        "mask_minus_box_AP50": [
+          0.0094,
+          0.0043
+        ]
+      },
+      "[0.5, 1.01)": {
+        "n_tiles": 62,
+        "n_gt": 2290,
+        "mask_mAP50": [
+          0.6391,
+          0.0114
+        ],
+        "mask_mAP50_95": [
+          0.2696,
+          0.0083
+        ],
+        "box_mAP50": [
+          0.6227,
+          0.0163
+        ],
+        "mask_minus_box_AP50": [
+          0.0163,
+          0.0052
+        ]
+      }
+    },
+    "density_n_crowns": {
+      "[0, 10)": {
+        "n_tiles": 147,
+        "n_gt": 362,
+        "mask_mAP50": [
+          0.2772,
+          0.0061
+        ],
+        "mask_mAP50_95": [
+          0.1295,
+          0.0012
+        ],
+        "box_mAP50": [
+          0.2666,
+          0.0081
+        ],
+        "mask_minus_box_AP50": [
+          0.0106,
+          0.0033
+        ]
+      },
+      "[10, 30)": {
+        "n_tiles": 73,
+        "n_gt": 1365,
+        "mask_mAP50": [
+          0.5868,
+          0.0075
+        ],
+        "mask_mAP50_95": [
+          0.259,
+          0.0063
+        ],
+        "box_mAP50": [
+          0.5751,
+          0.0139
+        ],
+        "mask_minus_box_AP50": [
+          0.0116,
+          0.0078
+        ]
+      },
+      "[30, 80)": {
+        "n_tiles": 95,
+        "n_gt": 4699,
+        "mask_mAP50": [
+          0.5549,
+          0.0038
+        ],
+        "mask_mAP50_95": [
+          0.239,
+          0.0057
+        ],
+        "box_mAP50": [
+          0.5463,
+          0.0147
+        ],
+        "mask_minus_box_AP50": [
+          0.0087,
+          0.0111
+        ]
+      },
+      ">=80": {
+        "n_tiles": 124,
+        "n_gt": 19279,
+        "mask_mAP50": [
+          0.6888,
+          0.0028
+        ],
+        "mask_mAP50_95": [
+          0.2949,
+          0.0052
+        ],
+        "box_mAP50": [
+          0.6789,
+          0.0065
+        ],
+        "mask_minus_box_AP50": [
+          0.0099,
+          0.0043
+        ]
+      }
+    },
+    "biome": {
+      "-1 ": {
+        "n_tiles": 54,
+        "n_gt": 2244,
+        "mask_mAP50": [
+          0.7222,
+          0.004
+        ],
+        "mask_mAP50_95": [
+          0.2837,
+          0.0043
+        ],
+        "box_mAP50": [
+          0.697,
+          0.0117
+        ],
+        "mask_minus_box_AP50": [
+          0.0252,
+          0.0108
+        ]
+      },
+      "1 Bahia coastal forests": {
+        "n_tiles": 15,
+        "n_gt": 329,
+        "mask_mAP50": [
+          0.6197,
+          0.0078
+        ],
+        "mask_mAP50_95": [
+          0.2305,
+          0.004
+        ],
+        "box_mAP50": [
+          0.6263,
+          0.0143
+        ],
+        "mask_minus_box_AP50": [
+          -0.0065,
+          0.0219
+        ]
+      },
+      "1 Lower Gangetic Plains moist deciduous forests": {
+        "n_tiles": 15,
+        "n_gt": 401,
+        "mask_mAP50": [
+          0.2842,
+          0.0188
+        ],
+        "mask_mAP50_95": [
+          0.0941,
+          0.009
+        ],
+        "box_mAP50": [
+          0.2648,
+          0.0235
+        ],
+        "mask_minus_box_AP50": [
+          0.0194,
+          0.0059
+        ]
+      },
+      "1 Northern Zanzibar-Inhambane coastal forest mosaic": {
+        "n_tiles": 110,
+        "n_gt": 13105,
+        "mask_mAP50": [
+          0.7206,
+          0.0056
+        ],
+        "mask_mAP50_95": [
+          0.3166,
+          0.0057
+        ],
+        "box_mAP50": [
+          0.708,
+          0.0086
+        ],
+        "mask_minus_box_AP50": [
+          0.0126,
+          0.0037
+        ]
+      },
+      "4 East European forest steppe": {
+        "n_tiles": 19,
+        "n_gt": 623,
+        "mask_mAP50": [
+          0.4992,
+          0.0106
+        ],
+        "mask_mAP50_95": [
+          0.2152,
+          0.0055
+        ],
+        "box_mAP50": [
+          0.4943,
+          0.0077
+        ],
+        "mask_minus_box_AP50": [
+          0.005,
+          0.0045
+        ]
+      },
+      "4 Nihonkai montane deciduous forests": {
+        "n_tiles": 19,
+        "n_gt": 584,
+        "mask_mAP50": [
+          0.4744,
+          0.0121
+        ],
+        "mask_mAP50_95": [
+          0.2011,
+          0.0044
+        ],
+        "box_mAP50": [
+          0.4789,
+          0.0099
+        ],
+        "mask_minus_box_AP50": [
+          -0.0046,
+          0.0071
+        ]
+      },
+      "4 Pannonian mixed forests": {
+        "n_tiles": 16,
+        "n_gt": 222,
+        "mask_mAP50": [
+          0.6668,
+          0.015
+        ],
+        "mask_mAP50_95": [
+          0.3425,
+          0.0017
+        ],
+        "box_mAP50": [
+          0.649,
+          0.0159
+        ],
+        "mask_minus_box_AP50": [
+          0.0178,
+          0.0012
+        ]
+      },
+      "4 Sarmatic mixed forests": {
+        "n_tiles": 26,
+        "n_gt": 867,
+        "mask_mAP50": [
+          0.5489,
+          0.0122
+        ],
+        "mask_mAP50_95": [
+          0.2722,
+          0.0085
+        ],
+        "box_mAP50": [
+          0.5397,
+          0.013
+        ],
+        "mask_minus_box_AP50": [
+          0.0092,
+          0.0031
+        ]
+      },
+      "4 Taiheiyo evergreen forests": {
+        "n_tiles": 18,
+        "n_gt": 1125,
+        "mask_mAP50": [
+          0.5398,
+          0.0084
+        ],
+        "mask_mAP50_95": [
+          0.2524,
+          0.0077
+        ],
+        "box_mAP50": [
+          0.5169,
+          0.0118
+        ],
+        "mask_minus_box_AP50": [
+          0.0229,
+          0.0059
+        ]
+      },
+      "5 Puget lowland forests": {
+        "n_tiles": 23,
+        "n_gt": 1148,
+        "mask_mAP50": [
+          0.6125,
+          0.0156
+        ],
+        "mask_mAP50_95": [
+          0.2844,
+          0.0135
+        ],
+        "box_mAP50": [
+          0.5802,
+          0.0154
+        ],
+        "mask_minus_box_AP50": [
+          0.0322,
+          0.0025
+        ]
+      }
+    }
+  },
+  "per_seed": {
+    "0": {
+      "closure_canopy_frac": {
+        "[0, 0.1)": {
+          "n_tiles": 196,
+          "n_gt": 7523,
+          "mask_mAP50": 0.567,
+          "mask_mAP50_95": 0.2445,
+          "box_mAP50": 0.5678,
+          "mask_minus_box_AP50": -0.0008
+        },
+        "[0.1, 0.25)": {
+          "n_tiles": 95,
+          "n_gt": 8630,
+          "mask_mAP50": 0.6757,
+          "mask_mAP50_95": 0.2926,
+          "box_mAP50": 0.6721,
+          "mask_minus_box_AP50": 0.0036
+        },
+        "[0.25, 0.5)": {
+          "n_tiles": 86,
+          "n_gt": 7262,
+          "mask_mAP50": 0.6964,
+          "mask_mAP50_95": 0.3125,
+          "box_mAP50": 0.6917,
+          "mask_minus_box_AP50": 0.0047
+        },
+        "[0.5, 1.01)": {
+          "n_tiles": 62,
+          "n_gt": 2290,
+          "mask_mAP50": 0.6439,
+          "mask_mAP50_95": 0.2759,
+          "box_mAP50": 0.6317,
+          "mask_minus_box_AP50": 0.0122
+        }
+      },
+      "density_n_crowns": {
+        "[0, 10)": {
+          "n_tiles": 147,
+          "n_gt": 362,
+          "mask_mAP50": 0.2748,
+          "mask_mAP50_95": 0.1291,
+          "box_mAP50": 0.2667,
+          "mask_minus_box_AP50": 0.008
+        },
+        "[10, 30)": {
+          "n_tiles": 73,
+          "n_gt": 1365,
+          "mask_mAP50": 0.5931,
+          "mask_mAP50_95": 0.262,
+          "box_mAP50": 0.5904,
+          "mask_minus_box_AP50": 0.0027
+        },
+        "[30, 80)": {
+          "n_tiles": 95,
+          "n_gt": 4699,
+          "mask_mAP50": 0.5567,
+          "mask_mAP50_95": 0.2436,
+          "box_mAP50": 0.5571,
+          "mask_minus_box_AP50": -0.0004
+        },
+        ">=80": {
+          "n_tiles": 124,
+          "n_gt": 19279,
+          "mask_mAP50": 0.6886,
+          "mask_mAP50_95": 0.2992,
+          "box_mAP50": 0.6823,
+          "mask_minus_box_AP50": 0.0063
+        }
+      },
+      "biome": {
+        "-1 ": {
+          "n_tiles": 54,
+          "n_gt": 2244,
+          "mask_mAP50": 0.7185,
+          "mask_mAP50_95": 0.2843,
+          "box_mAP50": 0.6998,
+          "mask_minus_box_AP50": 0.0186
+        },
+        "1 Bahia coastal forests": {
+          "n_tiles": 15,
+          "n_gt": 329,
+          "mask_mAP50": 0.6114,
+          "mask_mAP50_95": 0.2263,
+          "box_mAP50": 0.6426,
+          "mask_minus_box_AP50": -0.0312
+        },
+        "1 Lower Gangetic Plains moist deciduous forests": {
+          "n_tiles": 15,
+          "n_gt": 401,
+          "mask_mAP50": 0.2942,
+          "mask_mAP50_95": 0.1008,
+          "box_mAP50": 0.2812,
+          "mask_minus_box_AP50": 0.013
+        },
+        "1 Northern Zanzibar-Inhambane coastal forest mosaic": {
+          "n_tiles": 110,
+          "n_gt": 13105,
+          "mask_mAP50": 0.7214,
+          "mask_mAP50_95": 0.3202,
+          "box_mAP50": 0.7123,
+          "mask_minus_box_AP50": 0.0091
+        },
+        "4 East European forest steppe": {
+          "n_tiles": 19,
+          "n_gt": 623,
+          "mask_mAP50": 0.4998,
+          "mask_mAP50_95": 0.2118,
+          "box_mAP50": 0.4913,
+          "mask_minus_box_AP50": 0.0085
+        },
+        "4 Nihonkai montane deciduous forests": {
+          "n_tiles": 19,
+          "n_gt": 584,
+          "mask_mAP50": 0.4883,
+          "mask_mAP50_95": 0.2062,
+          "box_mAP50": 0.4885,
+          "mask_minus_box_AP50": -0.0002
+        },
+        "4 Pannonian mixed forests": {
+          "n_tiles": 16,
+          "n_gt": 222,
+          "mask_mAP50": 0.6709,
+          "mask_mAP50_95": 0.3431,
+          "box_mAP50": 0.6524,
+          "mask_minus_box_AP50": 0.0184
+        },
+        "4 Sarmatic mixed forests": {
+          "n_tiles": 26,
+          "n_gt": 867,
+          "mask_mAP50": 0.5515,
+          "mask_mAP50_95": 0.2779,
+          "box_mAP50": 0.5458,
+          "mask_minus_box_AP50": 0.0057
+        },
+        "4 Taiheiyo evergreen forests": {
+          "n_tiles": 18,
+          "n_gt": 1125,
+          "mask_mAP50": 0.5454,
+          "mask_mAP50_95": 0.2598,
+          "box_mAP50": 0.529,
+          "mask_minus_box_AP50": 0.0163
+        },
+        "5 Puget lowland forests": {
+          "n_tiles": 23,
+          "n_gt": 1148,
+          "mask_mAP50": 0.6304,
+          "mask_mAP50_95": 0.2983,
+          "box_mAP50": 0.5975,
+          "mask_minus_box_AP50": 0.0329
+        }
+      }
+    },
+    "1": {
+      "closure_canopy_frac": {
+        "[0, 0.1)": {
+          "n_tiles": 196,
+          "n_gt": 7523,
+          "mask_mAP50": 0.5686,
+          "mask_mAP50_95": 0.2403,
+          "box_mAP50": 0.5524,
+          "mask_minus_box_AP50": 0.0163
+        },
+        "[0.1, 0.25)": {
+          "n_tiles": 95,
+          "n_gt": 8630,
+          "mask_mAP50": 0.6737,
+          "mask_mAP50_95": 0.281,
+          "box_mAP50": 0.6573,
+          "mask_minus_box_AP50": 0.0164
+        },
+        "[0.25, 0.5)": {
+          "n_tiles": 86,
+          "n_gt": 7262,
+          "mask_mAP50": 0.6932,
+          "mask_mAP50_95": 0.3011,
+          "box_mAP50": 0.6802,
+          "mask_minus_box_AP50": 0.013
+        },
+        "[0.5, 1.01)": {
+          "n_tiles": 62,
+          "n_gt": 2290,
+          "mask_mAP50": 0.6261,
+          "mask_mAP50_95": 0.2602,
+          "box_mAP50": 0.6039,
+          "mask_minus_box_AP50": 0.0222
+        }
+      },
+      "density_n_crowns": {
+        "[0, 10)": {
+          "n_tiles": 147,
+          "n_gt": 362,
+          "mask_mAP50": 0.2727,
+          "mask_mAP50_95": 0.1286,
+          "box_mAP50": 0.2584,
+          "mask_minus_box_AP50": 0.0143
+        },
+        "[10, 30)": {
+          "n_tiles": 73,
+          "n_gt": 1365,
+          "mask_mAP50": 0.5785,
+          "mask_mAP50_95": 0.2517,
+          "box_mAP50": 0.5633,
+          "mask_minus_box_AP50": 0.0152
+        },
+        "[30, 80)": {
+          "n_tiles": 95,
+          "n_gt": 4699,
+          "mask_mAP50": 0.5506,
+          "mask_mAP50_95": 0.2327,
+          "box_mAP50": 0.5295,
+          "mask_minus_box_AP50": 0.0211
+        },
+        ">=80": {
+          "n_tiles": 124,
+          "n_gt": 19279,
+          "mask_mAP50": 0.6861,
+          "mask_mAP50_95": 0.2891,
+          "box_mAP50": 0.6714,
+          "mask_minus_box_AP50": 0.0147
+        }
+      },
+      "biome": {
+        "-1 ": {
+          "n_tiles": 54,
+          "n_gt": 2244,
+          "mask_mAP50": 0.7218,
+          "mask_mAP50_95": 0.2791,
+          "box_mAP50": 0.6841,
+          "mask_minus_box_AP50": 0.0377
+        },
+        "1 Bahia coastal forests": {
+          "n_tiles": 15,
+          "n_gt": 329,
+          "mask_mAP50": 0.621,
+          "mask_mAP50_95": 0.231,
+          "box_mAP50": 0.6202,
+          "mask_minus_box_AP50": 0.0008
+        },
+        "1 Lower Gangetic Plains moist deciduous forests": {
+          "n_tiles": 15,
+          "n_gt": 401,
+          "mask_mAP50": 0.2625,
+          "mask_mAP50_95": 0.0839,
+          "box_mAP50": 0.2379,
+          "mask_minus_box_AP50": 0.0246
+        },
+        "1 Northern Zanzibar-Inhambane coastal forest mosaic": {
+          "n_tiles": 110,
+          "n_gt": 13105,
+          "mask_mAP50": 0.7146,
+          "mask_mAP50_95": 0.31,
+          "box_mAP50": 0.6981,
+          "mask_minus_box_AP50": 0.0165
+        },
+        "4 East European forest steppe": {
+          "n_tiles": 19,
+          "n_gt": 623,
+          "mask_mAP50": 0.5095,
+          "mask_mAP50_95": 0.2215,
+          "box_mAP50": 0.503,
+          "mask_minus_box_AP50": 0.0065
+        },
+        "4 Nihonkai montane deciduous forests": {
+          "n_tiles": 19,
+          "n_gt": 584,
+          "mask_mAP50": 0.468,
+          "mask_mAP50_95": 0.1988,
+          "box_mAP50": 0.4688,
+          "mask_minus_box_AP50": -0.0008
+        },
+        "4 Pannonian mixed forests": {
+          "n_tiles": 16,
+          "n_gt": 222,
+          "mask_mAP50": 0.6793,
+          "mask_mAP50_95": 0.3405,
+          "box_mAP50": 0.6629,
+          "mask_minus_box_AP50": 0.0164
+        },
+        "4 Sarmatic mixed forests": {
+          "n_tiles": 26,
+          "n_gt": 867,
+          "mask_mAP50": 0.5357,
+          "mask_mAP50_95": 0.2624,
+          "box_mAP50": 0.5248,
+          "mask_minus_box_AP50": 0.0109
+        },
+        "4 Taiheiyo evergreen forests": {
+          "n_tiles": 18,
+          "n_gt": 1125,
+          "mask_mAP50": 0.5438,
+          "mask_mAP50_95": 0.2529,
+          "box_mAP50": 0.5162,
+          "mask_minus_box_AP50": 0.0276
+        },
+        "5 Puget lowland forests": {
+          "n_tiles": 23,
+          "n_gt": 1148,
+          "mask_mAP50": 0.6024,
+          "mask_mAP50_95": 0.2714,
+          "box_mAP50": 0.5681,
+          "mask_minus_box_AP50": 0.0343
+        }
+      }
+    },
+    "2": {
+      "closure_canopy_frac": {
+        "[0, 0.1)": {
+          "n_tiles": 196,
+          "n_gt": 7523,
+          "mask_mAP50": 0.5646,
+          "mask_mAP50_95": 0.2399,
+          "box_mAP50": 0.5629,
+          "mask_minus_box_AP50": 0.0017
+        },
+        "[0.1, 0.25)": {
+          "n_tiles": 95,
+          "n_gt": 8630,
+          "mask_mAP50": 0.6756,
+          "mask_mAP50_95": 0.2871,
+          "box_mAP50": 0.6664,
+          "mask_minus_box_AP50": 0.0092
+        },
+        "[0.25, 0.5)": {
+          "n_tiles": 86,
+          "n_gt": 7262,
+          "mask_mAP50": 0.7084,
+          "mask_mAP50_95": 0.3143,
+          "box_mAP50": 0.6979,
+          "mask_minus_box_AP50": 0.0105
+        },
+        "[0.5, 1.01)": {
+          "n_tiles": 62,
+          "n_gt": 2290,
+          "mask_mAP50": 0.6472,
+          "mask_mAP50_95": 0.2727,
+          "box_mAP50": 0.6326,
+          "mask_minus_box_AP50": 0.0146
+        }
+      },
+      "density_n_crowns": {
+        "[0, 10)": {
+          "n_tiles": 147,
+          "n_gt": 362,
+          "mask_mAP50": 0.2842,
+          "mask_mAP50_95": 0.1308,
+          "box_mAP50": 0.2746,
+          "mask_minus_box_AP50": 0.0096
+        },
+        "[10, 30)": {
+          "n_tiles": 73,
+          "n_gt": 1365,
+          "mask_mAP50": 0.5887,
+          "mask_mAP50_95": 0.2632,
+          "box_mAP50": 0.5717,
+          "mask_minus_box_AP50": 0.017
+        },
+        "[30, 80)": {
+          "n_tiles": 95,
+          "n_gt": 4699,
+          "mask_mAP50": 0.5575,
+          "mask_mAP50_95": 0.2408,
+          "box_mAP50": 0.5522,
+          "mask_minus_box_AP50": 0.0053
+        },
+        ">=80": {
+          "n_tiles": 124,
+          "n_gt": 19279,
+          "mask_mAP50": 0.6916,
+          "mask_mAP50_95": 0.2964,
+          "box_mAP50": 0.6831,
+          "mask_minus_box_AP50": 0.0086
+        }
+      },
+      "biome": {
+        "-1 ": {
+          "n_tiles": 54,
+          "n_gt": 2244,
+          "mask_mAP50": 0.7264,
+          "mask_mAP50_95": 0.2877,
+          "box_mAP50": 0.707,
+          "mask_minus_box_AP50": 0.0194
+        },
+        "1 Bahia coastal forests": {
+          "n_tiles": 15,
+          "n_gt": 329,
+          "mask_mAP50": 0.6268,
+          "mask_mAP50_95": 0.2343,
+          "box_mAP50": 0.616,
+          "mask_minus_box_AP50": 0.0108
+        },
+        "1 Lower Gangetic Plains moist deciduous forests": {
+          "n_tiles": 15,
+          "n_gt": 401,
+          "mask_mAP50": 0.2959,
+          "mask_mAP50_95": 0.0977,
+          "box_mAP50": 0.2753,
+          "mask_minus_box_AP50": 0.0206
+        },
+        "1 Northern Zanzibar-Inhambane coastal forest mosaic": {
+          "n_tiles": 110,
+          "n_gt": 13105,
+          "mask_mAP50": 0.7257,
+          "mask_mAP50_95": 0.3196,
+          "box_mAP50": 0.7135,
+          "mask_minus_box_AP50": 0.0122
+        },
+        "4 East European forest steppe": {
+          "n_tiles": 19,
+          "n_gt": 623,
+          "mask_mAP50": 0.4884,
+          "mask_mAP50_95": 0.2122,
+          "box_mAP50": 0.4885,
+          "mask_minus_box_AP50": -0.0001
+        },
+        "4 Nihonkai montane deciduous forests": {
+          "n_tiles": 19,
+          "n_gt": 584,
+          "mask_mAP50": 0.4669,
+          "mask_mAP50_95": 0.1983,
+          "box_mAP50": 0.4795,
+          "mask_minus_box_AP50": -0.0127
+        },
+        "4 Pannonian mixed forests": {
+          "n_tiles": 16,
+          "n_gt": 222,
+          "mask_mAP50": 0.6502,
+          "mask_mAP50_95": 0.3438,
+          "box_mAP50": 0.6317,
+          "mask_minus_box_AP50": 0.0185
+        },
+        "4 Sarmatic mixed forests": {
+          "n_tiles": 26,
+          "n_gt": 867,
+          "mask_mAP50": 0.5596,
+          "mask_mAP50_95": 0.2764,
+          "box_mAP50": 0.5485,
+          "mask_minus_box_AP50": 0.0111
+        },
+        "4 Taiheiyo evergreen forests": {
+          "n_tiles": 18,
+          "n_gt": 1125,
+          "mask_mAP50": 0.5301,
+          "mask_mAP50_95": 0.2445,
+          "box_mAP50": 0.5054,
+          "mask_minus_box_AP50": 0.0247
+        },
+        "5 Puget lowland forests": {
+          "n_tiles": 23,
+          "n_gt": 1148,
+          "mask_mAP50": 0.6046,
+          "mask_mAP50_95": 0.2834,
+          "box_mAP50": 0.5751,
+          "mask_minus_box_AP50": 0.0295
+        }
+      }
+    }
+  }
+}

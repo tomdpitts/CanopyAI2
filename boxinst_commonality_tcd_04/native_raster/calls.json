@@ -158,5 +158,299 @@
       "seed": 2
     },
     "note": "PREREG guided r12 eps1e-4 tau0.35 + bilinear tau0.40 gate, s2, 439 test"
+  },
+  {
+    "call_id": "fc-01M4ASH00EFTANTC4GCTX00FZ1",
+    "app": "tcd04-selvabox-native",
+    "fn": "predict",
+    "kwargs": {},
+    "note": "RESUME SelvaBox->SAM3 bench at 2048 from 145/439 (paper re-base to 2048)"
+  },
+  {
+    "call_id": "fc-01M4ASP32C2SKKTSADWT5TPSD2",
+    "app": "tcd04-guided-ablate",
+    "fn": "sparse_render",
+    "kwargs": {
+      "seed": 0
+    },
+    "note": "sparse236 guided s0"
+  },
+  {
+    "call_id": "fc-01M4ASP46TM2V5VFQ5FZS2Q0P9",
+    "app": "tcd04-guided-ablate",
+    "fn": "sparse_render",
+    "kwargs": {
+      "seed": 1
+    },
+    "note": "sparse236 guided s1"
+  },
+  {
+    "call_id": "fc-01M4ASP5GYMR5Q8KBDD6NFK96P",
+    "app": "tcd04-guided-ablate",
+    "fn": "sparse_render",
+    "kwargs": {
+      "seed": 2
+    },
+    "note": "sparse236 guided s2"
+  },
+  {
+    "call_id": "fc-01M4ASP6S8VAYQ1QMW469RPG65",
+    "app": "tcd04-guided-ablate",
+    "fn": "cfg_render",
+    "kwargs": {
+      "seed": 0,
+      "alpha": 1.0,
+      "kappa": 1.0
+    },
+    "note": "tab:masker alpha1 kappa10 s0"
+  },
+  {
+    "call_id": "fc-01M4ASP7YKPJ0PQZB172ZAZ9B2",
+    "app": "tcd04-guided-ablate",
+    "fn": "cfg_render",
+    "kwargs": {
+      "seed": 0,
+      "alpha": 0.0,
+      "kappa": 1.6
+    },
+    "note": "tab:masker no-prior alpha0 s0"
+  },
+  {
+    "call_id": "fc-01M4ASP93KZM3ZB0YMCAWDESR4",
+    "app": "tcd04-guided-ablate",
+    "fn": "cfg_render",
+    "kwargs": {
+      "seed": 1,
+      "alpha": 1.0,
+      "kappa": 1.0
+    },
+    "note": "tab:masker alpha1 kappa10 s1"
+  },
+  {
+    "call_id": "fc-01M4ASPABZ6PQ3TWXV3FP0B770",
+    "app": "tcd04-guided-ablate",
+    "fn": "cfg_render",
+    "kwargs": {
+      "seed": 1,
+      "alpha": 0.0,
+      "kappa": 1.6
+    },
+    "note": "tab:masker no-prior alpha0 s1"
+  },
+  {
+    "call_id": "fc-01M4ASPBJEM89903C4BKNYNQ8Y",
+    "app": "tcd04-guided-ablate",
+    "fn": "cfg_render",
+    "kwargs": {
+      "seed": 2,
+      "alpha": 1.0,
+      "kappa": 1.0
+    },
+    "note": "tab:masker alpha1 kappa10 s2"
+  },
+  {
+    "call_id": "fc-01M4ASPCREFBCPMEZVQRX2EJ44",
+    "app": "tcd04-guided-ablate",
+    "fn": "cfg_render",
+    "kwargs": {
+      "seed": 2,
+      "alpha": 0.0,
+      "kappa": 1.6
+    },
+    "note": "tab:masker no-prior alpha0 s2"
+  },
+  {
+    "call_id": "fc-01M4ASPDX0BVRD0DB80RWNQNB3",
+    "app": "tcd04-guided-ablate",
+    "fn": "gtbox_guided",
+    "kwargs": {},
+    "note": "tab:gtbox LACE guided"
+  },
+  {
+    "call_id": "fc-01M4ASPF2KBS01BXN8Q2MJK158",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "out/em_model_4p_b0_fix.npz",
+      "src": "gt"
+    },
+    "note": "components/collapse out/em_model_4p_b0_fix.npz gt"
+  },
+  {
+    "call_id": "fc-01M4ASPG8P7ZSG7GCE3GY6GAA2",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "out/em_model_4p_b0_fix.npz",
+      "src": "pred"
+    },
+    "note": "components/collapse out/em_model_4p_b0_fix.npz pred"
+  },
+  {
+    "call_id": "fc-01M4ASPHGETZ2RDY6W680R5X64",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0_c1/em_k16_s0_b0_c1_fix.npz",
+      "src": "gt"
+    },
+    "note": "components/collapse collapse/k16_s0_b0_c1/em_k16_s0_b0_c1_fix.npz gt"
+  },
+  {
+    "call_id": "fc-01M4ASPJMV70397K180KZHR13C",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0_c1/em_k16_s0_b0_c1_fix.npz",
+      "src": "pred"
+    },
+    "note": "components/collapse collapse/k16_s0_b0_c1/em_k16_s0_b0_c1_fix.npz pred"
+  },
+  {
+    "call_id": "fc-01M4ASPKSAZ33R5531J8QJK6S1",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0.5_c0/em_k16_s0_b0.5_c0_fix.npz",
+      "src": "gt"
+    },
+    "note": "components/collapse collapse/k16_s0_b0.5_c0/em_k16_s0_b0.5_c0_fix.npz gt"
+  },
+  {
+    "call_id": "fc-01M4ASPN06DRFEMX3KZTDSCKZX",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0.5_c0/em_k16_s0_b0.5_c0_fix.npz",
+      "src": "pred"
+    },
+    "note": "components/collapse collapse/k16_s0_b0.5_c0/em_k16_s0_b0.5_c0_fix.npz pred"
+  },
+  {
+    "call_id": "fc-01M4ASPP6W32KFF7KHRBWP75AP",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0.5_c1/em_k16_s0_b0.5_c1_fix.npz",
+      "src": "gt"
+    },
+    "note": "components/collapse collapse/k16_s0_b0.5_c1/em_k16_s0_b0.5_c1_fix.npz gt"
+  },
+  {
+    "call_id": "fc-01M4ASPQDGA4D1QRPXKAGR7CDW",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0.5_c1/em_k16_s0_b0.5_c1_fix.npz",
+      "src": "pred"
+    },
+    "note": "components/collapse collapse/k16_s0_b0.5_c1/em_k16_s0_b0.5_c1_fix.npz pred"
+  },
+  {
+    "call_id": "fc-01M4ASPRHWEDCJBHKMBGH8NCBG",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0.1_c1/em_k16_s0_b0.1_c1_fix.npz",
+      "src": "gt"
+    },
+    "note": "components/collapse collapse/k16_s0_b0.1_c1/em_k16_s0_b0.1_c1_fix.npz gt"
+  },
+  {
+    "call_id": "fc-01M4ASPSPE3PY4WVM4A57NEQJC",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0.1_c1/em_k16_s0_b0.1_c1_fix.npz",
+      "src": "pred"
+    },
+    "note": "components/collapse collapse/k16_s0_b0.1_c1/em_k16_s0_b0.1_c1_fix.npz pred"
+  },
+  {
+    "call_id": "fc-01M4ASPTVBD1QFW7RT5E23KTBQ",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0.25_c1/em_k16_s0_b0.25_c1_fix.npz",
+      "src": "gt"
+    },
+    "note": "components/collapse collapse/k16_s0_b0.25_c1/em_k16_s0_b0.25_c1_fix.npz gt"
+  },
+  {
+    "call_id": "fc-01M4ASPW0NBS9K0D4JAMR5J7KE",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s0_b0.25_c1/em_k16_s0_b0.25_c1_fix.npz",
+      "src": "pred"
+    },
+    "note": "components/collapse collapse/k16_s0_b0.25_c1/em_k16_s0_b0.25_c1_fix.npz pred"
+  },
+  {
+    "call_id": "fc-01M4ASPX6X0DYJHFTCAKTK3C3K",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k2_s0_b0_c1/em_k2_s0_b0_c1_fix.npz",
+      "src": "gt"
+    },
+    "note": "components/collapse collapse/k2_s0_b0_c1/em_k2_s0_b0_c1_fix.npz gt"
+  },
+  {
+    "call_id": "fc-01M4ASPYF9M7G4N389HK2JH8SS",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k2_s0_b0_c1/em_k2_s0_b0_c1_fix.npz",
+      "src": "pred"
+    },
+    "note": "components/collapse collapse/k2_s0_b0_c1/em_k2_s0_b0_c1_fix.npz pred"
+  },
+  {
+    "call_id": "fc-01M4ASPZKM4WPJMDBYRCZ45HT2",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k2_s0_b0.5/em_k2_s0_b0.5_fix.npz",
+      "src": "gt"
+    },
+    "note": "components/collapse collapse/k2_s0_b0.5/em_k2_s0_b0.5_fix.npz gt"
+  },
+  {
+    "call_id": "fc-01M4ASQ0TRGXHPF1BDGQFXYD1C",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k2_s0_b0.5/em_k2_s0_b0.5_fix.npz",
+      "src": "pred"
+    },
+    "note": "components/collapse collapse/k2_s0_b0.5/em_k2_s0_b0.5_fix.npz pred"
+  },
+  {
+    "call_id": "fc-01M4AT9TZRES0DMPAXW1J9CPCS",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s1_b0.5/em_k16_s1_b0.5_fix.npz",
+      "src": "pred"
+    },
+    "note": "EM-seed band s1 pred"
+  },
+  {
+    "call_id": "fc-01M4AT9W4ATC44JNWRSDFQ2YEE",
+    "app": "tcd04-guided-ablate",
+    "fn": "components_eval",
+    "kwargs": {
+      "npz": "collapse/k16_s2_b0.5/em_k16_s2_b0.5_fix.npz",
+      "src": "pred"
+    },
+    "note": "EM-seed band s2 pred"
+  },
+  {
+    "call_id": "fc-01M4BFAEGGT7T2SYK76A4NHQAT",
+    "app": "tcd04-selvabox-native",
+    "fn": "assemble",
+    "kwargs": {},
+    "note": "assemble SelvaBox 2048 bench (439/439)"
   }
 ]

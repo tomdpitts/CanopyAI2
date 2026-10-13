@@ -5,9 +5,9 @@ Each has a `.jpg` preview and a `*_meta.json` with the tiles, thresholds, crop o
 
 | file | paper label | content |
 |---|---|---|
-| `qualitative_tcd439.pdf` | `fig:qual` | OAM-TCD 439 holdout, tiles 24, 146, 431, 258 (<3 % canopy; LACE modestly ahead or level); GT, LACE, Restor, Detectree2, Box2Mask Swin-L; 768 px windows, native 2048 masks |
-| `qualitative_sparse.pdf` | `fig:qual-sparse` | sparse-236 holdout, tiles 426, 2009, 3569, 413, 1762, 3969 (savanna/xeric ecoregions, <0.5 % canopy; LACE modestly ahead); GT, LACE, Detectree2; 1024 px windows |
-| `qualitative_neon.pdf` | `fig:qual-neon` | NeonTreeEvaluation boxes, one tile per site, LACE modestly ahead (SJER_057, TEAK_057, NIWO_012, OSBS_003, MLBS_069, DSNY_025); GT, LACE 4-phase s0, DeepForest 2.1.0 |
+| `qualitative_tcd439.pdf` | `fig:qual` | OAM-TCD 439 holdout, tiles 125, 146, 24, 100 (<3 % canopy; LACE window F1 ≥ 0.8, chosen 2026-10-08 with window_f1_scan.py); GT, LACE, Restor, Detectree2, Box2Mask Swin-L; 768 px windows, native 2048 masks |
+| `qualitative_sparse.pdf` | `fig:qual-sparse` | sparse-236 holdout, tiles 318, 1080, 333, 919, 2480, 915 (savanna, Mediterranean scrub, flooded grassland; <0.5 % canopy; LACE window F1 ≥ 0.8); GT, LACE, Detectree2; 1024 px windows |
+| `qualitative_neon.pdf` | `fig:qual-neon` | NeonTreeEvaluation boxes, one tile per site, LACE modestly ahead (SJER_053, TEAK_057, HARV_041, OSBS_028, MLBS_064, DSNY_006; LACE F1 ≥ 0.8, NIWO has no such tile); GT, LACE 4-phase s0, DeepForest 2.1.0 |
 
 ## Regenerate
 
@@ -21,10 +21,10 @@ Env overrides: `TILES=` (comma list, tile numbers for TCD, full keys for NEON), 
 
 ## Inputs
 
-- TCD 439: `test_gt.json`, `data/tcd/test/*.tif`, `native_raster/preds_lace_s0_r2048_tau040.json` (product-reranked score),
+- TCD 439: `test_gt.json`, `data/tcd/test/*.tif`, `native_raster/preds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json` (colour-guided render, product-reranked score),
   `preds_restor_rpn1000_r2048_treeonly.json`, `preds_dt2_s0v2_r2048.json`, `preds_box2mask_swinl_s0_r2048.json`.
   SAM 3 / SelvaBox has no persisted 2048 masks, hence absent.
-- Sparse: `data/tcd_sparse/sparse_gt.json`, `data/tcd_sparse/test/*.tif`, `native_raster/preds_lace_sparse_s0_r2048_tau040.json`,
+- Sparse: `data/tcd_sparse/sparse_gt.json`, `data/tcd_sparse/test/*.tif`, `native_raster/preds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json`,
   `preds_dt2_sparse_s0v2_r2048.json` (only rows in `tab:sparse236`).
 - NEON: `modal_neon_multiseed/neon_gt.json`, `NeonTreeEvaluation/evaluation/RGB/*.tif` (400 px),
   `phase4/dl/preds_phase4_s0.json`, `preds_deepforest.json` (2.1.0 repro).
@@ -76,3 +76,8 @@ from the TeX bundle; the `.tex` picks automatically, so rebuild after installing
 Each run prints the reproduction check (tile 147: 596/596 boxes, 99.8 % at IoU>0.99, max |s' local - published| 2.6e-4).
 `_cache/` is gitignored (128 MB per tile). Tile 122 files there are from the first draft; `*_localtf512.npy` is the drifted
 local extraction, kept only as the counter-example.
+
+
+## Selection rule (2026-10-08)
+
+No panel shows LACE below F1 0.8 in its window (Tom). Candidates screened with `window_f1_scan.py` (`window_f1_scan_<set>.json`), confirmed by the rendered `_meta.json`. Previous figures: `_backup_pre_tileselect_2026-10-08/` and `_backup_pre_guided_2026-10-07/`.

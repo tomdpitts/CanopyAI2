@@ -903,3 +903,35 @@ Canopy-neutral crowd, mean ± sd (ddof 1):
 **Reading.** The gain transfers from val to test almost one-for-one: **+0.0170 AP50** (per seed +0.0148 / +0.0182 / +0.0179; val held-out forecast +0.016). LACE vs Restor rpn1000: **−0.0010 AP50, inside one seed sd (0.0025)**; the best seed (0.6493) exceeds it. A statistical tie on mask AP50, which Tom counts as a win given 900 box-only training images vs ~4.3k mask images. LACE leads DetecTree2 by +0.033. Detections unchanged: box AP is identical by construction. **Not a tie at strict IoU:** AP75 0.173 vs 0.297 and AP50:95 0.278 vs 0.333; the 8 px feature grid still limits fine boundaries.
 
 **Not yet done for a full re-base:** sparse-236 rows with the guided render; the mask-based ablations at 2048 with the guided render; the paper text (method paragraph, tab:config, inference-scalar count). `paper.tex` untouched.
+
+### RE-BASE TO 2048 + GUIDED RENDER — ablations and paper (2026-10-07)
+
+App [`guided_ablate_modal.py`](guided_ablate_modal.py) (`tcd04-guided-ablate`, Modal CPU, 28 calls, all gated). RGB staged to `tcd04-phase4-vol:rgb_val/` (108 val) and `tcd-sparse-vol:rgb_sparse/` (236), each tile verified in container. Raw outputs copied same-session: `guided_sparse_raw/`, `guided_cfg_raw/`, `gtbox_guided_raw/`, `components_guided_raw/`. Local wrappers (copies; originals untouched): `ablation_r2048/{conf_ablation_res,run_strata}_guided.py`, `ablation/scripts/t_restor_rpn_recall_r2048.py`, `b2m_cap_subset.py`.
+
+| table | result (2048, guided render, gates) |
+|---|---|
+| sparse-236 | **0.6775 ± 0.0109** AP50, 0.3215 ± 0.0079 AP50:95, box 0.6783 (DT2 0.6252 / 0.3460). Gate: bilinear τ0.40 rerun = published AP for all 3 seeds (2–3 tiles with float-level mask diffs on s1/s2). |
+| tab:scorer | 439: s 0.6137 ± 0.0032 → product 0.6470 (+0.0333); sparse: s 0.6410 ± 0.0136 → 0.6775 (+0.0365). |
+| tab:masker (product ranking, τ0.35, 3 seeds) | α 0.3 κ16 **0.6470** / 0.2778; α 1 κ10 0.6193 ± 0.0081 / 0.2558; **α 0 (no spatial prior) 0.6240 ± 0.0029 / 0.2581**, i.e. removing the prior costs 0.023 AP50. In-container gate: recomputed product = published product (max \|Δ\| ≤ 1.9e-6). |
+| tab:gtbox | LACE guided 0.748 mean IoU / 0.940 ≥0.5 / 0.647 ≥0.75 / 0.051 ≥0.9 vs SAM 3 0.741/0.956/0.545/0.037. Gate: bilinear τ0.25 reproduces `gtbox_lace_r2048.json` summary exactly. **Guided τ0.35 is worse than bilinear τ0.25 on GT boxes** (0.770): τ was selected for predicted boxes. |
+| tab:factors (s0) | s 0.6101, s·m 0.6338, s·p̄ 0.6329, s·p̄·m 0.6473 |
+| tab:strata | mask−box +0.0057 / +0.0097 / +0.0094 / +0.0163 (positive in every bin again) |
+| touching (t04) | IoU 0.7078 ± 0.0026 vs 0.7118 ± 0.0018; fail 0.0373 vs 0.0403 |
+| tab:components / tab:collapse | 18 cells; every 512 gate reproduces the published value (one at 1e-4). 2048 guided: substitutes still (interaction −0.0146 oracle / −0.0257 pred); pred-box crown IoU flat across β (span 0.0013 < EM-seed 0.0021); on oracle boxes β=0.5 ≈ 0.007 lower. |
+| tab:rpn (Restor) | rpn512: recall 0.6596, 0.5847 / 0.3076; rpn1000: 0.7441, 0.6480 / 0.3332 (AP checks = scored files). |
+| detection budget | DT2 at maxDets 1200: 0.6143 → 0.6187. SelvaBox pending. |
+| Box2Mask cap note | +0.007 at 2048 (my definition reproduces the published +0.008 at 512; my over-cap subtile count is 39 vs PLAN.md's 46, so the definitions differ slightly). |
+
+Figures `qualitative_tcd439` / `qualitative_sparse` regenerated with the guided LACE masks (the old versions are in `ablation/results/figs/_backup_pre_guided_2026-10-07/`; LACE best-F1 thresholds recomputed).
+
+**paper.tex** edited directly (Tom reviews the git diff): 512 scrubbed; guided render added in one sentence + tab:config; every LACE number re-based; app:native section, the "scoring raster favours coarse maskers" paragraph and their references removed; `guidedfilter` bib entry added. Pre-existing bug fixed: unescaped `&` in the AI-assistance paragraph (build failed). Builds with tectonic, no undefined refs. **PENDING** (marked in the text): SelvaBox → SAM 3 at 2048 (Table 1 row, note c, detection budget, tab:strata-maskiou). SelvaBox resumed `fc-01M4ASH00EFTANTC4GCTX00FZ1` at 145/439, ~1.3 min/tile (~6 A100-h).
+
+### SelvaBox → SAM 3 at 2048 completed; paper PENDINGs filled (2026-10-08)
+
+`fc-01M4ASH00EFTANTC4GCTX00FZ1` finished 439/439 (one internal restart, resumed from tile files); assemble `fc-01M4BFAEGGT7T2SYK76A4NHQAT`. Copied same-session: `preds_selvabox_bench_r2048.json`, `preds_selvabox_bench_r512_incontainer.json`, `selvabox_bench_r2048_run.log`. Scored `scored_selvabox_bench_{r2048,r512_incontainer}_md{600,1600}.json`. **Gate:** in-container 512 vs published `results_439/selvabox_bench_{600,1600}.json`: detections (491,847) and box AP50 (0.7297 / 0.748) identical; mask AP50 0.5689 vs 0.5687 and 0.5769 vs 0.5767 (+0.0002, masks from a separate SAM 3 run and environment; accepted, not byte-identical). **2048:** 0.5710 AP50 / 0.2111 AP50:95 / 0.7318 box AP50 (maxDets 600); 0.5789 / 0.2132 / 0.7521 at its own 1,600 budget.
+
+tab:strata-maskiou regenerated at 2048 with guided LACE and SelvaBox ([`box_iou_strata_res_guided.py`](ablation_r2048/box_iou_strata_res_guided.py) → `ablation/results_r2048/box_iou_strata_guided_r2048.json`), 11,076 common crowns: LACE s0 leads the lowest box-IoU stratum only (0.614 vs Restor 0.611); Restor leads three strata and overall mask IoU (0.789); DT2 leads the top stratum.
+
+paper.tex: no PENDING left; builds with tectonic, 0 undefined refs/citations.
+
+**Architecture figure (2026-10-08):** `figs/arch/make_arch_panels.py` now reads the colour-guided preds (τ 0.35; display threshold s' ≥ 0.11 unchanged, the guided best-F1 is also 0.11); panels regenerated (local s' = published s' on every shown box); Output label reads "RGB-guided upsampling to 2048 px, ranked by s'"; caption of fig:architecture updated. Old panels and PDF in `figs/arch/_backup_pre_guided_2026-10-08/`.

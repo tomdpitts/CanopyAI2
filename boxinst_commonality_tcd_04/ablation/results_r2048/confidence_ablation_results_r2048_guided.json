@@ -1,0 +1,1282 @@
+{
+ "baseline_cn_ap50": 0.6101,
+ "n_boxes": 159687,
+ "n_gt": 25705,
+ "val_boxes": 40059,
+ "val_pos_rate": 0.1367,
+ "logreg8": {
+  "cn_ap50": 0.647,
+  "ap50_95": 0.2795,
+  "ap75": 0.1771,
+  "fitted_numbers": 9
+ },
+ "subsets": [
+  {
+   "names": [],
+   "ap": 0.6101
+  },
+  {
+   "names": [
+    "a_mean"
+   ],
+   "ap": 0.635
+  },
+  {
+   "names": [
+    "a_std"
+   ],
+   "ap": 0.6332
+  },
+  {
+   "names": [
+    "a_p90"
+   ],
+   "ap": 0.6399
+  },
+  {
+   "names": [
+    "a_max"
+   ],
+   "ap": 0.6388
+  },
+  {
+   "names": [
+    "bimod"
+   ],
+   "ap": 0.6329
+  },
+  {
+   "names": [
+    "pfg_mean"
+   ],
+   "ap": 0.6282
+  },
+  {
+   "names": [
+    "log_cells"
+   ],
+   "ap": 0.6355
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std"
+   ],
+   "ap": 0.6414
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90"
+   ],
+   "ap": 0.6393
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_max"
+   ],
+   "ap": 0.6389
+  },
+  {
+   "names": [
+    "a_mean",
+    "bimod"
+   ],
+   "ap": 0.6425
+  },
+  {
+   "names": [
+    "a_mean",
+    "pfg_mean"
+   ],
+   "ap": 0.6384
+  },
+  {
+   "names": [
+    "a_mean",
+    "log_cells"
+   ],
+   "ap": 0.6434
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90"
+   ],
+   "ap": 0.6402
+  },
+  {
+   "names": [
+    "a_std",
+    "a_max"
+   ],
+   "ap": 0.639
+  },
+  {
+   "names": [
+    "a_std",
+    "bimod"
+   ],
+   "ap": 0.6336
+  },
+  {
+   "names": [
+    "a_std",
+    "pfg_mean"
+   ],
+   "ap": 0.6394
+  },
+  {
+   "names": [
+    "a_std",
+    "log_cells"
+   ],
+   "ap": 0.642
+  },
+  {
+   "names": [
+    "a_p90",
+    "a_max"
+   ],
+   "ap": 0.6399
+  },
+  {
+   "names": [
+    "a_p90",
+    "bimod"
+   ],
+   "ap": 0.6406
+  },
+  {
+   "names": [
+    "a_p90",
+    "pfg_mean"
+   ],
+   "ap": 0.6425
+  },
+  {
+   "names": [
+    "a_p90",
+    "log_cells"
+   ],
+   "ap": 0.6453
+  },
+  {
+   "names": [
+    "a_max",
+    "bimod"
+   ],
+   "ap": 0.6396
+  },
+  {
+   "names": [
+    "a_max",
+    "pfg_mean"
+   ],
+   "ap": 0.642
+  },
+  {
+   "names": [
+    "a_max",
+    "log_cells"
+   ],
+   "ap": 0.6439
+  },
+  {
+   "names": [
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6413
+  },
+  {
+   "names": [
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6425
+  },
+  {
+   "names": [
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.638
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90"
+   ],
+   "ap": 0.6413
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_max"
+   ],
+   "ap": 0.6415
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "bimod"
+   ],
+   "ap": 0.6423
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "pfg_mean"
+   ],
+   "ap": 0.643
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "log_cells"
+   ],
+   "ap": 0.6457
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "a_max"
+   ],
+   "ap": 0.6393
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "bimod"
+   ],
+   "ap": 0.6425
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "pfg_mean"
+   ],
+   "ap": 0.6424
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "log_cells"
+   ],
+   "ap": 0.6448
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_max",
+    "bimod"
+   ],
+   "ap": 0.6424
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_max",
+    "pfg_mean"
+   ],
+   "ap": 0.642
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_max",
+    "log_cells"
+   ],
+   "ap": 0.644
+  },
+  {
+   "names": [
+    "a_mean",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6447
+  },
+  {
+   "names": [
+    "a_mean",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6464
+  },
+  {
+   "names": [
+    "a_mean",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6438
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "a_max"
+   ],
+   "ap": 0.6402
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "bimod"
+   ],
+   "ap": 0.6407
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "pfg_mean"
+   ],
+   "ap": 0.6428
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "log_cells"
+   ],
+   "ap": 0.6451
+  },
+  {
+   "names": [
+    "a_std",
+    "a_max",
+    "bimod"
+   ],
+   "ap": 0.6397
+  },
+  {
+   "names": [
+    "a_std",
+    "a_max",
+    "pfg_mean"
+   ],
+   "ap": 0.6421
+  },
+  {
+   "names": [
+    "a_std",
+    "a_max",
+    "log_cells"
+   ],
+   "ap": 0.6438
+  },
+  {
+   "names": [
+    "a_std",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6411
+  },
+  {
+   "names": [
+    "a_std",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6425
+  },
+  {
+   "names": [
+    "a_std",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.643
+  },
+  {
+   "names": [
+    "a_p90",
+    "a_max",
+    "bimod"
+   ],
+   "ap": 0.6406
+  },
+  {
+   "names": [
+    "a_p90",
+    "a_max",
+    "pfg_mean"
+   ],
+   "ap": 0.6426
+  },
+  {
+   "names": [
+    "a_p90",
+    "a_max",
+    "log_cells"
+   ],
+   "ap": 0.6453
+  },
+  {
+   "names": [
+    "a_p90",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.644
+  },
+  {
+   "names": [
+    "a_p90",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6452
+  },
+  {
+   "names": [
+    "a_p90",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6457
+  },
+  {
+   "names": [
+    "a_max",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6434
+  },
+  {
+   "names": [
+    "a_max",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6443
+  },
+  {
+   "names": [
+    "a_max",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6446
+  },
+  {
+   "names": [
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6442
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "a_max"
+   ],
+   "ap": 0.6413
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "bimod"
+   ],
+   "ap": 0.6423
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "pfg_mean"
+   ],
+   "ap": 0.643
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "log_cells"
+   ],
+   "ap": 0.6455
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_max",
+    "bimod"
+   ],
+   "ap": 0.6424
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_max",
+    "pfg_mean"
+   ],
+   "ap": 0.6431
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_max",
+    "log_cells"
+   ],
+   "ap": 0.646
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6446
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6464
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6458
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "a_max",
+    "bimod"
+   ],
+   "ap": 0.6424
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "a_max",
+    "pfg_mean"
+   ],
+   "ap": 0.6424
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "a_max",
+    "log_cells"
+   ],
+   "ap": 0.6448
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6447
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6465
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6453
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_max",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6446
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_max",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6468
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_max",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6445
+  },
+  {
+   "names": [
+    "a_mean",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6468
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "a_max",
+    "bimod"
+   ],
+   "ap": 0.6407
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "a_max",
+    "pfg_mean"
+   ],
+   "ap": 0.6428
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "a_max",
+    "log_cells"
+   ],
+   "ap": 0.6453
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6443
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6455
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6453
+  },
+  {
+   "names": [
+    "a_std",
+    "a_max",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6438
+  },
+  {
+   "names": [
+    "a_std",
+    "a_max",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6445
+  },
+  {
+   "names": [
+    "a_std",
+    "a_max",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6445
+  },
+  {
+   "names": [
+    "a_std",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6441
+  },
+  {
+   "names": [
+    "a_p90",
+    "a_max",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6439
+  },
+  {
+   "names": [
+    "a_p90",
+    "a_max",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6455
+  },
+  {
+   "names": [
+    "a_p90",
+    "a_max",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6457
+  },
+  {
+   "names": [
+    "a_p90",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.646
+  },
+  {
+   "names": [
+    "a_max",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6453
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "a_max",
+    "bimod"
+   ],
+   "ap": 0.6423
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "a_max",
+    "pfg_mean"
+   ],
+   "ap": 0.643
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "a_max",
+    "log_cells"
+   ],
+   "ap": 0.6459
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6446
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6464
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6456
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_max",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6446
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_max",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6467
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_max",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.646
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6468
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "a_max",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6446
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "a_max",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6468
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "a_max",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6453
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6468
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_max",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6471
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "a_max",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6443
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "a_max",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6457
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "a_max",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6456
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6464
+  },
+  {
+   "names": [
+    "a_std",
+    "a_max",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6457
+  },
+  {
+   "names": [
+    "a_p90",
+    "a_max",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6461
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "a_max",
+    "bimod",
+    "pfg_mean"
+   ],
+   "ap": 0.6446
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "a_max",
+    "bimod",
+    "log_cells"
+   ],
+   "ap": 0.6467
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "a_max",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.646
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6468
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_max",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.647
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_p90",
+    "a_max",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6471
+  },
+  {
+   "names": [
+    "a_std",
+    "a_p90",
+    "a_max",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.6464
+  },
+  {
+   "names": [
+    "a_mean",
+    "a_std",
+    "a_p90",
+    "a_max",
+    "bimod",
+    "pfg_mean",
+    "log_cells"
+   ],
+   "ap": 0.647
+  }
+ ],
+ "forms": {
+  "s  (baseline)": {
+   "fitted": 0,
+   "cn_ap50": 0.6101,
+   "ap75": 0.1551,
+   "ap50_95": 0.2584,
+   "val_box_ap50": 0.4982
+  },
+  "s * bimod": {
+   "fitted": 0,
+   "cn_ap50": 0.6338,
+   "ap75": 0.1673,
+   "ap50_95": 0.2714,
+   "val_box_ap50": 0.5148
+  },
+  "s * pfg_mean": {
+   "fitted": 0,
+   "cn_ap50": 0.6329,
+   "ap75": 0.1755,
+   "ap50_95": 0.2741,
+   "val_box_ap50": 0.5094
+  },
+  "bimod * pfg_mean  (no detector)": {
+   "fitted": 0,
+   "cn_ap50": 0.5482,
+   "ap75": 0.1474,
+   "ap50_95": 0.236,
+   "val_box_ap50": 0.3462
+  },
+  "s * bimod * pfg_mean": {
+   "fitted": 0,
+   "cn_ap50": 0.6473,
+   "ap75": 0.1825,
+   "ap50_95": 0.2825,
+   "val_box_ap50": 0.5177
+  },
+  "logreg(s, bimod, pfg_mean)": {
+   "fitted": 3,
+   "cn_ap50": 0.6413,
+   "ap75": 0.1745,
+   "ap50_95": 0.2767,
+   "val_box_ap50": 0.52
+  },
+  "logreg(s, log bimod, log pfg)": {
+   "fitted": 3,
+   "cn_ap50": 0.6406,
+   "ap75": 0.1737,
+   "ap50_95": 0.2761,
+   "val_box_ap50": 0.5195
+  },
+  "logreg, published 8 features": {
+   "fitted": 9,
+   "cn_ap50": 0.647,
+   "ap75": 0.1771,
+   "ap50_95": 0.2795,
+   "val_box_ap50": 0.5215
+  }
+ },
+ "exponent_surface": {
+  "0.5,0.5": 0.6396,
+  "0.5,0.75": 0.6431,
+  "0.5,1.0": 0.6454,
+  "0.5,1.25": 0.6468,
+  "0.5,1.5": 0.6473,
+  "0.5,2.0": 0.6465,
+  "0.75,0.5": 0.6417,
+  "0.75,0.75": 0.6449,
+  "0.75,1.0": 0.647,
+  "0.75,1.25": 0.6484,
+  "0.75,1.5": 0.6491,
+  "0.75,2.0": 0.6488,
+  "1.0,0.5": 0.6423,
+  "1.0,0.75": 0.6453,
+  "1.0,1.0": 0.6473,
+  "1.0,1.25": 0.6487,
+  "1.0,1.5": 0.6494,
+  "1.0,2.0": 0.6494,
+  "1.25,0.5": 0.642,
+  "1.25,0.75": 0.6446,
+  "1.25,1.0": 0.6467,
+  "1.25,1.25": 0.648,
+  "1.25,1.5": 0.6489,
+  "1.25,2.0": 0.6492,
+  "1.5,0.5": 0.641,
+  "1.5,0.75": 0.6436,
+  "1.5,1.0": 0.6455,
+  "1.5,1.25": 0.6469,
+  "1.5,1.5": 0.6478,
+  "1.5,2.0": 0.6484,
+  "2.0,0.5": 0.6381,
+  "2.0,0.75": 0.6404,
+  "2.0,1.0": 0.6423,
+  "2.0,1.25": 0.6437,
+  "2.0,1.5": 0.6447,
+  "2.0,2.0": 0.6456
+ },
+ "size_decomposition": {
+  "s + SIZE": 0.6352,
+  "s + log bimod, log pfg": 0.6406,
+  "s + SIZE + log bimod, log pfg": 0.6436,
+  "s + 6 EM stats (published minus log_cells)": 0.6446,
+  "s + 6 EM stats + SIZE": 0.6468,
+  "s * bimod * pfg": 0.6462
+ },
+ "val_selection": {
+  "s*bimod^0.5*pfg": {
+   "val_box_ap50": 0.5197,
+   "val_box_ap5095": 0.2333,
+   "test_cn_ap50": 0.6454
+  },
+  "s*bimod*pfg^0.5": {
+   "val_box_ap50": 0.519,
+   "val_box_ap5095": 0.2313,
+   "test_cn_ap50": 0.6423
+  },
+  "s*bimod*pfg": {
+   "val_box_ap50": 0.5177,
+   "val_box_ap5095": 0.2331,
+   "test_cn_ap50": 0.6473
+  },
+  "s*bimod": {
+   "val_box_ap50": 0.5148,
+   "val_box_ap5095": 0.2276,
+   "test_cn_ap50": 0.6338
+  },
+  "s*pfg": {
+   "val_box_ap50": 0.5094,
+   "val_box_ap5095": 0.2271,
+   "test_cn_ap50": 0.6329
+  },
+  "s*bimod*pfg^2": {
+   "val_box_ap50": 0.5063,
+   "val_box_ap5095": 0.2308,
+   "test_cn_ap50": 0.6494
+  },
+  "s*bimod^2*pfg": {
+   "val_box_ap50": 0.5051,
+   "val_box_ap5095": 0.2284,
+   "test_cn_ap50": 0.6423
+  },
+  "s": {
+   "val_box_ap50": 0.4982,
+   "val_box_ap5095": 0.2165,
+   "test_cn_ap50": 0.6101
+  }
+ },
+ "bootstrap": {
+  "AP50_product": [
+   0.03711,
+   0.03107,
+   0.04343
+  ],
+  "AP50_logreg8": [
+   0.03679,
+   0.03135,
+   0.04234
+  ],
+  "AP50_logreg8_minus_product": [
+   -0.00031,
+   -0.00203,
+   0.00117,
+   0.345
+  ],
+  "AP75_product": [
+   0.02654,
+   0.02152,
+   0.03144
+  ],
+  "AP75_logreg8": [
+   0.02167,
+   0.01811,
+   0.02554
+  ],
+  "AP75_logreg8_minus_product": [
+   -0.00487,
+   -0.00688,
+   -0.0025,
+   0.0
+  ]
+ }
+}

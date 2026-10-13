@@ -1,0 +1,23 @@
+{
+ "512 (released)": {
+  "preds": "native_raster/preds_restor_rpn512_r2048_treeonly.json",
+  "n_det": 42987,
+  "dets_per_tile": 97.9,
+  "recall_at_iou50": 0.6596,
+  "AP50_check": 0.5847
+ },
+ "1000 (Detectron2 default)": {
+  "preds": "native_raster/preds_restor_rpn1000_r2048_treeonly.json",
+  "n_det": 56438,
+  "dets_per_tile": 128.6,
+  "recall_at_iou50": 0.7441,
+  "AP50_check": 0.648
+ },
+ "2000": {
+  "preds": "native_raster/preds_restor_rpn2000_r2048_treeonly.json",
+  "n_det": 71606,
+  "dets_per_tile": 163.1,
+  "recall_at_iou50": 0.8061,
+  "AP50_check": 0.6846
+ }
+}

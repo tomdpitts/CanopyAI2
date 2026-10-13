@@ -1,0 +1,82 @@
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_dt2_s0v2_r2048.json: 197423 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=22.39s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=29.78s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=29.92s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/preds_dt2_s0v2_r2048.json",
+  "model": "DetecTree2 (Mask R-CNN R101-FPN) fine-tuned on 792/108, 1024@50% subtiles, clean_crowns dedup; re-stitched at native 2048 (s0v2)",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 1200,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.5017,
+      "AP75": 0.2176,
+      "AP50_95": 0.2513,
+      "n_det": 197423
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.6187,
+      "AP75": 0.2535,
+      "AP50_95": 0.3029,
+      "n_det": 197423
+    },
+    "box": {
+      "AP50": 0.6421,
+      "AP75": 0.2796,
+      "AP50_95": 0.3211,
+      "n_det": 197423
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.6187,
+      "AP75": 0.2547,
+      "AP50_95": 0.3034,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/scored_dt2_s0v2_r2048_maxdets1200.json

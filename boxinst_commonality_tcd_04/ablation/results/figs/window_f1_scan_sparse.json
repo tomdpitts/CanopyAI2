@@ -1,0 +1,617 @@
+[
+ {
+  "tile": "tcd_tile_318",
+  "n_win": 11,
+  "canopy": 0.0,
+  "crop": [
+   64,
+   192
+  ],
+  "biome": [
+   7,
+   "Northern Acacia-Commiphora bushlands and thickets"
+  ],
+  "LACE (ours)": 0.9091,
+  "Detectree2": 0.9
+ },
+ {
+  "tile": "tcd_tile_2480",
+  "n_win": 130,
+  "canopy": 0.0043,
+  "crop": [
+   1024,
+   1024
+  ],
+  "biome": [
+   12,
+   "Iberian sclerophyllous and semi-deciduous forests"
+  ],
+  "LACE (ours)": 0.9027,
+  "Detectree2": 0.8487
+ },
+ {
+  "tile": "tcd_tile_915",
+  "n_win": 21,
+  "canopy": 0.0015,
+  "crop": [
+   1024,
+   0
+  ],
+  "biome": [
+   9,
+   "Tigris-Euphrates alluvial salt marsh"
+  ],
+  "LACE (ours)": 0.9,
+  "Detectree2": 0.8333
+ },
+ {
+  "tile": "tcd_tile_1080",
+  "n_win": 27,
+  "canopy": 0.0,
+  "crop": [
+   1024,
+   64
+  ],
+  "biome": [
+   7,
+   "Northern Congolian forest-savanna mosaic"
+  ],
+  "LACE (ours)": 0.8966,
+  "Detectree2": 0.8525
+ },
+ {
+  "tile": "tcd_val_tile_126",
+  "n_win": 12,
+  "canopy": 0.0,
+  "crop": [
+   832,
+   0
+  ],
+  "biome": [
+   13,
+   "Sonoran desert"
+  ],
+  "LACE (ours)": 0.8696,
+  "Detectree2": 0.8696
+ },
+ {
+  "tile": "tcd_tile_333",
+  "n_win": 16,
+  "canopy": 0.0,
+  "crop": [
+   0,
+   1024
+  ],
+  "biome": [
+   7,
+   "Northern Congolian forest-savanna mosaic"
+  ],
+  "LACE (ours)": 0.8667,
+  "Detectree2": 0.64
+ },
+ {
+  "tile": "tcd_tile_1658",
+  "n_win": 10,
+  "canopy": 0.0,
+  "crop": [
+   0,
+   1024
+  ],
+  "biome": [
+   12,
+   "Chilean matorral"
+  ],
+  "LACE (ours)": 0.8182,
+  "Detectree2": 0.7778
+ },
+ {
+  "tile": "tcd_tile_919",
+  "n_win": 15,
+  "canopy": 0.0,
+  "crop": [
+   704,
+   0
+  ],
+  "biome": [
+   7,
+   "West Sudanian savanna"
+  ],
+  "LACE (ours)": 0.8148,
+  "Detectree2": 0.5385
+ },
+ {
+  "tile": "tcd_tile_3142",
+  "n_win": 23,
+  "canopy": 0.0,
+  "crop": [
+   0,
+   0
+  ],
+  "biome": [
+   12,
+   "Chilean matorral"
+  ],
+  "LACE (ours)": 0.8,
+  "Detectree2": 0.7568
+ },
+ {
+  "tile": "tcd_tile_2133",
+  "n_win": 8,
+  "canopy": 0.0003,
+  "crop": [
+   0,
+   384
+  ],
+  "biome": [
+   10,
+   "Central Andean dry puna"
+  ],
+  "LACE (ours)": 0.7692,
+  "Detectree2": 0.6667
+ },
+ {
+  "tile": "tcd_tile_413",
+  "n_win": 17,
+  "canopy": 0.0007,
+  "crop": [
+   1024,
+   704
+  ],
+  "biome": [
+   7,
+   "Northern Congolian forest-savanna mosaic"
+  ],
+  "LACE (ours)": 0.7586,
+  "Detectree2": 0.6667
+ },
+ {
+  "tile": "tcd_tile_2360",
+  "n_win": 18,
+  "canopy": 0.0,
+  "crop": [
+   1024,
+   960
+  ],
+  "biome": [
+   7,
+   "Northern Congolian forest-savanna mosaic"
+  ],
+  "LACE (ours)": 0.7568,
+  "Detectree2": 0.6154
+ },
+ {
+  "tile": "tcd_tile_1762",
+  "n_win": 10,
+  "canopy": 0.0,
+  "crop": [
+   1024,
+   960
+  ],
+  "biome": [
+   12,
+   "California interior chaparral and woodlands"
+  ],
+  "LACE (ours)": 0.75,
+  "Detectree2": 0.7368
+ },
+ {
+  "tile": "tcd_tile_2980",
+  "n_win": 24,
+  "canopy": 0.0023,
+  "crop": [
+   1024,
+   512
+  ],
+  "biome": [
+   12,
+   "Eastern Mediterranean conifer-sclerophyllous-broadleaf forests"
+  ],
+  "LACE (ours)": 0.75,
+  "Detectree2": 0.5833
+ },
+ {
+  "tile": "tcd_tile_2976",
+  "n_win": 39,
+  "canopy": 0.0,
+  "crop": [
+   896,
+   0
+  ],
+  "biome": [
+   13,
+   "Snake-Columbia shrub steppe"
+  ],
+  "LACE (ours)": 0.7463,
+  "Detectree2": 0.697
+ },
+ {
+  "tile": "tcd_tile_3969",
+  "n_win": 26,
+  "canopy": 0.0,
+  "crop": [
+   0,
+   576
+  ],
+  "biome": [
+   7,
+   "East Sudanian savanna"
+  ],
+  "LACE (ours)": 0.7407,
+  "Detectree2": 0.7
+ },
+ {
+  "tile": "tcd_tile_426",
+  "n_win": 28,
+  "canopy": 0.0,
+  "crop": [
+   896,
+   0
+  ],
+  "biome": [
+   7,
+   "West Sudanian savanna"
+  ],
+  "LACE (ours)": 0.7368,
+  "Detectree2": 0.6415
+ },
+ {
+  "tile": "tcd_tile_3654",
+  "n_win": 23,
+  "canopy": 0.001,
+  "crop": [
+   192,
+   0
+  ],
+  "biome": [
+   9,
+   "Tigris-Euphrates alluvial salt marsh"
+  ],
+  "LACE (ours)": 0.7179,
+  "Detectree2": 0.6316
+ },
+ {
+  "tile": "tcd_tile_557",
+  "n_win": 8,
+  "canopy": 0.0,
+  "crop": [
+   640,
+   832
+  ],
+  "biome": [
+   7,
+   "Brigalow tropical savanna"
+  ],
+  "LACE (ours)": 0.7143,
+  "Detectree2": 0.6667
+ },
+ {
+  "tile": "tcd_val_tile_262",
+  "n_win": 8,
+  "canopy": 0.0032,
+  "crop": [
+   0,
+   64
+  ],
+  "biome": [
+   7,
+   "Cerrado"
+  ],
+  "LACE (ours)": 0.7143,
+  "Detectree2": 0.625
+ },
+ {
+  "tile": "tcd_tile_1657",
+  "n_win": 64,
+  "canopy": 0.0048,
+  "crop": [
+   0,
+   256
+  ],
+  "biome": [
+   12,
+   "Chilean matorral"
+  ],
+  "LACE (ours)": 0.7027,
+  "Detectree2": 0.6078
+ },
+ {
+  "tile": "tcd_tile_3840",
+  "n_win": 18,
+  "canopy": 0.0006,
+  "crop": [
+   192,
+   192
+  ],
+  "biome": [
+   12,
+   "Chilean matorral"
+  ],
+  "LACE (ours)": 0.7027,
+  "Detectree2": 0.6897
+ },
+ {
+  "tile": "tcd_tile_3569",
+  "n_win": 41,
+  "canopy": 0.0021,
+  "crop": [
+   960,
+   896
+  ],
+  "biome": [
+   7,
+   "Northern Acacia-Commiphora bushlands and thickets"
+  ],
+  "LACE (ours)": 0.6905,
+  "Detectree2": 0.6769
+ },
+ {
+  "tile": "tcd_tile_2009",
+  "n_win": 13,
+  "canopy": 0.0,
+  "crop": [
+   128,
+   0
+  ],
+  "biome": [
+   7,
+   "Northern Acacia-Commiphora bushlands and thickets"
+  ],
+  "LACE (ours)": 0.6667,
+  "Detectree2": 0.6364
+ },
+ {
+  "tile": "tcd_tile_2020",
+  "n_win": 10,
+  "canopy": 0.0,
+  "crop": [
+   0,
+   1024
+  ],
+  "biome": [
+   7,
+   "Cerrado"
+  ],
+  "LACE (ours)": 0.6667,
+  "Detectree2": 0.6429
+ },
+ {
+  "tile": "tcd_tile_3175",
+  "n_win": 10,
+  "canopy": 0.0,
+  "crop": [
+   704,
+   1024
+  ],
+  "biome": [
+   12,
+   "Chilean matorral"
+  ],
+  "LACE (ours)": 0.6667,
+  "Detectree2": 0.5882
+ },
+ {
+  "tile": "tcd_tile_3770",
+  "n_win": 38,
+  "canopy": 0.0,
+  "crop": [
+   64,
+   960
+  ],
+  "biome": [
+   8,
+   "Central and Southern mixed grasslands"
+  ],
+  "LACE (ours)": 0.6102,
+  "Detectree2": 0.5172
+ },
+ {
+  "tile": "tcd_tile_2321",
+  "n_win": 13,
+  "canopy": 0.0,
+  "crop": [
+   448,
+   576
+  ],
+  "biome": [
+   7,
+   "Northern Acacia-Commiphora bushlands and thickets"
+  ],
+  "LACE (ours)": 0.6,
+  "Detectree2": 0.1333
+ },
+ {
+  "tile": "tcd_tile_2448",
+  "n_win": 17,
+  "canopy": 0.0,
+  "crop": [
+   64,
+   1024
+  ],
+  "biome": [
+   12,
+   "Chilean matorral"
+  ],
+  "LACE (ours)": 0.5882,
+  "Detectree2": 0.5161
+ },
+ {
+  "tile": "tcd_tile_290",
+  "n_win": 54,
+  "canopy": 0.003,
+  "crop": [
+   1024,
+   0
+  ],
+  "biome": [
+   7,
+   "Northern Congolian forest-savanna mosaic"
+  ],
+  "LACE (ours)": 0.5865,
+  "Detectree2": 0.4148
+ },
+ {
+  "tile": "tcd_tile_2973",
+  "n_win": 12,
+  "canopy": 0.0,
+  "crop": [
+   0,
+   896
+  ],
+  "biome": [
+   7,
+   "East Sudanian savanna"
+  ],
+  "LACE (ours)": 0.4865,
+  "Detectree2": 0.6429
+ },
+ {
+  "tile": "tcd_tile_1241",
+  "n_win": 17,
+  "canopy": 0.0,
+  "crop": [
+   64,
+   1024
+  ],
+  "biome": [
+   10,
+   "Central Andean puna"
+  ],
+  "LACE (ours)": 0.4828,
+  "Detectree2": 0.5
+ },
+ {
+  "tile": "tcd_tile_3742",
+  "n_win": 38,
+  "canopy": 0.0,
+  "crop": [
+   1024,
+   128
+  ],
+  "biome": [
+   13,
+   "Gulf of Oman desert and semi-desert"
+  ],
+  "LACE (ours)": 0.4727,
+  "Detectree2": 0.4314
+ },
+ {
+  "tile": "tcd_tile_926",
+  "n_win": 14,
+  "canopy": 0.0,
+  "crop": [
+   1024,
+   896
+  ],
+  "biome": [
+   7,
+   "Northern Congolian forest-savanna mosaic"
+  ],
+  "LACE (ours)": 0.4286,
+  "Detectree2": 0.4375
+ },
+ {
+  "tile": "tcd_tile_583",
+  "n_win": 23,
+  "canopy": 0.0001,
+  "crop": [
+   1024,
+   1024
+  ],
+  "biome": [
+   7,
+   "Central Zambezian Miombo woodlands"
+  ],
+  "LACE (ours)": 0.4186,
+  "Detectree2": 0.35
+ },
+ {
+  "tile": "tcd_tile_1201",
+  "n_win": 11,
+  "canopy": 0.0,
+  "crop": [
+   960,
+   0
+  ],
+  "biome": [
+   10,
+   "Central Andean puna"
+  ],
+  "LACE (ours)": 0.4,
+  "Detectree2": 0.5333
+ },
+ {
+  "tile": "tcd_tile_325",
+  "n_win": 8,
+  "canopy": 0.0,
+  "crop": [
+   1024,
+   1024
+  ],
+  "biome": [
+   7,
+   "Cerrado"
+  ],
+  "LACE (ours)": 0.4,
+  "Detectree2": 0.25
+ },
+ {
+  "tile": "tcd_tile_1809",
+  "n_win": 18,
+  "canopy": 0.0,
+  "crop": [
+   192,
+   0
+  ],
+  "biome": [
+   7,
+   "Northern Congolian forest-savanna mosaic"
+  ],
+  "LACE (ours)": 0.3333,
+  "Detectree2": 0.3077
+ },
+ {
+  "tile": "tcd_tile_2225",
+  "n_win": 43,
+  "canopy": 0.0,
+  "crop": [
+   832,
+   64
+  ],
+  "biome": [
+   10,
+   "Central Andean dry puna"
+  ],
+  "LACE (ours)": 0.2,
+  "Detectree2": 0.2105
+ },
+ {
+  "tile": "tcd_tile_4153",
+  "n_win": 26,
+  "canopy": 0.0016,
+  "crop": [
+   0,
+   448
+  ],
+  "biome": [
+   13,
+   "Snake-Columbia shrub steppe"
+  ],
+  "LACE (ours)": 0.1875,
+  "Detectree2": 0.3529
+ },
+ {
+  "tile": "tcd_tile_3352",
+  "n_win": 14,
+  "canopy": 0.0,
+  "crop": [
+   1024,
+   384
+  ],
+  "biome": [
+   12,
+   "California coastal sage and chaparral"
+  ],
+  "LACE (ours)": 0.0,
+  "Detectree2": 0.2222
+ }
+]

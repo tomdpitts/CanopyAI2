@@ -1,0 +1,82 @@
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_lace_s0_r2048_cgf_a1_k1.json: 159687 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.03s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=17.37s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.03s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=23.36s).
+Accumulating evaluation results...
+DONE (t=0.11s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=22.91s).
+Accumulating evaluation results...
+DONE (t=0.11s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/preds_lace_s0_r2048_cgf_a1_k1.json",
+  "model": "preds_lace_s0_r2048_cgf_a1_k1.json",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 600,
+    "score_floor": 0.0,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.4569,
+      "AP75": 0.1229,
+      "AP50_95": 0.1968,
+      "n_det": 159687
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.6138,
+      "AP75": 0.1524,
+      "AP50_95": 0.2578,
+      "n_det": 159687
+    },
+    "box": {
+      "AP50": 0.6542,
+      "AP75": 0.1842,
+      "AP50_95": 0.2828,
+      "n_det": 159687
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.6139,
+      "AP75": 0.1541,
+      "AP50_95": 0.2586,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/scored_lace_s0_r2048_cgf_a1_k1.json

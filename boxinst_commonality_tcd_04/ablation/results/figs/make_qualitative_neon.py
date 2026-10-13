@@ -25,7 +25,7 @@ UP = 3  # draw at 3x (1200 px) for crisp lines
 
 MODELS = [("LACE (ours)", os.path.join(NEON, "phase4/dl/preds_phase4_s0.json")),
           ("DeepForest 2.1.0", os.path.join(NEON, "preds_deepforest.json"))]
-DEFAULT_TILES = "SJER_057_2018,TEAK_057_2018,NIWO_012_2018,OSBS_003_2019,MLBS_069_2018,DSNY_025_2018"
+DEFAULT_TILES = "SJER_053_2018,TEAK_057_2018,HARV_041_2018,OSBS_028_2019,MLBS_064_2018,DSNY_006_2018"
 PER_ROW = 2
 
 

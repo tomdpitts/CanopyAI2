@@ -1,0 +1,60 @@
+{
+  "definition": "1024^2 subtiles at origins {0,512,1024}^2; crown in subtile if GT box centre inside; cap 100",
+  "n_subtiles": 3951,
+  "n_over_cap": 39,
+  "gate1_pass": false,
+  "flagged_tiles": [
+    "tcd_val_tile_104",
+    "tcd_val_tile_113",
+    "tcd_val_tile_125",
+    "tcd_val_tile_127",
+    "tcd_val_tile_180",
+    "tcd_val_tile_2",
+    "tcd_val_tile_213",
+    "tcd_val_tile_229",
+    "tcd_val_tile_230",
+    "tcd_val_tile_281",
+    "tcd_val_tile_295",
+    "tcd_val_tile_301",
+    "tcd_val_tile_313",
+    "tcd_val_tile_325",
+    "tcd_val_tile_330",
+    "tcd_val_tile_369",
+    "tcd_val_tile_66",
+    "tcd_val_tile_67",
+    "tcd_val_tile_69"
+  ],
+  "res": {
+    "512": {
+      "all": {
+        "AP50": 0.5396,
+        "AP75": 0.0884,
+        "AP50_95": 0.198,
+        "n_det": 138820
+      },
+      "without_flagged": {
+        "AP50": 0.5476,
+        "AP75": 0.0983,
+        "AP50_95": 0.205,
+        "n_det": 129813
+      },
+      "delta_AP50": 0.008
+    },
+    "2048": {
+      "all": {
+        "AP50": 0.5625,
+        "AP75": 0.1272,
+        "AP50_95": 0.2309,
+        "n_det": 139328
+      },
+      "without_flagged": {
+        "AP50": 0.5695,
+        "AP75": 0.1399,
+        "AP50_95": 0.2385,
+        "n_det": 130301
+      },
+      "delta_AP50": 0.007
+    }
+  },
+  "gate2_pass": true
+}
