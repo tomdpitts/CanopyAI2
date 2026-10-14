@@ -1,0 +1,12 @@
+wrote /private/tmp/claude-501/-Users-tompitts-dphil-CanopyAI2/b085cec2-62cb-4a30-a5e2-6f6b537b156d/scratchpad/selvabox_audit/rerank/preds_selvabox_bench_r2048_ranksam.json
+wrote /private/tmp/claude-501/-Users-tompitts-dphil-CanopyAI2/b085cec2-62cb-4a30-a5e2-6f6b537b156d/scratchpad/selvabox_audit/rerank/preds_selvabox_bench_r2048_rankgmean.json
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_selvabox_bench_r2048_ranksam.json: 491847 dets >= 0.0
+[score_coco] preds_selvabox_bench_r2048_rankgmean.json: 491847 dets >= 0.0
+[md600] preds_selvabox_bench_r2048_ranksam.json: mask AP50 0.4377 AP50:95 0.1924 box AP50 0.5195
+[md600] preds_selvabox_bench_r2048_rankgmean.json: mask AP50 0.5993 AP50:95 0.2454 box AP50 0.7395
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_selvabox_bench_r2048_ranksam.json: 491847 dets >= 0.0
+[score_coco] preds_selvabox_bench_r2048_rankgmean.json: 491847 dets >= 0.0
+[md1600] preds_selvabox_bench_r2048_ranksam.json: mask AP50 0.4547 AP50:95 0.1968 box AP50 0.566
+[md1600] preds_selvabox_bench_r2048_rankgmean.json: mask AP50 0.6063 AP50:95 0.2472 box AP50 0.762

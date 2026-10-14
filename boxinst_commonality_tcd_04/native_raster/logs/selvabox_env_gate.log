@@ -1,0 +1,117 @@
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 7108.88it/s]
+  1/44 tcd_val_tile_0 4 boxes  1s
+  2/44 tcd_val_tile_107 1600 boxes  40s
+  3/44 tcd_val_tile_116 1600 boxes  80s
+  4/44 tcd_val_tile_125 1592 boxes  118s
+  5/44 tcd_val_tile_134 1176 boxes  147s
+  6/44 tcd_val_tile_143 1542 boxes  185s
+  7/44 tcd_val_tile_152 41 boxes  187s
+  8/44 tcd_val_tile_161 1600 boxes  226s
+  9/44 tcd_val_tile_170 1365 boxes  259s
+  10/44 tcd_val_tile_18 1600 boxes  297s
+  11/44 tcd_val_tile_189 39 boxes  299s
+  12/44 tcd_val_tile_198 1506 boxes  335s
+  13/44 tcd_val_tile_206 1600 boxes  373s
+  14/44 tcd_val_tile_215 939 boxes  396s
+  15/44 tcd_val_tile_224 1600 boxes  435s
+  16/44 tcd_val_tile_233 1537 boxes  472s
+  17/44 tcd_val_tile_242 1600 boxes  510s
+  18/44 tcd_val_tile_251 4 boxes  511s
+  19/44 tcd_val_tile_260 1572 boxes  549s
+  20/44 tcd_val_tile_27 1534 boxes  585s
+  21/44 tcd_val_tile_279 18 boxes  587s
+  22/44 tcd_val_tile_288 1247 boxes  617s
+  23/44 tcd_val_tile_297 1571 boxes  655s
+  24/44 tcd_val_tile_305 93 boxes  658s
+  25/44 tcd_val_tile_314 1134 boxes  685s
+  26/44 tcd_val_tile_323 1082 boxes  711s
+  27/44 tcd_val_tile_332 1533 boxes  748s
+  28/44 tcd_val_tile_341 1573 boxes  786s
+  29/44 tcd_val_tile_350 1600 boxes  824s
+  30/44 tcd_val_tile_36 389 boxes  834s
+  31/44 tcd_val_tile_369 1600 boxes  873s
+  32/44 tcd_val_tile_378 22 boxes  874s
+  33/44 tcd_val_tile_387 473 boxes  886s
+  34/44 tcd_val_tile_396 1330 boxes  918s
+  35/44 tcd_val_tile_404 591 boxes  933s
+  36/44 tcd_val_tile_413 1249 boxes  963s
+  37/44 tcd_val_tile_422 1600 boxes  1002s
+  38/44 tcd_val_tile_431 1104 boxes  1029s
+  39/44 tcd_val_tile_46 16 boxes  1030s
+  40/44 tcd_val_tile_55 1455 boxes  1065s
+  41/44 tcd_val_tile_64 79 boxes  1068s
+  42/44 tcd_val_tile_73 1517 boxes  1105s
+  43/44 tcd_val_tile_82 1487 boxes  1141s
+  44/44 tcd_val_tile_91 1600 boxes  1180s
+[score_coco] tmpo_p3tb3p.json: 48414 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=2.01s).
+Accumulating evaluation results...
+DONE (t=0.01s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=2.75s).
+Accumulating evaluation results...
+DONE (t=0.02s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=2.52s).
+Accumulating evaluation results...
+DONE (t=0.01s).
+stored_A100 {'AP50': 0.6311, 'AP50_95': 0.2524, 'box_AP50': 0.7764}
+[score_coco] tmp_delo6gw.json: 48414 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=1.98s).
+Accumulating evaluation results...
+DONE (t=0.01s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=2.75s).
+Accumulating evaluation results...
+DONE (t=0.01s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=2.52s).
+Accumulating evaluation results...
+DONE (t=0.01s).
+local_mps {'AP50': 0.6309, 'AP50_95': 0.2522, 'box_AP50': 0.7764}
+-> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/seamfix/selvabox_env_gate.json delta AP50 -0.0002 AP50:95 -0.0002

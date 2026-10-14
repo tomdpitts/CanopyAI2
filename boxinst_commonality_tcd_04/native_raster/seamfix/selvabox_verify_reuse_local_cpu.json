@@ -1,0 +1,31 @@
+{
+ "device": "cpu",
+ "n_boxes": 256,
+ "tiles": {
+  "tcd_val_tile_1": {
+   "same_batching": {
+    "identical": 127,
+    "of": 256,
+    "median_px_diff": 2.0,
+    "max_px_diff": 332,
+    "mean_iou_vs_stored": 0.9955832372652255,
+    "min_iou_vs_stored": 0.3626943005181347,
+    "frac_iou_ge_0.99": 0.984375,
+    "max_sam_score_absdiff": 0.2873000055551529,
+    "sec": 16.2
+   },
+   "shuffled_37": {
+    "identical": 127,
+    "of": 256,
+    "median_px_diff": 2.0,
+    "max_px_diff": 332,
+    "mean_iou_vs_stored": 0.9955832372652255,
+    "min_iou_vs_stored": 0.3626943005181347,
+    "frac_iou_ge_0.99": 0.984375,
+    "max_sam_score_absdiff": 0.2873000055551529,
+    "sec": 16.3
+   },
+   "same_vs_shuffled_identical": 256
+  }
+ }
+}

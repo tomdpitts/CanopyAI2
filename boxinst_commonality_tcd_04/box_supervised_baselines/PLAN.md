@@ -572,6 +572,11 @@ Reused, do not duplicate: `../detectree2_baseline/{build_coco,stitch}.py`, `../s
 
 ## 12. Step 2 result (done, in the paper)
 
+> **SUPERSEDED 2026-10-14 (A4, §13):** with per-subtile SAM placement on the full 366 tiles, zero-shot
+> SAM 3 beats LACE (0.789 vs 0.748 mean IoU; paired −0.041 [−0.050, −0.033]); LACE still beats FT SAM 3
+> (+0.022 [+0.016, +0.027]). LACE's paper value is now 0.748 (guided render), not 0.7698. Source:
+> `../native_raster/audit_2026-10-14/selvabox_evidence/gtbox_sam_persub.json`. Table below kept as record.
+
 439 tiles · 25,692 crowns · identical GT prompt boxes · `results_439/gtbox_bakeoff_r2048.json`.
 Scored at native 2048; 512 in brackets.
 
@@ -587,3 +592,87 @@ sensitivity). Carried caveats: **never quote the >=0.9 advantage as 2.4x** — t
 double-assignment 0.0302 vs a GT self-overlap floor of **0.0015** is ~20x and is the real
 weakness; no seed band is possible (one masker npz is shared by all three Table-1 seeds, which
 differ only in the detector).
+
+## 13. PRE-REGISTRATION — DRAFT, NOT APPROVED (written 2026-10-14; nothing below has been run)
+
+> **Status amendment 2026-10-14 22:20:** Tier A approved and run (A2, A3 scored; A1 running);
+> results in §13a. Tiers B/C still undecided. Text below is the pre-registration as written, unedited.
+
+Purpose: fix, before any number is seen, which extra rows enter the paper and under what rules,
+so the box-supervised group cannot be accused of cherry-picking. Context: after the seam fix and
+the released SAM placement, SelvaBox → SAM 3 leads Table 1 (0.712–0.724 AP50, provisional, local
+MPS); the paper is being re-framed by supervision type (NATIVE_RASTER.md, audit_2026-10-14/).
+Tom decides which tiers run. **Every row approved below is reported whatever its result.** No row
+is added after test numbers are seen unless this section is amended first, with the date.
+
+### Tier A — the questions reviewers ask first (no new training; local or cheap)
+**APPROVED by Tom 2026-10-14: A1, A2, A3 (run after A4 completes). A4 running.** Tiers B/C not decided.
+| id | row | definition | table |
+|---|---|---|---|
+| A1 | LACE detector + SAM 3 zero-shot | LACE boxes (seeds 0–2), `facebook/sam3`, each box prompted on the most central 1024 subtile that contains it (released-style placement; whole tile if none), `multimask_output=False`; primary ranking = LACE detector score s; secondary = sqrt(s × SAM iou) | Table 1, "box + SAM" group |
+| A2 | SelvaBox detector + LACE masker | seam-fixed SelvaBox boxes; deployed LACE masker npz, guided render (r 1.2 m, ε 1e-4, τ 0.35), α 0.3, κ 1.6, NO re-tuning; ranking s′ = s·p̄·m with s = SelvaBox score | masker-swap table, beside SelvaBox → SAM 3 |
+| A3 | ellipse-in-box | axis-aligned ellipse inscribed in each box, on LACE boxes and on SelvaBox boxes, ranked by detector score | masker-swap table (lower bound: what a box alone gives) |
+| A4 | tab:gtbox, fair SAM | both SAM 3 arms re-run with per-subtile placement on all 366 tiles (= `audit_2026-10-14/selvabox_evidence/gtbox_sam_persub.py`, running 2026-10-14) | tab:gtbox |
+
+### Tier B — box-supervised literature rows (training; needs Modal)
+| id | method | backbone / init | why | cost (est.) |
+|---|---|---|---|---|
+| B1 | BoxInst (CVPR 2021) | R-101, released COCO box-only ckpt (33.2 mask AP) | seminal, most-cited; already in the BoxInstSeg image | ~$10–15 |
+| B2 | BoxTeacher (CVPR 2023) | Swin-B 3x (COCO val 40.2) — or R-101 3x (36.2) if Swin-B does not fit | cited in the paper, strongest CNN-era method with weights; detectron2/AdelaiDet, MIT licence; new image | ~$20–30 + image build |
+| B3 | MAL (CVPR 2023) | phase-1 ViT-MAE-base labeler (box → mask) | strongest classic box-supervised; its labeler can enter the masker-swap table on GT, LACE and SelvaBox boxes without phase 2; licence CC-BY-NC (research use) | Docker build + ~$10 |
+| — | skipped | DiscoBox (reproduction gap 37.9 → 33.4, §7), BoxLevelSet (no weights), BoxSeg (2025; weaker, no confirmed release), BoxSnake (cited; add only if asked) | | |
+
+### Tier C — bring Box2Mask under the same rule as Tier B
+R-50 and Swin-L re-trained with the Tier B schedule rule below (current checkpoints were never
+annealed; Swin-L was stopped by a wall clock — audit_2026-10-14/box2mask.md). Current rows are kept
+in the record as data; the paper reports the Tier C rows.
+
+### Common protocol (Tiers B and C)
+- **Data:** the 792 train / 108 val tiles, 1024² subtiles at stride 512 (`detectree2_baseline/build_coco.py`), box-only annotations; canopy handled as in the Box2Mask arms (pixels blacked out, `canopy AND NOT crown`), disclosed — the BoxInst family has no ignore label. Test imagery untouched.
+- **Init:** each method's released COCO box-supervised checkpoint; class head re-initialised to 1 class; nothing else changed.
+- **Schedule:** the released optimiser, LR and decay points (linear LR scaling to our effective batch), schedule length set in epochs over our 6,692 subtiles and stated in advance per method; ALL scheduled LR decays happen. Checkpoint = best val box AP50 among evaluations every 0.5 epoch over the full run. No early termination and no wall-clock stop; if a run dies it is resumed, not truncated.
+- **Test:** 1024 subtiles at the training scale (no test-time resize), released test config except score floor 0.05; detections per subtile at the released default unless it binds (then raised and disclosed).
+- **Stitch:** the same stitcher as Detectree2/Box2Mask (seam-fixed, `native_raster/stitch_seam.py`; merge rule per the pending `clean_crowns` decision), floor 0.05.
+- **Score:** `score_coco.py --res 2048`, maxDets 600, canopy as crowd, AP50 / AP50:95 / box AP50; one seed per method (as every other baseline), disclosed.
+- **Gates:** each run's val curve and config dump copied into the repo the same session; the stitched 2048 file gated by re-stitching with the filter off where an older file exists.
+
+### Decisions needed from Tom before anything runs
+1. Which tiers / rows (A is cheap and answers the obvious reviewer questions; B1 + B2 cover the literature; B3 is the strongest but heaviest).
+2. B2 backbone: Swin-B (closest to Box2Mask Swin-L) or R-101.
+3. Tier C: re-train Box2Mask under the common rule, or keep the current rows with full disclosure.
+4. Canopy for Tier B/C: blackout (as now) or train canopy as background (as Detectree2).
+
+## 13a. Tier A results (recorded 2026-10-14 22:20; A1 pending)
+
+Source: `../native_raster/tierA/summary_tierA.json` (scored by `tierA/score_tierA.py`; frozen protocol,
+res 2048, maxDets 600, canopy as crowd). Full 439 tiles. Floors: 0.05 for detector-score ranking, 0 for
+product ranking (same convention as LACE's published rows). Mask AP50 / AP50:95; bands ddof=1, seeds 0–2.
+
+| boxes | masker | ranking | AP50 | AP50:95 | box AP50 |
+|---|---|---|---|---|---|
+| LACE (s0–2) | LACE (deployed) | product s′ | 0.647 ± 0.003 | 0.278 ± 0.005 | 0.667 |
+| LACE (s0–2) | LACE (deployed) | detector s | 0.614 ± 0.003 | 0.256 ± 0.003 | 0.639 |
+| LACE (s0–2) | **A3 ellipse** | detector s | **0.605 ± 0.005** | **0.236 ± 0.002** | 0.639 |
+| LACE (s0–2) | A1 SAM 3 zero-shot, per-subtile | s / sqrt(s × SAM) | RUNNING | | |
+| SelvaBox (seam-fixed) | SelvaMask SAM 3 FT, whole tile | detector s | 0.598 | 0.221 | 0.767 |
+| SelvaBox (seam-fixed) | SelvaMask SAM 3 FT, per-subtile† | detector s | 0.712 | 0.316 | 0.767 |
+| SelvaBox (seam-fixed) | SelvaMask SAM 3 FT, per-subtile† | sqrt(s × SAM) | 0.724 | 0.344 | 0.772 |
+| SelvaBox (seam-fixed) | **A3 ellipse** | detector s | **0.713** | **0.298** | 0.767 |
+| SelvaBox (seam-fixed) | **A2 LACE masker** | product s′ (pre-registered) | **0.710** | **0.321** | 0.760 |
+| SelvaBox (seam-fixed) | A2 LACE masker | detector s (post-hoc control‡) | 0.711 | 0.311 | 0.767 |
+
+† provisional: SAM masks made on local MPS; A100 re-run pending (Modal paused).
+‡ not in the §13 pre-registration (A2 specifies s′ only); added as the matched-ranking control for A3. Report both.
+
+**Parity:** A3/A2-det box AP50 equals the matching detector-score row exactly per seed (LACE 0.6452 / 0.6306
+/ 0.6425; SelvaBox 0.767), so boxes and ranking are identical and only the masker differs. A2 gate
+(`tierA/a2_gate.json`, 3 tiles, 498 boxes): masks identical to the deployed pipeline, score diff ≤ 1.5e-6.
+
+**Paired masker effect, same boxes, same detector-score ranking (Δ vs ellipse):**
+- LACE boxes: LACE masker +0.009 AP50 (+0.010 / +0.006 / +0.011 per seed), +0.020 AP50:95.
+- SelvaBox boxes: LACE masker −0.002 AP50, +0.0135 AP50:95; SAM 3 FT per-subtile −0.001 AP50, +0.018 AP50:95 (provisional).
+
+**Status:** full-set, parity-checked; NOT final — A1 outstanding and the strongest competitor
+(SelvaBox per-subtile SAM) is provisional pending A100. No interpretation enters the paper until both close.
+Open: A1 scoring is not chained in `run_tierA.sh`; after `[tierA] ALL_DONE` in `logs/tierA_launcher.log`,
+run `score_tierA.py` with rows `a1`.

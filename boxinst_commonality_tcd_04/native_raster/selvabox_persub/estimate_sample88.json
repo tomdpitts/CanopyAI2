@@ -1,0 +1,35 @@
+{
+ "n_tiles": 88,
+ "whole_det": {
+  "AP50": 0.6192,
+  "AP50_95": 0.2345,
+  "box_AP50": 0.7765
+ },
+ "persub_det": {
+  "AP50": 0.7264,
+  "AP50_95": 0.3383,
+  "box_AP50": 0.7765
+ },
+ "whole_gmean": {
+  "AP50": 0.6319,
+  "AP50_95": 0.2589,
+  "box_AP50": 0.7718
+ },
+ "persub_gmean": {
+  "AP50": 0.7392,
+  "AP50_95": 0.3603,
+  "box_AP50": 0.7825
+ },
+ "projected_full_det": {
+  "AP50": 0.7056,
+  "AP50_95": 0.3245,
+  "delta_AP50_sample": 0.1072,
+  "delta_AP50_95_sample": 0.1038
+ },
+ "projected_full_gmean": {
+  "AP50": 0.7214,
+  "AP50_95": 0.3516,
+  "delta_AP50_sample": 0.1073,
+  "delta_AP50_95_sample": 0.1014
+ }
+}

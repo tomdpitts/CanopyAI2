@@ -1,0 +1,54 @@
+[restor-native] start  OUT_DIR=/vol/out/native_raster/restor_rpn2000_r2048  rpn_topk=2000  env={"torch": "2.1.0", "numpy": "1.26.0", "pillow": "10.0.1", "pycocotools": "?", "detectron2": "0.6", "cuda": "12.1", "gpu": "NVIDIA A100-SXM4-40GB"}
+[restor-native] score_thr=0.05 dets=600 num_classes=2 min_size_test=0 max=2048 fmt=BGR rpn_pre=2000 rpn_post=2000
+[restor-native] 439 tiles, 0 already on volume, 439 to do
+  10/439 tiles this run (10/439 total)  tree=1334 canopy=415
+  20/439 tiles this run (20/439 total)  tree=3366 canopy=1234
+  30/439 tiles this run (30/439 total)  tree=4584 canopy=1677
+  40/439 tiles this run (40/439 total)  tree=6522 canopy=2289
+  50/439 tiles this run (50/439 total)  tree=7995 canopy=2840
+  60/439 tiles this run (60/439 total)  tree=10097 canopy=3515
+  70/439 tiles this run (70/439 total)  tree=11519 canopy=4207
+  80/439 tiles this run (80/439 total)  tree=12899 canopy=4786
+  90/439 tiles this run (90/439 total)  tree=15076 canopy=5439
+  100/439 tiles this run (100/439 total)  tree=16493 canopy=5953
+  110/439 tiles this run (110/439 total)  tree=17393 canopy=6408
+  120/439 tiles this run (120/439 total)  tree=18756 canopy=6947
+  130/439 tiles this run (130/439 total)  tree=20778 canopy=7779
+  140/439 tiles this run (140/439 total)  tree=22373 canopy=8341
+  150/439 tiles this run (150/439 total)  tree=24367 canopy=9083
+  160/439 tiles this run (160/439 total)  tree=25975 canopy=9758
+  170/439 tiles this run (170/439 total)  tree=27693 canopy=10521
+  180/439 tiles this run (180/439 total)  tree=28705 canopy=10833
+  190/439 tiles this run (190/439 total)  tree=30078 canopy=11482
+  200/439 tiles this run (200/439 total)  tree=31925 canopy=12265
+  210/439 tiles this run (210/439 total)  tree=33257 canopy=12734
+  220/439 tiles this run (220/439 total)  tree=35446 canopy=13611
+  230/439 tiles this run (230/439 total)  tree=37095 canopy=14218
+  240/439 tiles this run (240/439 total)  tree=38456 canopy=14769
+  250/439 tiles this run (250/439 total)  tree=40206 canopy=15461
+  260/439 tiles this run (260/439 total)  tree=42120 canopy=16050
+  270/439 tiles this run (270/439 total)  tree=44265 canopy=17003
+  280/439 tiles this run (280/439 total)  tree=45871 canopy=17637
+  290/439 tiles this run (290/439 total)  tree=47533 canopy=18297
+  300/439 tiles this run (300/439 total)  tree=49076 canopy=18948
+  310/439 tiles this run (310/439 total)  tree=51509 canopy=20019
+  320/439 tiles this run (320/439 total)  tree=53079 canopy=20634
+  330/439 tiles this run (330/439 total)  tree=55148 canopy=21511
+  340/439 tiles this run (340/439 total)  tree=57338 canopy=22447
+  350/439 tiles this run (350/439 total)  tree=58678 canopy=22931
+  360/439 tiles this run (360/439 total)  tree=60578 canopy=23696
+  370/439 tiles this run (370/439 total)  tree=62270 canopy=24326
+  380/439 tiles this run (380/439 total)  tree=63825 canopy=24938
+  390/439 tiles this run (390/439 total)  tree=64632 canopy=25227
+  400/439 tiles this run (400/439 total)  tree=66221 canopy=25935
+  410/439 tiles this run (410/439 total)  tree=67924 canopy=26483
+  420/439 tiles this run (420/439 total)  tree=69144 canopy=26932
+  430/439 tiles this run (430/439 total)  tree=70555 canopy=27576
+  439/439 tiles this run (439/439 total)  tree=71606 canopy=27939
+[restor-native] predict done
+[restor-native] start  OUT_DIR=/vol/out/native_raster/restor_rpn2000_r2048  rpn_topk=2000  env={"torch": "2.1.0", "numpy": "1.26.0", "pillow": "10.0.1", "pycocotools": "?", "detectron2": "0.6", "cuda": "12.1", "gpu": "NVIDIA A100-SXM4-40GB"}
+[restor-native] score_thr=0.05 dets=600 num_classes=2 min_size_test=0 max=2048 fmt=BGR rpn_pre=2000 rpn_post=2000
+[restor-native] 439 tiles, 439 already on volume, 0 to do
+[restor-native] predict done
+[restor-native] wrote /vol/out/native_raster/restor_rpn2000_r2048/preds_restor_rpn2000_r2048.json: 439 tiles, 71606 tree, 27939 canopy
+[restor-native] wrote /vol/out/native_raster/restor_rpn2000_r2048/preds_restor_rpn2000_r512_incontainer.json: 439 tiles, 71606 tree, 27939 canopy

@@ -36,5 +36,18 @@
         "boxinst_tcd/tiles",
         "dapt/cache",
         "dino/efficiency/cache"
-    ]
+    ],
+    // LaTeX Workshop (overrides the user-level recipe in this workspace only): after building
+    // paper.tex, rebuild the CVPR submission (cvpr/cvpr.pdf + cvpr_supp.pdf) in the background.
+    // on_save.sh is a no-op for any other root file.
+    "latex-workshop.latex.tools": [
+        { "name": "tectonic", "command": "tectonic",
+          "args": ["--synctex", "--keep-logs", "%DOC%.tex"], "env": {} },
+        { "name": "cvpr-sync", "command": "zsh",
+          "args": ["/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/ablation/results/cvpr/on_save.sh", "%DOC%"], "env": {} }
+    ],
+    "latex-workshop.latex.recipes": [
+        { "name": "tectonic", "tools": ["tectonic", "cvpr-sync"] }
+    ],
+    "latex-workshop.latex.recipe.default": "tectonic"
 }

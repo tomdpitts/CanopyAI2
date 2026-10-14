@@ -1,0 +1,42 @@
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 15760.45it/s]
+1/25 tcd_val_tile_1  5s
+2/25 tcd_val_tile_113  29s
+3/25 tcd_val_tile_13  35s
+4/25 tcd_val_tile_144  51s
+5/25 tcd_val_tile_161  62s
+6/25 tcd_val_tile_176  69s
+7/25 tcd_val_tile_197  80s
+8/25 tcd_val_tile_211  90s
+9/25 tcd_val_tile_23  105s
+10/25 tcd_val_tile_243  110s
+11/25 tcd_val_tile_259  118s
+12/25 tcd_val_tile_276  119s
+13/25 tcd_val_tile_291  125s
+14/25 tcd_val_tile_31  132s
+15/25 tcd_val_tile_326  144s
+16/25 tcd_val_tile_342  152s
+17/25 tcd_val_tile_357  153s
+18/25 tcd_val_tile_373  160s
+19/25 tcd_val_tile_39  173s
+20/25 tcd_val_tile_403  188s
+21/25 tcd_val_tile_42  193s
+22/25 tcd_val_tile_433  208s
+23/25 tcd_val_tile_57  209s
+24/25 tcd_val_tile_72  220s
+25/25 tcd_val_tile_93  242s
+{
+ "whole": {
+  "mean_iou": 0.5471245669652052,
+  "ge50": 0.6474147414741475
+ },
+ "sub": {
+  "mean_iou": 0.6941387960143529,
+  "ge50": 0.9246424642464246
+ },
+ "sub_lowres": {
+  "mean_iou": 0.6867473374599274,
+  "ge50": 0.9130913091309131
+ },
+ "n_crowns": 1818
+}

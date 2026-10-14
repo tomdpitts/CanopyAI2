@@ -1,0 +1,40 @@
+[box_iou_strata_seamfix] rows=seamfix {'LACE s0 (product)': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/preds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json', 'LACE s1 (product)': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/preds_lace_s1_r2048_cgf_r12_tau035_guidedrun.json', 'LACE s2 (product)': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/preds_lace_s2_r2048_cgf_r12_tau035_guidedrun.json', 'Restor MRCNN rpn1000': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/preds_restor_rpn1000_r2048.json', 'DetecTree2 s0': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/seamfix/preds_dt2_s0v2_r2048_seamfix.json', 'SelvaBox -> SAM 3': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/seamfix/preds_selvabox_seamfix_on_r2048.json', 'Box2Mask R-50': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/seamfix/preds_box2mask_r50_s0_r2048_seamfix.json', 'Box2Mask Swin-L': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json'}
+[strata] LACE s0 (product): 19813 matched
+[strata] LACE s1 (product): 19247 matched
+[strata] LACE s2 (product): 19717 matched
+[strata] Restor MRCNN rpn1000: 18630 matched
+[strata] DetecTree2 s0: 20763 matched
+[strata] SelvaBox -> SAM 3: 22521 matched
+[strata] Box2Mask R-50: 14780 matched
+[strata] Box2Mask Swin-L: 17604 matched
+[strata] common subset (matched by ALL 8 rows): 10833 crowns
+
+=== COMMON SUBSET -- the 10833 crowns EVERY row found (paired) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU              |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+--------------------------------------------------------------------------------------------------------------------------------------
+LACE s0 (product)    |   0.6141 (762)   |  0.6912 (2356)   |  0.7528 (4092)   |  0.8023 (3157)   |   0.8361 (466)   |  0.7476 (10833) 
+LACE s1 (product)    |  0.6261 (1283)   |  0.6973 (2817)   |  0.7560 (3835)   |  0.8106 (2562)   |   0.8467 (336)   |  0.7411 (10833) 
+LACE s2 (product)    |   0.6137 (820)   |  0.6897 (2542)   |  0.7520 (4024)   |  0.8053 (3004)   |   0.8403 (443)   |  0.7453 (10833) 
+Restor MRCNN rpn1000 |   0.6112 (367)   |  0.6952 (1264)   |  0.7647 (3390)   |  0.8256 (4541)   |  0.8718 (1271)   |  0.7895 (10833) 
+DetecTree2 s0        |   0.6003 (547)   |  0.6824 (1607)   |  0.7552 (3250)   |  0.8258 (4061)   |  0.8818 (1368)   |  0.7790 (10833) 
+SelvaBox -> SAM 3    |   0.5440 (367)   |  0.6084 (1182)   |  0.6553 (2950)   |  0.7098 (4410)   |  0.7836 (1924)   |  0.6914 (10833) 
+Box2Mask R-50        |   0.5140 (766)   |  0.5842 (1802)   |  0.6429 (3350)   |  0.7130 (3739)   |  0.7886 (1176)   |  0.6640 (10833) 
+Box2Mask Swin-L      |   0.5461 (490)   |  0.6395 (1602)   |  0.6994 (3348)   |  0.7560 (4075)   |  0.8156 (1318)   |  0.7191 (10833) 
+mean box IoU: LACE s0 (product)=0.7517  LACE s1 (product)=0.7302  LACE s2 (product)=0.7474  Restor MRCNN rpn1000=0.7969  DetecTree2 s0=0.7868  SelvaBox -> SAM 3=0.8082  Box2Mask R-50=0.7744  Box2Mask Swin-L=0.7875
+
+=== ALL MATCHES (confounded: rows match different crowns) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU              |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+--------------------------------------------------------------------------------------------------------------------------------------
+LACE s0 (product)    |  0.5749 (3027)   |  0.6670 (5057)   |  0.7386 (6737)   |  0.7920 (4415)   |   0.8299 (577)   |  0.7099 (19813) 
+LACE s1 (product)    |  0.5908 (3555)   |  0.6740 (5569)   |  0.7415 (6139)   |  0.7990 (3554)   |   0.8356 (430)   |  0.7069 (19247) 
+LACE s2 (product)    |  0.5785 (3127)   |  0.6691 (5216)   |  0.7363 (6549)   |  0.7936 (4249)   |   0.8318 (576)   |  0.7087 (19717) 
+Restor MRCNN rpn1000 |  0.5859 (1474)   |  0.6792 (2970)   |  0.7551 (5889)   |  0.8187 (6636)   |  0.8649 (1661)   |  0.7621 (18630) 
+DetecTree2 s0        |  0.5726 (2485)   |  0.6661 (4151)   |  0.7460 (6126)   |  0.8185 (6154)   |  0.8759 (1847)   |  0.7423 (20763) 
+SelvaBox -> SAM 3    |  0.4600 (1902)   |  0.5291 (3755)   |  0.6004 (6414)   |  0.6738 (7640)   |  0.7624 (2810)   |  0.6218 (22521) 
+Box2Mask R-50        |  0.5079 (1719)   |  0.5822 (2906)   |  0.6448 (4415)   |  0.7135 (4410)   |  0.7878 (1330)   |  0.6500 (14780) 
+Box2Mask Swin-L      |  0.5396 (1914)   |  0.6271 (3364)   |  0.6947 (5246)   |  0.7526 (5434)   |  0.8113 (1646)   |  0.6937 (17604) 
+mean box IoU: LACE s0 (product)=0.7209  LACE s1 (product)=0.7061  LACE s2 (product)=0.7185  Restor MRCNN rpn1000=0.7712  DetecTree2 s0=0.7522  SelvaBox -> SAM 3=0.7744  Box2Mask R-50=0.7535  Box2Mask Swin-L=0.7578
+
+-> boxinst_commonality_tcd_04/ablation/results_r2048/box_iou_strata_seamfix_r2048.json

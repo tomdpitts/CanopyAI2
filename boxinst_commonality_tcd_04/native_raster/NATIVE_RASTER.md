@@ -935,3 +935,49 @@ tab:strata-maskiou regenerated at 2048 with guided LACE and SelvaBox ([`box_iou_
 paper.tex: no PENDING left; builds with tectonic, 0 undefined refs/citations.
 
 **Architecture figure (2026-10-08):** `figs/arch/make_arch_panels.py` now reads the colour-guided preds (τ 0.35; display threshold s' ≥ 0.11 unchanged, the guided best-F1 is also 0.11); panels regenerated (local s' = published s' on every shown box); Output label reads "RGB-guided upsampling to 2048 px, ranked by s'"; caption of fig:architecture updated. Old panels and PDF in `figs/arch/_backup_pre_guided_2026-10-08/`.
+
+### OPEN DEFECT — subtile-seam stitching damages Detectree2, Box2Mask, SelvaBox (found 2026-10-13)
+
+Tom spotted straight-edged Box2Mask fragments in the qualitative figure (tile 125). Measured
+([`seam_analysis.py`](seam_analysis.py) → `seam_analysis_r2048.json`): interior-seam-cut predictions are 0.5–0.6%
+for the whole-tile models (LACE, Restor) but 9.7% Detectree2, 20.8% / 24.9% Box2Mask Swin-L / R-50, 35.7% SelvaBox.
+Cause: our stitch dedup keeps a higher-scoring truncated fragment AND the full crown; SelvaBox's edge-band cull was
+disabled. Checked same day: Detectree2/Box2Mask stitch floor is 0.05 as the paper states; Box2Mask test resize is
+1024 (no downscale). **Fix plan and audit: [`HANDOFF_seam_fix_and_audit.md`](HANDOFF_seam_fix_and_audit.md).**
+Table 1 baseline rows (Detectree2, SelvaBox, Box2Mask) are currently understated.
+
+## SEAM FIX — interior-edge rule restored for Detectree2, Box2Mask, SelvaBox (2026-10-14)
+
+Closes the OPEN DEFECT above. Artefacts: [`seamfix/`](seamfix/README.md). Nothing existing overwritten; figures backed up to `ablation/results/figs/_backup_pre_seamfix_2026-10-14/` first.
+
+### Released rules, read from source (not memory)
+- **Detectree2** (github.com/PatBall1/detectree2 @39da1ba = v2.1.2, `models/outputs.py:243-305`): `stitch_crowns(folder, shift=1)` keeps a crown only if its polygon is `within` the buffered tile inset by `shift` = 1 m. It is NOT core-only. At 0.1 m/px and our 1024 subtiles: drop a subtile prediction whose mask comes within 10 px of a subtile edge, BEFORE `clean_crowns`. Polygons are pixel-centre contours, so in pixel-edge bbox terms: drop iff x0 < 10 or x1 > 1014 (same for y). Released `tile_data` default (`full_coverage=False`) also culls at the raster frame; we keep the frame (as `full_coverage=True` would), because the GT holds frame-cut crowns.
+- **CanopyRS** (geodataset @184141a, `aggregator/aggregator.py:759-791`, called in `Aggregator.__init__` before score threshold and NMS; presets `edge_band_buffer_percentage: 0.05`): keep a polygon only if `within` the tile buffered inward by 5% of tile width = 51.2 px. Applied at interior subtile edges only; outer frame not culled (paper "SelvaBox edge trim").
+- **Box2Mask**: no released tiling; same rule as Detectree2 (same crops, grid, stitcher).
+- The Detectree2 auditor independently reached the same reading (audit_2026-10-14/detectree2.md "Released stitch rule").
+
+### Gates
+- **Stitched rows: PASS, byte-identical.** `run_stitch_seam.py` with the filter OFF writes a `preds` payload whose sha256 equals the current file's for all four: DT2 439 (197,423 dets), DT2 sparse-236 (99,900), Box2Mask R-50 (118,102), Swin-L (139,328). Records `seamfix/*_GATE.json`.
+- **SelvaBox: AP-level PASS; box level not exact.** `raw_dets` were persisted rounded (boxes 2 dp, scores 4 dp), so the replay breaks equal-score ties and the 0.05 floor differently from the unrounded original. With an oracle tie-break (prefer the box the original kept) the OFF replay differs from the stored selection by 95 + 90 of 491,847 boxes on 109 tiles (`selvabox_seam_plan.json`). Scored, the OFF replay gives the published numbers exactly: 0.5710 / 0.2111 / box 0.7318 at maxDets 600 and 0.5789 / 0.2132 / 0.7521 at 1,600.
+- **SAM 3 mask reuse.** 280,514 of the 307,500 kept boxes were already prompted in the original A100 run; their masks are reused. 26,986 boxes are new. Batch independence: re-prompting 2×256 stored boxes in shuffled 37-box batches gives masks byte-identical to 64-box batching (512/512). Environment: local SAM 3 (MPS and CPU agree exactly) vs stored A100 masks: 324/512 byte-identical, mean IoU 0.996–0.999, min 0.36 (an ambiguous box). ±0.005 px prompt jitter alone changes 67/256 masks by ≤2% IoU, so most of the gap is CUDA-vs-local numerics. AP-level: re-prompting EVERY stored box on 44 tiles locally moves mask AP50 by −0.0002 (`selvabox_env_gate.json`). With 9% local masks the row is affected by ≲0.0001. **The definitive A100 refill is PENDING**: `selvabox_seamfix_modal.py` is written but the Modal workspace was paused ("Workspace … is paused") on 2026-10-14.
+- Downstream gates: strata rerun on current files = published JSON (identical); empty-tile share on current files = 4.04 / 2.09 / 4.70 / 6.57% (paper 4.0 / 2.1 / 4.7 / 6.6); cap-subset on the current Swin-L file = +0.007 (recorded).
+
+### Results — 439 tiles, 2048, canopy-neutral crowd, maxDets 600 (mask AP50 / AP50:95 / box AP50)
+| row | before | after (seam-fixed) | dets before → after | culled before dedup/NMS | seam-cut share before → after |
+|---|---|---|---|---|---|
+| Detectree2 | 0.6143 / 0.3014 / 0.6387 | **0.6297 / 0.3099 / 0.6505** | 197,423 → 172,406 | 83,790 subtile preds | 9.7% → 0.51% |
+| SelvaBox → SAM 3 | 0.5710 / 0.2111 / 0.7318 | **0.5984 / 0.2207 / 0.7670** | 491,847 → 307,500 | 586,252 of 1,185,300 raw boxes | 35.7% → 0.53% |
+| Box2Mask Swin-L | 0.5625 / 0.2309 / 0.6017 | **0.5894 / 0.2446 / 0.6199** | 139,328 → 114,340 | 58,820 | 20.8% → 0.51% |
+| Box2Mask R-50 | 0.4332 / 0.1566 / 0.4972 | **0.4505 / 0.1646 / 0.5122** | 118,102 → 93,078 | 68,701 | 24.9% → 0.46% |
+| *LACE s0 control* | — | 0.6472 | — | — | 0.54% (chance) |
+| sparse-236 Detectree2 | 0.6252 / 0.3460 / 0.6331 | **0.6362 / 0.3532 / 0.6444** | 99,900 → 87,962 | 40,496 | — |
+
+Own budgets: Detectree2 at maxDets 1,200 0.6321 / 0.3110 / 0.6564 (max 1,333 dets/tile); SelvaBox at 1,600 0.6035 / 0.2220 / 0.7822 (max 1,361). Box2Mask max dets/tile 502 (Swin-L) / 437 (R-50). Note d cap delta +0.009 (was +0.007). Empty-tile share: Detectree2 4.7%, Box2Mask Swin-L 6.4%. tab:strata-maskiou common subset 10,833 crowns (was 11,076); LACE still leads only the lowest stratum (0.614 vs Restor 0.611).
+
+**Reading.** Every stitched baseline rises (+0.011 to +0.027 AP50); seam-cut shares fall to the whole-tile chance rate. LACE's lead: over Detectree2 +0.017 AP50 (was +0.033), over SelvaBox +0.049, over Box2Mask Swin-L +0.058; sparse-236 over Detectree2 +0.041 (was +0.052). No ordering in Table 1 changes. At AP50:95 Detectree2 (0.310) still leads LACE (0.278); Box2Mask Swin-L (0.245) and SelvaBox (0.221) trail it.
+
+### Paper (`paper.tex`, edited directly; Tom reviews the diff)
+Table 1 rows (DT2, SelvaBox, Box2Mask ×2), note c own-budget numbers, note d (+0.009; "1.2%" → "1.0%" so the subtile share and the delta use the same definition, 39/3,951), abstract (0.625 → 0.636), Results Box2Mask (0.563 → 0.589), tab:sparse236 + note, tab:scorer sparse DT2 row, empty tiles (6.6 → 6.4%), tab:geometry (seam rule stated per row; "its 0.1" floor corrected to released `clean_crowns` default 0.2), "SelvaBox Edge trim" (cull now applied at interior edges only), detection budget, tab:strata-maskiou. Qualitative figures regenerated (baseline thresholds recomputed: DT2 0.48, Box2Mask 0.76, sparse DT2 0.57; LACE panels min F1 0.815 ≥ 0.8). Draft `figs/cost_pareto` regenerated with the fixed rows. Builds: tectonic 0 undefined refs/cites; `cvpr/make_cvpr.py` clean. **Stale:** `LACE_overleaf_2026-10-08.zip`.
+
+### Fairness audit (2026-10-14) — summary; nothing below changed in the paper
+Six reports + index with decisions for Tom: [`audit_2026-10-14/README.md`](audit_2026-10-14/README.md). Defects beyond the seam that still hinder a baseline (all need GPU except the re-rank): **Box2Mask** LR schedule truncated by early stopping before both ×0.1 decays (neither checkpoint annealed; Swin-L stopped by a 5 h wall clock); **SelvaBox → SAM 3** ranked by detector score instead of the released sqrt(det × SAM) (CPU re-score on the seam-fixed file: 0.5984 → 0.6141 AP50, 0.2207 → 0.2502 AP50:95; provisional, 9% local SAM scores) and SAM 3 prompted on the whole tile (20.3 cm/px at the encoder) instead of each box's source subtile (10.2 cm/px). **Detectree2** `MIN_SIZE_TEST` 1000 vs released 800 unchecked on val. Restor rpn2000 verified like-for-like. No test leakage in the deployed LACE 2048 numbers. Several undisclosed favourable deviations and text errors listed in the index.

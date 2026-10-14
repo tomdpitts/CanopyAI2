@@ -1,0 +1,59 @@
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 7602.42it/s]
+1/25 tcd_val_tile_1 7 crowns  3s
+2/25 tcd_val_tile_113 421 crowns  33s
+3/25 tcd_val_tile_13 29 crowns  38s
+4/25 tcd_val_tile_144 153 crowns  53s
+5/25 tcd_val_tile_161 32 crowns  62s
+6/25 tcd_val_tile_176 29 crowns  68s
+7/25 tcd_val_tile_197 47 crowns  77s
+8/25 tcd_val_tile_211 43 crowns  85s
+9/25 tcd_val_tile_23 154 crowns  101s
+10/25 tcd_val_tile_243 8 crowns  105s
+11/25 tcd_val_tile_259 48 crowns  112s
+12/25 tcd_val_tile_276 1 crowns  113s
+13/25 tcd_val_tile_291 26 crowns  119s
+14/25 tcd_val_tile_31 17 crowns  124s
+15/25 tcd_val_tile_326 90 crowns  135s
+16/25 tcd_val_tile_342 55 crowns  143s
+17/25 tcd_val_tile_357 1 crowns  145s
+18/25 tcd_val_tile_373 13 crowns  151s
+19/25 tcd_val_tile_39 111 crowns  164s
+20/25 tcd_val_tile_403 122 crowns  178s
+21/25 tcd_val_tile_42 8 crowns  182s
+22/25 tcd_val_tile_433 138 crowns  195s
+23/25 tcd_val_tile_57 1 crowns  196s
+24/25 tcd_val_tile_72 45 crowns  206s
+25/25 tcd_val_tile_93 220 crowns  227s
+{
+ "n_tiles": 25,
+ "n_crowns": 1819,
+ "device": "mps",
+ "whole": {
+  "mean_iou": 0.5468246305366822,
+  "ge50": 0.6470588235294118,
+  "ge75": 0.159978009895547
+ },
+ "sub": {
+  "mean_iou": 0.6937580381295083,
+  "ge50": 0.9241341396371633,
+  "ge75": 0.3787795492028587
+ },
+ "by_area_tercile": {
+  "t0 0-306px": {
+   "n": 604,
+   "whole": 0.335793964825924,
+   "sub": 0.5903193181053709
+  },
+  "t1 306-1107px": {
+   "n": 607,
+   "whole": 0.5806837828732103,
+   "sub": 0.7173417090111249
+  },
+  "t2 1107-infpx": {
+   "n": 608,
+   "whole": 0.7226634736633688,
+   "sub": 0.7729713583095048
+  }
+ }
+}

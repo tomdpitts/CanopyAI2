@@ -1,0 +1,137 @@
+{
+ "t_poly_s": 79.2,
+ "t_box_s": 7.0,
+ "t_box_hi_s": 34.5,
+ "restor_over_lace": 12.038953151505423,
+ "restor_over_lace_box34": 6.725782579954488,
+ "rows": [
+  {
+   "name": "LACE (ours)",
+   "supervision": "box",
+   "hours": 525.2463333333333,
+   "hours_box34": 940.1754999999999,
+   "counts": {
+    "tiles": 900,
+    "tree_box": 54318,
+    "tree_poly": 7041,
+    "canopy": 12033
+   },
+   "ap50": 0.647,
+   "ap50_sd": 0.0025,
+   "ap5095": 0.2778,
+   "ap5095_sd": 0.0051
+  },
+  {
+   "name": "Restor Mask R-CNN",
+   "supervision": "mask",
+   "hours": 6323.416,
+   "hours_box34": 6323.416,
+   "counts": {
+    "tiles": 4169,
+    "tree_box": 0,
+    "tree_poly": 240958,
+    "canopy": 46470
+   },
+   "ap50": 0.648,
+   "ap50_sd": null,
+   "ap5095": 0.3332,
+   "ap5095_sd": null
+  },
+  {
+   "name": "Detectree2",
+   "supervision": "mask",
+   "hours": 1614.6239999999998,
+   "hours_box34": 1614.6239999999998,
+   "counts": {
+    "tiles": 900,
+    "tree_box": 0,
+    "tree_poly": 61359,
+    "canopy": 12033
+   },
+   "ap50": 0.6143,
+   "ap50_sd": null,
+   "ap5095": 0.3014,
+   "ap5095_sd": null
+  },
+  {
+   "name": "SelvaBox $\\rightarrow$ SAM 3",
+   "supervision": "boxsam",
+   "hours": 1476.8554444444444,
+   "hours_box34": 3317.5068333333334,
+   "counts": {
+    "tiles": 3611,
+    "tree_box": 240958,
+    "tree_poly": 0,
+    "canopy": 45833
+   },
+   "ap50": 0.571,
+   "ap50_sd": null,
+   "ap5095": 0.2111,
+   "ap5095_sd": null
+  },
+  {
+   "name": "Box2Mask Swin-L",
+   "supervision": "box",
+   "hours": 384.03516666666667,
+   "hours_box34": 852.7497500000001,
+   "counts": {
+    "tiles": 900,
+    "tree_box": 61359,
+    "tree_poly": 0,
+    "canopy": 12033
+   },
+   "ap50": 0.5625,
+   "ap50_sd": null,
+   "ap5095": 0.2309,
+   "ap5095_sd": null
+  },
+  {
+   "name": "Box2Mask R-50",
+   "supervision": "box",
+   "hours": 384.03516666666667,
+   "hours_box34": 852.7497500000001,
+   "counts": {
+    "tiles": 900,
+    "tree_box": 61359,
+    "tree_poly": 0,
+    "canopy": 12033
+   },
+   "ap50": 0.4332,
+   "ap50_sd": null,
+   "ap5095": 0.1566,
+   "ap5095_sd": null
+  }
+ ],
+ "frontier_ap50": [
+  [
+   384.03516666666667,
+   0.5625
+  ],
+  [
+   525.2463333333333,
+   0.647
+  ],
+  [
+   6323.416,
+   0.648
+  ]
+ ],
+ "frontier_ap5095": [
+  [
+   384.03516666666667,
+   0.2309
+  ],
+  [
+   525.2463333333333,
+   0.2778
+  ],
+  [
+   1614.6239999999998,
+   0.3014
+  ],
+  [
+   6323.416,
+   0.3332
+  ]
+ ]
+}

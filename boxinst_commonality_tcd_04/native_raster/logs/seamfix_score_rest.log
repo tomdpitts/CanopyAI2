@@ -1,0 +1,411 @@
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_selvabox_seamfix_off_r2048.json: 491852 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.12s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=21.20s).
+Accumulating evaluation results...
+DONE (t=0.17s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.11s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=29.30s).
+Accumulating evaluation results...
+DONE (t=0.16s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.11s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=27.52s).
+Accumulating evaluation results...
+DONE (t=0.18s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/seamfix/preds_selvabox_seamfix_off_r2048.json",
+  "model": "SelvaBox DINO-Swin-L (NQOS-selvamask-FT) -> SAM 3 (selvamask-FT), 1024px @0.5 ovl @0.1 m/px, IoU-NMS 0.7, no edge band (seam-fix GATE replay)",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 600,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.2576,
+      "AP75": 0.0395,
+      "AP50_95": 0.0958,
+      "n_det": 491852
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.571,
+      "AP75": 0.0861,
+      "AP50_95": 0.2111,
+      "n_det": 491852
+    },
+    "box": {
+      "AP50": 0.7318,
+      "AP75": 0.3939,
+      "AP50_95": 0.4011,
+      "n_det": 491852
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.571,
+      "AP75": 0.0871,
+      "AP50_95": 0.2117,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/seamfix/scored_selvabox_seamfix_off_r2048_md600.json
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_selvabox_seamfix_on_r2048.json: 307500 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.07s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=20.99s).
+Accumulating evaluation results...
+DONE (t=0.15s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.07s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=28.96s).
+Accumulating evaluation results...
+DONE (t=0.15s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.07s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=27.05s).
+Accumulating evaluation results...
+DONE (t=0.15s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/seamfix/preds_selvabox_seamfix_on_r2048.json",
+  "model": "SelvaBox DINO-Swin-L (NQOS-selvamask-FT) -> SAM 3 (selvamask-FT), 1024px @0.5 ovl @0.1 m/px, IoU-NMS 0.7, CanopyRS edge band 0.05 at INTERIOR subtile edges (seam fix)",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 600,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.2731,
+      "AP75": 0.0415,
+      "AP50_95": 0.1012,
+      "n_det": 307500
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.5984,
+      "AP75": 0.0898,
+      "AP50_95": 0.2207,
+      "n_det": 307500
+    },
+    "box": {
+      "AP50": 0.767,
+      "AP75": 0.4129,
+      "AP50_95": 0.42,
+      "n_det": 307500
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.5984,
+      "AP75": 0.0907,
+      "AP50_95": 0.2212,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/seamfix/scored_selvabox_seamfix_on_r2048_md600.json
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_selvabox_seamfix_off_r2048.json: 491852 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.11s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=50.00s).
+Accumulating evaluation results...
+DONE (t=0.33s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.11s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=70.28s).
+Accumulating evaluation results...
+DONE (t=0.35s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.11s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=65.31s).
+Accumulating evaluation results...
+DONE (t=0.36s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/seamfix/preds_selvabox_seamfix_off_r2048.json",
+  "model": "SelvaBox DINO-Swin-L (NQOS-selvamask-FT) -> SAM 3 (selvamask-FT), 1024px @0.5 ovl @0.1 m/px, IoU-NMS 0.7, no edge band (seam-fix GATE replay)",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 1600,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.2599,
+      "AP75": 0.0396,
+      "AP50_95": 0.0964,
+      "n_det": 491852
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.5789,
+      "AP75": 0.0864,
+      "AP50_95": 0.2132,
+      "n_det": 491852
+    },
+    "box": {
+      "AP50": 0.7521,
+      "AP75": 0.4003,
+      "AP50_95": 0.4103,
+      "n_det": 491852
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.579,
+      "AP75": 0.0874,
+      "AP50_95": 0.2139,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/seamfix/scored_selvabox_seamfix_off_r2048_md1600.json
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_selvabox_seamfix_on_r2048.json: 307500 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.07s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=37.22s).
+Accumulating evaluation results...
+DONE (t=0.23s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.07s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=51.92s).
+Accumulating evaluation results...
+DONE (t=0.23s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.07s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=48.32s).
+Accumulating evaluation results...
+DONE (t=0.24s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/seamfix/preds_selvabox_seamfix_on_r2048.json",
+  "model": "SelvaBox DINO-Swin-L (NQOS-selvamask-FT) -> SAM 3 (selvamask-FT), 1024px @0.5 ovl @0.1 m/px, IoU-NMS 0.7, CanopyRS edge band 0.05 at INTERIOR subtile edges (seam fix)",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 1600,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.2745,
+      "AP75": 0.0417,
+      "AP50_95": 0.1016,
+      "n_det": 307500
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.6035,
+      "AP75": 0.0903,
+      "AP50_95": 0.222,
+      "n_det": 307500
+    },
+    "box": {
+      "AP50": 0.7822,
+      "AP75": 0.4179,
+      "AP50_95": 0.4269,
+      "n_det": 307500
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.6036,
+      "AP75": 0.0912,
+      "AP50_95": 0.2226,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/seamfix/scored_selvabox_seamfix_on_r2048_md1600.json
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_dt2_sparse_s0v2_r2048_seamfix.json: 87962 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=11.03s).
+Accumulating evaluation results...
+DONE (t=0.06s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=13.42s).
+Accumulating evaluation results...
+DONE (t=0.06s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=13.40s).
+Accumulating evaluation results...
+DONE (t=0.06s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/seamfix/preds_dt2_sparse_s0v2_r2048_seamfix.json",
+  "model": "DetecTree2 (Mask R-CNN R101-FPN) fine-tuned on 792/108, 1024@50% subtiles, clean_crowns dedup; sparse-236, re-stitched at native 2048 (s0v2); seam-fixed (interior-edge filter 10 px before dedup)",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 600,
+    "score_floor": 0.05,
+    "n_tiles": 236,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 14937,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.5922,
+      "AP75": 0.3437,
+      "AP50_95": 0.3314,
+      "n_det": 87962
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.6362,
+      "AP75": 0.363,
+      "AP50_95": 0.3532,
+      "n_det": 87962
+    },
+    "box": {
+      "AP50": 0.6444,
+      "AP75": 0.342,
+      "AP50_95": 0.3494,
+      "n_det": 87962
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.6362,
+      "AP75": 0.3636,
+      "AP50_95": 0.3534,
+      "n_gt": 14937
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/seamfix/scored_dt2_sparse_s0v2_r2048_seamfix.json
+SCORE_DONE

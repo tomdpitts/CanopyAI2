@@ -9,19 +9,19 @@
   "tcd_tile_915"
  ],
  "thresholds": {
-  "Detectree2": {
-   "threshold": 0.61,
-   "f1": 0.6323733580150226,
-   "tp": 8882,
-   "fp": 4272,
-   "fn": 6055
-  },
   "LACE (ours)": {
    "threshold": 0.12,
    "f1": 0.7011818056891577,
    "tp": 10205,
    "fp": 3966,
    "fn": 4732
+  },
+  "Detectree2": {
+   "threshold": 0.57,
+   "f1": 0.6397879464285714,
+   "tp": 9172,
+   "fp": 4563,
+   "fn": 5765
   }
  },
  "crop_px": 1024,
@@ -59,9 +59,9 @@
    "fn": 1
   },
   "tcd_tile_318|Detectree2": {
-   "f1": 0.9,
+   "f1": 0.8571,
    "tp": 9,
-   "fp": 0,
+   "fp": 1,
    "fn": 2
   },
   "tcd_tile_1080|LACE (ours)": {
@@ -71,10 +71,10 @@
    "fn": 1
   },
   "tcd_tile_1080|Detectree2": {
-   "f1": 0.8525,
-   "tp": 26,
-   "fp": 8,
-   "fn": 1
+   "f1": 0.8438,
+   "tp": 27,
+   "fp": 10,
+   "fn": 0
   },
   "tcd_tile_333|LACE (ours)": {
    "f1": 0.8667,
@@ -83,9 +83,9 @@
    "fn": 3
   },
   "tcd_tile_333|Detectree2": {
-   "f1": 0.64,
+   "f1": 0.6154,
    "tp": 8,
-   "fp": 1,
+   "fp": 2,
    "fn": 8
   },
   "tcd_tile_919|LACE (ours)": {
@@ -95,9 +95,9 @@
    "fn": 4
   },
   "tcd_tile_919|Detectree2": {
-   "f1": 0.5385,
+   "f1": 0.56,
    "tp": 7,
-   "fp": 4,
+   "fp": 3,
    "fn": 8
   },
   "tcd_tile_2480|LACE (ours)": {

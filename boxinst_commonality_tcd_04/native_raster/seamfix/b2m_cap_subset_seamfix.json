@@ -1,0 +1,38 @@
+{
+  "definition": "1024^2 subtiles at origins {0,512,1024}^2; crown in subtile if GT box centre inside; cap 100",
+  "n_over_cap": 39,
+  "n_flagged_tiles": 19,
+  "rows": {
+    "current_r2048 (gate)": {
+      "all": {
+        "AP50": 0.5625,
+        "AP75": 0.1272,
+        "AP50_95": 0.2309,
+        "n_det": 139328
+      },
+      "without_flagged": {
+        "AP50": 0.5695,
+        "AP75": 0.1399,
+        "AP50_95": 0.2385,
+        "n_det": 130301
+      },
+      "delta_AP50": 0.007
+    },
+    "seamfix_r2048": {
+      "all": {
+        "AP50": 0.5894,
+        "AP75": 0.1394,
+        "AP50_95": 0.2446,
+        "n_det": 114340
+      },
+      "without_flagged": {
+        "AP50": 0.5988,
+        "AP75": 0.1552,
+        "AP50_95": 0.254,
+        "n_det": 106631
+      },
+      "delta_AP50": 0.0094
+    }
+  },
+  "gate_pass": true
+}

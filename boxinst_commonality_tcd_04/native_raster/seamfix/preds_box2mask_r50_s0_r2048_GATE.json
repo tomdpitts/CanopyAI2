@@ -1,0 +1,10 @@
+{
+ "gate": "filter OFF reproduces published preds payload byte-for-byte",
+ "pass": true,
+ "new": "/private/tmp/claude-501/-Users-tompitts-dphil-CanopyAI2/b085cec2-62cb-4a30-a5e2-6f6b537b156d/scratchpad/seam_gate/preds_box2mask_r50_s0_r2048.json",
+ "ref": "boxinst_commonality_tcd_04/native_raster/preds_box2mask_r50_s0_r2048.json",
+ "sha256_new": "e79736accc75a7ddf3e467986795fd23ed304666f7519f4cd738c42d38240587",
+ "sha256_ref": "e79736accc75a7ddf3e467986795fd23ed304666f7519f4cd738c42d38240587",
+ "n_dets": 118102,
+ "date": "2026-10-14 01:13"
+}

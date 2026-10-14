@@ -270,18 +270,18 @@
   \node[font=\footnotesize] at (7.43,-0.27) {\fireicon};
   \node[chead, anchor=west, text=ffit!75!black] at (0.12,-0.75) {E-step\;\normalfont\textcolor{ink!60}{per box}};
   \node[num, fill=bfg] at (0.27,-1.25) {a};
-  \node[eq] at (0.47,-1.25) {$A = \log\textstyle\sum_k \hat\rho_k\, e^{\kappa\, z^{\mathrm{T}} C_k} - \ell_{bg}$};
-  \node[num, fill=bfg] at (0.27,-1.85) {b};
-  \node[eq] at (0.47,-1.85) {$\bar A = A - \operatorname{mean}_{\text{box}} A$};
-  \node[num, fill=bfg] at (0.27,-2.45) {c};
-  \node[eq] at (0.47,-2.45) {$p_{fg} = \sigma\big(\bar A + \alpha\,\mathrm{logit}\textstyle\sum_k\rho_k\big)$};
-  \draw[ink!20, line width=0.4pt] (4.2,-0.6) -- (4.2,-2.7);
-  \node[chead, anchor=west, text=ffit!75!black] at (4.35,-0.75) {M-step\;\normalfont\textcolor{ink!60}{all boxes}};
-  \node[eq] at (4.35,-1.25) {$C_k \leftarrow \mathrm{norm}\big(P_k - \beta \bar N_k\big)$};
-  \node[eq] at (4.35,-1.85) {$\rho_k(\text{bin}) \leftarrow \operatorname{mean}_{\text{bin}}\, r_{nk}$};
-  \node[eq] at (4.35,-2.45) {Prune starved $C_k$};
-  \draw[arr, ffit] (2.0,-3.05) -- node[tlbl, above=1.5pt, text=ffit!75!black]{$r_{nk}$} (6.0,-3.05);
-  \draw[arr, ffit] (6.0,-3.35) -- node[tlbl, below=1.5pt, text=ffit!75!black]{$C_k,\ \rho$} (2.0,-3.35);
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.47,-1.25) {Subtract background log-likelihood\\from foreground log-likelihood};
+  \node[num, fill=bfg] at (0.27,-1.95) {b};
+  \node[eq] at (0.47,-1.95) {Subtract the within-box mean};
+  \node[num, fill=bfg] at (0.27,-2.65) {c};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.47,-2.65) {Add the spatial prior (log-odds)\\and apply a sigmoid};
+  \draw[ink!20, line width=0.4pt] (4.42,-0.6) -- (4.42,-2.95);
+  \node[chead, anchor=west, text=ffit!75!black] at (4.57,-0.75) {M-step\;\normalfont\textcolor{ink!60}{all boxes}};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (4.57,-1.25) {Responsibility-weighted mean\\of cells per prototype};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (4.57,-1.95) {Subtract the matched\\outside-box centroid};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (4.57,-2.65) {Re-estimate spatial prior as\\per-bin mean responsibility};
+  \draw[arr, ffit] (2.0,-3.2) -- node[tlbl, above=1.5pt, text=ffit!75!black]{responsibilities $r_{nk}$} (6.0,-3.2);
+  \draw[arr, ffit] (6.0,-3.45) -- node[tlbl, below=1.5pt, text=ffit!75!black]{prototypes $C_k$, spatial prior $\rho$} (2.0,-3.45);
 \end{scope}
 \draw[arr, ffit] (7.95,-9.6) -- (7.95,-9.95);
 

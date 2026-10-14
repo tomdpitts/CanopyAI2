@@ -38,13 +38,13 @@ SETS = {
         gt=os.path.join(ROOT, "test_gt.json"), imgdir=os.path.join(REPO, "data/tcd/test"), prefix="tcd_val_tile_",
         models=[("LACE (ours)", "preds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json"),
                 ("Restor Mask R-CNN", "preds_restor_rpn1000_r2048_treeonly.json"),
-                ("Detectree2", "preds_dt2_s0v2_r2048.json"),
-                ("Box2Mask Swin-L", "preds_box2mask_swinl_s0_r2048.json")],
+                ("Detectree2", "seamfix/preds_dt2_s0v2_r2048_seamfix.json"),
+                ("Box2Mask Swin-L", "seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json")],
         tiles="125,146,24,100", per_row=1, crop=768),
     "sparse": dict(
         gt=os.path.join(REPO, "data/tcd_sparse/sparse_gt.json"), imgdir=os.path.join(REPO, "data/tcd_sparse/test"), prefix="tcd_tile_",
         models=[("LACE (ours)", "preds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json"),
-                ("Detectree2", "preds_dt2_sparse_s0v2_r2048.json")],
+                ("Detectree2", "seamfix/preds_dt2_sparse_s0v2_r2048_seamfix.json")],
         tiles="318,1080,333,919,2480,915", per_row=2, crop=1024),
 }
 

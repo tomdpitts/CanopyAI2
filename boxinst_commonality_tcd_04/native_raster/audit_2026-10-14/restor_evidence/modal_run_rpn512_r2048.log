@@ -1,0 +1,55 @@
+[restor-native] start  OUT_DIR=/vol/out/native_raster/restor_rpn512_r2048  rpn_topk=512  env={"torch": "2.1.0", "numpy": "1.26.0", "pillow": "10.0.1", "pycocotools": "?", "detectron2": "0.6", "cuda": "12.1", "gpu": "NVIDIA A100-SXM4-40GB"}
+[restor-native] score_thr=0.05 dets=600 num_classes=2 min_size_test=0 max=2048 fmt=BGR rpn_pre=512 rpn_post=512
+[restor-native] 439 tiles, 0 already on volume, 439 to do
+  10/439 tiles this run (10/439 total)  tree=831 canopy=284
+  20/439 tiles this run (20/439 total)  tree=1990 canopy=818
+  30/439 tiles this run (30/439 total)  tree=2802 canopy=1096
+  40/439 tiles this run (40/439 total)  tree=4017 canopy=1491
+  50/439 tiles this run (50/439 total)  tree=4967 canopy=1858
+  60/439 tiles this run (60/439 total)  tree=6210 canopy=2283
+  70/439 tiles this run (70/439 total)  tree=7030 canopy=2695
+  80/439 tiles this run (80/439 total)  tree=7930 canopy=3091
+  90/439 tiles this run (90/439 total)  tree=9190 canopy=3505
+  100/439 tiles this run (100/439 total)  tree=10031 canopy=3851
+  110/439 tiles this run (110/439 total)  tree=10594 canopy=4158
+  120/439 tiles this run (120/439 total)  tree=11434 canopy=4532
+  130/439 tiles this run (130/439 total)  tree=12690 canopy=5060
+  140/439 tiles this run (140/439 total)  tree=13571 canopy=5415
+  150/439 tiles this run (150/439 total)  tree=14707 canopy=5905
+  160/439 tiles this run (160/439 total)  tree=15683 canopy=6360
+  170/439 tiles this run (170/439 total)  tree=16773 canopy=6870
+  180/439 tiles this run (180/439 total)  tree=17416 canopy=7088
+  190/439 tiles this run (190/439 total)  tree=18236 canopy=7518
+  200/439 tiles this run (200/439 total)  tree=19320 canopy=7961
+  210/439 tiles this run (210/439 total)  tree=20167 canopy=8302
+  220/439 tiles this run (220/439 total)  tree=21442 canopy=8868
+  230/439 tiles this run (230/439 total)  tree=22383 canopy=9257
+  240/439 tiles this run (240/439 total)  tree=23219 canopy=9623
+  250/439 tiles this run (250/439 total)  tree=24229 canopy=10079
+  260/439 tiles this run (260/439 total)  tree=25443 canopy=10468
+  270/439 tiles this run (270/439 total)  tree=26703 canopy=11074
+  280/439 tiles this run (280/439 total)  tree=27681 canopy=11506
+  290/439 tiles this run (290/439 total)  tree=28676 canopy=11920
+  300/439 tiles this run (300/439 total)  tree=29555 canopy=12345
+  310/439 tiles this run (310/439 total)  tree=30972 canopy=13010
+  320/439 tiles this run (320/439 total)  tree=31941 canopy=13423
+  330/439 tiles this run (330/439 total)  tree=33118 canopy=14019
+  340/439 tiles this run (340/439 total)  tree=34327 canopy=14625
+  350/439 tiles this run (350/439 total)  tree=35167 canopy=14941
+  360/439 tiles this run (360/439 total)  tree=36267 canopy=15441
+  370/439 tiles this run (370/439 total)  tree=37297 canopy=15849
+  380/439 tiles this run (380/439 total)  tree=38215 canopy=16247
+  390/439 tiles this run (390/439 total)  tree=38731 canopy=16449
+  400/439 tiles this run (400/439 total)  tree=39681 canopy=16913
+  410/439 tiles this run (410/439 total)  tree=40745 canopy=17265
+  420/439 tiles this run (420/439 total)  tree=41461 canopy=17545
+  430/439 tiles this run (430/439 total)  tree=42300 canopy=17934
+  439/439 tiles this run (439/439 total)  tree=42987 canopy=18195
+[restor-native] predict done
+[restor-native] start  OUT_DIR=/vol/out/native_raster/restor_rpn512_r2048  rpn_topk=512  env={"torch": "2.1.0", "numpy": "1.26.0", "pillow": "10.0.1", "pycocotools": "?", "detectron2": "0.6", "cuda": "12.1", "gpu": "NVIDIA A100-SXM4-40GB"}
+[restor-native] score_thr=0.05 dets=600 num_classes=2 min_size_test=0 max=2048 fmt=BGR rpn_pre=512 rpn_post=512
+[restor-native] 439 tiles, 439 already on volume, 0 to do
+[restor-native] predict done
+[restor-native] wrote /vol/out/native_raster/restor_rpn512_r2048/preds_restor_rpn512_r2048.json: 439 tiles, 42987 tree, 18195 canopy
+[restor-native] /vol/out/native_raster/restor_rpn512_r2048/preds_restor_rpn512_r2048.json exists -- skipping
+[restor-native] wrote /vol/out/native_raster/restor_rpn512_r2048/preds_restor_rpn512_r512_incontainer.json: 439 tiles, 42987 tree, 18195 canopy

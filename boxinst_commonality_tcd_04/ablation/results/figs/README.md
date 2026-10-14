@@ -22,10 +22,11 @@ Env overrides: `TILES=` (comma list, tile numbers for TCD, full keys for NEON), 
 ## Inputs
 
 - TCD 439: `test_gt.json`, `data/tcd/test/*.tif`, `native_raster/preds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json` (colour-guided render, product-reranked score),
-  `preds_restor_rpn1000_r2048_treeonly.json`, `preds_dt2_s0v2_r2048.json`, `preds_box2mask_swinl_s0_r2048.json`.
+  `preds_restor_rpn1000_r2048_treeonly.json`, `seamfix/preds_dt2_s0v2_r2048_seamfix.json`, `seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json`
+  (seam-fixed baselines since 2026-10-14; pre-fix figures and thresholds in `_backup_pre_seamfix_2026-10-14/`).
   SAM 3 / SelvaBox has no persisted 2048 masks, hence absent.
 - Sparse: `data/tcd_sparse/sparse_gt.json`, `data/tcd_sparse/test/*.tif`, `native_raster/preds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json`,
-  `preds_dt2_sparse_s0v2_r2048.json` (only rows in `tab:sparse236`).
+  `seamfix/preds_dt2_sparse_s0v2_r2048_seamfix.json` (only rows in `tab:sparse236`).
 - NEON: `modal_neon_multiseed/neon_gt.json`, `NeonTreeEvaluation/evaluation/RGB/*.tif` (400 px),
   `phase4/dl/preds_phase4_s0.json`, `preds_deepforest.json` (2.1.0 repro).
 
@@ -33,7 +34,8 @@ Env overrides: `TILES=` (comma list, tile numbers for TCD, full keys for NEON), 
 
 `qualitative_thresholds_<set>.json`, cached; delete to recompute. Per model, the score cut maximising F1 over the whole set:
 - TCD sets: pooled F1 at mask IoU 0.5, COCO-style greedy score-ordered matching, >50 %-in-canopy predictions ignored (and not drawn).
-  439: LACE 0.11, Restor 0.24, Detectree2 0.49, Box2Mask 0.77. Sparse: LACE 0.12, Detectree2 0.61.
+  439: LACE 0.11, Restor 0.24, Detectree2 0.48, Box2Mask 0.76. Sparse: LACE 0.12, Detectree2 0.57 (baseline thresholds
+  recomputed 2026-10-14 on the seam-fixed files; pre-fix 0.49 / 0.77 / 0.61; LACE panels all still F1 >= 0.8, min 0.815).
 - NEON: F1 of macro-averaged P/R at box IoU 0.4 (benchmark convention). LACE s0 0.30 (F1 0.7227), DeepForest 0.24 (F1 0.7265);
   these reproduce the paper's NEON table to 3 dp.
 
@@ -81,3 +83,25 @@ local extraction, kept only as the counter-example.
 ## Selection rule (2026-10-08)
 
 No panel shows LACE below F1 0.8 in its window (Tom). Candidates screened with `window_f1_scan.py` (`window_f1_scan_<set>.json`), confirmed by the rendered `_meta.json`. Previous figures: `_backup_pre_tileselect_2026-10-08/` and `_backup_pre_guided_2026-10-07/`.
+
+# Annotation-cost Pareto figure (DRAFT, not in paper.tex)
+
+Made 2026-10-13 for review. `cost_pareto.pdf` (7.0 x 2.85 in, two panels), preview `cost_pareto.png`, numbers `cost_pareto_data.json`.
+Regenerate: `.venv/bin/python boxinst_commonality_tcd_04/ablation/results/figs/make_cost_pareto.py` (~20 s; reads all 4,169 train metas).
+
+x = estimated annotator-hours for every OAM-TCD label a Table 1 row consumed in training or model selection; y = Table 1 mask AP50 (left) and AP50:95 (right) at 2048.
+Prices are the ones Box2Mask (in lace.bib) quotes: 79.2 s per polygon (COCO), 7 s per box (extreme clicking); whisker re-prices boxes at 34.5 s (conventional drawing, Su et al. 2012 via Papadopoulos et al. 2017, arXiv 1708.02750).
+Canopy groups are charged as polygons for every row (all rows consume them). LACE's 108 val tiles are charged as polygons (val masks select alpha, kappa, tau, guide).
+Counts are from tile metadata: 900-tile cohort 61,359 crowns + 12,033 canopy (val 7,041 + 1,401); full train 240,958 + 46,470.
+
+| row | hours (7 s box) | hours (34.5 s box) |
+|---|---|---|
+| Box2Mask (both) | 384 | 853 |
+| LACE | 525 | 940 |
+| SelvaBox -> SAM 3 | 1,477 | 3,318 |
+| Detectree2 | 1,615 | 1,615 |
+| Restor | 6,323 | 6,323 |
+
+Restor / LACE = 12.0x (6.7x at 34.5 s). Frontier: AP50 Box2Mask Swin-L -> LACE -> Restor; AP50:95 Box2Mask Swin-L -> LACE -> Detectree2 -> Restor.
+Canopy polygons are 265 h of LACE's 525 h. Non-OAM-TCD pretraining (COCO, detectree2 checkpoint, SA-Co, DINOv3, SelvaBox's other datasets) is not counted.
+SelvaBox tile set reconstructed as folds 0-4 tiles with >= 1 crown: 3,032 + 579; their Table 19 says 3,024 train.

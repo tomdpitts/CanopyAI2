@@ -1,0 +1,76 @@
+{
+ "n_tiles": 439,
+ "n_no_crown": 73,
+ "rows": {
+  "LACE s0": {
+   "file": "native_raster/preds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json",
+   "floor": 0.0,
+   "n_det": 159687,
+   "n_on_empty": 6453,
+   "pct": 4.04
+  },
+  "Restor rpn1000": {
+   "file": "native_raster/preds_restor_rpn1000_r2048_treeonly.json",
+   "floor": 0.05,
+   "n_det": 56438,
+   "n_on_empty": 1180,
+   "pct": 2.09
+  },
+  "Detectree2 (current)": {
+   "file": "native_raster/preds_dt2_s0v2_r2048.json",
+   "floor": 0.05,
+   "n_det": 197423,
+   "n_on_empty": 9287,
+   "pct": 4.7
+  },
+  "Box2Mask Swin-L (current)": {
+   "file": "native_raster/preds_box2mask_swinl_s0_r2048.json",
+   "floor": 0.05,
+   "n_det": 139328,
+   "n_on_empty": 9151,
+   "pct": 6.57
+  },
+  "Box2Mask R-50 (current)": {
+   "file": "native_raster/preds_box2mask_r50_s0_r2048.json",
+   "floor": 0.05,
+   "n_det": 118102,
+   "n_on_empty": 7988,
+   "pct": 6.76
+  },
+  "SelvaBox (current)": {
+   "file": "native_raster/preds_selvabox_bench_r2048.json",
+   "floor": 0.05,
+   "n_det": 491847,
+   "n_on_empty": 27526,
+   "pct": 5.6
+  },
+  "Detectree2 (seamfix)": {
+   "file": "native_raster/seamfix/preds_dt2_s0v2_r2048_seamfix.json",
+   "floor": 0.05,
+   "n_det": 172406,
+   "n_on_empty": 8064,
+   "pct": 4.68
+  },
+  "Box2Mask Swin-L (seamfix)": {
+   "file": "native_raster/seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json",
+   "floor": 0.05,
+   "n_det": 114340,
+   "n_on_empty": 7359,
+   "pct": 6.44
+  },
+  "Box2Mask R-50 (seamfix)": {
+   "file": "native_raster/seamfix/preds_box2mask_r50_s0_r2048_seamfix.json",
+   "floor": 0.05,
+   "n_det": 93078,
+   "n_on_empty": 5965,
+   "pct": 6.41
+  },
+  "SelvaBox (seamfix)": {
+   "file": "native_raster/seamfix/preds_selvabox_seamfix_on_r2048.json",
+   "floor": 0.05,
+   "n_det": 307500,
+   "n_on_empty": 17372,
+   "pct": 5.65
+  }
+ }
+}

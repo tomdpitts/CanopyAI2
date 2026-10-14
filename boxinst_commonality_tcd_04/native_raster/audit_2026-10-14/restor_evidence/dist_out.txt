@@ -1,0 +1,33 @@
+GT trees total 25705 max/tile 422 median 29.0
+512 {'dets_total': 61182, 'dets_tree': 42987, 'tree_per_tile': np.float64(97.9), 'max_total_per_tile': 347, 'max_tree_per_tile': 309, 'tiles_at_600cap': 0, 'tiles_total_ge_500': 0, 'min_score': 0.05000000074505806, 'max_score': 0.996399998664856, 'tree_score_q': {0.1: 0.0904, 0.25: 0.1864, 0.5: 0.4322, 0.75: 0.7362, 0.9: 0.9069}, 'tree_n_ge': {0.05: 42987, 0.1: 37874, 0.2: 31511, 0.3: 26828, 0.5: 19039, 0.7: 12060, 0.9: 4598}}
+1000 {'dets_total': 79201, 'dets_tree': 56438, 'tree_per_tile': np.float64(128.6), 'max_total_per_tile': 522, 'max_tree_per_tile': 377, 'tiles_at_600cap': 0, 'tiles_total_ge_500': 1, 'min_score': 0.05000000074505806, 'max_score': 0.996399998664856, 'tree_score_q': {0.1: 0.078, 0.25: 0.142, 0.5: 0.3303, 0.75: 0.6532, 0.9: 0.8766}, 'tree_n_ge': {0.05: 56438, 0.1: 47411, 0.2: 36849, 0.3: 29954, 0.5: 20073, 0.7: 12340, 0.9: 4648}}
+2000 {'dets_total': 99545, 'dets_tree': 71606, 'tree_per_tile': np.float64(163.1), 'max_total_per_tile': 600, 'max_tree_per_tile': 483, 'tiles_at_600cap': 10, 'tiles_total_ge_500': 35, 'min_score': 0.05000000074505806, 'max_score': 0.996399998664856, 'tree_score_q': {0.1: 0.0694, 0.25: 0.1119, 0.5: 0.249, 0.75: 0.5627, 0.9: 0.8419}, 'tree_n_ge': {0.05: 71606, 0.1: 56293, 0.2: 40699, 0.3: 31757, 0.5: 20601, 0.7: 12549, 0.9: 4714}}
+max score per tile 512 vs 1000: identical on 405/439; b>a 34, b<a 0; global max 0.996399998664856 vs 0.996399998664856
+max score per tile 1000 vs 2000: identical on 402/439; b>a 37, b<a 0; global max 0.996399998664856 vs 0.996399998664856
+max score per tile 512 vs 2000: identical on 371/439; b>a 68, b<a 0; global max 0.996399998664856 vs 0.996399998664856
+tree dets 2000-1000: sum 15168 tiles with increase 404 decrease 0 same 35
+
+box-level greedy TP@0.5 (no crowd handling; trees only) by GT-density bin
+bin | n_tiles | GT | rec512 | rec1000 | rec2000 | treedets1000/tile | treedets2000/tile | totdets1000 max | totdets2000 max
+0-0 | 73 | 0 | 0.000 | 0.000 | 0.000 | 16.2 | 20.3 | 196 | 236
+1-10 | 81 | 432 | 0.731 | 0.734 | 0.748 | 60.4 | 72.1 | 313 | 397
+11-30 | 72 | 1475 | 0.805 | 0.828 | 0.839 | 101.4 | 119.5 | 327 | 391
+31-60 | 64 | 2781 | 0.694 | 0.744 | 0.774 | 144.5 | 179.6 | 455 | 600
+61-100 | 54 | 4279 | 0.680 | 0.746 | 0.789 | 192.8 | 247.6 | 447 | 600
+101-200 | 67 | 9326 | 0.658 | 0.746 | 0.809 | 232.1 | 306.8 | 461 | 600
+201-500 | 28 | 7412 | 0.577 | 0.693 | 0.789 | 280.8 | 366.5 | 522 | 600
+512 overall box recall@0.5 0.6519
+1000 overall box recall@0.5 0.735
+2000 overall box recall@0.5 0.7968
+
+TP / FP by score band (box@0.5, tree only)
+512 [0.05,0.1) tp=215 fp=4898 | [0.1,0.2) tp=592 fp=5771 | [0.2,0.3) tp=793 fp=3890 | [0.3,0.5) tp=2266 fp=5523 | [0.5,0.7) tp=3390 fp=3589 | [0.7,1.01) tp=9502 fp=2558
+1000 [0.05,0.1) tp=372 fp=8655 | [0.1,0.2) tp=980 fp=9582 | [0.2,0.3) tp=1274 fp=5621 | [0.3,0.5) tp=2872 fp=7009 | [0.5,0.7) tp=3712 fp=4021 | [0.7,1.01) tp=9683 fp=2657
+2000 [0.05,0.1) tp=652 fp=14661 | [0.1,0.2) tp=1510 fp=14084 | [0.2,0.3) tp=1540 fp=7402 | [0.3,0.5) tp=3179 fp=7977 | [0.5,0.7) tp=3793 fp=4259 | [0.7,1.01) tp=9808 fp=2741
+top-10 densest tiles (>= 272 GT): share of box TP gain 367/1589 = 0.23; share of GT 0.13
+top-20 densest tiles (>= 220 GT): share of box TP gain 575/1589 = 0.36; share of GT 0.22
+top-44 densest tiles (>= 168 GT): share of box TP gain 948/1589 = 0.60; share of GT 0.40
+top-88 densest tiles (>= 108 GT): share of box TP gain 1274/1589 = 0.80; share of GT 0.62
+rpn512: total dets/tile max 347, tiles with total >= 0.5*K: 62, tiles at 600 cap: 0
+rpn1000: total dets/tile max 522, tiles with total >= 0.5*K: 1, tiles at 600 cap: 0
+rpn2000: total dets/tile max 600, tiles with total >= 0.5*K: 0, tiles at 600 cap: 10

@@ -1,0 +1,82 @@
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_box2mask_swinl_s0_r2048_seamfix.json: 114340 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=15.61s).
+Accumulating evaluation results...
+DONE (t=0.37s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=21.79s).
+Accumulating evaluation results...
+DONE (t=0.14s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=19.34s).
+Accumulating evaluation results...
+DONE (t=0.15s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json",
+  "model": "Box2Mask-T Swin-L (BoxInstSeg, TPAMI 2024), COCO-box-pretrained, box-only, canopy-blacked training, 1024@50% subtiles, clean_crowns dedup; re-stitched at native 2048; seam-fixed (interior-edge filter 10 px before dedup)",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 600,
+    "score_floor": 0.05,
+    "n_tiles": 439,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 25705,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.3113,
+      "AP75": 0.085,
+      "AP50_95": 0.1353,
+      "n_det": 114340
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.5894,
+      "AP75": 0.1394,
+      "AP50_95": 0.2446,
+      "n_det": 114340
+    },
+    "box": {
+      "AP50": 0.6199,
+      "AP75": 0.3007,
+      "AP50_95": 0.3254,
+      "n_det": 114340
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.5895,
+      "AP75": 0.1403,
+      "AP50_95": 0.2452,
+      "n_gt": 25705
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/seamfix/scored_box2mask_swinl_s0_r2048_seamfix.json

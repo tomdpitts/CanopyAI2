@@ -1,0 +1,50 @@
+{
+ "a3_ellipse_lace_s0": {
+  "AP50": 0.5998,
+  "AP50_95": 0.2365,
+  "box_AP50": 0.6452,
+  "floor": 0.05,
+  "file": "native_raster/tierA/preds_a3_ellipse_lace_s0_r2048.json"
+ },
+ "a3_ellipse_lace_s1": {
+  "AP50": 0.6089,
+  "AP50_95": 0.2344,
+  "box_AP50": 0.6306,
+  "floor": 0.05,
+  "file": "native_raster/tierA/preds_a3_ellipse_lace_s1_r2048.json"
+ },
+ "a3_ellipse_lace_s2": {
+  "AP50": 0.6049,
+  "AP50_95": 0.2374,
+  "box_AP50": 0.6425,
+  "floor": 0.05,
+  "file": "native_raster/tierA/preds_a3_ellipse_lace_s2_r2048.json"
+ },
+ "a3_ellipse_lace_band": {
+  "AP50_mean": 0.6045,
+  "AP50_sd": 0.0046,
+  "AP50_95_mean": 0.2361,
+  "AP50_95_sd": 0.0015
+ },
+ "a3_ellipse_selvabox": {
+  "AP50": 0.7129,
+  "AP50_95": 0.2975,
+  "box_AP50": 0.767,
+  "floor": 0.05,
+  "file": "native_raster/tierA/preds_a3_ellipse_selvabox_r2048.json"
+ },
+ "a2_selvabox_lacemasker_product": {
+  "AP50": 0.7102,
+  "AP50_95": 0.3207,
+  "box_AP50": 0.7599,
+  "floor": 0.0,
+  "file": "native_raster/tierA/preds_a2_selvabox_lacemasker_product_r2048.json"
+ },
+ "a2_selvabox_lacemasker_det": {
+  "AP50": 0.7107,
+  "AP50_95": 0.311,
+  "box_AP50": 0.767,
+  "floor": 0.05,
+  "file": "native_raster/tierA/preds_a2_selvabox_lacemasker_det_r2048.json"
+ }
+}
