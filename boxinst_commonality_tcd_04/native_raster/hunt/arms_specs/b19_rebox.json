@@ -1,0 +1,106 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "sam": {
+  "kind": "sam"
+ },
+ "g30": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.33
+  }
+ },
+ "rebox_dep": {
+  "kind": "rebox",
+  "base": {
+   "kind": "deployed"
+  }
+ },
+ "rebox_dep_within": {
+  "kind": "rebox",
+  "base": {
+   "kind": "deployed"
+  },
+  "within": true
+ },
+ "rebox_dep_e0.2": {
+  "kind": "rebox",
+  "base": {
+   "kind": "deployed"
+  },
+  "e_frac": 0.2
+ },
+ "rebox_dep_e0": {
+  "kind": "rebox",
+  "base": {
+   "kind": "deployed"
+  },
+  "e_frac": 0.0,
+  "e_px": 1
+ },
+ "rebox_e8": {
+  "kind": "rebox",
+  "base": {
+   "kind": "relpeak",
+   "c": 0.4
+  }
+ },
+ "rebox_p4": {
+  "kind": "rebox",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.33
+  }
+ },
+ "rebox_g30": {
+  "kind": "rebox",
+  "base": {
+   "kind": "size_gate",
+   "T": 30,
+   "small": {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   "large": {
+    "kind": "post4",
+    "c_peak": 0.33
+   }
+  }
+ },
+ "rebox_g30_within": {
+  "kind": "rebox",
+  "base": {
+   "kind": "size_gate",
+   "T": 30,
+   "small": {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   "large": {
+    "kind": "post4",
+    "c_peak": 0.33
+   }
+  },
+  "within": true
+ },
+ "rebox_dep_it2": {
+  "kind": "rebox",
+  "base": {
+   "kind": "deployed"
+  },
+  "n_iter": 2
+ }
+}

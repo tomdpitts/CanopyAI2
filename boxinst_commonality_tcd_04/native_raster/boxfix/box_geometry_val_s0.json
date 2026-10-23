@@ -1,0 +1,147 @@
+{
+ "n": 5428,
+ "cols": [
+  "gt_area",
+  "w_ratio",
+  "h_ratio",
+  "centre_off_rel",
+  "gt_outside_box",
+  "box_fill_by_gt",
+  "mask_recall",
+  "mask_precision"
+ ],
+ "strata": {
+  "all": {
+   "n": 5428,
+   "w_ratio": {
+    "median": 0.973,
+    "mean": 0.994
+   },
+   "h_ratio": {
+    "median": 0.981,
+    "mean": 0.999
+   },
+   "centre_off_rel": {
+    "median": 0.08,
+    "mean": 0.092
+   },
+   "gt_outside_box": {
+    "median": 0.049,
+    "mean": 0.075
+   },
+   "box_fill_by_gt": {
+    "median": 0.694,
+    "mean": 0.68
+   },
+   "mask_recall": {
+    "median": 0.873,
+    "mean": 0.844
+   },
+   "mask_precision": {
+    "median": 0.879,
+    "mean": 0.846
+   },
+   "frac_box_smaller_both": 0.402,
+   "frac_box_larger_both": 0.285
+  },
+  "small": {
+   "n": 1371,
+   "w_ratio": {
+    "median": 1.053,
+    "mean": 1.067
+   },
+   "h_ratio": {
+    "median": 1.052,
+    "mean": 1.07
+   },
+   "centre_off_rel": {
+    "median": 0.103,
+    "mean": 0.113
+   },
+   "gt_outside_box": {
+    "median": 0.038,
+    "mean": 0.066
+   },
+   "box_fill_by_gt": {
+    "median": 0.61,
+    "mean": 0.618
+   },
+   "mask_recall": {
+    "median": 0.858,
+    "mean": 0.813
+   },
+   "mask_precision": {
+    "median": 0.82,
+    "mean": 0.801
+   },
+   "frac_box_smaller_both": 0.241,
+   "frac_box_larger_both": 0.458
+  },
+  "mid": {
+   "n": 2081,
+   "w_ratio": {
+    "median": 0.958,
+    "mean": 0.974
+   },
+   "h_ratio": {
+    "median": 0.966,
+    "mean": 0.978
+   },
+   "centre_off_rel": {
+    "median": 0.078,
+    "mean": 0.09
+   },
+   "gt_outside_box": {
+    "median": 0.058,
+    "mean": 0.08
+   },
+   "box_fill_by_gt": {
+    "median": 0.71,
+    "mean": 0.698
+   },
+   "mask_recall": {
+    "median": 0.869,
+    "mean": 0.847
+   },
+   "mask_precision": {
+    "median": 0.883,
+    "mean": 0.853
+   },
+   "frac_box_smaller_both": 0.439,
+   "frac_box_larger_both": 0.235
+  },
+  "large": {
+   "n": 1976,
+   "w_ratio": {
+    "median": 0.951,
+    "mean": 0.963
+   },
+   "h_ratio": {
+    "median": 0.964,
+    "mean": 0.971
+   },
+   "centre_off_rel": {
+    "median": 0.067,
+    "mean": 0.079
+   },
+   "gt_outside_box": {
+    "median": 0.047,
+    "mean": 0.075
+   },
+   "box_fill_by_gt": {
+    "median": 0.719,
+    "mean": 0.705
+   },
+   "mask_recall": {
+    "median": 0.886,
+    "mean": 0.862
+   },
+   "mask_precision": {
+    "median": 0.9,
+    "mean": 0.871
+   },
+   "frac_box_smaller_both": 0.475,
+   "frac_box_larger_both": 0.217
+  }
+ }
+}

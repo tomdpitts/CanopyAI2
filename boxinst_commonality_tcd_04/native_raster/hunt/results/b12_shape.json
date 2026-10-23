@@ -1,0 +1,345 @@
+{
+ "batch": "b12_shape",
+ "n_tiles": 108,
+ "arms": {
+  "deployed": {
+   "kind": "deployed"
+  },
+  "rp0.4": {
+   "kind": "relpeak",
+   "c": 0.4
+  },
+  "dep_fill": {
+   "kind": "shape",
+   "base": {
+    "kind": "deployed"
+   },
+   "ops": [
+    "fill"
+   ]
+  },
+  "dep_largest_fill": {
+   "kind": "shape",
+   "base": {
+    "kind": "deployed"
+   },
+   "ops": [
+    "largest",
+    "fill"
+   ]
+  },
+  "dep_close0.1_fill": {
+   "kind": "shape",
+   "base": {
+    "kind": "deployed"
+   },
+   "ops": [
+    "close",
+    "fill"
+   ],
+   "c_close": 0.1
+  },
+  "dep_close0.2_fill": {
+   "kind": "shape",
+   "base": {
+    "kind": "deployed"
+   },
+   "ops": [
+    "close",
+    "fill"
+   ],
+   "c_close": 0.2
+  },
+  "dep_hull": {
+   "kind": "shape",
+   "base": {
+    "kind": "deployed"
+   },
+   "ops": [
+    "largest",
+    "hull"
+   ]
+  },
+  "dep_smooth0.05": {
+   "kind": "shape",
+   "base": {
+    "kind": "deployed"
+   },
+   "ops": [
+    "fill",
+    "smooth"
+   ],
+   "c_smooth": 0.05
+  },
+  "dep_smooth0.1": {
+   "kind": "shape",
+   "base": {
+    "kind": "deployed"
+   },
+   "ops": [
+    "fill",
+    "smooth"
+   ],
+   "c_smooth": 0.1
+  },
+  "rp_fill": {
+   "kind": "shape",
+   "base": {
+    "kind": "relpeak",
+    "c": 0.4
+   },
+   "ops": [
+    "fill"
+   ]
+  },
+  "rp_largest_fill": {
+   "kind": "shape",
+   "base": {
+    "kind": "relpeak",
+    "c": 0.4
+   },
+   "ops": [
+    "largest",
+    "fill"
+   ]
+  },
+  "rp_close0.1_fill": {
+   "kind": "shape",
+   "base": {
+    "kind": "relpeak",
+    "c": 0.4
+   },
+   "ops": [
+    "close",
+    "fill"
+   ],
+   "c_close": 0.1
+  },
+  "rp_close0.2_fill": {
+   "kind": "shape",
+   "base": {
+    "kind": "relpeak",
+    "c": 0.4
+   },
+   "ops": [
+    "close",
+    "fill"
+   ],
+   "c_close": 0.2
+  },
+  "rp_hull": {
+   "kind": "shape",
+   "base": {
+    "kind": "relpeak",
+    "c": 0.4
+   },
+   "ops": [
+    "largest",
+    "hull"
+   ]
+  },
+  "rp_smooth0.05": {
+   "kind": "shape",
+   "base": {
+    "kind": "relpeak",
+    "c": 0.4
+   },
+   "ops": [
+    "fill",
+    "smooth"
+   ],
+   "c_smooth": 0.05
+  },
+  "rp_smooth0.1": {
+   "kind": "shape",
+   "base": {
+    "kind": "relpeak",
+    "c": 0.4
+   },
+   "ops": [
+    "fill",
+    "smooth"
+   ],
+   "c_smooth": 0.1
+  }
+ },
+ "AP50": {
+  "deployed": {
+   "all": 0.6636,
+   "A": 0.6699,
+   "B": 0.6567
+  },
+  "rp0.4": {
+   "all": 0.6676,
+   "A": 0.6743,
+   "B": 0.6595
+  },
+  "dep_fill": {
+   "all": 0.6635,
+   "A": 0.6694,
+   "B": 0.6571
+  },
+  "dep_largest_fill": {
+   "all": 0.6637,
+   "A": 0.6694,
+   "B": 0.6576
+  },
+  "dep_close0.1_fill": {
+   "all": 0.6645,
+   "A": 0.6703,
+   "B": 0.6607
+  },
+  "dep_close0.2_fill": {
+   "all": 0.6646,
+   "A": 0.6707,
+   "B": 0.6606
+  },
+  "dep_hull": {
+   "all": 0.6574,
+   "A": 0.6626,
+   "B": 0.6488
+  },
+  "dep_smooth0.05": {
+   "all": 0.6639,
+   "A": 0.6701,
+   "B": 0.6569
+  },
+  "dep_smooth0.1": {
+   "all": 0.6641,
+   "A": 0.6707,
+   "B": 0.6569
+  },
+  "rp_fill": {
+   "all": 0.6676,
+   "A": 0.6746,
+   "B": 0.6591
+  },
+  "rp_largest_fill": {
+   "all": 0.6678,
+   "A": 0.6746,
+   "B": 0.6595
+  },
+  "rp_close0.1_fill": {
+   "all": 0.669,
+   "A": 0.6756,
+   "B": 0.6613
+  },
+  "rp_close0.2_fill": {
+   "all": 0.6692,
+   "A": 0.6757,
+   "B": 0.6616
+  },
+  "rp_hull": {
+   "all": 0.6675,
+   "A": 0.6709,
+   "B": 0.6616
+  },
+  "rp_smooth0.05": {
+   "all": 0.6692,
+   "A": 0.6756,
+   "B": 0.6612
+  },
+  "rp_smooth0.1": {
+   "all": 0.6672,
+   "A": 0.6739,
+   "B": 0.6593
+  }
+ },
+ "AP75": {
+  "deployed": {
+   "all": 0.2171,
+   "A": 0.2255,
+   "B": 0.2069
+  },
+  "rp0.4": {
+   "all": 0.2022,
+   "A": 0.2011,
+   "B": 0.2064
+  },
+  "dep_fill": {
+   "all": 0.2172,
+   "A": 0.2259,
+   "B": 0.2067
+  },
+  "dep_largest_fill": {
+   "all": 0.2175,
+   "A": 0.2259,
+   "B": 0.2071
+  },
+  "dep_close0.1_fill": {
+   "all": 0.2207,
+   "A": 0.2293,
+   "B": 0.2132
+  },
+  "dep_close0.2_fill": {
+   "all": 0.2228,
+   "A": 0.2322,
+   "B": 0.2142
+  },
+  "dep_hull": {
+   "all": 0.2032,
+   "A": 0.2111,
+   "B": 0.195
+  },
+  "dep_smooth0.05": {
+   "all": 0.2252,
+   "A": 0.2336,
+   "B": 0.2153
+  },
+  "dep_smooth0.1": {
+   "all": 0.2163,
+   "A": 0.2185,
+   "B": 0.2128
+  },
+  "rp_fill": {
+   "all": 0.2035,
+   "A": 0.202,
+   "B": 0.2078
+  },
+  "rp_largest_fill": {
+   "all": 0.2037,
+   "A": 0.2021,
+   "B": 0.2081
+  },
+  "rp_close0.1_fill": {
+   "all": 0.2137,
+   "A": 0.2138,
+   "B": 0.2157
+  },
+  "rp_close0.2_fill": {
+   "all": 0.2157,
+   "A": 0.2179,
+   "B": 0.217
+  },
+  "rp_hull": {
+   "all": 0.2147,
+   "A": 0.2236,
+   "B": 0.2046
+  },
+  "rp_smooth0.05": {
+   "all": 0.207,
+   "A": 0.2073,
+   "B": 0.2083
+  },
+  "rp_smooth0.1": {
+   "all": 0.1915,
+   "A": 0.1897,
+   "B": 0.1966
+  }
+ },
+ "gate_deployed": {
+  "got": 0.6636,
+  "ref": 0.6636,
+  "pass": true
+ },
+ "sam_val_ref": {
+  "AP50": {
+   "all": 0.6776,
+   "A": 0.6844,
+   "B": 0.6721
+  },
+  "AP75": {
+   "all": 0.2839
+  }
+ }
+}

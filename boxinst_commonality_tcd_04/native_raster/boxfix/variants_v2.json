@@ -1,0 +1,79 @@
+{
+ "base": {},
+ "h04_ct0.3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.3
+ },
+ "h04_ct0.4": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4
+ },
+ "h04_ct0.5": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.5
+ },
+ "h04_ct0.4_tau0.3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "tau": 0.3
+ },
+ "h04_ct0.4_tau0.4": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "tau": 0.4
+ },
+ "h04_ct0.4_eps0.001": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "eps": 0.001
+ },
+ "h04_ct0.4_eps1e-05": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "eps": 1e-05
+ },
+ "h04_ct0.4_rmax16": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "rmax": 16
+ },
+ "h04_ct0.4_rmax24": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "rmax": 24
+ },
+ "h04_ct0.4_fill": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "fill": true
+ },
+ "h04_ct0.4_largest": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "largest": true
+ },
+ "h04_ct0.4_fill_largest": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "fill": true,
+  "largest": true
+ },
+ "h04_ct0.4_knob3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "knob": 3
+ }
+}

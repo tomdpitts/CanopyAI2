@@ -1,0 +1,88 @@
+{
+ "base": {},
+ "k0_h0.4_ct0.4_fl_se3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "knob": 0,
+  "fill": true,
+  "largest": true,
+  "se_p": 3
+ },
+ "k0_h0.4_ct0.45_fl_se3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 0,
+  "fill": true,
+  "largest": true,
+  "se_p": 3
+ },
+ "k0_h0.4_ct0.5_fl_se3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.5,
+  "knob": 0,
+  "fill": true,
+  "largest": true,
+  "se_p": 3
+ },
+ "k3_h0.4_ct0.4_fl_se3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.4,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 3
+ },
+ "k3_h0.4_ct0.45_fl_se3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 3
+ },
+ "k3_h0.4_ct0.5_fl_se3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.5,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 3
+ },
+ "k3_h0.3_ct0.45_fl_se3": {
+  "r": "half",
+  "c_r": 0.3,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 3
+ },
+ "k3_h0.5_ct0.45_fl_se3": {
+  "r": "half",
+  "c_r": 0.5,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 3
+ },
+ "deployed_se3": {
+  "se_p": 3
+ },
+ "se3_only": {
+  "r": 0,
+  "tau": -1,
+  "se_p": 3
+ },
+ "se2_only": {
+  "r": 0,
+  "tau": -1,
+  "se_p": 2
+ }
+}

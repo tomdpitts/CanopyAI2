@@ -1,5 +1,7 @@
 # Box-supervised baselines — plan & handover
 
+> **Status 2026-10-23 (supersedes the 2026-09-02 status and the 512-raster numbers in §2–§5d):** the paper is re-based to the native 2048 raster. Seam-fixed 2048 rows (`../native_raster/NATIVE_RASTER.md` seam-fix table): Box2Mask Swin-L 0.589, R-50 0.451 mask AP50; LACE 0.647 ± 0.003. Current work: §13 (Tier A done incl. A5/A6, Tier B set up in `tierb/TIERB.md`, Tier C undecided). LACE vs SAM 3 zero-shot on LACE boxes: §13a.
+
 **Status 2026-09-02.** Step 2 (GT-box bake-off) is DONE and written into the paper. Step 3 is
 **COMPLETE for Box2Mask.** The row is scored, in `tab:oamtcd439` and in
 `results_439/table_439.md`: **mask AP50 0.3865** canopy-neutral, against LACE's 0.6625. §5b has
@@ -36,9 +38,9 @@ can. The module table (`tab:gtbox`) stays LACE vs SAM 3.
 | 3f | train Box2Mask (9-epoch budget, early stop) | **DONE** — stopped itself at epoch 6, best at epoch 4, $9.41. §5b |
 | 4a | predict → stitch → score → table → paper row (R-50) | **DONE** — §5c |
 | 4b | Swin-L arm: their strongest backbone | **DONE** — §5d, mask AP50 0.5396 |
-| 4 | predict → stitch → `score_coco.py` | harness written, untested on real preds |
-| 5 | train BoxInst | DEFERRED — out of scope for the $10 budget |
-| 6 | DiscoBox / MAL | optional, §7 |
+| 4 | predict → stitch → `score_coco.py` | **DONE** — used for 4a/4b |
+| 5 | train BoxInst | superseded 2026-10-14 → Tier B row B1 (§13, `tierb/TIERB.md`) |
+| 6 | DiscoBox / MAL | superseded 2026-10-14 → MAL is Tier B row B3; DiscoBox skipped (§13) |
 
 **Box2Mask leads because it is the SOTA box-supervised method** (42.5 COCO mask AP with Swin-L,
 TPAMI 2024) against BoxInst's 33.2 (CVPR 2021). Publishing against BoxInst alone invites "why
@@ -290,6 +292,8 @@ Consequences for how the row is written up:
   decay lands inside it or use a plateau/cosine schedule.
 
 ## 5c. Result — the row, and why it is trustworthy
+
+> **SUPERSEDED (512 raster, pre-seam-fix):** current 2048 seam-fixed rows are in the 2026-10-23 status at the top. The GT-box claim at the end of this section was reversed by A4 (§12 banner). Kept as record.
 
 `results_439/box2mask_s0_coco512.json`, frozen protocol (COCOeval, 439 tiles, masks at 512²,
 maxDets 600, floor 0.05, canopy `iscrowd`). Canopy-neutral:
@@ -593,10 +597,28 @@ double-assignment 0.0302 vs a GT self-overlap floor of **0.0015** is ~20x and is
 weakness; no seed band is possible (one masker npz is shared by all three Table-1 seeds, which
 differ only in the detector).
 
-## 13. PRE-REGISTRATION — DRAFT, NOT APPROVED (written 2026-10-14; nothing below has been run)
+## 13. PRE-REGISTRATION (written 2026-10-14; Tier A approved and run; Tier B approved, set up, not run; Tier C undecided)
 
+> **Status 2026-10-23:** Tier A complete (A1–A6); results in §13a. Tier B: `tierb/TIERB.md`, nothing run on Modal. Tier C undecided.
+>
 > **Status amendment 2026-10-14 22:20:** Tier A approved and run (A2, A3 scored; A1 running);
 > results in §13a. Tiers B/C still undecided. Text below is the pre-registration as written, unedited.
+>
+> **Amendment 2026-10-15 (before any Tier B number exists):** Tom approved B1, B2, B3 (2026-10-14) with the
+> requirement of LACE's literal 900/439/236 tiles. The governing Tier B protocol is now
+> `tierb/TIERB.md`. It supersedes the "Common protocol (Tiers B and C)" below where they differ:
+> - canopy is ignored as LACE ignores it, not blacked out;
+> - training uses jittered 2×2 crops of the whole tiles rather than the DT2 PNG grid;
+> - 36 epochs at 8 GPUs × 2;
+> - selection uses val box AP50 on whole val tiles;
+> - inference geometry is chosen on val;
+> - B2 = Swin-B;
+> - B3 = MAL fine-tuned on LACE's boxes;
+> - the LACE spend-stop gate (§7 there) is added.
+>
+> Tier C is not part of this approval. Set up only; nothing run.
+>
+> **Amendment 2026-10-15 (later), before any number:** convergence-driven schedule for all three methods (LR ×0.1 on a val plateau, min-delta 0.005, patience 2, two drops, then stop; min 4, max 20 epochs), a $75 budget with a live hard stop at $72, and B3 on GT plus LACE seed-0 boxes. See `tierb/TIERB.md` §0.
 
 Purpose: fix, before any number is seen, which extra rows enter the paper and under what rules,
 so the box-supervised group cannot be accused of cherry-picking. Context: after the seam fix and
@@ -642,7 +664,7 @@ in the record as data; the paper reports the Tier C rows.
 3. Tier C: re-train Box2Mask under the common rule, or keep the current rows with full disclosure.
 4. Canopy for Tier B/C: blackout (as now) or train canopy as background (as Detectree2).
 
-## 13a. Tier A results (recorded 2026-10-14 22:20; A1 pending)
+## 13a. Tier A results (recorded 2026-10-14 22:20; A1 added 2026-10-23)
 
 Source: `../native_raster/tierA/summary_tierA.json` (scored by `tierA/score_tierA.py`; frozen protocol,
 res 2048, maxDets 600, canopy as crowd). Full 439 tiles. Floors: 0.05 for detector-score ranking, 0 for
@@ -653,7 +675,8 @@ product ranking (same convention as LACE's published rows). Mask AP50 / AP50:95;
 | LACE (s0–2) | LACE (deployed) | product s′ | 0.647 ± 0.003 | 0.278 ± 0.005 | 0.667 |
 | LACE (s0–2) | LACE (deployed) | detector s | 0.614 ± 0.003 | 0.256 ± 0.003 | 0.639 |
 | LACE (s0–2) | **A3 ellipse** | detector s | **0.605 ± 0.005** | **0.236 ± 0.002** | 0.639 |
-| LACE (s0–2) | A1 SAM 3 zero-shot, per-subtile | s / sqrt(s × SAM) | RUNNING | | |
+| LACE (s0–2) | A1 SAM 3 zero-shot, per-subtile | detector s | 0.633 ± 0.002 | 0.287 ± 0.002 | 0.639 |
+| LACE (s0–2) | A1 SAM 3 zero-shot, per-subtile | sqrt(s × SAM) | 0.648 ± 0.003 | 0.301 ± 0.003 | 0.651 |
 | SelvaBox (seam-fixed) | SelvaMask SAM 3 FT, whole tile | detector s | 0.598 | 0.221 | 0.767 |
 | SelvaBox (seam-fixed) | SelvaMask SAM 3 FT, per-subtile† | detector s | 0.712 | 0.316 | 0.767 |
 | SelvaBox (seam-fixed) | SelvaMask SAM 3 FT, per-subtile† | sqrt(s × SAM) | 0.724 | 0.344 | 0.772 |
@@ -672,7 +695,23 @@ product ranking (same convention as LACE's published rows). Mask AP50 / AP50:95;
 - LACE boxes: LACE masker +0.009 AP50 (+0.010 / +0.006 / +0.011 per seed), +0.020 AP50:95.
 - SelvaBox boxes: LACE masker −0.002 AP50, +0.0135 AP50:95; SAM 3 FT per-subtile −0.001 AP50, +0.018 AP50:95 (provisional).
 
-**Status:** full-set, parity-checked; NOT final — A1 outstanding and the strongest competitor
-(SelvaBox per-subtile SAM) is provisional pending A100. No interpretation enters the paper until both close.
-Open: A1 scoring is not chained in `run_tierA.sh`; after `[tierA] ALL_DONE` in `logs/tierA_launcher.log`,
-run `score_tierA.py` with rows `a1`.
+**A1 reading (LACE boxes, mask AP50, fair rankings).** Deployed LACE 0.647 ± 0.003 ties SAM 3 zero-shot with its own ranking √(s·SAM) 0.648 ± 0.003; SAM wins AP50:95 (0.301 vs 0.278). At matched detector-score ranking SAM leads 0.633 vs 0.614.
+
+**LACE vs SAM 3 zero-shot — post-A1 masker work (2026-10-15/16; not pre-registered here, frozen on val before test).** `../native_raster/hunt/README.md` L30: candidate `lace4px_g30` (same masker npz/knobs on real 4 px DINOv3-L24 features, per-pixel E-step for boxes < 30 px, τ = 0.33·box peak) on LACE boxes, 439 test tiles × 3 seeds: **0.656 ± 0.004 AP50 vs SAM 3 zs own ranking 0.648 ± 0.003, +0.008 ± 0.004, positive on all 3 seeds**; AP50:95 0.281 ± 0.007 vs 0.301 (SAM wins by 0.017–0.025 every seed). Val→test shrinkage +0.015 → +0.009 vs deployed (selection over ~170 val arms). SAM masks ranked by LACE's product (0.664) is NOT a SAM baseline (Tom, 2026-10-16): a SAM pipeline has no LACE posterior. GT boxes: a val-chosen render (`../native_raster/boxfix/README.md`) reaches 0.813 mean IoU vs SAM 3 zs 0.789 but does not transfer to detections; not deployed.
+
+**Status:** full-set, parity-checked; A1 scored 2026-10-15. The strongest competitor (SelvaBox per-subtile SAM) is still provisional pending A100.
+
+### A5 / A6 — where is LACE's masker competitive with SAM 3? (PRE-REGISTERED 2026-10-15, before any stratified number was computed; approved by Tom)
+**A5 — stratified A4 (full test set, GT boxes, no new inference).** Inputs: per-crown IoUs already on disk (LACE deployed guided render; SAM 3 zero-shot and FT, per-subtile placement; `audit_2026-10-14/selvabox_evidence/gtbox_sam_persub*`). Valid crowns only (25,692). Strata, ALL reported:
+1. crown area (GT mask px at 2048): terciles over all valid crowns;
+2. biome group from tile metadata, the paper's grouping: Tr (WWF 1–3, 14), Te (4–6, 11), Sv (7–10, 12, 13);
+3. GT crowns per tile: 1–10, 11–30, 31–60, 61–100, 101–200, 201+;
+4. canopy contact: GT crown mask dilated by 1 px intersects GT canopy, vs not;
+5. crown contact: GT crown mask dilated by 1 px intersects another GT crown, vs isolated.
+Per stratum: n, mean IoU, IoU ≥ 0.5 / 0.75 / 0.9 for LACE, SAM 3 zero-shot, SAM 3 FT; paired LACE − SAM mean IoU with tile-bootstrap 95% CI (2,000 resamples, seed 0). No strata added after seeing results.
+
+**A6 — sparse-236, GT boxes.** Same protocol as A4 on `data/tcd_sparse/sparse_gt.json` (tab:gtbox code: `gtbox_lib` boxes/IoU/validity): LACE deployed masker (local CPU, Modal-cached `tcd-sparse-vol:feat_4p_sparse`, gate = reproduce published sparse LACE masks on LACE's own boxes for 3 tiles) vs SAM 3 zero-shot and FT, whole-tile and per-subtile (local MPS, HF Sam3Tracker). Same summary + CIs; also A5's strata 1, 3, 4, 5 within sparse.
+
+**A5 / A6 RESULTS (2026-10-15; full text `../native_raster/audit_2026-10-14/README.md` L57–58).** Deployed LACE masker, GT boxes, mean IoU, LACE − SAM 3 zero-shot per-subtile:
+- A5 (`../native_raster/tierA/a5_strata.json`): small crowns −0.110 [−0.127, −0.094], mid −0.011 [−0.014, −0.008], large −0.004 [−0.011, +0.006] (tie); every other stratum negative (−0.021 to −0.073). vs SAM 3 FT: LACE positive in all strata except touching crowns (−0.007) and "other" biomes (−0.002).
+- A6 (`../native_raster/tierA/a6_sparse_gtbox.json`, `a6_strata.json`; gate 993/993): −0.034 [−0.042, −0.026] vs zero-shot per-subtile; +0.007 [+0.001, +0.013] vs zero-shot whole-tile; LACE trails zero-shot per-subtile in every stratum, beats FT in all but canopy-contact and touching crowns (−0.003 each).

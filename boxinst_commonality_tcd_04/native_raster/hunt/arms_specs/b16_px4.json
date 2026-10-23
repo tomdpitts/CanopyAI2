@@ -1,0 +1,66 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "sam": {
+  "kind": "sam"
+ },
+ "p4_rp0.33": {
+  "kind": "post4",
+  "c_peak": 0.33
+ },
+ "px4_r0_rp0.33": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 0,
+  "c_peak": 0.33
+ },
+ "px4_r0_rp0.4": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 0,
+  "c_peak": 0.4
+ },
+ "px4_r4_rp0.33": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 4,
+  "c_peak": 0.33
+ },
+ "px4_r4_rp0.4": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 4,
+  "c_peak": 0.4
+ },
+ "px4_r8_rp0.33": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 8,
+  "c_peak": 0.33
+ },
+ "px4_r8_rp0.4": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 8,
+  "c_peak": 0.4
+ },
+ "px4_r12_rp0.33": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 12,
+  "c_peak": 0.33
+ },
+ "px4_r12_rp0.4": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 12,
+  "c_peak": 0.4
+ },
+ "px4_r8_t0.35": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 8,
+  "tau": 0.35
+ }
+}

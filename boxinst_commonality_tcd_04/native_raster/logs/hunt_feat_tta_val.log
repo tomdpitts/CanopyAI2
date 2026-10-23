@@ -1,0 +1,94 @@
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+  2/108 tcd_tile_1041 cos [0.795, 0.668, 0.51] 46s/tile
+  3/108 tcd_tile_1068 cos [0.838, 0.712, 0.581] 46s/tile
+  4/108 tcd_tile_1097 cos [0.835, 0.682, 0.547] 48s/tile
+  5/108 tcd_tile_1145 cos [0.86, 0.757, 0.642] 50s/tile
+  6/108 tcd_tile_1150 cos [0.801, 0.763, 0.593] 51s/tile
+Traceback (most recent call last):
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/feat_tta.py", line 71, in <module>
+    main()
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/feat_tta.py", line 65, in main
+    assert min(rec[v] for v in VIEWS) > 0.5, f"registration suspect {rec}"
+AssertionError: registration suspect {'tile': 'tcd_tile_1177', 'h': 0.7669471255080169, 'v': 0.6669947660064313, 'hv': 0.48823115421714475}
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+  8/108 tcd_tile_1197 cos [0.824, 0.7, 0.554] 47s/tile
+  9/108 tcd_tile_1207 cos [0.832, 0.721, 0.586] 48s/tile
+  10/108 tcd_tile_1287 cos [0.815, 0.733, 0.575] 49s/tile
+  11/108 tcd_tile_1293 cos [0.856, 0.764, 0.646] 50s/tile
+  12/108 tcd_tile_154 cos [0.772, 0.709, 0.504] 50s/tile
+  13/108 tcd_tile_1558 cos [0.832, 0.623, 0.488] 49s/tile
+  14/108 tcd_tile_1574 cos [0.817, 0.584, 0.435] 49s/tile
+  15/108 tcd_tile_1649 cos [0.81, 0.685, 0.531] 49s/tile
+  16/108 tcd_tile_1652 cos [0.805, 0.64, 0.481] 49s/tile
+  17/108 tcd_tile_1655 cos [0.775, 0.754, 0.566] 48s/tile
+  18/108 tcd_tile_1666 cos [0.826, 0.705, 0.57] 48s/tile
+  19/108 tcd_tile_1676 cos [0.823, 0.702, 0.57] 48s/tile
+  20/108 tcd_tile_169 cos [0.822, 0.739, 0.59] 48s/tile
+  21/108 tcd_tile_1709 cos [0.812, 0.691, 0.538] 48s/tile
+  22/108 tcd_tile_1775 cos [0.769, 0.653, 0.459] 48s/tile
+  23/108 tcd_tile_1784 cos [0.78, 0.644, 0.47] 48s/tile
+  24/108 tcd_tile_1793 cos [0.862, 0.728, 0.617] 48s/tile
+  25/108 tcd_tile_1808 cos [0.861, 0.772, 0.667] 47s/tile
+  26/108 tcd_tile_1865 cos [0.815, 0.759, 0.601] 47s/tile
+  27/108 tcd_tile_1873 cos [0.777, 0.604, 0.42] 47s/tile
+  28/108 tcd_tile_1940 cos [0.815, 0.728, 0.583] 47s/tile
+  29/108 tcd_tile_1976 cos [0.874, 0.818, 0.714] 47s/tile
+  30/108 tcd_tile_1986 cos [0.81, 0.791, 0.619] 47s/tile
+  31/108 tcd_tile_2131 cos [0.84, 0.77, 0.643] 47s/tile
+  32/108 tcd_tile_2143 cos [0.893, 0.727, 0.642] 47s/tile
+  33/108 tcd_tile_2152 cos [0.828, 0.713, 0.593] 47s/tile
+  34/108 tcd_tile_2163 cos [0.841, 0.734, 0.607] 47s/tile
+  35/108 tcd_tile_2191 cos [0.809, 0.704, 0.549] 47s/tile
+  36/108 tcd_tile_2323 cos [0.827, 0.606, 0.461] 47s/tile
+  37/108 tcd_tile_2431 cos [0.833, 0.732, 0.596] 47s/tile
+  38/108 tcd_tile_2578 cos [0.816, 0.633, 0.499] 47s/tile
+  39/108 tcd_tile_2581 cos [0.756, 0.706, 0.502] 47s/tile
+  40/108 tcd_tile_2585 cos [0.831, 0.728, 0.589] 47s/tile
+  41/108 tcd_tile_2592 cos [0.857, 0.742, 0.631] 47s/tile
+  42/108 tcd_tile_262 cos [0.826, 0.714, 0.589] 47s/tile
+  43/108 tcd_tile_2635 cos [0.852, 0.734, 0.62] 47s/tile
+  44/108 tcd_tile_2710 cos [0.836, 0.676, 0.542] 47s/tile
+  45/108 tcd_tile_2755 cos [0.874, 0.767, 0.673] 47s/tile
+  46/108 tcd_tile_2818 cos [0.832, 0.747, 0.623] 47s/tile
+  47/108 tcd_tile_2856 cos [0.788, 0.662, 0.49] 47s/tile
+  48/108 tcd_tile_2880 cos [0.778, 0.702, 0.523] 47s/tile
+  49/108 tcd_tile_2909 cos [0.822, 0.661, 0.534] 47s/tile
+  50/108 tcd_tile_3017 cos [0.847, 0.689, 0.572] 47s/tile
+  51/108 tcd_tile_3082 cos [0.721, 0.623, 0.407] 47s/tile
+  52/108 tcd_tile_3168 cos [0.779, 0.705, 0.519] 47s/tile
+  53/108 tcd_tile_3218 cos [0.84, 0.731, 0.603] 47s/tile
+  54/108 tcd_tile_3257 cos [0.786, 0.685, 0.533] 47s/tile
+  55/108 tcd_tile_3267 cos [0.845, 0.741, 0.622] 47s/tile
+  56/108 tcd_tile_3307 cos [0.831, 0.754, 0.622] 47s/tile
+  57/108 tcd_tile_3335 cos [0.796, 0.637, 0.481] 47s/tile
+  58/108 tcd_tile_3364 cos [0.813, 0.755, 0.598] 47s/tile
+  59/108 tcd_tile_3367 cos [0.845, 0.577, 0.463] 47s/tile
+  60/108 tcd_tile_3393 cos [0.827, 0.703, 0.569] 47s/tile
+  61/108 tcd_tile_3420 cos [0.871, 0.801, 0.695] 47s/tile
+  62/108 tcd_tile_3468 cos [0.849, 0.671, 0.546] 47s/tile
+  63/108 tcd_tile_3534 cos [0.834, 0.706, 0.575] 47s/tile
+  64/108 tcd_tile_3568 cos [0.791, 0.674, 0.506] 47s/tile
+  65/108 tcd_tile_3594 cos [0.877, 0.823, 0.722] 47s/tile
+  66/108 tcd_tile_3595 cos [0.811, 0.716, 0.561] 47s/tile
+  67/108 tcd_tile_3597 cos [0.854, 0.806, 0.693] 47s/tile
+  68/108 tcd_tile_3658 cos [0.8, 0.69, 0.528] 47s/tile
+  69/108 tcd_tile_3674 cos [0.774, 0.696, 0.526] 47s/tile
+  70/108 tcd_tile_372 cos [0.804, 0.6, 0.452] 47s/tile
+  71/108 tcd_tile_3757 cos [0.776, 0.691, 0.505] 47s/tile
+  72/108 tcd_tile_3782 cos [0.838, 0.795, 0.663] 47s/tile
+  73/108 tcd_tile_382 cos [0.799, 0.705, 0.535] 47s/tile
+  74/108 tcd_tile_3871 cos [0.723, 0.657, 0.429] 47s/tile

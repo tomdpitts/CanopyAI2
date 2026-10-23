@@ -1,0 +1,73 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "rp0.4": {
+  "kind": "relpeak",
+  "c": 0.4
+ },
+ "rp0.4_0.2-0.5": {
+  "kind": "relpeak",
+  "c": 0.4,
+  "lo": 0.2,
+  "hi": 0.5
+ },
+ "rp0.4_0.25-0.45": {
+  "kind": "relpeak",
+  "c": 0.4,
+  "lo": 0.25,
+  "hi": 0.45
+ },
+ "rp0.45": {
+  "kind": "relpeak",
+  "c": 0.45
+ },
+ "rp0.45_0.2-0.5": {
+  "kind": "relpeak",
+  "c": 0.45,
+  "lo": 0.2,
+  "hi": 0.5
+ },
+ "rp0.45_0.25-0.45": {
+  "kind": "relpeak",
+  "c": 0.45,
+  "lo": 0.25,
+  "hi": 0.45
+ },
+ "rp0.5": {
+  "kind": "relpeak",
+  "c": 0.5
+ },
+ "rp0.5_0.2-0.5": {
+  "kind": "relpeak",
+  "c": 0.5,
+  "lo": 0.2,
+  "hi": 0.5
+ },
+ "rp0.5_0.25-0.45": {
+  "kind": "relpeak",
+  "c": 0.5,
+  "lo": 0.25,
+  "hi": 0.45
+ },
+ "cond0.5_rp0.45": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "relpeak",
+   "c": 0.45,
+   "lo": 0.2,
+   "hi": 0.5
+  }
+ },
+ "rp0.45_cond_inner": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "guided",
+   "seed": "cell",
+   "r": 12,
+   "tau": 0.25
+  }
+ }
+}

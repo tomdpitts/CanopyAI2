@@ -126,3 +126,9 @@ boxinst_commonality_tcd_04/**/*.pkl
 
 # Per-tile intermediate outputs (regenerable, ~1 GB); scored/summary JSONs stay tracked
 boxinst_commonality_tcd_04/native_raster/**/*tiles*/
+boxinst_commonality_tcd_04/native_raster/**/preds_*.json
+boxinst_commonality_tcd_04/native_raster/**/scored_*.json
+boxinst_commonality_tcd_04/box_supervised_baselines/tierb/tierb_data/
+data/hf_cache_restor_tcd/
+modal_storage/**/*.flag
+boxinst_commonality_tcd_04/ablation/results/cvpr/

@@ -1,0 +1,162 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "rp0.4": {
+  "kind": "relpeak",
+  "c": 0.4
+ },
+ "dep_fill": {
+  "kind": "shape",
+  "base": {
+   "kind": "deployed"
+  },
+  "ops": [
+   "fill"
+  ]
+ },
+ "dep_largest_fill": {
+  "kind": "shape",
+  "base": {
+   "kind": "deployed"
+  },
+  "ops": [
+   "largest",
+   "fill"
+  ]
+ },
+ "dep_close0.1_fill": {
+  "kind": "shape",
+  "base": {
+   "kind": "deployed"
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.1
+ },
+ "dep_close0.2_fill": {
+  "kind": "shape",
+  "base": {
+   "kind": "deployed"
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "dep_hull": {
+  "kind": "shape",
+  "base": {
+   "kind": "deployed"
+  },
+  "ops": [
+   "largest",
+   "hull"
+  ]
+ },
+ "dep_smooth0.05": {
+  "kind": "shape",
+  "base": {
+   "kind": "deployed"
+  },
+  "ops": [
+   "fill",
+   "smooth"
+  ],
+  "c_smooth": 0.05
+ },
+ "dep_smooth0.1": {
+  "kind": "shape",
+  "base": {
+   "kind": "deployed"
+  },
+  "ops": [
+   "fill",
+   "smooth"
+  ],
+  "c_smooth": 0.1
+ },
+ "rp_fill": {
+  "kind": "shape",
+  "base": {
+   "kind": "relpeak",
+   "c": 0.4
+  },
+  "ops": [
+   "fill"
+  ]
+ },
+ "rp_largest_fill": {
+  "kind": "shape",
+  "base": {
+   "kind": "relpeak",
+   "c": 0.4
+  },
+  "ops": [
+   "largest",
+   "fill"
+  ]
+ },
+ "rp_close0.1_fill": {
+  "kind": "shape",
+  "base": {
+   "kind": "relpeak",
+   "c": 0.4
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.1
+ },
+ "rp_close0.2_fill": {
+  "kind": "shape",
+  "base": {
+   "kind": "relpeak",
+   "c": 0.4
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "rp_hull": {
+  "kind": "shape",
+  "base": {
+   "kind": "relpeak",
+   "c": 0.4
+  },
+  "ops": [
+   "largest",
+   "hull"
+  ]
+ },
+ "rp_smooth0.05": {
+  "kind": "shape",
+  "base": {
+   "kind": "relpeak",
+   "c": 0.4
+  },
+  "ops": [
+   "fill",
+   "smooth"
+  ],
+  "c_smooth": 0.05
+ },
+ "rp_smooth0.1": {
+  "kind": "shape",
+  "base": {
+   "kind": "relpeak",
+   "c": 0.4
+  },
+  "ops": [
+   "fill",
+   "smooth"
+  ],
+  "c_smooth": 0.1
+ }
+}

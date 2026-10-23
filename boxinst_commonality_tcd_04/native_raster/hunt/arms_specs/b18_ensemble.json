@@ -1,0 +1,176 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "sam": {
+  "kind": "sam"
+ },
+ "px4": {
+  "kind": "guided",
+  "seed": "px4",
+  "r": 12,
+  "c_peak": 0.33
+ },
+ "vote_px4_p4_e8": {
+  "kind": "ensemble",
+  "mode": "vote",
+  "members": [
+   {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   {
+    "kind": "post4",
+    "c_peak": 0.33
+   },
+   {
+    "kind": "shape",
+    "base": {
+     "kind": "relpeak",
+     "c": 0.4
+    },
+    "ops": [
+     "close",
+     "fill"
+    ],
+    "c_close": 0.2
+   }
+  ]
+ },
+ "medoid_px4_p4_e8": {
+  "kind": "ensemble",
+  "mode": "medoid",
+  "members": [
+   {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   {
+    "kind": "post4",
+    "c_peak": 0.33
+   },
+   {
+    "kind": "shape",
+    "base": {
+     "kind": "relpeak",
+     "c": 0.4
+    },
+    "ops": [
+     "close",
+     "fill"
+    ],
+    "c_close": 0.2
+   }
+  ]
+ },
+ "vote_px4_p4_p4b_e8_dep": {
+  "kind": "ensemble",
+  "mode": "vote",
+  "members": [
+   {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   {
+    "kind": "post4",
+    "c_peak": 0.33
+   },
+   {
+    "kind": "post4",
+    "c_peak": 0.35,
+    "kappa": 1.3
+   },
+   {
+    "kind": "shape",
+    "base": {
+     "kind": "relpeak",
+     "c": 0.4
+    },
+    "ops": [
+     "close",
+     "fill"
+    ],
+    "c_close": 0.2
+   },
+   {
+    "kind": "deployed"
+   }
+  ]
+ },
+ "medoid_px4_p4_p4b_e8_dep": {
+  "kind": "ensemble",
+  "mode": "medoid",
+  "members": [
+   {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   {
+    "kind": "post4",
+    "c_peak": 0.33
+   },
+   {
+    "kind": "post4",
+    "c_peak": 0.35,
+    "kappa": 1.3
+   },
+   {
+    "kind": "shape",
+    "base": {
+     "kind": "relpeak",
+     "c": 0.4
+    },
+    "ops": [
+     "close",
+     "fill"
+    ],
+    "c_close": 0.2
+   },
+   {
+    "kind": "deployed"
+   }
+  ]
+ },
+ "union_px4_p4": {
+  "kind": "ensemble",
+  "mode": "vote",
+  "members": [
+   {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   {
+    "kind": "post4",
+    "c_peak": 0.33
+   }
+  ],
+  "frac": 0.5
+ },
+ "inter_px4_p4": {
+  "kind": "ensemble",
+  "mode": "vote",
+  "members": [
+   {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   {
+    "kind": "post4",
+    "c_peak": 0.33
+   }
+  ],
+  "frac": 1.0
+ }
+}

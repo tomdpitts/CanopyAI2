@@ -46,5 +46,59 @@
   "box_AP50": 0.767,
   "floor": 0.05,
   "file": "native_raster/tierA/preds_a2_selvabox_lacemasker_det_r2048.json"
+ },
+ "a1_lace_s0_sam3zs_det": {
+  "AP50": 0.6302,
+  "AP50_95": 0.2891,
+  "box_AP50": 0.6452,
+  "floor": 0.05,
+  "file": "native_raster/tierA/preds_a1_lace_s0_sam3zs_det_r2048.json"
+ },
+ "a1_lace_s0_sam3zs_gmean": {
+  "AP50": 0.6451,
+  "AP50_95": 0.3027,
+  "box_AP50": 0.6569,
+  "floor": 0.0,
+  "file": "native_raster/tierA/preds_a1_lace_s0_sam3zs_gmean_r2048.json"
+ },
+ "a1_lace_s1_sam3zs_det": {
+  "AP50": 0.6344,
+  "AP50_95": 0.2849,
+  "box_AP50": 0.6306,
+  "floor": 0.05,
+  "file": "native_raster/tierA/preds_a1_lace_s1_sam3zs_det_r2048.json"
+ },
+ "a1_lace_s1_sam3zs_gmean": {
+  "AP50": 0.6479,
+  "AP50_95": 0.2971,
+  "box_AP50": 0.6416,
+  "floor": 0.0,
+  "file": "native_raster/tierA/preds_a1_lace_s1_sam3zs_gmean_r2048.json"
+ },
+ "a1_lace_s2_sam3zs_det": {
+  "AP50": 0.6342,
+  "AP50_95": 0.2879,
+  "box_AP50": 0.6425,
+  "floor": 0.05,
+  "file": "native_raster/tierA/preds_a1_lace_s2_sam3zs_det_r2048.json"
+ },
+ "a1_lace_s2_sam3zs_gmean": {
+  "AP50": 0.6507,
+  "AP50_95": 0.3027,
+  "box_AP50": 0.6559,
+  "floor": 0.0,
+  "file": "native_raster/tierA/preds_a1_lace_s2_sam3zs_gmean_r2048.json"
+ },
+ "a1_det_band": {
+  "AP50_mean": 0.6329,
+  "AP50_sd": 0.0024,
+  "AP50_95_mean": 0.2873,
+  "AP50_95_sd": 0.0022
+ },
+ "a1_gmean_band": {
+  "AP50_mean": 0.6479,
+  "AP50_sd": 0.0028,
+  "AP50_95_mean": 0.3008,
+  "AP50_95_sd": 0.0032
  }
 }

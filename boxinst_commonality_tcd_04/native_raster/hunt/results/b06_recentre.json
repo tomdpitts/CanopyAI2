@@ -1,0 +1,159 @@
+{
+ "batch": "b06_recentre",
+ "n_tiles": 108,
+ "arms": {
+  "deployed": {
+   "kind": "deployed"
+  },
+  "rc_box": {
+   "kind": "recentre",
+   "centre": "box"
+  },
+  "rc_ring_t0.35": {
+   "kind": "recentre",
+   "centre": "ring",
+   "tau": 0.35
+  },
+  "rc_ring_t0.5": {
+   "kind": "recentre",
+   "centre": "ring",
+   "tau": 0.5
+  },
+  "rc_mid_t0.35": {
+   "kind": "recentre",
+   "centre": "mid",
+   "tau": 0.35
+  },
+  "rc_mid_t0.5": {
+   "kind": "recentre",
+   "centre": "mid",
+   "tau": 0.5
+  },
+  "rc_mix0.5_t0.35": {
+   "kind": "recentre",
+   "centre": "mix",
+   "w": 0.5,
+   "tau": 0.35
+  },
+  "rc_mix0.5_t0.45": {
+   "kind": "recentre",
+   "centre": "mix",
+   "w": 0.5,
+   "tau": 0.45
+  },
+  "rc_mid_t0.35_ring32": {
+   "kind": "recentre",
+   "centre": "mid",
+   "ring_px": 32
+  }
+ },
+ "AP50": {
+  "deployed": {
+   "all": 0.6636,
+   "A": 0.6699,
+   "B": 0.6567
+  },
+  "rc_box": {
+   "all": 0.6636,
+   "A": 0.6699,
+   "B": 0.6567
+  },
+  "rc_ring_t0.35": {
+   "all": 0.637,
+   "A": 0.6482,
+   "B": 0.6241
+  },
+  "rc_ring_t0.5": {
+   "all": 0.6343,
+   "A": 0.6422,
+   "B": 0.6272
+  },
+  "rc_mid_t0.35": {
+   "all": 0.6603,
+   "A": 0.665,
+   "B": 0.6526
+  },
+  "rc_mid_t0.5": {
+   "all": 0.5668,
+   "A": 0.5703,
+   "B": 0.5651
+  },
+  "rc_mix0.5_t0.35": {
+   "all": 0.6633,
+   "A": 0.6706,
+   "B": 0.6547
+  },
+  "rc_mix0.5_t0.45": {
+   "all": 0.6238,
+   "A": 0.6305,
+   "B": 0.6183
+  },
+  "rc_mid_t0.35_ring32": {
+   "all": 0.6574,
+   "A": 0.666,
+   "B": 0.6499
+  }
+ },
+ "AP75": {
+  "deployed": {
+   "all": 0.2171,
+   "A": 0.2255,
+   "B": 0.2069
+  },
+  "rc_box": {
+   "all": 0.2171,
+   "A": 0.2255,
+   "B": 0.2069
+  },
+  "rc_ring_t0.35": {
+   "all": 0.133,
+   "A": 0.14,
+   "B": 0.1262
+  },
+  "rc_ring_t0.5": {
+   "all": 0.1775,
+   "A": 0.1862,
+   "B": 0.1692
+  },
+  "rc_mid_t0.35": {
+   "all": 0.2132,
+   "A": 0.2235,
+   "B": 0.2023
+  },
+  "rc_mid_t0.5": {
+   "all": 0.1363,
+   "A": 0.1289,
+   "B": 0.1475
+  },
+  "rc_mix0.5_t0.35": {
+   "all": 0.2202,
+   "A": 0.2326,
+   "B": 0.2071
+  },
+  "rc_mix0.5_t0.45": {
+   "all": 0.1688,
+   "A": 0.1663,
+   "B": 0.1738
+  },
+  "rc_mid_t0.35_ring32": {
+   "all": 0.2112,
+   "A": 0.2209,
+   "B": 0.2008
+  }
+ },
+ "gate_deployed": {
+  "got": 0.6636,
+  "ref": 0.6636,
+  "pass": true
+ },
+ "sam_val_ref": {
+  "AP50": {
+   "all": 0.6776,
+   "A": 0.6844,
+   "B": 0.6721
+  },
+  "AP75": {
+   "all": 0.2839
+  }
+ }
+}

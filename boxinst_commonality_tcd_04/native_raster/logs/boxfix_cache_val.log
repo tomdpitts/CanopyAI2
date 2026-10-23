@@ -1,0 +1,128 @@
+[cache val] 108 tiles with crowns
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+  1/108 tcd_tile_1012 235 crowns 9s
+  2/108 tcd_tile_1041 134 crowns 13s
+  3/108 tcd_tile_1068 97 crowns 17s
+  4/108 tcd_tile_1097 93 crowns 20s
+  5/108 tcd_tile_1145 74 crowns 23s
+  6/108 tcd_tile_1150 166 crowns 28s
+  7/108 tcd_tile_1177 7 crowns 29s
+  8/108 tcd_tile_1197 288 crowns 39s
+  9/108 tcd_tile_1207 17 crowns 40s
+  10/108 tcd_tile_1287 43 crowns 41s
+  11/108 tcd_tile_1293 66 crowns 44s
+  12/108 tcd_tile_154 6 crowns 44s
+  13/108 tcd_tile_1558 37 crowns 45s
+  14/108 tcd_tile_1574 41 crowns 47s
+  15/108 tcd_tile_1649 73 crowns 50s
+  16/108 tcd_tile_1652 2 crowns 50s
+  17/108 tcd_tile_1655 12 crowns 51s
+  18/108 tcd_tile_1666 196 crowns 58s
+  19/108 tcd_tile_1676 175 crowns 64s
+  20/108 tcd_tile_169 182 crowns 71s
+  21/108 tcd_tile_1709 14 crowns 71s
+  22/108 tcd_tile_1775 5 crowns 72s
+  23/108 tcd_tile_1784 56 crowns 74s
+  24/108 tcd_tile_1793 34 crowns 75s
+  25/108 tcd_tile_1808 112 crowns 79s
+  26/108 tcd_tile_1865 25 crowns 80s
+  27/108 tcd_tile_1873 75 crowns 83s
+  28/108 tcd_tile_1940 3 crowns 83s
+  29/108 tcd_tile_1976 202 crowns 90s
+  30/108 tcd_tile_1986 44 crowns 92s
+  31/108 tcd_tile_2131 64 crowns 94s
+  32/108 tcd_tile_2143 13 crowns 95s
+  33/108 tcd_tile_2152 130 crowns 99s
+  34/108 tcd_tile_2163 36 crowns 101s
+  35/108 tcd_tile_2191 47 crowns 103s
+  36/108 tcd_tile_2323 4 crowns 103s
+  37/108 tcd_tile_2431 49 crowns 105s
+  38/108 tcd_tile_2578 2 crowns 105s
+  39/108 tcd_tile_2581 84 crowns 108s
+  40/108 tcd_tile_2585 272 crowns 118s
+  41/108 tcd_tile_2592 76 crowns 120s
+  42/108 tcd_tile_262 74 crowns 123s
+  43/108 tcd_tile_2635 94 crowns 126s
+  44/108 tcd_tile_2710 147 crowns 131s
+  45/108 tcd_tile_2755 117 crowns 136s
+  46/108 tcd_tile_2818 64 crowns 138s
+  47/108 tcd_tile_2856 64 crowns 140s
+  48/108 tcd_tile_2880 47 crowns 142s
+  49/108 tcd_tile_2909 27 crowns 143s
+  50/108 tcd_tile_3017 39 crowns 145s
+  51/108 tcd_tile_3082 1 crowns 145s
+  52/108 tcd_tile_3168 8 crowns 145s
+  53/108 tcd_tile_3218 302 crowns 155s
+  54/108 tcd_tile_3257 4 crowns 155s
+  55/108 tcd_tile_3267 25 crowns 156s
+  56/108 tcd_tile_3307 12 crowns 157s
+  57/108 tcd_tile_3335 39 crowns 159s
+  58/108 tcd_tile_3364 1 crowns 159s
+  59/108 tcd_tile_3367 116 crowns 163s
+  60/108 tcd_tile_3393 60 crowns 165s
+  61/108 tcd_tile_3420 52 crowns 167s
+  62/108 tcd_tile_3468 20 crowns 168s
+  63/108 tcd_tile_3534 123 crowns 172s
+  64/108 tcd_tile_3568 38 crowns 174s
+  65/108 tcd_tile_3594 88 crowns 177s
+  66/108 tcd_tile_3595 63 crowns 180s
+  67/108 tcd_tile_3597 81 crowns 183s
+  68/108 tcd_tile_3658 15 crowns 183s
+  69/108 tcd_tile_3674 12 crowns 184s
+  70/108 tcd_tile_372 7 crowns 184s
+  71/108 tcd_tile_3757 106 crowns 188s
+  72/108 tcd_tile_3782 3 crowns 188s
+  73/108 tcd_tile_382 61 crowns 191s
+  74/108 tcd_tile_3871 4 crowns 191s
+  75/108 tcd_tile_3887 31 crowns 192s
+  76/108 tcd_tile_3898 10 crowns 192s
+  77/108 tcd_tile_3899 1 crowns 193s
+  78/108 tcd_tile_393 131 crowns 197s
+  79/108 tcd_tile_398 41 crowns 199s
+  80/108 tcd_tile_3998 17 crowns 200s
+  81/108 tcd_tile_4042 40 crowns 201s
+  82/108 tcd_tile_4062 109 crowns 205s
+  83/108 tcd_tile_4102 53 crowns 207s
+  84/108 tcd_tile_4129 56 crowns 209s
+  85/108 tcd_tile_425 21 crowns 210s
+  86/108 tcd_tile_432 81 crowns 213s
+  87/108 tcd_tile_437 47 crowns 215s
+  88/108 tcd_tile_461 6 crowns 215s
+  89/108 tcd_tile_482 5 crowns 216s
+  90/108 tcd_tile_546 8 crowns 216s
+  91/108 tcd_tile_547 129 crowns 221s
+  92/108 tcd_tile_566 75 crowns 223s
+  93/108 tcd_tile_589 52 crowns 225s
+  94/108 tcd_tile_620 7 crowns 226s
+  95/108 tcd_tile_627 93 crowns 229s
+  96/108 tcd_tile_638 69 crowns 232s
+  97/108 tcd_tile_66 269 crowns 241s
+  98/108 tcd_tile_67 32 crowns 242s
+  99/108 tcd_tile_711 16 crowns 243s
+  100/108 tcd_tile_730 27 crowns 244s
+  101/108 tcd_tile_767 92 crowns 247s
+  102/108 tcd_tile_810 27 crowns 249s
+  103/108 tcd_tile_817 6 crowns 249s
+  104/108 tcd_tile_83 121 crowns 253s
+  105/108 tcd_tile_879 66 crowns 256s
+  106/108 tcd_tile_954 5 crowns 256s
+  107/108 tcd_tile_958 51 crowns 259s
+  108/108 tcd_tile_979 42 crowns 261s
+[cache val] done

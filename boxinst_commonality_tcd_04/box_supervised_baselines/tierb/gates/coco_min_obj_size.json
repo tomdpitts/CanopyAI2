@@ -1,0 +1,21 @@
+{
+ "what": "MAL --min_obj_size re-based by the fraction of training boxes the released 2048 px^2 removes on COCO",
+ "coco_source": "http://images.cocodataset.org/annotations/annotations_trainval2017.zip :: instances_train2017.json",
+ "coco": {
+  "n_ann": 860001,
+  "n_crowd": 10052,
+  "valid_w_h_gt_2": 859094,
+  "kept_area_gt_2048": 496706,
+  "excluded_fraction_valid": 0.4218,
+  "excluded_fraction_valid_noncrowd": 0.4262
+ },
+ "ours_792_train_tiles": {
+  "released_2048_excluded_fraction": 0.6149,
+  "n_valid": 54184,
+  "n_excluded": 22854,
+  "excluded_fraction": 0.42178502879078694,
+  "min_obj_size": 920.5600000000047
+ },
+ "rule": "crops.mal_min_obj_size(train boxes, 0.4218)",
+ "date": "2026-10-14 23:36"
+}

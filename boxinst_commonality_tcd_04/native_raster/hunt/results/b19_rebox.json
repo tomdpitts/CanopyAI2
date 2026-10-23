@@ -1,0 +1,244 @@
+{
+ "batch": "b19_rebox",
+ "n_tiles": 108,
+ "arms": {
+  "deployed": {
+   "kind": "deployed"
+  },
+  "sam": {
+   "kind": "sam"
+  },
+  "g30": {
+   "kind": "size_gate",
+   "T": 30,
+   "small": {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   "large": {
+    "kind": "post4",
+    "c_peak": 0.33
+   }
+  },
+  "rebox_dep": {
+   "kind": "rebox",
+   "base": {
+    "kind": "deployed"
+   }
+  },
+  "rebox_dep_within": {
+   "kind": "rebox",
+   "base": {
+    "kind": "deployed"
+   },
+   "within": true
+  },
+  "rebox_dep_e0.2": {
+   "kind": "rebox",
+   "base": {
+    "kind": "deployed"
+   },
+   "e_frac": 0.2
+  },
+  "rebox_dep_e0": {
+   "kind": "rebox",
+   "base": {
+    "kind": "deployed"
+   },
+   "e_frac": 0.0,
+   "e_px": 1
+  },
+  "rebox_e8": {
+   "kind": "rebox",
+   "base": {
+    "kind": "relpeak",
+    "c": 0.4
+   }
+  },
+  "rebox_p4": {
+   "kind": "rebox",
+   "base": {
+    "kind": "post4",
+    "c_peak": 0.33
+   }
+  },
+  "rebox_g30": {
+   "kind": "rebox",
+   "base": {
+    "kind": "size_gate",
+    "T": 30,
+    "small": {
+     "kind": "guided",
+     "seed": "px4",
+     "r": 12,
+     "c_peak": 0.33
+    },
+    "large": {
+     "kind": "post4",
+     "c_peak": 0.33
+    }
+   }
+  },
+  "rebox_g30_within": {
+   "kind": "rebox",
+   "base": {
+    "kind": "size_gate",
+    "T": 30,
+    "small": {
+     "kind": "guided",
+     "seed": "px4",
+     "r": 12,
+     "c_peak": 0.33
+    },
+    "large": {
+     "kind": "post4",
+     "c_peak": 0.33
+    }
+   },
+   "within": true
+  },
+  "rebox_dep_it2": {
+   "kind": "rebox",
+   "base": {
+    "kind": "deployed"
+   },
+   "n_iter": 2
+  }
+ },
+ "AP50": {
+  "deployed": {
+   "all": 0.6636,
+   "A": 0.6699,
+   "B": 0.6567
+  },
+  "sam": {
+   "all": 0.6776,
+   "A": 0.6844,
+   "B": 0.6721
+  },
+  "g30": {
+   "all": 0.6787,
+   "A": 0.6833,
+   "B": 0.673
+  },
+  "rebox_dep": {
+   "all": 0.537,
+   "A": 0.5475,
+   "B": 0.5256
+  },
+  "rebox_dep_within": {
+   "all": 0.6634,
+   "A": 0.6699,
+   "B": 0.6559
+  },
+  "rebox_dep_e0.2": {
+   "all": 0.3205,
+   "A": 0.3324,
+   "B": 0.3078
+  },
+  "rebox_dep_e0": {
+   "all": 0.6574,
+   "A": 0.6631,
+   "B": 0.6482
+  },
+  "rebox_e8": {
+   "all": 0.5898,
+   "A": 0.6003,
+   "B": 0.5775
+  },
+  "rebox_p4": {
+   "all": 0.5776,
+   "A": 0.5885,
+   "B": 0.5678
+  },
+  "rebox_g30": {
+   "all": 0.5916,
+   "A": 0.6026,
+   "B": 0.5788
+  },
+  "rebox_g30_within": {
+   "all": 0.6786,
+   "A": 0.6832,
+   "B": 0.6728
+  },
+  "rebox_dep_it2": {
+   "all": 0.1954,
+   "A": 0.2078,
+   "B": 0.1821
+  }
+ },
+ "AP75": {
+  "deployed": {
+   "all": 0.2171,
+   "A": 0.2255,
+   "B": 0.2069
+  },
+  "sam": {
+   "all": 0.2839,
+   "A": 0.2973,
+   "B": 0.2691
+  },
+  "g30": {
+   "all": 0.2194,
+   "A": 0.2225,
+   "B": 0.2165
+  },
+  "rebox_dep": {
+   "all": 0.0497,
+   "A": 0.0526,
+   "B": 0.0441
+  },
+  "rebox_dep_within": {
+   "all": 0.2169,
+   "A": 0.225,
+   "B": 0.2071
+  },
+  "rebox_dep_e0.2": {
+   "all": 0.0114,
+   "A": 0.0086,
+   "B": 0.0111
+  },
+  "rebox_dep_e0": {
+   "all": 0.2149,
+   "A": 0.2231,
+   "B": 0.205
+  },
+  "rebox_e8": {
+   "all": 0.1074,
+   "A": 0.1197,
+   "B": 0.093
+  },
+  "rebox_p4": {
+   "all": 0.0903,
+   "A": 0.1054,
+   "B": 0.0731
+  },
+  "rebox_g30": {
+   "all": 0.0926,
+   "A": 0.1084,
+   "B": 0.0755
+  },
+  "rebox_g30_within": {
+   "all": 0.2191,
+   "A": 0.2219,
+   "B": 0.2173
+  },
+  "rebox_dep_it2": {
+   "all": 0.0107,
+   "A": 0.0075,
+   "B": 0.0106
+  }
+ },
+ "sam_val_ref": {
+  "AP50": {
+   "all": 0.6776,
+   "A": 0.6844,
+   "B": 0.6721
+  },
+  "AP75": {
+   "all": 0.2839
+  }
+ }
+}

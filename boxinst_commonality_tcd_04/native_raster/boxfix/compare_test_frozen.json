@@ -1,0 +1,191 @@
+{
+ "sweep": "boxinst_commonality_tcd_04/native_raster/boxfix/sweep_test_frozen.json",
+ "split": "test",
+ "n_tiles": 366,
+ "variants": {
+  "base": {
+   "all": {
+    "n": 25692,
+    "lace": 0.7477,
+    "sam": 0.789,
+    "diff": -0.0413,
+    "ci95": [
+     -0.0502,
+     -0.0338
+    ],
+    "empty_frac": null
+   },
+   "small": {
+    "n": 8556,
+    "lace": 0.6583,
+    "sam": 0.7679,
+    "diff": -0.1096,
+    "ci95": [
+     -0.1269,
+     -0.0939
+    ],
+    "empty_frac": null
+   },
+   "mid": {
+    "n": 8572,
+    "lace": 0.7832,
+    "sam": 0.7942,
+    "diff": -0.011,
+    "ci95": [
+     -0.0139,
+     -0.0082
+    ],
+    "empty_frac": null
+   },
+   "large": {
+    "n": 8564,
+    "lace": 0.8014,
+    "sam": 0.8049,
+    "diff": -0.0035,
+    "ci95": [
+     -0.0111,
+     0.0059
+    ],
+    "empty_frac": null
+   }
+  },
+  "boxfix_v1": {
+   "all": {
+    "n": 25692,
+    "lace": 0.8128,
+    "sam": 0.789,
+    "diff": 0.0238,
+    "ci95": [
+     0.0194,
+     0.0287
+    ],
+    "empty_frac": null
+   },
+   "small": {
+    "n": 8556,
+    "lace": 0.8225,
+    "sam": 0.7679,
+    "diff": 0.0546,
+    "ci95": [
+     0.0501,
+     0.0584
+    ],
+    "empty_frac": null
+   },
+   "mid": {
+    "n": 8572,
+    "lace": 0.8023,
+    "sam": 0.7942,
+    "diff": 0.0081,
+    "ci95": [
+     0.0047,
+     0.0114
+    ],
+    "empty_frac": null
+   },
+   "large": {
+    "n": 8564,
+    "lace": 0.8136,
+    "sam": 0.8049,
+    "diff": 0.0087,
+    "ci95": [
+     0.0,
+     0.0197
+    ],
+    "empty_frac": null
+   }
+  },
+  "se2.5_only": {
+   "all": {
+    "n": 25692,
+    "lace": 0.7973,
+    "sam": 0.789,
+    "diff": 0.0083,
+    "ci95": [
+     0.0011,
+     0.016
+    ],
+    "empty_frac": null
+   },
+   "small": {
+    "n": 8556,
+    "lace": 0.8265,
+    "sam": 0.7679,
+    "diff": 0.0586,
+    "ci95": [
+     0.0534,
+     0.0629
+    ],
+    "empty_frac": null
+   },
+   "mid": {
+    "n": 8572,
+    "lace": 0.7866,
+    "sam": 0.7942,
+    "diff": -0.0076,
+    "ci95": [
+     -0.0143,
+     -0.0011
+    ],
+    "empty_frac": null
+   },
+   "large": {
+    "n": 8564,
+    "lace": 0.7787,
+    "sam": 0.8049,
+    "diff": -0.0262,
+    "ci95": [
+     -0.0402,
+     -0.0087
+    ],
+    "empty_frac": null
+   }
+  },
+  "se2_only": {
+   "all": {
+    "n": 25692,
+    "lace": 0.798,
+    "sam": 0.789,
+    "diff": 0.009,
+    "ci95": [
+     0.0032,
+     0.0153
+    ],
+    "empty_frac": null
+   },
+   "small": {
+    "n": 8556,
+    "lace": 0.8153,
+    "sam": 0.7679,
+    "diff": 0.0474,
+    "ci95": [
+     0.0429,
+     0.0512
+    ],
+    "empty_frac": null
+   },
+   "mid": {
+    "n": 8572,
+    "lace": 0.7883,
+    "sam": 0.7942,
+    "diff": -0.0059,
+    "ci95": [
+     -0.0116,
+     -0.0004
+    ],
+    "empty_frac": null
+   },
+   "large": {
+    "n": 8564,
+    "lace": 0.7904,
+    "sam": 0.8049,
+    "diff": -0.0145,
+    "ci95": [
+     -0.0265,
+     0.0002
+    ],
+    "empty_frac": null
+   }
+  }
+ }
+}

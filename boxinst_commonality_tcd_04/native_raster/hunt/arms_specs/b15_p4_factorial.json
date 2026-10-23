@@ -1,0 +1,168 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "sam": {
+  "kind": "sam"
+ },
+ "p4_c0.33_k1.3_r10": {
+  "kind": "post4",
+  "c_peak": 0.33,
+  "kappa": 1.3,
+  "r": 10
+ },
+ "p4_c0.33_k1.3_r10_cl": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "kappa": 1.3,
+   "r": 10
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_c0.33_k1.3_r12": {
+  "kind": "post4",
+  "c_peak": 0.33,
+  "kappa": 1.3,
+  "r": 12
+ },
+ "p4_c0.33_k1.3_r12_cl": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "kappa": 1.3,
+   "r": 12
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_c0.33_k1.6_r10": {
+  "kind": "post4",
+  "c_peak": 0.33,
+  "kappa": 1.6,
+  "r": 10
+ },
+ "p4_c0.33_k1.6_r10_cl": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "kappa": 1.6,
+   "r": 10
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_c0.33_k1.6_r12": {
+  "kind": "post4",
+  "c_peak": 0.33,
+  "kappa": 1.6,
+  "r": 12
+ },
+ "p4_c0.33_k1.6_r12_cl": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "kappa": 1.6,
+   "r": 12
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_c0.35_k1.3_r10": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "kappa": 1.3,
+  "r": 10
+ },
+ "p4_c0.35_k1.3_r10_cl": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.35,
+   "kappa": 1.3,
+   "r": 10
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_c0.35_k1.3_r12": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "kappa": 1.3,
+  "r": 12
+ },
+ "p4_c0.35_k1.3_r12_cl": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.35,
+   "kappa": 1.3,
+   "r": 12
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_c0.35_k1.6_r10": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "kappa": 1.6,
+  "r": 10
+ },
+ "p4_c0.35_k1.6_r10_cl": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.35,
+   "kappa": 1.6,
+   "r": 10
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_c0.35_k1.6_r12": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "kappa": 1.6,
+  "r": 12
+ },
+ "p4_c0.35_k1.6_r12_cl": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.35,
+   "kappa": 1.6,
+   "r": 12
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ }
+}

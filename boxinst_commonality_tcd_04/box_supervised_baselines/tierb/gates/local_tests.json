@@ -1,0 +1,36 @@
+{
+ "date": "2026-10-15 13:52",
+ "crops": {
+  "coverage_1_to_2x": true,
+  "schedule": {
+   "iters_per_epoch": 198,
+   "max_iter": 3960,
+   "max_epochs": 20,
+   "steps": [],
+   "schedule": "plateau (plateau.py)",
+   "warmup_iters": 26,
+   "pairwise_warmup_iters": 264,
+   "boxteacher_mask_warmup_iters": 264,
+   "fraction_of_released_1x": 0.0264
+  }
+ },
+ "p6_assignment": {
+  "random_cases_equal": 2000
+ },
+ "canopy_rule": {
+  "lace_canopy_cell_mask_equal_all_levels": 20
+ },
+ "lace_gate": {
+  "boundary_cases": 7
+ },
+ "mal_clip": {
+  "tiles": 60,
+  "boxes": 22923,
+  "clipped": 1335,
+  "empty_after_clip": 0
+ },
+ "plateau": {
+  "cases": 5
+ },
+ "pass": true
+}

@@ -1,0 +1,120 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "sam": {
+  "kind": "sam"
+ },
+ "p4_rp0.3": {
+  "kind": "post4",
+  "c_peak": 0.3
+ },
+ "p4_rp0.3_close0.2": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.3
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_rp0.33": {
+  "kind": "post4",
+  "c_peak": 0.33
+ },
+ "p4_rp0.33_close0.2": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.33
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_rp0.35": {
+  "kind": "post4",
+  "c_peak": 0.35
+ },
+ "p4_rp0.35_close0.2": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.35
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_rp0.37": {
+  "kind": "post4",
+  "c_peak": 0.37
+ },
+ "p4_rp0.37_close0.2": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "c_peak": 0.37
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ },
+ "p4_rp0.35_lo0.25hi0.45": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "lo": 0.25,
+  "hi": 0.45
+ },
+ "p4_rp0.35_a0.15": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "alpha": 0.15
+ },
+ "p4_rp0.35_k1.3": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "kappa": 1.3
+ },
+ "p4_rp0.35_r10": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "r": 10
+ },
+ "p4_rp0.35_r14": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "r": 14
+ },
+ "p4mix0.5_rp0.35": {
+  "kind": "post4",
+  "c_peak": 0.35,
+  "seed_mix": 0.5
+ },
+ "p4mix0.5_rp0.4": {
+  "kind": "post4",
+  "c_peak": 0.4,
+  "seed_mix": 0.5
+ },
+ "p4_t0.3_close0.2": {
+  "kind": "shape",
+  "base": {
+   "kind": "post4",
+   "tau": 0.3
+  },
+  "ops": [
+   "close",
+   "fill"
+  ],
+  "c_close": 0.2
+ }
+}

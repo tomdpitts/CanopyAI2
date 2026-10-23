@@ -1,0 +1,287 @@
+[a6] features complete Thu Oct 15 13:42:50 AEDT 2026
+{"tiles": ["tcd_tile_1024", "tcd_tile_1028", "tcd_tile_1045"], "n_boxes": 993, "masks_identical": 993, "mean_iou": 1.0, "pass": true}
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 7030.76it/s]
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 13911.42it/s]
+1/206 tcd_tile_1028 279 crowns  39s
+2/206 tcd_tile_1045 66 crowns  59s
+3/206 tcd_tile_106 44 crowns  79s
+4/206 tcd_tile_1080 70 crowns  99s
+5/206 tcd_tile_1083 360 crowns  149s
+6/206 tcd_tile_1084 116 crowns  176s
+7/206 tcd_tile_1114 37 crowns  192s
+8/206 tcd_tile_1201 15 crowns  200s
+9/206 tcd_tile_1204 38 crowns  214s
+10/206 tcd_tile_1209 30 crowns  231s
+11/206 tcd_tile_1241 28 crowns  247s
+12/206 tcd_tile_1242 7 crowns  257s
+13/206 tcd_tile_1301 62 crowns  277s
+14/206 tcd_tile_133 58 crowns  298s
+15/206 tcd_tile_1350 35 crowns  310s
+16/206 tcd_tile_1374 95 crowns  333s
+17/206 tcd_tile_1389 870 crowns  437s
+18/206 tcd_tile_1394 43 crowns  456s
+19/206 tcd_tile_1421 117 crowns  483s
+20/206 tcd_tile_1472 8 crowns  490s
+21/206 tcd_tile_1489 90 crowns  512s
+22/206 tcd_tile_1516 2 crowns  516s
+23/206 tcd_tile_1540 4 crowns  523s
+24/206 tcd_tile_1571 49 crowns  535s
+25/206 tcd_tile_160 58 crowns  554s
+26/206 tcd_tile_1607 13 crowns  566s
+27/206 tcd_tile_1622 20 crowns  582s
+28/206 tcd_tile_1635 82 crowns  607s
+29/206 tcd_tile_1638 21 crowns  619s
+30/206 tcd_tile_1657 126 crowns  649s
+31/206 tcd_tile_1658 22 crowns  663s
+32/206 tcd_tile_1762 20 crowns  677s
+33/206 tcd_tile_1778 1 crowns  682s
+34/206 tcd_tile_1809 27 crowns  697s
+35/206 tcd_tile_1850 17 crowns  708s
+36/206 tcd_tile_1857 33 crowns  724s
+37/206 tcd_tile_1863 20 crowns  735s
+38/206 tcd_tile_1900 7 crowns  742s
+39/206 tcd_tile_1902 96 crowns  771s
+40/206 tcd_tile_1942 14 crowns  781s
+41/206 tcd_tile_1948 23 crowns  796s
+42/206 tcd_tile_1961 65 crowns  816s
+43/206 tcd_tile_2009 23 crowns  828s
+44/206 tcd_tile_2013 58 crowns  845s
+45/206 tcd_tile_2020 13 crowns  853s
+46/206 tcd_tile_2097 12 crowns  865s
+47/206 tcd_tile_2101 300 crowns  916s
+48/206 tcd_tile_2102 44 crowns  934s
+49/206 tcd_tile_2133 11 crowns  942s
+50/206 tcd_tile_2136 21 crowns  954s
+51/206 tcd_tile_2142 10 crowns  965s
+52/206 tcd_tile_2157 476 crowns  1032s
+53/206 tcd_tile_2199 15 crowns  1043s
+54/206 tcd_tile_2209 118 crowns  1080s
+55/206 tcd_tile_2217 9 crowns  1091s
+56/206 tcd_tile_222 149 crowns  1127s
+57/206 tcd_tile_2225 64 crowns  1143s
+58/206 tcd_tile_2242 130 crowns  1169s
+59/206 tcd_tile_225 161 crowns  1200s
+60/206 tcd_tile_2254 75 crowns  1221s
+61/206 tcd_tile_2268 41 crowns  1236s
+62/206 tcd_tile_2317 9 crowns  1242s
+63/206 tcd_tile_2321 32 crowns  1261s
+64/206 tcd_tile_2353 226 crowns  1303s
+65/206 tcd_tile_2360 39 crowns  1321s
+66/206 tcd_tile_2361 22 crowns  1333s
+67/206 tcd_tile_2399 69 crowns  1356s
+68/206 tcd_tile_2424 92 crowns  1380s
+69/206 tcd_tile_2448 20 crowns  1391s
+70/206 tcd_tile_2471 55 crowns  1408s
+71/206 tcd_tile_2480 153 crowns  1438s
+72/206 tcd_tile_2499 130 crowns  1469s
+73/206 tcd_tile_2517 1 crowns  1473s
+74/206 tcd_tile_2527 27 crowns  1487s
+75/206 tcd_tile_2533 30 crowns  1499s
+76/206 tcd_tile_2584 40 crowns  1514s
+77/206 tcd_tile_2599 76 crowns  1536s
+78/206 tcd_tile_2664 24 crowns  1551s
+79/206 tcd_tile_2707 93 crowns  1574s
+80/206 tcd_tile_2745 35 crowns  1586s
+81/206 tcd_tile_2757 22 crowns  1602s
+82/206 tcd_tile_2764 147 crowns  1634s
+83/206 tcd_tile_2775 97 crowns  1657s
+84/206 tcd_tile_2810 127 crowns  1686s
+85/206 tcd_tile_2841 57 crowns  1703s
+86/206 tcd_tile_2842 14 crowns  1713s
+87/206 tcd_tile_2854 6 crowns  1719s
+88/206 tcd_tile_2855 120 crowns  1761s
+89/206 tcd_tile_2858 59 crowns  1778s
+90/206 tcd_tile_2879 33 crowns  1789s
+91/206 tcd_tile_2896 1 crowns  1794s
+92/206 tcd_tile_2898 120 crowns  1833s
+93/206 tcd_tile_290 107 crowns  1864s
+94/206 tcd_tile_2919 37 crowns  1881s
+95/206 tcd_tile_2954 7 crowns  1888s
+96/206 tcd_tile_2973 16 crowns  1899s
+97/206 tcd_tile_2976 62 crowns  1919s
+98/206 tcd_tile_2980 34 crowns  1934s
+99/206 tcd_tile_3004 117 crowns  1966s
+100/206 tcd_tile_3012 37 crowns  1980s
+101/206 tcd_tile_3051 71 crowns  2005s
+102/206 tcd_tile_3088 44 crowns  2020s
+103/206 tcd_tile_3090 27 crowns  2036s
+104/206 tcd_tile_3122 95 crowns  2065s
+105/206 tcd_tile_3142 69 crowns  2089s
+106/206 tcd_tile_3175 16 crowns  2101s
+107/206 tcd_tile_318 20 crowns  2119s
+108/206 tcd_tile_3188 94 crowns  2144s
+109/206 tcd_tile_3192 65 crowns  2164s
+110/206 tcd_tile_3209 88 crowns  2188s
+111/206 tcd_tile_325 16 crowns  2197s
+112/206 tcd_tile_3265 8 crowns  2205s
+113/206 tcd_tile_3271 88 crowns  2228s
+114/206 tcd_tile_3295 30 crowns  2245s
+115/206 tcd_tile_3309 23 crowns  2260s
+116/206 tcd_tile_333 35 crowns  2277s
+117/206 tcd_tile_3344 261 crowns  2322s
+118/206 tcd_tile_3352 16 crowns  2331s
+119/206 tcd_tile_3373 29 crowns  2344s
+120/206 tcd_tile_3397 137 crowns  2374s
+121/206 tcd_tile_3417 245 crowns  2424s
+122/206 tcd_tile_3421 38 crowns  2436s
+123/206 tcd_tile_3449 41 crowns  2455s
+124/206 tcd_tile_3464 128 crowns  2484s
+125/206 tcd_tile_3482 41 crowns  2500s
+126/206 tcd_tile_3488 11 crowns  2508s
+127/206 tcd_tile_3564 148 crowns  2541s
+128/206 tcd_tile_3569 96 crowns  2566s
+129/206 tcd_tile_3574 100 crowns  2593s
+130/206 tcd_tile_3644 130 crowns  2621s
+131/206 tcd_tile_3654 26 crowns  2632s
+132/206 tcd_tile_3673 20 crowns  2642s
+133/206 tcd_tile_3680 12 crowns  2652s
+134/206 tcd_tile_3714 121 crowns  2691s
+135/206 tcd_tile_3716 687 crowns  2790s
+136/206 tcd_tile_3742 55 crowns  2806s
+137/206 tcd_tile_3770 55 crowns  2822s
+138/206 tcd_tile_3776 51 crowns  2842s
+139/206 tcd_tile_3789 161 crowns  2880s
+140/206 tcd_tile_38 25 crowns  2892s
+141/206 tcd_tile_3808 13 crowns  2903s
+142/206 tcd_tile_3813 15 crowns  2910s
+143/206 tcd_tile_3824 14 crowns  2920s
+144/206 tcd_tile_3835 102 crowns  2956s
+145/206 tcd_tile_3837 2 crowns  2960s
+146/206 tcd_tile_3840 31 crowns  2975s
+147/206 tcd_tile_3885 40 crowns  2999s
+148/206 tcd_tile_3903 73 crowns  3025s
+149/206 tcd_tile_3968 45 crowns  3045s
+150/206 tcd_tile_3969 36 crowns  3062s
+151/206 tcd_tile_3986 55 crowns  3081s
+152/206 tcd_tile_399 98 crowns  3112s
+153/206 tcd_tile_4022 168 crowns  3146s
+154/206 tcd_tile_4058 189 crowns  3191s
+155/206 tcd_tile_4065 177 crowns  3231s
+156/206 tcd_tile_4117 33 crowns  3248s
+157/206 tcd_tile_4127 7 crowns  3256s
+158/206 tcd_tile_413 42 crowns  3273s
+159/206 tcd_tile_4132 15 crowns  3284s
+160/206 tcd_tile_4133 2 crowns  3288s
+161/206 tcd_tile_4136 77 crowns  3306s
+162/206 tcd_tile_4153 36 crowns  3320s
+163/206 tcd_tile_4163 181 crowns  3360s
+164/206 tcd_tile_426 38 crowns  3377s
+165/206 tcd_tile_46 13 crowns  3389s
+166/206 tcd_tile_469 11 crowns  3398s
+167/206 tcd_tile_49 117 crowns  3426s
+168/206 tcd_tile_516 22 crowns  3438s
+169/206 tcd_tile_528 25 crowns  3448s
+170/206 tcd_tile_557 16 crowns  3460s
+171/206 tcd_tile_559 77 crowns  3482s
+172/206 tcd_tile_583 44 crowns  3506s
+173/206 tcd_tile_609 103 crowns  3535s
+174/206 tcd_tile_652 141 crowns  3568s
+175/206 tcd_tile_678 287 crowns  3627s
+176/206 tcd_tile_709 34 crowns  3645s
+177/206 tcd_tile_716 7 crowns  3652s
+178/206 tcd_tile_739 35 crowns  3664s
+179/206 tcd_tile_752 504 crowns  3730s
+180/206 tcd_tile_795 15 crowns  3738s
+181/206 tcd_tile_811 2 crowns  3744s
+182/206 tcd_tile_820 37 crowns  3755s
+183/206 tcd_tile_836 40 crowns  3773s
+184/206 tcd_tile_844 74 crowns  3794s
+185/206 tcd_tile_912 66 crowns  3812s
+186/206 tcd_tile_915 24 crowns  3824s
+187/206 tcd_tile_919 34 crowns  3839s
+188/206 tcd_tile_921 193 crowns  3881s
+189/206 tcd_tile_925 101 crowns  3902s
+190/206 tcd_tile_926 42 crowns  3920s
+191/206 tcd_tile_943 172 crowns  3968s
+192/206 tcd_tile_95 40 crowns  3984s
+193/206 tcd_tile_986 61 crowns  4001s
+194/206 tcd_val_tile_126 13 crowns  4009s
+195/206 tcd_val_tile_128 34 crowns  4022s
+196/206 tcd_val_tile_129 85 crowns  4049s
+197/206 tcd_val_tile_17 22 crowns  4062s
+198/206 tcd_val_tile_262 13 crowns  4074s
+199/206 tcd_val_tile_291 26 crowns  4085s
+200/206 tcd_val_tile_341 14 crowns  4097s
+201/206 tcd_val_tile_356 61 crowns  4117s
+202/206 tcd_val_tile_389 30 crowns  4130s
+203/206 tcd_val_tile_425 2 crowns  4136s
+204/206 tcd_val_tile_57 1 crowns  4141s
+205/206 tcd_val_tile_83 26 crowns  4156s
+206/206 tcd_val_tile_96 50 crowns  4176s
+{
+ "n_tiles": 206,
+ "n_crowns": 14925,
+ "lace": {
+  "mean_iou": 0.7803,
+  "ge50": 0.9609,
+  "ge75": 0.7452,
+  "ge90": 0.0683
+ },
+ "ft_whole": {
+  "mean_iou": 0.6547,
+  "ge50": 0.8459,
+  "ge75": 0.3253,
+  "ge90": 0.0082
+ },
+ "ft_sub": {
+  "mean_iou": 0.7546,
+  "ge50": 0.9693,
+  "ge75": 0.5977,
+  "ge90": 0.0362
+ },
+ "base_whole": {
+  "mean_iou": 0.773,
+  "ge50": 0.9806,
+  "ge75": 0.6749,
+  "ge90": 0.0445
+ },
+ "base_sub": {
+  "mean_iou": 0.8138,
+  "ge50": 0.9974,
+  "ge75": 0.8287,
+  "ge90": 0.0874
+ },
+ "lace_minus_ft_sub": {
+  "mean": 0.0257,
+  "ci95_tile_boot": [
+   0.0189,
+   0.0316
+  ]
+ },
+ "lace_minus_base_sub": {
+  "mean": -0.0336,
+  "ci95_tile_boot": [
+   -0.0424,
+   -0.0259
+  ]
+ },
+ "lace_minus_base_whole": {
+  "mean": 0.0073,
+  "ci95_tile_boot": [
+   0.0007,
+   0.0128
+  ]
+ }
+}
+  50/206 tiles
+  100/206 tiles
+  150/206 tiles
+  200/206 tiles
+-> boxinst_commonality_tcd_04/native_raster/tierA/a6_strata.json
+area             small              n=  4975  LACE 0.706  ZS 0.783  FT 0.670  L-ZS -0.078 [-0.0969, -0.0607]  L-FT +0.036
+area             mid                n=  4969  LACE 0.811  ZS 0.823  FT 0.778  L-ZS -0.011 [-0.016, -0.0066]  L-FT +0.034
+area             large              n=  4981  LACE 0.824  ZS 0.835  FT 0.816  L-ZS -0.011 [-0.0152, -0.0078]  L-FT +0.008
+crowns_per_tile  1-10               n=   103  LACE 0.809  ZS 0.834  FT 0.802  L-ZS -0.025 [-0.0498, 0.0023]  L-FT +0.007
+crowns_per_tile  11-30              n=  1138  LACE 0.792  ZS 0.812  FT 0.757  L-ZS -0.020 [-0.0299, -0.0114]  L-FT +0.035
+crowns_per_tile  31-60              n=  2100  LACE 0.779  ZS 0.814  FT 0.758  L-ZS -0.035 [-0.0468, -0.0256]  L-FT +0.021
+crowns_per_tile  61-100             n=  2690  LACE 0.761  ZS 0.806  FT 0.745  L-ZS -0.045 [-0.0657, -0.0289]  L-FT +0.017
+crowns_per_tile  101-200            n=  4402  LACE 0.761  ZS 0.807  FT 0.738  L-ZS -0.046 [-0.0644, -0.0295]  L-FT +0.023
+crowns_per_tile  201-+              n=  4492  LACE 0.808  ZS 0.825  FT 0.773  L-ZS -0.017 [-0.0288, -0.005]  L-FT +0.035
+canopy_contact   touches_canopy     n=   720  LACE 0.788  ZS 0.819  FT 0.790  L-ZS -0.032 [-0.0427, -0.0218]  L-FT -0.003
+canopy_contact   no_canopy_contact  n= 14205  LACE 0.780  ZS 0.814  FT 0.753  L-ZS -0.034 [-0.0427, -0.0258]  L-FT +0.027
+crown_contact    touching           n=  3779  LACE 0.766  ZS 0.811  FT 0.770  L-ZS -0.045 [-0.0547, -0.037]  L-FT -0.003
+crown_contact    isolated           n= 11146  LACE 0.785  ZS 0.815  FT 0.750  L-ZS -0.030 [-0.0395, -0.0208]  L-FT +0.035
+biome            Sv                 n= 14925  LACE 0.780  ZS 0.814  FT 0.755  L-ZS -0.034 [-0.0424, -0.0259]  L-FT +0.026
+[a6] ALL_DONE Thu Oct 15 14:58:15 AEDT 2026

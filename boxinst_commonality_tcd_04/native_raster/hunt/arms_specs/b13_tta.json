@@ -1,0 +1,38 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "tta_l50": {
+  "kind": "tta",
+  "lam": 50.0
+ },
+ "tta_l200": {
+  "kind": "tta",
+  "lam": 200.0
+ },
+ "tta_l1000": {
+  "kind": "tta",
+  "lam": 1000.0
+ },
+ "tta_l200_fgonly": {
+  "kind": "tta",
+  "lam": 200.0,
+  "adapt_bg": false
+ },
+ "tta_l200_it4": {
+  "kind": "tta",
+  "lam": 200.0,
+  "n_iter": 4
+ },
+ "tta_l200_top100": {
+  "kind": "tta",
+  "lam": 200.0,
+  "top": 100
+ },
+ "tta_l200_rp0.4": {
+  "kind": "tta",
+  "lam": 200.0,
+  "render": "relpeak",
+  "c": 0.4
+ }
+}

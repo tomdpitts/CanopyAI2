@@ -981,3 +981,34 @@ Table 1 rows (DT2, SelvaBox, Box2Mask ×2), note c own-budget numbers, note d (+
 
 ### Fairness audit (2026-10-14) — summary; nothing below changed in the paper
 Six reports + index with decisions for Tom: [`audit_2026-10-14/README.md`](audit_2026-10-14/README.md). Defects beyond the seam that still hinder a baseline (all need GPU except the re-rank): **Box2Mask** LR schedule truncated by early stopping before both ×0.1 decays (neither checkpoint annealed; Swin-L stopped by a 5 h wall clock); **SelvaBox → SAM 3** ranked by detector score instead of the released sqrt(det × SAM) (CPU re-score on the seam-fixed file: 0.5984 → 0.6141 AP50, 0.2207 → 0.2502 AP50:95; provisional, 9% local SAM scores) and SAM 3 prompted on the whole tile (20.3 cm/px at the encoder) instead of each box's source subtile (10.2 cm/px). **Detectree2** `MIN_SIZE_TEST` 1000 vs released 800 unchecked on val. Restor rpn2000 verified like-for-like. No test leakage in the deployed LACE 2048 numbers. Several undisclosed favourable deviations and text errors listed in the index.
+
+### TIER A RESULTS (pre-registered in box_supervised_baselines/PLAN.md §13; 439 tiles, 2048, maxDets 600, canopy crowd) — 2026-10-15
+Files: `tierA/summary_tierA.json`, `tierA/scored_*.json`; index `RESULTS_INDEX_2026-10-14.md`. A1 on local MPS (HF Sam3Tracker, zero-shot), A2 on local CPU (Modal-cached features; gate: 498/498 masks byte-identical to the published LACE masks, product |Δ| ≤ 1.5e-6), A3 CPU.
+
+| boxes | masks | ranking | AP50 | AP50:95 | box AP50 |
+|---|---|---|---|---|---|
+| LACE (3 seeds) | LACE (deployed) | s′ = s·p̄·m | 0.6470 ± 0.0025 | 0.2778 ± 0.0051 | 0.6666 |
+| LACE | LACE | s | 0.6137 ± 0.0032 | 0.2557 ± 0.0026 | 0.6394 |
+| LACE | **A1** SAM 3 zero-shot, per subtile | s | 0.6329 ± 0.0024 | 0.2873 ± 0.0022 | 0.6394 |
+| LACE | **A1** SAM 3 zero-shot, per subtile | √(s·SAM) | 0.6479 ± 0.0028 | 0.3008 ± 0.0032 | 0.6515 |
+| LACE | **A3** ellipse | s | 0.6045 ± 0.0046 | 0.2361 ± 0.0015 | 0.6394 |
+| SelvaBox (seam-fixed) | SAM 3 FT, per subtile | s | 0.7120 | 0.3156 | 0.7670 |
+| SelvaBox | SAM 3 FT, per subtile | √(s·SAM) | 0.7237 | 0.3437 | 0.7715 |
+| SelvaBox | **A2** LACE masker | s | 0.7107 | 0.3110 | 0.7670 |
+| SelvaBox | **A2** LACE masker | s′ | 0.7102 | 0.3207 | 0.7599 |
+| SelvaBox | **A3** ellipse | s | 0.7129 | 0.2975 | 0.7670 |
+
+**Reading.** (1) AP50 here is set by the boxes: on SelvaBox boxes ellipse, LACE masker and FT SAM 3 sit within 0.002 AP50; on LACE boxes the spread at fixed ranking is 0.03. (2) Mask quality shows at AP50:95: LACE masker > ellipse by +0.020 (own boxes) / +0.014 (SelvaBox boxes); zero-shot SAM 3 > LACE masker by +0.032 at fixed ranking on LACE boxes. (3) LACE's +0.033 AP50 from s′ re-ranking holds on its own boxes but is nil on SelvaBox boxes (−0.0005 AP50, +0.010 AP50:95): it corrects LACE-detector ranking. (4) LACE boxes + zero-shot SAM 3 with SAM-score re-ranking ties LACE at AP50 (0.648 vs 0.647) and leads at AP50:95 (0.301 vs 0.278). Pre-registered: all rows are to be reported.
+
+### MASKER vs SAM 3 ZERO-SHOT (2026-10-15 → 10-16) — `boxfix/`, `hunt/`, `smallcrown/` (each has a README)
+**GT boxes** (`boxfix/README.md`): a val-chosen render (radius min(12, ⌊0.4·short⌋), τ = 0.3·box peak, box-inscribed superellipse p2.5) lifts LACE from 0.748 to **0.813 mean IoU vs SAM 3 zs per-subtile 0.789** (test, +0.024 [0.019, 0.029]); a no-image ellipse already scores 0.798. It does NOT transfer to detections (val AP50 0.659 vs deployed 0.664) — not deployed.
+**LACE detections, AP50** (`hunt/README.md`, L1–L30): candidate 1 `lace4px_g30` = the same masker npz/knobs on REAL 4 px DINOv3-L24 features (16 shifted passes, local MPS, Modal-pinned venv `feat_cache/venv_feat_t457`, cos 1.0000 vs Modal feat_4p), per-pixel E-step for boxes < 30 px, colour-guided r12, τ = 0.33·box peak. Frozen on val before test. Test 439 × 3 seeds:
+
+| masks (ranking) | AP50 | AP50:95 |
+|---|---|---|
+| **LACE cand1** (LACE s′) | **0.6559 ± 0.0037** | 0.2807 |
+| LACE deployed (s′) | 0.6470 ± 0.0025 | 0.2778 ± 0.0051 |
+| SAM 3 zs, own ranking √(s·SAM) | 0.6479 ± 0.0028 | **0.3008 ± 0.0032** |
+| hybrid: SAM 3 masks ranked by LACE s′ (not a SAM pipeline) | 0.6640 ± 0.0026 | — |
+
+cand1 − SAM 3 (own ranking) = +0.0080 ± 0.0040 AP50, positive on all 3 seeds on the official 439-tile test set; SAM wins AP50:95 by 0.017–0.025. Flip TTA considered and abandoned.

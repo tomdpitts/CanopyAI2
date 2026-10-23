@@ -1,0 +1,31 @@
+{
+  "seed": 0,
+  "single": {
+    "n_tiles": 0,
+    "n_gt_trees": 0,
+    "mask_mAP50": NaN,
+    "mask_mAP50_95": NaN,
+    "box_mAP50": NaN,
+    "box_mAP50_95": NaN,
+    "box_minus_mask_mAP50": NaN,
+    "semantic_F1": 0.0,
+    "semantic_P": 0.0,
+    "semantic_R": 0.0,
+    "det": "det_ms_s0",
+    "em": "em_model.npz"
+  },
+  "multiscale": {
+    "n_tiles": 0,
+    "n_gt_trees": 0,
+    "mask_mAP50": NaN,
+    "mask_mAP50_95": NaN,
+    "box_mAP50": NaN,
+    "box_mAP50_95": NaN,
+    "box_minus_mask_mAP50": NaN,
+    "semantic_F1": 0.0,
+    "semantic_P": 0.0,
+    "semantic_R": 0.0,
+    "det": "det_ms_s0",
+    "em": "em_model.npz"
+  }
+}

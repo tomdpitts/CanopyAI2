@@ -1,0 +1,58 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "sam": {
+  "kind": "sam"
+ },
+ "cond0.5_cell_r12_t0.25": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "guided",
+   "seed": "cell",
+   "r": 12,
+   "tau": 0.25
+  }
+ },
+ "p4_r12_t0.35": {
+  "kind": "post4"
+ },
+ "p4_r12_t0.3": {
+  "kind": "post4",
+  "tau": 0.3
+ },
+ "p4_r12_t0.4": {
+  "kind": "post4",
+  "tau": 0.4
+ },
+ "p4_r8_t0.35": {
+  "kind": "post4",
+  "r": 8
+ },
+ "p4_r4_t0.35": {
+  "kind": "post4",
+  "r": 4
+ },
+ "p4_r0_t0.4": {
+  "kind": "post4",
+  "r": 0,
+  "tau": 0.4
+ },
+ "p4_rhalf_t0.35": {
+  "kind": "post4",
+  "r": "half"
+ },
+ "p4_r12_t0.35_th0.5": {
+  "kind": "post4",
+  "theta": 0.5
+ },
+ "p4_r12_t0.35_s30": {
+  "kind": "post4",
+  "max_short": 30
+ },
+ "p4_mix0.5_r12_t0.35": {
+  "kind": "post4",
+  "seed_mix": 0.5
+ }
+}

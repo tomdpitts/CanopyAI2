@@ -1,0 +1,103 @@
+{
+ "base": {},
+ "best_v3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true
+ },
+ "best_se2": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 2
+ },
+ "best_se2.5": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 2.5
+ },
+ "best_se3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 3
+ },
+ "best_se4": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 4
+ },
+ "best_se6": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 6
+ },
+ "best_nofl": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3
+ },
+ "best_nofl_se2.5": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "se_p": 2.5
+ },
+ "best_nofl_se3": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "se_p": 3
+ },
+ "best_nofl_se4": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "se_p": 4
+ },
+ "best_se3_tau0.37": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 3,
+  "tau": 0.37
+ },
+ "best_se4_tau0.37": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true,
+  "se_p": 4,
+  "tau": 0.37
+ }
+}

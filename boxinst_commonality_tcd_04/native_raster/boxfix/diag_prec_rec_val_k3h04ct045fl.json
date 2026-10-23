@@ -1,0 +1,54 @@
+{
+ "variant": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.45,
+  "knob": 3,
+  "fill": true,
+  "largest": true
+ },
+ "strata": {
+  "small": {
+   "n": 2384,
+   "prec": 0.8172,
+   "rec": 0.9371,
+   "iou": 0.7714,
+   "sam": 0.7637,
+   "gt_fill": 0.8116,
+   "pred_fill": 0.9377,
+   "n_lose>0.1": 189,
+   "lose_prec": 0.7308,
+   "lose_rec": 0.8403,
+   "lose_gt_fill": 0.7528,
+   "lose_pred_fill": 0.8661
+  },
+  "mid": {
+   "n": 2417,
+   "prec": 0.8656,
+   "rec": 0.918,
+   "iou": 0.8009,
+   "sam": 0.8023,
+   "gt_fill": 0.7337,
+   "pred_fill": 0.7769,
+   "n_lose>0.1": 156,
+   "lose_prec": 0.7077,
+   "lose_rec": 0.8996,
+   "lose_gt_fill": 0.6008,
+   "lose_pred_fill": 0.7575
+  },
+  "large": {
+   "n": 2231,
+   "prec": 0.8682,
+   "rec": 0.9392,
+   "iou": 0.8211,
+   "sam": 0.828,
+   "gt_fill": 0.7062,
+   "pred_fill": 0.7629,
+   "n_lose>0.1": 193,
+   "lose_prec": 0.724,
+   "lose_rec": 0.934,
+   "lose_gt_fill": 0.5992,
+   "lose_pred_fill": 0.7726
+  }
+ }
+}

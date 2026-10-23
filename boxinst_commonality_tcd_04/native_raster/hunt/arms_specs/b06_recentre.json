@@ -1,0 +1,46 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "rc_box": {
+  "kind": "recentre",
+  "centre": "box"
+ },
+ "rc_ring_t0.35": {
+  "kind": "recentre",
+  "centre": "ring",
+  "tau": 0.35
+ },
+ "rc_ring_t0.5": {
+  "kind": "recentre",
+  "centre": "ring",
+  "tau": 0.5
+ },
+ "rc_mid_t0.35": {
+  "kind": "recentre",
+  "centre": "mid",
+  "tau": 0.35
+ },
+ "rc_mid_t0.5": {
+  "kind": "recentre",
+  "centre": "mid",
+  "tau": 0.5
+ },
+ "rc_mix0.5_t0.35": {
+  "kind": "recentre",
+  "centre": "mix",
+  "w": 0.5,
+  "tau": 0.35
+ },
+ "rc_mix0.5_t0.45": {
+  "kind": "recentre",
+  "centre": "mix",
+  "w": 0.5,
+  "tau": 0.45
+ },
+ "rc_mid_t0.35_ring32": {
+  "kind": "recentre",
+  "centre": "mid",
+  "ring_px": 32
+ }
+}

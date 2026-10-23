@@ -1,0 +1,92 @@
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 15421.97it/s]
+[diag] 108 val tiles with crowns
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+  39/108 tcd_tile_2581 84 crowns  10s
+  40/108 tcd_tile_2585 272 crowns  29s
+  41/108 tcd_tile_2592 76 crowns  39s
+  42/108 tcd_tile_262 74 crowns  50s
+  43/108 tcd_tile_2635 94 crowns  61s
+  44/108 tcd_tile_2710 147 crowns  74s
+  45/108 tcd_tile_2755 117 crowns  86s
+  46/108 tcd_tile_2818 64 crowns  94s
+  47/108 tcd_tile_2856 64 crowns  103s
+  48/108 tcd_tile_2880 47 crowns  109s
+  49/108 tcd_tile_2909 27 crowns  115s
+  50/108 tcd_tile_3017 39 crowns  123s
+  51/108 tcd_tile_3082 1 crowns  124s
+  52/108 tcd_tile_3168 8 crowns  128s
+  53/108 tcd_tile_3218 302 crowns  149s
+  54/108 tcd_tile_3257 4 crowns  151s
+  55/108 tcd_tile_3267 25 crowns  158s
+  56/108 tcd_tile_3307 12 crowns  160s
+  57/108 tcd_tile_3335 39 crowns  166s
+  58/108 tcd_tile_3364 1 crowns  168s
+  59/108 tcd_tile_3367 116 crowns  180s
+  60/108 tcd_tile_3393 60 crowns  190s
+  61/108 tcd_tile_3420 52 crowns  199s
+  62/108 tcd_tile_3468 20 crowns  205s
+  63/108 tcd_tile_3534 123 crowns  221s
+  64/108 tcd_tile_3568 38 crowns  229s
+  65/108 tcd_tile_3594 88 crowns  242s
+  66/108 tcd_tile_3595 63 crowns  249s
+  67/108 tcd_tile_3597 81 crowns  260s
+  68/108 tcd_tile_3658 15 crowns  263s
+  69/108 tcd_tile_3674 12 crowns  268s
+  70/108 tcd_tile_372 7 crowns  272s
+  71/108 tcd_tile_3757 106 crowns  285s
+  72/108 tcd_tile_3782 3 crowns  287s
+  73/108 tcd_tile_382 61 crowns  297s
+  74/108 tcd_tile_3871 4 crowns  301s
+  75/108 tcd_tile_3887 31 crowns  304s
+  76/108 tcd_tile_3898 10 crowns  309s
+  77/108 tcd_tile_3899 1 crowns  310s
+  78/108 tcd_tile_393 131 crowns  323s
+  79/108 tcd_tile_398 41 crowns  333s
+  80/108 tcd_tile_3998 17 crowns  339s
+  81/108 tcd_tile_4042 40 crowns  347s
+  82/108 tcd_tile_4062 109 crowns  359s
+  83/108 tcd_tile_4102 53 crowns  368s
+  84/108 tcd_tile_4129 56 crowns  379s
+  85/108 tcd_tile_425 21 crowns  386s
+  86/108 tcd_tile_432 81 crowns  399s
+  87/108 tcd_tile_437 47 crowns  410s
+  88/108 tcd_tile_461 6 crowns  413s
+  89/108 tcd_tile_482 5 crowns  415s
+  90/108 tcd_tile_546 8 crowns  420s
+  91/108 tcd_tile_547 129 crowns  435s
+  92/108 tcd_tile_566 75 crowns  445s
+  93/108 tcd_tile_589 52 crowns  454s
+  94/108 tcd_tile_620 7 crowns  457s
+  95/108 tcd_tile_627 93 crowns  469s
+  96/108 tcd_tile_638 69 crowns  479s
+  97/108 tcd_tile_66 269 crowns  502s
+  98/108 tcd_tile_67 32 crowns  509s
+  99/108 tcd_tile_711 16 crowns  516s
+  100/108 tcd_tile_730 27 crowns  523s
+  101/108 tcd_tile_767 92 crowns  535s
+  102/108 tcd_tile_810 27 crowns  542s
+  103/108 tcd_tile_817 6 crowns  545s
+  104/108 tcd_tile_83 121 crowns  560s
+  105/108 tcd_tile_879 66 crowns  570s
+  106/108 tcd_tile_954 5 crowns  573s
+  107/108 tcd_tile_958 51 crowns  579s
+  108/108 tcd_tile_979 42 crowns  587s
+[diag] done

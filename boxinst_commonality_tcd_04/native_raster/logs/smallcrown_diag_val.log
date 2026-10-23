@@ -1,0 +1,43 @@
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 7088.91it/s]
+[diag] 108 val tiles with crowns
+  1/108 tcd_tile_1012 235 crowns  18s
+  2/108 tcd_tile_1041 134 crowns  31s
+  3/108 tcd_tile_1068 97 crowns  43s
+  4/108 tcd_tile_1097 93 crowns  53s
+  5/108 tcd_tile_1145 74 crowns  64s
+  6/108 tcd_tile_1150 166 crowns  79s
+  7/108 tcd_tile_1177 7 crowns  83s
+  8/108 tcd_tile_1197 288 crowns  103s
+  9/108 tcd_tile_1207 17 crowns  107s
+  10/108 tcd_tile_1287 43 crowns  113s
+  11/108 tcd_tile_1293 66 crowns  124s
+  12/108 tcd_tile_154 6 crowns  126s
+  13/108 tcd_tile_1558 37 crowns  133s
+  14/108 tcd_tile_1574 41 crowns  138s
+  15/108 tcd_tile_1649 73 crowns  149s
+  16/108 tcd_tile_1652 2 crowns  151s
+  17/108 tcd_tile_1655 12 crowns  154s
+  18/108 tcd_tile_1666 196 crowns  169s
+  19/108 tcd_tile_1676 175 crowns  186s
+  20/108 tcd_tile_169 182 crowns  203s
+  21/108 tcd_tile_1709 14 crowns  209s
+  22/108 tcd_tile_1775 5 crowns  212s
+  23/108 tcd_tile_1784 56 crowns  221s
+  24/108 tcd_tile_1793 34 crowns  229s
+  25/108 tcd_tile_1808 112 crowns  245s
+  26/108 tcd_tile_1865 25 crowns  249s
+  27/108 tcd_tile_1873 75 crowns  260s
+  28/108 tcd_tile_1940 3 crowns  262s
+  29/108 tcd_tile_1976 202 crowns  280s
+  30/108 tcd_tile_1986 44 crowns  287s
+  31/108 tcd_tile_2131 64 crowns  295s
+  32/108 tcd_tile_2143 13 crowns  300s
+  33/108 tcd_tile_2152 130 crowns  314s
+  34/108 tcd_tile_2163 36 crowns  321s
+  35/108 tcd_tile_2191 47 crowns  327s
+  36/108 tcd_tile_2323 4 crowns  330s
+  37/108 tcd_tile_2431 49 crowns  337s
+  38/108 tcd_tile_2578 2 crowns  339s
+/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/multiprocessing/resource_tracker.py:224: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '

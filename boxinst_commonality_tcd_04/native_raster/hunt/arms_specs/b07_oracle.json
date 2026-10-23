@@ -1,0 +1,37 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "sam": {
+  "kind": "sam"
+ },
+ "rhalf": {
+  "kind": "rhalf"
+ },
+ "cell_r12_t0.25": {
+  "kind": "guided",
+  "seed": "cell",
+  "r": 12,
+  "tau": 0.25
+ },
+ "cell_r12_t0.45": {
+  "kind": "guided",
+  "seed": "cell",
+  "r": 12,
+  "tau": 0.45
+ },
+ "ell2": {
+  "kind": "ellipse",
+  "p": 2
+ },
+ "cell_r4_t0.35": {
+  "kind": "guided",
+  "seed": "cell",
+  "r": 4,
+  "tau": 0.35
+ },
+ "a0_r12": {
+  "kind": "post",
+  "alpha": 0.0
+ }
+}

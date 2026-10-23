@@ -1,0 +1,90 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "cond0.5_cell_r12_t0.25": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "guided",
+   "seed": "cell",
+   "r": 12,
+   "tau": 0.25
+  }
+ },
+ "rhalf": {
+  "kind": "rhalf"
+ },
+ "rhalf_t0.25": {
+  "kind": "rhalf",
+  "tau": 0.25
+ },
+ "ell2": {
+  "kind": "ellipse",
+  "p": 2
+ },
+ "ell3": {
+  "kind": "ellipse",
+  "p": 3
+ },
+ "quant0.5": {
+  "kind": "quantile",
+  "f": 0.5
+ },
+ "quant0.65": {
+  "kind": "quantile",
+  "f": 0.65
+ },
+ "quant0.8": {
+  "kind": "quantile",
+  "f": 0.8
+ },
+ "cond0.4_ell2": {
+  "kind": "cond",
+  "theta": 0.4,
+  "alt": {
+   "kind": "ellipse",
+   "p": 2
+  }
+ },
+ "cond0.4_ell3": {
+  "kind": "cond",
+  "theta": 0.4,
+  "alt": {
+   "kind": "ellipse",
+   "p": 3
+  }
+ },
+ "cond0.4_quant0.65": {
+  "kind": "cond",
+  "theta": 0.4,
+  "alt": {
+   "kind": "quantile",
+   "f": 0.65
+  }
+ },
+ "cond0.5_ell2": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "ellipse",
+   "p": 2
+  }
+ },
+ "cond0.5_ell3": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "ellipse",
+   "p": 3
+  }
+ },
+ "cond0.5_quant0.65": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "quantile",
+   "f": 0.65
+  }
+ }
+}

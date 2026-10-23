@@ -1,0 +1,63 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "am_cell": {
+  "kind": "areamatch"
+ },
+ "am_q": {
+  "kind": "areamatch",
+  "source": "q"
+ },
+ "am_cell_0.25-0.45": {
+  "kind": "areamatch",
+  "lo": 0.25,
+  "hi": 0.45
+ },
+ "am_q_0.25-0.45": {
+  "kind": "areamatch",
+  "source": "q",
+  "lo": 0.25,
+  "hi": 0.45
+ },
+ "am_cell_0.3-0.4": {
+  "kind": "areamatch",
+  "lo": 0.3,
+  "hi": 0.4
+ },
+ "am_q_0.3-0.4": {
+  "kind": "areamatch",
+  "source": "q",
+  "lo": 0.3,
+  "hi": 0.4
+ },
+ "am_cell_0.25-0.4": {
+  "kind": "areamatch",
+  "lo": 0.25,
+  "hi": 0.4
+ },
+ "am_q_0.25-0.4": {
+  "kind": "areamatch",
+  "source": "q",
+  "lo": 0.25,
+  "hi": 0.4
+ },
+ "am_cell_g0.9_0.25-0.45": {
+  "kind": "areamatch",
+  "gain": 0.9,
+  "lo": 0.25,
+  "hi": 0.45
+ },
+ "am_cell_g1.1_0.25-0.45": {
+  "kind": "areamatch",
+  "gain": 1.1,
+  "lo": 0.25,
+  "hi": 0.45
+ },
+ "am_cell_g1.2_0.25-0.45": {
+  "kind": "areamatch",
+  "gain": 1.2,
+  "lo": 0.25,
+  "hi": 0.45
+ }
+}

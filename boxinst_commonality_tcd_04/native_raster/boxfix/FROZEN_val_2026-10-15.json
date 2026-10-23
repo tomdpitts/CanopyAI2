@@ -1,0 +1,24 @@
+{
+ "frozen": "2026-10-15, before any test evaluation",
+ "name": "boxfix_v1",
+ "variant": {
+  "r": "half",
+  "c_r": 0.4,
+  "c_tau": 0.3,
+  "knob": 0,
+  "se_p": 2.5
+ },
+ "meaning": "guided filter radius r=min(12,max(1,floor(0.4*box short side))), eps 1e-4, colour guide; threshold = 0.3 * max of filtered posterior inside box clip (absolute tau 0.35 never binds); intersect box clip and box-inscribed superellipse |2dx/w|^2.5+|2dy/h|^2.5<=1; masker knobs unchanged (npz 0.3/1.6)",
+ "selection": "max val mean IoU over sweeps v1-v8 (108 val tiles, 7032 valid crowns); pre-declared tie rule: prefer no fill/largest if within 0.0005 (fl variant 0.8196 vs chosen 0.8195)",
+ "val": {
+  "chosen": 0.8195,
+  "sam_zs_persub": 0.7973,
+  "deployed": 0.7481,
+  "ellipse_only_se2": 0.8018
+ },
+ "test_comparators": [
+  "deployed (parity vs gtbox_lace_guided_r2048.jsonl)",
+  "SAM 3 zs per-subtile (gtbox_sam_persub_tiles base_sub)",
+  "shape only se2.5 / se2 (no image)"
+ ]
+}

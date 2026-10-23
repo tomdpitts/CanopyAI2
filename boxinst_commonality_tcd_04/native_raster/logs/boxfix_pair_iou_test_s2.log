@@ -1,0 +1,99 @@
+{
+ "pair_preds": "boxinst_commonality_tcd_04/native_raster/preds_lace_s2_r2048_cgf_r12_tau035_guidedrun.json",
+ "arms": {
+  "lace": "boxinst_commonality_tcd_04/native_raster/preds_lace_s2_r2048_cgf_r12_tau035_guidedrun.json",
+  "sam3zs": "boxinst_commonality_tcd_04/native_raster/tierA/preds_a1_lace_s2_sam3zs_det_r2048.json"
+ },
+ "n_tiles": 366,
+ "n_pairs": 20145,
+ "strata": {
+  "all": {
+   "n": 20145,
+   "lace": {
+    "mean_iou": 0.7104,
+    "ge50": 0.9615,
+    "ge75": 0.4017,
+    "ge90": 0.0115
+   },
+   "sam3zs": {
+    "mean_iou": 0.7405,
+    "ge50": 0.978,
+    "ge75": 0.5105,
+    "ge90": 0.0371
+   },
+   "sam3zs_minus_lace": {
+    "mean": 0.0301,
+    "ci95_tile_boot": [
+     0.0276,
+     0.0331
+    ]
+   }
+  },
+  "small": {
+   "n": 5082,
+   "lace": {
+    "mean_iou": 0.6582,
+    "ge50": 0.9113,
+    "ge75": 0.2361,
+    "ge90": 0.0016
+   },
+   "sam3zs": {
+    "mean_iou": 0.7025,
+    "ge50": 0.964,
+    "ge75": 0.3597,
+    "ge90": 0.0079
+   },
+   "sam3zs_minus_lace": {
+    "mean": 0.0443,
+    "ci95_tile_boot": [
+     0.0385,
+     0.0511
+    ]
+   }
+  },
+  "mid": {
+   "n": 7353,
+   "lace": {
+    "mean_iou": 0.7109,
+    "ge50": 0.9656,
+    "ge75": 0.396,
+    "ge90": 0.0058
+   },
+   "sam3zs": {
+    "mean_iou": 0.7438,
+    "ge50": 0.9814,
+    "ge75": 0.5345,
+    "ge90": 0.0235
+   },
+   "sam3zs_minus_lace": {
+    "mean": 0.033,
+    "ci95_tile_boot": [
+     0.0307,
+     0.0354
+    ]
+   }
+  },
+  "large": {
+   "n": 7710,
+   "lace": {
+    "mean_iou": 0.7443,
+    "ge50": 0.9908,
+    "ge75": 0.5163,
+    "ge90": 0.0233
+   },
+   "sam3zs": {
+    "mean_iou": 0.7623,
+    "ge50": 0.9839,
+    "ge75": 0.587,
+    "ge90": 0.0693
+   },
+   "sam3zs_minus_lace": {
+    "mean": 0.018,
+    "ci95_tile_boot": [
+     0.0143,
+     0.0219
+    ]
+   }
+  }
+ }
+}

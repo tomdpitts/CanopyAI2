@@ -1,0 +1,72 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "rhalf": {
+  "kind": "rhalf"
+ },
+ "cond0.3_rhalf": {
+  "kind": "cond",
+  "theta": 0.3,
+  "alt": {
+   "kind": "rhalf"
+  }
+ },
+ "cond0.4_rhalf": {
+  "kind": "cond",
+  "theta": 0.4,
+  "alt": {
+   "kind": "rhalf"
+  }
+ },
+ "cond0.5_rhalf": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "rhalf"
+  }
+ },
+ "cond0.6_rhalf": {
+  "kind": "cond",
+  "theta": 0.6,
+  "alt": {
+   "kind": "rhalf"
+  }
+ },
+ "cond0.4_rhalf_t0.3": {
+  "kind": "cond",
+  "theta": 0.4,
+  "alt": {
+   "kind": "rhalf",
+   "tau": 0.3
+  }
+ },
+ "cond0.4_cell_r12_t0.25": {
+  "kind": "cond",
+  "theta": 0.4,
+  "alt": {
+   "kind": "guided",
+   "seed": "cell",
+   "r": 12,
+   "tau": 0.25
+  }
+ },
+ "cond0.5_rhalf_t0.3": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "rhalf",
+   "tau": 0.3
+  }
+ },
+ "cond0.5_cell_r12_t0.25": {
+  "kind": "cond",
+  "theta": 0.5,
+  "alt": {
+   "kind": "guided",
+   "seed": "cell",
+   "r": 12,
+   "tau": 0.25
+  }
+ }
+}

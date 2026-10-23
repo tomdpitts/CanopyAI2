@@ -1,0 +1,123 @@
+{
+ "spec": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.33
+  }
+ },
+ "name": "lace4px_g30",
+ "seeds": {
+  "0": {
+   "lace_new": {
+    "AP50": 0.6569,
+    "AP75": 0.1802,
+    "AP50_95": 0.2856,
+    "n_det": 159687
+   },
+   "sam_at_lace_rank": {
+    "AP50": 0.6653,
+    "AP75": 0.2397,
+    "AP50_95": 0.3114,
+    "n_det": 159687
+   },
+   "lace_deployed": {
+    "AP50": 0.6472,
+    "AP75": 0.1816,
+    "AP50_95": 0.2821,
+    "n_det": 159687
+   },
+   "AP50_minus_sam": -0.0084,
+   "AP50_minus_deployed": 0.0097,
+   "legacy_AP50": {
+    "lace_new": 0.6569,
+    "sam": 0.6653
+   },
+   "ci95_AP50_minus_sam_tile_boot_legacy": [
+    -0.0115,
+    -0.0037
+   ]
+  },
+  "1": {
+   "lace_new": {
+    "AP50": 0.6518,
+    "AP75": 0.156,
+    "AP50_95": 0.2722,
+    "n_det": 162017
+   },
+   "sam_at_lace_rank": {
+    "AP50": 0.661,
+    "AP75": 0.2194,
+    "AP50_95": 0.301,
+    "n_det": 162017
+   },
+   "lace_deployed": {
+    "AP50": 0.6444,
+    "AP75": 0.1619,
+    "AP50_95": 0.2722,
+    "n_det": 162017
+   },
+   "AP50_minus_sam": -0.0092,
+   "AP50_minus_deployed": 0.0074,
+   "legacy_AP50": {
+    "lace_new": 0.6518,
+    "sam": 0.661
+   },
+   "ci95_AP50_minus_sam_tile_boot_legacy": [
+    -0.0127,
+    -0.0041
+   ]
+  },
+  "2": {
+   "lace_new": {
+    "AP50": 0.6589,
+    "AP75": 0.1766,
+    "AP50_95": 0.2844,
+    "n_det": 177598
+   },
+   "sam_at_lace_rank": {
+    "AP50": 0.6657,
+    "AP75": 0.2327,
+    "AP50_95": 0.3084,
+    "n_det": 177598
+   },
+   "lace_deployed": {
+    "AP50": 0.6493,
+    "AP75": 0.1755,
+    "AP50_95": 0.2791,
+    "n_det": 177598
+   },
+   "AP50_minus_sam": -0.0068,
+   "AP50_minus_deployed": 0.0096,
+   "legacy_AP50": {
+    "lace_new": 0.6589,
+    "sam": 0.6657
+   },
+   "ci95_AP50_minus_sam_tile_boot_legacy": [
+    -0.0096,
+    -0.0017
+   ]
+  }
+ },
+ "band": {
+  "lace_new_AP50": [
+   0.6559,
+   0.0037
+  ],
+  "sam_AP50": [
+   0.664,
+   0.0026
+  ],
+  "paired_diff": [
+   -0.0081,
+   0.0012
+  ]
+ }
+}

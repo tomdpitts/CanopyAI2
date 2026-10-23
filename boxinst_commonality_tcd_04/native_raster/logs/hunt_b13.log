@@ -1,0 +1,666 @@
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: divide by zero encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: overflow encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:102: RuntimeWarning: invalid value encountered in matmul
+  z = (feat.reshape(feat.shape[0], -1).T.astype(np.float32) - self.mu) \
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: divide by zero encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: overflow encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:46: RuntimeWarning: invalid value encountered in matmul
+  lw = k * (z @ mm.C.T) + np.log((pis / psum).T + 1e-9)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: divide by zero encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: overflow encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:48: RuntimeWarning: invalid value encountered in matmul
+  SC += (pfg[:, None] * wk).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: divide by zero encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: overflow encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:50: RuntimeWarning: invalid value encountered in matmul
+  lb = np.log(mm.wbg)[None] + k * (z @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: divide by zero encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: overflow encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:51: RuntimeWarning: invalid value encountered in matmul
+  SB += ((1 - pfg)[:, None] * np.exp(lb - logsumexp(lb, 1, keepdims=True))).T @ z
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: divide by zero encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: overflow encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:53: RuntimeWarning: invalid value encountered in matmul
+  zr = zn[ring]; lb = np.log(mm.wbg)[None] + k * (zr @ mm.Gbg.T)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: divide by zero encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: overflow encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/tta.py:54: RuntimeWarning: invalid value encountered in matmul
+  SB += np.exp(lb - logsumexp(lb, 1, keepdims=True)).T @ zr
+  [b13_tta] 12/108 153s
+  [b13_tta] 24/108 244s
+  [b13_tta] 36/108 359s
+  [b13_tta] 48/108 461s
+  [b13_tta] 60/108 543s
+  [b13_tta] 72/108 619s
+  [b13_tta] 84/108 676s
+  [b13_tta] 96/108 788s
+  [b13_tta] 108/108 835s
+  deployed                           AP50 0.6636 (+0.0000) A 0.6699 B 0.6567  AP75 0.2171
+  tta_l50                            AP50 0.6613 (-0.0023) A 0.6680 B 0.6534  AP75 0.2102
+  tta_l200                           AP50 0.6631 (-0.0005) A 0.6696 B 0.6555  AP75 0.2141
+  tta_l1000                          AP50 0.6616 (-0.0020) A 0.6682 B 0.6540  AP75 0.2182
+  tta_l200_fgonly                    AP50 0.6598 (-0.0038) A 0.6636 B 0.6528  AP75 0.2097
+  tta_l200_it4                       AP50 0.6619 (-0.0017) A 0.6683 B 0.6545  AP75 0.2140
+  tta_l200_top100                    AP50 0.6640 (+0.0004) A 0.6708 B 0.6559  AP75 0.2181
+  tta_l200_rp0.4                     AP50 0.6689 (+0.0053) A 0.6736 B 0.6634  AP75 0.1969
+  SAM val ref AP50 0.6776 (A 0.6844, B 0.6721), AP75 0.2839

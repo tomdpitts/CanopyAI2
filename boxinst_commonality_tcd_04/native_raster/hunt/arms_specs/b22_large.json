@@ -1,0 +1,144 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "g30": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.33
+  }
+ },
+ "g30_La0.15": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "alpha": 0.15
+  }
+ },
+ "g30_La0.0": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "alpha": 0.0
+  }
+ },
+ "g30_Lk1.3": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "kappa": 1.3
+  }
+ },
+ "g30_Lc0.3": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.3
+  }
+ },
+ "g30_Lc0.28": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.28
+  }
+ },
+ "g30_La0.15_c0.3": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.3,
+   "alpha": 0.15
+  }
+ },
+ "g30_Lk1.3_c0.3": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "post4",
+   "c_peak": 0.3,
+   "kappa": 1.3
+  }
+ },
+ "g30_Lcl0.2": {
+  "kind": "size_gate",
+  "T": 30,
+  "small": {
+   "kind": "guided",
+   "seed": "px4",
+   "r": 12,
+   "c_peak": 0.33
+  },
+  "large": {
+   "kind": "shape",
+   "base": {
+    "kind": "post4",
+    "c_peak": 0.33
+   },
+   "ops": [
+    "close",
+    "fill"
+   ],
+   "c_close": 0.2
+  }
+ }
+}

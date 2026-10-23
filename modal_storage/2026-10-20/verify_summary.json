@@ -1,0 +1,55 @@
+{
+ "revision": "d97d4da0ebbb6e249ae95ac5e19656babd972eb2",
+ "datasets": "4.0.0",
+ "hf_rows": {
+  "train": 4169,
+  "test": 439
+ },
+ "local_tiles": 4608,
+ "local_ok": 4605,
+ "local_bad": [],
+ "local_unreadable": [
+  {
+   "tile": "train/tcd_tile_121",
+   "image_id": 0,
+   "hf_split": "train",
+   "sha_hf": "22ea32032f3916103f013ee806f904a18a32d0d3",
+   "wh_ok": true,
+   "ann_ok": true,
+   "local_unreadable": "UnidentifiedImageError(\"cannot identify image file '/Users/tompitts/dphil/CanopyAI2/data/tcd/train/tcd_tile_121.tif'\")",
+   "ok": null
+  },
+  {
+   "tile": "train/tcd_tile_1878",
+   "image_id": 1,
+   "hf_split": "train",
+   "sha_hf": "44a5ec3ac2f690ab9ddcc2a8976a35a24d4e030c",
+   "wh_ok": true,
+   "ann_ok": true,
+   "local_unreadable": "UnidentifiedImageError(\"cannot identify image file '/Users/tompitts/dphil/CanopyAI2/data/tcd/train/tcd_tile_1878.tif'\")",
+   "ok": null
+  },
+  {
+   "tile": "train/tcd_tile_231",
+   "image_id": 2,
+   "hf_split": "train",
+   "sha_hf": "40bc1c5c9f725ebc4cfc591ed4911a642c105762",
+   "wh_ok": true,
+   "ann_ok": true,
+   "local_unreadable": "UnidentifiedImageError(\"cannot identify image file '/Users/tompitts/dphil/CanopyAI2/data/tcd/train/tcd_tile_231.tif'\")",
+   "ok": null
+  }
+ ],
+ "manifests": {
+  "boxinst_commonality_tcd_04/modal_tcd_multiseed/phase4/manifest.json": {
+   "n": 40,
+   "ok": 40,
+   "fails": []
+  },
+  "boxinst_commonality_tcd_04/modal_sparse_tcd_multiseed/manifest_sparse.json": {
+   "n": 236,
+   "ok": 236,
+   "fails": []
+  }
+ }
+}

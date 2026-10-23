@@ -1,0 +1,130 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "sam": {
+  "kind": "sam"
+ },
+ "t0.2": {
+  "kind": "guided",
+  "seed": "cell",
+  "r": 12,
+  "tau": 0.2
+ },
+ "t0.25": {
+  "kind": "guided",
+  "seed": "cell",
+  "r": 12,
+  "tau": 0.25
+ },
+ "t0.3": {
+  "kind": "guided",
+  "seed": "cell",
+  "r": 12,
+  "tau": 0.3
+ },
+ "t0.4": {
+  "kind": "guided",
+  "seed": "cell",
+  "r": 12,
+  "tau": 0.4
+ },
+ "t0.45": {
+  "kind": "guided",
+  "seed": "cell",
+  "r": 12,
+  "tau": 0.45
+ },
+ "t0.5": {
+  "kind": "guided",
+  "seed": "cell",
+  "r": 12,
+  "tau": 0.5
+ },
+ "sel_otsu": {
+  "kind": "select",
+  "score": "otsu",
+  "taus": [
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4,
+   0.45,
+   0.5
+  ]
+ },
+ "sel_stab": {
+  "kind": "select",
+  "score": "stab",
+  "taus": [
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4,
+   0.45,
+   0.5
+  ]
+ },
+ "sel_edge": {
+  "kind": "select",
+  "score": "edge",
+  "taus": [
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4,
+   0.45,
+   0.5
+  ]
+ },
+ "sel_colour": {
+  "kind": "select",
+  "score": "colour",
+  "taus": [
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4,
+   0.45,
+   0.5
+  ]
+ },
+ "sel_stab_d0.1": {
+  "kind": "select",
+  "score": "stab",
+  "taus": [
+   0.2,
+   0.25,
+   0.3,
+   0.35,
+   0.4,
+   0.45,
+   0.5
+  ],
+  "d": 0.1
+ },
+ "sel_edge_narrow": {
+  "kind": "select",
+  "score": "edge",
+  "taus": [
+   0.25,
+   0.3,
+   0.35,
+   0.4
+  ]
+ },
+ "sel_colour_narrow": {
+  "kind": "select",
+  "score": "colour",
+  "taus": [
+   0.25,
+   0.3,
+   0.35,
+   0.4
+  ]
+ }
+}

@@ -1,0 +1,10 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Generating train split:   0%|          | 0/4169 [00:00<?, ? examples/s]Generating train split:   7%|▋         | 300/4169 [00:00<00:02, 1808.85 examples/s]Generating train split:  17%|█▋        | 696/4169 [00:00<00:01, 2314.14 examples/s]Generating train split:  31%|███       | 1292/4169 [00:00<00:01, 2852.40 examples/s]Generating train split:  45%|████▌     | 1888/4169 [00:00<00:00, 3184.10 examples/s]Generating train split:  60%|█████▉    | 2484/4169 [00:00<00:00, 3330.78 examples/s]Generating train split:  74%|███████▍  | 3079/4169 [00:00<00:00, 3390.60 examples/s]Generating train split:  88%|████████▊ | 3674/4169 [00:01<00:00, 3545.76 examples/s]Generating train split: 100%|██████████| 4169/4169 [00:01<00:00, 3792.34 examples/s]Generating train split: 100%|██████████| 4169/4169 [00:01<00:00, 3347.87 examples/s]
+Generating test split:   0%|          | 0/439 [00:00<?, ? examples/s]Generating test split:  68%|██████▊   | 300/439 [00:00<00:00, 2884.78 examples/s]Generating test split: 100%|██████████| 439/439 [00:00<00:00, 3592.32 examples/s]
+Traceback (most recent call last):
+  File "/Users/tompitts/dphil/CanopyAI2/modal_storage/2026-10-20/rebuild_hfdata.py", line 68, in <module>
+    rec["sha_local"] = sha(Image.open(f"{REPO}/data/tcd/{s}/{tid}.tif"))
+  File "/private/tmp/claude-501/-Users-tompitts-dphil-CanopyAI2/69d372d3-2f31-403d-aa0e-511c057faf5b/scratchpad/hfenv/lib/python3.10/site-packages/PIL/Image.py", line 3715, in open
+    raise UnidentifiedImageError(msg)
+PIL.UnidentifiedImageError: cannot identify image file '/Users/tompitts/dphil/CanopyAI2/data/tcd/train/tcd_tile_121.tif'
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.

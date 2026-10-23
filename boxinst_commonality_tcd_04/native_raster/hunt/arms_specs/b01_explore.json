@@ -1,0 +1,65 @@
+{
+ "deployed": {
+  "kind": "deployed"
+ },
+ "guided_cell_r12": {
+  "kind": "guided",
+  "seed": "cell"
+ },
+ "px_r0_t0.5": {
+  "kind": "guided",
+  "seed": "px",
+  "r": 0,
+  "tau": 0.5
+ },
+ "px_r0_t0.35": {
+  "kind": "guided",
+  "seed": "px",
+  "r": 0,
+  "tau": 0.35
+ },
+ "px_r4_t0.35": {
+  "kind": "guided",
+  "seed": "px",
+  "r": 4,
+  "tau": 0.35
+ },
+ "px_r12_t0.35": {
+  "kind": "guided",
+  "seed": "px",
+  "r": 12,
+  "tau": 0.35
+ },
+ "cem_cell_b1_g1": {
+  "kind": "colour_em",
+  "seed": "cell",
+  "beta": 1.0,
+  "gamma": 1.0
+ },
+ "cem_cell_b1_g0.5": {
+  "kind": "colour_em",
+  "seed": "cell",
+  "beta": 1.0,
+  "gamma": 0.5
+ },
+ "cem_cell_b1_g1_s1": {
+  "kind": "colour_em",
+  "seed": "cell",
+  "beta": 1.0,
+  "gamma": 1.0,
+  "sigma_s": 1.0
+ },
+ "cem_cell_pre12_b1_g0.5": {
+  "kind": "colour_em",
+  "seed": "cell",
+  "pre_r": 12,
+  "beta": 1.0,
+  "gamma": 0.5
+ },
+ "cem_px_b1_g0.5": {
+  "kind": "colour_em",
+  "seed": "px",
+  "beta": 1.0,
+  "gamma": 0.5
+ }
+}

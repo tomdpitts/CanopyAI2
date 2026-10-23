@@ -1,0 +1,482 @@
+[
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/1499",
+  "bytes": 7013883672,
+  "export": "teacher_s123_i1499.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/1999",
+  "bytes": 7013883672,
+  "export": "teacher_s123_i1999.pth",
+  "export_bytes": 1213029233,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/2499",
+  "bytes": 7013883672,
+  "export": "teacher_s123_i2499.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/2999",
+  "bytes": 7013883672,
+  "export": "teacher_s123_i2999.pth",
+  "export_bytes": 1213029233,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/3499",
+  "bytes": 7013883672,
+  "export": "teacher_s123_i3499.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/3999",
+  "bytes": 7013883672,
+  "export": "teacher_s123_i3999.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/4499",
+  "bytes": 7013883672,
+  "export": "teacher_s123_i4499.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/499",
+  "bytes": 7013883671,
+  "export": "teacher_s123_i499.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/4999",
+  "bytes": 7013883672,
+  "export": "teacher_s123_i4999.pth",
+  "export_bytes": 1213029233,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s123/ckpt/999",
+  "bytes": 7013883671,
+  "export": "teacher_s123_i999.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s124_p1k/ckpt/499",
+  "bytes": 7013883675,
+  "export": "teacher_s124_p1k_i499.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s124_p1k/ckpt/999",
+  "bytes": 7013883675,
+  "export": "teacher_s124_p1k_i999.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s317_p1k/ckpt/499",
+  "bytes": 7013883675,
+  "export": "teacher_s317_p1k_i499.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s317_p1k/ckpt/999",
+  "bytes": 7013883675,
+  "export": "teacher_s317_p1k_i999.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/1499",
+  "bytes": 7013883671,
+  "export": "teacher_s42_i1499.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/1999",
+  "bytes": 7013883671,
+  "export": "teacher_s42_i1999.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/2499",
+  "bytes": 7013883671,
+  "export": "teacher_s42_i2499.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/2999",
+  "bytes": 7013883671,
+  "export": "teacher_s42_i2999.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/3499",
+  "bytes": 7013883671,
+  "export": "teacher_s42_i3499.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/3999",
+  "bytes": 7013883671,
+  "export": "teacher_s42_i3999.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/4499",
+  "bytes": 7013883671,
+  "export": "teacher_s42_i4499.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/499",
+  "bytes": 7013883670,
+  "export": "teacher_s42_i499.pth",
+  "export_bytes": 1213028485,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/4999",
+  "bytes": 7013883671,
+  "export": "teacher_s42_i4999.pth",
+  "export_bytes": 1213028859,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42/ckpt/999",
+  "bytes": 7013883670,
+  "export": "teacher_s42_i999.pth",
+  "export_bytes": 1213028485,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/1499",
+  "bytes": 7013883676,
+  "export": "teacher_s42_shuf_i1499.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/1999",
+  "bytes": 7013883676,
+  "export": "teacher_s42_shuf_i1999.pth",
+  "export_bytes": 1213030793,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/2499",
+  "bytes": 7013883676,
+  "export": "teacher_s42_shuf_i2499.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/2999",
+  "bytes": 7013883676,
+  "export": "teacher_s42_shuf_i2999.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/3499",
+  "bytes": 7013883676,
+  "export": "teacher_s42_shuf_i3499.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/3999",
+  "bytes": 7013883676,
+  "export": "teacher_s42_shuf_i3999.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/4499",
+  "bytes": 7013883676,
+  "export": "teacher_s42_shuf_i4499.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/499",
+  "bytes": 7013883675,
+  "export": "teacher_s42_shuf_i499.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/4999",
+  "bytes": 7013883676,
+  "export": "teacher_s42_shuf_i4999.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s42_shuf/ckpt/999",
+  "bytes": 7013883675,
+  "export": "teacher_s42_shuf_i999.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s43_p1k/ckpt/499",
+  "bytes": 7013883674,
+  "export": "teacher_s43_p1k_i499.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s43_p1k/ckpt/999",
+  "bytes": 7013883674,
+  "export": "teacher_s43_p1k_i999.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s588_p1k/ckpt/499",
+  "bytes": 7013883675,
+  "export": "teacher_s588_p1k_i499.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s588_p1k/ckpt/999",
+  "bytes": 7013883675,
+  "export": "teacher_s588_p1k_i999.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s902_p1k/ckpt/499",
+  "bytes": 7013883675,
+  "export": "teacher_s902_p1k_i499.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-arid-vol",
+  "dir": "/out_s902_p1k/ckpt/999",
+  "bytes": 7013883675,
+  "export": "teacher_s902_p1k_i999.pth",
+  "export_bytes": 1213030355,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s101/ckpt/249",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s101_i249.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s101/ckpt/499",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s101_i499.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s101/ckpt/749",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s101_i749.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s101/ckpt/999",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s101_i999.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s201/ckpt/249",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s201_i249.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s201/ckpt/499",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s201_i499.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s201/ckpt/749",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s201_i749.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s201/ckpt/999",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s201_i999.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s301/ckpt/249",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s301_i249.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s301/ckpt/499",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s301_i499.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s301/ckpt/749",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s301_i749.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s301/ckpt/999",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s301_i999.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s401/ckpt/249",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s401_i249.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s401/ckpt/499",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s401_i499.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s401/ckpt/749",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s401_i749.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s401/ckpt/999",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s401_i999.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s501/ckpt/249",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s501_i249.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s501/ckpt/499",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s501_i499.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s501/ckpt/749",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s501_i749.pth",
+  "export_bytes": null,
+  "action": "KEEP_no_export"
+ },
+ {
+  "vol": "dinov3-dapt-v3-vol",
+  "dir": "/out_v3_s501/ckpt/999",
+  "bytes": 7013883674,
+  "export": "teacher_v3_s501_i999.pth",
+  "export_bytes": 1213029981,
+  "action": "delete"
+ }
+]

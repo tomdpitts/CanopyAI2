@@ -1,0 +1,89 @@
+{
+ "base": {},
+ "rhalf_c0.25": {
+  "r": "half",
+  "c_r": 0.25
+ },
+ "rhalf_c0.35": {
+  "r": "half",
+  "c_r": 0.35
+ },
+ "rhalf_c0.5": {
+  "r": "half",
+  "c_r": 0.5
+ },
+ "rhalf_c0.75": {
+  "r": "half",
+  "c_r": 0.75
+ },
+ "rhalf_c1.0": {
+  "r": "half",
+  "c_r": 1.0
+ },
+ "r4": {
+  "r": 4
+ },
+ "r8": {
+  "r": 8
+ },
+ "bilinear_tau035": {
+  "r": 0
+ },
+ "ctau0.5": {
+  "c_tau": 0.5
+ },
+ "ctau0.6": {
+  "c_tau": 0.6
+ },
+ "ctau0.7": {
+  "c_tau": 0.7
+ },
+ "rhalf_c0.35_ctau0.5": {
+  "r": "half",
+  "c_r": 0.35,
+  "c_tau": 0.5
+ },
+ "rhalf_c0.35_ctau0.6": {
+  "r": "half",
+  "c_r": 0.35,
+  "c_tau": 0.6
+ },
+ "rhalf_c0.35_ctau0.7": {
+  "r": "half",
+  "c_r": 0.35,
+  "c_tau": 0.7
+ },
+ "rhalf_c0.5_ctau0.5": {
+  "r": "half",
+  "c_r": 0.5,
+  "c_tau": 0.5
+ },
+ "rhalf_c0.5_ctau0.6": {
+  "r": "half",
+  "c_r": 0.5,
+  "c_tau": 0.6
+ },
+ "rhalf_c0.5_ctau0.7": {
+  "r": "half",
+  "c_r": 0.5,
+  "c_tau": 0.7
+ },
+ "knob1": {
+  "knob": 1
+ },
+ "elong_knob1": {
+  "knob_elong": 1
+ },
+ "knob2": {
+  "knob": 2
+ },
+ "elong_knob2": {
+  "knob_elong": 2
+ },
+ "knob3": {
+  "knob": 3
+ },
+ "elong_knob3": {
+  "knob_elong": 3
+ }
+}

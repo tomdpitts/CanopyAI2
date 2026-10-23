@@ -1,0 +1,27 @@
+{
+ "oracle_lace2": [
+  "deployed",
+  "cell_r12_t0.25"
+ ],
+ "oracle_lace_all": [
+  "deployed",
+  "rhalf",
+  "cell_r12_t0.25",
+  "cell_r12_t0.45",
+  "cell_r4_t0.35",
+  "a0_r12"
+ ],
+ "oracle_lace_all+ell": [
+  "deployed",
+  "rhalf",
+  "cell_r12_t0.25",
+  "cell_r12_t0.45",
+  "cell_r4_t0.35",
+  "a0_r12",
+  "ell2"
+ ],
+ "oracle_dep_sam": [
+  "deployed",
+  "sam"
+ ]
+}
