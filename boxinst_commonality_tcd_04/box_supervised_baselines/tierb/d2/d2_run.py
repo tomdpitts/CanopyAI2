@@ -11,7 +11,8 @@ volume is written atomically; every stage resumes from what is already there.
 TRAINING (crops.py has the arithmetic): released optimiser and LR at batch 16 = 8 GPUs x 2, the
 same per-GPU batch as the release (the mask branch uses plain BN, so this matters); 36 epochs of
 198 iterations; decays at 5,544 / 6,600; every scheduled decay happens; NO early stopping and no
-wall-clock stop. Initialised from the released COCO box-supervised checkpoint; only the 80-way
+wall-clock stop. [SUPERSEDED by TIERB.md section 0: convergence-driven plateau schedule (plateau.py),
+min 4 / max 20 epochs, two x0.1 drops; the 36-epoch text above is the original plan.] Initialised from the released COCO box-supervised checkpoint; only the 80-way
 classifier is re-initialised (asserted). Iteration-based loss warm-ups restart at our scaled
 lengths (the checkpoint's `_iter` buffers are reset on a fresh start, never on resume).
 
@@ -23,8 +24,8 @@ resume trap, PLAN.md section 5d).
 INFERENCE (both geometries, val-selected primary; TIERB.md section 4): native 0.1 m/px; 'whole' =
 the 2048 tile in one pass (pre-NMS top-k 4000/level = the released 1000 per ~1 MP, area-scaled);
 'sub' = 3x3 1024 subtiles at stride 512 (released 1000/level), stitched later by the seam-fixed
-stitcher. Both: post-NMS cap 600 (protocol), FCOS candidate threshold 0.0025 on cls*ctr so the
-reported score sqrt(cls*ctr) is floored at the protocol's 0.05, NMS 0.6 (released), mask
+stitcher. Both: post-NMS cap 600 (protocol), FCOS candidate threshold on cls*ctr = PRE_THRESH below
+(BoxInst 0.0025, BoxTeacher 6.25e-6) so every detection that can REPORT >= 0.05 is produced, NMS 0.6 (released), mask
 threshold 0.5 (released).
 """
 from __future__ import annotations
@@ -68,6 +69,20 @@ CAPS = {
     "sub": {"pre_nms_topk_test": 1000, "post_nms_topk_test": 600},
 }
 RELEASED_TEST = {"pre_nms_thresh_test": 0.05, "pre_nms_topk_test": 1000, "post_nms_topk_test": 100}
+# BoxTeacher's TEACHER post-NMS cap is removed (Tom 2026-10-27, TIERB.md section 00). The released
+# teacher runs in train mode (TEACHER_EVAL False) and keeps at most POST_NMS_TOPK_TRAIN = 100
+# detections per crop for pseudo-masks; 2.7% of our 1024 crops hold more crowns (4.5% of training
+# boxes would get no pseudo-mask). FCOSOutputs applies the cap only when post_nms_topk > 0, so 0 = no
+# cap. Teacher only; the student, the released pre-NMS top-k and thresholds are unchanged.
+TEACHER_UNCAPPED = {"post_nms_topk_train": 0, "post_nms_topk_test": 0}
+
+
+def uncap_teacher(model, method):
+    if method != "boxteacher":
+        return
+    fo = unwrap(model).teacher.proposal_generator.fcos_outputs
+    for k, v in TEACHER_UNCAPPED.items():
+        setattr(fo, k, v)
 
 
 class TierBStopped(Exception):
@@ -170,10 +185,12 @@ def caps(model, method, geometry):
 
 
 def check_released_test_attrs(model, method):
+    """Released test attributes everywhere, except the teacher's removed post-NMS cap (TEACHER_UNCAPPED)."""
     m = unwrap(model)
     nets = [m.teacher, m.student] if method == "boxteacher" else [m]
     for n in nets:
-        for k, v in RELEASED_TEST.items():
+        want = dict(RELEASED_TEST, **(TEACHER_UNCAPPED if method == "boxteacher" and n is m.teacher else {}))
+        for k, v in want.items():
             assert getattr(n.proposal_generator.fcos_outputs, k) == v, (k, v)
 
 
@@ -615,6 +632,7 @@ def train_worker(args):
         logging.getLogger("tierb").info(f"[init] fresh start; loss warm-up _iter {before} -> 0")
     else:
         logging.getLogger("tierb").info(f"[init] RESUMED at iter {trainer.start_iter}")
+    uncap_teacher(trainer.model, args.method)                          # every launch, fresh or resumed
     check_released_test_attrs(trainer.model, args.method)
     try:
         trainer.train()

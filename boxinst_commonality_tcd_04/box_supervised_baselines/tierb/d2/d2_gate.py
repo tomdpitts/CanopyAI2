@@ -79,6 +79,7 @@ def gate(args):
     ck["G3_ckpt"] = R.ckpt_key_check(model, cfg.MODEL.WEIGHTS, method)
     DetectionCheckpointer(model).load(cfg.MODEL.WEIGHTS)
     ck["G3_ckpt"]["iter_buffers_before_reset"] = R.reset_loss_warmups(model, method)
+    R.uncap_teacher(model, method)                                       # as in training (TIERB.md section 00)
     R.check_released_test_attrs(model, method)
     ck["G3_sched"] = sched
     ck["G3_cfg"] = {"lr": cfg.SOLVER.BASE_LR, "opt": cfg.SOLVER.get("OPTIMIZER", "SGD(default)"),

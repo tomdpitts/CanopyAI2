@@ -30,6 +30,9 @@
 - **LACE references re-pointed 2026-10-27 (Tom):** `lace_gate.py` now holds the lace4px_simple values (test s′ 0.6545 / 0.2803, seed 0 0.6556 / 0.2844; sparse 0.6785 / 0.3192, seed 0 0.6903 / 0.3258; GT boxes 0.7861). B3's paired GT-box diff reads `native_raster/hunt/test/gtbox4_lace4px_simple_percrown.jsonl`, which is added to the image.
 - **LACE is only ever compared with its full s′ ranking (Tom).** `evaluate` asserts that every reference is a `product*` row. B3 masks on LACE boxes are ranked by the detector score s only. MAL's labeler has no confidence output; its published AP comes from phase-2 detectors trained on its pseudo-masks. So s is its native ranking, and no ranking is invented for it (a maskness variant was considered and rejected 2026-10-27 as arbitrary). The B3 s row is gated against LACE s′.
 - **MAL min_obj_size 0 (Tom 2026-10-27; was 920).** B3 trains on every crown box LACE trains on: 54,184 of 54,191, with only MAL's own w, h > 2 px rule applied (verified against MAL's `datasets/voc.py` filter at the pinned commit). Gate G2 now expects 54,184. Released purpose: MAL is an offline COCO auto-labeler that crops each box and resizes it to 512² for the ViT. Tiny boxes upscaled about 10× carry little detail and give noisy MIL/CRF training signal, so the authors train on objects above 2,048 px² (about 45×45 px) and still label all objects at inference. Our median crown (about 36 px) is below that floor, a domain mismatch that favours LACE and should be stated if B3 is reported. Epoch length rises about 1.73× (warm-ups scale automatically), so B3's estimate rises to about $12–50.
+- **BoxTeacher teacher post-NMS cap removed (Tom 2026-10-27).** The released teacher runs in train mode and keeps at most `POST_NMS_TOPK_TRAIN = 100` detections per 1024 crop for pseudo-masks. On our crops that leaves 4.5% of training boxes with no possible pseudo-mask (2.7% of crops exceed 100). `d2_run.uncap_teacher` sets the teacher's `post_nms_topk_train` / `_test` to 0, which FCOS treats as no cap; it is applied at every launch and in the gate, and `check_released_test_attrs` expects it. Teacher only: the student, pre-NMS top-k (1,000) and thresholds stay as released. No other baseline has a teacher, so this is disclosed as a deviation. A cap of 150, protocol density, was considered; it would leave 1.2%.
+- **Pre-NMS top-k kept as released (Tom 2026-10-27):** 1,000 per level per 1024 subtile (the released value and AdelaiDet's default), 4,000 per whole tile (area-scaled). This is the same rule as Restor (restore the framework default, go no further).
+- **Score floor:** B2 is scored at the 0.05 floor like the other baselines; add a floor-0 sensitivity row from the saved preds (CPU) after the run.
 - **Unchanged:** the plateau schedule, budget stop, `lace_gate.py` auto-STOP if a baseline clearly beats LACE, A100 hardware (consistent with all other OAM-TCD compute), and sparse-236 deferred.
 
 ---
@@ -61,7 +64,7 @@ Code: this directory. Local gates already run and passed: `gates/`. Modal: `tier
 - **Warm-ups** keep their released fraction of the released 1x length (12 epochs = 2,376 iterations): LR warm-up 26 iterations; BoxInst pairwise and BoxTeacher pseudo-mask warm-ups 264.
 - **B3 boxes:**
   - GT boxes for val, test and sparse (the main mask-vs-mask comparison, paired against LACE per crown);
-  - LACE **seed 0's stored** boxes, gated against LACE seed 0's stored det-score row (AP50 0.6101 / AP50:95 0.2579).
+  - LACE **seed 0's stored** boxes, gated against LACE seed 0's full s′ row (lace4px_simple, AP50 0.6556 / AP50:95 0.2844; §00. Was the 8 px det-score row 0.6101 / 0.2579).
   - LACE is never re-run. LACE s1/s2, SelvaBox and LACE-sparse boxes are deferred (each ~$1–3 later).
 - **Sparse-236 for B1/B2 is deferred.** The best checkpoints are kept; it can be predicted later for about $2–4 each.
 - **Hardware:** A100-40GB (gate G5 proves the real per-GPU batch fits). 8-GPU containers request 24 cores / 128 GiB.
@@ -227,7 +230,7 @@ This uses val masks, as LACE's inference knobs did (tab:masker) and as MAL itsel
 
 **Finalisation** is CPU-only with the frozen code:
 - `score_coco` for the box sets, ranked by the detector's own score;
-- `gtbox_lib` per-crown IoU on GT boxes, paired against LACE's stored per-crown IoUs (`gtbox_lace_guided_r2048.jsonl`) with A4's tile bootstrap;
+- `gtbox_lib` per-crown IoU on GT boxes, paired against LACE's stored per-crown IoUs (`native_raster/hunt/test/gtbox4_lace4px_simple_percrown.jsonl`, 4 px masker, §00; was `gtbox_lace_guided_r2048.jsonl`) with A4's tile bootstrap;
 - A4's SAM numbers carried as reference.
 
 ## 6. Every departure from the released code
@@ -278,11 +281,13 @@ This is checked on **every** reported row: both geometries, test and sparse. Eac
 
 | comparison | LACE AP50 / AP50:95 | trigger at AP50 |
 |---|---|---|
-| B1/B2 test (product) | 0.6470 / 0.2778 | 0.657 |
-| B1/B2 sparse (product) | 0.6775 / 0.3215 | 0.6875 |
-| B3 on LACE seed-0 boxes, test (detector score; vs LACE seed 0, §0) | 0.6101 / 0.2579 | 0.6201 |
-| B3 on LACE boxes, sparse | 0.6410 / 0.2946 | 0.651 |
-| B3 on GT boxes (test, 366 tiles) | — | paired mean IoU diff ≥ +0.010 with CI above 0 (LACE 0.7477) |
+| B2 test (LACE own s′, 3-seed mean) | 0.6545 / 0.2803 | 0.6645 |
+| B2 sparse (LACE own s′) | 0.6785 / 0.3192 | 0.6885 |
+| B3 on LACE seed-0 boxes, test (B3 ranked by s; vs LACE seed 0 s′, §00) | 0.6556 / 0.2844 | 0.6656 |
+| B3 on LACE seed-0 boxes, sparse (deferred) | 0.6903 / 0.3258 | 0.7003 |
+| B3 on GT boxes (test, 366 tiles) | — | paired mean IoU diff ≥ +0.010 with CI above 0 (LACE 0.7861) |
+
+(Re-pointed 2026-10-27 to lace4px_simple; the 8 px values were 0.6470 / 0.2778, 0.6775 / 0.3215, 0.6101 / 0.2579, 0.6410 / 0.2946, GT 0.7477. LACE is always compared at its full s′, §00.)
 
 If any row triggers, `finalize` does two things:
 - it sets the global STOP flag, so running jobs checkpoint and exit and nothing new starts;
