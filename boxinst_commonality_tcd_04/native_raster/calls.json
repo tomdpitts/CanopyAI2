@@ -452,5 +452,17 @@
     "fn": "assemble",
     "kwargs": {},
     "note": "assemble SelvaBox 2048 bench (439/439)"
+  },
+  {
+    "call_id": "fc-01M5XCK31BK2D5TW47B91DG2D6",
+    "app": "tcd04-boxinstseg",
+    "fn": "predict",
+    "kwargs": {
+      "method": "box2mask",
+      "seed": 0,
+      "split": "sparse",
+      "backbone": "swin-l"
+    },
+    "note": "Box2Mask Swin-L s0 on sparse-236 (2124 subtiles), A100, 2026-10-27, adoption Phase A extension (Tom go)"
   }
 ]

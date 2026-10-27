@@ -1,5 +1,9 @@
 # OAM-TCD 439 — frozen COCOeval protocol
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 pycocotools COCOeval · 439 whole 2048² tiles · masks at 512² · maxDets 600 · score floor 0.05 · iouThrs linspace(0.5,0.95,10) · canopy as `iscrowd`.
 See ../PROTOCOL_439.md.
 

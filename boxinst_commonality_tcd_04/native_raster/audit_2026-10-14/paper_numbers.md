@@ -1,5 +1,9 @@
 # Paper-number audit — paper.tex (working copy) vs scored sources (2026-10-14)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Scope: every number in `ablation/results/paper.tex` (working copy, 1264 lines), rendered text only (comments listed separately). Read-only; no re-scoring. Recomputation = means and ddof=1 sds from stored JSON keys, GT counts from `test_gt.json` / `data/tcd_sparse/sparse_gt.json`, per-tile det counts from `scored_*.json:areas`.
 
 Abbreviations: `NR/` = `boxinst_commonality_tcd_04/native_raster/`; `AR/` = `boxinst_commonality_tcd_04/ablation/results_r2048/`; `crowd` = key `canopy_neutral_crowd`; `G{s}` = `NR/scored_lace_s{s}_r2048_cgf_r12_tau035_guidedrun.json`; `D{s}` = `NR/scored_lace_s{s}_r2048_cgf_r12_tau035_detscore.json`; `SG{s}` / `SD{s}` = sparse equivalents; EXT = external literature/config fact, not a scored quantity (not audited beyond internal consistency).

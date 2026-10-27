@@ -1,0 +1,56 @@
+{
+ "spec": {
+  "kind": "post4",
+  "c_peak": 0.33,
+  "rank": "own4",
+  "alpha": 0.0,
+  "kappa": 1.6
+ },
+ "name": "lace4px_simple_a0_k16",
+ "split": "test",
+ "files": [
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_s0_r2048_lace4px_simple_a0_k16.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_s1_r2048_lace4px_simple_a0_k16.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_s2_r2048_lace4px_simple_a0_k16.json"
+ ],
+ "rank_own": {
+  "per_seed": [
+   {
+    "AP50": 0.6354,
+    "AP75": 0.1506,
+    "AP50_95": 0.2656,
+    "box_AP50": 0.6647
+   },
+   {
+    "AP50": 0.6323,
+    "AP75": 0.1367,
+    "AP50_95": 0.2588,
+    "box_AP50": 0.6422
+   },
+   {
+    "AP50": 0.6331,
+    "AP75": 0.1482,
+    "AP50_95": 0.2634,
+    "box_AP50": 0.6573
+   }
+  ],
+  "band": {
+   "AP50": [
+    0.6336,
+    0.0016
+   ],
+   "AP75": [
+    0.1452,
+    0.0074
+   ],
+   "AP50_95": [
+    0.2626,
+    0.0035
+   ],
+   "box_AP50": [
+    0.6547,
+    0.0115
+   ]
+  }
+ }
+}

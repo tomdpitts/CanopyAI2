@@ -1,0 +1,9 @@
+{
+ "frozen": "2026-10-26, after val batch b28_simple_rank, before any test evaluation of this spec",
+ "name": "lace4px_simple",
+ "spec": {"kind": "post4", "c_peak": 0.33, "rank": "own4"},
+ "meaning": "Same masker npz/knobs (alpha 0.3, kappa 1.6) on REAL 4 px DINOv3-L24 features (16-phase, feat16p.py): 4 px cell posterior bilinear to 2048, colour-guided filter r12 / eps 1e-4, tau = 0.33 x max of the filtered posterior in the box clip, mask clipped to the box. No per-pixel E-step, no size gate. Ranking s' = s x mean|2r-1| x mean(r) with r = the 4 px cell posterior of the box (the same posterior that makes the mask).",
+ "selection": "Not a score selection: chosen for simplicity (Tom, 2026-10-26: drop the ad hoc per-pixel step / 30 px gate; rank by the mask's own posterior). Pre-written rule (README L31): freeze simple_rank4 if >= simple_rank8 - 0.002 on val AP50.",
+ "val": {"AP50": 0.6752, "A": 0.6764, "B": 0.6714, "AP75": 0.2181, "simple_rank8": 0.6759, "cand1_rank8": 0.6787, "deployed": 0.6636, "sam_zs_at_lace_rank": 0.6776},
+ "test_plan": "439 tiles x 3 detector seeds, published LACE boxes + raw detector scores, s' recomputed from the 4 px posterior; score_coco (2048, maxDets 600, floor 0, canopy crowd). Compare to SAM 3 zs at its OWN ranking sqrt(s*SAM) 0.6479 +- 0.0028 (A1) and LACE deployed 0.6470 +- 0.0025; also report cand1 0.6559 +- 0.0037. One test run; report whatever it gives."
+}

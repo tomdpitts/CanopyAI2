@@ -887,10 +887,10 @@ def predict(method: str = "box2mask", seed: int = 0, score_thr: float = 0.05,
     files = sorted(os.listdir(img_dir))
     out_dir = f"{OUT}/pred_raw_{tag}_s{seed}_{split}"
     os.makedirs(out_dir, exist_ok=True)
-    expected = 3951 if split == "test" else None
+    expected = {"test": 3951, "sparse": 2124}.get(split)       # 439x9 / 236x9 (sparse: tcd_sparse slice)
     if expected:
         assert len(files) == expected, \
-            f"{len(files)} subtiles, expected {expected} (439x9) -- coverage must be complete"
+            f"{len(files)} subtiles, expected {expected} -- coverage must be complete"
 
     # Box2Mask emits at most `num_queries` instances per subtile -- an ARCHITECTURAL cap baked
     # into the checkpoint's learned query embeddings, not a configurable budget like Restor's
@@ -898,7 +898,16 @@ def predict(method: str = "box2mask", seed: int = 0, score_thr: float = 0.05,
     # often it actually binds above the protocol score floor, so the row can be read honestly.
     cap = getattr(getattr(model, "panoptic_head", None), "num_queries", 0)
     t0, tot, saturated = time.time(), 0, 0
+    n_skip = 0
     for k, fn in enumerate(files):
+        tid, oy, ox = fn[:-4].rsplit("_", 2)      # tile ids contain underscores
+        op = os.path.join(out_dir, f"Prediction_{tid}_{oy}_{ox}.json")
+        if os.path.exists(op):                    # RESUME: subtiles already written (and committed) are kept
+            try:
+                insts = _json.load(open(op)); tot += len(insts); saturated += int(cap and len(insts) >= cap)
+                n_skip += 1; continue
+            except Exception:
+                pass                              # truncated by a kill mid-write -> redo
         res = inference_detector(model, os.path.join(img_dir, fn))
         bbox_res, segm_res = res if isinstance(res, tuple) else (res, None)
         bboxes = bbox_res[0]                      # single class
@@ -916,11 +925,11 @@ def predict(method: str = "box2mask", seed: int = 0, score_thr: float = 0.05,
                                            "counts": counts.decode("ascii")
                                            if isinstance(counts, bytes) else counts}})
         saturated += int(cap and len(insts) >= cap)
-        tid, oy, ox = fn[:-4].rsplit("_", 2)      # tile ids contain underscores
-        _json.dump(insts, open(os.path.join(out_dir, f"Prediction_{tid}_{oy}_{ox}.json"), "w"))
+        _json.dump(insts, open(op + ".tmp", "w")); os.replace(op + ".tmp", op)
         tot += len(insts)
         if (k + 1) % 250 == 0 or k + 1 == len(files):
-            print(f"  [predict] {k+1}/{len(files)} subtiles · {tot} instances", flush=True)
+            vol.commit()                          # checkpoint: a dropout loses at most 250 subtiles
+            print(f"  [predict] {k+1}/{len(files)} subtiles · {tot} instances ({n_skip} resumed)", flush=True)
     vol.commit()
     mins = (time.time() - t0) / 60
     print(f"[predict] {len(files)} subtiles · {tot} instances in {mins:.1f} min -> {out_dir}",

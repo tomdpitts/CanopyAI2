@@ -1,0 +1,97 @@
+{
+ "spec": {
+  "kind": "post4",
+  "c_peak": 0.33,
+  "rank": "own4"
+ },
+ "name": "lace4px_simple",
+ "split": "sparse",
+ "files": [
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_sparse_s0_r2048_lace4px_simple.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_sparse_s1_r2048_lace4px_simple.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_sparse_s2_r2048_lace4px_simple.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_sparse_s0_r2048_lace4px_simple_detscore.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_sparse_s1_r2048_lace4px_simple_detscore.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_sparse_s2_r2048_lace4px_simple_detscore.json"
+ ],
+ "rank_own": {
+  "per_seed": [
+   {
+    "AP50": 0.6903,
+    "AP75": 0.2625,
+    "AP50_95": 0.3258,
+    "box_AP50": 0.6872
+   },
+   {
+    "AP50": 0.6694,
+    "AP75": 0.235,
+    "AP50_95": 0.3089,
+    "box_AP50": 0.6571
+   },
+   {
+    "AP50": 0.6757,
+    "AP75": 0.2656,
+    "AP50_95": 0.3229,
+    "box_AP50": 0.6789
+   }
+  ],
+  "band": {
+   "AP50": [
+    0.6785,
+    0.0107
+   ],
+   "AP75": [
+    0.2544,
+    0.0168
+   ],
+   "AP50_95": [
+    0.3192,
+    0.009
+   ],
+   "box_AP50": [
+    0.6744,
+    0.0155
+   ]
+  }
+ },
+ "rank_detscore": {
+  "per_seed": [
+   {
+    "AP50": 0.6617,
+    "AP75": 0.2313,
+    "AP50_95": 0.3028,
+    "box_AP50": 0.6591
+   },
+   {
+    "AP50": 0.6391,
+    "AP75": 0.2047,
+    "AP50_95": 0.2867,
+    "box_AP50": 0.6264
+   },
+   {
+    "AP50": 0.6425,
+    "AP75": 0.2357,
+    "AP50_95": 0.3001,
+    "box_AP50": 0.6476
+   }
+  ],
+  "band": {
+   "AP50": [
+    0.6478,
+    0.0122
+   ],
+   "AP75": [
+    0.2239,
+    0.0168
+   ],
+   "AP50_95": [
+    0.2965,
+    0.0086
+   ],
+   "box_AP50": [
+    0.6444,
+    0.0166
+   ]
+  }
+ }
+}

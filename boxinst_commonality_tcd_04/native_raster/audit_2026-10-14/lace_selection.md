@@ -1,5 +1,9 @@
 # Audit 2026-10-14: LACE selection history, test leakage, disclosure items
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Auditor scope: what was chosen on val vs test, and when; leakage; disclosure items for Tom. Read-only. Nothing in the repo was changed. Scratch check script: `/private/tmp/claude-501/.../scratchpad/disjoint.py` (not kept).
 Paths are relative to `boxinst_commonality_tcd_04/` unless they start with `/`. Times are local (+1100) unless marked UTC.
 

@@ -14,6 +14,8 @@ tables use the full ranked list). Thresholds are cached in qualitative_threshold
 
 Usage: .venv/bin/python boxinst_commonality_tcd_04/ablation/results/figs/make_qualitative.py --set tcd439
 env overrides: TILES=180,122,...  CROP_PX=768  SUFFIX=_x
+  LACE_PREDS=<path relative to native_raster/> replaces the LACE file; thresholds then go to
+  qualitative_thresholds_<set><SUFFIX>.json (baseline thresholds copied from the main file, LACE recomputed).
 """
 import argparse, json, os
 import numpy as np
@@ -151,12 +153,19 @@ def main():
     suffix = os.environ.get("SUFFIX", "")
     per_row = cfg["per_row"]
     models = cfg["models"]
+    if os.environ.get("LACE_PREDS"):
+        assert suffix, "LACE_PREDS needs a SUFFIX (never overwrite the paper figure)"
+        models = [(lab, os.environ["LACE_PREDS"] if lab.startswith("LACE") else f) for lab, f in models]
 
     gt = json.load(open(cfg["gt"]))
     preds = {lab: json.load(open(os.path.join(NR, f)))["preds"] for lab, f in models}
 
     thr_path = os.path.join(OUT, f"qualitative_thresholds_{a.set}.json")
     thr = json.load(open(thr_path)) if os.path.exists(thr_path) else {}
+    if os.environ.get("LACE_PREDS"):
+        thr_path = os.path.join(OUT, f"qualitative_thresholds_{a.set}{suffix}.json")
+        thr = json.load(open(thr_path)) if os.path.exists(thr_path) else \
+            {k: v for k, v in thr.items() if not k.startswith("LACE")}
     for lab, _ in models:
         if lab not in thr:
             th, f1, c = best_f1_threshold(gt, preds[lab])

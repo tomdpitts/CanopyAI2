@@ -1,6 +1,35 @@
 # Box-supervised baselines — plan & handover
 
-> **Status 2026-10-23 (supersedes the 2026-09-02 status and the 512-raster numbers in §2–§5d):** the paper is re-based to the native 2048 raster. Seam-fixed 2048 rows (`../native_raster/NATIVE_RASTER.md` seam-fix table): Box2Mask Swin-L 0.589, R-50 0.451 mask AP50; LACE 0.647 ± 0.003. Current work: §13 (Tier A done incl. A5/A6, Tier B set up in `tierb/TIERB.md`, Tier C undecided). LACE vs SAM 3 zero-shot on LACE boxes: §13a.
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> **CURRENT HEADLINE NUMBERS (2026-10-27)** — single source of truth: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md) (generated + asserted by `results_439/build_table1_current.py`). **Any 439 / sparse236 test number elsewhere in this file that disagrees with this box is SUPERSEDED** (512 raster, pre-seam-fix baselines, or the 8 px masker).
+
+#### Table 1 — OAM-TCD 439 test (canopy-neutral, 2048², maxDets 600)
+
+| Method | Supervision | Images | AP50 | AP50:95 | Box AP50 |
+|---|---|---|---|---|---|
+| Restor Mask R-CNN | masks | 4169 | 0.648 | 0.333 | 0.665 |
+| Detectree2 | masks | 900 | 0.630 | 0.310 | 0.651 |
+| SelvaBox -> SAM 3 (FT) | box+SAM | 3024 | 0.598 | 0.221 | 0.767 |
+| Box2Mask Swin-L | box | 900 | 0.589 | 0.245 | 0.620 |
+| Box2Mask R-50 | box | 900 | 0.451 | 0.165 | 0.512 |
+| LACE detector -> SAM 3 zs, 3 seeds | box+SAM | 900 | 0.648 ± 0.003 | 0.301 ± 0.003 | 0.651 ± 0.009 |
+| LACE (ours), 3 seeds | box | 900 | 0.655 ± 0.004 | 0.280 ± 0.006 | 0.666 ± 0.011 |
+
+- LACE → SAM 3 zs: same LACE boxes, SAM 3 **zero-shot** masks, SAM's own ranking √(s·SAM). Box AP50 differs from LACE's because the ranking differs.
+- SelvaBox → SAM 3 uses the SelvaMask **fine-tuned** SAM 3 (`CanopyRS/sam3-multi-selvabox-selvamask-FT`), not zero-shot.
+- LACE = `lace4px_simple` 4 px masker (Tom's preferred masker 2026-10-26). paper.tex tab:oamtcd439 updated to these rows 2026-10-27; paper.tex PROSE (abstract etc., 0.647) and tab:sparse236 LACE row (8 px: 0.678 / 0.322 / 0.678) NOT yet updated.
+- ± = sd over 3 detector seeds, ddof 1. Baselines are single runs. 3 dp, round half up (5 rounds up); full precision in TABLE1_CURRENT.json.
+
+#### tab:sparse236 — sparse-canopy holdout (236 tiles, same protocol)
+
+| Method | Supervision | Images | AP50 | AP50:95 | Box AP50 |
+|---|---|---|---|---|---|
+| Detectree2 | masks | 900 | 0.636 | 0.353 | 0.644 |
+| Box2Mask Swin-L | box | 900 | 0.604 | 0.262 | 0.627 |
+| LACE (ours), 3 seeds | box | 900 | 0.678 ± 0.011 | 0.319 ± 0.009 | 0.674 ± 0.016 |
+<!-- TABLE1_CURRENT:end -->
+
+> **Status 2026-10-23 (supersedes the 2026-09-02 status and the 512-raster numbers in §2–§5d):** the paper is re-based to the native 2048 raster. Seam-fixed 2048 rows (`../native_raster/NATIVE_RASTER.md` seam-fix table): Box2Mask Swin-L 0.589, R-50 0.451 mask AP50; LACE 4 px masker: `lace4px_g30` 0.656 ± 0.004 and the simpler `lace4px_simple` (no per-pixel step, own-posterior ranking; 2026-10-26) 0.655 ± 0.004 (§13a) — neither yet in paper.tex, which still carries the deployed 8 px masker's 0.647 ± 0.003. Current work: §13 (Tier A done incl. A5/A6, Tier B set up in `tierb/TIERB.md`, Tier C undecided). LACE vs SAM 3 zero-shot on LACE boxes: §13a.
 
 **Status 2026-09-02.** Step 2 (GT-box bake-off) is DONE and written into the paper. Step 3 is
 **COMPLETE for Box2Mask.** The row is scored, in `tab:oamtcd439` and in
@@ -697,9 +726,13 @@ product ranking (same convention as LACE's published rows). Mask AP50 / AP50:95;
 
 **A1 reading (LACE boxes, mask AP50, fair rankings).** Deployed LACE 0.647 ± 0.003 ties SAM 3 zero-shot with its own ranking √(s·SAM) 0.648 ± 0.003; SAM wins AP50:95 (0.301 vs 0.278). At matched detector-score ranking SAM leads 0.633 vs 0.614.
 
-**LACE vs SAM 3 zero-shot — post-A1 masker work (2026-10-15/16; not pre-registered here, frozen on val before test).** `../native_raster/hunt/README.md` L30: candidate `lace4px_g30` (same masker npz/knobs on real 4 px DINOv3-L24 features, per-pixel E-step for boxes < 30 px, τ = 0.33·box peak) on LACE boxes, 439 test tiles × 3 seeds: **0.656 ± 0.004 AP50 vs SAM 3 zs own ranking 0.648 ± 0.003, +0.008 ± 0.004, positive on all 3 seeds**; AP50:95 0.281 ± 0.007 vs 0.301 (SAM wins by 0.017–0.025 every seed). Val→test shrinkage +0.015 → +0.009 vs deployed (selection over ~170 val arms). SAM masks ranked by LACE's product (0.664) is NOT a SAM baseline (Tom, 2026-10-16): a SAM pipeline has no LACE posterior. GT boxes: a val-chosen render (`../native_raster/boxfix/README.md`) reaches 0.813 mean IoU vs SAM 3 zs 0.789 but does not transfer to detections; not deployed.
+**LACE vs SAM 3 zero-shot — post-A1 masker work (2026-10-15/16; not pre-registered here, frozen on val before test).** `../native_raster/hunt/README.md` L30: candidate `lace4px_g30` (same masker npz/knobs on real 4 px DINOv3-L24 features, per-pixel E-step for boxes < 30 px, τ = 0.33·box peak) on LACE boxes, 439 test tiles × 3 seeds: **0.656 ± 0.004 AP50 vs SAM 3 zs own ranking 0.648 ± 0.003, +0.008 ± 0.004, positive on all 3 seeds**; AP50:95 0.281 ± 0.007 vs 0.301 (SAM wins by 0.017–0.025 every seed). Val→test shrinkage +0.015 → +0.009 vs deployed (selection over ~170 val arms). SAM masks ranked by LACE's product (0.664) is NOT a SAM baseline (Tom, 2026-10-16): a SAM pipeline has no LACE posterior. **Simple variant (2026-10-26, `hunt/README.md` L31–L32):** `lace4px_simple` (no per-pixel E-step / size gate; s′ from its own 4 px posterior), frozen on val by a pre-written rule, tested once: 0.655 ± 0.004 AP50 vs SAM 3 zs own ranking 0.648 ± 0.003, +0.007 ± 0.004, positive on all 3 seeds; AP50:95 0.280 ± 0.006 (SAM 0.301). GT boxes: a val-chosen render (`../native_raster/boxfix/README.md`) reaches 0.813 mean IoU vs SAM 3 zs 0.789 but does not transfer to detections; not deployed.
 
 **Status:** full-set, parity-checked; A1 scored 2026-10-15. The strongest competitor (SelvaBox per-subtile SAM) is still provisional pending A100.
+
+**2026-10-27 Tier B scope (Tom):** B2 BoxTeacher first, then B3 MAL; B1 BoxInst not planned (BoxTeacher extends BoxInst and beats BoxInst and DiscoBox on COCO; revisit B1 only if B2 lands close to LACE). Estimate ~$35–80, ~3–6 h, unmeasured until the smokes. Governing text: `tierb/TIERB.md` §00. `tierb_modal.PLAN` reordered (B2 → B3, B1 removed) 2026-10-27; B3's LACE references still the 8 px masker.
+
+**2026-10-27:** Box2Mask Swin-L run on sparse-236 (Modal A100, same s0 checkpoint, seam-fixed): 0.6044 / 0.2618 / box 0.6265 — row added to tab:sparse236 and tab:scorer (record: `native_raster/NATIVE_RASTER.md`, last section). lace4px_simple adoption into paper.tex in progress (`native_raster/hunt/ADOPT_4PX_PROMPT_2026-10-23.md`).
 
 ### A5 / A6 — where is LACE's masker competitive with SAM 3? (PRE-REGISTERED 2026-10-15, before any stratified number was computed; approved by Tom)
 **A5 — stratified A4 (full test set, GT boxes, no new inference).** Inputs: per-crown IoUs already on disk (LACE deployed guided render; SAM 3 zero-shot and FT, per-subtile placement; `audit_2026-10-14/selvabox_evidence/gtbox_sam_persub*`). Valid crowns only (25,692). Strata, ALL reported:

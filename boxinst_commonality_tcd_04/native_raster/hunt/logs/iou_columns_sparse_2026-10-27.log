@@ -1,0 +1,28 @@
+[iou_columns_sparse] {'LACE s0 (product)': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/preds_lace_sparse_s0_r2048_lace4px_simple.json', 'LACE s1 (product)': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/preds_lace_sparse_s1_r2048_lace4px_simple.json', 'LACE s2 (product)': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/preds_lace_sparse_s2_r2048_lace4px_simple.json', 'DetecTree2 s0': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/seamfix/preds_dt2_sparse_s0v2_r2048_seamfix.json'}
+[strata] LACE s0 (product): 12105 matched
+[strata] LACE s1 (product): 11830 matched
+[strata] LACE s2 (product): 12134 matched
+[strata] DetecTree2 s0: 12503 matched
+[strata] common subset (matched by ALL 4 rows): 10229 crowns
+
+=== COMMON SUBSET -- the 10229 crowns EVERY row found (paired) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU           |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+-----------------------------------------------------------------------------------------------------------------------------------
+LACE s0 (product) |   0.6127 (964)   |  0.6979 (2407)   |  0.7651 (3699)   |  0.8169 (2741)   |   0.8507 (418)   |  0.7523 (10229) 
+LACE s1 (product) |  0.6201 (1213)   |  0.6972 (2597)   |  0.7653 (3527)   |  0.8179 (2505)   |   0.8526 (387)   |  0.7470 (10229) 
+LACE s2 (product) |   0.6074 (809)   |  0.6899 (2240)   |  0.7629 (3726)   |  0.8151 (2962)   |   0.8487 (492)   |  0.7538 (10229) 
+DetecTree2 s0     |   0.5754 (691)   |  0.6787 (1438)   |  0.7668 (2897)   |  0.8380 (3852)   |  0.8825 (1351)   |  0.7836 (10229) 
+mean box IoU: LACE s0 (product)=0.7421  LACE s1 (product)=0.7323  LACE s2 (product)=0.7502  DetecTree2 s0=0.7854
+
+=== ALL MATCHES (confounded: rows match different crowns) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU           |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+-----------------------------------------------------------------------------------------------------------------------------------
+LACE s0 (product) |  0.5980 (1734)   |  0.6882 (2944)   |  0.7605 (4101)   |  0.8137 (2894)   |   0.8484 (432)   |  0.7355 (12105) 
+LACE s1 (product) |  0.6035 (1874)   |  0.6891 (3045)   |  0.7607 (3860)   |  0.8149 (2649)   |   0.8515 (402)   |  0.7326 (11830) 
+LACE s2 (product) |  0.5895 (1641)   |  0.6818 (2778)   |  0.7583 (4112)   |  0.8125 (3096)   |   0.8477 (507)   |  0.7355 (12134) 
+DetecTree2 s0     |  0.5702 (1175)   |  0.6745 (2004)   |  0.7636 (3494)   |  0.8358 (4330)   |  0.8811 (1500)   |  0.7703 (12503) 
+mean box IoU: LACE s0 (product)=0.7272  LACE s1 (product)=0.7206  LACE s2 (product)=0.7328  DetecTree2 s0=0.7725
+
+-> boxinst_commonality_tcd_04/ablation/results_r2048/box_iou_strata_sparse236_lace4px_simple_r2048.json

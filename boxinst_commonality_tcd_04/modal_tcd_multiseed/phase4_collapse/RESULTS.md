@@ -1,5 +1,9 @@
 # `phase4_collapse` — results
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Prototype-collapse investigation for the LACE box-to-mask module. Every number below is measured on the **108-tile validation split** with **detector seed 0** unless stated otherwise; the 439-tile test split is untouched by this folder. Masker fits use 120 training tiles (boxes only, no crown polygons). Bands are sample standard deviation (`ddof=1`).
 
 Two mechanisms are varied throughout and must not be conflated:

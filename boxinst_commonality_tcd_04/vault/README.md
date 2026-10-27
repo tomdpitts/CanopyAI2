@@ -1,5 +1,9 @@
 # vault — frozen backup of the 0.504 mask-mAP50 model
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Read-only backup of the exact artifacts behind the headline result, kept here so a
 stray training/eval run in `../artifacts/` can never overwrite them. **Do not train
 or write into this folder.** Integrity: see `SHA256SUMS.txt` (`shasum -a 256 -c

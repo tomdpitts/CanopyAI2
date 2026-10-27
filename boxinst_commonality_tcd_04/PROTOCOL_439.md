@@ -1,5 +1,34 @@
 # OAM-TCD 439 re-evaluation protocol (Table 1)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> **CURRENT HEADLINE NUMBERS (2026-10-27)** — single source of truth: [`TABLE1_CURRENT.md`](results_439/TABLE1_CURRENT.md) (generated + asserted by `results_439/build_table1_current.py`). **Any 439 / sparse236 test number elsewhere in this file that disagrees with this box is SUPERSEDED** (512 raster, pre-seam-fix baselines, or the 8 px masker).
+
+#### Table 1 — OAM-TCD 439 test (canopy-neutral, 2048², maxDets 600)
+
+| Method | Supervision | Images | AP50 | AP50:95 | Box AP50 |
+|---|---|---|---|---|---|
+| Restor Mask R-CNN | masks | 4169 | 0.648 | 0.333 | 0.665 |
+| Detectree2 | masks | 900 | 0.630 | 0.310 | 0.651 |
+| SelvaBox -> SAM 3 (FT) | box+SAM | 3024 | 0.598 | 0.221 | 0.767 |
+| Box2Mask Swin-L | box | 900 | 0.589 | 0.245 | 0.620 |
+| Box2Mask R-50 | box | 900 | 0.451 | 0.165 | 0.512 |
+| LACE detector -> SAM 3 zs, 3 seeds | box+SAM | 900 | 0.648 ± 0.003 | 0.301 ± 0.003 | 0.651 ± 0.009 |
+| LACE (ours), 3 seeds | box | 900 | 0.655 ± 0.004 | 0.280 ± 0.006 | 0.666 ± 0.011 |
+
+- LACE → SAM 3 zs: same LACE boxes, SAM 3 **zero-shot** masks, SAM's own ranking √(s·SAM). Box AP50 differs from LACE's because the ranking differs.
+- SelvaBox → SAM 3 uses the SelvaMask **fine-tuned** SAM 3 (`CanopyRS/sam3-multi-selvabox-selvamask-FT`), not zero-shot.
+- LACE = `lace4px_simple` 4 px masker (Tom's preferred masker 2026-10-26). paper.tex tab:oamtcd439 updated to these rows 2026-10-27; paper.tex PROSE (abstract etc., 0.647) and tab:sparse236 LACE row (8 px: 0.678 / 0.322 / 0.678) NOT yet updated.
+- ± = sd over 3 detector seeds, ddof 1. Baselines are single runs. 3 dp, round half up (5 rounds up); full precision in TABLE1_CURRENT.json.
+
+#### tab:sparse236 — sparse-canopy holdout (236 tiles, same protocol)
+
+| Method | Supervision | Images | AP50 | AP50:95 | Box AP50 |
+|---|---|---|---|---|---|
+| Detectree2 | masks | 900 | 0.636 | 0.353 | 0.644 |
+| Box2Mask Swin-L | box | 900 | 0.604 | 0.262 | 0.627 |
+| LACE (ours), 3 seeds | box | 900 | 0.678 ± 0.011 | 0.319 ± 0.009 | 0.674 ± 0.016 |
+<!-- TABLE1_CURRENT:end -->
+
 ## Results
 
 Every row was produced and scored **by us** under one frozen protocol — no figure here is

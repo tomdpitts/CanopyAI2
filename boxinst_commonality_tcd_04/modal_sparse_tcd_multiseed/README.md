@@ -1,5 +1,9 @@
 # `modal_sparse_tcd_multiseed` — zero-shot eval on unseen open-canopy TCD
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 **Question.** The settled phase-4 model scores mask mAP50 **0.630 ± 0.005** on the official 439 — a
 cohort ~80% closed-canopy forest, matching its 900 training tiles. What does the *same, unmodified*
 model do on **open canopy** (savanna, grassland, shrubland, desert) it has never seen?

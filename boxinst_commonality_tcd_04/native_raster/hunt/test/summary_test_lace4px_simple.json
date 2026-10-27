@@ -1,0 +1,97 @@
+{
+ "spec": {
+  "kind": "post4",
+  "c_peak": 0.33,
+  "rank": "own4"
+ },
+ "name": "lace4px_simple",
+ "split": "test",
+ "files": [
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_s0_r2048_lace4px_simple.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_s1_r2048_lace4px_simple.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_s2_r2048_lace4px_simple.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_s0_r2048_lace4px_simple_detscore.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_s1_r2048_lace4px_simple_detscore.json",
+  "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/scored_lace_s2_r2048_lace4px_simple_detscore.json"
+ ],
+ "rank_own": {
+  "per_seed": [
+   {
+    "AP50": 0.6556,
+    "AP75": 0.1814,
+    "AP50_95": 0.2844,
+    "box_AP50": 0.6748
+   },
+   {
+    "AP50": 0.6503,
+    "AP75": 0.1587,
+    "AP50_95": 0.2729,
+    "box_AP50": 0.6535
+   },
+   {
+    "AP50": 0.6576,
+    "AP75": 0.1762,
+    "AP50_95": 0.2837,
+    "box_AP50": 0.6708
+   }
+  ],
+  "band": {
+   "AP50": [
+    0.6545,
+    0.0038
+   ],
+   "AP75": [
+    0.1721,
+    0.0119
+   ],
+   "AP50_95": [
+    0.2803,
+    0.0064
+   ],
+   "box_AP50": [
+    0.6664,
+    0.0113
+   ]
+  }
+ },
+ "rank_detscore": {
+  "per_seed": [
+   {
+    "AP50": 0.6206,
+    "AP75": 0.1602,
+    "AP50_95": 0.2638,
+    "box_AP50": 0.6452
+   },
+   {
+    "AP50": 0.6243,
+    "AP75": 0.1433,
+    "AP50_95": 0.2561,
+    "box_AP50": 0.6306
+   },
+   {
+    "AP50": 0.6263,
+    "AP75": 0.1564,
+    "AP50_95": 0.2628,
+    "box_AP50": 0.6425
+   }
+  ],
+  "band": {
+   "AP50": [
+    0.6237,
+    0.0029
+   ],
+   "AP75": [
+    0.1533,
+    0.0089
+   ],
+   "AP50_95": [
+    0.2609,
+    0.0042
+   ],
+   "box_AP50": [
+    0.6394,
+    0.0078
+   ]
+  }
+ }
+}

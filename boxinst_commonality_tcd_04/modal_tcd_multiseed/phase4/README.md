@@ -1,5 +1,9 @@
 # 4-phase real-8px L24 — TCD instance seg (Modal A100)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 > ## ⭐ HEADLINE (2026-08-28) — every baseline re-run by us, one frozen scorer
 > **LACE + posterior-product confidence, 3 seeds: OAM-TCD 439 canopy-neutral mask AP50 =
 > 0.6625 ± 0.0012; held-out sparse 236 = 0.6913 ± 0.0095 (converged DetecTree2 0.6118).**

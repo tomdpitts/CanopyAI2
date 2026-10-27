@@ -1,5 +1,34 @@
 # Native-raster campaign — closing the 512² objection and two config debts
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> **CURRENT HEADLINE NUMBERS (2026-10-27)** — single source of truth: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md) (generated + asserted by `results_439/build_table1_current.py`). **Any 439 / sparse236 test number elsewhere in this file that disagrees with this box is SUPERSEDED** (512 raster, pre-seam-fix baselines, or the 8 px masker).
+
+#### Table 1 — OAM-TCD 439 test (canopy-neutral, 2048², maxDets 600)
+
+| Method | Supervision | Images | AP50 | AP50:95 | Box AP50 |
+|---|---|---|---|---|---|
+| Restor Mask R-CNN | masks | 4169 | 0.648 | 0.333 | 0.665 |
+| Detectree2 | masks | 900 | 0.630 | 0.310 | 0.651 |
+| SelvaBox -> SAM 3 (FT) | box+SAM | 3024 | 0.598 | 0.221 | 0.767 |
+| Box2Mask Swin-L | box | 900 | 0.589 | 0.245 | 0.620 |
+| Box2Mask R-50 | box | 900 | 0.451 | 0.165 | 0.512 |
+| LACE detector -> SAM 3 zs, 3 seeds | box+SAM | 900 | 0.648 ± 0.003 | 0.301 ± 0.003 | 0.651 ± 0.009 |
+| LACE (ours), 3 seeds | box | 900 | 0.655 ± 0.004 | 0.280 ± 0.006 | 0.666 ± 0.011 |
+
+- LACE → SAM 3 zs: same LACE boxes, SAM 3 **zero-shot** masks, SAM's own ranking √(s·SAM). Box AP50 differs from LACE's because the ranking differs.
+- SelvaBox → SAM 3 uses the SelvaMask **fine-tuned** SAM 3 (`CanopyRS/sam3-multi-selvabox-selvamask-FT`), not zero-shot.
+- LACE = `lace4px_simple` 4 px masker (Tom's preferred masker 2026-10-26). paper.tex tab:oamtcd439 updated to these rows 2026-10-27; paper.tex PROSE (abstract etc., 0.647) and tab:sparse236 LACE row (8 px: 0.678 / 0.322 / 0.678) NOT yet updated.
+- ± = sd over 3 detector seeds, ddof 1. Baselines are single runs. 3 dp, round half up (5 rounds up); full precision in TABLE1_CURRENT.json.
+
+#### tab:sparse236 — sparse-canopy holdout (236 tiles, same protocol)
+
+| Method | Supervision | Images | AP50 | AP50:95 | Box AP50 |
+|---|---|---|---|---|---|
+| Detectree2 | masks | 900 | 0.636 | 0.353 | 0.644 |
+| Box2Mask Swin-L | box | 900 | 0.604 | 0.262 | 0.627 |
+| LACE (ours), 3 seeds | box | 900 | 0.678 ± 0.011 | 0.319 ± 0.009 | 0.674 ± 0.016 |
+<!-- TABLE1_CURRENT:end -->
+
 **Started 2026-09-04.** One campaign, so that no row is re-run twice.
 
 ## The question
@@ -1012,3 +1041,17 @@ Files: `tierA/summary_tierA.json`, `tierA/scored_*.json`; index `RESULTS_INDEX_2
 | hybrid: SAM 3 masks ranked by LACE s′ (not a SAM pipeline) | 0.6640 ± 0.0026 | — |
 
 cand1 − SAM 3 (own ranking) = +0.0080 ± 0.0040 AP50, positive on all 3 seeds on the official 439-tile test set; SAM wins AP50:95 by 0.017–0.025. Flip TTA considered and abandoned.
+
+**Simple variant `lace4px_simple` (2026-10-26; `hunt/README.md` L31–L32):** cand1 without the per-pixel E-step / 30 px gate, ranked by s′ from its OWN 4 px posterior (4 px cell posterior → guided r12 → τ = 0.33·box peak). Frozen on val by a pre-written rule (val 0.6752 vs 0.6759 with the 8 px s′), tested once: **0.6545 ± 0.0038 AP50** (0.6556 / 0.6503 / 0.6576), AP50:95 0.2803 ± 0.0064, box AP50 0.6664 ± 0.0113. vs SAM 3 zs own ranking: **+0.0066 ± 0.0041, positive on all 3 seeds**; SAM wins AP50:95 by 0.018–0.024. vs cand1 −0.0014. Control: local s′ recomputation reproduces the published (Modal) deployed AP to 4 dp on all seeds (`hunt/test/rank_precision_control.json`).
+
+### RESULT — Box2Mask Swin-L on the sparse-236 slice (2026-10-27, Tom's go)
+
+Modal A100, `box_supervised_baselines/boxinstseg_modal.py::predict --split sparse --backbone swin-l` (deployed + spawned via `native_raster/detach.py`; call `fc-01M5XCK31BK2D5TW47B91DG2D6`, 29.4 min, 2,124 subtiles = 236 × 9 already on `tcd-detectree2-vol:data/sparse/images` from the Detectree2 sparse run). Same s0 checkpoint as the 439 row (`best_bbox_mAP_50_iter_23422.pth`, val box AP50 0.596, selected by recorded score). `predict` gained per-subtile resume + `vol.commit()` every 250 subtiles and a 2,124 coverage assert for `sparse` (test path unchanged). Raw output `tcd04-baselines-vol:boxinst/pred_raw_box2mask_swin-l_s0_sparse/` (144,317 instances; 20.2 % of subtiles at the 100-query cap vs 28.8 % on the 439), copied same-session to `feat_cache/b2m_raw/swinl_sparse/`. Stitched with the seam-fixed rule exactly as the 439 rows (`run_stitch_seam --edge_px 10 --min_score 0.05`, GT `data/tcd_sparse/sparse_gt.json`) → `seamfix/preds_box2mask_swinl_sparse_s0_r2048_seamfix.json` (+ `.jsonl`); scored as the Detectree2 sparse row (2048, maxDets 600, floor 0.05, canopy crowd) → `seamfix/scored_box2mask_swinl_sparse_s0_r2048_seamfix.json`; log `logs/b2m_swinl_sparse_stitch_score.log`. No published reference exists to gate against; the stitch/score code is the one gated on the 439.
+
+| sparse-236 | mask AP50 | AP50:95 | box AP50 | dets |
+|---|---|---|---|---|
+| Detectree2 (s0v2, seam-fixed) | 0.6362 | 0.3532 | 0.6444 | 87,962 |
+| **Box2Mask Swin-L (s0, seam-fixed)** | **0.6044** | 0.2618 | 0.6265 | 59,003 |
+| LACE lace4px_simple (3 seeds) | 0.6785 ± 0.0107 | 0.3192 ± 0.0090 | 0.6744 ± 0.0155 | |
+
+Swin-L rises from 0.589 (439) to 0.604, as Detectree2 and LACE also do. Added to `results_439/build_table1_current.py` (TABLE1_CURRENT rebuilt, mark_superseded re-run) and paper.tex tab:sparse236 (row + caption "Detectree2 and Box2Mask are single seed" + note) and tab:scorer sparse block.

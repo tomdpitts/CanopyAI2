@@ -1,5 +1,9 @@
 # Box2Mask baseline audit (R-50, Swin-L), 2026-10-14
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Scope: the Box2Mask-T rows (R-50, Swin-L). The stitcher seam/dedup is excluded because it is audited separately. Read-only: no Modal job was launched, and no existing file was modified.
 
 Path abbreviations: `M` = `box_supervised_baselines/boxinstseg_modal.py`, `P` = `box_supervised_baselines/PLAN.md`, `T` = `ablation/results/paper.tex`, `EV` = `native_raster/audit_2026-10-14/box2mask_evidence/`. The configs on the run volume (`tcd04-baselines-vol:boxinst/{box2mask_s0,box2mask_swin-l_s0}/config.py`) and the R-50 run log were pulled into `EV` read-only so the evidence persists. Released sources were fetched 2026-10-14 from `LiWentomng/BoxInstSeg@main`: `configs/box2mask/box2mask_r50_lsj_8x2_50e_coco.py` (B-R50), `box2mask_swin-t-p4-w7-224_lsj_8x2_50e_coco.py` (B-SwT), `box2mask_swin-l-p4-w12-384-lsj_8x1_50e_coco.py` (B-SwL), `mmdet/models/seg_heads/panoptic_fusion_heads/maskformer_fusion_head.py` (B-FH) and the README model zoo (B-RM). No copy of BoxInstSeg is vendored locally (a filesystem search found nothing).

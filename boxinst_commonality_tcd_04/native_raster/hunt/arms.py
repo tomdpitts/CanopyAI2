@@ -48,6 +48,9 @@ def _tile(t):
         g = feat.shape[-1]; zn = m.project(feat); del feat
         ctx.update(zn=zn, g=g, Z=zn.reshape(g, g, -1), boxes=bx, scores=np.asarray(src["scores_product"]))
         ctx["cell_rgb"] = None
+        if any(s.get("guide") == "wrong" for s in _W["arms"].values()):   # control: RGB of the next val tile (sorted)
+            order = sorted(_W["gtc"]); other = order[(order.index(t) + 1) % len(order)]
+            ctx["rgbf_wrong"] = _W["GV"].load_rgb_verified(other, _W["man"]).astype(np.float32) / 255.0
         z4 = f"{FC}/hunt_z4p_val/{t}.npy"
         if os.path.exists(z4):
             ctx.update(m4=_W["m4"], zn4=np.load(z4).astype(np.float32).reshape(-1, 128), g4=512, PL4=_W["PL4"])
@@ -56,9 +59,24 @@ def _tile(t):
             ctx["sam"] = json.load(open(f"{FC}/hunt_sam_val_dets/{t}.json"))["masks_rle"]
     masks = {a: [] for a in _W["arms"]}
     comp = {a: [] for a, spec in _W["arms"].items() if "compete" in spec}   # (win, mask window, strength window)
+    # optional per-arm ranking (spec "rank"): "own8" = s*bimod*pfg_mean from the 8 px cell posterior (must reproduce
+    # scores_product), "own4" = the same product from the 4 px cell posterior (m4, alpha/kappa as the arm). Default:
+    # the published scores_product.
+    s_raw = np.asarray(src["scores_s"], np.float64)
+    rank = {a: [] for a, spec in _W["arms"].items() if spec.get("rank")}
     for i, b in enumerate(bx):
         clip, prob, r = GA._prob(m, ctx["zn"], ctx["g"], b, GA.ALPHA, GA.KAPPA)
         det = {"i": i, "box": b, "clip": clip, "prob": prob, "r": r, "cache": {}}
+        for a in rank:
+            spec = _W["arms"][a]
+            if spec["rank"] == "own8":
+                rr = r
+            else:
+                key = ("prob4", spec.get("alpha", 0.3), spec.get("kappa", 1.6))
+                if key not in det["cache"]:
+                    det["cache"][key] = GA._prob(_W["m4"], ctx["zn4"], ctx["g4"], b, key[1], key[2])
+                rr = det["cache"][key][2]
+            rank[a].append(round(float(s_raw[i] * np.abs(2 * rr - 1).mean() * rr.mean()), 8))
         for a, spec in _W["arms"].items():
             mk = R.RENDER[spec["kind"]](ctx, det, spec)
             if a in comp:
@@ -94,7 +112,8 @@ def _tile(t):
         best = np.stack([st[a][0].max(1) if st[a][0].shape[1] else np.zeros(len(bx)) for a in members]).argmax(0)
         st[name] = (np.stack([st[members[k]][0][i] for i, k in enumerate(best)]) if st[members[0]][0].shape[1] else st[members[0]][0],
                     np.array([st[members[k]][1][i] for i, k in enumerate(best)], bool))
-    return t, st, src["scores_product"]
+    sc = {a: rank.get(a, src["scores_product"]) for a in st}
+    return t, st, sc
 
 
 def main():
@@ -118,11 +137,16 @@ def main():
     n_gt = {t: len(gtc[t]["trees"]) for t in tids}
     summ = {"batch": batch, "n_tiles": len(tids), "arms": arms, "AP50": {}, "AP75": {}}
     for a in list(arms) + list(oracles):
-        S = [res[t][0][a] for t in tids]; SC = [res[t][1] for t in tids]
+        S = [res[t][0][a] for t in tids]; SC = [res[t][1][a] for t in tids]
         summ["AP50"][a] = F.ap_halves(tids, S, SC, n_gt); summ["AP75"][a] = F.ap_halves(tids, S, SC, n_gt, .75)
     if ntiles is None:
         summ["gate_deployed"] = {"got": summ["AP50"]["deployed"]["all"], "ref": 0.6636, "pass": abs(summ["AP50"]["deployed"]["all"] - 0.6636) < 1e-4}
-    summ["sam_val_ref"] = {"AP50": {"all": 0.6776, "A": 0.6844, "B": 0.6721}, "AP75": {"all": 0.2839}}
+    for a, spec in arms.items():                             # GATE: own8 ranking must reproduce the published product
+        if spec.get("rank") == "own8":
+            dmax = max((float(np.max(np.abs(np.asarray(res[t][1][a]) - np.asarray(res[t][1]["deployed"])))) for t in tids if len(res[t][1][a])), default=0.0)
+            summ[f"gate_rank_own8__{a}"] = {"max_abs_score_diff": dmax, "pass": dmax <= 1e-8}
+            print(f"  GATE rank own8 [{a}] max |score - scores_product| = {dmax:.2e} -> {'PASS' if dmax <= 1e-8 else 'FAIL'}", flush=True)
+    summ["sam_val_ref"] ={"AP50": {"all": 0.6776, "A": 0.6844, "B": 0.6721}, "AP75": {"all": 0.2839}}
     json.dump(summ, open(out, "w"), indent=1)
     summ["oracles"] = oracles
     d = summ["AP50"]["deployed"]

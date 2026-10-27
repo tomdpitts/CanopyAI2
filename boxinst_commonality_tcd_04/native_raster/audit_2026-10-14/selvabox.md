@@ -1,5 +1,9 @@
 # Audit: SelvaBox -> SAM 3 baseline vs released CanopyRS (2026-10-14)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Scope: `native_raster/selvabox_native_modal.py` (Table 1 row, 0.571 / 0.211 / box 0.732), `selvabox_baseline/selvabox_modal.py`, `box_supervised_baselines/gtbox_modal.py` (tab:gtbox FT arm, same SAM path), paper.tex. Seam/edge-band fix is owned elsewhere and, per coordinator 2026-10-14, is done (cull at interior subtile edges only); the released rule is documented below for the record. All numbers here are on the pre-seam-fix preds.
 
 Released sources (cloned read-only to scratch, not the repo):

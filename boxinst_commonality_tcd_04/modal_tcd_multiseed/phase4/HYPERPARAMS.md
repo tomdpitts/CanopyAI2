@@ -1,5 +1,9 @@
 # Hyperparameters — LACE and all baselines
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Every value below is transcribed from source, with the defining file and symbol named. Where a
 default is overridden at a call site, both are given. **If you change a number here, change it in the
 code — this file is a record, not a config.**

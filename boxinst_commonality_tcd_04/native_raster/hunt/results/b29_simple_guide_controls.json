@@ -1,0 +1,101 @@
+{
+ "batch": "b29_simple_guide_controls",
+ "n_tiles": 108,
+ "arms": {
+  "deployed": {
+   "kind": "deployed"
+  },
+  "simple_rank4": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "rank": "own4"
+  },
+  "simple_rank4_bilinear": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "rank": "own4",
+   "r": 0
+  },
+  "simple_rank4_blur": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "rank": "own4",
+   "guide": "blur"
+  },
+  "simple_rank4_wrongtile": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "rank": "own4",
+   "guide": "wrong"
+  }
+ },
+ "AP50": {
+  "deployed": {
+   "all": 0.6636,
+   "A": 0.6699,
+   "B": 0.6567
+  },
+  "simple_rank4": {
+   "all": 0.6752,
+   "A": 0.6764,
+   "B": 0.6714
+  },
+  "simple_rank4_bilinear": {
+   "all": 0.6462,
+   "A": 0.6456,
+   "B": 0.6455
+  },
+  "simple_rank4_blur": {
+   "all": 0.6051,
+   "A": 0.6101,
+   "B": 0.6002
+  },
+  "simple_rank4_wrongtile": {
+   "all": 0.6232,
+   "A": 0.6237,
+   "B": 0.6234
+  }
+ },
+ "AP75": {
+  "deployed": {
+   "all": 0.2171,
+   "A": 0.2255,
+   "B": 0.2069
+  },
+  "simple_rank4": {
+   "all": 0.2181,
+   "A": 0.2212,
+   "B": 0.2128
+  },
+  "simple_rank4_bilinear": {
+   "all": 0.1698,
+   "A": 0.1654,
+   "B": 0.1734
+  },
+  "simple_rank4_blur": {
+   "all": 0.1365,
+   "A": 0.1405,
+   "B": 0.136
+  },
+  "simple_rank4_wrongtile": {
+   "all": 0.1463,
+   "A": 0.1482,
+   "B": 0.1475
+  }
+ },
+ "gate_deployed": {
+  "got": 0.6636,
+  "ref": 0.6636,
+  "pass": true
+ },
+ "sam_val_ref": {
+  "AP50": {
+   "all": 0.6776,
+   "A": 0.6844,
+   "B": 0.6721
+  },
+  "AP75": {
+   "all": 0.2839
+  }
+ }
+}

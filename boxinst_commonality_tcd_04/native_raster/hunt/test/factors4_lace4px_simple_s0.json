@@ -1,0 +1,78 @@
+{
+ "gate_8px_deployed": {
+  "s": {
+   "cn_ap50": 0.6101,
+   "ap50_95": 0.2584,
+   "val_box_ap50": 0.4982
+  },
+  "s*m": {
+   "cn_ap50": 0.6338,
+   "ap50_95": 0.2714,
+   "val_box_ap50": 0.5147
+  },
+  "s*pbar": {
+   "cn_ap50": 0.6329,
+   "ap50_95": 0.2741,
+   "val_box_ap50": 0.5094
+  },
+  "s*m*pbar": {
+   "cn_ap50": 0.6473,
+   "ap50_95": 0.2825,
+   "val_box_ap50": 0.5176
+  }
+ },
+ "reference": {
+  "s": {
+   "fitted": 0,
+   "cn_ap50": 0.6101,
+   "ap75": 0.1551,
+   "ap50_95": 0.2584,
+   "val_box_ap50": 0.4982
+  },
+  "s*m": {
+   "fitted": 0,
+   "cn_ap50": 0.6338,
+   "ap75": 0.1673,
+   "ap50_95": 0.2714,
+   "val_box_ap50": 0.5148
+  },
+  "s*pbar": {
+   "fitted": 0,
+   "cn_ap50": 0.6329,
+   "ap75": 0.1755,
+   "ap50_95": 0.2741,
+   "val_box_ap50": 0.5094
+  },
+  "s*m*pbar": {
+   "fitted": 0,
+   "cn_ap50": 0.6473,
+   "ap75": 0.1825,
+   "ap50_95": 0.2825,
+   "val_box_ap50": 0.5177
+  }
+ },
+ "lace4px_simple_4px": {
+  "s": {
+   "cn_ap50": 0.6207,
+   "ap50_95": 0.2643,
+   "val_box_ap50": 0.4982
+  },
+  "s*m": {
+   "cn_ap50": 0.6456,
+   "ap50_95": 0.2766,
+   "val_box_ap50": 0.5161
+  },
+  "s*pbar": {
+   "cn_ap50": 0.6395,
+   "ap50_95": 0.2773,
+   "val_box_ap50": 0.5113
+  },
+  "s*m*pbar": {
+   "cn_ap50": 0.6556,
+   "ap50_95": 0.2847,
+   "val_box_ap50": 0.5206
+  }
+ },
+ "masks": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hunt/test/preds_lace_s0_r2048_lace4px_simple_detscore.json",
+ "n_boxes": 159687
+}

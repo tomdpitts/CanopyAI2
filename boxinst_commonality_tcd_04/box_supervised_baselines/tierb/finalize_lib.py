@@ -225,7 +225,7 @@ def finalize_mal():
     if not os.path.exists(gtp):
         test_sum, test_per = gtbox_eval("test_gt", "test")
         lace = {}
-        for line in open(f"{PKG_R}/native_raster/gtbox_guided_raw/gtbox_lace_guided_r2048.jsonl"):
+        for line in open(f"{PKG_R}/{LG.LACE_GTBOX_PERCROWN}"):          # adopted 4 px masker (2026-10-27)
             r = json.loads(line)
             lace[r["tile"]] = r
         d = {}
@@ -239,7 +239,8 @@ def finalize_mal():
                       if os.path.isdir(TC.run_dir("mal", "predict", "sparse_gt")) else None)
         val_sum, _ = gtbox_eval("val_gt", "val")
         _w(gtp, {"test": test_sum, "test_paired_vs_lace": {"mean_diff": round(diff, 4), "ci95": _boot(d),
-                                                         "lace_mean_iou": a4["lace"]["mean_iou"]},
+                                                         "lace_mean_iou": LG.LACE_GTBOX_MEAN_IOU,
+                                                         "lace_file": LG.LACE_GTBOX_PERCROWN},
                  "a4_reference": {k: a4[k] for k in ("lace", "ft_sub", "base_sub", "ft_whole", "base_whole")},
                  "sparse": sparse_sum, "val": val_sum, "per_tile_test": test_per})
     g = json.load(open(gtp))
@@ -253,34 +254,40 @@ def finalize_mal():
     for split, names in sets.items():
         if not names:
             continue
-        paths = []
+        paths, labels = [], []
         for name in names:
-            p = TC.run_dir("mal", "results", f"preds_mal_{name}_r2048.json")
-            if not os.path.exists(p):
-                preds = {}
-                for t in man["ids"][split]:
-                    r = _mal_tile(name, t)
-                    preds[t] = {"boxes_2048": r["boxes_2048"], "scores": r["scores"], "masks_rle": r["masks_rle"]}
-                _w(p, {"meta": {"model": f"tierb MAL masks on {name} boxes, ranked by detector score",
-                                "mask_res": 2048, "n_tiles": len(preds), "min_score": FLOOR}, "preds": preds})
-            paths.append(p)
+            # MAL's labeler has no confidence output, so its native ranking is the detector score s
+            # (Tom 2026-10-27: no invented ranking). Gated against LACE's FULL s' row.
+            for rk in ("detscore",):
+                p = TC.run_dir("mal", "results", f"preds_mal_{name}_r2048.json")
+                if not os.path.exists(p):
+                    preds = {}
+                    for t in man["ids"][split]:
+                        r = _mal_tile(name, t)
+                        sc = r["scores"]
+                        preds[t] = {"boxes_2048": r["boxes_2048"], "scores": sc, "masks_rle": r["masks_rle"]}
+                    how = "detector score s"
+                    _w(p, {"meta": {"model": f"tierb MAL masks on {name} boxes, ranked by {how}",
+                                    "mask_res": 2048, "n_tiles": len(preds), "min_score": FLOOR}, "preds": preds})
+                paths.append(p); labels.append((name, rk))
         todo = [p for p in paths if not os.path.exists(p.replace("preds_", "scored_"))]
         if todo:
             for p, s in zip(todo, score_files([(p, FLOOR) for p in todo], split)):
                 _w(p.replace("preds_", "scored_"), s)
-        for name, p in zip(names, paths):
+        for (name, rk), p in zip(labels, paths):
             c = json.load(open(p.replace("preds_", "scored_")))["canopy_neutral_crowd"]
-            rows.append({"name": f"mal/{name}", "split": split, "ranking": "detscore",
+            rows.append({"name": f"mal/{name}", "split": split, "ranking": rk,
                          "boxes": name, "AP50": c["mask"]["AP50"], "AP50_95": c["mask"]["AP50_95"],
                          "AP75": c["mask"]["AP75"], "box_AP50": c["box"]["AP50"], "n_det": c["mask"]["n_det"]})
     for split, pref in (("test", "mal/lace_s"), ("sparse", "mal/lace_sparse_s")):
-        lr = [r for r in rows if r["name"].startswith(pref)]
-        if len(lr) < 2:
-            continue
-        band = {k: (round(float(np.mean([r[k] for r in lr])), 4), round(float(np.std([r[k] for r in lr], ddof=1)), 4))
-                for k in ("AP50", "AP50_95", "box_AP50")}
-        rows.append({"name": f"{pref}{{0,1,2}} mean", "split": split, "ranking": "detscore",
-                     "AP50": band["AP50"][0], "AP50_95": band["AP50_95"][0], "band_sd": band})
+        for rk in ("detscore",):
+            lr = [r for r in rows if r["name"].startswith(pref) and r["ranking"] == rk]
+            if len(lr) < 2:
+                continue
+            band = {k: (round(float(np.mean([r[k] for r in lr])), 4), round(float(np.std([r[k] for r in lr], ddof=1)), 4))
+                    for k in ("AP50", "AP50_95", "box_AP50")}
+            rows.append({"name": f"{pref}{{0,1,2}} mean", "split": split, "ranking": rk,
+                         "AP50": band["AP50"][0], "AP50_95": band["AP50_95"][0], "band_sd": band})
     res["rows"] = rows
     res["summary"] = {"gtbox_test_mean_iou": g["test"]["mean_iou"],
                       "gtbox_paired_vs_lace": g["test_paired_vs_lace"],
@@ -291,10 +298,11 @@ def finalize_mal():
 
 def lace_gate(m, res):
     if m == "mal":
-        # LACE-box rows: seed means vs LACE's seed means when all 3 seeds were masked, else seed 0 vs
-        # LACE seed 0 (same boxes, same detector-score ranking). SelvaBox-box rows are not gated.
-        rows = [r for r in res["rows"] if r["name"].endswith("mean")]
-        if not any(r["split"] == "test" for r in rows):
-            rows += [dict(r, ranking="detscore_s0") for r in res["rows"] if r["name"] == "mal/lace_s0"]
+        # LACE-box rows (MAL masks ranked by s) vs LACE's FULL row (own s'): seed means vs LACE's
+        # 3-seed mean when all 3 seeds were masked, else seed 0 vs LACE seed 0. SelvaBox-box rows are not gated.
+        rows = [dict(r, lace_ref="product") for r in res["rows"] if r["name"].endswith("mean")]
+        for split, n0 in (("test", "mal/lace_s0"), ("sparse", "mal/lace_sparse_s0")):
+            if not any(r["split"] == split for r in rows):
+                rows += [dict(r, lace_ref="product_s0") for r in res["rows"] if r["name"] == n0]
         return LG.evaluate(rows, gtbox=res["gtbox"]["test_paired_vs_lace"])
     return LG.evaluate(res["rows"])

@@ -1,5 +1,9 @@
 # Sparse OAM-TCD 236 — LACE + posterior product vs DetecTree2
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Same frozen scorer as the 439 (`score_coco.py`, pycocotools COCOeval, masks 512², maxDets
 600, `--score_floor 0`, canopy as `iscrowd`), against `data/tcd_sparse/sparse_gt.json`
 (236 tiles, 14,937 GT crowns). **The sparse slice shares no tile with the 900 images used

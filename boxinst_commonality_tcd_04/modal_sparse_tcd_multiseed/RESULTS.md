@@ -1,5 +1,9 @@
 # Zero-shot on unseen open-canopy TCD — results
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 **The settled phase-4 model, unmodified, on 236 open-canopy tiles it has never seen.**
 Same checkpoints (`det_phase4_L24_s{0,1,2}.pt`), same masker (`em_model_4p_fix.npz`, α=0.3/κ×1.6),
 same `mask_thr` 0.25. No retraining, no refit, no re-tuning.

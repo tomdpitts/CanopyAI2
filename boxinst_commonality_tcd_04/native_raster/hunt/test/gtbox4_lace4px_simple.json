@@ -1,0 +1,27 @@
+{
+ "name": "lace4px_simple",
+ "spec": {
+  "kind": "post4",
+  "c_peak": 0.33
+ },
+ "summary_valid_crowns": {
+  "n": 25692,
+  "mean_iou": 0.7861,
+  "rates": {
+   ">=0.5": 0.9911,
+   ">=0.75": 0.7203,
+   ">=0.9": 0.0502
+  }
+ },
+ "reference_deployed_guided": {
+  "n": 25692,
+  "mean_iou": 0.7477,
+  "rates": {
+   ">=0.5": 0.9396,
+   ">=0.75": 0.6467,
+   ">=0.9": 0.051
+  }
+ },
+ "n_crowns_total": 25705,
+ "tiles_dir": "/Users/tompitts/dphil/feat_cache/hunt_gtbox4_lace4px_simple"
+}

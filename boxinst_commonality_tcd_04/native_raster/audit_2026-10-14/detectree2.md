@@ -1,5 +1,9 @@
 # Detectree2 s0v2 baseline audit (2026-10-14)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Read-only audit. No Modal job launched. Only Modal access was `modal volume ls tcd-detectree2-vol out`.
 
 Released source used throughout: `PatBall1/detectree2` tag **v2.1.2** (`d9fb07f`, 2026-02-14, the first PyPI release). `git diff v2.1.2 HEAD -- detectree2/` is empty, so the line numbers below hold for both. Detectron2 defaults: `facebookresearch/detectron2@1e3e13b` (`config/defaults.py`, `configs/Base-RCNN-FPN.yaml`). Both were cloned to the session scratchpad. They are not in the repo, and no local venv has detectree2 or detectron2 installed.

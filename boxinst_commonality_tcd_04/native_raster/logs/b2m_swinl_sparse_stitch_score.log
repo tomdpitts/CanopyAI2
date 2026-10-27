@@ -1,0 +1,107 @@
+  10/236 tiles  9s  eta 213s
+  20/236 tiles  14s  eta 155s
+  30/236 tiles  22s  eta 152s
+  40/236 tiles  28s  eta 139s
+  50/236 tiles  38s  eta 140s
+  60/236 tiles  45s  eta 131s
+  70/236 tiles  50s  eta 118s
+  80/236 tiles  57s  eta 111s
+  90/236 tiles  66s  eta 106s
+  100/236 tiles  71s  eta 97s
+  110/236 tiles  79s  eta 91s
+  120/236 tiles  85s  eta 82s
+  130/236 tiles  93s  eta 76s
+  140/236 tiles  100s  eta 68s
+  150/236 tiles  107s  eta 61s
+  160/236 tiles  115s  eta 55s
+  170/236 tiles  123s  eta 48s
+  180/236 tiles  129s  eta 40s
+  190/236 tiles  136s  eta 33s
+  200/236 tiles  141s  eta 25s
+  210/236 tiles  150s  eta 19s
+  220/236 tiles  154s  eta 11s
+  230/236 tiles  160s  eta 4s
+  236/236 tiles  165s  eta 0s
+-> boxinst_commonality_tcd_04/native_raster/seamfix/preds_box2mask_swinl_sparse_s0_r2048_seamfix.json  tiles=236 dets=59003 edge_dropped=28346  166s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_box2mask_swinl_sparse_s0_r2048_seamfix.json: 59003 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=6.87s).
+Accumulating evaluation results...
+DONE (t=0.04s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=8.37s).
+Accumulating evaluation results...
+DONE (t=0.04s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=8.25s).
+Accumulating evaluation results...
+DONE (t=0.04s).
+{
+  "preds_file": "boxinst_commonality_tcd_04/native_raster/seamfix/preds_box2mask_swinl_sparse_s0_r2048_seamfix.json",
+  "model": "Box2Mask-T Swin-L (BoxInstSeg, TPAMI 2024), COCO-box-pretrained, box-only, canopy-blacked training, 1024@50% subtiles, clean_crowns dedup; sparse-236, native 2048; seam-fixed (interior-edge filter 10 px before dedup)",
+  "protocol": {
+    "scorer": "pycocotools COCOeval",
+    "res": 2048,
+    "max_dets": 600,
+    "score_floor": 0.05,
+    "n_tiles": 236,
+    "iou_thrs": "linspace(0.5,0.95,10)",
+    "rec_thrs": 101,
+    "area_rng": "all only"
+  },
+  "n_gt_trees": 14937,
+  "canopy_fp": {
+    "mask": {
+      "AP50": 0.4442,
+      "AP75": 0.1255,
+      "AP50_95": 0.1965,
+      "n_det": 59003
+    }
+  },
+  "canopy_neutral_crowd": {
+    "mask": {
+      "AP50": 0.6044,
+      "AP75": 0.1603,
+      "AP50_95": 0.2618,
+      "n_det": 59003
+    },
+    "box": {
+      "AP50": 0.6265,
+      "AP75": 0.3301,
+      "AP50_95": 0.3402,
+      "n_det": 59003
+    }
+  },
+  "canopy_neutral_legacy": {
+    "mask": {
+      "AP50": 0.6044,
+      "AP75": 0.1606,
+      "AP50_95": 0.262,
+      "n_gt": 14937
+    }
+  }
+}
+
+-> boxinst_commonality_tcd_04/native_raster/seamfix/scored_box2mask_swinl_sparse_s0_r2048_seamfix.json

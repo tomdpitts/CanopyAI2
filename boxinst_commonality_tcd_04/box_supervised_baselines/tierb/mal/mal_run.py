@@ -9,8 +9,9 @@ Run with cwd=/opt/mal; MAL's packages (`models`, `datasets`, `utils`) are import
 TRAINING. MAL's own CLI defaults (= the released COCO labeler `epoch=6-arch=vit-mae-base-16-...`),
 fine-tuned from that checkpoint on LACE's 792 training tiles' crown boxes (box-only; MAL never reads
 a mask in phase 1). Changed only where our data forces it, each by a rule (TIERB.md section 5):
-  * --min_obj_size 920: the released 2048 px^2 removes 42.18% of COCO's boxes but would remove
-    61.49% of ours; 920 removes 42.16% (crops.mal_min_obj_size, gates/coco_min_obj_size.json);
+  * --min_obj_size 0 (Tom 2026-10-27; was 920): MAL trains on EVERY crown box LACE trains on (MAL's
+    own w > 2 and h > 2 px rule still applies: 54,184 of 54,191). The released 2048 px^2 (and the
+    COCO-quantile-matched 920, gates/coco_min_obj_size.json) would drop 61% / 42% of our crowns;
   * --loss_mil_step / --loss_crf_step: the released 1000 / 4000 steps are 6.44% / 25.77% of a COCO
     epoch-0 at 8 GPUs x 4 (15,522 steps); kept as the same fractions of OUR epoch-0;
   * --strategy ddp instead of ddp_sharded: same arithmetic (OSS only shards optimizer state).
@@ -63,7 +64,7 @@ LABELER = f"{TC.VOL}/weights/mal_vit-mae-base-16_coco_epoch6.ckpt"
 TRAIN_JSON = f"{TC.DATA}/mal_train_boxes.json"
 BOXSETS = f"{TC.DATA}/boxsets"             # prep_local.py, shipped in the image
 STOP_FILE = "/tmp/tierb_STOP"
-MIN_OBJ_SIZE = 920
+MIN_OBJ_SIZE = 0                            # train on every crown (TIERB.md section 00)
 COCO_EPOCH0_STEPS = 15522                  # ceil(496,706 / 4) // 8 : MAL's own per-rank count
 RELEASED_MIL_STEP, RELEASED_CRF_STEP = 1000, 4000
 N_GPUS = 8

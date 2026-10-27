@@ -214,6 +214,8 @@ def main():
 
     md = "\n".join(lines)
     open(os.path.join(HERE, "table_439.md"), "w").write(md + "\n")
+    from boxinst_commonality_tcd_04.results_439 import mark_superseded as MS   # SUPERSEDED by TABLE1_CURRENT.md (2026-10-27)
+    MS.put(os.path.join(HERE, "table_439.md"), MS.banner(os.path.join(HERE, "table_439.md")))
     json.dump({"rows": out, "notes": notes}, open(os.path.join(HERE, "table_439.json"), "w"),
               indent=2)
     print(md)

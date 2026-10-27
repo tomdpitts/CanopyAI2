@@ -1,5 +1,9 @@
 # PICKUP — feature compression to unlock full-4k detector training (parked)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Optional future branch. Parked 2026-07-16 after stage 1 (a linear-probe gate);
 detector training was never run. **Primary path to resume: block-1024.** Whole
 experiment is self-contained and deletable (`rm -rf feat_ablation/`); the parent

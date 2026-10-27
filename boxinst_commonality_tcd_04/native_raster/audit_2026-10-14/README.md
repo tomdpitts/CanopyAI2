@@ -1,5 +1,9 @@
 # Fairness audit, 2026-10-14 — index and decisions for Tom
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Six read-only audits, run in parallel with the seam fix (`../seamfix/`, NATIVE_RASTER.md "SEAM FIX"). Each report gives file:line evidence. None of the items below were changed in `paper.tex` unilaterally. The only exceptions are numbers the seam fix itself moved, and the false "its 0.1" floor in tab:geometry, which sat in a cell already being edited.
 
 | report | scope | verdict |

@@ -1,9 +1,9 @@
-"""Local control for Tier B (B1 BoxInst, B2 BoxTeacher, B3 MAL). Nothing here runs a model.
+"""Local control for Tier B (B2 BoxTeacher, then B3 MAL; B1 BoxInst code kept but not in PLAN). Nothing here runs a model.
 
     python tierb_ctl.py plan                  # the step list with indices
     python tierb_ctl.py deploy                # modal deploy tierb_modal.py (re-run after any edit)
     python tierb_ctl.py start                 # chain from step 0 up to HOLD (data, weights, gates, smokes)
-    python tierb_ctl.py continue [index]      # release HOLD: train/predict/finalize B3 -> B2 -> B1
+    python tierb_ctl.py continue [index]      # release HOLD: train/predict/finalize B2 -> B3 (B1 not planned, TIERB.md section 00)
     python tierb_ctl.py status                # chain, per-step state, locks, gate latch, live progress
     python tierb_ctl.py stop "reason"         # STOP: trainers checkpoint and exit; everything else killed
     python tierb_ctl.py unstop                # clear STOP (does not restart anything)

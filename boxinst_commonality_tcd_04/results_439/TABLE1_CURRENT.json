@@ -1,0 +1,267 @@
+{
+ "generated_by": "results_439/build_table1_current.py",
+ "date": "2026-10-27",
+ "protocol": "canopy-neutral crowd, 2048^2, maxDets 600, pycocotools COCOeval",
+ "table1_439": [
+  {
+   "method": "Restor Mask R-CNN",
+   "supervision": "masks",
+   "images": 4169,
+   "n_seeds": 1,
+   "AP50": 0.648,
+   "AP50_95": 0.3332,
+   "box_AP50": 0.6646,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.648,
+     0.3332,
+     0.6646
+    ]
+   ],
+   "sources": [
+    "native_raster/scored_restor_rpn1000_r2048_tree.json"
+   ],
+   "note": "released restor/tcd-mask-rcnn-r50, tree class, RPN topk 1000, score floor 0.05"
+  },
+  {
+   "method": "Detectree2",
+   "supervision": "masks",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.6297,
+   "AP50_95": 0.3099,
+   "box_AP50": 0.6505,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.6297,
+     0.3099,
+     0.6505
+    ]
+   ],
+   "sources": [
+    "native_raster/seamfix/scored_dt2_s0v2_r2048_seamfix.json"
+   ],
+   "note": "fine-tuned by us from 250312_flexi.pth; seam-fixed stitch (2026-10-14)"
+  },
+  {
+   "method": "SelvaBox -> SAM 3 (FT)",
+   "supervision": "box+SAM",
+   "images": 3024,
+   "n_seeds": 1,
+   "AP50": 0.5984,
+   "AP50_95": 0.2207,
+   "box_AP50": 0.767,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.5984,
+     0.2207,
+     0.767
+    ]
+   ],
+   "sources": [
+    "native_raster/seamfix/scored_selvabox_seamfix_on_r2048_md600.json"
+   ],
+   "note": "SelvaBox DINO-Swin-L -> SAM 3 selvamask-FT checkpoint (NOT zero-shot); seam-fixed"
+  },
+  {
+   "method": "Box2Mask Swin-L",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.5894,
+   "AP50_95": 0.2446,
+   "box_AP50": 0.6199,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.5894,
+     0.2446,
+     0.6199
+    ]
+   ],
+   "sources": [
+    "native_raster/seamfix/scored_box2mask_swinl_s0_r2048_seamfix.json"
+   ],
+   "note": "seam-fixed"
+  },
+  {
+   "method": "Box2Mask R-50",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.4505,
+   "AP50_95": 0.1646,
+   "box_AP50": 0.5122,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.4505,
+     0.1646,
+     0.5122
+    ]
+   ],
+   "sources": [
+    "native_raster/seamfix/scored_box2mask_r50_s0_r2048_seamfix.json"
+   ],
+   "note": "seam-fixed"
+  },
+  {
+   "method": "LACE detector -> SAM 3 zs",
+   "supervision": "box+SAM",
+   "images": 900,
+   "n_seeds": 3,
+   "AP50": 0.6479,
+   "AP50_95": 0.30083333333333334,
+   "box_AP50": 0.6514666666666667,
+   "sd_ddof1": [
+    0.002799999999999969,
+    0.0032331615074619327,
+    0.008559400290518854
+   ],
+   "per_seed": [
+    [
+     0.6451,
+     0.3027,
+     0.6569
+    ],
+    [
+     0.6479,
+     0.2971,
+     0.6416
+    ],
+    [
+     0.6507,
+     0.3027,
+     0.6559
+    ]
+   ],
+   "sources": [
+    "native_raster/tierA/scored_a1_lace_s0_sam3zs_gmean.json",
+    "native_raster/tierA/scored_a1_lace_s1_sam3zs_gmean.json",
+    "native_raster/tierA/scored_a1_lace_s2_sam3zs_gmean.json"
+   ],
+   "note": "same LACE boxes; SAM 3 zero-shot masks; SAM's own ranking sqrt(s * SAM score)"
+  },
+  {
+   "method": "LACE (ours)",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 3,
+   "AP50": 0.6545,
+   "AP50_95": 0.2803333333333333,
+   "box_AP50": 0.6663666666666667,
+   "sd_ddof1": [
+    0.0037722672227719876,
+    0.0064469631093510595,
+    0.011320924579438427
+   ],
+   "per_seed": [
+    [
+     0.6556,
+     0.2844,
+     0.6748
+    ],
+    [
+     0.6503,
+     0.2729,
+     0.6535
+    ],
+    [
+     0.6576,
+     0.2837,
+     0.6708
+    ]
+   ],
+   "sources": [
+    "native_raster/hunt/test/scored_lace_s0_r2048_lace4px_simple.json",
+    "native_raster/hunt/test/scored_lace_s1_r2048_lace4px_simple.json",
+    "native_raster/hunt/test/scored_lace_s2_r2048_lace4px_simple.json"
+   ],
+   "note": "lace4px_simple masker (hunt/FROZEN_simple_2026-10-26.json), own 4 px posterior ranking"
+  }
+ ],
+ "sparse236": [
+  {
+   "method": "Detectree2",
+   "supervision": "masks",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.6362,
+   "AP50_95": 0.3532,
+   "box_AP50": 0.6444,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.6362,
+     0.3532,
+     0.6444
+    ]
+   ],
+   "sources": [
+    "native_raster/seamfix/scored_dt2_sparse_s0v2_r2048_seamfix.json"
+   ],
+   "note": "seam-fixed"
+  },
+  {
+   "method": "Box2Mask Swin-L",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.6044,
+   "AP50_95": 0.2618,
+   "box_AP50": 0.6265,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.6044,
+     0.2618,
+     0.6265
+    ]
+   ],
+   "sources": [
+    "native_raster/seamfix/scored_box2mask_swinl_sparse_s0_r2048_seamfix.json"
+   ],
+   "note": "seam-fixed; same s0 checkpoint as the 439 row (iter 23422); Modal A100 predict 2026-10-27, fc-01M5XCK31BK2D5TW47B91DG2D6"
+  },
+  {
+   "method": "LACE (ours)",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 3,
+   "AP50": 0.6784666666666667,
+   "AP50_95": 0.3192,
+   "box_AP50": 0.6744,
+   "sd_ddof1": [
+    0.01072116287225102,
+    0.009037145567047145,
+    0.015546382215808277
+   ],
+   "per_seed": [
+    [
+     0.6903,
+     0.3258,
+     0.6872
+    ],
+    [
+     0.6694,
+     0.3089,
+     0.6571
+    ],
+    [
+     0.6757,
+     0.3229,
+     0.6789
+    ]
+   ],
+   "sources": [
+    "native_raster/hunt/test/scored_lace_sparse_s0_r2048_lace4px_simple.json",
+    "native_raster/hunt/test/scored_lace_sparse_s1_r2048_lace4px_simple.json",
+    "native_raster/hunt/test/scored_lace_sparse_s2_r2048_lace4px_simple.json"
+   ],
+   "note": "lace4px_simple"
+  }
+ ]
+}

@@ -1,5 +1,9 @@
 # AP aggregation sensitivity — OAM-TCD 439 (2026-08-20)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 **Question.** Our published 439 numbers are **pooled** AP: per-tile greedy matching, then all
 tiles' TP/FP flags concatenated into one globally score-sorted PR curve against a global
 `n_gt` (25,705). SelvaMask/CanopyRS compute AP **inside each subtile and average over tiles**.

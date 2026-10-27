@@ -5,6 +5,8 @@ Run ablation t03 (tab:strata) / t04 (touching vs isolated prose) at 512 or 2048 
   python -m ...run_strata --script t03|t04 --res 512|2048 --out <json>
 512 uses the published inputs (gate: output == ablation/results/<name>.json).
 2048 uses native_raster/preds_lace_s{s}_r2048_tau040{,_detscore}.json.
+--tag lace4px_simple (2048 only): the adopted 4 px masker's masks instead (hunt/test/preds_lace_s{s}_r2048_lace4px_simple
+{_detscore,}.json: raw detector score s / own 4 px posterior s'); side dir side_<script>_r2048_lace4px_simple.
 """
 import argparse, json, os, sys
 
@@ -18,14 +20,19 @@ def main():
     ap.add_argument("--script", choices=("t03", "t04"), required=True)
     ap.add_argument("--res", type=int, required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--tag", default="guided", choices=("guided", "lace4px_simple"))
     a = ap.parse_args()
     assert not os.path.exists(a.out), f"REFUSING to overwrite {a.out}"
     from boxinst_commonality_tcd_04.native_raster.ablation_r2048 import rle_io
     from boxinst_commonality_tcd_04.ablation.lib import io
-    side = os.path.join(os.path.dirname(a.out), f"side_{a.script}_r{a.res}_guided")
+    side = os.path.join(os.path.dirname(a.out), f"side_{a.script}_r{a.res}_{a.tag}")
     if a.res == 512:
         kmap = {s: os.path.join(io.PREDS, f"knobbed_s{s}.json") for s in (0, 1, 2)}
         prod = {s: os.path.join(PKG, "confidence", f"preds_knobbed_s{s}_product.json") for s in (0, 1, 2)}
+    elif a.tag == "lace4px_simple":
+        assert a.res == 2048
+        kmap = {s: os.path.join(NR, "hunt", "test", f"preds_lace_s{s}_r2048_lace4px_simple_detscore.json") for s in (0, 1, 2)}
+        prod = {s: os.path.join(NR, "hunt", "test", f"preds_lace_s{s}_r2048_lace4px_simple.json") for s in (0, 1, 2)}
     else:
         kmap = {s: os.path.join(NR, f"preds_lace_s{s}_r{a.res}_cgf_r12_tau035_detscore.json") for s in (0, 1, 2)}
         prod = {s: os.path.join(NR, f"preds_lace_s{s}_r{a.res}_cgf_r12_tau035_guidedrun.json") for s in (0, 1, 2)}

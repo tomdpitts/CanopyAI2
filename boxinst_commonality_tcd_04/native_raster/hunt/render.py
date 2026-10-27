@@ -10,7 +10,7 @@ ctx: rgbf (2048,2048,3) float, m (TCDMasker), PL (PixelLACE), GA, zn, g, Z.  det
                smoothing of the logit (sigma_s); mask = q >= tau, clipped to the box.
 """
 import numpy as np
-from scipy.ndimage import gaussian_filter
+from scipy.ndimage import gaussian_filter, uniform_filter
 
 MARGIN = 16
 
@@ -184,7 +184,9 @@ def sam(ctx, det, spec):
 def post4(ctx, det, spec):
     """LACE posterior on the real-4px lattice (same masker npz, s=4, origin=8; knobs alpha/kappa default 0.3/1.6),
     bilinear to 2048 as _prob, then colour-guided render (r int or "half"; eps; tau). Optional `theta` / `max_short`
-    gating against the deployed mask exactly as `post`. Optional `seed_mix` w: q = w*prob4 + (1-w)*prob8."""
+    gating against the deployed mask exactly as `post`. Optional `seed_mix` w: q = w*prob4 + (1-w)*prob8.
+    Optional `guide` (controls, as guided_control_val.py): "blur" = constant guide, q = mean(mean(p)) with the filter's
+    box (2r+1); "wrong" = colour guide from a different tile (ctx["rgbf_wrong"], next val tile in sorted order)."""
     x0, y0, x1, y1 = [float(v) for v in det["box"]]; short = min(x1 - x0, y1 - y0)
     if "theta" in spec or "max_short" in spec:
         if "deployed_mask" not in det["cache"]:
@@ -202,7 +204,15 @@ def post4(ctx, det, spec):
     if r == "half":
         r = int(min(spec.get("rmax", 12), max(1, np.floor(spec.get("c_r", 0.4) * short))))
     win = _win(clip); wy0, wy1, wx0, wx1 = win
-    q = prob[wy0:wy1, wx0:wx1] if r == 0 else ctx["GA"].color_guided_filter(ctx["rgbf"][wy0:wy1, wx0:wx1], prob[wy0:wy1, wx0:wx1], r, spec.get("eps", 1e-4))
+    guide = spec.get("guide", "rgb")
+    if r == 0:
+        q = prob[wy0:wy1, wx0:wx1]
+    elif guide == "blur":
+        k = 2 * r + 1
+        q = uniform_filter(uniform_filter(prob[wy0:wy1, wx0:wx1], size=k, mode="reflect"), size=k, mode="reflect")
+    else:
+        I = ctx["rgbf"] if guide == "rgb" else ctx["rgbf_wrong"]
+        q = ctx["GA"].color_guided_filter(I[wy0:wy1, wx0:wx1], prob[wy0:wy1, wx0:wx1], r, spec.get("eps", 1e-4))
     tau = spec.get("tau", 0.35)
     if "c_peak" in spec:                                     # two-way box-relative threshold (as relpeak)
         by0, by1, bx0, bx1 = clip

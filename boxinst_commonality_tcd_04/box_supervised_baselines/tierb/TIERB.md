@@ -1,6 +1,40 @@
 # Tier B: B1 BoxInst, B2 BoxTeacher, B3 MAL head-to-head with LACE
 
-**Status 2026-10-15: SET UP, NOTHING RUN on Modal. §0 (convergence-driven schedule, budget) governs where sections disagree.** Tom approved B1–B3 on 2026-10-14 and asked for exactly
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
+**Status 2026-10-27: SET UP, NOTHING RUN on Modal. §00 (scope and order, 2026-10-27) governs over §0, and §0 over everything below.**
+
+## 00. Amendment 2026-10-27: B2 then B3; B1 not planned (Tom, before any Tier B number)
+
+- **Order: B2 BoxTeacher → B3 MAL. B1 BoxInst is not planned.**
+- **Why drop B1.** BoxTeacher is BoxInst plus a self-training teacher: the same CondInst architecture and box losses, and about 7 COCO mask AP higher. It also outperforms DiscoBox on COCO. B2, together with Box2Mask (TPAMI'24), therefore stands for the box-supervised system family. Paper wording claims representativeness by citation, never an upper bound: COCO rankings need not transfer to small, dense aerial crowns. Box2Mask Swin-L is the strongest of these on COCO at 42.5 mask AP, yet reaches 0.589 on the 439.
+- **Revisit B1 (~$8–20, ~1 h) only if B2 lands close to LACE,** so that "an older baseline might do better here" cannot be raised.
+- **Why B2 first.** It is the only Tier B row that is a full system, so it gives a Table 1 row, like Box2Mask.
+- **What B3 adds.** B3 (MAL) is a box-to-mask module with no detector. It always needs boxes supplied (GT, or LACE s0 detections), so it is the like-for-like comparison with LACE's masker (the tab:gtbox protocol), not a Table 1 row.
+- **B3 resolution is not unfair to MAL.** MAL crops each box with a 0.3 margin and resizes to 512² (ViT-MAE-B/16: 32×32 patches per box). For the median ~36 px crown that is ~2 px per patch, against LACE's fixed 4 px lattice; MAL's patch exceeds 4 px only for crowns above ~175 px. The compute asymmetry (a ViT-B forward + CRF per box, against one shared tile encoding + a closed-form E-step) favours LACE and is worth one line if B3 is reported.
+- **Estimates (scaled from §8 to §0's schedule on 8×A100-40GB; unmeasured, replaced by the smokes' projection before HOLD is released):**
+
+| row | what | hardware | expected epochs | wall-clock | cost |
+|---|---|---|---|---|---|
+| B2 | BoxTeacher Swin-B 3x, full system → Table 1 row | 8×A100-40GB | 8–20 | ~0.7–2 h | ~$12–30 |
+| B3 | MAL ViT-MAE-B/16 labeler on GT + LACE s0 boxes (all training crowns) | 8×A100-40GB | 6–20 | ~0.8–3.5 h | ~$12–50 |
+| — | 1-GPU gates ×2 + 2-GPU smokes ×2 → HOLD | 1–2×A100 | — | ~1–1.5 h | ~$9–14 |
+| — | image builds + staging | CPU | — | ~0.5 h | ~$2–3 |
+| — | predictions (B2: 439; B3: GT + LACE s0 boxes) | training container | — | included | ~$1–3 each |
+| — | sparse-236 for B2 (deferred) | 1×A100 | — | ~30 min | ~$2–4 |
+| **total** | | | | **~3.5–7.5 h** | **~$40–100** (§0 hard stop $72: may need raising, decide at HOLD) |
+
+- **Code changed 2026-10-27.** `tierb_modal.PLAN` is now: stage, fetch_weights, gate B2, gate B3, smoke B2, smoke B3, HOLD, then B2 train/predict/finalize, then B3 train/predict/finalize (checked with `tierb_ctl.py plan`). B1's functions are kept, and `fetch_weights` still downloads its checkpoint. To revisit B1, re-add its four PLAN entries (comment at `PLAN`). Run `tierb_ctl.py deploy` before `start`, as after any edit.
+- **LACE references re-pointed 2026-10-27 (Tom):** `lace_gate.py` now holds the lace4px_simple values (test s′ 0.6545 / 0.2803, seed 0 0.6556 / 0.2844; sparse 0.6785 / 0.3192, seed 0 0.6903 / 0.3258; GT boxes 0.7861). B3's paired GT-box diff reads `native_raster/hunt/test/gtbox4_lace4px_simple_percrown.jsonl`, which is added to the image.
+- **LACE is only ever compared with its full s′ ranking (Tom).** `evaluate` asserts that every reference is a `product*` row. B3 masks on LACE boxes are ranked by the detector score s only. MAL's labeler has no confidence output; its published AP comes from phase-2 detectors trained on its pseudo-masks. So s is its native ranking, and no ranking is invented for it (a maskness variant was considered and rejected 2026-10-27 as arbitrary). The B3 s row is gated against LACE s′.
+- **MAL min_obj_size 0 (Tom 2026-10-27; was 920).** B3 trains on every crown box LACE trains on: 54,184 of 54,191, with only MAL's own w, h > 2 px rule applied (verified against MAL's `datasets/voc.py` filter at the pinned commit). Gate G2 now expects 54,184. Released purpose: MAL is an offline COCO auto-labeler that crops each box and resizes it to 512² for the ViT. Tiny boxes upscaled about 10× carry little detail and give noisy MIL/CRF training signal, so the authors train on objects above 2,048 px² (about 45×45 px) and still label all objects at inference. Our median crown (about 36 px) is below that floor, a domain mismatch that favours LACE and should be stated if B3 is reported. Epoch length rises about 1.73× (warm-ups scale automatically), so B3's estimate rises to about $12–50.
+- **Unchanged:** the plateau schedule, budget stop, `lace_gate.py` auto-STOP if a baseline clearly beats LACE, A100 hardware (consistent with all other OAM-TCD compute), and sparse-236 deferred.
+
+---
+
+**Status 2026-10-15 (superseded by §00 for scope and order): SET UP, NOTHING RUN on Modal. §0 (convergence-driven schedule, budget) governs where sections disagree.** Tom approved B1–B3 on 2026-10-14 and asked for exactly
 LACE's data, a clean subtiling strategy, dropout-proof Modal work, saved predictions, and a spend stop if any
 baseline clearly beats LACE. This file is the dated amendment to `../PLAN.md` §13 (Tier B). It was written
 before any Tier B number exists. Where it differs from the §13 draft, this file governs, and §13 points here.
@@ -32,7 +66,7 @@ Code: this directory. Local gates already run and passed: `gates/`. Modal: `tier
 - **Sparse-236 for B1/B2 is deferred.** The best checkpoints are kept; it can be predicted later for about $2–4 each.
 - **Hardware:** A100-40GB (gate G5 proves the real per-GPU batch fits). 8-GPU containers request 24 cores / 128 GiB.
 - **Speed:** TF32 matmuls on Ampere, as in torch ≤ 1.11 and the authors' torch 1.9.1. Prediction runs in the training container, saving a second start-up.
-- **Smokes:** B3 and B2 only, on 2 GPUs at the released per-GPU batch, with a 16-tile predict. Each smoke asserts that the plateau rule fired its LR drops and that the logged LR fell ×0.1. B1 uses the same detectron2 machinery; its 1-GPU gate still runs.
+- **Smokes:** B3 and B2 only, on 2 GPUs at the released per-GPU batch, with an 8-tile predict (16 until 2026-10-27; the predict-kill rehearsal now fires at 2 tiles, the same 1/4 point). Each smoke asserts that the plateau rule fired its LR drops and that the logged LR fell ×0.1. B1 uses the same detectron2 machinery; its 1-GPU gate still runs.
 - **Budget:** a live ledger of billed minutes × container rate, CPU and memory included. A hard stop at $72 (budget $75) sets STOP; everything is resumable.
 - **Expected total ~$55–75 USD.** The smokes report the measured projection at 8 / 12 / 20 epochs (B3: 6 / 10 / 20) before the review pause.
 
@@ -284,7 +318,7 @@ If any row triggers, `finalize` does two things:
     - SIGKILL *during* the epoch-end eval of iteration 80;
     - the resume re-runs that eval;
     - evals land exactly at {40, 80, 120};
-    - prediction is SIGKILLed once 4 tiles are written, then resumed.
+    - prediction is SIGKILLed once 2 of the 8 tiles are written, then resumed.
   - **MAL:**
     - SIGKILL in epoch 1 after epoch 0 is checkpointed;
     - the resume continues without replaying (global step after epoch 1 = 60);

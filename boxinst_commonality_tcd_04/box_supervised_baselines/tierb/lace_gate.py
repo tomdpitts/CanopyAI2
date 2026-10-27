@@ -2,33 +2,37 @@
 2026-10-14 before any Tier B number exists). If it fires, finalize sets the global STOP flag:
 every running Modal job checkpoints and exits and nothing new starts.
 
-LACE references, read from the stored frozen-scorer files (res 2048, maxDets 600, canopy crowd):
-  test 439, product s'      AP50 0.6470 (0.6472/0.6444/0.6493)  AP50:95 0.2778
-      native_raster/scored_lace_s{0,1,2}_r2048_cgf_r12_tau035_guidedrun.json
-  test 439, detector s       AP50 0.6137 (0.6101/0.6152/0.6159)  AP50:95 0.2557
-      native_raster/scored_lace_s{0,1,2}_r2048_cgf_r12_tau035_detscore.json
-  sparse 236, product s'     AP50 0.6775 (0.6889/0.6671/0.6766)  AP50:95 0.3215
-  sparse 236, detector s     AP50 0.6410 (0.6561/0.6297/0.6371)  AP50:95 0.2946
-  GT boxes, 366 tiles        mean IoU 0.7477 (25,692 valid crowns; gtbox_lace_guided_r2048.jsonl)
+LACE references (re-pointed 2026-10-27 to the adopted lace4px_simple masker, TIERB.md section 00; the
+8 px guided-render values they replace are in git history). Stored frozen-scorer files (res 2048, maxDets
+600, canopy crowd), native_raster/hunt/test/:
+  test 439, own s' (product)   AP50 0.6545 (0.6556/0.6503/0.6576)  AP50:95 0.2803   scored_lace_s{s}_r2048_lace4px_simple.json
+  test 439, detector s          AP50 0.6237                          AP50:95 0.2609   ..._lace4px_simple_detscore.json
+  test seed 0, s' / s           AP50 0.6556 / 0.6206                 AP50:95 0.2844 / 0.2638
+  sparse 236, s' / s            AP50 0.6785 / 0.6478                 AP50:95 0.3192 / 0.2965   scored_lace_sparse_s{s}_...
+  GT boxes, 366 tiles           mean IoU 0.7861 (25,692 valid crowns; gtbox4_lace4px_simple_percrown.jsonl)
 
 MARGIN = 0.010 AP (about 4x LACE's seed SD at AP50 on test). "Clearly beats" means EITHER
   (a) AP50 >= LACE + 0.010, OR (b) AP50 >= LACE and AP50:95 >= LACE + 0.010,
-evaluated on EVERY reported row (primary and sensitivity geometry; test and sparse), against the
-LACE row with the SAME ranking rule (B1/B2 systems vs LACE's deployed product ranking; B3 masks on
-LACE's boxes ranked by LACE's detector score vs LACE's own masks under the same ranking). For B3 on
+evaluated on EVERY reported row (primary and sensitivity geometry; test and sparse), always against
+LACE's FULL row, i.e. LACE ranked by its own s' (Tom 2026-10-27: LACE is only ever reported with its
+reranking). B1/B2 systems use their own scores; B3 masks on LACE's boxes are ranked by the detector
+score s (MAL's labeler has no confidence output, so s is its native ranking), vs LACE s'. For B3 on
 GT boxes: paired per-crown mean IoU (B3 - LACE) >= +0.010 with the tile-bootstrap 95% CI above 0.
 """
 from __future__ import annotations
 
 MARGIN = 0.010
 LACE = {
-    ("test", "product"): {"AP50": 0.6470, "AP50_95": 0.2778},
-    ("test", "detscore"): {"AP50": 0.6137, "AP50_95": 0.2557},
-    ("test", "detscore_s0"): {"AP50": 0.6101, "AP50_95": 0.2579},   # scored_lace_s0_..._detscore.json
-    ("sparse", "product"): {"AP50": 0.6775, "AP50_95": 0.3215},
-    ("sparse", "detscore"): {"AP50": 0.6410, "AP50_95": 0.2946},
+    ("test", "product"): {"AP50": 0.6545, "AP50_95": 0.2803},       # 3-seed mean, own s'
+    ("test", "product_s0"): {"AP50": 0.6556, "AP50_95": 0.2844},    # seed 0, own s' (B3 on LACE s0 boxes)
+    ("test", "detscore"): {"AP50": 0.6237, "AP50_95": 0.2609},      # record only: never a gate reference
+    ("test", "detscore_s0"): {"AP50": 0.6206, "AP50_95": 0.2638},   # record only
+    ("sparse", "product"): {"AP50": 0.6785, "AP50_95": 0.3192},
+    ("sparse", "product_s0"): {"AP50": 0.6903, "AP50_95": 0.3258},
+    ("sparse", "detscore"): {"AP50": 0.6478, "AP50_95": 0.2965},    # record only
 }
-LACE_GTBOX_MEAN_IOU = 0.7477
+LACE_GTBOX_MEAN_IOU = 0.7861
+LACE_GTBOX_PERCROWN = "native_raster/hunt/test/gtbox4_lace4px_simple_percrown.jsonl"   # relative to the package
 
 
 def clearly_beats(row, ref, margin=MARGIN):
@@ -41,11 +45,14 @@ def clearly_beats(row, ref, margin=MARGIN):
 
 
 def evaluate(rows, gtbox=None):
-    """rows: list of {"name", "split" (test|sparse), "ranking" (product|detscore), "AP50", "AP50_95"}.
+    """rows: list of {"name", "split" (test|sparse), "AP50", "AP50_95", optional "lace_ref" (product|product_s0,
+    default product)}. The reference is ALWAYS LACE's own-s' row; the row's own "ranking" is recorded only.
     gtbox: optional {"mean_diff", "ci95": [lo, hi]} for B3 (B3 - LACE, paired)."""
     hits = []
     for r in rows:
-        ok, why = clearly_beats(r, LACE[(r["split"], r["ranking"])])
+        ref = r.get("lace_ref", "product")
+        assert ref.startswith("product"), f"{r['name']}: LACE is only compared with its full s' ranking"
+        ok, why = clearly_beats(r, LACE[(r["split"], ref)])
         if ok:
             hits.append(f"{r['name']}: {why}")
     if gtbox is not None and gtbox["mean_diff"] >= MARGIN and gtbox["ci95"][0] > 0:

@@ -1,5 +1,9 @@
 # Qualitative figures (Results section)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Made 2026-09-26. All three are 400 dpi JPEG-wrapped PDFs (matplotlib's lossless embed was 26 MB).
 Each has a `.jpg` preview and a `*_meta.json` with the tiles, thresholds, crop origins and per-window F1 and TP/FP/FN (panel labels show F1 first).
 

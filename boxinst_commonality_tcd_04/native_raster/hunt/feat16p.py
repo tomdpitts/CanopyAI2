@@ -17,7 +17,8 @@ from PIL import Image
 
 FC = "/Users/tompitts/dphil/feat_cache"
 REPO = "/Users/tompitts/dphil/CanopyAI2"
-SPLITS = {"val": (f"{REPO}/data/tcd/train", f"{FC}/feat_4p_val"), "test": (f"{REPO}/data/tcd/test", f"{FC}/feat_4p_test_dl/feat_4p_test")}
+SPLITS = {"val": (f"{REPO}/data/tcd/train", f"{FC}/feat_4p_val"), "test": (f"{REPO}/data/tcd/test", f"{FC}/feat_4p_test_dl/feat_4p_test"),
+          "sparse": (f"{REPO}/data/tcd_sparse/test", f"{FC}/feat_4p_sparse_dl/feat_4p_sparse")}
 SHIFTS = (0, 4, 8, 12)
 
 

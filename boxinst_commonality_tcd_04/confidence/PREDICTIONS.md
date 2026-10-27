@@ -1,5 +1,9 @@
 # Prediction archive — LACE 439 seeds
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 **Rule: a prediction file that took GPU time to make never lives only in a session scratchpad.**
 It goes on the Modal volume that produced it AND is copied here in the same session. Twice now a
 figure could not be recomputed because masks were discarded (see `feedback-persist-masks`), and on

@@ -78,6 +78,8 @@ def main():
             if k in bands:
                 L.append(f"\nLACE 3-seed {ras[1:]} (mean ± sd, ddof=1): " + ", ".join(f"{m} {v[0]:.4f} ± {v[1]:.4f}" for m, v in bands[k].items()))
     open(os.path.join(OUT, "table_r2048.md"), "w").write("\n".join(L) + "\n")
+    from boxinst_commonality_tcd_04.results_439 import mark_superseded as MS   # SUPERSEDED by TABLE1_CURRENT.md (2026-10-27)
+    MS.put(os.path.join(OUT, "table_r2048.md"), MS.banner(os.path.join(OUT, "table_r2048.md")))
     print("\n".join(L))
 
 

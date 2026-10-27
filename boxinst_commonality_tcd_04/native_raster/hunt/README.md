@@ -1,5 +1,9 @@
 # hunt — a LACE-style masker that beats SAM 3 zero-shot on AP50 (started 2026-10-16)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Goal: LACE masks on LACE's own boxes beat SAM 3 zero-shot masks on the same boxes, mask AP50, 439 test tiles, 3 seeds. Original target 0.664 ± 0.003 was the HYBRID (SAM masks ranked by LACE's product — not computable by a SAM pipeline); the fair SAM baseline is its own ranking √(s·SAM), **0.648 ± 0.003** (see L30). LACE deployed 0.647 ± 0.003.
 Rules: everything local CPU/MPS; every setting chosen on the 108 val tiles (det_phase4_L24_s0, 40,058 dets); test once per frozen candidate; no file overwritten; masker npz and knobs unchanged unless stated.
 
@@ -85,5 +89,32 @@ Gate: deployed spec = published masks 498/498 byte-identical. Same LACE boxes fo
 The hybrid row uses LACE's box→mask posterior (bimod × p̄) to rank SAM's masks — a SAM-only pipeline cannot compute it (Tom, 2026-10-16), so it is a masks-at-fixed-ranking diagnostic, not the SAM baseline. Throughout L1–L27 "SAM val ref 0.6776" is this hybrid on val.
 AP50:95 (same files): cand1 0.2856 / 0.2722 / 0.2844 vs SAM 3 own ranking 0.3027 / 0.2971 / 0.3027 → **SAM wins AP50:95 by 0.017–0.025 on every seed** (tighter outlines; LACE finds/ranks more crowns at IoU 0.5).
 Val→test shrinkage: gain over deployed +0.015 (val) → +0.009 (test); selection over ~170 val arms inflated it.
+### L31 — simple variant + own-posterior ranking (val, 2026-10-26; rule written BEFORE the full-val number)
+Motivation (Tom): drop the per-pixel E-step and its 30 px gate (ad hoc), and rank by s′ = s·bimod·pfg_mean from the SAME posterior that makes the mask. Simple variant = `{"kind": "post4", "c_peak": 0.33}` (4 px cell posterior, guided r12, τ = 0.33·box peak; = `p4_rp0.33`, val 0.6759 under the 8 px s′, b14).
+Code: `arms.py` per-arm `"rank"`: `own8` = product from the 8 px cell posterior; `own4` = product from the 4 px cell posterior (m4, α 0.3, κ 1.6). Gate: `deployed_own8` scores == published `scores_product` exactly (smoke 12 tiles: max diff 0.00e+00, PASS; `results/b28_smoke.json`, `logs/hunt_b28_smoke.log` — subset, not for interpretation).
+Batch `b28_simple_rank` (`arms_specs/b28_simple_rank.json`, `logs/hunt_b28_simple_rank.log`): deployed, deployed_own8, simple_rank8, simple_rank4, cand1_rank8, cand1_rank4. Gates: deployed 0.6636, simple_rank8 0.6759, cand1_rank8 0.6787.
+**Decision rule (fixed before the result):** if simple_rank4 is level with (≥ −0.002) or above simple_rank8 on val AP50, freeze **simple_rank4** and run it once on test (439 × 3 seeds). If clearly below, no freeze — Tom decides. cand1_rank4 is recorded for information only (the cand1 fallback keeps its tested 8 px ranking unless Tom decides otherwise).
+
+**Result (108 val tiles, det s0, all gates PASS: deployed 0.6636, deployed_own8 scores identical, simple_rank8 0.6759, cand1_rank8 0.6787):** simple_rank8 0.6759 (A 0.6783, B 0.6706, AP75 0.2192); **simple_rank4 0.6752** (A 0.6764, B 0.6714, AP75 0.2181); cand1_rank8 0.6787; cand1_rank4 0.6779 (A 0.6815, B 0.6735). Own-posterior ranking costs 0.0007–0.0008 on both variants (within noise). Rule → **simple_rank4 FROZEN** (`FROZEN_simple_2026-10-26.json`); test pending Tom's go.
+
+### L32 — `lace4px_simple` ON TEST (`test/compare_lace4px_simple.json`, `logs/hunt_test_simple.log`) — all 3 seeds, 439 tiles, run once
+Gates: deployed masks 498/498 byte-identical; own8 s′ recomputed locally vs published within 1.53e-6 on the gate tiles.
+| masks (ranking) | s0 | s1 | s2 | mean ± sd |
+|---|---|---|---|---|
+| **LACE simple `lace4px_simple`** (own 4 px posterior s′) | 0.6556 | 0.6503 | 0.6576 | **0.6545 ± 0.0038** |
+| LACE cand1 `lace4px_g30` (deployed 8 px s′) | 0.6569 | 0.6518 | 0.6589 | 0.6559 ± 0.0037 |
+| SAM 3 zs, own ranking √(s·SAM) (A1) | 0.6451 | 0.6479 | 0.6507 | 0.6479 ± 0.0028 |
+| LACE deployed | 0.6472 | 0.6444 | 0.6493 | 0.6470 ± 0.0025 |
+
+**simple − SAM 3 (own ranking) = +0.0105 / +0.0024 / +0.0069, mean +0.0066 ± 0.0041; positive on all 3 seeds.** AP50:95 0.2844 / 0.2729 / 0.2837 = 0.2803 ± 0.0064 vs SAM 0.3027 / 0.2971 / 0.3027 (SAM wins by 0.018–0.024). Box AP50 0.6748 / 0.6535 / 0.6708 = 0.6664 ± 0.0113. Cost of dropping the per-pixel step / 30 px gate and ranking by the mask's own posterior: −0.0014 AP50 vs cand1.
+**Precision control** (`rank_precision_control.py`, `test/rank_precision_control.json`, `logs/hunt_rank_precision_control.log`): published deployed masks re-ranked by s′ recomputed LOCALLY (8 px) reproduce the published (Modal) AP50 / AP50:95 to 4 dp on all 3 seeds (0.6472/0.2821, 0.6444/0.2722, 0.6493/0.2791) → PASS. Over 499,302 boxes, 5 differ by > 1e-5 (one by 0.0155; all short side 10–20 px, likely a cell on the box-inclusion edge); immaterial to AP.
+
+### Status (2026-10-26)
+`lace4px_simple` tested (L32): 0.6545 ± 0.0038, beats SAM 3 zs own ranking on all 3 seeds; candidate for adoption (Tom decides). L31 launch notes: `lace4px_simple` frozen on val; Tom gave the go 2026-10-26. Test run `test_eval.py FROZEN_simple_2026-10-26.json lace4px_simple` (log `logs/hunt_test_simple.log`). test_eval extended: spec `"rank"` recomputes s′ from the render's own posterior using the same-box raw detector scores (`preds_lace_s{s}_r2048_cgf_r12_tau035_detscore.json`); compare file adds SAM 3 zs at its OWN ranking (A1, `tierA/scored_a1_lace_s{s}_sam3zs_gmean.json`) and cand1. Rank gate: own8 s′ recomputed locally vs published (Modal) product, s0 first 3 tiles, max |diff| 1.53e-6 over 498 boxes — first run failed a 1e-6 tolerance (`logs/hunt_test_simple_gatefail_1e-6.log`), tolerance set to 1e-5 (same Modal-vs-local float offset as the A2 gate, ≤ 1.5e-6); no test number had been produced.
+
 ### Status (2026-10-19)
 Closed. Candidate 1 `lace4px_g30` is the result (L30). Nothing running, nothing pending.
+
+### IoU columns, sparse236 (2026-10-27, `iou_columns_sparse.py` → `ablation/results_r2048/box_iou_strata_sparse236_lace4px_simple_r2048.json`)
+tab:strata-maskiou instrument (box IoU ≥ 0.5 greedy-by-score match, canopy preds dropped), lace4px_simple × 3 seeds vs DT2 seam-fixed. Gate: `--gate` re-derives 439 LACE s0 = 19814 / box 0.7209 / mask 0.7161 — PASS (`logs/iou_columns_gate_2026-10-27.log`).
+All matches: mask IoU LACE 0.7345 ± 0.0017 vs DT2 0.7703; box IoU 0.7269 ± 0.0061 vs 0.7725. Common subset (10,229 crowns): mask 0.7510 ± 0.0036 vs 0.7836; box 0.7415 ± 0.0090 vs 0.7854. LACE trails DT2 on outline tightness despite +0.042 AP50. Not in paper.tex.

@@ -67,7 +67,7 @@ def gate(a):
     ds = BoxLabelCOCO(MR.TRAIN_JSON, TC.RGB_DIR, min_obj_size=MR.MIN_OBJ_SIZE, max_obj_size=1e10,
                       transform=data_aug_pipelines["train"](MR.mal_args(["--dataset_type", "coco"], 1)),
                       args=args)
-    assert len(ds) == 31341, len(ds)
+    assert len(ds) == 54184, len(ds)               # every valid crown (min_obj_size 0; was 31341 at 920)
     ck["G2_train_json"] = {"images": 792, "annotations": 54191, "kept_by_mal_filter": len(ds),
                            "min_obj_size": MR.MIN_OBJ_SIZE}
 

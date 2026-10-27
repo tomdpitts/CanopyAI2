@@ -1,0 +1,50 @@
+[detach] modal deploy /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/../box_supervised_baselines/boxinstseg_modal.py
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/boxinstseg_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/inject_boxes.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detectree2_baseli
+│   ne/stitch.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/make_box_only_coco.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/patch_boxinstseg.py
+├── 🔨 Created function imports_ok.
+├── 🔨 Created function prep_data.
+├── 🔨 Created function fetch_ckpt.
+├── 🔨 Created function train.
+├── 🔨 Created function train80.
+├── 🔨 Created function predict.
+├── 🔨 Created function _blackout_shard.
+├── 🔨 Created function prep_data_blackout.
+├── 🔨 Created function dryrun.
+├── 🔨 Created function inspect_empty_subtiles.
+├── 🔨 Created function stitch.
+├── 🔨 Created function injection_gate.
+└── 🔨 Created function assigner_coverage.
+✓ App deployed in 8.744s! 🎉
+
+View Deployment: https://modal.com/apps/tomdpitts/main/deployed/tcd04-boxinstseg
+{
+  "call_id": "fc-01M5XCK31BK2D5TW47B91DG2D6",
+  "app": "tcd04-boxinstseg",
+  "fn": "predict",
+  "kwargs": {
+    "method": "box2mask",
+    "seed": 0,
+    "split": "sparse",
+    "backbone": "swin-l"
+  },
+  "note": "Box2Mask Swin-L s0 on sparse-236 (2124 subtiles), A100, 2026-10-27, adoption Phase A extension (Tom go)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M5XCK31BK2D5TW47B91DG2D6

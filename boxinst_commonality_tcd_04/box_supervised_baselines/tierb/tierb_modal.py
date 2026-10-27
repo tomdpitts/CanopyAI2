@@ -57,7 +57,7 @@ WEIGHTS = {
 GPU8 = "A100-40GB:8"                        # budget: 40 GB (gate G5 proves the real per-GPU batch fits)
 GPU1 = "A100-40GB"
 GPU_SMOKE, N_SMOKE = "A100-40GB:2", 2       # smokes: 2 GPUs at the released per-GPU batch
-SMOKE_TILES = 16                            # smoke predict: first 16 val tiles
+SMOKE_TILES = 8                             # smoke predict: first 8 val tiles (Tom 2026-10-27; was 16)
 # Modal list prices (USD), modal.com/pricing checked 2026-10-15: A100-40GB $0.000583/s, CPU
 # $0.0000131/physical core/s, memory $0.00000222/GiB/s; CPU and memory are billed ON TOP of the GPU.
 USD_H = {"gpu": 0.000583 * 3600, "core": 0.0000131 * 3600, "gib": 0.00000222 * 3600}
@@ -126,6 +126,7 @@ img_cpu = _add_repo_files(img_cpu, [
         "box_supervised_baselines/__init__.py", "box_supervised_baselines/gtbox_lib.py",
         "native_raster/stitch_res.py", "native_raster/stitch_seam.py", "native_raster/run_stitch_seam.py",
         "native_raster/gtbox_guided_raw/gtbox_lace_guided_r2048.jsonl",
+        "native_raster/hunt/test/gtbox4_lace4px_simple_percrown.jsonl",     # B3 paired GT-box reference (4 px masker)
         "native_raster/audit_2026-10-14/selvabox_evidence/gtbox_sam_persub.json",
         "native_raster/preds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json",
         "native_raster/scored_lace_s0_r2048_cgf_r12_tau035_guidedrun.json",
@@ -215,14 +216,16 @@ RETRY = modal.Retries(max_retries=8, backoff_coefficient=1.0, initial_delay=30.0
 RETRY1 = modal.Retries(max_retries=1, backoff_coefficient=1.0, initial_delay=30.0)
 
 # ------------------------------------------------------------------ the plan
+# 2026-10-27 (Tom, TIERB.md section 00): B2 BoxTeacher first, then B3 MAL; B1 BoxInst NOT planned. Its gate,
+# train, predict and finalize code is kept intact: to revisit B1, append
+#   ("gate", "boxinst") before HOLD and ("train", "boxinst"), ("predict", "boxinst"), ("finalize", "boxinst") after.
 PLAN = [
     ("stage", None), ("fetch_weights", None),
-    ("gate", "mal"), ("gate", "boxteacher"), ("gate", "boxinst"),
-    ("smoke", "mal"), ("smoke", "boxteacher"),             # B1 shares B2's d2 machinery (budget)
+    ("gate", "boxteacher"), ("gate", "mal"),
+    ("smoke", "boxteacher"), ("smoke", "mal"),
     ("HOLD", None),                                         # review gates, smokes, projected cost
-    ("train", "mal"), ("predict", "mal"), ("finalize", "mal"),
     ("train", "boxteacher"), ("predict", "boxteacher"), ("finalize", "boxteacher"),
-    ("train", "boxinst"), ("predict", "boxinst"), ("finalize", "boxinst"),
+    ("train", "mal"), ("predict", "mal"), ("finalize", "mal"),
 ]
 HOLD_INDEX = [i for i, (s, _) in enumerate(PLAN) if s == "HOLD"][0]
 
@@ -759,7 +762,7 @@ def d2_gpu2_smoke(i: int, m: str):
         def kill_predict(proc, info):
             n = len([x for x in os.listdir(wdir) if x.endswith(".json") and ".tmp" not in x]) \
                 if os.path.isdir(wdir) else 0
-            if n >= 4 and not os.path.exists(f"{run}/predict_killed"):
+            if n >= max(2, SMOKE_TILES // 4) and not os.path.exists(f"{run}/predict_killed"):   # kill at 1/4, as at 16
                 open(f"{run}/predict_killed", "w").write(str(n))
                 os.killpg(proc.pid, signal.SIGKILL)
         if not os.path.exists(f"{run}/smoke_P1.json"):

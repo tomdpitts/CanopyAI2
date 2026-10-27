@@ -1,0 +1,134 @@
+{
+ "batch": "b28_simple_rank",
+ "n_tiles": 108,
+ "arms": {
+  "deployed": {
+   "kind": "deployed"
+  },
+  "deployed_own8": {
+   "kind": "deployed",
+   "rank": "own8"
+  },
+  "simple_rank8": {
+   "kind": "post4",
+   "c_peak": 0.33
+  },
+  "simple_rank4": {
+   "kind": "post4",
+   "c_peak": 0.33,
+   "rank": "own4"
+  },
+  "cand1_rank8": {
+   "kind": "size_gate",
+   "T": 30,
+   "small": {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   "large": {
+    "kind": "post4",
+    "c_peak": 0.33
+   }
+  },
+  "cand1_rank4": {
+   "kind": "size_gate",
+   "T": 30,
+   "small": {
+    "kind": "guided",
+    "seed": "px4",
+    "r": 12,
+    "c_peak": 0.33
+   },
+   "large": {
+    "kind": "post4",
+    "c_peak": 0.33
+   },
+   "rank": "own4"
+  }
+ },
+ "AP50": {
+  "deployed": {
+   "all": 0.6636,
+   "A": 0.6699,
+   "B": 0.6567
+  },
+  "deployed_own8": {
+   "all": 0.6636,
+   "A": 0.6699,
+   "B": 0.6567
+  },
+  "simple_rank8": {
+   "all": 0.6759,
+   "A": 0.6783,
+   "B": 0.6706
+  },
+  "simple_rank4": {
+   "all": 0.6752,
+   "A": 0.6764,
+   "B": 0.6714
+  },
+  "cand1_rank8": {
+   "all": 0.6787,
+   "A": 0.6833,
+   "B": 0.673
+  },
+  "cand1_rank4": {
+   "all": 0.6779,
+   "A": 0.6815,
+   "B": 0.6735
+  }
+ },
+ "AP75": {
+  "deployed": {
+   "all": 0.2171,
+   "A": 0.2255,
+   "B": 0.2069
+  },
+  "deployed_own8": {
+   "all": 0.2171,
+   "A": 0.2255,
+   "B": 0.2069
+  },
+  "simple_rank8": {
+   "all": 0.2192,
+   "A": 0.2237,
+   "B": 0.2155
+  },
+  "simple_rank4": {
+   "all": 0.2181,
+   "A": 0.2212,
+   "B": 0.2128
+  },
+  "cand1_rank8": {
+   "all": 0.2194,
+   "A": 0.2225,
+   "B": 0.2165
+  },
+  "cand1_rank4": {
+   "all": 0.2185,
+   "A": 0.2205,
+   "B": 0.2134
+  }
+ },
+ "gate_deployed": {
+  "got": 0.6636,
+  "ref": 0.6636,
+  "pass": true
+ },
+ "gate_rank_own8__deployed_own8": {
+  "max_abs_score_diff": 0.0,
+  "pass": true
+ },
+ "sam_val_ref": {
+  "AP50": {
+   "all": 0.6776,
+   "A": 0.6844,
+   "B": 0.6721
+  },
+  "AP75": {
+   "all": 0.2839
+  }
+ }
+}

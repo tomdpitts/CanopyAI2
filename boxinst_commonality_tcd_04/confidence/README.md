@@ -1,5 +1,9 @@
 # Confidence score: multiply the masker's posterior back in
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 **Result: +0.0325 canopy-neutral mask AP50 (0.6300 → 0.6625, 3 seeds) on the OAM-TCD 439,
 and +0.0354 on the held-out sparse 236, from**
 

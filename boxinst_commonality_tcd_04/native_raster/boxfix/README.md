@@ -1,5 +1,9 @@
 # boxfix — training-free render fix for LACE's box→mask module (2026-10-15)
 
+<!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+<!-- TABLE1_CURRENT:end -->
+
 Goal: beat SAM 3 zero-shot (per-1024-subtile placement) on identical GT boxes (tab:gtbox protocol, gtbox_lib).
 Masker (posterior) unchanged: em_model_4p_fix.npz, knobs 0.3/1.6. Only the render (posterior → mask) changes.
 

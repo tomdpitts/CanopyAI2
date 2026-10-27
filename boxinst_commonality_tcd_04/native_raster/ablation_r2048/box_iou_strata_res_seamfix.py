@@ -3,6 +3,9 @@ four subtile-stitched baselines replaced by their seam-fixed files (seamfix/, 20
 LACE and Restor rows are the same files as the guided version.
 
 Gate: --rows guided_current reproduces ablation/results_r2048/box_iou_strata_guided_r2048.json.
+--rows lace4px_simple: the seamfix rows with the three LACE rows replaced by the adopted 4 px masker
+(hunt/test/preds_lace_s{s}_r2048_lace4px_simple.json, own 4 px posterior s'); gate = --rows seamfix reproduces
+box_iou_strata_seamfix_r2048.json.
 
   .venv/bin/python -m boxinst_commonality_tcd_04.native_raster.ablation_r2048.box_iou_strata_res_seamfix \
       --rows seamfix --out boxinst_commonality_tcd_04/ablation/results_r2048/box_iou_strata_seamfix_r2048.json
@@ -21,16 +24,18 @@ SEAMFIX.update({
     "Box2Mask R-50": f"{SF}/preds_box2mask_r50_s0_r2048_seamfix.json",
     "Box2Mask Swin-L": f"{SF}/preds_box2mask_swinl_s0_r2048_seamfix.json",
 })
+LACE4 = dict(SEAMFIX)
+LACE4.update({f"LACE s{s} (product)": f"{NR}/hunt/test/preds_lace_s{s}_r2048_lace4px_simple.json" for s in (0, 1, 2)})
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--rows", choices=("guided_current", "seamfix"), required=True)
+    ap.add_argument("--rows", choices=("guided_current", "seamfix", "lace4px_simple"), required=True)
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     assert not os.path.exists(a.out), f"REFUSING to overwrite {a.out}"
     B.RES, B.SCALE = 2048, 1.0
-    B.ROWS = dict(R2048 if a.rows == "guided_current" else SEAMFIX)
+    B.ROWS = dict({"guided_current": R2048, "seamfix": SEAMFIX, "lace4px_simple": LACE4}[a.rows])
     missing = [k for k, v in B.ROWS.items() if not os.path.exists(v)]
     assert not missing, missing
     print(f"[box_iou_strata_seamfix] rows={a.rows} {B.ROWS}", flush=True)
