@@ -1,0 +1,98 @@
+{
+ "set": "tcd439",
+ "tiles": [
+  "tcd_val_tile_24",
+  "tcd_val_tile_100"
+ ],
+ "thresholds": {
+  "Restor Mask R-CNN": {
+   "threshold": 0.24,
+   "f1": 0.6878085986110554,
+   "tp": 17134,
+   "fp": 6983,
+   "fn": 8571
+  },
+  "LACE (ours)": {
+   "threshold": 0.11,
+   "f1": 0.6638861221779548,
+   "tp": 15997,
+   "fp": 6490,
+   "fn": 9708
+  },
+  "Detectree2": {
+   "threshold": 0.48,
+   "f1": 0.6331337483643285,
+   "tp": 15967,
+   "fp": 8766,
+   "fn": 9738
+  },
+  "Box2Mask Swin-L": {
+   "threshold": 0.76,
+   "f1": 0.6396176175302283,
+   "tp": 14653,
+   "fp": 5460,
+   "fn": 11052
+  }
+ },
+ "crop_px": 768,
+ "crop_xy": {
+  "tcd_val_tile_24": [
+   1280,
+   0
+  ],
+  "tcd_val_tile_100": [
+   0,
+   0
+  ]
+ },
+ "counts": {
+  "tcd_val_tile_24|LACE (ours)": {
+   "f1": 0.8421,
+   "tp": 8,
+   "fp": 0,
+   "fn": 3
+  },
+  "tcd_val_tile_24|Restor Mask R-CNN": {
+   "f1": 0.8,
+   "tp": 10,
+   "fp": 4,
+   "fn": 1
+  },
+  "tcd_val_tile_24|Detectree2": {
+   "f1": 0.8333,
+   "tp": 10,
+   "fp": 3,
+   "fn": 1
+  },
+  "tcd_val_tile_24|Box2Mask Swin-L": {
+   "f1": 0.8,
+   "tp": 8,
+   "fp": 1,
+   "fn": 3
+  },
+  "tcd_val_tile_100|LACE (ours)": {
+   "f1": 0.8571,
+   "tp": 6,
+   "fp": 1,
+   "fn": 1
+  },
+  "tcd_val_tile_100|Restor Mask R-CNN": {
+   "f1": 0.5333,
+   "tp": 4,
+   "fp": 3,
+   "fn": 4
+  },
+  "tcd_val_tile_100|Detectree2": {
+   "f1": 0.6667,
+   "tp": 5,
+   "fp": 3,
+   "fn": 2
+  },
+  "tcd_val_tile_100|Box2Mask Swin-L": {
+   "f1": 0.7368,
+   "tp": 7,
+   "fp": 4,
+   "fn": 1
+  }
+ }
+}

@@ -1,0 +1,1536 @@
+Building image im-tfmsKWFuf36gGVa5KU0aKl
+Building image im-BQKDxYc7YZlEZ8CCxHE06G
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+
+=> Step 0: FROM base
+
+=> Step 1: RUN git clone https://github.com/NVlabs/mask-auto-labeler.git /opt/mal && cd /opt/mal && git checkout 0ab9be4fe6b17f3e21b5829f88db001ef2bd665c
+Cloning into '/opt/mal'...
+Saving image...
+Note: switching to '0ab9be4fe6b17f3e21b5829f88db001ef2bd665c'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 0ab9be4 Update README.md
+
+=> Step 2: RUN python -m pip install --no-deps --force-reinstall numpy==1.23.5
+Building image im-GHPI6h1220lIntLQcQah81
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting numpy==1.23.5
+
+=> Step 0: FROM base
+  Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-1.23.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.3 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-1.23.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.1/17.1 MB 187.0 MB/s eta 0:00:00
+Installing collected packages: numpy
+  Attempting uninstall: numpy
+    Found existing installation: numpy 1.23.5
+    Uninstalling numpy-1.23.5:
+
+=> Step 1: RUN git clone https://github.com/hustvl/BoxTeacher.git /opt/BoxTeacher && cd /opt/BoxTeacher && git checkout 6692d9213df1de96ee59338634551b70319a5cb2
+Image saved, took 2.17s
+
+Built image im-tfmsKWFuf36gGVa5KU0aKl in 4.51s
+
+
+Cloning into '/opt/BoxTeacher'...
+      Successfully uninstalled numpy-1.23.5
+Note: switching to '6692d9213df1de96ee59338634551b70319a5cb2'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 6692d92 Update README.md
+
+=> Step 2: RUN cd /opt/BoxTeacher && sed -i 's/^PROJECTS = {/PROJECTS = {}  # tierb: projects absent upstream (BoxTeacher issue #9)\n_UNUSED = {/' setup.py
+
+=> Step 3: RUN cd /opt/BoxTeacher && sed -i '/ml_nms/d' AdelaiDet/adet/layers/csrc/vision.cpp && rm -rf AdelaiDet/adet/layers/csrc/ml_nms
+
+=> Step 4: RUN cd /opt/BoxTeacher && sed -i '1i #include <torch/extension.h>' AdelaiDet/adet/layers/csrc/vision.cpp
+Successfully installed numpy-1.23.5
+
+=> Step 5: RUN cd /opt/BoxTeacher && sed -i '/^from turtle import color/d' projects/BoxTeacher/boxteacher/dataset_mapper.py
+
+[notice] A new release of pip is available: 24.0 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+
+=> Step 3: RUN cd /opt/mal && python -c "import torch.utils.model_zoo as mz; from models.vision_transformers import urls_dic; print(len(mz.load_url(urls_dic['vit-mae-base/16'], map_location='cpu')))"
+
+=> Step 6: RUN cd /opt/BoxTeacher && sed -i '/^from cv2 import log/d' projects/BoxTeacher/boxteacher/ema_hook.py
+
+=> Step 7: RUN cd /opt/BoxTeacher && sed -i 's/self.trainer.model.module/(self.trainer.model.module if hasattr(self.trainer.model, "module") else self.trainer.model)/g' projects/BoxTeacher/boxteacher/ema_hook.py
+
+=> Step 8: RUN cd /opt/BoxTeacher && python setup.py build develop --no-deps
+Downloading: "https://dl.fbaipublicfiles.com/mae/pretrain/mae_pretrain_vit_base.pth" to /opt/torch_home/hub/checkpoints/mae_pretrain_vit_base.pth
+
+[1A  0%|          | 0.00/327M [00:00<?, ?B/s]
+[1A  5%|▍         | 16.0M/327M [00:00<00:01, 168MB/s]
+[1A 10%|▉         | 32.0M/327M [00:00<00:01, 167MB/s]
+[1A 15%|█▌        | 49.8M/327M [00:00<00:01, 176MB/s]
+[1A 20%|██        | 67.0M/327M [00:00<00:01, 178MB/s]
+[1A 27%|██▋       | 88.1M/327M [00:00<00:01, 193MB/s]
+[1A 33%|███▎      | 108M/327M [00:00<00:01, 200MB/s] 
+[1A 39%|███▉      | 127M/327M [00:00<00:01, 184MB/s]
+[1A 44%|████▍     | 145M/327M [00:00<00:01, 184MB/s]
+[1A 50%|████▉     | 163M/327M [00:00<00:00, 181MB/s]
+[1A 55%|█████▌    | 181M/327M [00:01<00:00, 184MB/s]No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+running build
+
+[1A 61%|██████    | 199M/327M [00:01<00:00, 183MB/s]
+[1A 66%|██████▌   | 216M/327M [00:01<00:00, 177MB/s]running build_py
+creating build
+creating build/lib.linux-x86_64-3.10
+creating build/lib.linux-x86_64-3.10/detectron2
+copying detectron2/__init__.py -> build/lib.linux-x86_64-3.10/detectron2
+creating build/lib.linux-x86_64-3.10/tools
+copying tools/__init__.py -> build/lib.linux-x86_64-3.10/tools
+copying tools/analyze_model.py -> build/lib.linux-x86_64-3.10/tools
+copying tools/benchmark.py -> build/lib.linux-x86_64-3.10/tools
+copying tools/convert-torchvision-to-d2.py -> build/lib.linux-x86_64-3.10/tools
+copying tools/lazyconfig_train_net.py -> build/lib.linux-x86_64-3.10/tools
+copying tools/lightning_train_net.py -> build/lib.linux-x86_64-3.10/tools
+copying tools/plain_train_net.py -> build/lib.linux-x86_64-3.10/tools
+copying tools/train_net.py -> build/lib.linux-x86_64-3.10/tools
+copying tools/visualize_data.py -> build/lib.linux-x86_64-3.10/tools
+copying tools/visualize_json_results.py -> build/lib.linux-x86_64-3.10/tools
+creating build/lib.linux-x86_64-3.10/detectron2/checkpoint
+copying detectron2/checkpoint/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/checkpoint
+copying detectron2/checkpoint/c2_model_loading.py -> build/lib.linux-x86_64-3.10/detectron2/checkpoint
+copying detectron2/checkpoint/catalog.py -> build/lib.linux-x86_64-3.10/detectron2/checkpoint
+copying detectron2/checkpoint/detection_checkpoint.py -> build/lib.linux-x86_64-3.10/detectron2/checkpoint
+creating build/lib.linux-x86_64-3.10/detectron2/config
+copying detectron2/config/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/config
+copying detectron2/config/compat.py -> build/lib.linux-x86_64-3.10/detectron2/config
+copying detectron2/config/config.py -> build/lib.linux-x86_64-3.10/detectron2/config
+copying detectron2/config/defaults.py -> build/lib.linux-x86_64-3.10/detectron2/config
+copying detectron2/config/instantiate.py -> build/lib.linux-x86_64-3.10/detectron2/config
+copying detectron2/config/lazy.py -> build/lib.linux-x86_64-3.10/detectron2/config
+creating build/lib.linux-x86_64-3.10/detectron2/data
+copying detectron2/data/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/data
+copying detectron2/data/benchmark.py -> build/lib.linux-x86_64-3.10/detectron2/data
+copying detectron2/data/build.py -> build/lib.linux-x86_64-3.10/detectron2/data
+copying detectron2/data/catalog.py -> build/lib.linux-x86_64-3.10/detectron2/data
+copying detectron2/data/common.py -> build/lib.linux-x86_64-3.10/detectron2/data
+copying detectron2/data/dataset_mapper.py -> build/lib.linux-x86_64-3.10/detectron2/data
+copying detectron2/data/detection_utils.py -> build/lib.linux-x86_64-3.10/detectron2/data
+creating build/lib.linux-x86_64-3.10/detectron2/engine
+copying detectron2/engine/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/engine
+copying detectron2/engine/defaults.py -> build/lib.linux-x86_64-3.10/detectron2/engine
+copying detectron2/engine/hooks.py -> build/lib.linux-x86_64-3.10/detectron2/engine
+copying detectron2/engine/launch.py -> build/lib.linux-x86_64-3.10/detectron2/engine
+copying detectron2/engine/train_loop.py -> build/lib.linux-x86_64-3.10/detectron2/engine
+creating build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/cityscapes_evaluation.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/coco_evaluation.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/evaluator.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/fast_eval_api.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/lvis_evaluation.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/panoptic_evaluation.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/pascal_voc_evaluation.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/rotated_coco_evaluation.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/sem_seg_evaluation.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+copying detectron2/evaluation/testing.py -> build/lib.linux-x86_64-3.10/detectron2/evaluation
+creating build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/api.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/c10.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/caffe2_export.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/caffe2_inference.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/caffe2_modeling.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/caffe2_patch.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/flatten.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/shared.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/torchscript.py -> build/lib.linux-x86_64-3.10/detectron2/export
+copying detectron2/export/torchscript_patch.py -> build/lib.linux-x86_64-3.10/detectron2/export
+creating build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/aspp.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/batch_norm.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/blocks.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/deform_conv.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/losses.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/mask_ops.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/nms.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/roi_align.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/roi_align_rotated.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/rotated_boxes.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/shape_spec.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+copying detectron2/layers/wrappers.py -> build/lib.linux-x86_64-3.10/detectron2/layers
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo
+copying detectron2/model_zoo/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo
+copying detectron2/model_zoo/model_zoo.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo
+creating build/lib.linux-x86_64-3.10/detectron2/modeling
+copying detectron2/modeling/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/modeling
+copying detectron2/modeling/anchor_generator.py -> build/lib.linux-x86_64-3.10/detectron2/modeling
+copying detectron2/modeling/box_regression.py -> build/lib.linux-x86_64-3.10/detectron2/modeling
+copying detectron2/modeling/matcher.py -> build/lib.linux-x86_64-3.10/detectron2/modeling
+copying detectron2/modeling/mmdet_wrapper.py -> build/lib.linux-x86_64-3.10/detectron2/modeling
+copying detectron2/modeling/poolers.py -> build/lib.linux-x86_64-3.10/detectron2/modeling
+copying detectron2/modeling/postprocessing.py -> build/lib.linux-x86_64-3.10/detectron2/modeling
+copying detectron2/modeling/sampling.py -> build/lib.linux-x86_64-3.10/detectron2/modeling
+copying detectron2/modeling/test_time_augmentation.py -> build/lib.linux-x86_64-3.10/detectron2/modeling
+creating build/lib.linux-x86_64-3.10/detectron2/projects
+copying detectron2/projects/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/projects
+creating build/lib.linux-x86_64-3.10/detectron2/solver
+copying detectron2/solver/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/solver
+copying detectron2/solver/build.py -> build/lib.linux-x86_64-3.10/detectron2/solver
+copying detectron2/solver/lr_scheduler.py -> build/lib.linux-x86_64-3.10/detectron2/solver
+creating build/lib.linux-x86_64-3.10/detectron2/structures
+
+[1A 72%|███████▏  | 235M/327M [00:01<00:00, 182MB/s]
+[1A 77%|███████▋  | 252M/327M [00:01<00:00, 182MB/s]
+[1A 82%|████████▏ | 270M/327M [00:01<00:00, 175MB/s]copying detectron2/structures/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/structures
+copying detectron2/structures/boxes.py -> build/lib.linux-x86_64-3.10/detectron2/structures
+copying detectron2/structures/image_list.py -> build/lib.linux-x86_64-3.10/detectron2/structures
+copying detectron2/structures/instances.py -> build/lib.linux-x86_64-3.10/detectron2/structures
+copying detectron2/structures/keypoints.py -> build/lib.linux-x86_64-3.10/detectron2/structures
+copying detectron2/structures/masks.py -> build/lib.linux-x86_64-3.10/detectron2/structures
+copying detectron2/structures/rotated_boxes.py -> build/lib.linux-x86_64-3.10/detectron2/structures
+creating build/lib.linux-x86_64-3.10/detectron2/tracking
+copying detectron2/tracking/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/tracking
+copying detectron2/tracking/base_tracker.py -> build/lib.linux-x86_64-3.10/detectron2/tracking
+copying detectron2/tracking/bbox_iou_tracker.py -> build/lib.linux-x86_64-3.10/detectron2/tracking
+copying detectron2/tracking/hungarian_tracker.py -> build/lib.linux-x86_64-3.10/detectron2/tracking
+copying detectron2/tracking/iou_weighted_hungarian_bbox_iou_tracker.py -> build/lib.linux-x86_64-3.10/detectron2/tracking
+copying detectron2/tracking/utils.py -> build/lib.linux-x86_64-3.10/detectron2/tracking
+copying detectron2/tracking/vanilla_hungarian_bbox_iou_tracker.py -> build/lib.linux-x86_64-3.10/detectron2/tracking
+creating build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/analysis.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/collect_env.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/colormap.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/comm.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/develop.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/env.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/events.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/file_io.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/logger.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/memory.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/registry.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/serialize.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/testing.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/tracing.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/video_visualizer.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+copying detectron2/utils/visualizer.py -> build/lib.linux-x86_64-3.10/detectron2/utils
+creating build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/builtin.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/builtin_meta.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/cityscapes.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/cityscapes_panoptic.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/coco.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/coco_panoptic.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/lvis.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/lvis_v0_5_categories.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/lvis_v1_categories.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/lvis_v1_category_image_count.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/pascal_voc.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+copying detectron2/data/datasets/register_coco.py -> build/lib.linux-x86_64-3.10/detectron2/data/datasets
+creating build/lib.linux-x86_64-3.10/detectron2/data/samplers
+copying detectron2/data/samplers/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/data/samplers
+copying detectron2/data/samplers/distributed_sampler.py -> build/lib.linux-x86_64-3.10/detectron2/data/samplers
+copying detectron2/data/samplers/grouped_batch_sampler.py -> build/lib.linux-x86_64-3.10/detectron2/data/samplers
+creating build/lib.linux-x86_64-3.10/detectron2/data/transforms
+copying detectron2/data/transforms/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/data/transforms
+copying detectron2/data/transforms/augmentation.py -> build/lib.linux-x86_64-3.10/detectron2/data/transforms
+copying detectron2/data/transforms/augmentation_impl.py -> build/lib.linux-x86_64-3.10/detectron2/data/transforms
+copying detectron2/data/transforms/transform.py -> build/lib.linux-x86_64-3.10/detectron2/data/transforms
+creating build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/backbone.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/build.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/fpn.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/mvit.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/regnet.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/resnet.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/swin.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/utils.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+copying detectron2/modeling/backbone/vit.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/backbone
+creating build/lib.linux-x86_64-3.10/detectron2/modeling/meta_arch
+copying detectron2/modeling/meta_arch/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/meta_arch
+copying detectron2/modeling/meta_arch/build.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/meta_arch
+copying detectron2/modeling/meta_arch/dense_detector.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/meta_arch
+copying detectron2/modeling/meta_arch/fcos.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/meta_arch
+copying detectron2/modeling/meta_arch/panoptic_fpn.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/meta_arch
+copying detectron2/modeling/meta_arch/rcnn.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/meta_arch
+copying detectron2/modeling/meta_arch/retinanet.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/meta_arch
+copying detectron2/modeling/meta_arch/semantic_seg.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/meta_arch
+creating build/lib.linux-x86_64-3.10/detectron2/modeling/proposal_generator
+copying detectron2/modeling/proposal_generator/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/proposal_generator
+copying detectron2/modeling/proposal_generator/build.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/proposal_generator
+copying detectron2/modeling/proposal_generator/proposal_utils.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/proposal_generator
+copying detectron2/modeling/proposal_generator/rpn.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/proposal_generator
+copying detectron2/modeling/proposal_generator/rrpn.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/proposal_generator
+creating build/lib.linux-x86_64-3.10/detectron2/modeling/roi_heads
+copying detectron2/modeling/roi_heads/__init__.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/roi_heads
+copying detectron2/modeling/roi_heads/box_head.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/roi_heads
+copying detectron2/modeling/roi_heads/cascade_rcnn.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/roi_heads
+copying detectron2/modeling/roi_heads/fast_rcnn.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/roi_heads
+copying detectron2/modeling/roi_heads/keypoint_head.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/roi_heads
+copying detectron2/modeling/roi_heads/mask_head.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/roi_heads
+copying detectron2/modeling/roi_heads/roi_heads.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/roi_heads
+copying detectron2/modeling/roi_heads/rotated_fast_rcnn.py -> build/lib.linux-x86_64-3.10/detectron2/modeling/roi_heads
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs
+copying detectron2/model_zoo/configs/Base-RCNN-C4.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs
+copying detectron2/model_zoo/configs/Base-RCNN-DilatedC5.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs
+copying detectron2/model_zoo/configs/Base-RCNN-FPN.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs
+copying detectron2/model_zoo/configs/Base-RetinaNet.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/fast_rcnn_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_R_101_C4_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_R_101_DC5_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+
+[1A 88%|████████▊ | 287M/327M [00:01<00:00, 171MB/s]
+[1A 93%|█████████▎| 303M/327M [00:01<00:00, 170MB/s]copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_R_101_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_R_50_C4_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_R_50_C4_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_R_50_DC5_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_R_50_DC5_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/faster_rcnn_X_101_32x8d_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/retinanet_R_101_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/retinanet_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/retinanet_R_50_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/rpn_R_50_C4_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/rpn_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_101_C4_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_101_DC5_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_101_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_C4_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_C4_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_DC5_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_DC5_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x_giou.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_X_101_32x8d_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Keypoints
+copying detectron2/model_zoo/configs/COCO-Keypoints/Base-Keypoint-RCNN-FPN.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Keypoints
+copying detectron2/model_zoo/configs/COCO-Keypoints/keypoint_rcnn_R_101_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Keypoints
+copying detectron2/model_zoo/configs/COCO-Keypoints/keypoint_rcnn_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Keypoints
+copying detectron2/model_zoo/configs/COCO-Keypoints/keypoint_rcnn_R_50_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Keypoints
+copying detectron2/model_zoo/configs/COCO-Keypoints/keypoint_rcnn_X_101_32x8d_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Keypoints
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-PanopticSegmentation
+copying detectron2/model_zoo/configs/COCO-PanopticSegmentation/Base-Panoptic-FPN.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-PanopticSegmentation
+copying detectron2/model_zoo/configs/COCO-PanopticSegmentation/panoptic_fpn_R_101_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-PanopticSegmentation
+copying detectron2/model_zoo/configs/COCO-PanopticSegmentation/panoptic_fpn_R_50_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-PanopticSegmentation
+copying detectron2/model_zoo/configs/COCO-PanopticSegmentation/panoptic_fpn_R_50_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-PanopticSegmentation
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Cityscapes
+copying detectron2/model_zoo/configs/Cityscapes/mask_rcnn_R_50_FPN.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Cityscapes
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Detectron1-Comparisons
+copying detectron2/model_zoo/configs/Detectron1-Comparisons/faster_rcnn_R_50_FPN_noaug_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Detectron1-Comparisons
+copying detectron2/model_zoo/configs/Detectron1-Comparisons/keypoint_rcnn_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Detectron1-Comparisons
+copying detectron2/model_zoo/configs/Detectron1-Comparisons/mask_rcnn_R_50_FPN_noaug_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Detectron1-Comparisons
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/LVISv0.5-InstanceSegmentation
+copying detectron2/model_zoo/configs/LVISv0.5-InstanceSegmentation/mask_rcnn_R_101_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/LVISv0.5-InstanceSegmentation
+copying detectron2/model_zoo/configs/LVISv0.5-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/LVISv0.5-InstanceSegmentation
+copying detectron2/model_zoo/configs/LVISv0.5-InstanceSegmentation/mask_rcnn_X_101_32x8d_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/LVISv0.5-InstanceSegmentation
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/LVISv1-InstanceSegmentation
+copying detectron2/model_zoo/configs/LVISv1-InstanceSegmentation/mask_rcnn_R_101_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/LVISv1-InstanceSegmentation
+copying detectron2/model_zoo/configs/LVISv1-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/LVISv1-InstanceSegmentation
+copying detectron2/model_zoo/configs/LVISv1-InstanceSegmentation/mask_rcnn_X_101_32x8d_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/LVISv1-InstanceSegmentation
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/cascade_mask_rcnn_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/cascade_mask_rcnn_R_50_FPN_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/cascade_mask_rcnn_X_152_32x8d_FPN_IN5k_gn_dconv.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/mask_rcnn_R_50_FPN_1x_cls_agnostic.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/mask_rcnn_R_50_FPN_1x_dconv_c3-c5.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/mask_rcnn_R_50_FPN_3x_dconv_c3-c5.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/mask_rcnn_R_50_FPN_3x_gn.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/mask_rcnn_R_50_FPN_3x_syncbn.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/panoptic_fpn_R_101_dconv_cascade_gn_3x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/scratch_mask_rcnn_R_50_FPN_3x_gn.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/scratch_mask_rcnn_R_50_FPN_9x_gn.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/scratch_mask_rcnn_R_50_FPN_9x_syncbn.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/semantic_R_50_FPN_1x.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/PascalVOC-Detection
+copying detectron2/model_zoo/configs/PascalVOC-Detection/faster_rcnn_R_50_C4.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/PascalVOC-Detection
+copying detectron2/model_zoo/configs/PascalVOC-Detection/faster_rcnn_R_50_FPN.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/PascalVOC-Detection
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/cascade_mask_rcnn_R_50_FPN_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/cascade_mask_rcnn_R_50_FPN_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/fast_rcnn_R_50_FPN_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/fast_rcnn_R_50_FPN_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/keypoint_rcnn_R_50_FPN_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/keypoint_rcnn_R_50_FPN_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/keypoint_rcnn_R_50_FPN_normalized_training_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/keypoint_rcnn_R_50_FPN_training_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/mask_rcnn_R_50_C4_GCV_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/mask_rcnn_R_50_C4_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/mask_rcnn_R_50_C4_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/mask_rcnn_R_50_C4_training_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/mask_rcnn_R_50_DC5_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/mask_rcnn_R_50_FPN_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/mask_rcnn_R_50_FPN_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/mask_rcnn_R_50_FPN_pred_boxes_training_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/mask_rcnn_R_50_FPN_training_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/panoptic_fpn_R_50_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/panoptic_fpn_R_50_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/panoptic_fpn_R_50_training_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/retinanet_R_50_FPN_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/retinanet_R_50_FPN_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/rpn_R_50_FPN_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/rpn_R_50_FPN_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/semantic_R_50_FPN_inference_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/semantic_R_50_FPN_instant_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/quick_schedules/semantic_R_50_FPN_training_acc_test.yaml -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/quick_schedules
+copying detectron2/model_zoo/configs/COCO-Detection/fcos_R_50_FPN_1x.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-Detection/retinanet_R_50_FPN_1x.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Detection
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_C4_1x.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_1x.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_regnetx_4gf_dds_fpn_1x.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+
+[1A 97%|█████████▋| 319M/327M [00:01<00:00, 168MB/s]copying detectron2/model_zoo/configs/COCO-InstanceSegmentation/mask_rcnn_regnety_4gf_dds_fpn_1x.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-InstanceSegmentation
+copying detectron2/model_zoo/configs/COCO-Keypoints/keypoint_rcnn_R_50_FPN_1x.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-Keypoints
+copying detectron2/model_zoo/configs/COCO-PanopticSegmentation/panoptic_fpn_R_50_1x.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/COCO-PanopticSegmentation
+copying detectron2/model_zoo/configs/Misc/mmdet_mask_rcnn_R_50_FPN_1x.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+copying detectron2/model_zoo/configs/Misc/torchvision_imagenet_R_50.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/Misc
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common
+copying detectron2/model_zoo/configs/common/coco_schedule.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common
+copying detectron2/model_zoo/configs/common/optim.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common
+copying detectron2/model_zoo/configs/common/train.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/data
+copying detectron2/model_zoo/configs/common/data/coco.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/data
+copying detectron2/model_zoo/configs/common/data/coco_keypoint.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/data
+copying detectron2/model_zoo/configs/common/data/coco_panoptic_separated.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/data
+copying detectron2/model_zoo/configs/common/data/constants.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/data
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/models
+copying detectron2/model_zoo/configs/common/models/cascade_rcnn.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/models
+copying detectron2/model_zoo/configs/common/models/fcos.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/models
+copying detectron2/model_zoo/configs/common/models/keypoint_rcnn_fpn.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/models
+copying detectron2/model_zoo/configs/common/models/mask_rcnn_c4.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/models
+copying detectron2/model_zoo/configs/common/models/mask_rcnn_fpn.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/models
+copying detectron2/model_zoo/configs/common/models/mask_rcnn_vitdet.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/models
+copying detectron2/model_zoo/configs/common/models/panoptic_fpn.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/models
+copying detectron2/model_zoo/configs/common/models/retinanet.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/common/models
+creating build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_R_101_FPN_100ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_R_101_FPN_200ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_R_101_FPN_400ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_R_50_FPN_100ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_R_50_FPN_200ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_R_50_FPN_400ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_R_50_FPN_50ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_regnetx_4gf_dds_FPN_100ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_regnetx_4gf_dds_FPN_200ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_regnetx_4gf_dds_FPN_400ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_regnety_4gf_dds_FPN_100ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_regnety_4gf_dds_FPN_200ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+copying detectron2/model_zoo/configs/new_baselines/mask_rcnn_regnety_4gf_dds_FPN_400ep_LSJ.py -> build/lib.linux-x86_64-3.10/detectron2/model_zoo/configs/new_baselines
+running build_ext
+building 'detectron2._C' extension
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cocoeval
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/deformable
+creating /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated
+Emitting ninja build file /opt/BoxTeacher/build/temp.linux-x86_64-3.10/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+
+[1A100%|██████████| 327M/327M [00:01<00:00, 178MB/s]
+1
+
+=> Step 4: RUN cd /opt/mal && python -c 'import numpy, cv2; assert numpy.__version__ == "1.23.5" and cv2.__version__.startswith("4.5.5"), (numpy.__version__, cv2.__version__); from models.mal import MAL; import pytorch_lightning, fairscale, mmcv; print("mal import OK")'
+/usr/local/lib/python3.10/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
+  warnings.warn(
+[1/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/cuda_version.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cuda_version.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+mal import OK
+[2/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cocoeval/cocoeval.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/cocoeval/cocoeval.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cocoeval/cocoeval.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+Saving image...
+Building image im-vZZNoMHM91OJkwH9QXwmYB
+[3/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+[4/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+[5/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 627.63ms
+
+Built image im-vZZNoMHM91OJkwH9QXwmYB in 4.30s
+
+
+Image saved, took 7.18s
+
+Built image im-BQKDxYc7YZlEZ8CCxHE06G in 22.95s
+
+
+Building image im-GUyIMQiSFy5tJ3IM1MWRZL
+
+=> Step 0: FROM base
+
+=> Step 1: ENV PYTHONPATH=/opt/mal:/root:/root/proj
+
+=> Step 2: ENV NCCL_ASYNC_ERROR_HANDLING=1
+Saving image...
+Image saved, took 2.60s
+
+Built image im-GUyIMQiSFy5tJ3IM1MWRZL in 5.89s
+
+
+[6/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cuda.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+[7/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cuda.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+[8/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/vision.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/vision.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/vision.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+[9/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+[10/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cuda.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+Building image im-AX0jF8RkDLFqxtMY8ZAKXM
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+[11/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+g++ -pthread -shared -L/tools/deps/lib -Wl,--exclude-libs,ALL -L/tools/deps/libedit/lib -g0 /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cuda.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cuda.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cocoeval/cocoeval.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cuda_version.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cuda.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/vision.o -L/usr/local/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -L/install/lib -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-3.10/detectron2/_C.cpython-310-x86_64-linux-gnu.so
+Saving image...
+running develop
+/usr/local/lib/python3.10/site-packages/setuptools/command/easy_install.py:156: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/usr/local/lib/python3.10/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+running egg_info
+creating detectron2.egg-info
+writing detectron2.egg-info/PKG-INFO
+writing dependency_links to detectron2.egg-info/dependency_links.txt
+writing requirements to detectron2.egg-info/requires.txt
+writing top-level names to detectron2.egg-info/top_level.txt
+writing manifest file 'detectron2.egg-info/SOURCES.txt'
+reading manifest file 'detectron2.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'detectron2.egg-info/SOURCES.txt'
+running build_ext
+building 'detectron2._C' extension
+Emitting ninja build file /opt/BoxTeacher/build/temp.linux-x86_64-3.10/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[1/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/cuda_version.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cuda_version.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+Image saved, took 1.96s
+
+Built image im-AX0jF8RkDLFqxtMY8ZAKXM in 4.32s
+
+
+Building image im-CYBQkTMMwd1VnUn2wzFkgm
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+[2/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cocoeval/cocoeval.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/cocoeval/cocoeval.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cocoeval/cocoeval.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+Saving image...
+Image saved, took 757.45ms
+
+Built image im-CYBQkTMMwd1VnUn2wzFkgm in 2.97s
+
+
+[3/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+[4/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+Building image im-LbMQoPiAxjMnRj6ZnatlYT
+[5/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.19s
+
+Built image im-LbMQoPiAxjMnRj6ZnatlYT in 4.66s
+
+
+Building image im-xxqDLFxyKnP3OKuOR3HtIg
+[6/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cuda.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+[7/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cuda.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+[8/11] g++ -MMD -MF /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/vision.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/vision.cpp -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/vision.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+[9/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+Image saved, took 1.65s
+
+Built image im-xxqDLFxyKnP3OKuOR3HtIg in 3.13s
+
+
+[10/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cuda.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+[11/11] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/detectron2/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda.cu -o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -O3 -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+g++ -pthread -shared -L/tools/deps/lib -Wl,--exclude-libs,ALL -L/tools/deps/libedit/lib -g0 /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cpu.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/ROIAlignRotated/ROIAlignRotated_cuda.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cpu.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/box_iou_rotated/box_iou_rotated_cuda.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cocoeval/cocoeval.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/cuda_version.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cpu.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/nms_rotated/nms_rotated_cuda.o /opt/BoxTeacher/build/temp.linux-x86_64-3.10/opt/BoxTeacher/detectron2/layers/csrc/vision.o -L/usr/local/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -L/install/lib -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-3.10/detectron2/_C.cpython-310-x86_64-linux-gnu.so
+copying build/lib.linux-x86_64-3.10/detectron2/_C.cpython-310-x86_64-linux-gnu.so -> detectron2
+Creating /usr/local/lib/python3.10/site-packages/detectron2.egg-link (link to .)
+Adding detectron2 0.6 to easy-install.pth file
+
+Installed /opt/BoxTeacher
+
+=> Step 9: RUN cd /opt/BoxTeacher/AdelaiDet && python setup.py build develop --no-deps
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+running build
+running build_py
+creating build
+creating build/lib.linux-x86_64-3.10
+creating build/lib.linux-x86_64-3.10/adet
+copying adet/__init__.py -> build/lib.linux-x86_64-3.10/adet
+creating build/lib.linux-x86_64-3.10/adet/checkpoint
+copying adet/checkpoint/__init__.py -> build/lib.linux-x86_64-3.10/adet/checkpoint
+copying adet/checkpoint/adet_checkpoint.py -> build/lib.linux-x86_64-3.10/adet/checkpoint
+creating build/lib.linux-x86_64-3.10/adet/config
+copying adet/config/__init__.py -> build/lib.linux-x86_64-3.10/adet/config
+copying adet/config/config.py -> build/lib.linux-x86_64-3.10/adet/config
+copying adet/config/defaults.py -> build/lib.linux-x86_64-3.10/adet/config
+creating build/lib.linux-x86_64-3.10/adet/data
+copying adet/data/__init__.py -> build/lib.linux-x86_64-3.10/adet/data
+copying adet/data/augmentation.py -> build/lib.linux-x86_64-3.10/adet/data
+copying adet/data/builtin.py -> build/lib.linux-x86_64-3.10/adet/data
+copying adet/data/dataset_mapper.py -> build/lib.linux-x86_64-3.10/adet/data
+copying adet/data/detection_utils.py -> build/lib.linux-x86_64-3.10/adet/data
+copying adet/data/fcpose_dataset_mapper.py -> build/lib.linux-x86_64-3.10/adet/data
+creating build/lib.linux-x86_64-3.10/adet/evaluation
+copying adet/evaluation/__init__.py -> build/lib.linux-x86_64-3.10/adet/evaluation
+copying adet/evaluation/rrc_evaluation_funcs.py -> build/lib.linux-x86_64-3.10/adet/evaluation
+copying adet/evaluation/rrc_evaluation_funcs_ic15.py -> build/lib.linux-x86_64-3.10/adet/evaluation
+copying adet/evaluation/text_eval_script.py -> build/lib.linux-x86_64-3.10/adet/evaluation
+copying adet/evaluation/text_eval_script_ic15.py -> build/lib.linux-x86_64-3.10/adet/evaluation
+copying adet/evaluation/text_evaluation_all.py -> build/lib.linux-x86_64-3.10/adet/evaluation
+creating build/lib.linux-x86_64-3.10/adet/layers
+copying adet/layers/__init__.py -> build/lib.linux-x86_64-3.10/adet/layers
+copying adet/layers/bezier_align.py -> build/lib.linux-x86_64-3.10/adet/layers
+copying adet/layers/conv_with_kaiming_uniform.py -> build/lib.linux-x86_64-3.10/adet/layers
+copying adet/layers/def_roi_align.py -> build/lib.linux-x86_64-3.10/adet/layers
+copying adet/layers/deform_conv.py -> build/lib.linux-x86_64-3.10/adet/layers
+copying adet/layers/gcn.py -> build/lib.linux-x86_64-3.10/adet/layers
+copying adet/layers/iou_loss.py -> build/lib.linux-x86_64-3.10/adet/layers
+copying adet/layers/ml_nms.py -> build/lib.linux-x86_64-3.10/adet/layers
+copying adet/layers/naive_group_norm.py -> build/lib.linux-x86_64-3.10/adet/layers
+creating build/lib.linux-x86_64-3.10/adet/modeling
+copying adet/modeling/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling
+copying adet/modeling/one_stage_detector.py -> build/lib.linux-x86_64-3.10/adet/modeling
+copying adet/modeling/poolers.py -> build/lib.linux-x86_64-3.10/adet/modeling
+creating build/lib.linux-x86_64-3.10/adet/structures
+copying adet/structures/__init__.py -> build/lib.linux-x86_64-3.10/adet/structures
+copying adet/structures/beziers.py -> build/lib.linux-x86_64-3.10/adet/structures
+creating build/lib.linux-x86_64-3.10/adet/utils
+copying adet/utils/__init__.py -> build/lib.linux-x86_64-3.10/adet/utils
+copying adet/utils/comm.py -> build/lib.linux-x86_64-3.10/adet/utils
+copying adet/utils/measures.py -> build/lib.linux-x86_64-3.10/adet/utils
+copying adet/utils/visualizer.py -> build/lib.linux-x86_64-3.10/adet/utils
+creating build/lib.linux-x86_64-3.10/adet/modeling/MEInst
+copying adet/modeling/MEInst/MEInst.py -> build/lib.linux-x86_64-3.10/adet/modeling/MEInst
+copying adet/modeling/MEInst/MEInst_outputs.py -> build/lib.linux-x86_64-3.10/adet/modeling/MEInst
+copying adet/modeling/MEInst/MaskEncoding.py -> build/lib.linux-x86_64-3.10/adet/modeling/MEInst
+copying adet/modeling/MEInst/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/MEInst
+creating build/lib.linux-x86_64-3.10/adet/modeling/backbone
+copying adet/modeling/backbone/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/backbone
+copying adet/modeling/backbone/bifpn.py -> build/lib.linux-x86_64-3.10/adet/modeling/backbone
+copying adet/modeling/backbone/dla.py -> build/lib.linux-x86_64-3.10/adet/modeling/backbone
+copying adet/modeling/backbone/fpn.py -> build/lib.linux-x86_64-3.10/adet/modeling/backbone
+copying adet/modeling/backbone/lpf.py -> build/lib.linux-x86_64-3.10/adet/modeling/backbone
+copying adet/modeling/backbone/mobilenet.py -> build/lib.linux-x86_64-3.10/adet/modeling/backbone
+copying adet/modeling/backbone/resnet_interval.py -> build/lib.linux-x86_64-3.10/adet/modeling/backbone
+copying adet/modeling/backbone/resnet_lpf.py -> build/lib.linux-x86_64-3.10/adet/modeling/backbone
+copying adet/modeling/backbone/vovnet.py -> build/lib.linux-x86_64-3.10/adet/modeling/backbone
+creating build/lib.linux-x86_64-3.10/adet/modeling/batext
+copying adet/modeling/batext/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/batext
+copying adet/modeling/batext/batext.py -> build/lib.linux-x86_64-3.10/adet/modeling/batext
+copying adet/modeling/batext/batext_outputs.py -> build/lib.linux-x86_64-3.10/adet/modeling/batext
+creating build/lib.linux-x86_64-3.10/adet/modeling/blendmask
+copying adet/modeling/blendmask/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/blendmask
+copying adet/modeling/blendmask/basis_module.py -> build/lib.linux-x86_64-3.10/adet/modeling/blendmask
+copying adet/modeling/blendmask/blender.py -> build/lib.linux-x86_64-3.10/adet/modeling/blendmask
+copying adet/modeling/blendmask/blendmask.py -> build/lib.linux-x86_64-3.10/adet/modeling/blendmask
+creating build/lib.linux-x86_64-3.10/adet/modeling/condinst
+copying adet/modeling/condinst/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/condinst
+copying adet/modeling/condinst/condinst.py -> build/lib.linux-x86_64-3.10/adet/modeling/condinst
+copying adet/modeling/condinst/dynamic_mask_head.py -> build/lib.linux-x86_64-3.10/adet/modeling/condinst
+copying adet/modeling/condinst/mask_branch.py -> build/lib.linux-x86_64-3.10/adet/modeling/condinst
+creating build/lib.linux-x86_64-3.10/adet/modeling/fcos
+copying adet/modeling/fcos/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/fcos
+copying adet/modeling/fcos/fcos.py -> build/lib.linux-x86_64-3.10/adet/modeling/fcos
+copying adet/modeling/fcos/fcos_outputs.py -> build/lib.linux-x86_64-3.10/adet/modeling/fcos
+creating build/lib.linux-x86_64-3.10/adet/modeling/fcpose
+copying adet/modeling/fcpose/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/fcpose
+copying adet/modeling/fcpose/basis_module.py -> build/lib.linux-x86_64-3.10/adet/modeling/fcpose
+copying adet/modeling/fcpose/fcpose_framework.py -> build/lib.linux-x86_64-3.10/adet/modeling/fcpose
+copying adet/modeling/fcpose/fcpose_head.py -> build/lib.linux-x86_64-3.10/adet/modeling/fcpose
+copying adet/modeling/fcpose/utils.py -> build/lib.linux-x86_64-3.10/adet/modeling/fcpose
+creating build/lib.linux-x86_64-3.10/adet/modeling/roi_heads
+copying adet/modeling/roi_heads/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/roi_heads
+copying adet/modeling/roi_heads/attn_predictor.py -> build/lib.linux-x86_64-3.10/adet/modeling/roi_heads
+copying adet/modeling/roi_heads/text_head.py -> build/lib.linux-x86_64-3.10/adet/modeling/roi_heads
+creating build/lib.linux-x86_64-3.10/adet/modeling/solov2
+copying adet/modeling/solov2/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/solov2
+copying adet/modeling/solov2/loss.py -> build/lib.linux-x86_64-3.10/adet/modeling/solov2
+copying adet/modeling/solov2/solov2.py -> build/lib.linux-x86_64-3.10/adet/modeling/solov2
+copying adet/modeling/solov2/utils.py -> build/lib.linux-x86_64-3.10/adet/modeling/solov2
+creating build/lib.linux-x86_64-3.10/adet/modeling/MEInst/LME
+copying adet/modeling/MEInst/LME/MaskLoader.py -> build/lib.linux-x86_64-3.10/adet/modeling/MEInst/LME
+copying adet/modeling/MEInst/LME/__init__.py -> build/lib.linux-x86_64-3.10/adet/modeling/MEInst/LME
+copying adet/modeling/MEInst/LME/mask_evaluation.py -> build/lib.linux-x86_64-3.10/adet/modeling/MEInst/LME
+copying adet/modeling/MEInst/LME/mask_generation.py -> build/lib.linux-x86_64-3.10/adet/modeling/MEInst/LME
+copying adet/modeling/MEInst/LME/utils.py -> build/lib.linux-x86_64-3.10/adet/modeling/MEInst/LME
+running build_ext
+building 'adet._C' extension
+creating /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10
+creating /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt
+creating /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher
+creating /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet
+creating /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet
+creating /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers
+creating /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc
+creating /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign
+creating /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign
+Emitting ninja build file /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[1/5] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/cuda_version.cu -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/cuda_version.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+[2/5] g++ -MMD -MF /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h: In function ‘at::Tensor adet::BezierAlign_forward(const at::Tensor&, const at::Tensor&, float, int, int, int, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:62:18: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   62 |   if (input.type().is_cuda()) {
+      |                  ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/TensorUtils.h:5,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:2:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h: In function ‘at::Tensor adet::BezierAlign_backward(const at::Tensor&, const at::Tensor&, float, int, int, int, int, int, int, int, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:98:17: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   98 |   if (grad.type().is_cuda()) {
+      |                 ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/TensorUtils.h:5,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:2:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:13,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In lambda function:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:50: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+  493 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(input.type(), "BezierAlign_forward", [&] {
+      |                                                  ^
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:278:28: note: in definition of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  278 |     const auto& the_type = TYPE;                                               \
+      |                            ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/TensorUtils.h:5,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:2:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:13,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:280:56: warning: ‘c10::ScalarType detail::scalar_type(const at::DeprecatedTypeProperties&)’ is deprecated: passing at::DeprecatedTypeProperties to an AT_DISPATCH macro is deprecated, pass an at::ScalarType instead [-Wdeprecated-declarations]
+  280 |     at::ScalarType _st = ::detail::scalar_type(the_type);                      \
+      |                                                        ^
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3: note: in expansion of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  493 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(input.type(), "BezierAlign_forward", [&] {
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:178:23: note: declared here
+  178 | inline at::ScalarType scalar_type(const at::DeprecatedTypeProperties& t) {
+      |                       ^~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:280:56: warning: ‘c10::ScalarType detail::scalar_type(const at::DeprecatedTypeProperties&)’ is deprecated: passing at::DeprecatedTypeProperties to an AT_DISPATCH macro is deprecated, pass an at::ScalarType instead [-Wdeprecated-declarations]
+  280 |     at::ScalarType _st = ::detail::scalar_type(the_type);                      \
+      |                                                        ^
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3: note: in expansion of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  493 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(input.type(), "BezierAlign_forward", [&] {
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:178:23: note: declared here
+  178 | inline at::ScalarType scalar_type(const at::DeprecatedTypeProperties& t) {
+      |                       ^~~~~~~~~~~
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In lambda function:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:545:49: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+  545 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(grad.type(), "BezierAlign_forward", [&] {
+      |                                                 ^
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:278:28: note: in definition of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  278 |     const auto& the_type = TYPE;                                               \
+      |                            ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/TensorUtils.h:5,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:2:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:13,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:280:56: warning: ‘c10::ScalarType detail::scalar_type(const at::DeprecatedTypeProperties&)’ is deprecated: passing at::DeprecatedTypeProperties to an AT_DISPATCH macro is deprecated, pass an at::ScalarType instead [-Wdeprecated-declarations]
+  280 |     at::ScalarType _st = ::detail::scalar_type(the_type);                      \
+      |                                                        ^
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:545:3: note: in expansion of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  545 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(grad.type(), "BezierAlign_forward", [&] {
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:178:23: note: declared here
+  178 | inline at::ScalarType scalar_type(const at::DeprecatedTypeProperties& t) {
+      |                       ^~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:280:56: warning: ‘c10::ScalarType detail::scalar_type(const at::DeprecatedTypeProperties&)’ is deprecated: passing at::DeprecatedTypeProperties to an AT_DISPATCH macro is deprecated, pass an at::ScalarType instead [-Wdeprecated-declarations]
+  280 |     at::ScalarType _st = ::detail::scalar_type(the_type);                      \
+      |                                                        ^
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:545:3: note: in expansion of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  545 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(grad.type(), "BezierAlign_forward", [&] {
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:178:23: note: declared here
+  178 | inline at::ScalarType scalar_type(const at::DeprecatedTypeProperties& t) {
+      |                       ^~~~~~~~~~~
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In instantiation of ‘void {anonymous}::BezierAlignForward(int, const T*, const T&, int, int, int, int, int, int, const T*, T*, bool) [with T = double]’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3:   required from here
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:168:7: warning: unused variable ‘offset’ [-Wunused-variable]
+  168 |     T offset = aligned ? (T)0.5 : (T)0.0;
+      |       ^~~~~~
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In instantiation of ‘void {anonymous}::BezierAlignForward(int, const T*, const T&, int, int, int, int, int, int, const T*, T*, bool) [with T = float]’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3:   required from here
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:168:7: warning: unused variable ‘offset’ [-Wunused-variable]
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In instantiation of ‘void {anonymous}::BezierAlignForward(int, const T*, const T&, int, int, int, int, int, int, const T*, T*, bool) [with T = c10::Half]’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3:   required from here
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:168:7: warning: variable ‘offset’ set but not used [-Wunused-but-set-variable]
+[3/5] g++ -MMD -MF /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:4:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign.h: In function ‘at::Tensor adet::DefROIAlign_forward(const at::Tensor&, const at::Tensor&, const at::Tensor&, float, int, int, int, float, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign.h:47:18: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   47 |   if (input.type().is_cuda()) {
+      |                  ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/DeviceGuard.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:11,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:1:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:4:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign.h: In function ‘at::Tensor adet::DefROIAlign_backward(const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, float, int, int, int, int, int, int, int, float, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign.h:82:17: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   82 |   if (grad.type().is_cuda()) {
+      |                 ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/DeviceGuard.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:11,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:1:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:5:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h: In function ‘at::Tensor adet::BezierAlign_forward(const at::Tensor&, const at::Tensor&, float, int, int, int, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:62:18: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   62 |   if (input.type().is_cuda()) {
+      |                  ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/DeviceGuard.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:11,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:1:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:5:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h: In function ‘at::Tensor adet::BezierAlign_backward(const at::Tensor&, const at::Tensor&, float, int, int, int, int, int, int, int, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:98:17: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   98 |   if (grad.type().is_cuda()) {
+      |                 ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/DeviceGuard.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:11,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:1:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+Building image im-gbGnkbQe8IbC738iWoylS4
+[4/5] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cuda.cu -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+[5/5] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign_cuda.cu -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+g++ -pthread -shared -L/tools/deps/lib -Wl,--exclude-libs,ALL -L/tools/deps/libedit/lib -g0 /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cuda.o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign_cuda.o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/cuda_version.o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.o -L/usr/local/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -L/install/lib -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-3.10/adet/_C.cpython-310-x86_64-linux-gnu.so
+running develop
+/usr/local/lib/python3.10/site-packages/setuptools/command/easy_install.py:156: EasyInstallDeprecationWarning: easy_install command is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+/usr/local/lib/python3.10/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+  warnings.warn(
+running egg_info
+creating AdelaiDet.egg-info
+writing AdelaiDet.egg-info/PKG-INFO
+writing dependency_links to AdelaiDet.egg-info/dependency_links.txt
+writing requirements to AdelaiDet.egg-info/requires.txt
+writing top-level names to AdelaiDet.egg-info/top_level.txt
+writing manifest file 'AdelaiDet.egg-info/SOURCES.txt'
+reading manifest file 'AdelaiDet.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'AdelaiDet.egg-info/SOURCES.txt'
+running build_ext
+building 'adet._C' extension
+Emitting ninja build file /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/build.ninja...
+Compiling objects...
+Allowing ninja to set a default number of workers... (overridable by setting the environment variable MAX_JOBS=N)
+[1/5] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/cuda_version.cu -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/cuda_version.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+[2/5] g++ -MMD -MF /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h: In function ‘at::Tensor adet::BezierAlign_forward(const at::Tensor&, const at::Tensor&, float, int, int, int, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:62:18: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   62 |   if (input.type().is_cuda()) {
+      |                  ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/TensorUtils.h:5,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:2:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h: In function ‘at::Tensor adet::BezierAlign_backward(const at::Tensor&, const at::Tensor&, float, int, int, int, int, int, int, int, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:98:17: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   98 |   if (grad.type().is_cuda()) {
+      |                 ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/TensorUtils.h:5,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:2:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:13,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In lambda function:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:50: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+  493 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(input.type(), "BezierAlign_forward", [&] {
+      |                                                  ^
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:278:28: note: in definition of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  278 |     const auto& the_type = TYPE;                                               \
+      |                            ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/TensorUtils.h:5,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:2:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:13,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:280:56: warning: ‘c10::ScalarType detail::scalar_type(const at::DeprecatedTypeProperties&)’ is deprecated: passing at::DeprecatedTypeProperties to an AT_DISPATCH macro is deprecated, pass an at::ScalarType instead [-Wdeprecated-declarations]
+  280 |     at::ScalarType _st = ::detail::scalar_type(the_type);                      \
+      |                                                        ^
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3: note: in expansion of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  493 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(input.type(), "BezierAlign_forward", [&] {
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:178:23: note: declared here
+  178 | inline at::ScalarType scalar_type(const at::DeprecatedTypeProperties& t) {
+      |                       ^~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:280:56: warning: ‘c10::ScalarType detail::scalar_type(const at::DeprecatedTypeProperties&)’ is deprecated: passing at::DeprecatedTypeProperties to an AT_DISPATCH macro is deprecated, pass an at::ScalarType instead [-Wdeprecated-declarations]
+  280 |     at::ScalarType _st = ::detail::scalar_type(the_type);                      \
+      |                                                        ^
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3: note: in expansion of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  493 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(input.type(), "BezierAlign_forward", [&] {
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:178:23: note: declared here
+  178 | inline at::ScalarType scalar_type(const at::DeprecatedTypeProperties& t) {
+      |                       ^~~~~~~~~~~
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In lambda function:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:545:49: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+  545 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(grad.type(), "BezierAlign_forward", [&] {
+      |                                                 ^
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:278:28: note: in definition of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  278 |     const auto& the_type = TYPE;                                               \
+      |                            ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/TensorUtils.h:5,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:2:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:13,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:3,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:3:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:280:56: warning: ‘c10::ScalarType detail::scalar_type(const at::DeprecatedTypeProperties&)’ is deprecated: passing at::DeprecatedTypeProperties to an AT_DISPATCH macro is deprecated, pass an at::ScalarType instead [-Wdeprecated-declarations]
+  280 |     at::ScalarType _st = ::detail::scalar_type(the_type);                      \
+      |                                                        ^
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:545:3: note: in expansion of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  545 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(grad.type(), "BezierAlign_forward", [&] {
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:178:23: note: declared here
+  178 | inline at::ScalarType scalar_type(const at::DeprecatedTypeProperties& t) {
+      |                       ^~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:280:56: warning: ‘c10::ScalarType detail::scalar_type(const at::DeprecatedTypeProperties&)’ is deprecated: passing at::DeprecatedTypeProperties to an AT_DISPATCH macro is deprecated, pass an at::ScalarType instead [-Wdeprecated-declarations]
+  280 |     at::ScalarType _st = ::detail::scalar_type(the_type);                      \
+      |                                                        ^
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:545:3: note: in expansion of macro ‘AT_DISPATCH_FLOATING_TYPES_AND_HALF’
+  545 |   AT_DISPATCH_FLOATING_TYPES_AND_HALF(grad.type(), "BezierAlign_forward", [&] {
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/Dispatch.h:178:23: note: declared here
+  178 | inline at::ScalarType scalar_type(const at::DeprecatedTypeProperties& t) {
+      |                       ^~~~~~~~~~~
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In instantiation of ‘void {anonymous}::BezierAlignForward(int, const T*, const T&, int, int, int, int, int, int, const T*, T*, bool) [with T = double]’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3:   required from here
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:168:7: warning: unused variable ‘offset’ [-Wunused-variable]
+  168 |     T offset = aligned ? (T)0.5 : (T)0.0;
+      |       ^~~~~~
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In instantiation of ‘void {anonymous}::BezierAlignForward(int, const T*, const T&, int, int, int, int, int, int, const T*, T*, bool) [with T = float]’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3:   required from here
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:168:7: warning: unused variable ‘offset’ [-Wunused-variable]
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp: In instantiation of ‘void {anonymous}::BezierAlignForward(int, const T*, const T&, int, int, int, int, int, int, const T*, T*, bool) [with T = c10::Half]’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:493:3:   required from here
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.cpp:168:7: warning: variable ‘offset’ set but not used [-Wunused-but-set-variable]
+Image saved, took 6.21s
+
+Built image im-gbGnkbQe8IbC738iWoylS4 in 14.37s
+
+
+Building image im-KMyiQe6Ms6XrA1mwlHQWNX
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+[3/5] g++ -MMD -MF /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.o.d -Wno-unused-result -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -fPIC -I/tools/deps/include -I/tools/deps/include/ncursesw -I/tools/deps/libedit/include -g0 -fPIC -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.o -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -std=c++14 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:4:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign.h: In function ‘at::Tensor adet::DefROIAlign_forward(const at::Tensor&, const at::Tensor&, const at::Tensor&, float, int, int, int, float, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign.h:47:18: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   47 |   if (input.type().is_cuda()) {
+      |                  ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/DeviceGuard.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:11,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:1:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:4:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign.h: In function ‘at::Tensor adet::DefROIAlign_backward(const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, const at::Tensor&, float, int, int, int, int, int, int, int, float, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign.h:82:17: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   82 |   if (grad.type().is_cuda()) {
+      |                 ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/DeviceGuard.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:11,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:1:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:5:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h: In function ‘at::Tensor adet::BezierAlign_forward(const at::Tensor&, const at::Tensor&, float, int, int, int, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:62:18: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   62 |   if (input.type().is_cuda()) {
+      |                  ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/DeviceGuard.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:11,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:1:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+In file included from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:5:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h: In function ‘at::Tensor adet::BezierAlign_backward(const at::Tensor&, const at::Tensor&, float, int, int, int, int, int, int, int, bool)’:
+/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign.h:98:17: warning: ‘at::DeprecatedTypeProperties& at::Tensor::type() const’ is deprecated: Tensor.type() is deprecated. Instead use Tensor.options(), which in many cases (e.g. in a constructor) is a drop-in replacement. If you were using data from type(), that is now available from Tensor itself, so instead of tensor.type().scalar_type(), use tensor.scalar_type() instead and instead of tensor.type().backend() use tensor.device(). [-Wdeprecated-declarations]
+   98 |   if (grad.type().is_cuda()) {
+      |                 ^
+In file included from /usr/local/lib/python3.10/site-packages/torch/include/ATen/core/Tensor.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/DeviceGuard.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/ATen/ATen.h:11,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/types.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader_options.h:4,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/base.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader/stateful.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data/dataloader.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/data.h:3,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include/torch/all.h:8,
+                 from /usr/local/lib/python3.10/site-packages/torch/include/torch/extension.h:4,
+                 from /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.cpp:1:
+/usr/local/lib/python3.10/site-packages/torch/include/ATen/core/TensorBody.h:213:30: note: declared here
+  213 |   DeprecatedTypeProperties & type() const {
+      |                              ^~~~
+Image saved, took 1.06s
+
+Built image im-KMyiQe6Ms6XrA1mwlHQWNX in 1.71s
+
+
+[4/5] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign_cuda.cu -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+[5/5] /usr/local/cuda/bin/nvcc  -DWITH_CUDA -I/opt/BoxTeacher/AdelaiDet/adet/layers/csrc -I/usr/local/lib/python3.10/site-packages/torch/include -I/usr/local/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/local/lib/python3.10/site-packages/torch/include/TH -I/usr/local/lib/python3.10/site-packages/torch/include/THC -I/usr/local/cuda/include -I/usr/local/include/python3.10 -c -c /opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cuda.cu -o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cuda.o -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_BFLOAT16_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ --expt-relaxed-constexpr --compiler-options ''"'"'-fPIC'"'"'' -DCUDA_HAS_FP16=1 -D__CUDA_NO_HALF_OPERATORS__ -D__CUDA_NO_HALF_CONVERSIONS__ -D__CUDA_NO_HALF2_OPERATORS__ -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -DTORCH_API_INCLUDE_EXTENSION_H '-DPYBIND11_COMPILER_TYPE="_gcc"' '-DPYBIND11_STDLIB="_libstdcpp"' '-DPYBIND11_BUILD_ABI="_cxxabi1011"' -DTORCH_EXTENSION_NAME=_C -D_GLIBCXX_USE_CXX11_ABI=0 -gencode=arch=compute_80,code=sm_80 -ccbin gcc -std=c++14
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+/usr/local/lib/python3.10/site-packages/torch/include/c10/core/SymInt.h(84): warning: integer conversion resulted in a change of sign
+
+g++ -pthread -shared -L/tools/deps/lib -Wl,--exclude-libs,ALL -L/tools/deps/libedit/lib -g0 /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cpu.o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/BezierAlign/BezierAlign_cuda.o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/DefROIAlign/DefROIAlign_cuda.o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/cuda_version.o /opt/BoxTeacher/AdelaiDet/build/temp.linux-x86_64-3.10/opt/BoxTeacher/AdelaiDet/adet/layers/csrc/vision.o -L/usr/local/lib/python3.10/site-packages/torch/lib -L/usr/local/cuda/lib64 -L/install/lib -lc10 -ltorch -ltorch_cpu -ltorch_python -lcudart -lc10_cuda -ltorch_cuda_cu -ltorch_cuda_cpp -o build/lib.linux-x86_64-3.10/adet/_C.cpython-310-x86_64-linux-gnu.so
+copying build/lib.linux-x86_64-3.10/adet/_C.cpython-310-x86_64-linux-gnu.so -> adet
+Creating /usr/local/lib/python3.10/site-packages/AdelaiDet.egg-link (link to .)
+Adding AdelaiDet 0.2.0 to easy-install.pth file
+
+Installed /opt/BoxTeacher/AdelaiDet
+
+=> Step 10: RUN python -m pip install --no-deps --force-reinstall numpy==1.23.5 Pillow==9.5.0
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple
+Collecting numpy==1.23.5
+  Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-1.23.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.3 kB)
+Collecting Pillow==9.5.0
+  Downloading http://pypi-mirror.modal.local:5555/simple/pillow/Pillow-9.5.0-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/numpy/numpy-1.23.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.1/17.1 MB 125.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pillow/Pillow-9.5.0-cp310-cp310-manylinux_2_28_x86_64.whl (3.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.4/3.4 MB 125.0 MB/s eta 0:00:00
+Installing collected packages: Pillow, numpy
+  Attempting uninstall: Pillow
+    Found existing installation: Pillow 9.5.0
+    Uninstalling Pillow-9.5.0:
+      Successfully uninstalled Pillow-9.5.0
+  Attempting uninstall: numpy
+    Found existing installation: numpy 1.23.5
+    Uninstalling numpy-1.23.5:
+      Successfully uninstalled numpy-1.23.5
+Successfully installed Pillow-9.5.0 numpy-1.23.5
+
+[notice] A new release of pip is available: 24.0 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+
+=> Step 11: RUN cd /opt/BoxTeacher/projects/BoxTeacher && python -c 'import numpy, PIL; assert numpy.__version__ == "1.23.5" and PIL.__version__ == "9.5.0"; import detectron2, adet, boxteacher; from adet import _C; from detectron2 import _C; from adet.config import get_cfg; print("d2 import OK")'
+Building image im-rqkVadmQW8wB9UCIptfJ6R
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+d2 import OK
+Image saved, took 1.61s
+
+Built image im-rqkVadmQW8wB9UCIptfJ6R in 3.56s
+
+
+Saving image...
+Building image im-nqs1nu7K3BhEQbgqQVvjUV
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 642.38ms
+Image saved, took 3.44s
+
+Built image im-GHPI6h1220lIntLQcQah81 in 127.40s
+
+
+
+Built image im-nqs1nu7K3BhEQbgqQVvjUV in 1.85s
+
+
+Building image im-fekcXEiaJ8zgRlDWqlnGVy
+
+=> Step 0: FROM base
+
+=> Step 1: ENV PYTHONPATH=/opt/BoxTeacher/projects/BoxTeacher:/root:/root/proj
+
+=> Step 2: ENV NCCL_ASYNC_ERROR_HANDLING=1
+Building image im-7sia7e2LTciKNerA9Z5OhA
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Saving image...
+Image saved, took 1.67s
+
+Built image im-7sia7e2LTciKNerA9Z5OhA in 2.82s
+
+
+Image saved, took 1.08s
+
+Built image im-fekcXEiaJ8zgRlDWqlnGVy in 4.04s
+
+
+Building image im-6bgOwtJtH6zMQsHjI8yZNL
+Building image im-af6TgPBBCtOIWIravPERiB
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Saving image...
+Image saved, took 856.89ms
+
+Built image im-6bgOwtJtH6zMQsHjI8yZNL in 4.04s
+
+
+Building image im-oBmbD6b4aeETz285xXzB9I
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Image saved, took 2.97s
+
+Built image im-af6TgPBBCtOIWIravPERiB in 4.72s
+
+
+Saving image...
+Image saved, took 706.49ms
+
+Built image im-oBmbD6b4aeETz285xXzB9I in 3.17s
+
+
+Building image im-0OpAOV9od4qOeG4ZBksePI
+Building image im-dyAze22GOcilRuKA70j2Rj
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.11s
+
+Built image im-dyAze22GOcilRuKA70j2Rj in 2.18s
+
+
+Building image im-41j4IUErLyfmouBwuFOLvF
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Saving image...
+Image saved, took 1.03s
+
+Built image im-41j4IUErLyfmouBwuFOLvF in 3.07s
+
+
+Image saved, took 1.41s
+
+Built image im-0OpAOV9od4qOeG4ZBksePI in 8.19s
+
+
+Building image im-hqJp8EHTlDHt7aG5yrDVr3
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.18s
+
+Built image im-hqJp8EHTlDHt7aG5yrDVr3 in 2.22s
+
+
+Building image im-wO8d3ao1pGaW8NtCXUPtra
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.16s
+
+Built image im-wO8d3ao1pGaW8NtCXUPtra in 1.93s
+
+
+Building image im-Ap47161TK6fDCDdMJUmUo3
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 583.01ms
+
+Built image im-Ap47161TK6fDCDdMJUmUo3 in 1.98s
+
+
+Building image im-fLidwPylm7G8YVylubAlqr
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 2.00s
+
+Built image im-fLidwPylm7G8YVylubAlqr in 3.17s
+
+
+Building image im-XiORj6dZGqIvPLwTSeiwEN
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 679.29ms
+
+Built image im-XiORj6dZGqIvPLwTSeiwEN in 2.24s
+
+
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/tierb_modal.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/tierb_data
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created function stage.
+├── 🔨 Created function fetch_weights.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/score_coco.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/val_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/gtbox_lib.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sti
+│   tch_res.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sti
+│   tch_seam.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/run
+│   _stitch_seam.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/gtb
+│   ox_guided_raw/gtbox_lace_guided_r2048.jsonl
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hun
+│   t/test/gtbox4_lace4px_simple_percrown.jsonl
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/aud
+│   it_2026-10-14/selvabox_evidence/gtbox_sam_persub.json
+├── 🔨 Created function mal_gpu1.
+├── 🔨 Created function mal_gpu2_smoke.
+├── 🔨 Created function mal_gpu8_train.
+├── 🔨 Created function mal_gpu8_predict.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/pre
+│   ds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sco
+│   red_lace_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/pre
+│   ds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sco
+│   red_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/sparse_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created function d2_gpu1.
+├── 🔨 Created function d2_gpu2_smoke.
+├── 🔨 Created function d2_gpu8_train.
+├── 🔨 Created function d2_gpu8_predict.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created function finalize.
+└── 🔨 Created function report_status.
+✓ App deployed in 190.897s! 🎉
+
+View Deployment: https://modal.com/apps/tomdpitts/main/deployed/tcd04-tierb

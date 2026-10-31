@@ -1,0 +1,30 @@
+{
+ "verified": [
+  {
+   "split": "train",
+   "n": 792,
+   "verified_against": "stage record rgb_sha256",
+   "stage_vs_local": {
+    "n": 1559,
+    "matched_local": 1558,
+    "hf_only": [
+     "tcd_tile_1878"
+    ]
+   },
+   "seconds": 90.2
+  },
+  {
+   "split": "val",
+   "n": 108,
+   "verified_against": "stage record rgb_sha256",
+   "stage_vs_local": {
+    "n": 1559,
+    "matched_local": 1558,
+    "hf_only": [
+     "tcd_tile_1878"
+    ]
+   },
+   "seconds": 10.5
+  }
+ ]
+}

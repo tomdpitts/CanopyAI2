@@ -191,8 +191,8 @@ Accurate measurement of individual tree crowns can serve as a proxy for woody bi
 \begin{figure}[!t]
 \ifdefined\extralength\begin{adjustwidth}{-\extralength}{0cm}\fi
 \centering
-\includegraphics[width=\ifdefined\extralength\fulllength\else\textwidth\fi]{figs/qualitative_sparse.pdf}
-\caption{Crown masks on six windows of the sparse-canopy holdout ($1024$~px).\label{fig:qual-sparse}}
+\includegraphics[width=\ifdefined\extralength\fulllength\else\textwidth\fi]{figs/qualitative_tcd439_rows34.pdf}
+\caption{Crown masks on two OAM-TCD holdout windows ($768$~px, native $0.1$~m/px).\label{fig:qual-teaser}}
 \ifdefined\extralength\end{adjustwidth}\fi
 \end{figure}
 
@@ -205,7 +205,7 @@ Machine learning and deep learning applied to satellite and UAV data have shifte
 Modern deep learning approaches focus on instance segmentation on RGB imagery (Table~\ref{tab:gap} summarises representative methods): DeepForest~\cite{weinstein2020} established a RetinaNet-based baseline evaluated on the NeonTreeEvaluation benchmark~\cite{neontreeeval}, while Detectree2~\cite{ball2023} applied Mask R-CNN~\cite{maskrcnn} to tropical crown polygons.
 
 % cite: "(Weinstein et al., 2020)"
-We aim to address the tree crown instance segmentation space from two angles underexplored in the literature. Figure~\ref{fig:qual-sparse} previews the setting: individual crowns in savanna, scrub and other open landscapes, where trees are sparse, small and set against bare or grassy ground. Firstly, existing approaches focus on dense-canopy forests, and overwhelmingly exclude biomes such as savannah and dryland. For example, the authors of Detectree2 deliberately exclude images with $\leq 40\%$ tree canopy cover from their datasets~\cite{ball2023}. In the DeepForest paper, Weinstein et al. highlight Onaqui, Utah (ONAQ) as the model's worst-performing site since it is a ``desert scrub site with a different vegetation structure from any of the training data''~\cite{weinstein2020}. Secondly, in order to produce output individual tree crown instance polygon masks, existing models typically rely on mask annotations for training~\cite{hao2021,braga2020,ocer2020,ball2023,chadwick2020,zhao2023}, which need to be produced manually by human annotators.
+We aim to address the tree crown instance segmentation space from two angles underexplored in the literature. Figure~\ref{fig:qual-teaser} previews the setting: individual crowns in savanna, scrub and other open landscapes, where trees are sparse, small and set against bare or grassy ground. Firstly, existing approaches focus on dense-canopy forests, and overwhelmingly exclude biomes such as savannah and dryland. For example, the authors of Detectree2 deliberately exclude images with $\leq 40\%$ tree canopy cover from their datasets~\cite{ball2023}. In the DeepForest paper, Weinstein et al. highlight Onaqui, Utah (ONAQ) as the model's worst-performing site since it is a ``desert scrub site with a different vegetation structure from any of the training data''~\cite{weinstein2020}. Secondly, in order to produce output individual tree crown instance polygon masks, existing models typically rely on mask annotations for training~\cite{hao2021,braga2020,ocer2020,ball2023,chadwick2020,zhao2023}, which need to be produced manually by human annotators.
 
 \paragraph{Lack of sparse-canopy datasets}
 
@@ -364,7 +364,7 @@ There is a growing class of box-supervised architectures which, as the name sugg
 
 % In this section, where applicable, authors are required to disclose details of how gen-erative artificial intelligence (GenAI) has been used in this paper (e.g., to generate text, data, or graphics, or to assist in study design, data collection, analysis, or interpretation). The use of GenAI for superficial text editing (e.g., grammar, spelling, punctuation, and formatting) does not need to be declared.
 
-LACE's core idea is to treat the rich DINOv3-web embeddings as sufficiently descriptive representations of each patch to build a high-performing tree-crown instance segmentation model from boxes alone. It has three stages (Figure~\ref{fig:architecture}): a dense feature grid from four interlaced offset passes of a frozen DINOv3-web ViT (Section~\ref{sec:features}); an anchor-free detector trained on boxes (Section~\ref{sec:detector}); and a training-free box-to-mask module that separates crown from background within each predicted box (Section~\ref{sec:masker}), whose posterior also re-ranks the detections without adding a parameter (Section~\ref{sec:scorer}). No crown polygon is read at any stage of encoding, detection or mask fitting; the only mask labels used anywhere are the $108$ validation images on which the inference settings are selected (Section~\ref{sec:inference}). %wondering if perhaps this is distracting - alpha/kappa can maybe just be fixed one off..?
+Our method uses a frozen self-supervised encoder to produce instance masks for individual tree crowns using bounding-box supervision only. It has three stages: a dense feature grid obtained by interlacing four offset passes of a frozen DINOv3-web ViT (Section~\ref{sec:features}); an anchor-free detector trained on bounding boxes (Section~\ref{sec:detector}); and a training-free box-to-mask module that converts each predicted box into a mask by foreground/\allowbreak background discrimination in a whitened feature space (Section~\ref{sec:masker}). Predictions are then ranked by combining the detector score with the mask module's own posterior (Section~\ref{sec:scorer}), which adds no parameter and leaves the masks untouched. No crown polygon is read at any stage of encoding, detection or mask fitting. The only crown mask labels used anywhere in the pipeline are the validation images on which the inference settings are selected (Section~\ref{sec:inference}). Figure~\ref{fig:architecture} follows a holdout example through the pipeline and expands the box-to-mask step for one predicted box; Figure~\ref{fig:masker-fit} shows how the box-to-mask module is fitted. %wondering if perhaps this is distracting - alpha/kappa can maybe just be fixed one off..?
 
 \begin{figure}[!t]
 \ifdefined\extralength\begin{adjustwidth}{-\extralength}{0cm}\fi
@@ -372,16 +372,16 @@ LACE's core idea is to treat the rich DINOv3-web embeddings as sufficiently desc
 \vspace{6pt}
 \includegraphics[width=\ifdefined\extralength\fulllength\else\textwidth\fi]{figs/lace_architecture.pdf}
 \vspace{2pt}
-\caption{LACE architecture on an OAM-TCD holdout crop. Top: (1) a frozen DINOv3 encoder is run at four $8$~px offsets and interlaced into a stride-$8$ feature grid, (2) a detection head trained on boxes predicts crown boxes, and (3) each box is converted into a mask, upsampled to the native tile with an RGB-guided filter, and ranked by its rescored confidence $s'$. Bottom: the box-to-mask module is fitted once on training boxes by (1) whitening the features, (2) fitting a background mixture, (3) seeding foreground prototypes and (4) learning the prototypes and spatial prior by EM. At inference each predicted box receives a single E-step and is rescored.\label{fig:architecture}}
+\caption{LACE architecture on an OAM-TCD holdout crop. (1) A frozen DINOv3 encoder is run at four $8$~px offsets (sixteen $4$~px offsets for the box-to-mask module) and its final-layer (layer~$24$) features are interlaced into stride-$8$ and stride-$4$ feature grids, (2) a CenterNet-style detection head trained on boxes predicts crown boxes, and (3) each box receives a single E-step (a--c) of the fitted box-to-mask module (Figure~\ref{fig:masker-fit}) and is rescored. Masks are then upsampled to the native tile with an RGB-guided filter and ranked by their rescored confidence $s'$.\label{fig:architecture}}
 \ifdefined\extralength\end{adjustwidth}\fi
 \end{figure}
 
 \subsection{Dense features by phase interlacing}
 \label{sec:features}
 
-A ViT with patch size $p$ emits one embedding per $p \times p$ patch, a grid $p$ times coarser than the image. For crowns only a few patches across, this grid is the binding limit on mask resolution, and bilinear upsampling raises the sampling rate without adding any measurements.
+A ViT with patch size $p$ emits one embedding per $p \times p$ patch, giving a feature grid $p$ times coarser than the image. For crowns whose diameter is a small multiple of $p$ this is the binding resolution constraint. A method like bilinear upsampling increases the sampling rate but introduces no new measurements.
 
-We instead run the frozen encoder four times per tile, shifting the input by $(\delta_y, \delta_x) \in \{0, p/2\}^2$, and interlace the four grids into a real $8$~px lattice ($p = 16$), which outperforms upsampling (Section~\ref{sec:ablation}). Writing $F^{(\delta_y,\delta_x)}$ for the grid from one offset, the assembled tensor $\widetilde F$ is
+We instead evaluate the frozen encoder four times per tile, shifting the input by $(\delta_y, \delta_x) \in \{0, p/2\}^2$, and interlace the four grids, which we found produced higher performance than upsampling (Section~\ref{sec:ablation}). With $p = 16$ this yields a real $8$~px lattice. Writing $F^{(\delta_y,\delta_x)}$ for the grid from one offset, the assembled feature tensor $\widetilde F$ is
 \begin{equation}
 \begin{split}
 \widetilde F\!\left[:,\; 2i + \tfrac{\delta_y}{8},\; 2j + \tfrac{\delta_x}{8}\right] &= F^{(\delta_y,\delta_x)}[:,\, i,\, j], \\
@@ -391,9 +391,9 @@ i, j &\in \{0, \dots, 127\}
 \end{equation}
 % verified 2026-09-26 against modal_neon_multiseed/phase4/phase4_features.py assemble(): asm[:, dy//8::2, dx//8::2] = F^(dy,dx); patch (gy,gx) of phase (dy,dx) is centred at pixel (dx+8+16gx, dy+8+16gy), i.e. cell (Y,X) -> (8X+8, 8Y+8).
 
-so that cell $(Y, X)$ of $\widetilde F$ carries the embedding of the patch centred at pixel $(8X + 8,\, 8Y + 8)$: a genuine encoder output at its own location rather than an interpolation of its neighbours.
+so that cell $(Y, X)$ of $\widetilde F$ carries the embedding of the patch centred at pixel $(8X + 8,\, 8Y + 8)$. Each cell is therefore a genuine encoder output at its own location, rather than an interpolation of its neighbours.
 
-We use DINOv3 ViT-L/16, frozen throughout, taking final-layer (layer~$24$) activations on OAM-TCD ($1024$ dimensions, so $\widetilde F \in \mathbb{R}^{1024 \times 256 \times 256}$ for a $2048$~px tile) and layers $21$--$24$ on NEON ($4096$ dimensions). Cells from the three shifted passes agree with a bilinear upsampling of the unshifted grid only to a cosine similarity of $\approx 0.955$; were they redundant, interpolation would reproduce them almost exactly, so they carry measurements that upsampling cannot synthesise.
+Encoding uses DINOv3 ViT-L/16 with weights frozen throughout. On OAM-TCD we take final-layer (layer~$24$) activations ($1024$ dimensions; on NEON, layers $21$--$24$, $4096$ dimensions), giving $\widetilde F \in \mathbb{R}^{1024 \times 256 \times 256}$ for a $2048$~px tile. The cells contributed by the three shifted passes agree with a bilinear upsampling of the unshifted grid only to a cosine similarity of $\approx 0.955$. Were the shifted passes redundant, interpolation would reproduce them almost exactly, so the departure from unity is the evidence that they carry measurements which upsampling cannot synthesise.
 % source: modal_neon_multiseed/phase4/README.md 'Design notes / correctness' and phase4_features.py reg-test (blob <=1 cell over 200 spots; invertibility maxabs ~2e-4 fp16; real vs interp cos ~0.955).
 %Optional future addition: We explored Domain-Adaptive Fine Tuning but found no material improvement over the frozen weights (Section~\ref{sec:ablation}).
 
@@ -404,46 +404,57 @@ Registration of the interlaced grid of Equation~\eqref{eq:interlace} is verified
 \subsection{Detection}
 \label{sec:detector}
 
-The detector is an anchor-free, CenterNet-style~\cite{centernet} head operating directly on $\widetilde F$: a $1\times1$ stem projecting $1024$ channels to width $256$, five $3\times3$ convolutional blocks with group normalisation and ReLU, and two $1\times1$ heads for a single-channel centre heatmap and a four-channel map of sub-cell offset and log box size ($3.2$M parameters; $4.0$M with the $4096$-dimensional NEON input). Because $\widetilde F$ is already at stride $8$, the head contains no internal upsampling.
+Detection uses an anchor-free centre-based head operating directly on $\widetilde F$ at stride $8$. A $1\times1$ stem projects $1024$ channels to width $256$, followed by five $3\times3$ convolutional blocks with group normalisation and ReLU ($3.2$M parameters in total; $4.0$M with the $4096$-dimensional NEON input), and two $1\times1$ output heads: a single-channel centre heatmap and a four-channel regression map carrying a local sub-cell offset and log box size. This is based on the CenterNet design~\cite{centernet}.
 % cite: "based on the CenterNet design (cite CenterNet and CornerNet Law \& Deng)"
 
-Training minimises a focal loss on the heatmap plus smooth-$L_1$ losses on offset and size at annotated centres, the size term weighted by $0.1$. Centre targets are CenterNet Gaussians whose radius follows the IoU criterion of CornerNet~\cite{cornernet} at an overlap of $0.7$, clamped never to fall below one feature cell so that the smallest crowns retain a non-degenerate target. Boxes are decoded by local-maximum selection on the heatmap, keeping candidates scoring above $0.05$, up to $600$ per tile.
+Training minimises a focal loss on the centre heatmap plus smooth-$L_1$ losses on offset and size at annotated centres, and the size term is weighted by $0.1$. Because the interlaced grid is already at the target stride, the head contains no internal upsampling. Centre targets are encoded as CenterNet Gaussians whose radius follows the standard IoU criterion of CornerNet~\cite{cornernet} at an overlap of $0.7$, clamped never to fall below one feature cell so that the smallest crowns retain a non-degenerate target. Boxes are decoded by local-maximum selection on the heatmap, retaining candidates scoring above $0.05$ up to a maximum of $600$ per tile. Average precision is computed over the full ranked list; where precision, recall and F1 are reported at a single operating point, it is a detector score of $0.4$.
 
 % verified 2026-09-26: dapt/targets.py gaussian_radius() implements the CornerNet three-case radius with min_overlap=0.7, as adopted by CenterNet; bib cornernet = Law & Deng, ECCV 2018 (LNCS 11218, pp. 765-781).
 
 \subsection{Training-free box-to-mask conversion}
 \label{sec:masker}
 
-Given a detection box, the task remains to decide which of its cells belong to the crown. To be completely explicit about the problem, a valid box will almost always contain ground or other surroundings as well as the tree itself, simply because crowns seen from the air are not rectangles. We treat this as foreground/background discrimination in a whitened feature space, fitted once on training boxes and then held fixed. The module has four components: a whitened feature space and a background mixture, both fixed once estimated, and a set of foreground prototypes and a spatial prior over relative position within the box, both learned by an EM-style fit.
+Given a detection box, the task remains to decide which of its cells belong to the crown. The challenge is that a valid box will almost always contain pixels of the tree itself, but also of the ground or surrounding objects as well, simply because trees tend not to be perfect rectangular boxes in shape. We treat this as foreground/background discrimination in a whitened feature space, with the model fitted once on training tiles (using only boxes) and then held fixed.
+
+The module has four key components: a whitened feature space; a frozen background mixture; a set of foreground prototypes; and a spatial prior over relative position within the box. The last two are learned by an alternating EM-based fit, while the first two stay fixed.
+
+\begin{figure}[!t]
+\ifdefined\extralength\begin{adjustwidth}{-\extralength}{0cm}\fi
+\centering
+\includegraphics[width=\ifdefined\extralength\fulllength\else\textwidth\fi]{figs/lace_masker_fit.pdf}
+\caption{Fitting the box-to-mask module, once, on training boxes: (1) whitening the features, (2) fitting a background mixture, (3) seeding foreground prototypes and (4) learning the prototypes and spatial prior by EM. The fitted masker is then applied to each predicted box at inference (Figure~\ref{fig:architecture}).\label{fig:masker-fit}}
+\ifdefined\extralength\end{adjustwidth}\fi
+\end{figure}
 
 \paragraph{Feature space}
-Each cell $a \in \mathbb{R}^{1024}$ of $\widetilde F$ is PCA-whitened and placed on the unit sphere,
+LACE's core idea is to treat the rich DINOv3-web embeddings as sufficiently descriptive representations of each patch to build a high-performing tree-crown instance segmentation model. We begin with $a$, a given cell's raw unmodified embedding, and PCA-whiten it: $a$ is centred, projected onto the leading $d = 128$ principal directions of the training-cell distribution (pooled across all tiles and boxes) and rescaled so that each retained component has unit variance. A final $L_2$ normalisation then places the result on the unit sphere, giving the unit vector $z$.
 \begin{equation}
-\tilde z \;=\; \frac{(a - \mu)\,W}{\lambda}, \qquad z \;=\; \frac{\tilde z}{\lVert \tilde z \rVert},
+\tilde z \;=\; \frac{(a - \mu)\,W}{\lambda}, \qquad z \;=\; \frac{\tilde z}{\lVert \tilde z \rVert}
 \label{eq:whiten}
 \end{equation}
-where $\mu$ is the mean training cell, the columns of $W \in \mathbb{R}^{1024 \times d}$ are the leading $d = 128$ principal directions of the training cells (pooled across all tiles and boxes), and $\lambda \in \mathbb{R}^{d}$ holds their standard deviations, so that every retained direction has unit variance; all three are estimated once and frozen. On the sphere every comparison is a cosine similarity, and foreground and background can both be modelled by von Mises--Fisher components~\cite{banerjee2005vmf} with a shared concentration $\kappa$.
+Here $a \in \mathbb{R}^{1024}$ is one cell of $\widetilde F$; $\mu \in \mathbb{R}^{1024}$ is the cell mean, and $W \in \mathbb{R}^{1024 \times d}$ is the whitening matrix, whose columns are the retained principal directions. $\lambda \in \mathbb{R}^{d}$ is the vector of per-component standard deviations, which are all estimated once on training cells and then frozen. The final normalisation then places every cell on the unit sphere, making all subsequent comparisons simple cosine similarities and allowing both foreground and background to be modelled by von Mises--Fisher components~\cite{banerjee2005vmf} with a shared concentration $\kappa$.
 
 \paragraph{Background mixture}
-Cells are partitioned into in-box cells, clear background, and a ring of cells immediately outside each box. Ring cells share illumination, phenology and local context (e.g.\ ground shadow) with the crown and are therefore suitable hard negatives. A mixture of $K_{bg}$ components $\{(w_j, G_j)\}_{j=1}^{K_{bg}}$ is fitted to the ring and clear-background cells by spherical $k$-means and \emph{frozen}, giving the background log-likelihood
+Cells are partitioned into three categories: in-box cells, clear background cells, and a special category of cells immediately outside each box, in a ring. The ring cells share illumination, phenology and local context (e.g.\ ground shadow) with the crown and are therefore suitable hard negatives. A background mixture of $K_{bg}$ components $\{(w_j, G_j)\}_{j=1}^{K_{bg}}$ is fitted to the union of background and ring cells by spherical $k$-means and \emph{frozen}, giving the background log-likelihood $\ell_{bg}$ as follows:
 \begin{equation}
-\ell_{bg}(z) \;=\; \log \textstyle\sum_j w_j \exp\!\left(\kappa\, z^{\top} G_j\right),
+\ell_{bg}(z) \;=\; \log \textstyle\sum_j w_j \exp\!\left(\kappa\, z^{\top} G_j\right)
 \label{eq:bgll}
 \end{equation}
-a smooth maximum over the components that reads as how well a cell matches its best-matching background component.\footnote{The standard von Mises--Fisher normalising constant $C_d(\kappa)$ is omitted here and from the foreground term of Equation~\eqref{eq:logratio} alike; sharing a single concentration $\kappa$ between the two mixtures makes it identical on both sides, so it cancels in the difference and never has to be evaluated in $d = 128$ dimensions.}
+The log-sum-exp acts as a smooth maximum over the components, so $\ell_{bg}(z)$ is a single scalar per cell reading as how well that cell matches its best-matching background component.\footnote{Note that the standard von Mises--Fisher normalising constant $C_d(\kappa)$ is omitted here and from the foreground term of Equation~\eqref{eq:logratio} alike; sharing a single concentration parameter $\kappa$ between the two mixtures makes it identical on both sides, so it cancels in the difference and never has to be evaluated in $d = 128$ dimensions.}
 
 \paragraph{Foreground mixture}
-Foreground takes the same von Mises--Fisher form, with $K_{fg}$ unit prototypes $\{C_k\}_{k=1}^{K_{fg}}$ in place of the $G_j$, and differs in one respect only: its weights are not global but supplied per cell by the spatial prior, and re-estimated at every M-step. The prototypes are initialised by spherical $k$-means over in-box cells atypical of the background, i.e.\ those with $\ell_{bg}$ below the in-box median. This is merely a heuristic to kick-start the fitting: without it, the initialisation is seeded from in-box soil and roads, which are numerous and not the intended crown foreground. In practice the deployed fit ($\beta = 0.5$, below) collapses to essentially one foreground direction (effective rank $1.66$ of $16$), and starting from $K_{fg} = 2$ gives essentially the same mean crown IoU (Table~\ref{tab:collapse}).
+Foreground and background take the same von Mises--Fisher form with a shared concentration $\kappa$, and differ in one respect only: the background weights $w_j$ are global and frozen, whereas the foreground weights are supplied per cell by the spatial prior and re-estimated at every M-step. Foreground is represented by $K_{fg}$ unit prototypes $\{C_k\}_{k=1}^{K_{fg}}$, initialised by spherical $k$-means over in-box cells restricted to those atypical of the background, i.e.\ cells which have a value of $\ell_{bg}$ below the median $\ell_{bg}$ of all in-box cells. This is merely a heuristic to kick-start the fitting. Without this restriction, the initialisation is seeded from in-box background elements such as soil and roads, which are numerous and not the intended crown foreground. 
 
 \paragraph{Spatial prior}
-A crown typically occupies a roughly central and roughly circular region of a reasonably tight GT box. We encode this as a spatial prior $\rho$ over the crown's \emph{relative} position within the box, to push the model towards reasonable tree crown-like masks, particularly in dense canopy and lush undergrowth, where the module can otherwise produce masks that are not tree crown-like. The box is divided into an $N \times N$ grid of bins in normalised coordinates $(u, v) \in [0,1]^2$, so $\rho$ is invariant by construction to crown size, tile size and ground sample distance. $\rho_k(b)$ is the prior that a cell in bin $b$ is crown explained by prototype $k$. Its total $\sum_k \rho_k$ is the probability that the bin is crown at all, while $\hat\rho_k = \rho_k / \sum_{k'} \rho_{k'}$ is a distribution over prototypes at that bin; the E-step uses the two separately. Separate priors are kept for three crown-size bands (training terciles), since at a fixed stride the number of cells spanning a crown depends on its size. $\rho$ is initialised uniform, so prototypes differentiate only through the M-step.
+We observe that a crown typically occupies a roughly central and roughly circular region of a reasonably tight GT box. We encode this as a spatial prior $\rho$ over the crown's \emph{relative} position within the box, to push the model towards producing reasonable tree crown-like prediction masks. In particular, we aim to increase LACE's robustness to dense-canopy and lush undergrowth situations, where the box-to-mask module can unintentionally produce masks that are not tree crown-like. The box is divided into an $N \times N$ grid of bins in normalised coordinates $(u, v) \in [0,1]^2$. Because those coordinates are a \emph{fraction} of the box, $\rho$ is by construction invariant to crown size, tile size and ground sample distance. Priors are maintained separately for three crown-size bands, whose edges are the terciles of the training box-size distribution, since at a fixed feature stride the number of cells spanning a crown depends on its size. Taken together, $\rho$ therefore carries one value for each (size band, prototype, $u$ bin, $v$ bin) combination: $\rho_k(b)$ is the prior that a cell in bin $b$ is crown explained by prototype $k$. We write $\hat\rho_k = \rho_k / \sum_{k'} \rho_{k'}$ for the prior at a bin normalised across prototypes, so that $\hat\rho$ is a distribution over the $K_{fg}$ prototypes at that bin while the unnormalised total $\sum_k \rho_k$ remains the probability that the bin is crown at all. Equations~\eqref{eq:logratio} and~\eqref{eq:posterior} draw on these two quantities separately. $\rho$ is initialised uniform, so all prototypes begin with identical spatial profiles and differentiate only through Equation~\eqref{eq:priorupdate}.
 
-At every M-step the per-bin foreground mass, summed over prototypes and averaged over the $N^2$ bins, is pinned to $\pi/4 \approx 0.785$, the area fraction of an ellipse inscribed in its bounding box and hence independent of aspect ratio, and each bin is capped at $0.95$, so that no relative position is ever treated as certainly foreground. Pinning the mass to a constant derived from geometry rather than fitted is what keeps the prior label-free, and it means the fit decides only \emph{where} the foreground mass sits, never \emph{how much} of it there is: without the constraint $\rho$ inflates towards unity, stops discriminating position, and the $\alpha$ term of Equation~\eqref{eq:posterior} degenerates into an additive constant.\footnote{The constraints are applied as a single rescale followed by the cap, so the cap partly undoes the rescaling: on the deployed fit this leaves a realised mean per-bin mass of $0.690$ against the nominal $0.785$.}
+
+Two constraints are applied to $\rho$ at every M-step. The first pins its mean per-bin foreground mass, summed over prototypes and averaged over the $N^2$ bins, to $\pi/4 \approx 0.785$, the area fraction of an ellipse inscribed in its bounding box and hence independent of box aspect ratio. The second caps any single bin at $0.95$, so that no relative position is ever treated as certainly foreground. Pinning the mass to a constant derived from geometry rather than fitted is what keeps the prior label-free, and it means the fit decides only \emph{where} the foreground mass sits, never \emph{how much} of it there is: without the constraint $\rho$ inflates towards unity, stops discriminating position, and the $\alpha$ term of Equation~\eqref{eq:posterior} degenerates into an additive constant.\footnote{The constraints are applied as a single rescale followed by the cap, so the cap partly undoes the rescaling: on the deployed fit this leaves a realised mean per-bin mass of $0.690$ against the nominal $0.785$.}
 
 \paragraph{Fitting}
-Fitting alternates a per-box E-step with a global M-step (Algorithm~\ref{alg:fit}).
+Once we have these objects, we can run the EM fitting algorithm, which alternates a per-box E-step with a global M-step, set out in full in Algorithm~\ref{alg:fit}.
 
-\medskip\noindent\emph{E-step.} For the cells of one box, with $\rho_k$ and $\hat\rho_k$ evaluated at each cell's bin, the posterior follows from an appearance \emph{log-ratio}, its within-box \emph{recentring}, and the prior:
+\medskip\noindent\emph{E-step.} For the cells of one box, with $\rho_k$ the spatial prior evaluated at each cell's bin for prototype $k$ and $\sum_k \rho_k$ the total foreground prior at that bin, the posterior follows in three steps: an appearance \emph{log-ratio}~\eqref{eq:logratio}, its within-box \emph{recentring}~\eqref{eq:recentre}, and the \emph{posterior} itself~\eqref{eq:posterior}.
 \begin{align}
 A(z) &\;=\; \log \textstyle\sum_k \hat\rho_k \exp\!\left(\kappa\, z^{\top} C_k\right) \;-\; \ell_{bg}(z)
 \label{eq:logratio}\\[2pt]
@@ -452,25 +463,39 @@ A(z) &\;=\; \log \textstyle\sum_k \hat\rho_k \exp\!\left(\kappa\, z^{\top} C_k\r
 p_{fg}(z) &\;=\; \sigma\!\left(\bar A(z) \;+\; \alpha \, \mathrm{logit}\!\left(\textstyle\sum_k \rho_k\right)\right)
 \label{eq:posterior}
 \end{align}
-Equation~\eqref{eq:logratio} is a log-likelihood ratio, $A(z) = \log\!\big(p(z \mid \text{crown}) / p(z \mid \text{background})\big)$, whose foreground term is built from the prototypes exactly as Equation~\eqref{eq:bgll} is built from the background centroids. A cell must therefore look crown-like \emph{and} unlike background to score highly. This is the first of two filters that in-box soil/ground has to pass, and it removes the soil/ground that resembles the background mixture outright.
+Equation~\eqref{eq:logratio} is a log-likelihood ratio. Its first term is the foreground log-likelihood, built from the prototypes $C_k$ exactly as Equation~\eqref{eq:bgll} is built from the background centroids $G_j$; subtracting $\ell_{bg}$ gives $A(z) = \log\!\big(p(z \mid \text{crown}) / p(z \mid \text{background})\big)$. A cell must therefore look crown-like \emph{and} unlike background to score highly. This is the first of two filters that in-box soil/ground has to pass, and it removes the soil/ground that resembles the background mixture outright.
 
-Equation~\eqref{eq:recentre} is the second filter, and the step that makes the model work on frozen ViT features. Problematically, attention over the surrounding tile inflates the absolute foreground score of \emph{every} cell inside a box, so the absolute level of $A$ is confounded by context: e.g.\ soil surrounded by canopy can still score positively, and therefore survive the first filter. Recentring instead asks not whether a cell is crown-like but whether it is \emph{more} crown-like than the rest of its own box. The behaviour that follows is essentially precisely what we wanted to produce: a heterogeneous box containing crown and soil has a wide spread of $\bar A$ and is carved appropriately, whereas a box in uniformly closed canopy has a narrow spread and stays closer to filled, which is generally correct.
+Equation~\eqref{eq:recentre} is the second filter, and the step that makes the model work on frozen ViT features. Problematically, attention over the surrounding tile inflates the absolute foreground score of \emph{every} cell inside a box, so $A$ is confounded by context and its absolute level is not sufficiently informative: e.g. soil surrounded by canopy can still score positively, and therefore survive the first filter. However, recentring isolates $A$ \emph{within} a box, asking not whether a cell is crown-like but whether it is \emph{more} crown-like than the rest of its own box. The behaviour that follows is essentially precisely what we wanted to produce: a heterogeneous box containing crown and soil has a wide spread of $\bar A$ and is carved appropriately, whereas a box in uniformly closed canopy has a narrow spread and stays closer to filled, which is generally correct.
 
-Equation~\eqref{eq:posterior} restores, scaled by the prior weight $\alpha$, the total foreground prior that $\hat\rho_k$ discards. For the M-step, the E-step also returns a responsibility for each cell $n$ of the box (with whitened embedding $z_n$) and each prototype $k$,
+Equation~\eqref{eq:posterior}, the posterior, adds the prior mass term, and the spatial prior enters the two equations in different roles. In Equation~\eqref{eq:logratio} it appears only as the normalised weight $\hat\rho_k$, which sums to one over $k$ and therefore selects \emph{which} prototype applies at a given relative position while discarding \emph{how much} total foreground prior there is. That discarded total re-enters on its own in Equation~\eqref{eq:posterior}, where the prior weight $\alpha$ scales it. Alongside $p_{fg}$, the E-step returns a responsibility $r_{nk}$ for each cell $n$ of the box (with whitened embedding $z_n$) and each prototype $k$:
 \begin{equation}
 r_{nk} \;=\; p_{fg}(z_n)\;
 \frac{\rho_k \exp\!\left(\kappa\, z_n^{\top} C_k\right)}
      {\sum_{k'} \rho_{k'} \exp\!\left(\kappa\, z_n^{\top} C_{k'}\right)}
 \label{eq:resp}
 \end{equation}
-the probability that cell $n$ is crown and is explained by prototype $k$, so that $\sum_k r_{nk} = p_{fg}(z_n)$.
+which together distribute each cell's foreground probability over the $K_{fg}$ prototypes in proportion to the weighted components of Equation~\eqref{eq:logratio}, so that $\sum_k r_{nk} = p_{fg}(z_n)$. In other words, $r_{nk}$ is the probability that cell $n$ is crown and is explained by prototype $k$, which the M-step uses to update the prototypes and spatial prior.
 
-\medskip\noindent\emph{M-step.} Each prototype first takes the ordinary generative pull towards the responsibility-weighted mean of all cells over all boxes, $P_k = \sum_n r_{nk}\, z_n \big/ \lVert \sum_n r_{nk}\, z_n \rVert$, which expresses the idea ``recurs across boxes''. It is then repelled from the outside-box signature it most resembles: the outside-box cells (ring and clear background) are softmax-assigned to the current prototypes at concentration $\kappa$, the normalised weighted mean of those assigned to prototype $k$ gives a negative centroid $\bar N_k$, and
+\medskip\noindent\emph{M-step.} The prototypes are updated in two steps. The first is the ordinary generative pull: prototype $k$ is drawn towards the responsibility-weighted mean of all cells over all boxes,
 \begin{equation}
-C_k \;=\; \frac{P_k - \beta\,\bar N_k}{\lVert P_k - \beta\,\bar N_k \rVert}.
+P_k \;=\; \frac{\sum_n r_{nk}\, z_n}{\lVert \sum_n r_{nk}\, z_n \rVert}
+\label{eq:protomean}
+\end{equation}
+which expresses the idea ``recurs across boxes''. The second move repels the prototype from the outside-box signature it most resembles. The outside-box cells (clear background and ring) are softmax-assigned to the current prototypes at the same concentration $\kappa$; the resulting per-prototype negative centroid $\bar N_k$ is the normalised weighted mean of the cells assigned to prototype $k$, and the prototype becomes
+\begin{equation}
+C_k \;=\; \frac{P_k - \beta\,\bar N_k}{\lVert P_k - \beta\,\bar N_k \rVert}
 \label{eq:contrastive}
 \end{equation}
-A soil-like prototype's nearest negatives are themselves soil, so the subtraction tears it away from soil: commonality is defined as agreement-across-boxes \emph{minus} outside-box signature, not merely whatever fills the box. The contrastive weight $\beta$ sets the strength of that repulsion; $\beta = 0$ recovers the purely generative update (compared in Section~\ref{sec:ablation}), and we use $\beta = 0.5$ throughout. The spatial prior is re-estimated from the same responsibilities, per size band, as the mean responsibility of the $N_b$ cells falling in each bin $b$, $\tilde\rho_k(b) = N_b^{-1} \sum_{n:\,b(n) = b} r_{nk}$, then rescaled to the $\pi/4$ mass and capped as above.
+A soil-like prototype's nearest negatives are themselves soil, so the subtraction tears it away from soil: commonality is defined as agreement-across-boxes \emph{minus} outside-box signature, not merely whatever fills the box. The contrastive weight $\beta$ controls the strength of that repulsion; $\beta = 0$ recovers the purely generative update of Equation~\eqref{eq:protomean} (compared in Section~\ref{sec:ablation}), and we use $\beta = 0.5$ throughout.
+
+The spatial prior is re-estimated from the same responsibilities. Writing $b(n)$ for the bin of cell $n$ and $N_b$ for the number of cells falling in bin $b$,
+\begin{equation}
+\tilde\rho_k(b) \;=\; \frac{1}{N_b} \sum_{n\,:\,b(n) = b} r_{nk}
+\label{eq:priorupdate}
+\end{equation}
+accumulated separately per size band, after which $\tilde\rho$ is rescaled to the $\pi/4$ mean per-bin mass and capped at $0.95$ per bin as described above to give $\rho$.
+
+Fitting is deterministic given the seed. The procedure is not gradient-based.
 
 %cvpr:supp-begin
 \begin{algorithm}[H]
@@ -485,8 +510,8 @@ A soil-like prototype's nearest negatives are themselves soil, so the subtractio
     \State Evaluate $A$, $\bar A$, $p_{fg}$, $r_{nk}$ by Equations~\eqref{eq:logratio}--\eqref{eq:resp}.
     \State Accumulate $\sum_n r_{nk} z_n$ and the per-bin sums of $r_{nk}$.
   \EndFor
-  \State $P_k \gets \sum_n r_{nk} z_n$, normalised; \; $C_k \gets$ Equation~\eqref{eq:contrastive}. \Comment{M-step, global}
-  \State $\rho \gets$ per-bin mean of $r_{nk}$, then rescale to $\pi/4$ and cap at $0.95$.
+  \State $P_k \gets$ Equation~\eqref{eq:protomean}; \; $C_k \gets$ Equation~\eqref{eq:contrastive}. \Comment{M-step, global}
+  \State $\rho \gets$ Equation~\eqref{eq:priorupdate}, then rescale to $\pi/4$ and cap at $0.95$.
   \If{$t > 5$} delete prototypes whose responsibility share is below $0.25/K_{fg}$ (a quarter of uniform), keeping at least two. \EndIf
 \EndFor
 \State \Return $\{\mu, W, \lambda, C, G, w, \rho\}$.
@@ -494,34 +519,43 @@ A soil-like prototype's nearest negatives are themselves soil, so the subtractio
 \end{algorithm}
 %cvpr:supp-end
 
-Strictly speaking, the procedure is EM-style rather than EM proper: the recentring of Equation~\eqref{eq:recentre}, the contrastive term of Equation~\eqref{eq:contrastive} and the projection of $\rho$ onto its mass and cap constraints each break the correspondence with a joint likelihood, so no objective is monotonically ascended and there is no convergence test: $T$ is fixed at $30$ iterations. The fit is gradient-free and deterministic given the seed.
+Strictly speaking, the procedure is EM-style rather than EM proper: the within-box recentring of Equation~\eqref{eq:recentre}, the contrastive term of Equation~\eqref{eq:contrastive} and the projection of $\rho$ onto the mass and cap constraints each break the correspondence with a joint likelihood, so no objective is monotonically ascended and there is no convergence test: $T$ is fixed at $30$ iterations.
 
 \subsection{Inference}
 \label{sec:inference}
 
-For each predicted box, its cells are whitened by Equation~\eqref{eq:whiten}, the matching size band is selected, and $p_{fg}$ is evaluated by Equations~\eqref{eq:logratio}--\eqref{eq:posterior}. The posterior lives on the $8$~px feature grid, so we upsample it to the native $2048$~px tile with a guided filter~\cite{guidedfilter} that uses the RGB tile as its guide (radius $12$~px, i.e.\ $1.5$ feature cells; $\epsilon = 10^{-4}$), so that mask boundaries follow edges visible in the image rather than the feature grid. Pixels above a mask threshold $\tau$ form the predicted crown mask, which is intersected with the box, so a mask is contained in its box by construction rather than by penalty.
+For each predicted box, cells within the box are projected by Equation~\eqref{eq:whiten}, the matching size band is selected, and posterior $p_{fg}$ is evaluated by Equations~\eqref{eq:logratio}--\eqref{eq:posterior}. The posterior lives on the $8$~px feature grid, so we upsample it to the native $2048$~px tile with a guided filter~\cite{guidedfilter} that uses the RGB tile as its guide, so that mask boundaries follow edges visible in the image rather than the feature grid (radius $12$~px, i.e.\ $1.5$ feature cells; $\epsilon = 10^{-4}$). Pixels above a mask threshold $\tau$ form the predicted tree crown mask, which is intersected with the box, so a mask is contained in its box by construction rather than by penalty.
 
-Three scalars are set at inference. The prior weight $\alpha$ scales the spatial term of Equation~\eqref{eq:posterior}: values $\leq 1$ relax reliance on a \emph{predicted} box, which is not expected to always be perfectly precise, so that the appearance term dominates. The concentration $\kappa$ is raised from $10$ at fitting to $16$, in Equations~\eqref{eq:bgll} and~\eqref{eq:logratio} alike, which sharpens the zero-mean appearance term. The mask threshold $\tau$ is lowered from an initial $0.5$ so that small crowns under-covered by imprecise predicted boxes are recovered. These three, with the guided filter's radius and $\epsilon$, are the only quantities in the pipeline selected against mask labels: all are chosen on the $108$ validation images held out from the $900$ training images (the detector trains on the remaining $792$) under a rule fixed in advance, and none requires refitting. We therefore describe the method as trained without mask supervision but broadly calibrated for tree crown mask generation on a small held-out set of mask labels, rather than as entirely label-free. We take these to be reasonable `tree crown' hyperparameters and do not attempt to optimise them for use on other datasets such as NeonTreeEvaluation.
+Three scalars are exposed at inference, and together with the guided filter's radius and $\epsilon$ they are the only quantities in the pipeline selected against mask labels. The prior weight $\alpha$ scales the box-derived spatial term in Equation~\eqref{eq:posterior}: values $\leq 1$ relax reliance on a \emph{predicted} box, which is not expected to always be perfectly precise, so that the appearance term dominates. The concentration $\kappa$ is raised from the value of $10$ used during fitting to $16$ at inference, in Equations~\eqref{eq:bgll} and~\eqref{eq:logratio} alike; since $\bar A$ is zero-mean within each box, this scales the spread of the appearance term and thereby sharpens it. $10$ was fixed a priori, and $16$ is simply the best of $\{10, 13, 16, 20\}$ on validation, a range over which mask AP$_{50}$ varies by under $0.005$.
+
+The mask threshold $\tau$ is the posterior cut that defines the mask, lowered from an initial $0.5$ so that small crowns under-covered by imprecise predicted boxes are recovered. All three, and the radius and $\epsilon$ of the guided filter, are selected on the $108$ validation images held out from the $900$ training images (the detector trains on the remaining $792$) under a rule fixed in advance, and none requires refitting. We therefore describe the method as trained without mask supervision but broadly calibrated for tree crown mask generation on a small held-out set of mask labels, rather than as entirely label-free. We take these to be reasonable `tree crown' hyperparameters and do not attempt to optimise them for use on other datasets such as NeonTreeEvaluation.
+
 
 \subsection{Confidence from the mask posterior}
 \label{sec:scorer}
 
-The detector score $s = \sigma(h)$, the sigmoid of the centre heatmap logit $h$ at the decoded peak, rates whether a crown centre is present within the box, not how good the resulting mask is. The posterior $p_{fg}$ already computed for every cell of the box carries that information, so we reduce it over the $\lvert B \rvert$ cells of box $B$ to two statistics,
+Now that we have the mask generated, we want to update the confidence score of each tree crown rather than just retain the score provided by the detector head, which is $s = \sigma(h)$, the sigmoid of the centre heatmap logit $h$ at the decoded peak of Section~\ref{sec:detector}. This value rates whether a crown centre is present within the box, not how good the resulting mask (Section~\ref{sec:masker}) is. However, we have already calculated the posterior $p_{fg}$ of Equation~\eqref{eq:posterior} for every cell of a box. To generate a confidence score we can reduce the posterior over the $\lvert B \rvert$ cells of a box $B$ to two terms which we can use as multipliers on the $\sigma(h)$ score to produce a new score $s'(B)$.
+
+\begin{align}
+\bar p(B) &\;=\; \frac{1}{\lvert B \rvert} \sum_{n \in B} p_{fg}(z_n)
+\label{eq:meanpost}\\[2pt]
+m(B) &\;=\; \frac{1}{\lvert B \rvert} \sum_{n \in B}
+              \bigl\lvert\, 2\,p_{fg}(z_n) - 1 \,\bigr\rvert
+\label{eq:decisive}
+\end{align}
+
+Because the recentring of Equation~\eqref{eq:recentre} sets the mean of $\bar A$ to zero within every box, both statistics read the \emph{shape} of the within-box posterior rather than its level. Where a minority of cells sits far above the box mean, the saturation of $\sigma$ compresses their contribution and the mild majority below the mean dominates, giving $\bar p < \tfrac12$; a box filled by crown apart from a few much darker cells gives $\bar p > \tfrac12$. Read this way $\bar p$ is a soft estimate of the fraction of its box that the crown occupies. The decisiveness $m$ folds each cell to its distance from $\tfrac12$ before averaging, and so records the \emph{spread} of the same distribution: $m = 1$ when every cell is confidently inside or outside, $m = 0$ when every cell is a coin flip.
+
+The three quantities are combined by multiplication,
 \begin{equation}
-\begin{aligned}
-\bar p(B) &\;=\; \frac{1}{\lvert B \rvert} \sum_{n \in B} p_{fg}(z_n), \\
-m(B) &\;=\; \frac{1}{\lvert B \rvert} \sum_{n \in B} \bigl\lvert\, 2\,p_{fg}(z_n) - 1 \,\bigr\rvert.
-\end{aligned}
-\label{eq:meanpost}
-\end{equation}
-Because recentring sets the mean of $\bar A$ to zero within every box, both read the \emph{shape} of the within-box posterior rather than its level. Where a minority of cells sits far above the box mean, as for a small crown in a large box, the saturation of $\sigma$ compresses their contribution and $\bar p < \tfrac12$; a box filled by crown apart from a few much darker cells gives $\bar p > \tfrac12$. Read this way, $\bar p$ is a soft estimate of the fraction of its box that the crown occupies. The decisiveness $m$ records the spread instead: $m = 1$ when every cell is confidently inside or outside, $m = 0$ when every cell is a coin flip. Predictions are ranked by
-\begin{equation}
-s'(B) \;=\; s(B)\;\bar p(B)\;m(B)
+s'(B) \;=\; s(B)\;\bar p(B)\;m(B),
 \label{eq:rerank}
 \end{equation}
-in place of $s$. The product is a conjunction, which is the behaviour we want: every factor lies in $[0,1]$, so a low value on any one cannot be rescued by the other two, and a confident detection carrying a collapsed posterior falls just as a well-separated mask on a low-confidence detection box does.
+and predictions are ranked by $s'$ in place of $s$. The product is a conjunction, which is the behaviour we want: every factor lies in $[0,1]$, so a low value on any one cannot be rescued by the other two, and a confident detection carrying a collapsed posterior falls just as a well-separated mask on a low-confidence detection box does.
 
-Equation~\eqref{eq:rerank} adds no parameter, no fitting stage and no forward pass, and moves only the ordering: the masks, the detection set and the number of predictions are identical before and after. The $0.05$ decode floor of Section~\ref{sec:detector} is applied to $s$ and the resulting set held frozen, since $s'$ does not share a scale with $s$ and a floor on it would select different detections. The functional form was chosen on the same $108$ validation images, by box average precision over a small set of parameter-free candidates, as the exponent-free member of a group that could not be separated at that precision; we therefore count it as a choice of form rather than as a fourth calibrated scalar.
+Equation~\eqref{eq:rerank} adds no parameter, no fitting stage and no forward pass. Both $\bar p$ and $m$ are two reductions over a vector Equation~\eqref{eq:posterior} already returns; the predicted masks, the detection set and the number of predictions are all identical before and after, and only the ordering moves. Because $s'$ is a product of three quantities in $[0,1]$ it does not share a scale with $s$, so the $0.05$ decode floor of Section~\ref{sec:detector} is applied to $s$ at decode and the resulting set is then held frozen; applying a floor to $s'$ would select a different set of detections and the comparison would no longer be like for like.
+
+The functional form was chosen on the same $108$ held-out validation images, by box average precision over a small set of parameter-free candidates, and the unweighted product was selected as the exponent-free member of a group that could not be separated at that precision. We therefore count Equation~\eqref{eq:rerank} as a choice of form rather than as a fourth calibrated scalar.
 
 
 \section{Experiments}
@@ -550,7 +584,7 @@ Both are RGB-only (we did not use the dataset's LiDAR/CHM/HSI data at any time),
 \subsection{Implementation details}
 \label{sec:implementation}
 
-Table~\ref{tab:config} collects every key configuration used. Average precision is computed over the full ranked list; where precision, recall and F1 are reported at a single operating point, it is a detector score of $0.4$.
+Table~\ref{tab:config} collects every key configuration used.
 
 %cvpr:supp-begin
 \begin{table}[H]
@@ -799,7 +833,7 @@ The gain is largest at NIWO, the densest and smallest-crown site. We observe her
 
 \paragraph{Hyperparameter tuning}
 
-The module's hyperparameters were fixed a priori except for the contrastive repulsion strength $\beta$ and the inference settings of Section~\ref{sec:inference}: the spatial-prior weight $\alpha$, the concentration $\kappa$ (raised from its fit-time value of $10$ to $16$), the mask threshold $\tau$ and the guided filter's radius and $\epsilon$. Table~\ref{tab:masker} ablates $\alpha$ and $\kappa$ on OAM-TCD, including a row with the spatial prior removed ($\alpha = 0$), with the rendering and $\tau$ held fixed throughout; $\beta$ is ablated in Table~\ref{tab:components}, which separates it from the E-step recentring our implementation ties it to. $\kappa$ was fixed a priori at $10$ for fitting; the inference value of $16$ is simply the best of $\{10, 13, 16, 20\}$ on validation, a range over which mask AP$_{50}$ varies by under $0.005$.
+The module's hyperparameters were fixed a priori except for the contrastive repulsion strength $\beta$ and the inference settings of Section~\ref{sec:inference}: the spatial-prior weight $\alpha$, the concentration $\kappa$ (raised from its fit-time value of $10$ to $16$), the mask threshold $\tau$ and the guided filter's radius and $\epsilon$. Table~\ref{tab:masker} ablates $\alpha$ and $\kappa$ on OAM-TCD, including a row with the spatial prior removed ($\alpha = 0$), with the rendering and $\tau$ held fixed throughout; $\beta$ is ablated in Table~\ref{tab:components}, which separates it from the E-step recentring our implementation ties it to.
 
 \begin{table}[H]
 \caption{Inference scalars on the OAM-TCD $439$-tile test split, selected on $108$ held-out validation images. All rows use detector seeds $0$--$2$ and rank by $s'$ (Equation~\eqref{eq:rerank}) computed from each row's own posterior, so the comparison is paired.\label{tab:masker}}
@@ -882,7 +916,7 @@ $s\,\bar p\,m$            & $\mathbf{0.6556}$ & $\mathbf{0.2847}$ & $\mathbf{0.5
 
 %Three controls bound what the result can be attributed to. First, the gain is not the detector's: ranking by $\bar p\,m$ with the detector score removed scores $0.5613$ AP$_{50}$ at seed $0$, well \emph{below} the $0.6250$ baseline. The mask posterior is a modifier that reorders within the detector's ranking, not a competing detector.
 
-%Second, the parameter-free product is not beaten by fitting. A logistic reranker over eight per-box statistics -- including the appearance ratio $A$ recovered before the recentring of Equation~\eqref{eq:recentre} -- fitted on the same $108$ validation images against a box-IoU target, reaches $0.6616$ AP$_{50}$ at seed $0$ against the product's $0.6615$, and is \emph{worse} at strict thresholds ($0.2797$ against $0.2822$ AP$_{50:95}$). A paired bootstrap over the $439$ tiles ($2000$ resamples) puts the AP$_{50}$ difference at $-0.00005$ with a $95\%$ interval of $[-0.0016, +0.0016]$. Sweeping all $128$ subsets of those eight statistics spans $0.6250$ to $0.6616$ with a median of $0.6587$: past two statistics the surface is flat, and nine fitted numbers buy nothing the two reductions of Equation~\eqref{eq:meanpost} do not already supply. The pre-recentring quantity $A$ is in particular redundant, which is why Section~\ref{sec:scorer} recovers nothing from inside the E-step.
+%Second, the parameter-free product is not beaten by fitting. A logistic reranker over eight per-box statistics -- including the appearance ratio $A$ recovered before the recentring of Equation~\eqref{eq:recentre} -- fitted on the same $108$ validation images against a box-IoU target, reaches $0.6616$ AP$_{50}$ at seed $0$ against the product's $0.6615$, and is \emph{worse} at strict thresholds ($0.2797$ against $0.2822$ AP$_{50:95}$). A paired bootstrap over the $439$ tiles ($2000$ resamples) puts the AP$_{50}$ difference at $-0.00005$ with a $95\%$ interval of $[-0.0016, +0.0016]$. Sweeping all $128$ subsets of those eight statistics spans $0.6250$ to $0.6616$ with a median of $0.6587$: past two statistics the surface is flat, and nine fitted numbers buy nothing the two reductions of Equations~\eqref{eq:meanpost}--\eqref{eq:decisive} do not already supply. The pre-recentring quantity $A$ is in particular redundant, which is why Section~\ref{sec:scorer} recovers nothing from inside the E-step.
 
 %Third, and least favourably, a crown-size prior recovers most of the gain on its own. A logistic reranker over the detector score and a cubic in $\log\lvert B\rvert$ -- using no output of the mask module whatever -- reaches $0.6495$ at seed $0$, which is $+0.0244$ of the product's $+0.0365$. The residual attributable to the posterior over and above box size is therefore roughly $+0.012$, and claims about the module's independent opinion should be read against that floor rather than against zero. What the product does supply for free is both terms at once: adding a fitted size correction on top of $s'$ moves it to $0.6605$, a small loss.
 
@@ -933,6 +967,9 @@ By taking the $4$~px interlaced grid as the unit of crown delineation, LACE conc
 
 
 \paragraph{Domain gap in SelvaMask} The \texttt{sam3-multi-selvabox-selvamask-FT} checkpoint was fitted on tropical UAV imagery at $1.3$--$3.5$~cm/px and is applied here at $10$~cm/px. As shown in the results, it nevertheless exhibits best-in-class scores for Box AP$_{50}$. SelvaMask is a dataset of highly dense tropical forest canopy, so the fine-tuned masker checkpoint is likely still not optimised for the open landscapes of OAM-TCD. 
+
+\paragraph{Foreground collapse} 
+The module was designed as a mixture of $K_{fg}$ foreground prototypes, the idea being that different trees could present as distinct prototypes in latent space (e.g. conifers vs palm trees). However, what we found was that with the inclusion of the contrastive term (at a contrastive weight of $\beta = 0.5$), the mixture collapses to a single foreground prototype. Mean pairwise cosine rises smoothly with $\beta$ (Table~\ref{tab:collapse}) to $0.994$ at the deployed $\beta = 0.5$, an effective rank of $1.66$ of $16$. Pruning tests responsibility share, which the highly similar prototypes survive because each contributes more or less equally. In practice, pruning is activated at intermediate $\beta$ where some prototypes do starve.
 
 \paragraph{Spatial prior}
 
@@ -1081,10 +1118,6 @@ Box2Mask R-50                & $0.774$ & $0.664$ & $0.514$ & $0.584$ & $0.643$ &
 \end{tabularx}
 \noindent{\footnotesize{Stratifying on the detection box. Per-stratum counts differ by row (each row's boxes distribute differently over the strata) and range from $367$ to $4{,}541$. LACE is seed $0$. LACE leads the lowest stratum and trails at higher box IoU: for highly accurate boxes, pixel-level supervision converts to a better mask than LACE's $4$~px posterior, whereas LACE holds up best on imperfect detections.}}
 \end{table}
-
-\subsection{Foreground mixture collapse}
-
-The module was designed as a mixture of $K_{fg}$ foreground prototypes, the idea being that different trees could present as distinct prototypes in latent space (e.g. conifers vs palm trees). However, what we found was that with the inclusion of the contrastive term (at a contrastive weight of $\beta = 0.5$), the mixture collapses to a single foreground prototype. Mean pairwise cosine rises smoothly with $\beta$ (Table~\ref{tab:collapse}) to $0.994$ at the deployed $\beta = 0.5$, an effective rank of $1.66$ of $16$. Pruning tests responsibility share, which the highly similar prototypes survive because each contributes more or less equally. In practice, pruning is activated at intermediate $\beta$ where some prototypes starve.
 
 \begin{table}[H]
 \caption{Foreground prototype geometry and accuracy, E-step recentring held on throughout so that $\beta$ is the only variable. Accuracy is mean per-crown mask IoU on the $108$ validation tiles at EM seed $0$ and detector seed $0$, matching the geometry columns. Effective rank is $\exp$ of the entropy of the normalised singular-value spectrum of the prototype matrix i.e. it counts directions. 

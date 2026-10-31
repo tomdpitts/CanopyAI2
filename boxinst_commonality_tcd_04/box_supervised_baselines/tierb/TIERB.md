@@ -4,7 +4,23 @@
 > ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
 <!-- TABLE1_CURRENT:end -->
 
-**Status 2026-10-27: SET UP, NOTHING RUN on Modal. §00 (scope and order, 2026-10-27) governs over §0, and §0 over everything below.**
+**Status 2026-10-29: gates and smokes DONE ($6.52), chain at HOLD; no Tier B training run. §000 (2026-10-29) governs over §00, §00 (2026-10-27) over §0, and §0 over everything below.**
+
+## 000. Amendment 2026-10-29: B1/B2 use the 3×3 subtile geometry only, and select on the DT2/Box2Mask val subtiles (Tom, before any Tier B training number)
+
+- **Geometry: `sub` only** (`crops.GEOMETRIES`). This is 3×3 1024 subtiles at stride 512, stitched by the seam-fixed stitcher. It replaces §4's "both geometries, primary chosen on val".
+- **Why.** Each row is tested on its own training canvas. LACE and Restor train and test on whole 2048 tiles. DT2, Box2Mask and SelvaBox train on 1024 crops and test on the same 3×3 subtiles. B1/B2 train on 1024 crops (`crops.py`), so they belong with the second group.
+  - The val pick between two geometries gave B1/B2 a tuned choice that no other row had, so it is dropped.
+  - A stitching objection to B2 would apply equally to DT2 and Box2Mask.
+  - The `whole` sensitivity row is dropped too. Its code stays, unused.
+- **Selection: val box AP50 on the 896 val 1024 subtiles, unstitched.** These are exactly DT2's and Box2Mask's selection set: `tcd-detectree2-vol:data/val/coco_boxonly.json`, with boxes identical to `coco.json`. They are the 108 val tiles × 9, minus the 76 subtiles with no crown and no canopy (`build_coco.build_tile`, `keep_empty=False`); 16,505 crowns and 3,900 canopy `iscrowd`.
+  - It replaces "box AP50 on the 108 whole val tiles". Inference uses the `sub` caps, and COCOeval is as `score_lite` (maxDets 600, floor 0.05).
+  - Provenance copy: `detectree2_baseline/val_subtiles_896_boxes.json`, segmentation stripped. Shipped as `tierb_data/val_sub_gt_1024.json` by `prep_local.py --add-val-sub`; source and output sha256 are in `DATA_MANIFEST.json`.
+  - Pixels: 4/4 random DT2 val subtiles are byte-identical to the local tile crops.
+  - Local test `val_sub_selection` PASS: perfect boxes give AP50 0.990. One of 16,505 crowns is lost to COCOeval's tie-break among equal scores, and the 101-point interpolation turns that into 0.990. Crowd hits are ignored and the floor applies.
+- **Finalize.** `geometry_choice.json` records a fixed `sub`; val is still stitched and scored, for the record only. The LACE gate runs on the `sub` rows.
+- **Cost.** About 1 of 10 forward windows per tile is gone, and the whole-tile pass held about 4 of 13 subtile-areas of predict compute. Per-epoch selection rises from about 10 s to an estimated 20–30 s on 8 GPUs. The B2 smoke must be re-run: the selection and predict paths both changed. Its old outputs are kept in `results/20261027_170538/boxteacher_smoke/`. That smoke ran AFTER the teacher uncap (16:45 vs commit 15:20 AEDT), so its timings already include it.
+- **Unchanged:** B3 (MAL), the plateau rule, caps, thresholds, training, and the frozen test scorer.
 
 ## 00. Amendment 2026-10-27: B2 then B3; B1 not planned (Tom, before any Tier B number)
 
@@ -154,14 +170,14 @@ Code: this directory. Local gates already run and passed: `gates/`. Modal: `tier
 **Initialisation.** From the released COCO box-only checkpoint. Only the 80-way `cls_logits` is re-initialised, asserted key-by-key (G3).
 
 **Selection.**
-- After every epoch: val box AP50 on the 108 whole val tiles at 2048, maxDets 600, floor 0.05, canopy crowd.
+- After every epoch: val box AP50 on the 108 whole val tiles at 2048, maxDets 600, floor 0.05, canopy crowd. **[SUPERSEDED 2026-10-29 by §000: the 896 val 1024 subtiles, unstitched.]**
 - The scorer is `score_lite.py`, the frozen scorer's crowd arm, parity-gated: identical on LACE s0 and Box2Mask Swin-L in every AP and detection count (`gates/score_lite_parity.json`).
 - The best checkpoint and `best.json` are persisted together, so a resume can never re-select (the Box2Mask resume trap). Ties go to the earlier checkpoint.
 - **`model_best.pth` is authoritative.** It is written first, then `best.json`, then the `evals.jsonl` line; a kill between the writes is reconciled at the next launch.
 - **An eval interrupted by a preemption is re-run on resume** (`before_train`), so no epoch silently drops out of selection.
 - **Evaluation uses rank 0's model.** DDP runs with `broadcast_buffers=False`, so mask-branch BN statistics differ per rank. Every rank evaluates with rank 0's buffers, the model that is saved and predicted, and then restores its own.
 
-**Inference geometry: both run, primary chosen on val.**
+**Inference geometry: both run, primary chosen on val.** **[SUPERSEDED 2026-10-29 by §000: `sub` only, no val choice.]**
 - Native 0.1 m/px.
 - `whole` = the 2048 tile in one pass (LACE's and Restor's geometry; no seams).
 - `sub` = 3×3 1024 subtiles at stride 512, stitched by the seam-fixed stitcher with the same parameters as the DT2/Box2Mask rows.

@@ -1,9 +1,11 @@
 """Dependency-light copy of the frozen scorer's `canopy_neutral_crowd` arm, for use INSIDE the
 training containers (torch-1.x / detectron2 images that cannot import `evaluate.py`).
 
-Used for two things only, both on the 108 VAL tiles:
-  1. checkpoint selection during training (val box AP50), and
-  2. the pre-registered choice of inference geometry (val mask AP50).
+Used for two things only, both on VAL:
+  1. checkpoint selection during training (val box AP50; B1/B2 on the 896 val 1024 subtiles
+     since 2026-10-29, via window_dets), and
+  2. scoring the stitched val predictions for the record (was: the val choice of geometry,
+     dropped 2026-10-29).
 Every TEST number, and the LACE stop-gate, comes from the frozen `score_coco.py` itself
 (`tierb_modal.py::score`), never from this file.
 
@@ -123,6 +125,15 @@ def build_dt(preds, tid2img, res=2048, score_floor=SCORE_FLOOR, with_masks=True)
                 d["area"] = float(maskUtils.area(rles[j]))
             dets.append(d)
     return dets
+
+
+def window_dets(image_id, boxes_xyxy, scores, score_floor=SCORE_FLOOR):
+    """One 1024 window's raw boxes (window coords, xyxy) -> bbox-only COCO dets for the B1/B2
+    selection signal on the 896 val subtiles (tierb_data/val_sub_gt_1024.json; amendment
+    2026-10-29). Same floor and xywh conversion as build_dt."""
+    return [{"image_id": image_id, "category_id": 1, "score": float(s),
+             "bbox": [float(x0), float(y0), float(x1 - x0), float(y1 - y0)]}
+            for (x0, y0, x1, y1), s in zip(boxes_xyxy, scores) if s >= score_floor]
 
 
 def cocoeval(gt_dict, dets, iou_type, max_dets=MAX_DETS):

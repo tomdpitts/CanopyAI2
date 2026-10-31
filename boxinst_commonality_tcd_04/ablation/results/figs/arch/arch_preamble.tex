@@ -1,0 +1,70 @@
+% Shared preamble for lace_architecture.tex (inference) and lace_masker_fit.tex (fit); split 2026-10-29.
+\usepackage{amsmath,amssymb}
+\usepackage{mathspec}
+% Calibri for text and math letters/digits/Greek; Carlito (metric-identical open clone, in the
+% TeX bundle) when Calibri is not installed. macOS: Font Book > Calibri > Download, then rebuild.
+\IfFontExistsTF{Calibri}{%
+  \setmainfont{Calibri}\setsansfont{Calibri}%
+  \setmathsfont(Digits,Latin,Greek){Calibri}\setmathrm{Calibri}%
+}{%
+  \defaultfontfeatures{Extension=.ttf, UprightFont=*-Regular, BoldFont=*-Bold,
+                       ItalicFont=*-Italic, BoldItalicFont=*-BoldItalic}%
+  \setmainfont{Carlito}\setsansfont{Carlito}%
+  \setmathsfont(Digits,Latin,Greek){Carlito}\setmathrm{Carlito}%
+}
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+\usetikzlibrary{arrows.meta,calc}
+
+% palette (shared with lace_overview.tex)
+\definecolor{ink}{HTML}{2B2B2B}
+\definecolor{frz}{HTML}{3B6EA8}   % frozen
+\definecolor{trn}{HTML}{D9822B}   % trained on boxes
+\definecolor{ffit}{HTML}{3F8F5F}  % fitted from boxes, no gradients
+\definecolor{crown}{HTML}{5E9E4E}
+\definecolor{soil}{HTML}{C9A26B}
+\definecolor{panel}{HTML}{F6F6F6}
+\definecolor{bbg}{HTML}{8C510A}   % BrBG ends and centre
+\definecolor{bmid}{HTML}{F5F5F5}
+\definecolor{bfg}{HTML}{005965}   % 2026-10-29: was 01665E; green half of BrBG hue +12 deg (make_arch_panels.brbg_cool)
+\definecolor{vlo}{HTML}{440154}   % viridis ends and centre
+\definecolor{vmid}{HTML}{21918C}
+\definecolor{vhi}{HTML}{FDE725}
+% encoder phases (dy,dx) = (0,0) (0,8) (8,0) (8,8)
+\definecolor{q0}{HTML}{3B6EA8}
+\definecolor{q1}{HTML}{B5477D}
+\definecolor{q2}{HTML}{2A9D8F}
+\definecolor{q3}{HTML}{C69214}
+\definecolor{neon}{HTML}{FF2DAA}  % input window <-> encoding inset (replaces zoom lines, 2026-10-30)
+
+\newcommand{\notesize}{\fontsize{5.8}{6.8}\selectfont}
+% frozen / learned markers (Font Awesome glyphs; colour emoji do not render in XeTeX)
+\definecolor{ice}{HTML}{3B8ED0}
+\definecolor{fire}{HTML}{E8590C}
+\newcommand{\frozenicon}{\raisebox{-0.12em}{\includegraphics[height=1.05em]{arch/snowflake_icon.png}}}  % supplied icon, cropped
+\newcommand{\fireicon}{\raisebox{-0.12em}{\includegraphics[height=1.05em]{arch/fire_icon.png}}}  % supplied icon, cropped
+% clockwise three-arrow cycle
+\newcommand{\cycleicon}{\tikz[baseline=-0.6ex, line width=0.55pt, line cap=round]{%
+  \foreach \a in {110,-10,-130}{\draw[-{Straight Barb[length=1.4pt,width=3.0pt,line width=0.55pt]}]
+    (\a:0.125) arc[start angle=\a, end angle=\a-92, radius=0.125];}}}
+\tikzset{
+  panel/.style={draw=ink!25, fill=panel, rounded corners=3pt, line width=0.4pt},
+  big/.style={draw=ffit!70, fill=ffit!4, rounded corners=4pt, line width=0.8pt},
+  sub/.style={draw=ink!20, fill=white, rounded corners=3pt, line width=0.4pt},
+  card/.style={draw=ink!15, fill=panel, rounded corners=1.5pt, line width=0.3pt},
+  title/.style={font=\small\bfseries, text=ink, anchor=north},
+  head/.style={font=\footnotesize\bfseries, text=ink, anchor=north west, inner sep=0pt},
+  chead/.style={font=\scriptsize\bfseries, text=ink, anchor=north west, inner sep=0pt},
+  lbl/.style={font=\scriptsize, text=ink!85, align=center, inner sep=1pt},
+  tlbl/.style={font=\notesize, text=ink!85, align=center, inner sep=1pt},
+  eq/.style={font=\scriptsize, text=ink, anchor=west, inner sep=1pt},
+  tag/.style={font=\tiny\bfseries, text=white, rounded corners=1.5pt, inner sep=1.5pt, inner xsep=3pt},
+  num/.style={circle, fill=ffit, text=white, font=\tiny\bfseries, inner sep=0.5pt, minimum size=8.5pt},
+  arr/.style={-{Stealth[length=5pt,width=4pt]}, line width=0.7pt, ink!70},
+  sarr/.style={-{Stealth[length=3.5pt,width=3pt]}, line width=0.5pt, ink!60},
+  img/.style={inner sep=0pt, draw=ink!40, line width=0.3pt},
+}
+
+\input{arch/zoom_cells.tex}
+\input{arch/rho_cells.tex}
+\input{arch/enc_window.tex}

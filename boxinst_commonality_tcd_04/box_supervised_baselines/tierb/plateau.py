@@ -1,6 +1,6 @@
 """Convergence-driven schedule for all three Tier B methods (TIERB.md section 4; fixed 2026-10-15
 before any number): LR decay on plateau + early stopping, both on the per-epoch val metric
-(B1/B2: val box AP50 on the 108 whole val tiles; B3: val mean per-crown mask IoU on GT boxes).
+(B1/B2: val box AP50 on the 896 val 1024 subtiles since 2026-10-29, was the 108 whole val tiles; B3: val mean per-crown mask IoU on GT boxes).
 
   * improvement  = metric > best-so-far + MIN_DELTA (0.005, LACE's own es_min_delta)
   * PATIENCE (2) epochs without improvement -> LR x 0.1; at most N_DECAYS (2) decays, as in the

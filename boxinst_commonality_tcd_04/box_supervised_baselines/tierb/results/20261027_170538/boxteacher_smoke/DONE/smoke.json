@@ -1,0 +1,149 @@
+{
+ "smoke_gpus": 2,
+ "sec_per_iter": 0.6722269337499966,
+ "eval_sec_8gpu": 10.2,
+ "plateau_smoke": {
+  "best": 0.5393,
+  "best_epoch": 3,
+  "bad": 0,
+  "decays": 2,
+  "lr_factor": 0.010000000000000002,
+  "stop": false,
+  "reason": null,
+  "events": [
+   {
+    "epoch": 2,
+    "event": "decay 1"
+   },
+   {
+    "epoch": 3,
+    "event": "decay 2"
+   }
+  ]
+ },
+ "lr_drop_checked": [
+  59,
+  119
+ ],
+ "projected_hours_by_epochs_incl_predict": {
+  "8": 1.2,
+  "12": 1.36,
+  "20": 1.67
+ },
+ "projected_usd_by_epochs": {
+  "8": 22.7,
+  "12": 25.8,
+  "20": 31.6
+ },
+ "projected_train_hours": 0.48,
+ "projected_predict_hours": 0.88,
+ "projected_usd": 25.8,
+ "phases": {
+  "A": {
+   "res": {
+    "status": "stopped",
+    "rc": 0,
+    "log": "/vol/runs/logs/smoke_boxteacher_A_20261027_053830.log",
+    "minutes": 3.6
+   },
+   "stopped_at_iter": 59
+  },
+  "B": {
+   "res": {
+    "status": "error",
+    "rc": -9,
+    "log": "/vol/runs/logs/smoke_boxteacher_B_20261027_054207.log",
+    "minutes": 1.0
+   }
+  },
+  "P1": {
+   "res": {
+    "status": "error",
+    "rc": -9,
+    "log": "/vol/runs/logs/smoke_boxteacher_P1_20261027_054556.log",
+    "minutes": 0.5
+   },
+   "sec": 30.6
+  }
+ },
+ "evals": [
+  {
+   "iter": 40,
+   "epoch": 1.0,
+   "val_box": {
+    "AP50": 0.1974,
+    "AP75": 0.1091,
+    "AP50_95": 0.1092,
+    "n_det": 64797
+   },
+   "sec": 40.5,
+   "time": "2026-10-27 05:41:41",
+   "plateau": {
+    "best": 0.1974,
+    "best_epoch": 1,
+    "bad": 0,
+    "decays": 0,
+    "lr_factor": 1.0,
+    "stop": false,
+    "reason": null
+   }
+  },
+  {
+   "iter": 80,
+   "epoch": 2.0,
+   "val_box": {
+    "AP50": 0.5077,
+    "AP75": 0.2412,
+    "AP50_95": 0.2623,
+    "n_det": 64800
+   },
+   "sec": 42.4,
+   "time": "2026-10-27 05:44:18",
+   "plateau": {
+    "best": 0.5077,
+    "best_epoch": 2,
+    "bad": 0,
+    "decays": 1,
+    "lr_factor": 0.1,
+    "stop": false,
+    "reason": null
+   }
+  },
+  {
+   "iter": 120,
+   "epoch": 3.0,
+   "val_box": {
+    "AP50": 0.5393,
+    "AP75": 0.2549,
+    "AP50_95": 0.2783,
+    "n_det": 64800
+   },
+   "sec": 39.5,
+   "time": "2026-10-27 05:45:37",
+   "plateau": {
+    "best": 0.5393,
+    "best_epoch": 3,
+    "bad": 0,
+    "decays": 2,
+    "lr_factor": 0.010000000000000002,
+    "stop": false,
+    "reason": null
+   }
+  }
+ ],
+ "best": {
+  "iter": 120,
+  "epoch": 3.0,
+  "val_box": {
+   "AP50": 0.5393,
+   "AP75": 0.2549,
+   "AP50_95": 0.2783,
+   "n_det": 64800
+  },
+  "sec": 39.5,
+  "time": "2026-10-27 05:45:37"
+ },
+ "stage": "smoke",
+ "method": "boxteacher_smoke",
+ "time": "2026-10-27 05:48:58"
+}

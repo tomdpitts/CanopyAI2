@@ -14,6 +14,7 @@ from multiprocessing import Pool
 
 import numpy as np
 
+from tierb import crops as C
 from tierb import lace_gate as LG
 from tierb import score_lite as SL
 from tierb import tierb_common as TC
@@ -125,10 +126,10 @@ def _meta(m, split, geom, extra=None):
 
 
 def build_preds_d2(m, split):
-    """-> {geom: path} with preds files for both geometries (written once)."""
+    """-> {geom: path} with preds files for every geometry in crops.GEOMETRIES (written once)."""
     tids = TC.manifest()["ids"][split]
     out = {}
-    for geom in ("whole", "sub"):
+    for geom in C.GEOMETRIES:
         p = TC.run_dir(m, "results", f"preds_{m}_{geom}_{split}_r2048.json")
         if not os.path.exists(p):
             if geom == "whole":
@@ -147,20 +148,22 @@ def build_preds_d2(m, split):
 
 def finalize_d2(m):
     res = {"method": m, "time": time.strftime("%Y-%m-%d %H:%M:%S")}
-    # 1. geometry choice on VAL (pre-registered: higher val mask AP50, tie -> whole)
+    # 1. geometry: fixed to 'sub' before any number (amendment 2026-10-29, TIERB.md section 000; was a
+    #    val choice between whole and sub). Val is still stitched and scored, for the record only.
     choice_p = TC.run_dir(m, "results", "geometry_choice.json")
     if not os.path.exists(choice_p):
+        assert C.GEOMETRIES == ("sub",), C.GEOMETRIES
         vp = build_preds_d2(m, "val")
         vg = json.load(open(GT["val"]))
         vg = {t: vg[t] for t in TC.manifest()["ids"]["val"]}
         gd, t2i = SL.build_gt_crowd(vg, 2048)
         val = {g: SL.score(json.load(open(p))["preds"], gd, t2i, masks=True) for g, p in vp.items()}
-        primary = "sub" if val["sub"]["mask"]["AP50"] > val["whole"]["mask"]["AP50"] else "whole"
-        _w(choice_p, {"rule": "higher val mask AP50 (108 tiles, crowd arm, score_lite); tie -> whole",
-                      "val": val, "primary": primary})
+        _w(choice_p, {"rule": "fixed 'sub' (3x3 1024 subtiles = the training canvas, as DT2/Box2Mask), "
+                              "pre-registered 2026-10-29; val scored for the record only",
+                      "val": val, "primary": "sub"})
     choice = json.load(open(choice_p))
     res["val"], res["primary"] = choice["val"], choice["primary"]
-    # 2. test + sparse, both geometries, frozen scorer
+    # 2. test + sparse, crops.GEOMETRIES, frozen scorer
     rows = []
     for split in [x for x in ("test", "sparse")
                   if os.path.isdir(TC.run_dir(m, "predict", x))]:   # sparse only if it was predicted

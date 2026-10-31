@@ -1,0 +1,125 @@
+/usr/local/lib/python3.10/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
+  warnings.warn(
+/usr/local/lib/python3.10/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: Torchmetrics v0.9 introduced a new argument class property called `full_state_update` that has
+                not been set for this class (MIoUMetrics). The property determines if `update` by
+                default needs access to the full metric state. If this is not the case, significant speedups can be
+                achieved and we recommend setting this to `False`.
+                We provide an checking function
+                `from torchmetrics.utilities import check_forward_full_state_property`
+                that can be used to check if the `full_state_update=True` (old and potential slower behaviour,
+                default for now) or if `full_state_update=False` can be used safely.
+                
+  warnings.warn(*args, **kwargs)
+loading annotations into memory...
+Done (t=0.33s)
+creating index...
+index created!
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/accelerator_connector.py:446: LightningDeprecationWarning: Setting `Trainer(gpus=[0])` is deprecated in v1.7 and will be removed in v2.0. Please use `Trainer(accelerator='gpu', devices=[0])` instead.
+  rank_zero_deprecation(
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/trainer/configuration_validator.py:108: PossibleUserWarning: You defined a `validation_step` but have no `val_dataloader`. Skipping val loop.
+  rank_zero_warn(
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/1
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 1 processes
+----------------------------------------------------------------------------------------------------
+
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name            | Type              | Params
+------------------------------------------------------
+0 | mIoUMetric      | MIoUMetrics       | 0     
+1 | areaMIoUMetrics | ModuleList        | 0     
+2 | mean_field      | MeanField         | 0     
+3 | student         | MALStudentNetwork | 93.1 M
+4 | teacher         | MALTeacherNetwork | 93.1 M
+------------------------------------------------------
+186 M     Trainable params
+0         Non-trainable params
+186 M     Total params
+372.362   Total estimated model params size (MB)
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:224: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 24 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+loading annotations into memory...
+Done (t=0.00s)
+creating index...
+index created!
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/logger_connector/result.py:233: UserWarning: You called `self.log('train/bs', ...)` in your `training_step` but the value needs to be floating point. Converting it to torch.float32.
+  warning_cache.warn(
+`Trainer.fit` stopped: `max_steps=6` reached.
+{
+ "method": "mal",
+ "time": "2026-10-27 05:34:06",
+ "checks": {
+  "G0_env": {
+   "python": "3.10.13",
+   "torch": "1.12.1+cu113",
+   "cuda": "11.3",
+   "gpu": "NVIDIA A100-SXM4-40GB",
+   "pl": "1.8.1",
+   "timm": "0.6.13",
+   "mmcv": "1.7.0",
+   "fairscale": "0.4.13",
+   "numpy": "1.23.5",
+   "mae_cache": [
+    "mae_pretrain_vit_base.pth"
+   ]
+  },
+  "G1_labeler": {
+   "loaded": 348,
+   "model_keys": 348,
+   "ckpt_keys": 348,
+   "not_in_ckpt_non_network": [],
+   "ckpt_only": [],
+   "epoch": 6,
+   "missing_after_load": []
+  },
+  "G2_train_json": {
+   "images": 792,
+   "annotations": 54191,
+   "kept_by_mal_filter": 54184,
+   "min_obj_size": 0
+  },
+  "G3_train_items": {
+   "n": 40,
+   "edge": 20
+  },
+  "G5_cli_parity": {
+   "tile": "tcd_tile_1784",
+   "boxes": 56,
+   "bitwise_equal": true,
+   "cli_rc": 0
+  },
+  "G6_input_parity": {
+   "boxes": 8,
+   "bitwise_equal": true
+  },
+  "G4_fit": {
+   "steps": 6,
+   "last": {
+    "train/loss_mil": 0.0007767131319269538,
+    "train/loss_crf": 9.272535862692166e-06,
+    "train/loss": 0.0007859856705181301,
+    "lr": 1.500000053056283e-06
+   }
+  },
+  "G7_val_released_labeler": {
+   "tiles": [
+    "tcd_tile_1012",
+    "tcd_tile_1041"
+   ],
+   "n_valid": 369,
+   "mean_iou": 0.7946692117418913,
+   "sec_per_box": 0.0512,
+   "peak_mem_gb": 9.07
+  }
+ },
+ "pass": true,
+ "seconds": 244.5
+}
+GATE PASS

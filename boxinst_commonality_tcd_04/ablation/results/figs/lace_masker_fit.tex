@@ -1,0 +1,131 @@
+% LACE box-to-mask module: the once-only EM fit on training boxes (split out of
+% lace_architecture.tex 2026-10-29; inference is in that figure).
+% Build: tectonic lace_masker_fit.tex   (from this directory)
+% Insets: arch/make_arch_panels.py (the partition inset applies the fit's rule to the holdout crop's GT boxes).
+\documentclass[tikz,border=3pt]{standalone}
+\input{arch/arch_preamble.tex}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\pgfmathsetmacro{\zmax}{max(\zoomnx,\zoomny)}
+
+% ------------------------------------------------ FIT
+\node[sub, minimum width=15.8cm, minimum height=7.95cm, anchor=north west] (FIT) at (0.2,-5.95) {};
+\node[head, font=\small\bfseries] at (0.4,-6.12) {Box-to-mask module};
+\node[tlbl, anchor=north east] at (15.8,-6.16) {input: frozen features $\widetilde F$ and training boxes only};
+
+% --- (1) whiten
+\node[card, minimum width=3.7cm, minimum height=3.0cm, anchor=north west] (A1) at (0.4,-6.6) {};
+\begin{scope}[shift={(0.4,-6.6)}]
+  \node[num] at (0.27,-0.27) {1};
+  \node[chead, anchor=west] at (0.47,-0.27) {Whiten};
+  \begin{scope}[xshift=0.375cm]   % content centred in widened card
+  \begin{scope}[shift={(0.78,-1.75)}]
+    \shade[ball color=frz!10] (0,0) circle (0.55);
+    \draw[ink!45, line width=0.4pt] (0,0) circle (0.55);
+    \draw[ink!30, dashed, line width=0.3pt] (0,0) ellipse (0.55 and 0.16);
+    \foreach \a/\b in {20/0.35, 40/0.5, 55/0.3, 75/0.45, 30/0.6}{\fill[crown] ({0.55*cos(\a)*sqrt(1-\b*\b)},{0.55*\b}) circle (1.2pt);}
+    \foreach \a/\b in {200/-0.3, 230/-0.5, 250/-0.2, 215/0.1, 260/-0.6, 190/0.25}{\fill[soil] ({0.55*cos(\a)*sqrt(1-\b*\b)},{0.55*\b}) circle (1.2pt);}
+  \end{scope}
+  \node[tlbl, anchor=west, align=left] at (1.45,-1.75) {PCA-whiten\\to $128$ dims,\\project onto\\unit sphere};
+  \end{scope}
+\end{scope}
+
+% --- (2) background mixture
+\node[card, minimum width=5.35cm, minimum height=3.0cm, anchor=north west] (A2) at (4.6,-6.6) {};
+\begin{scope}[shift={(4.6,-6.6)}]
+  \node[num] at (0.27,-0.27) {2};
+  \node[chead, anchor=west] at (0.47,-0.27) {Background mixture};
+  \begin{scope}[xshift=0.8cm]
+  \node[img, anchor=north west] at (0.15,-0.58) {\includegraphics[width=1.4cm]{arch/fit_partition.jpg}};
+  \foreach \y/\c/\t/\o in {-0.68/crown/in-box/0.6, -0.88/trn/ring/0.85, -1.08/frz/clear/0.5}{
+    \fill[\c, opacity=\o] (1.8,\y-0.065) rectangle ++(0.15,0.13);
+    \node[tlbl, anchor=west] at (1.98,\y) {\t};
+  }
+  \draw[sarr] (1.68,-1.74) -- node[tlbl, above=1pt, anchor=south]{$k$-means} (2.44,-1.74);
+  \begin{scope}[shift={(2.52,-2.08)}]
+    \foreach \i in {0,...,11}{
+      \pgfmathtruncatemacro{\cx}{mod(\i,4)}\pgfmathtruncatemacro{\cy}{div(\i,4)}
+      \pgfmathsetmacro{\sh}{35+5*\i}
+      \fill[frz!\sh] (0.27*\cx,0.27*\cy) rectangle ++(0.21,0.21);
+    }
+  \end{scope}
+  \node[tlbl, anchor=north east] at (3.6,-2.12) {$K_{bg}{=}12$ centroids $G_j$};
+  \end{scope}
+\end{scope}
+
+% --- (3) initialise foreground
+\node[card, minimum width=5.35cm, minimum height=3.0cm, anchor=north west] (A3) at (10.45,-6.6) {};
+\begin{scope}[shift={(10.45,-6.6)}]
+  \node[num] at (0.27,-0.27) {3};
+  \node[chead, anchor=west] at (0.47,-0.27) {Initialise foreground};
+  \begin{scope}[xshift=0.8cm]
+  \node[tlbl, anchor=west] at (0.12,-0.68) {in-box cells ranked by background likelihood};
+  \foreach \i/\L in {0/1.25,1/1.12,2/1.02,3/0.93,4/0.85,5/0.76,6/0.66,7/0.55,8/0.46,9/0.36}{
+    \pgfmathsetmacro{\yy}{-0.9-0.15*\i}
+    \ifnum\i<5 \fill[frz!35] (0.15,\yy) rectangle ++(\L,-0.1);
+    \else \fill[crown!80] (0.15,\yy) rectangle ++(\L,-0.1); \fi
+  }
+  \draw[ink!70, dashed, line width=0.5pt] (0.1,-1.625) -- (1.5,-1.625);
+  \node[tlbl, anchor=west] at (1.52,-1.625) {median};
+  \draw[sarr] (1.0,-2.12) -- node[tlbl, above, anchor=south]{$k$-means} (2.3,-2.12);
+  \begin{scope}[shift={(2.42,-2.5)}]
+    \foreach \i in {0,...,15}{
+      \pgfmathtruncatemacro{\cx}{mod(\i,4)}\pgfmathtruncatemacro{\cy}{div(\i,4)}
+      \pgfmathsetmacro{\sh}{45+3*\i}
+      \fill[crown!\sh] (0.26*\cx,0.26*\cy) rectangle ++(0.2,0.2);
+    }
+  \end{scope}
+  \node[tlbl, anchor=north east] at (3.6,-2.56) {$K_{fg}{=}16$ prototypes $C_k$};
+  \end{scope}
+\end{scope}
+
+\draw[sarr, line width=0.7pt] (A1.east) -- (A2.west);
+\draw[sarr, line width=0.7pt] (A2.east) -- (A3.west);
+
+% --- (4) Expectation-Maximisation
+\node[card, minimum width=10.6cm, minimum height=3.75cm, anchor=north west] (EM) at (0.4,-9.95) {};
+\begin{scope}[shift={(0.4,-9.95)}]
+  \node[num] at (0.27,-0.27) {4};
+  \node[chead, anchor=west] at (0.47,-0.27) {Expectation-Maximisation\quad\cycleicon\,\normalfont×30};
+  \node[font=\footnotesize] at (10.33,-0.27) {\fireicon};
+  \node[chead, anchor=west, text=ffit!75!black] at (0.12,-0.75) {E-step\;\normalfont\textcolor{ink!60}{per box}};
+  \node[num, fill=bfg] at (0.27,-1.25) {a};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.47,-1.25) {Subtract background log-likelihood\\from foreground log-likelihood\;$\to A$};
+  \node[num, fill=bfg] at (0.27,-1.95) {b};
+  \node[eq] at (0.47,-1.95) {Subtract within-box mean\;$\to \bar A$};
+  \node[num, fill=bfg] at (0.27,-2.65) {c};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.47,-2.65) {Add spatial prior (log-odds)\\and apply a sigmoid\;$\to p_{fg}$};
+  \draw[ink!20, line width=0.4pt] (5.6,-0.6) -- (5.6,-2.95);
+  \node[chead, anchor=west, text=ffit!75!black] at (5.85,-0.75) {M-step\;\normalfont\textcolor{ink!60}{all boxes}};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (5.85,-1.25) {Responsibility-weighted mean\\of cells per prototype};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (5.85,-1.95) {Subtract matched\\outside-box centroid};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (5.85,-2.65) {Re-estimate spatial prior as\\per-bin mean responsibility};
+  \draw[arr, ffit] (2.4,-3.2) -- node[tlbl, above=1.5pt, text=ffit!75!black]{responsibilities $r_{nk}$} (7.4,-3.2);
+  \draw[arr, ffit] (7.4,-3.45) -- node[tlbl, below=1.5pt, text=ffit!75!black]{prototypes $C_k$, spatial prior $\rho$} (2.4,-3.45);
+\end{scope}
+\draw[arr] (10.72,-9.6) -- (10.72,-9.95);
+
+% --- fitted masker
+\node[card, minimum width=4.2cm, minimum height=3.75cm, anchor=north west] (OUT) at (11.6,-9.95) {};
+\begin{scope}[shift={(11.6,-9.95)}]
+  \node[chead, anchor=west] at (0.15,-0.27) {Fitted masker};
+  \begin{scope}[xshift=0.775cm]
+  % everything carried to inference, keyed to the step that produces it
+  \foreach \y/\n/\t in {-0.68/1/whitening, -0.96/2/background mixture, -1.24/4/foreground prototypes, -1.52/4/spatial prior}{
+    \node[num, scale=0.8] at (0.27,\y) {\n};
+    \node[tlbl, anchor=west] at (0.45,\y) {\t};
+  }
+  % spatial prior: crown probability per relative-position bin (sum over prototypes), one size band
+  \begin{scope}[shift={(0.685,-3.15)}, scale=0.16]
+    \rhocells
+    \draw[white, line width=0.25pt, step=1] (0,0) grid (8,8);
+    \draw[trn, line width=0.6pt] (0,0) rectangle (8,8);
+  \end{scope}
+  \node[tlbl, anchor=north] at (1.325,-3.2) {spatial prior (1 of 3 size bands)};
+  \end{scope}
+\end{scope}
+\draw[arr] (EM.east) -- (OUT.west);
+
+\end{tikzpicture}
+\end{document}

@@ -147,6 +147,8 @@ _PIP = "python -m pip install 'pip==24.0'"   # PL 1.8.1's metadata ('torch (>=1.
 _SED = [  # build-time fixes, each a known upstream install bug (TIERB.md section 6)
     "sed -i 's/^PROJECTS = {/PROJECTS = {}  # tierb: projects absent upstream (BoxTeacher issue #9)\\n_UNUSED = {/' setup.py",
     "sed -i '/ml_nms/d' AdelaiDet/adet/layers/csrc/vision.cpp && rm -rf AdelaiDet/adet/layers/csrc/ml_nms",
+    # the deleted ml_nms.h was vision.cpp's only source of <torch/extension.h> (PYBIND11_MODULE); restore it
+    "sed -i '1i #include <torch/extension.h>' AdelaiDet/adet/layers/csrc/vision.cpp",
     "sed -i '/^from turtle import color/d' projects/BoxTeacher/boxteacher/dataset_mapper.py",
     "sed -i '/^from cv2 import log/d' projects/BoxTeacher/boxteacher/ema_hook.py",
     "sed -i 's/self.trainer.model.module/(self.trainer.model.module if hasattr(self.trainer.model, \"module\") else self.trainer.model)/g' projects/BoxTeacher/boxteacher/ema_hook.py",
@@ -687,8 +689,8 @@ def d2_gpu2_smoke(i: int, m: str):
       B: resume; SIGKILL while the epoch-end eval of iter 80 is running (tag = model_0000079, 80
          not yet in evals) = a preemption DURING eval.
       C: resume at 80 -> before_train re-runs the lost eval of 80 -> finish 120.
-      P: predict the first 16 val tiles x 2 geometries, SIGKILLed once 4 tiles are written,
-         resumed to completion.
+      P: predict the first SMOKE_TILES val tiles x crops.GEOMETRIES ('sub' only since 2026-10-29),
+         SIGKILLed once a quarter of the tiles are written, resumed to completion.
     Runs on 2 GPUs at the released 2 images/GPU (same per-GPU work and memory as the real 8 x 2
     run); DDP collectives incl. the P7 empty-GPU path are exercised. Projections scale the measured
     eval/predict times by 2/8 GPUs and 16 -> 783 tiles; s/iter is per-GPU work, taken as is.
@@ -757,10 +759,10 @@ def d2_gpu2_smoke(i: int, m: str):
         pcmd = _d2("predict", m, ["--num-gpus", str(N_SMOKE), "--smoke", "--splits", "val",
                                   "--limit-tiles", str(SMOKE_TILES)])
         t_p = time.time()
-        wdir = f"{run}/predict/val/whole"
+        wdir = f"{run}/predict/val/sub"                 # crops.GEOMETRIES = sub only since 2026-10-29 (was whole)
 
         def kill_predict(proc, info):
-            n = len([x for x in os.listdir(wdir) if x.endswith(".json") and ".tmp" not in x]) \
+            n = len([x for x in os.listdir(wdir) if x.endswith(".done") and ".tmp" not in x]) \
                 if os.path.isdir(wdir) else 0
             if n >= max(2, SMOKE_TILES // 4) and not os.path.exists(f"{run}/predict_killed"):   # kill at 1/4, as at 16
                 open(f"{run}/predict_killed", "w").write(str(n))
@@ -790,7 +792,7 @@ def d2_gpu2_smoke(i: int, m: str):
         p2 = time.time() - t_p2
         p1 = json.load(open(f"{run}/smoke_P1.json"))["sec"]
         p_sec = (p1 if p1 is not None else p2) + p2          # unknown P1 (lost record): assume = P2
-        p_tiles = 108 + 439                            # val + test, x 2 geometries in both
+        p_tiles = 108 + 439                            # val + test, crops.GEOMETRIES in both (smoke = same)
         phrs = p_sec * N_SMOKE / 8 * p_tiles / SMOKE_TILES / 3600    # incl. 2 start-ups: high side
         by_ep = {E: round((E * 198 * spi + E * ev_s) / 3600 + phrs, 2) for E in (8, 12, 20)}
         hrs = by_ep[12] - phrs

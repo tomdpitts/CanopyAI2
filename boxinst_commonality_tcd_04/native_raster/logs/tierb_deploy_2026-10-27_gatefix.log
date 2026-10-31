@@ -1,0 +1,209 @@
+Building image im-R9j9WgCR4oTOo4q4BM7KH3
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 532.95ms
+
+Built image im-R9j9WgCR4oTOo4q4BM7KH3 in 1.03s
+
+
+Building image im-88TAjbJUpD3TzSgrpyhLCT
+Building image im-xeCiWWh0gMiEVvzuQIYJTc
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Saving image...
+Image saved, took 799.63ms
+
+Built image im-xeCiWWh0gMiEVvzuQIYJTc in 3.24s
+
+
+Image saved, took 1.29s
+
+Built image im-88TAjbJUpD3TzSgrpyhLCT in 3.92s
+
+
+Building image im-4d42BKeiG34s3rP4euIGhm
+Building image im-qnBU82BIaGpvLr6MD6OR0P
+Building image im-UUKPr5IRY9OoP7V0x2eYgE
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 459.45ms
+
+Built image im-4d42BKeiG34s3rP4euIGhm in 1.46s
+
+
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 687.74ms
+
+Built image im-qnBU82BIaGpvLr6MD6OR0P in 5.08s
+
+
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.29s
+
+Built image im-UUKPr5IRY9OoP7V0x2eYgE in 8.52s
+
+
+Building image im-EzfxetD4lBZN1cD9L1W9kn
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.52s
+
+Built image im-EzfxetD4lBZN1cD9L1W9kn in 2.25s
+
+
+Building image im-sxM1gEZfA0w4Fjo8WVMVgR
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.64s
+
+Built image im-sxM1gEZfA0w4Fjo8WVMVgR in 4.39s
+
+
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/tierb_modal.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/val_gt.json
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/tierb_data
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created function stage.
+├── 🔨 Created function fetch_weights.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/score_coco.py
+├── 🔨 Created function mal_gpu1.
+├── 🔨 Created function mal_gpu2_smoke.
+├── 🔨 Created function mal_gpu8_train.
+├── 🔨 Created function mal_gpu8_predict.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/gtbox_lib.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sti
+│   tch_res.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sti
+│   tch_seam.py
+├── 🔨 Created function d2_gpu1.
+├── 🔨 Created function d2_gpu2_smoke.
+├── 🔨 Created function d2_gpu8_train.
+├── 🔨 Created function d2_gpu8_predict.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/run
+│   _stitch_seam.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/gtb
+│   ox_guided_raw/gtbox_lace_guided_r2048.jsonl
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hun
+│   t/test/gtbox4_lace4px_simple_percrown.jsonl
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/aud
+│   it_2026-10-14/selvabox_evidence/gtbox_sam_persub.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/pre
+│   ds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sco
+│   red_lace_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/pre
+│   ds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sco
+│   red_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/sparse_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created function finalize.
+└── 🔨 Created function report_status.
+✓ App deployed in 61.113s! 🎉
+
+View Deployment: https://modal.com/apps/tomdpitts/main/deployed/tcd04-tierb

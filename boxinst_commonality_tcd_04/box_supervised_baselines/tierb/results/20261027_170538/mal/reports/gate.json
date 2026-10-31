@@ -1,0 +1,70 @@
+{
+ "method": "mal",
+ "time": "2026-10-27 05:34:06",
+ "checks": {
+  "G0_env": {
+   "python": "3.10.13",
+   "torch": "1.12.1+cu113",
+   "cuda": "11.3",
+   "gpu": "NVIDIA A100-SXM4-40GB",
+   "pl": "1.8.1",
+   "timm": "0.6.13",
+   "mmcv": "1.7.0",
+   "fairscale": "0.4.13",
+   "numpy": "1.23.5",
+   "mae_cache": [
+    "mae_pretrain_vit_base.pth"
+   ]
+  },
+  "G1_labeler": {
+   "loaded": 348,
+   "model_keys": 348,
+   "ckpt_keys": 348,
+   "not_in_ckpt_non_network": [],
+   "ckpt_only": [],
+   "epoch": 6,
+   "missing_after_load": []
+  },
+  "G2_train_json": {
+   "images": 792,
+   "annotations": 54191,
+   "kept_by_mal_filter": 54184,
+   "min_obj_size": 0
+  },
+  "G3_train_items": {
+   "n": 40,
+   "edge": 20
+  },
+  "G5_cli_parity": {
+   "tile": "tcd_tile_1784",
+   "boxes": 56,
+   "bitwise_equal": true,
+   "cli_rc": 0
+  },
+  "G6_input_parity": {
+   "boxes": 8,
+   "bitwise_equal": true
+  },
+  "G4_fit": {
+   "steps": 6,
+   "last": {
+    "train/loss_mil": 0.0007767131319269538,
+    "train/loss_crf": 9.272535862692166e-06,
+    "train/loss": 0.0007859856705181301,
+    "lr": 1.500000053056283e-06
+   }
+  },
+  "G7_val_released_labeler": {
+   "tiles": [
+    "tcd_tile_1012",
+    "tcd_tile_1041"
+   ],
+   "n_valid": 369,
+   "mean_iou": 0.7946692117418913,
+   "sec_per_box": 0.0512,
+   "peak_mem_gb": 9.07
+  }
+ },
+ "pass": true,
+ "seconds": 244.5
+}

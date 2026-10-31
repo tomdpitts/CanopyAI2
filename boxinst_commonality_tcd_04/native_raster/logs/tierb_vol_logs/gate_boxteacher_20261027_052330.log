@@ -1,0 +1,22 @@
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Skip loading parameter 'teacher.proposal_generator.fcos_head.cls_logits.weight' to the model due to incompatible shapes: (80, 256, 3, 3) in the checkpoint but (1, 256, 3, 3) in the model! You might want to double check if this is expected.
+Skip loading parameter 'teacher.proposal_generator.fcos_head.cls_logits.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'student.proposal_generator.fcos_head.cls_logits.weight' to the model due to incompatible shapes: (80, 256, 3, 3) in the checkpoint but (1, 256, 3, 3) in the model! You might want to double check if this is expected.
+Skip loading parameter 'student.proposal_generator.fcos_head.cls_logits.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Some model parameters or buffers are not found in the checkpoint:
+student.proposal_generator.fcos_head.cls_logits.{bias, weight}
+teacher.proposal_generator.fcos_head.cls_logits.{bias, weight}
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/local/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/root/tierb/d2/d2_run.py", line 737, in <module>
+    main()
+  File "/root/tierb/d2/d2_run.py", line 724, in main
+    gate(args)
+  File "/root/tierb/d2/d2_gate.py", line 118, in gate
+    assert np.array_equal(o["canopy"].numpy().astype(bool), cp), "canopy crop misaligned"
+AssertionError: canopy crop misaligned

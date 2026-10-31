@@ -161,11 +161,44 @@ def t_plateau():
     return {"cases": 5}
 
 
+def t_val_sub():
+    """B1/B2 selection on the 896 val subtiles (amendment 2026-10-29): the GT file is the DT2/Box2Mask
+    set, and window_dets + cocoeval give AP50 ~1 for perfect boxes, ignore crowd hits, apply the floor."""
+    from tierb import score_lite as SL
+    man = json.load(open(os.path.join(HERE, "tierb_data", "DATA_MANIFEST.json")))
+    p = os.path.join(HERE, "tierb_data", "val_sub_gt_1024.json")
+    import hashlib
+    assert hashlib.sha256(open(p, "rb").read()).hexdigest() == man["outputs"]["val_sub_gt_1024"]["sha256"]
+    gt = json.load(open(p))
+    assert len(gt["images"]) == 896
+    assert sum(a["iscrowd"] == 0 for a in gt["annotations"]) == 16505
+    assert {(im["oy"], im["ox"]) for im in gt["images"]} <= set(C.subtile_origins())
+    by = {}
+    for a in gt["annotations"]:
+        x, y, w, h = a["bbox"]
+        by.setdefault(a["image_id"], []).append(([x, y, x + w, y + h], a["iscrowd"]))
+    perfect, half, crowd_extra = [], [], []
+    for iid, lst in by.items():
+        trees = [b for b, c in lst if not c]
+        perfect += SL.window_dets(iid, trees, [0.9] * len(trees))
+        half += SL.window_dets(iid, trees, [0.9 if k % 2 == 0 else 0.04 for k in range(len(trees))])
+        crowd_extra += SL.window_dets(iid, [b for b, c in lst if c], [0.95] * sum(c for _, c in lst))
+    ap_p = SL.cocoeval(gt, perfect, "bbox")["AP50"]
+    ap_h = SL.cocoeval(gt, half, "bbox")
+    ap_c = SL.cocoeval(gt, perfect + crowd_extra, "bbox")["AP50"]
+    # 0.99 not 1.0: one of 16,505 crowns stays unmatched under COCOeval's greedy tie-break among equal
+    # scores (recall 0.99994), which zeroes the 101st recall point; measured 2026-10-29
+    assert ap_p >= 0.99, ap_p
+    assert ap_h["n_det"] < len(perfect) and 0.4 < ap_h["AP50"] < 0.6, ap_h   # floor drops the 0.04s
+    assert ap_c == ap_p, (ap_c, ap_p)                                          # crowd hits ignored
+    return {"images": 896, "perfect_AP50": ap_p, "half_floored_AP50": ap_h["AP50"], "with_crowd_dets_AP50": ap_c}
+
+
 def main():
     out = {"date": time.strftime("%Y-%m-%d %H:%M")}
     for name, fn in (("crops", t_crops), ("p6_assignment", t_p6), ("canopy_rule", t_canopy_rule),
                      ("lace_gate", t_gate), ("mal_clip", t_mal_clip),
-                     ("plateau", t_plateau)):
+                     ("plateau", t_plateau), ("val_sub_selection", t_val_sub)):
         out[name] = fn()
         print(f"PASS {name}: {out[name]}", flush=True)
     out["pass"] = True

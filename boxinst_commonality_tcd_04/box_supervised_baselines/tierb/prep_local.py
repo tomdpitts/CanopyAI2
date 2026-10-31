@@ -11,10 +11,12 @@ output sha256 so a later reader can prove what the runs consumed. Refuses to ove
       lace_s{0,1,2}                    LACE detector boxes + s (native_raster/guided_ablate_inputs; = A3)
       selvabox                         seam-fixed SelvaBox boxes + s (seamfix preds; = A2/A3)
       lace_sparse_s{0,1,2}             LACE detector boxes + s on the sparse 236 (detscore preds)
+  tierb_data/val_sub_gt_1024.json      the 896 val 1024 subtiles' box GT, the selection set of the DT2 and
+                                       Box2Mask rows (B1/B2 selection since 2026-10-29; added by --add-val-sub)
   tierb_data/DATA_MANIFEST.json
 
     PYTHONPATH=.:boxinst_commonality_tcd_04/box_supervised_baselines \
-        .venv/bin/python -m tierb.prep_local
+        .venv/bin/python -m tierb.prep_local [--add-val-sub]
 """
 from __future__ import annotations
 
@@ -26,6 +28,7 @@ import time
 import numpy as np
 from PIL import Image
 
+from tierb import crops as C
 from tierb import gtbox_pure as GP
 from tierb import score_lite as SL
 from tierb import tierb_common as TC
@@ -46,6 +49,9 @@ SRC = {
     **{f"lace_sparse_s{s}": os.path.join(NR, f"preds_lace_sparse_s{s}_r2048_cgf_r12_tau035_detscore.json")
        for s in (0, 1, 2)},
 }
+# tcd-detectree2-vol:data/val/coco_boxonly.json (sha256 9ff9b671...60eb), segmentation stripped; provenance
+# inside the file. Boxes identical to data/val/coco.json, i.e. DT2's and Box2Mask's selection GT.
+SRC_VAL_SUB = os.path.join(PKG, "detectree2_baseline", "val_subtiles_896_boxes.json")
 
 
 def sha(p):
@@ -130,5 +136,30 @@ def main():
                      indent=1))
 
 
+def add_val_sub():
+    """Amendment 2026-10-29 (TIERB.md section 000): B1/B2 select on the DT2/Box2Mask val subtiles.
+    Adds one output to the existing tierb_data; never touches the others."""
+    p = os.path.join(OUT, "val_sub_gt_1024.json")
+    assert not os.path.exists(p), f"REFUSING to overwrite {p}"
+    man = json.load(open(os.path.join(HERE, "splits_manifest.json")))
+    d = json.load(open(SRC_VAL_SUB))
+    assert len(d["images"]) == 896 and d["categories"] == [{"id": 1, "name": "tree"}]
+    assert sum(a["iscrowd"] == 0 for a in d["annotations"]) == 16505
+    assert sum(a["iscrowd"] == 1 for a in d["annotations"]) == 3900
+    assert {im["tile_id"] for im in d["images"]} == set(man["ids"]["val"])
+    assert all(im["width"] == im["height"] == C.CROP and (im["oy"], im["ox"]) in set(C.subtile_origins())
+               for im in d["images"])
+    json.dump({k: d[k] for k in ("images", "annotations", "categories")}, open(p, "w"))
+    mp = os.path.join(OUT, "DATA_MANIFEST.json")
+    rec = json.load(open(mp))
+    rec["sources"]["val_sub_gt"] = {"path": os.path.relpath(SRC_VAL_SUB, REPO), "sha256": sha(SRC_VAL_SUB),
+                                    "origin": d["source"]}
+    rec["outputs"]["val_sub_gt_1024"] = {"images": len(d["images"]), "annotations": len(d["annotations"]),
+                                         "sha256": sha(p), "added": time.strftime("%Y-%m-%d %H:%M")}
+    json.dump(rec, open(mp, "w"), indent=1)
+    print(json.dumps(rec["outputs"]["val_sub_gt_1024"], indent=1))
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+    add_val_sub() if "--add-val-sub" in sys.argv else main()

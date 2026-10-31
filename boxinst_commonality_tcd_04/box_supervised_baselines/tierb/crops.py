@@ -27,6 +27,9 @@ from __future__ import annotations
 TILE = 2048
 CROP = 1024
 SUB_STRIDE = 512                     # test-time subtile grid (= DT2 / Box2Mask rows)
+# test-time geometries of B1/B2 (amendment 2026-10-29, TIERB.md section 000): the 3x3 1024 subtiles
+# only = the training canvas, as the DT2/Box2Mask rows; was ("whole", "sub") with a val choice
+GEOMETRIES = ("sub",)
 
 # released multi-scale training set, relative to the released test short side (both configs)
 RELEASED_MIN_SIZE_TRAIN = (640, 672, 704, 736, 768, 800)

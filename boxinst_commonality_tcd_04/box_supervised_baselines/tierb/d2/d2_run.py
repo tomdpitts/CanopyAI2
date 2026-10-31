@@ -19,9 +19,12 @@ lengths (the checkpoint's `_iter` buffers are reset on a fresh start, never on r
 SELECTION: after every epoch, val box AP50 on the 108 whole val tiles at 2048 (score_lite = the
 frozen scorer's crowd arm, parity-gated), maxDets 600, floor 0.05. The best is kept as
 model_best.pth with best.json, both persisted, so a resume can never re-select (the Box2Mask
-resume trap, PLAN.md section 5d).
+resume trap, PLAN.md section 5d). [SUPERSEDED 2026-10-29, TIERB.md section 000: val box AP50 on the
+896 val 1024 subtiles, unstitched -- the DT2/Box2Mask selection set (tierb_data/val_sub_gt_1024.json)
+-- with the 'sub' caps, COCOeval as score_lite (maxDets 600, floor 0.05, canopy iscrowd).]
 
-INFERENCE (both geometries, val-selected primary; TIERB.md section 4): native 0.1 m/px; 'whole' =
+INFERENCE [SUPERSEDED 2026-10-29: 'sub' only (crops.GEOMETRIES), the training canvas, as DT2/Box2Mask; no val
+choice of geometry. 'whole' stays in code, unused] (both geometries, val-selected primary; TIERB.md section 4): native 0.1 m/px; 'whole' =
 the 2048 tile in one pass (pre-NMS top-k 4000/level = the released 1000 per ~1 MP, area-scaled);
 'sub' = 3x3 1024 subtiles at stride 512 (released 1000/level), stitched later by the seam-fixed
 stitcher. Both: post-NMS cap 600 (protocol), FCOS candidate threshold on cls*ctr = PRE_THRESH below
@@ -52,7 +55,8 @@ CFG_FILE = {"boxinst": f"{BT_ROOT}/AdelaiDet/configs/BoxInst/MS_R_101_3x.yaml",
 WEIGHTS = {"boxinst": f"{TC.VOL}/weights/BoxInst_MS_R_101_3x.pth",
            "boxteacher": f"{TC.VOL}/weights/boxteacher_swin_base_aug_3x.pth"}
 TRAIN_GT = "/root/proj/boxinst_commonality_tcd_04/train_tiles_gt.json"
-VAL_GT_CROWD = f"{TC.DATA}/val_gt_crowd_2048.json"
+VAL_GT_CROWD = f"{TC.DATA}/val_gt_crowd_2048.json"     # whole-tile selection GT until 2026-10-29
+VAL_SUB_GT = f"{TC.DATA}/val_sub_gt_1024.json"         # selection GT since 2026-10-29 (DT2/Box2Mask set)
 STOP_FILE = "/tmp/tierb_STOP"
 STOPPED_FILE = "/tmp/tierb_STOPPED"
 
@@ -315,14 +319,15 @@ def _hooks():
                                        "time": time.strftime("%Y-%m-%d %H:%M:%S")})
 
     class EvalSelectHook(HookBase):
-        """Per-epoch val box AP50 on 108 whole tiles; keeps model_best.pth + best.json."""
+        """Per-epoch val box AP50 on the 896 val 1024 subtiles, unstitched (the DT2/Box2Mask selection
+        set); keeps model_best.pth + best.json."""
 
         def __init__(self, method, run, period, val_tids, val_hash):
             self.method, self.run, self.period = method, run, period
             self.val_tids, self.val_hash = val_tids, val_hash
             self.evals = os.path.join(run, "evals.jsonl")
             self.best_json = os.path.join(run, "best.json")
-            self.gt = self.t2i = None
+            self.gt = self.subs = None
 
         def before_train(self):
             # model_best.pth is authoritative; a kill between it and best.json is repaired here
@@ -364,25 +369,29 @@ def _hooks():
                     torch.distributed.broadcast(b, 0)
             model.eval()
             rank, world = comm.get_rank(), comm.get_world_size()
-            preds = {}
+            if self.gt is None:
+                self.gt = json.load(open(VAL_SUB_GT))
+                self.subs = {}
+                for im in self.gt["images"]:
+                    self.subs.setdefault(im["tile_id"], []).append((im["id"], im["oy"], im["ox"]))
+                assert set(self.subs) == set(self.val_tids) and len(self.gt["images"]) == 896
+            dets = []
             for t in self.val_tids[rank::world]:
                 rgb = TC.load_rgb(t)
-                preds[t] = predict_tile(model, self.method, rgb, "whole", masks=False)
+                with caps(model, self.method, "sub"):
+                    for iid, oy, ox in self.subs[t]:
+                        r = run_window(model, self.method, rgb, oy, ox, C.CROP, masks=False)
+                        dets += SL.window_dets(iid, r["boxes"], r["scores"])
             model.train()
             if stash is not None:
                 with torch.no_grad():
                     for b, v in zip(model.buffers(), stash):
                         b.copy_(v)
             check_released_test_attrs(model, self.method)
-            allp = comm.gather(preds, dst=0)
+            allp = comm.gather(dets, dst=0)
             if comm.is_main_process():
-                merged = {k: v for d in allp for k, v in d.items()}
-                assert len(merged) == len(self.val_tids)
-                if self.gt is None:
-                    self.gt = SL.gt_from_json(json.load(open(VAL_GT_CROWD)))
-                    self.t2i = {im["file_name"]: im["id"] for im in self.gt["images"]}
-                    assert set(self.t2i) == set(self.val_tids)
-                box = SL.score(merged, self.gt, self.t2i, masks=False)["box"]
+                merged = [d for part in allp for d in part]
+                box = SL.cocoeval(self.gt, merged, "bbox")
                 rec = {"iter": nxt, "epoch": round(nxt / self.period, 3), "val_box": box,
                        "sec": round(time.time() - t0, 1), "time": time.strftime("%Y-%m-%d %H:%M:%S")}
                 # order matters for a kill at any instant: weights -> best.json -> evals.jsonl, so an
@@ -673,7 +682,7 @@ def predict_worker(args):
     splits = args.splits.split(",")
     for split in splits:
         tids = man["ids"][split][:args.limit_tiles or None]       # smoke: first N tiles only
-        for geom in ("whole", "sub"):
+        for geom in C.GEOMETRIES:
             d = os.path.join(run, "predict", split, geom)
             os.makedirs(d, exist_ok=True)
             n = 0

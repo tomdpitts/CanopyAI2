@@ -1,5 +1,5 @@
 {
- "date": "2026-10-27 15:04",
+ "date": "2026-10-29 19:47",
  "crops": {
   "coverage_1_to_2x": true,
   "schedule": {
@@ -31,6 +31,12 @@
  },
  "plateau": {
   "cases": 5
+ },
+ "val_sub_selection": {
+  "images": 896,
+  "perfect_AP50": 0.99,
+  "half_floored_AP50": 0.5148,
+  "with_crowd_dets_AP50": 0.99
  },
  "pass": true
 }

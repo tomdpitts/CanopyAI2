@@ -10,7 +10,8 @@ Each has a `.jpg` preview and a `*_meta.json` with the tiles, thresholds, crop o
 | file | paper label | content |
 |---|---|---|
 | `qualitative_tcd439.pdf` | `fig:qual` | OAM-TCD 439 holdout, tiles 125, 146, 24, 100 (<3 % canopy; LACE window F1 ≥ 0.8, chosen 2026-10-08 with window_f1_scan.py); GT, LACE, Restor, Detectree2, Box2Mask Swin-L; 768 px windows, native 2048 masks |
-| `qualitative_sparse.pdf` | `fig:qual-sparse` | sparse-236 holdout, tiles 318, 1080, 333, 919, 2480, 915 (savanna, Mediterranean scrub, flooded grassland; <0.5 % canopy; LACE window F1 ≥ 0.8); GT, LACE, Detectree2; 1024 px windows |
+| `qualitative_tcd439_rows34.pdf` | `fig:qual-teaser` (Fig 1, 2026-10-30) | rows 3–4 of `qualitative_tcd439` (tiles 24, 100), same crops/thresholds/counts (verified against `qualitative_tcd439_meta.json`); 8 px LACE, as fig:qual. Rebuild: `TILES=24,100 SUFFIX=_rows34 ... make_qualitative.py --set tcd439` |
+| `qualitative_sparse.pdf` | `fig:qual-sparse` (not in paper since 2026-10-30) | sparse-236 holdout, tiles 318, 1080, 333, 919, 2480, 915 (savanna, Mediterranean scrub, flooded grassland; <0.5 % canopy; LACE window F1 ≥ 0.8); GT, LACE, Detectree2; 1024 px windows |
 | `qualitative_neon.pdf` | `fig:qual-neon` | NeonTreeEvaluation boxes, one tile per site, LACE modestly ahead (SJER_053, TEAK_057, HARV_041, OSBS_028, MLBS_064, DSNY_006; LACE F1 ≥ 0.8, NIWO has no such tile); GT, LACE 4-phase s0, DeepForest 2.1.0 |
 
 ## Regenerate

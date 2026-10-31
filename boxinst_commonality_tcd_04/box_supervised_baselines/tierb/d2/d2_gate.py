@@ -114,15 +114,23 @@ def gate(args):
         rgb = TC.load_rgb(t)
         bgr = torch.as_tensor(np.ascontiguousarray(rgb[oy:oy + C.CROP, ox:ox + C.CROP, ::-1].transpose(2, 0, 1)))
         assert torch.equal(o["image"], bgr), "image crop misaligned"
-        cp = TC.canopy_px(gt[t]["canopy"])[oy:oy + C.CROP, ox:ox + C.CROP]
+        # Alignment is checked against the STAGED canopy raster (prep_local.py, sha256 in DATA_MANIFEST), which is
+        # what training reads. Re-rasterising here would test the container's Pillow (9.5.0), whose polygon fill
+        # differs from the staging Pillow (12.3, as LACE's unpinned container) on 68 px over 40 of 717 canopy
+        # tiles (checked locally 2026-10-27): a rasteriser-version difference, not a crop misalignment.
+        from PIL import Image as _Im
+        png = np.asarray(_Im.open(f"{TC.DATA}/canopy/{t}.png")) > 0
+        cp = png[oy:oy + C.CROP, ox:ox + C.CROP]
         assert np.array_equal(o["canopy"].numpy().astype(bool), cp), "canopy crop misaligned"
+        rast_diff = int((TC.canopy_px(gt[t]["canopy"]) != png).sum())
+        assert rast_diff <= 100, f"{t}: container rasteriser differs from staged canopy by {rast_diff} px"
         b = np.asarray(gt[t]["boxes"], float).reshape(-1, 4) - [ox, oy, ox, oy]
         b = np.clip(b, 0, C.CROP)
         b = b[(b[:, 2] - b[:, 0] > 1e-5) & (b[:, 3] - b[:, 1] > 1e-5)]
         got = o["instances"].gt_boxes.tensor.numpy()
         assert got.shape == b.shape and np.allclose(got, b, atol=1e-3), "boxes misaligned"
         assert set(o["instances"].get_fields()) == {"gt_boxes", "gt_classes"}, o["instances"].get_fields().keys()
-        al.append({"id": d["image_id"], "boxes": len(b), "canopy_frac": float(cp.mean())})
+        al.append({"id": d["image_id"], "boxes": len(b), "canopy_frac": float(cp.mean()), "rasteriser_diff_px": rast_diff})
     rnd = TierBMapper(cfg.INPUT.FORMAT,
                       aug_type=cfg.INPUT.AUG_TYPE if method == "boxteacher" else "none",
                       aug_extra=cfg.INPUT.AUG_EXTRA if method == "boxteacher" else True)
