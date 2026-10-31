@@ -1,5 +1,5 @@
-% LACE architecture figure, inference: pipeline with the box-to-mask step (one E-step per predicted box)
-% expanded in panel 3; input tile above panel 1, output above panel 3 (layout 2026-10-30).
+% LACE architecture figure, inference, two-row layout (2026-10-31): Input -> 1 Interlaced encoding -> 2 Detection
+% on top; 3 Box->Mask (one E-step per predicted box, then rescore) -> Output below, fed by F~ and the boxes.
 % The once-only fit of the box-to-mask module is its own figure, lace_masker_fit.tex (split 2026-10-29).
 % Build: tectonic lace_architecture.tex   (from this directory)
 % Every inset is one OAM-TCD holdout crop run through the deployed s0 pipeline; see
@@ -11,30 +11,26 @@
 \begin{tikzpicture}[x=1cm,y=1cm]
 \pgfmathsetmacro{\zmax}{max(\zoomnx,\zoomny)}
 
-% =================================================================== TOP ROW: pipeline
-% input above panel 1, output above panel 3; the three stages share the full width
-\node[panel, minimum width=4.8cm, minimum height=3.2cm, anchor=north west] (PA) at (3.32,3.8) {};
-\node[panel, minimum width=4.8cm, minimum height=3.2cm, anchor=north west] (PE) at (16.5,3.8) {};
-\foreach \x/\w/\n in {3.32/4.8/B, 8.54/4.6/C, 13.56/7.74/D}{
-  \node[panel, minimum width=\w cm, minimum height=4.5cm, anchor=north west] (P\n) at (\x,0) {};
+% =================================================================== panels: two rows of equal height
+\foreach \x/\y/\w/\n in {0/0/3.0/A, 3.45/0/6.9/B, 10.8/0/7.1/C, 0/-3.9/12.4/D, 12.85/-3.9/5.05/E}{
+  \node[panel, minimum width=\w cm, minimum height=3.35cm, anchor=north west] (P\n) at (\x,\y) {};
 }
 
 % --- input
 \node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PA.north west) {Input tile};
-\node[img] at (4.67,2.1) {\includegraphics[width=2.3cm]{arch/in_rgb.jpg}};
+\node[img] at (1.5,-1.75) {\includegraphics[width=2.2cm]{arch/in_rgb.jpg}};
 % window shown in the encoding panel
-\pgfmathsetmacro{\ips}{2.3/\cropS}
-\pgfmathsetmacro{\wxa}{3.52+\encwx*\ips}\pgfmathsetmacro{\wxb}{\wxa+\encws*\ips}
-\pgfmathsetmacro{\wya}{3.25-\encwy*\ips}\pgfmathsetmacro{\wyb}{\wya-\encws*\ips}
+\pgfmathsetmacro{\ips}{2.2/\cropS}
+\pgfmathsetmacro{\wxa}{0.4+\encwx*\ips}\pgfmathsetmacro{\wxb}{\wxa+\encws*\ips}
+\pgfmathsetmacro{\wya}{-0.65-\encwy*\ips}\pgfmathsetmacro{\wyb}{\wya-\encws*\ips}
 \draw[neon, line width=1.0pt] (\wxa,\wya) rectangle (\wxb,\wyb);
-\node[lbl] at (6.87,2.1) {RGB\\$0.1$\,m/px};
+\node[lbl] at (1.5,-3.08) {RGB, $0.1$\,m/px};
 
-% --- 1 dense encoding: four 16 px patch grids offset by 8 px, interlaced
+% --- 1 dense encoding: 16 px patch grids offset by 8 (4) px, final layer, interlaced
 \node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PB.north west) {1)\;Interlaced encoding};
 \node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PB.north east) {\frozenicon};
-\begin{scope}
 % 48 x 48 px image window at 0.04 cm/px; (px, py) with py measured downwards from the top
-\def\ex{3.5}\def\ey{-1.09}
+\def\ex{3.95}\def\ey{-0.85}
 \node[inner sep=0, anchor=north west] at (\ex,\ey) {\includegraphics[width=1.92cm]{arch/enc_rgb.png}};
 \begin{scope}[shift={(\ex,\ey)}, x=0.04cm, y=-0.04cm, line width=1.0pt]
   % light fill per patch
@@ -66,86 +62,79 @@
   }}
 }
 \draw[neon, line width=1.0pt] (\ex,\ey) rectangle ++(1.92,-1.92);
-\node[lbl] at (4.46,-3.32) {$16$\,px patches\\offset by $8$ \& $4$\,px};
-\draw[arr] (5.52,-2.05) -- (5.82,-2.05);
+\node[lbl, anchor=west] at (3.65,-3.08) {$16$\,px patches $\cdot$ offsets $8$\,/\,$4$\,px};
+\draw[arr] (6.0,-1.81) -- (6.75,-1.81);
 % ViT layer stack, last layer (Layer 24) taken
+\node[lbl, anchor=south, inner sep=1pt] at (7.2,-1.08) {DINOv3 ViT-L/16};
+\node[font=\tiny\bfseries, text=frz, anchor=south, inner sep=1pt] at (7.2,-1.29) {Layer 24};
 \foreach \i in {0,...,5}{
   \ifnum\i=0 \def\c{frz}\else\def\c{ink!22}\fi
-  \fill[\c, rounded corners=0.6pt] (5.9,{-1.62-0.17*\i}) rectangle ++(0.5,-0.11);
+  \fill[\c, rounded corners=0.6pt] (6.9,{-1.3-0.17*\i}) rectangle ++(0.6,-0.11);
 }
-\node[font=\tiny\bfseries, text=frz, anchor=south, inner sep=1pt] at (6.15,-1.6) {Layer 24};
-\node[tlbl, anchor=north] at (6.15,-2.6) {ViT-L};
-\draw[arr] (6.48,-2.05) -- (6.78,-2.05);
-\begin{scope}[shift={(6.86,-2.5)}]
+\draw[arr] (7.6,-1.81) -- (7.9,-1.81);
+\begin{scope}[shift={(8.0,-2.46)}]
   % 5 x 5, cell-for-cell the centre lattice of the image window on the left
   \foreach \i in {0,...,4}{ \foreach \j in {0,...,4}{
     \pgfmathtruncatemacro{\q}{mod(\i,2)+2*mod(4-\j,2)}
     \ifcase\q \def\c{q0}\or\def\c{q1}\or\def\c{q2}\else\def\c{q3}\fi
-    \fill[\c!60] (0.18*\i,0.18*\j) rectangle ++(0.18,0.18);
+    \fill[\c!60] (0.26*\i,0.26*\j) rectangle ++(0.26,0.26);
   }}
-  \draw[white, line width=0.4pt, step=0.18] (0,0) grid (0.9,0.9);
+  \draw[white, line width=0.4pt, step=0.26] (0,0) grid (1.3,1.3);
 \end{scope}
-\node[lbl] at (7.31,-3.32) {interlaced\\stride $8$ \& $4$\,px};
-\node[lbl] at (5.72,-4.05) {DINOv3 ViT-L/16\\$\widetilde F\in\mathbb{R}^{1024\times256\times256}$ \& $\mathbb{R}^{1024\times512\times512}$};
-\end{scope}
+\node[lbl] at (8.65,-3.08) {strides $8$\,/\,$4$\,px};
 
 % --- 2 detection
 \node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PC.north west) {2)\;Detection};
 \node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PC.north east) {\fireicon};
-\node[img] (heat) at (9.79,-2.05) {\includegraphics[width=1.5cm]{arch/det_heat.png}};
-\node[img] (dbox) at (11.89,-2.05) {\includegraphics[width=1.5cm]{arch/det_boxes.jpg}};
-\draw[arr] (heat.east) -- (dbox.west);
-\node[lbl] at (9.79,-3.15) {centre heatmap};
-\node[lbl] at (11.89,-3.15) {boxes};
-\node[lbl] at (10.84,-4.12) {CenterNet-style head};
+\node[img] (heat) at (12.6,-1.8) {\includegraphics[width=2.0cm]{arch/det_heat.png}};
+\node[img] (dbox) at (16.1,-1.8) {\includegraphics[width=2.0cm]{arch/det_boxes.jpg}};
+\draw[arr] ([xshift=0.15cm]heat.east) -- ([xshift=-0.15cm]dbox.west);
+\node[lbl] at (12.6,-3.08) {centre heatmap};
+\node[lbl] at (16.1,-3.08) {boxes};
 
-% --- 3 box-to-mask (summary)
+% --- 3 box-to-mask: one E-step (a-c) per predicted box, threshold, rescore
 \node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PD.north west) {3)\;Box\,$\to$\,Mask};
 \node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PD.north east) {\fireicon};
-\pgfmathsetmacro{\ms}{1.25/\zmax}
-\foreach \x/\m/\n/\t in {14.555/\zoomA/a/{$A$}, 16.805/\zoomAbar/b/{$\bar A$}, 19.055/\zoompfg/c/{$p_{fg}$}}{
-  \node[num, fill=bfg] at (\x+0.45,-0.75) {\n};
-  \node[eq] at (\x+0.61,-0.75) {\t};
-  \begin{scope}[shift={(\x,-2.2)}, scale=\ms]
+\pgfmathsetmacro{\ms}{1.55/\zmax}
+\foreach \x/\m/\n/\t in {1.0/\zoomA/a/{$A$}, 3.85/\zoomAbar/b/{$\bar A$}, 6.7/\zoompfg/c/{$p_{fg}$}}{
+  \node[num, fill=bfg] at (\x+0.6,-4.6) {\n};
+  \node[eq] at (\x+0.76,-4.6) {\t};
+  \begin{scope}[shift={(\x,-6.35)}, scale=\ms]
     \m
     \draw[trn, line width=0.5pt] \zoombox;
   \end{scope}
 }
-\draw[sarr] (15.955,-1.575) -- (16.705,-1.575);
-\draw[sarr] (18.205,-1.575) -- (18.955,-1.575);
-\shade[left color=bbg, right color=bmid] (15.73,-2.56) rectangle (17.43,-2.45);
-\shade[left color=bmid, right color=bfg] (17.43,-2.56) rectangle (19.13,-2.45);
-\node[tlbl, anchor=east] at (15.71,-2.505) {background};
-\node[tlbl, anchor=west] at (19.15,-2.505) {crown};
-
-\begin{scope}[shift={(14.555,-4.05)}, scale=\ms]
+\node[eq, anchor=center] at (10.325,-4.6) {$p_{fg}\geq\tau$};
+\begin{scope}[shift={(9.55,-6.35)}, scale=\ms]
   \zoommask
   \draw[trn, line width=0.5pt] \zoombox;
 \end{scope}
-\node[tlbl, anchor=north] at (15.18,-4.1) {$p_{fg}\geq\tau$};
-\node[eq, font=\scriptsize\bfseries] at (16.35,-3.0) {Rescore};
-\node[eq] at (16.35,-3.33) {$\bar p = \operatorname{mean} p_{fg}$};
-\node[eq] at (16.35,-3.63) {$m = \operatorname{mean}\lvert 2p_{fg}-1\rvert$};
-\node[eq] at (16.35,-3.93) {$s' = s\,\bar p\,m$};
+\foreach \x in {2.7, 5.55, 8.4}{ \draw[sarr] (\x,-5.575) -- (\x+0.9,-5.575); }
+\shade[left color=bbg, right color=bmid] (1.55,-6.88) rectangle (3.25,-6.77);
+\shade[left color=bmid, right color=bfg] (3.25,-6.88) rectangle (4.95,-6.77);
+\node[tlbl, anchor=east] at (1.53,-6.825) {background};
+\node[tlbl, anchor=west] at (4.97,-6.825) {crown};
+\node[eq] at (6.1,-6.825) {$\bar p = \operatorname{mean} p_{fg}$};
+\node[eq] at (8.1,-6.825) {$m = \operatorname{mean}\lvert 2p_{fg}-1\rvert$};
+\node[eq] at (10.6,-6.825) {$s' = s\,\bar p\,m$};
 
 % --- output
 \node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PE.north west) {Output};
-\node[img] at (17.85,2.1) {\includegraphics[width=2.3cm]{arch/out_masks.jpg}};
-\shade[left color=vlo, right color=vmid] (19.5,2.75) rectangle (20.2,2.85);
-\shade[left color=vmid, right color=vhi] (20.2,2.75) rectangle (20.9,2.85);
-\node[tlbl, anchor=north west] at (19.46,2.72) {low};
-\node[tlbl, anchor=north east] at (20.94,2.72) {high};
-\node[lbl] at (20.2,1.6) {RGB-guided\\upsampling to\\$2048$\,px,\\ranked by $s'$};
+\node[img] at (14.25,-5.7) {\includegraphics[width=2.2cm]{arch/out_masks.jpg}};
+\shade[left color=vlo, right color=vmid] (15.95,-5.0) rectangle (16.65,-4.9);
+\shade[left color=vmid, right color=vhi] (16.65,-5.0) rectangle (17.35,-4.9);
+\node[tlbl, anchor=north west] at (15.91,-5.03) {low};
+\node[tlbl, anchor=north east] at (17.39,-5.03) {high};
+\node[lbl] at (16.65,-6.1) {RGB-guided\\upsampling to\\$2048$\,px,\\ranked by $s'$};
 
-% --- main arrows
-\draw[arr] (6.0,0.6) -- (6.0,0);
-\foreach \a/\b in {PB/PC, PC/PD}{
-  \draw[arr] ([yshift=0.2cm]\a.east) -- ([yshift=0.2cm]\b.west);
-}
-\draw[arr] (18.9,0) -- (18.9,0.6);
-\draw[arr, frz!80] (7.31,0) -- ++(0,0.3) -| (14.2,0);
-\node[lbl, text=frz, anchor=south] at (10.6,0.3) {$\widetilde F$};
-
+% --- arrows
+\draw[arr] (PA.east |- 0,-1.81) -- (PB.west |- 0,-1.81);
+\draw[arr] (PB.east |- 0,-1.81) -- (PC.west |- 0,-1.81);
+\draw[arr] (PD.east |- 0,-5.575) -- (PE.west |- 0,-5.575);
+\draw[arr, frz!80] (5.0,-3.35) -- (5.0,-3.9);
+\node[lbl, anchor=west, text=frz] at (5.1,-3.625) {$\widetilde F\in\mathbb{R}^{1024\times256\times256}$\,/\,$\mathbb{R}^{1024\times512\times512}$};
+\draw[arr] (12.0,-3.35) -- (12.0,-3.9);
+\node[lbl, anchor=west] at (12.1,-3.625) {boxes};
 
 \end{tikzpicture}
 \end{document}

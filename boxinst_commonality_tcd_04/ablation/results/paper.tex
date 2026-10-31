@@ -188,13 +188,6 @@ $^{1}$ \quad Department of Data Science, University of Technology Sydney; thomas
 Accurate measurement of individual tree crowns can serve as a proxy for woody biomass estimation via allometries~\cite{hiernaux2023,tucker2023} and thereby enable monitoring of carbon sequestration within areas containing trees since carbon content can be derived from woody biomass. Measurement techniques in this domain have traditionally focused on dense canopy areas and forests, but there is an increasing body of literature that highlights the limitations of this approach as distribution, density, cover, and carbon content of trees in sparse-canopy biomes (listed in Table~\ref{tab:sparse-biomes}) are not well understood at sub-continental to continental scales~\cite{tucker2023,selvabox,fagan2020}. Recent studies highlight that the global contribution of sparse-canopy biomes as a carbon sink is underestimated due to the underestimation of tree mass in sparse-canopy areas~\cite{bastin2017,tucker2023,brandt2020,skole2021}. At the same time, 1/4 of all trees globally are located in grassland, savanna, desert and tundra biomes~\cite{crowther2015}, and $29\%$ of Africa's tree cover lies outside areas classified as forest~\cite{reiner2023}, rendering further exploration of these landscapes meaningful and worthwhile.
 %85% of slice tiles also fall below Hansen et al.'s 25% closure threshold
 
-\begin{figure}[!t]
-\ifdefined\extralength\begin{adjustwidth}{-\extralength}{0cm}\fi
-\centering
-\includegraphics[width=\ifdefined\extralength\fulllength\else\textwidth\fi]{figs/qualitative_tcd439_rows34.pdf}
-\caption{Crown masks on two OAM-TCD holdout windows ($768$~px, native $0.1$~m/px).\label{fig:qual-teaser}}
-\ifdefined\extralength\end{adjustwidth}\fi
-\end{figure}
 
 % cite: "Brandt et al. (2020) mapped" | "Tucker et al. (2023) extended"
 % cite: "Reiner et al. (2023) found"
@@ -205,7 +198,7 @@ Machine learning and deep learning applied to satellite and UAV data have shifte
 Modern deep learning approaches focus on instance segmentation on RGB imagery (Table~\ref{tab:gap} summarises representative methods): DeepForest~\cite{weinstein2020} established a RetinaNet-based baseline evaluated on the NeonTreeEvaluation benchmark~\cite{neontreeeval}, while Detectree2~\cite{ball2023} applied Mask R-CNN~\cite{maskrcnn} to tropical crown polygons.
 
 % cite: "(Weinstein et al., 2020)"
-We aim to address the tree crown instance segmentation space from two angles underexplored in the literature. Figure~\ref{fig:qual-teaser} previews the setting: individual crowns in savanna, scrub and other open landscapes, where trees are sparse, small and set against bare or grassy ground. Firstly, existing approaches focus on dense-canopy forests, and overwhelmingly exclude biomes such as savannah and dryland. For example, the authors of Detectree2 deliberately exclude images with $\leq 40\%$ tree canopy cover from their datasets~\cite{ball2023}. In the DeepForest paper, Weinstein et al. highlight Onaqui, Utah (ONAQ) as the model's worst-performing site since it is a ``desert scrub site with a different vegetation structure from any of the training data''~\cite{weinstein2020}. Secondly, in order to produce output individual tree crown instance polygon masks, existing models typically rely on mask annotations for training~\cite{hao2021,braga2020,ocer2020,ball2023,chadwick2020,zhao2023}, which need to be produced manually by human annotators.
+We aim to address the tree crown instance segmentation space from two angles underexplored in the literature. Our setting is individual crowns in savanna, scrub and other open landscapes, where trees are sparse, small and set against bare or grassy ground. Firstly, existing approaches focus on dense-canopy forests, and overwhelmingly exclude biomes such as savannah and dryland. For example, the authors of Detectree2 deliberately exclude images with $\leq 40\%$ tree canopy cover from their datasets~\cite{ball2023}. In the DeepForest paper, Weinstein et al. highlight Onaqui, Utah (ONAQ) as the model's worst-performing site since it is a ``desert scrub site with a different vegetation structure from any of the training data''~\cite{weinstein2020}. Secondly, in order to produce output individual tree crown instance polygon masks, existing models typically rely on mask annotations for training~\cite{hao2021,braga2020,ocer2020,ball2023,chadwick2020,zhao2023}, which need to be produced manually by human annotators.
 
 \paragraph{Lack of sparse-canopy datasets}
 
@@ -637,55 +630,45 @@ For TCIS, only OAM-TCD is a suitable end-to-end evaluation dataset since it cont
 
 \begin{table}[H]
 \begin{threeparttable}
-\caption{Instance segmentation on the OAM-TCD $439$-image holdout. Every row was produced and scored by us under one frozen protocol (using standard COCOeval). All are trained on OAM-TCD, and \emph{Imgs} is the number of OAM-TCD training images seen. Restor and SelvaBox were not fine-tuned by us; the others were. Masks are scored at the native $2048^2$ tile resolution.}
+\caption{Instance segmentation on the OAM-TCD $439$-image holdout. All rows were run and scored by us (COCOeval, native $2048^2$ tiles). \emph{Imgs}: OAM-TCD training images seen. LACE: mean $\pm$ s.d.\ over $3$ seeds; baselines are single runs. Per-row configurations: Table~\ref{tab:geometry}.}
 \label{tab:oamtcd439}
-% all six columns are X with explicit weights summing to 6, so the numeric columns
+% all five columns are X with explicit weights summing to 5, so the numeric columns
 % get their share of the slack instead of Method/Superv. absorbing all of it
-\newcolumntype{M}{>{\hsize=1.90\hsize\raggedright\arraybackslash}X} \newcolumntype{S}{>{\hsize=0.80\hsize\raggedright\arraybackslash}X} \newcolumntype{G}{>{\hsize=0.60\hsize\raggedleft\arraybackslash}X} \newcolumntype{N}{>{\hsize=0.90\hsize\centering\arraybackslash}X}
+\newcolumntype{M}{>{\hsize=2.30\hsize\raggedright\arraybackslash}X} \newcolumntype{S}{>{\hsize=0.85\hsize\raggedright\arraybackslash}X} \newcolumntype{G}{>{\hsize=0.50\hsize\raggedleft\arraybackslash}X} \newcolumntype{N}{>{\hsize=0.675\hsize\centering\arraybackslash}X}
 \setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\textwidth}{@{}M S G N N N@{}}
+\begin{tabularx}{\textwidth}{@{}M S G N N@{}}
 \toprule
 \textbf{Method} & \textbf{Superv.} & \textbf{Imgs} &
-\textbf{AP\boldmath$_{50}$} & \textbf{AP\boldmath$_{50:95}$} &
+\textbf{AP\boldmath$_{50}$} &
 \shortstack{\textbf{Box}\\\textbf{AP\boldmath$_{50}$}} \\
 \midrule
-Restor Mask R-CNN\tnote{a} & masks & $4169$ & $0.648$ & $\mathbf{0.333}$ & $0.665$ \\
-Detectree2\tnote{b} & masks & $900$ & $0.630$ & $0.310$ & $0.651$ \\
+Restor Mask R-CNN\tnote{a} & masks & $4169$ & $0.648$ & $0.665$ \\
+Detectree2\tnote{b} & masks & $900$ & $0.630$ & $0.651$ \\
 \addlinespace[2pt]
 SelvaBox $\rightarrow$ SAM 3\tnote{c} & box+SAM & $3024$
-  & $0.598$ & $0.221$ & $\mathbf{0.767}$ \\
+  & $0.598$ & $\mathbf{0.767}$ \\
 \addlinespace[2pt]
-Box2Mask Swin-L\tnote{d} & box & $900$ & $0.589$ & $0.245$ & $0.620$ \\
-Box2Mask R-50\tnote{d} & box & $900$ & $0.451$ & $0.165$ & $0.512$ \\
+Box2Mask Swin-L\tnote{d} & box & $900$ & $0.589$ & $0.620$ \\
+Box2Mask R-50\tnote{d} & box & $900$ & $0.451$ & $0.512$ \\
 \addlinespace[2pt]
-LACE det.\ $\rightarrow$ SAM 3 zs\tnote{e} ($3$-seed) & box+SAM & $900$
-  & $0.648$ & $0.301$ & $0.651$ \\
- & & & {\footnotesize$\pm 0.003$} & {\footnotesize$\pm 0.003$}
-     & {\footnotesize$\pm 0.009$} \\
-\textbf{LACE (ours)} ($3$-seed) & box & $900$
-  & $\mathbf{0.655}$ & $0.280$ & $0.666$ \\
- & & & {\footnotesize$\pm 0.004$} & {\footnotesize$\pm 0.006$}
-     & {\footnotesize$\pm 0.011$} \\
+LACE det.\ $\rightarrow$ SAM 3 zs\tnote{e} & box+SAM & $900$
+  & $0.648$ & $0.651$ \\
+ & & & {\footnotesize$\pm 0.003$} & {\footnotesize$\pm 0.009$} \\
+\textbf{LACE (ours)} & box & $900$
+  & $\mathbf{0.655}$ & $0.666$ \\
+ & & & {\footnotesize$\pm 0.004$} & {\footnotesize$\pm 0.011$} \\
 \bottomrule
 \end{tabularx}
 \begin{tablenotes}[flushleft]\footnotesize
-\item[a] Released \texttt{restor/tcd-mask-rcnn-r50} checkpoint; tree class only (pooling both classes as instances gives $0.634$ AP$_{50}$/$0.328$ AP$_{50:95}$). We tweaked $3$ configs from published for consistency, all beneficial to OAM-TCD scores: \texttt{SCORE\_THRESH\_TEST} $0.2\rightarrow0.05$, \texttt{DETECTIONS\_PER\_IMAGE} $512\rightarrow600$, \texttt{RPN topk} $512\rightarrow1000$. With \texttt{RPN topk} left at $512$ it scores $0.585$ AP$_{50}$/$0.308$ AP$_{50:95}$.
-\item[b] Fine-tuned by us from detectree2's released \texttt{250312\_flexi.pth} (Zenodo 15014353). Trained under Detectree2's own recipe and its own validation-AP$_{50}$ early-stopping rule, which selected the $6.0$-epoch checkpoint. \texttt{INPUT.MIN\_SIZE\_TEST} set to Detectree2's own \texttt{MIN\_SIZE\_TRAIN} of $1000$ rather than left at Detectron2's inherited COCO default of $800$.
-\item[c] Released OAM-TCD benchmark configuration ($1024^2$ subtiles at $0.5$ overlap, native $0.1$~m/px), the same grid as the Detectree2 row. The image count is the detector's, taken from SelvaBox~\cite{selvabox} Table~19: $3024$ OAM-TCD $2048^2$ training tiles. At their own detection budget (which would be higher than other models in table: maxDets $400$ per subtile i.e. $1600$ per $2048^2$) it reaches $0.604$ / $0.222$ and $\mathbf{0.782}$ box AP$_{50}$. The SAM~3 stage is SelvaMask's fine-tuned checkpoint (\texttt{CanopyRS/sam3-multi-selvabox-selvamask-FT}), not zero-shot SAM~3.
-\item[d] Box2Mask~\cite{box2mask}, in its strongest released backbone (Swin-L, $42.5$ COCO mask AP) and R-50 ($35.9$) as a backbone sensitivity. Both fine-tuned by us from the authors' released COCO checkpoints, selected on the same criterion as our own model (validation box AP$_{50}$): R-50 stopped at epoch $6$ and selected epoch $4$; Swin-L peaked at epoch $3.5$ with three later evaluations below the peak.
-Both versions use the same batch size ($16$) and learning rate ($10^{-4}$), so the backbone is the only difference between them. The architecture emits at most $100$ instances per $1024^2$ subtile (subtiles overlap $50\%$ in a $3\times3$ grid to cover $2048^2$), a cap that cannot be raised without discarding the COCO initialisation; Swin-L reaches that ceiling on $28.8\%$ of test subtiles (R-50 $2.7\%$), although only $1.0\%$ actually hold more than $100$ ground-truth crowns. Removing every tile containing such a subtile improves by $+0.009$ AP$_{50}$.
-\item[e] Our detector's boxes (same $3$ seeds) prompted into zero-shot SAM~3 (\texttt{facebook/sam3}), each box on the most central $1024^2$ subtile containing it (the whole tile otherwise), ranked by SAM's own score $\sqrt{s \cdot s_{\mathrm{SAM}}}$ where $s$ is the detector score. Same boxes as the LACE row; only the masker and its ranking differ, so Box AP$_{50}$ differs through ranking alone. \emph{Imgs} excludes SAM~3's own pretraining.
+\item[a] Released \texttt{restor/tcd-mask-rcnn-r50}, tree class only (pooling both classes: $0.634$). Three inference settings raised, each helping its score: \texttt{SCORE\_THRESH\_TEST} $0.2\rightarrow0.05$, \texttt{DETECTIONS\_PER\_IMAGE} $512\rightarrow600$, \texttt{RPN topk} $512\rightarrow1000$ (at $512$: $0.585$).
+\item[b] Fine-tuned by us from detectree2's \texttt{250312\_flexi.pth}, using its own recipe and val-AP$_{50}$ early stopping ($6.0$ epochs). \texttt{MIN\_SIZE\_TEST} set to its \texttt{MIN\_SIZE\_TRAIN} ($1000$), not Detectron2's default of $800$.
+\item[c] Released OAM-TCD configuration ($1024^2$ subtiles, $0.5$ overlap). \emph{Imgs} is from~\cite{selvabox} Table~19. At its own budget (maxDets $400$ per subtile) it reaches $0.604$, and box AP$_{50}$ $\mathbf{0.782}$. The SAM~3 stage is SelvaMask's fine-tuned checkpoint, not zero-shot.
+\item[d] Box2Mask~\cite{box2mask}: Swin-L (strongest released backbone) and R-50, fine-tuned by us from COCO checkpoints with the same batch size, learning rate and selection rule as ours (val box AP$_{50}$). Output is capped at $100$ instances per $1024^2$ subtile. Swin-L hits the cap on $28.8\%$ of test subtiles, though only $1.0\%$ hold more than $100$ GT crowns. Excluding the affected tiles gains $+0.009$.
+\item[e] LACE's boxes (same seeds) prompted into zero-shot SAM~3 on the most central $1024^2$ subtile containing each box, ranked by $\sqrt{s \cdot s_{\mathrm{SAM}}}$. Only the masker and ranking differ from the LACE row. \emph{Imgs} excludes SAM~3 pretraining.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
 
-\begin{figure}[H]
-\ifdefined\extralength\begin{adjustwidth}{-\extralength}{0cm}\fi
-\centering
-\includegraphics[width=\ifdefined\extralength\fulllength\else\textwidth\fi]{figs/qualitative_tcd439.pdf}
-\caption{Crown masks on four OAM-TCD holdout windows ($768$~px, native $0.1$~m/px).\label{fig:qual}}
-\ifdefined\extralength\end{adjustwidth}\fi
-\end{figure}
 
 
 
@@ -693,7 +676,7 @@ Tables~\ref{tab:oamtcd439} and~\ref{tab:neon-detection} summarise our model's pe
 
 For all OAM-TCD tests, our scorer is standard pycocotools COCOeval (iouType segm then bbox), pooled over images and with a single category `tree'. Full details are in Appendix~\ref{app:protocol}: the scorer configuration in Table~\ref{tab:protocol} and each row's prediction geometry in Table~\ref{tab:geometry}. We include all $439$ images in the GT always, without dropping images containing zero predictions.
 
-Table~\ref{tab:oamtcd439} includes Box2Mask, the only model with identical supervision to LACE ($900$ images, boxes only). With its strongest backbone it reaches $0.589$ mask AP$_{50}$ against LACE's $0.647$ under the same scorer. It should be noted that Box2Mask was developed on COCO objects spanning hundreds of pixels, whereas the median OAM-TCD crown at $0.1$~m/px is significantly smaller. LACE and Restor's Mask R-CNN are level at AP$_{50}$ ($0.647 \pm 0.003$ against $0.648$) and at box AP$_{50}$, while the Mask R-CNN leads at AP$_{50:95}$, where boundary precision decides the match and its mask head was trained on polygons. Figure~\ref{fig:qual} shows four models side by side.
+Table~\ref{tab:oamtcd439} includes Box2Mask, the only model with identical supervision to LACE ($900$ images, boxes only). With its strongest backbone it reaches $0.589$ mask AP$_{50}$ against LACE's $0.647$ under the same scorer. It should be noted that Box2Mask was developed on COCO objects spanning hundreds of pixels, whereas the median OAM-TCD crown at $0.1$~m/px is significantly smaller. LACE and Restor's Mask R-CNN are level at AP$_{50}$ ($0.647 \pm 0.003$ against $0.648$) and at box AP$_{50}$.
 
 \begin{table}[H]
 \centering
@@ -712,15 +695,6 @@ Ours ($5$-seed)& $0.727\pm0.009$ & $0.729\pm0.009$ & $0.728\pm0.003$ & $0.849\pm
 {\footnotesize\raggedright \textsuperscript{a}Weinstein et al.\ (2021, \textit{PLoS Comput.\ Biol.}), Table~3 image-annotated RGB operating point; full PR-curve / recall ceiling not reported.\quad \textsuperscript{b}\texttt{deepforest} v2.1.0 pretrained release model, evaluated by us on the same $194$ tiles (deterministic; no seed variance). All rows scored with the benchmark authors' \texttt{deepforest.evaluate\_boxes}.\par}
 \end{table}
 
-\begin{figure}[H]
-\ifdefined\extralength\begin{adjustwidth}{-\extralength}{0cm}\fi
-\centering
-\includegraphics[width=\ifdefined\extralength\fulllength\else\textwidth\fi]{figs/qualitative_neon.pdf}
-\caption{Crown boxes on six NeonTreeEvaluation tiles, one per site.\label{fig:qual-neon}}
-\ifdefined\extralength\end{adjustwidth}\fi
-\end{figure}
-
-Figure~\ref{fig:qual-neon} shows both detectors on one tile per site.
 %comment on NEON specific results
 
 \paragraph{Sparse-canopy holdout}
@@ -747,6 +721,7 @@ Box2Mask Swin-L & $0.604$ & $0.262$ & $0.627$ \\
 \end{tabularx}
 \noindent{\footnotesize{Scored with the same frozen COCOeval protocol as Table~\ref{tab:oamtcd439} (pycocotools, masks at $2048^2$, maxDets $600$, canopy as \texttt{iscrowd}). All three methods score higher here than on the full $439$ (LACE $0.678$ against $0.655$; Detectree2 $0.636$ against $0.630$; Box2Mask $0.604$ against $0.589$).}}
 \end{table}
+%cvpr:supp-begin
 \begin{table}[H]
 \centering
 \caption{Composition of the sparse-canopy slice. Tiles are selected by WWF biome label, excluding all $900$ training tiles. One eligible tile of biome $12$ was dropped at build time as unreadable, leaving $236$. Crown px and canopy px are the mean per-tile fraction of labelled crown and labelled canopy pixels.}
@@ -779,6 +754,7 @@ $-1$ & Unmatched & -- & $1.8\%$ & $18.4\%$ \\
 \bottomrule
 \end{tabular}
 \end{table}
+%cvpr:supp-end
 
 
 \begin{table}[H]
@@ -831,6 +807,7 @@ $\Delta$ & $+0.039$ & $+0.070$ & $+0.161$ \\
 
 The gain is largest at NIWO, the densest and smallest-crown site. We observe here and elsewhere that this is the context where the $16$~px grid struggles most, since it under-resolves small individual crowns. Interpolation adds resolution to the sampling lattice but no new evidence, whereas the four offsets add evidence.
 
+%cvpr:supp-begin
 \paragraph{Hyperparameter tuning}
 
 The module's hyperparameters were fixed a priori except for the contrastive repulsion strength $\beta$ and the inference settings of Section~\ref{sec:inference}: the spatial-prior weight $\alpha$, the concentration $\kappa$ (raised from its fit-time value of $10$ to $16$), the mask threshold $\tau$ and the guided filter's radius and $\epsilon$. Table~\ref{tab:masker} ablates $\alpha$ and $\kappa$ on OAM-TCD, including a row with the spatial prior removed ($\alpha = 0$), with the rendering and $\tau$ held fixed throughout; $\beta$ is ablated in Table~\ref{tab:components}, which separates it from the E-step recentring our implementation ties it to.
@@ -872,6 +849,7 @@ contrastive ($\beta = 0.5$)  & recentred & $0.7472$ & $0.7208$ \\
 \end{tabularx}
 \noindent{\footnotesize{Effects are relative to the generative/absolute cell. The two mechanisms are substitutes rather than complements: on predicted boxes either alone recovers roughly $+0.03$ and both together recover the same $+0.031$, giving a negative interaction in both box regimes. The interaction is the departure from additivity: were the two independent, enabling both would give $+0.0569$ on predicted boxes, whereas it gives $+0.0312$. Recentring is the slightly larger term throughout, consistent with the ablation on our development set, where removing recentring drives the mean mask coverage of the box corners from $0.37$ to $0.61$ against $0.37$ to $0.41$ for removing repulsion.}}
 \end{table}
+%cvpr:supp-end
 
 
 \paragraph{Confidence from the mask posterior}
@@ -922,6 +900,7 @@ $s\,\bar p\,m$            & $\mathbf{0.6556}$ & $\mathbf{0.2847}$ & $\mathbf{0.5
 
 The sparse-split rows of Table~\ref{tab:scorer} suggest Equation~\eqref{eq:rerank} is not tuned to the test distribution. On $236$ tiles which do not overlap with the training/validation set at all, the gain is essentially the same ($+0.0307$ against $+0.0308$).
 
+%cvpr:supp-begin
 \paragraph{Dense canopy}
 
 Foreground/background commonality within a box rests to some extent on the assumption that the box contains mostly one crown, meaning crowded trees with overlapping crowns could be a challenge. 
@@ -948,6 +927,7 @@ $[0.50,\,1.00]$ &  $62$ & $0.6462$ & $0.6227$ & $+0.0235$ \\
 \end{table}
 
 Table~\ref{tab:strata} shows a higher labelled-canopy fraction does not cause a monotonic decline in AP$_{50}$. Mask AP$_{50}$ is lowest on the most open tiles ($0.5796$ in the $[0,\,0.10)$ bin) and higher wherever more of the tile is labelled canopy, peaking at $0.7019$ in the $[0.25,\,0.50)$ bin. The mask-minus-box gap, i.e. the masker's own contribution, stays positive in all four bins ($+0.014$ to $+0.024$) and is largest on the densest tiles.
+%cvpr:supp-end
 
 
 \section{Discussion}
@@ -968,8 +948,10 @@ By taking the $4$~px interlaced grid as the unit of crown delineation, LACE conc
 
 \paragraph{Domain gap in SelvaMask} The \texttt{sam3-multi-selvabox-selvamask-FT} checkpoint was fitted on tropical UAV imagery at $1.3$--$3.5$~cm/px and is applied here at $10$~cm/px. As shown in the results, it nevertheless exhibits best-in-class scores for Box AP$_{50}$. SelvaMask is a dataset of highly dense tropical forest canopy, so the fine-tuned masker checkpoint is likely still not optimised for the open landscapes of OAM-TCD. 
 
+%cvpr:supp-begin
 \paragraph{Foreground collapse} 
 The module was designed as a mixture of $K_{fg}$ foreground prototypes, the idea being that different trees could present as distinct prototypes in latent space (e.g. conifers vs palm trees). However, what we found was that with the inclusion of the contrastive term (at a contrastive weight of $\beta = 0.5$), the mixture collapses to a single foreground prototype. Mean pairwise cosine rises smoothly with $\beta$ (Table~\ref{tab:collapse}) to $0.994$ at the deployed $\beta = 0.5$, an effective rank of $1.66$ of $16$. Pruning tests responsibility share, which the highly similar prototypes survive because each contributes more or less equally. In practice, pruning is activated at intermediate $\beta$ where some prototypes do starve.
+%cvpr:supp-end
 
 \paragraph{Spatial prior}
 
@@ -1215,6 +1197,8 @@ Box2Mask & as the Detectree2 row & same crops, grid and stitcher, including the 
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\paragraph{Checkpoints and training} Detectree2 was fine-tuned from its released \texttt{250312\_flexi.pth} (Zenodo 15014353); its validation-AP$_{50}$ early-stopping rule selected the $6.0$-epoch checkpoint. Box2Mask Swin-L ($42.5$ COCO mask AP) and R-50 ($35.9$) were fine-tuned from the authors' released COCO checkpoints at batch size $16$ and learning rate $10^{-4}$, so the backbone is the only difference between them: R-50 stopped at epoch $6$ and selected epoch $4$; Swin-L peaked at epoch $3.5$ with three later evaluations below the peak. R-50 reaches the $100$-instance cap on $2.7\%$ of test subtiles. SelvaBox's own detection budget (maxDets $400$ per subtile) is $1600$ per $2048^2$ tile, higher than the other rows. Its SAM~3 stage is \texttt{CanopyRS/sam3-multi-selvabox-selvamask-FT}. The LACE det.\ $\rightarrow$ SAM~3 zs row uses \texttt{facebook/sam3}, prompting each box on the most central $1024^2$ subtile containing it (the whole tile otherwise), and $s$ in its ranking $\sqrt{s \cdot s_{\mathrm{SAM}}}$ is the detector score.
 
 \paragraph{Restor's proposal budget} Mask R-CNN detects only what its region proposal network proposes, and the released configuration caps that at $512$, half Detectron2's FPN default, against tiles holding up to $422$ crowns. We report Detectron2's own FPN default of $1000$ (\texttt{Base-RCNN-FPN.yaml}), which the released configuration halves. The released $512$ is reported as a sensitivity in Table~\ref{tab:rpn}. The cap starves rather than rescores: the maximum detection score is identical across settings and the additional proposals arrive entirely as low-confidence tail.
 
