@@ -1,0 +1,28 @@
+{
+ "epoch": 25,
+ "best": 0.49348235393431616,
+ "best_epoch": 20,
+ "no_improve": 2,
+ "evals": [
+  {
+   "epoch": 5,
+   "val_boxAP50": 0.4411
+  },
+  {
+   "epoch": 10,
+   "val_boxAP50": 0.4754
+  },
+  {
+   "epoch": 15,
+   "val_boxAP50": 0.4909
+  },
+  {
+   "epoch": 20,
+   "val_boxAP50": 0.4935
+  },
+  {
+   "epoch": 25,
+   "val_boxAP50": 0.4769
+  }
+ ]
+}

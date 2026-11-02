@@ -1,0 +1,6 @@
+2026-11-02 14:01:16 GPU free; extracting train (disk guard 15 GB)
+TRAIN EXTRACT STOPPED (see log: disk guard?)
+2026-11-02 14:39:38 extraction complete (900x4 verified; main worker crashed on a shared tmp name at the meeting tile, reverse worker completed it); resuming at training
+2026-11-02 15:28:15 STOPPED cnxl_s0 at ep10 (val 0.362) on Tom's go: raw ConvNeXt stage outputs have outlier channels (s3/s4: top-5 ch ~50% of variance, max|x|~300); amendment 3a adds per-stage LayerNorm
+2026-11-02 15:29:49 amendment 3a: launching cnxl_ln_s0 (per-channel standardisation)
+2026-11-02 15:52:16 STOPPED cnxl_ln_s0 during ep6 on Tom's go (val box AP50 0.333 at ep5 vs ViT-L heads 0.44-0.47); no select/test run; checkpoints kept in dethead/runs/cnxl_ln_s0

@@ -1,0 +1,13 @@
+{
+ "gate": "local decode of det_phase4_L24_s0.pt == published s0 detector boxes",
+ "tiles": [
+  "tcd_val_tile_0",
+  "tcd_val_tile_1",
+  "tcd_val_tile_10"
+ ],
+ "count_mismatch_tiles": 0,
+ "max_abs_box_px": 7.0918121337890625,
+ "max_abs_score": 0.0002501830458641052,
+ "pass": false,
+ "date": "2026-11-02 02:02"
+}

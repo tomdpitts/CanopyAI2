@@ -1,0 +1,40 @@
+{
+ "gate_A_reproduces_published": true,
+ "selected_val_cfg": "e0.00_c0.33",
+ "metrics": {
+  "A_boxteacher_top600": {
+   "AP50": 0.6642,
+   "AP75": 0.2231,
+   "AP50_95": 0.3049,
+   "n_det": 263132,
+   "box_AP50": 0.7033,
+   "floor": 0.05
+  },
+  "B_lace_e0.00_c0.33_btrank": {
+   "AP50": 0.6669,
+   "AP75": 0.2528,
+   "AP50_95": 0.3171,
+   "n_det": 263132,
+   "box_AP50": 0.7033,
+   "floor": 0.05
+  },
+  "B_lace_e0.00_c0.33_sprime": {
+   "AP50": 0.6607,
+   "AP75": 0.2385,
+   "AP50_95": 0.3098,
+   "n_det": 263132,
+   "box_AP50": 0.6992,
+   "floor": 0.0
+  }
+ },
+ "boot": {
+  "e0.00_c0.33": {
+   "legacy_AP50_B_minus_A": 0.0028,
+   "ci95": [
+    -0.0,
+    0.0062
+   ]
+  }
+ },
+ "date": "2026-11-02 00:43"
+}

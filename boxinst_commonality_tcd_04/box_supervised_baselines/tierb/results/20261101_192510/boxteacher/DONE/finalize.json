@@ -1,0 +1,61 @@
+{
+ "summary": {
+  "boxteacher/test/sub (primary)": {
+   "AP50": 0.6642,
+   "AP50_95": 0.3049,
+   "box_AP50": 0.7033
+  }
+ },
+ "gate": {
+  "triggered": true,
+  "why": "boxteacher/test/sub (primary): AP50 0.6642 >= 0.6545 and AP50:95 0.3049 >= 0.2803+0.01",
+  "margin": 0.01,
+  "rows": [
+   {
+    "name": "boxteacher/test/sub (primary)",
+    "split": "test",
+    "ranking": "product",
+    "geometry": "sub",
+    "AP50": 0.6642,
+    "AP50_95": 0.3049,
+    "AP75": 0.2231,
+    "box_AP50": 0.7033,
+    "n_det": 611151
+   }
+  ],
+  "gtbox": null,
+  "lace_refs": {
+   "test/product": {
+    "AP50": 0.6545,
+    "AP50_95": 0.2803
+   },
+   "test/product_s0": {
+    "AP50": 0.6556,
+    "AP50_95": 0.2844
+   },
+   "test/detscore": {
+    "AP50": 0.6237,
+    "AP50_95": 0.2609
+   },
+   "test/detscore_s0": {
+    "AP50": 0.6206,
+    "AP50_95": 0.2638
+   },
+   "sparse/product": {
+    "AP50": 0.6785,
+    "AP50_95": 0.3192
+   },
+   "sparse/product_s0": {
+    "AP50": 0.6903,
+    "AP50_95": 0.3258
+   },
+   "sparse/detscore": {
+    "AP50": 0.6478,
+    "AP50_95": 0.2965
+   }
+  }
+ },
+ "stage": "finalize",
+ "method": "boxteacher",
+ "time": "2026-11-01 08:24:07"
+}

@@ -1,0 +1,35 @@
+Loading weights:   0%|          | 0/342 [00:00<?, ?it/s]Loading weights: 100%|██████████| 342/342 [00:00<00:00, 55836.98it/s]
+  [train] 25/792 75s free 134 GB
+  [train] 50/792 148s free 129 GB
+  [train] 75/792 222s free 124 GB
+  [train] 100/792 296s free 120 GB
+  [train] 125/792 370s free 115 GB
+  [train] 150/792 444s free 110 GB
+  [train] 175/792 518s free 106 GB
+✓ Finished downloading files to local!
+  [train] 200/792 596s free 101 GB
+  [train] 225/792 670s free 96 GB
+  [train] 250/792 748s free 92 GB
+  [train] 275/792 832s free 187 GB
+  [train] 300/792 927s free 182 GB
+  [train] 325/792 1030s free 178 GB
+  [train] 350/792 1127s free 173 GB
+  [train] 375/792 1221s free 169 GB
+  [train] 400/792 1330s free 162 GB
+  [train] 425/792 1455s free 153 GB
+  [train] 450/792 1581s free 144 GB
+  [train] 475/792 1707s free 136 GB
+  [train] 500/792 1833s free 127 GB
+  [train] 525/792 1958s free 118 GB
+  [train] 550/792 2080s free 109 GB
+  [train] 575/792 2205s free 100 GB
+Traceback (most recent call last):
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/cnx.py", line 205, in <module>
+    ap.add_argument("--reverse", action="store_true")
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/cnx.py", line 81, in cmd_extract
+    p = f"{CACHE}/s{k+1}/{t}.npy"; np.save(p + ".tmp.npy", f.numpy()); os.replace(p + ".tmp.npy", p)
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/tompitts/dphil/feat_cache/feat_cnxl/s1/tcd_tile_376.npy.tmp.npy' -> '/Users/tompitts/dphil/feat_cache/feat_cnxl/s1/tcd_tile_376.npy'

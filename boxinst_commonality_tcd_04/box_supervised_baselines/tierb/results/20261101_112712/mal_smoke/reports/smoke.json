@@ -1,0 +1,96 @@
+{
+ "smoke_gpus": 2,
+ "sec_per_step": 0.4345289468765259,
+ "val_sec_8gpu": 38.3625,
+ "plateau_smoke": {
+  "best": 0.7978077258834569,
+  "best_epoch": 1,
+  "bad": 0,
+  "decays": 1,
+  "lr_factor": 0.1,
+  "stop": false,
+  "reason": null,
+  "events": [
+   {
+    "epoch": 2,
+    "event": "decay 1"
+   }
+  ]
+ },
+ "projected_hours_by_epochs_incl_predict": {
+  "6": 1.61,
+  "10": 2.13,
+  "20": 3.42
+ },
+ "projected_usd_by_epochs": {
+  "6": 30.5,
+  "10": 40.4,
+  "20": 64.8
+ },
+ "projected_train_hours": 1.29,
+ "projected_predict_hours": 0.84,
+ "projected_usd": 40.4,
+ "phase_B_sec": 426.1,
+ "evals": [
+  {
+   "epoch": 0,
+   "global_step": 30,
+   "val_mean_iou": 0.7978077258834569,
+   "val_n_crowns": 7032,
+   "ge50": 0.996160409556314,
+   "ge75": 0.7619453924914675,
+   "ckpt": "/vol/runs/mal_smoke/sel/epoch0.pt",
+   "sec": 150.7,
+   "time": "2026-10-27 05:56:38",
+   "plateau": {
+    "best": 0.7978077258834569,
+    "best_epoch": 1,
+    "bad": 0,
+    "decays": 0,
+    "lr_factor": 1.0,
+    "stop": false,
+    "reason": null
+   }
+  },
+  {
+   "epoch": 1,
+   "global_step": 60,
+   "val_mean_iou": 0.797684673482125,
+   "val_n_crowns": 7032,
+   "ge50": 0.996160409556314,
+   "ge75": 0.7605233219567691,
+   "ckpt": "/vol/runs/mal_smoke/sel/epoch1.pt",
+   "sec": 156.2,
+   "time": "2026-10-27 06:03:42",
+   "plateau": {
+    "best": 0.7978077258834569,
+    "best_epoch": 1,
+    "bad": 0,
+    "decays": 1,
+    "lr_factor": 0.1,
+    "stop": false,
+    "reason": null
+   }
+  }
+ ],
+ "best": {
+  "epoch": 0,
+  "global_step": 30,
+  "val_mean_iou": 0.7978077258834569,
+  "val_n_crowns": 7032,
+  "ge50": 0.996160409556314,
+  "ge75": 0.7619453924914675,
+  "ckpt": "/vol/runs/mal_smoke/sel/epoch0.pt",
+  "sec": 150.7,
+  "time": "2026-10-27 05:56:38",
+  "plateau": {
+   "best": 0.7978077258834569,
+   "best_epoch": 1,
+   "bad": 0,
+   "decays": 0,
+   "lr_factor": 1.0,
+   "stop": false,
+   "reason": null
+  }
+ }
+}

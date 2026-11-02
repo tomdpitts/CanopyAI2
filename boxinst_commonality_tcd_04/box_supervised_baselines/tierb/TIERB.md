@@ -4,7 +4,26 @@
 > ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
 <!-- TABLE1_CURRENT:end -->
 
-**Status 2026-10-29: gates and smokes DONE ($6.52), chain at HOLD; no Tier B training run. §000 (2026-10-29) governs over §00, §00 (2026-10-27) over §0, and §0 over everything below.**
+**Status 2026-11-01: B2 BoxTeacher DONE, and the LACE gate FIRED (STOP set). B3 MAL has not been run. §000 (2026-10-29) governs over §00, §00 (2026-10-27) over §0, and §0 over everything below.**
+
+## B2 RESULT (2026-11-01): BoxTeacher Swin-B 3x, single run, seed 0
+
+439 test tiles, frozen `score_coco` (2048², maxDets 600, floor 0.05, canopy crowd arm). The container's scorer passed exact parity against the stored LACE row before scoring.
+
+| row | AP50 | AP75 | AP50:95 | Box AP50 | n_det |
+|---|---|---|---|---|---|
+| **BoxTeacher, sub (3×3 1024, seam-fixed stitch)** | **0.6642** | 0.2231 | **0.3049** | 0.7033 | 611,151 |
+| LACE `lace4px_simple`, 3 seeds (TABLE1_CURRENT) | 0.6545 | — | 0.2803 | 0.666 | — |
+
+- **LACE gate FIRED** (`results/20261101_192510/boxteacher/results/lace_gate.json`) on rule (b): AP50 0.6642 ≥ 0.6545, and AP50:95 0.3049 ≥ 0.2803 + 0.010. Rule (a) missed by 0.0003: +0.0097 against a +0.010 margin. STOP is set, so B3 does not start without Tom.
+- **Training:** the plateau rule stopped it after epoch 15, after both ×0.1 drops (decays at epochs 11 and 13). The selected checkpoint is epoch 15, with val box AP50 0.7241 on the 896 subtiles.
+- **Val, stitched, 108 tiles (record only):** mask AP50 0.7002, AP50:95 0.345; box AP50 0.7214. LACE's seed-0 val is 0.6752 (`hunt/FROZEN_simple_2026-10-26.json`).
+- **Cap sensitivity (record only):** at maxDets 1200, AP50 is 0.6662 (+0.0020) and AP50:95 0.3055. 437/439 tiles hold more than 600 stitched detections (max 2,217), because every subtile fills its 600 post-NMS cap: BoxTeacher's reported score √(√(cls·ctr)·mask) puts the 600th detection at about 0.22. paper.tex says "only two models emit > 600"; that sentence needs updating if B2 enters the paper.
+- **Cost:** the Modal bill is $42.58 for the month from 2026-11-01. That covers the smoke re-run and B2 train (8×A100, ~58 min), predict (~27 min) and finalize, including two lost finalize attempts:
+  1. 2 stitch workers at 128 GiB, about 1.2 tiles/min. Cancelled at 36/108 val tiles; it resumed with nothing lost and a byte-identical re-stitch. The fix was 320 GiB and `MEM_FRAC` 0.7, giving 8 workers and about 5 tiles/min.
+  2. The CPU image lacked `torchvision`, which `score_coco` → `evaluate` → `dapt.decode`/`detector` import at top level. The fix was to pin `torchvision==0.28.0`, matching local. Stitching had finished, so nothing was lost.
+- **Files:** `results/20261101_192510/boxteacher/` holds the preds (val + test, RLE at 2048), the stitch JSONLs, the scored files at 600 and 1200, summary.json and lace_gate.json. Training reports and evals are in the same pull. The volume `tcd04-tierb-vol:runs/boxteacher/` holds checkpoints including `model_best.pth`.
+- **Not done (Tom's decision):** TABLE1_CURRENT / paper.tex rows; any seeds 1–2; sparse-236; the floor-0 row.
 
 ## 000. Amendment 2026-10-29: B1/B2 use the 3×3 subtile geometry only, and select on the DT2/Box2Mask val subtiles (Tom, before any Tier B training number)
 
@@ -20,6 +39,9 @@
   - Local test `val_sub_selection` PASS: perfect boxes give AP50 0.990. One of 16,505 crowns is lost to COCOeval's tie-break among equal scores, and the 101-point interpolation turns that into 0.990. Crowd hits are ignored and the floor applies.
 - **Finalize.** `geometry_choice.json` records a fixed `sub`; val is still stitched and scored, for the record only. The LACE gate runs on the `sub` rows.
 - **Cost.** About 1 of 10 forward windows per tile is gone, and the whole-tile pass held about 4 of 13 subtile-areas of predict compute. Per-epoch selection rises from about 10 s to an estimated 20–30 s on 8 GPUs. The B2 smoke must be re-run: the selection and predict paths both changed. Its old outputs are kept in `results/20261027_170538/boxteacher_smoke/`. That smoke ran AFTER the teacher uncap (16:45 vs commit 15:20 AEDT), so its timings already include it.
+- **Detection-cap sensitivity (Tom 2026-11-01).** `finalize_lib.cap_sensitivity_d2` re-scores the saved test preds at maxDets 1200, as DT2's `_maxdets1200` file did. It also counts the tiles whose stitched detections (≥ 0.05) exceed 600. It runs on CPU and goes in `summary.json["sensitivity"]` as a record only: it is never a LACE-gate row and never a Table 1 row.
+  - Why it cannot invalidate the row: the test GT has at most 422 crowns per tile (median 29), so the 600 cap only trims each tile's lowest-scored tail. Every row uses the same cap. DT2 exceeds 600 on 106/439 tiles, and raising its cap to 1200 moves it only +0.002 AP50 (0.6297 → 0.6321).
+- **Re-run smoke 2026-11-01: PASS.** Every rehearsal phase passed. Val box AP50 on the subtiles was 0.182 / 0.494 / 0.524 at iterations 40/80/120, at 0.68 s/iter. The subtile eval takes 23 s on 8 GPUs. Projected cost: $17.8 / $21.0 / $27.7 at 8 / 12 / 20 epochs. Pulled to `results/20261101_112712/`. The old smoke was moved on the volume to `runs_archive/boxteacher_smoke_20261027`.
 - **Unchanged:** B3 (MAL), the plateau rule, caps, thresholds, training, and the frozen test scorer.
 
 ## 00. Amendment 2026-10-27: B2 then B3; B1 not planned (Tom, before any Tier B number)

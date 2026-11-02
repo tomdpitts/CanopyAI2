@@ -1,0 +1,123 @@
+/usr/local/lib/python3.10/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
+  warnings.warn(
+Global seed set to 0
+/usr/local/lib/python3.10/site-packages/torchmetrics/utilities/prints.py:36: UserWarning: Torchmetrics v0.9 introduced a new argument class property called `full_state_update` that has
+                not been set for this class (MIoUMetrics). The property determines if `update` by
+                default needs access to the full metric state. If this is not the case, significant speedups can be
+                achieved and we recommend setting this to `False`.
+                We provide an checking function
+                `from torchmetrics.utilities import check_forward_full_state_property`
+                that can be used to check if the `full_state_update=True` (old and potential slower behaviour,
+                default for now) or if `full_state_update=False` can be used safely.
+                
+  warnings.warn(*args, **kwargs)
+loading annotations into memory...
+Done (t=0.29s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.32s)
+creating index...
+index created!
+{
+ "n_train_boxes": 54191,
+ "n_kept_after_filter": 54184,
+ "min_obj_size": 0,
+ "steps_per_epoch_per_rank": 6773,
+ "warmups": {
+  "loss_mil_step": 436,
+  "loss_crf_step": 1745,
+  "steps_per_epoch": 6773
+ },
+ "lr": 1.2e-05,
+ "min_lr": 2.4000000000000003e-06,
+ "max_epochs": 2,
+ "batch_per_gpu": 4,
+ "n_gpus": 2,
+ "resume_from": "/vol/runs/mal_smoke/train/ckpt/epoch=0.ckpt",
+ "pixels_verified": [
+  {
+   "split": "train",
+   "n": 792,
+   "verified_against": "stage record rgb_sha256",
+   "stage_vs_local": {
+    "n": 1559,
+    "matched_local": 1558,
+    "hf_only": [
+     "tcd_tile_1878"
+    ]
+   },
+   "seconds": 20.1
+  },
+  {
+   "split": "val",
+   "n": 108,
+   "verified_against": "stage record rgb_sha256",
+   "stage_vs_local": {
+    "n": 1559,
+    "matched_local": 1558,
+    "hf_only": [
+     "tcd_tile_1878"
+    ]
+   },
+   "seconds": 3.0
+  }
+ ]
+}
+ModelCheckpoint(save_last=True, save_top_k=-1, monitor=None) will duplicate the last checkpoint saved.
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/accelerator_connector.py:446: LightningDeprecationWarning: Setting `Trainer(gpus=[0, 1])` is deprecated in v1.7 and will be removed in v2.0. Please use `Trainer(accelerator='gpu', devices=[0, 1])` instead.
+  rank_zero_deprecation(
+Using 16bit native Automatic Mixed Precision (AMP)
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/usr/local/lib/python3.10/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
+  warnings.warn(
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/trainer/configuration_validator.py:108: PossibleUserWarning: You defined a `validation_step` but have no `val_dataloader`. Skipping val loop.
+  rank_zero_warn(
+[rank: 0] Global seed set to 0
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/2
+[rank: 1] Global seed set to 0
+[rank: 1] Global seed set to 0
+Initializing distributed: GLOBAL_RANK: 1, MEMBER: 2/2
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 2 processes
+----------------------------------------------------------------------------------------------------
+
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:601: UserWarning: Checkpoint directory /vol/runs/mal_smoke/train/ckpt exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+Restoring states from the checkpoint path at /vol/runs/mal_smoke/train/ckpt/epoch=0.ckpt
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0,1]
+LOCAL_RANK: 1 - CUDA_VISIBLE_DEVICES: [0,1]
+
+  | Name            | Type              | Params
+------------------------------------------------------
+0 | mIoUMetric      | MIoUMetrics       | 0     
+1 | areaMIoUMetrics | ModuleList        | 0     
+2 | mean_field      | MeanField         | 0     
+3 | student         | MALStudentNetwork | 93.1 M
+4 | teacher         | MALTeacherNetwork | 93.1 M
+------------------------------------------------------
+186 M     Trainable params
+0         Non-trainable params
+186 M     Total params
+372.362   Total estimated model params size (MB)
+Restored all states from the checkpoint file at /vol/runs/mal_smoke/train/ckpt/epoch=0.ckpt
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/data_connector.py:224: PossibleUserWarning: The dataloader, train_dataloader, does not have many workers which may be a bottleneck. Consider increasing the value of the `num_workers` argument` (try 28 which is the number of cpus on this machine) in the `DataLoader` init to improve performance.
+  rank_zero_warn(
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/trainer/trainer.py:1558: PossibleUserWarning: The number of training batches (30) is smaller than the logging interval Trainer(log_every_n_steps=50). Set a lower value for log_every_n_steps if you want to see logs for the training epoch.
+  rank_zero_warn(
+loading annotations into memory...
+Done (t=0.28s)
+creating index...
+index created!
+loading annotations into memory...
+Done (t=0.31s)
+creating index...
+index created!
+/usr/local/lib/python3.10/site-packages/pytorch_lightning/trainer/connectors/logger_connector/result.py:233: UserWarning: You called `self.log('train/bs', ...)` in your `training_step` but the value needs to be floating point. Converting it to torch.float32.
+  warning_cache.warn(
+[val] epoch 1 mean IoU 0.7977 n=7032 best epoch 0 (156.2s)
+`Trainer.fit` stopped: `max_epochs=2` reached.

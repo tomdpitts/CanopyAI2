@@ -3,7 +3,7 @@
     python tierb_ctl.py plan                  # the step list with indices
     python tierb_ctl.py deploy                # modal deploy tierb_modal.py (re-run after any edit)
     python tierb_ctl.py start                 # chain from step 0 up to HOLD (data, weights, gates, smokes)
-    python tierb_ctl.py continue [index]      # release HOLD: train/predict/finalize B2 -> B3 (B1 not planned, TIERB.md section 00)
+    python tierb_ctl.py continue [index] [--until N]  # (--until: last step to chain to, e.g. 9 = B2 only) release HOLD: train/predict/finalize B2 -> B3 (B1 not planned, TIERB.md section 00)
     python tierb_ctl.py status                # chain, per-step state, locks, gate latch, live progress
     python tierb_ctl.py stop "reason"         # STOP: trainers checkpoint and exit; everything else killed
     python tierb_ctl.py unstop                # clear STOP (does not restart anything)
@@ -139,8 +139,14 @@ def main():
         plan, hold, _ = _plan()
         d = _ctl()
         _guard(d)
-        d.put("chain", {"active": True, "until": len(plan) - 1,
+        until = len(plan) - 1
+        if "--until" in rest:                      # e.g. B2 only: continue --until 9
+            k = rest.index("--until")
+            until = int(rest[k + 1])
+            rest = rest[:k] + rest[k + 2:]
+        d.put("chain", {"active": True, "until": until,
                         "released": time.strftime("%Y-%m-%d %H:%M:%S")})
+        print(f"chain released: steps {int(rest[0]) if rest else hold + 1}..{until}")
         _spawn(int(rest[0]) if rest else hold + 1)
     elif cmd == "spawn":
         _guard(_ctl())

@@ -1,0 +1,41 @@
+{
+ "max_iter": 3960,
+ "plateau": {
+  "best": 0.7241,
+  "best_epoch": 15,
+  "bad": 2,
+  "decays": 2,
+  "lr_factor": 0.010000000000000002,
+  "stop": true,
+  "reason": "plateau after 2 decays (epoch 15)",
+  "events": [
+   {
+    "epoch": 11,
+    "event": "decay 1"
+   },
+   {
+    "epoch": 13,
+    "event": "decay 2"
+   },
+   {
+    "epoch": 15,
+    "event": "stop"
+   }
+  ]
+ },
+ "best": {
+  "iter": 2970,
+  "epoch": 15.0,
+  "val_box": {
+   "AP50": 0.7241,
+   "AP75": 0.4166,
+   "AP50_95": 0.4091,
+   "n_det": 534275
+  },
+  "sec": 52.9,
+  "time": "2026-11-01 04:32:35"
+ },
+ "stage": "train",
+ "method": "boxteacher",
+ "time": "2026-11-01 04:32:37"
+}

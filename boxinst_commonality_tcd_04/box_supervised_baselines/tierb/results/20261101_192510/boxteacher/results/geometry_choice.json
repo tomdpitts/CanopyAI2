@@ -1,0 +1,1 @@
+{"rule": "fixed 'sub' (3x3 1024 subtiles = the training canvas, as DT2/Box2Mask), pre-registered 2026-10-29; val scored for the record only", "val": {"sub": {"box": {"AP50": 0.7214, "AP75": 0.4113, "AP50_95": 0.4065, "n_det": 146411}, "mask": {"AP50": 0.7002, "AP75": 0.2967, "AP50_95": 0.345, "n_det": 146411}}}, "primary": "sub"}

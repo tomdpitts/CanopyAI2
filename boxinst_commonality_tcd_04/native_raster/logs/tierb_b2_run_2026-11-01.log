@@ -1,0 +1,11 @@
+== 2026-11-01 14:35:51 continue --until 9 (B2 train/predict/finalize only)
+chain released: steps 7..9
+{"time": "2026-11-01 14:35:54", "index": 7, "step": "train", "method": "boxteacher", "fn": "d2_gpu8_train", "call_id": "fc-01M6AJV4DVFZE706M523EGA9QA"}
+== 2026-11-01 16:34:07 cancel finalize fc-01M6AQRTKMJF206KY3KFGS0T9S (2 workers, ~1.2 tiles/min); stitched val before cancel: 36/108
+cancelled
+== 2026-11-01 16:35:15 redeployed finalize 32 cpu / 320 GiB, MEM_FRAC 0.7 (8 workers); spawn 9
+{"time": "2026-11-01 16:35:17", "index": 9, "step": "finalize", "method": "boxteacher", "fn": "finalize", "call_id": "fc-01M6ASNQHXRS1W76R53YGZY38M"}
+== 2026-11-01 18:22:24 finalize v2 fc-01M6ASNQHXRS1W76R53YGZY38M: stitch test 439/439 done, then ModuleNotFoundError torchvision in scoring; cancel (retries would repeat)
+cancelled
+== 2026-11-01 18:26:35 redeployed img_cpu + torchvision==0.28.0; spawn 9 (resume: stitch complete)
+{"time": "2026-11-01 18:26:37", "index": 9, "step": "finalize", "method": "boxteacher", "fn": "finalize", "call_id": "fc-01M6B01K6DKXKHBBBYHDT7S3DK"}

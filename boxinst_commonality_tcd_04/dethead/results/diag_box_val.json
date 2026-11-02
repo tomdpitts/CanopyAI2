@@ -1,0 +1,213 @@
+{
+ "rows": {
+  "lace_centernet_s0_sprime": {
+   "AP50": 0.6662,
+   "n_det": 40058,
+   "n_gt": 7041,
+   "max_recall": 0.7784,
+   "precision_at_recall": {
+    "0.5": 0.8567,
+    "0.6": 0.7944,
+    "0.7": 0.6646
+   },
+   "recall_by_size_px": {
+    "0-24": [
+     0.5399,
+     1819
+    ],
+    "24-48": [
+     0.8391,
+     2163
+    ],
+    "48-96": [
+     0.8895,
+     2444
+    ],
+    "96-inf": [
+     0.8293,
+     615
+    ]
+   },
+   "recall_touching_isolated": {
+    "touching": [
+     0.7749,
+     2523
+    ],
+    "isolated": [
+     0.7804,
+     4518
+    ]
+   },
+   "missed_causes": {
+    "n_missed": 1560,
+    "no_det_iou<0.1": 0.2776,
+    "poor_loc_0.1-0.5": 0.7192,
+    "taken_iou>=0.5": 0.0032
+   },
+   "fp_above_recall0.6": {
+    "n_dets_to_recall0.6": 5318,
+    "n_fp": 1094,
+    "bg": 0.6654,
+    "loc": 0.3291,
+    "dup": 0.0055
+   }
+  },
+  "fcos_nms06_detscore": {
+   "AP50": 0.6931,
+   "n_det": 60179,
+   "n_gt": 7041,
+   "max_recall": 0.8281,
+   "precision_at_recall": {
+    "0.5": 0.8658,
+    "0.6": 0.7997,
+    "0.7": 0.677
+   },
+   "recall_by_size_px": {
+    "0-24": [
+     0.58,
+     1819
+    ],
+    "24-48": [
+     0.8886,
+     2163
+    ],
+    "48-96": [
+     0.9435,
+     2444
+    ],
+    "96-inf": [
+     0.8911,
+     615
+    ]
+   },
+   "recall_touching_isolated": {
+    "touching": [
+     0.8438,
+     2523
+    ],
+    "isolated": [
+     0.8194,
+     4518
+    ]
+   },
+   "missed_causes": {
+    "n_missed": 1210,
+    "no_det_iou<0.1": 0.4116,
+    "poor_loc_0.1-0.5": 0.586,
+    "taken_iou>=0.5": 0.0025
+   },
+   "fp_above_recall0.6": {
+    "n_dets_to_recall0.6": 5283,
+    "n_fp": 1059,
+    "bg": 0.6553,
+    "loc": 0.2993,
+    "dup": 0.0453
+   }
+  },
+  "fcos_nms05_detscore": {
+   "AP50": 0.6961,
+   "n_det": 53315,
+   "n_gt": 7041,
+   "max_recall": 0.8215,
+   "precision_at_recall": {
+    "0.5": 0.8671,
+    "0.6": 0.804,
+    "0.7": 0.6887
+   },
+   "recall_by_size_px": {
+    "0-24": [
+     0.5767,
+     1819
+    ],
+    "24-48": [
+     0.8826,
+     2163
+    ],
+    "48-96": [
+     0.937,
+     2444
+    ],
+    "96-inf": [
+     0.8715,
+     615
+    ]
+   },
+   "recall_touching_isolated": {
+    "touching": [
+     0.8331,
+     2523
+    ],
+    "isolated": [
+     0.815,
+     4518
+    ]
+   },
+   "missed_causes": {
+    "n_missed": 1257,
+    "no_det_iou<0.1": 0.3819,
+    "poor_loc_0.1-0.5": 0.6158,
+    "taken_iou>=0.5": 0.0024
+   },
+   "fp_above_recall0.6": {
+    "n_dets_to_recall0.6": 5254,
+    "n_fp": 1030,
+    "bg": 0.6718,
+    "loc": 0.3029,
+    "dup": 0.0252
+   }
+  },
+  "boxteacher": {
+   "AP50": 0.7214,
+   "n_det": 146411,
+   "n_gt": 7041,
+   "max_recall": 0.8512,
+   "precision_at_recall": {
+    "0.5": 0.8937,
+    "0.6": 0.8291,
+    "0.7": 0.7143
+   },
+   "recall_by_size_px": {
+    "0-24": [
+     0.6784,
+     1819
+    ],
+    "24-48": [
+     0.8724,
+     2163
+    ],
+    "48-96": [
+     0.9358,
+     2444
+    ],
+    "96-inf": [
+     0.9512,
+     615
+    ]
+   },
+   "recall_touching_isolated": {
+    "touching": [
+     0.8442,
+     2523
+    ],
+    "isolated": [
+     0.855,
+     4518
+    ]
+   },
+   "missed_causes": {
+    "n_missed": 1048,
+    "no_det_iou<0.1": 0.3588,
+    "poor_loc_0.1-0.5": 0.6345,
+    "taken_iou>=0.5": 0.0067
+   },
+   "fp_above_recall0.6": {
+    "n_dets_to_recall0.6": 5095,
+    "n_fp": 871,
+    "bg": 0.6751,
+    "loc": 0.3031,
+    "dup": 0.0218
+   }
+  }
+ },
+ "date": "2026-11-02 11:49"
+}

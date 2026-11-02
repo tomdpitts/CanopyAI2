@@ -62,7 +62,7 @@
   }}
 }
 \draw[neon, line width=1.0pt] (\ex,\ey) rectangle ++(1.92,-1.92);
-\node[lbl, anchor=west] at (3.65,-3.08) {$16$\,px patches $\cdot$ offsets $8$\,/\,$4$\,px};
+\node[lbl, anchor=west] at (3.65,-3.08) {$16$\,px patches, offsets $8$\,/\,$4$\,px};
 \draw[arr] (6.0,-1.81) -- (6.75,-1.81);
 % ViT layer stack, last layer (Layer 24) taken
 \node[lbl, anchor=south, inner sep=1pt] at (7.2,-1.08) {DINOv3 ViT-L/16};
@@ -114,9 +114,7 @@
 \shade[left color=bmid, right color=bfg] (3.25,-6.88) rectangle (4.95,-6.77);
 \node[tlbl, anchor=east] at (1.53,-6.825) {background};
 \node[tlbl, anchor=west] at (4.97,-6.825) {crown};
-\node[eq] at (6.1,-6.825) {$\bar p = \operatorname{mean} p_{fg}$};
-\node[eq] at (8.1,-6.825) {$m = \operatorname{mean}\lvert 2p_{fg}-1\rvert$};
-\node[eq] at (10.6,-6.825) {$s' = s\,\bar p\,m$};
+\node[eq] at (6.1,-6.825) {rescored by the mean and decisiveness of $p_{fg}$};
 
 % --- output
 \node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PE.north west) {Output};

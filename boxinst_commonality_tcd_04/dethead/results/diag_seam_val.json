@@ -1,0 +1,67 @@
+{
+ "seam_px": 1024.0,
+ "near_px": 32.0,
+ "rows": {
+  "lace_centernet_s0": {
+   "straddle": {
+    "n_gt": 342,
+    "recall": 0.8012,
+    "n_det": 864,
+    "fp_frac": 0.691
+   },
+   "near": {
+    "n_gt": 433,
+    "recall": 0.776,
+    "n_det": 1403,
+    "fp_frac": 0.7669
+   },
+   "far": {
+    "n_gt": 6266,
+    "recall": 0.7774,
+    "n_det": 19074,
+    "fp_frac": 0.7438
+   }
+  },
+  "fcos_nms05": {
+   "straddle": {
+    "n_gt": 342,
+    "recall": 0.8304,
+    "n_det": 1480,
+    "fp_frac": 0.8115
+   },
+   "near": {
+    "n_gt": 433,
+    "recall": 0.8106,
+    "n_det": 1838,
+    "fp_frac": 0.8145
+   },
+   "far": {
+    "n_gt": 6266,
+    "recall": 0.8217,
+    "n_det": 27008,
+    "fp_frac": 0.8088
+   }
+  },
+  "boxteacher": {
+   "straddle": {
+    "n_gt": 342,
+    "recall": 0.9123,
+    "n_det": 1680,
+    "fp_frac": 0.8196
+   },
+   "near": {
+    "n_gt": 433,
+    "recall": 0.8453,
+    "n_det": 2680,
+    "fp_frac": 0.8597
+   },
+   "far": {
+    "n_gt": 6266,
+    "recall": 0.8482,
+    "n_det": 34658,
+    "fp_frac": 0.8467
+   }
+  }
+ },
+ "date": "2026-11-02 11:58"
+}

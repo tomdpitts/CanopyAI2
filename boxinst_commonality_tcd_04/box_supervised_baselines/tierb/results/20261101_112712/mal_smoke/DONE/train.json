@@ -1,0 +1,83 @@
+{
+ "plateau": {
+  "best": 0.7978077258834569,
+  "best_epoch": 1,
+  "bad": 0,
+  "decays": 1,
+  "lr_factor": 0.1,
+  "stop": false,
+  "reason": null,
+  "events": [
+   {
+    "epoch": 2,
+    "event": "decay 1"
+   }
+  ]
+ },
+ "best": {
+  "epoch": 0,
+  "global_step": 30,
+  "val_mean_iou": 0.7978077258834569,
+  "val_n_crowns": 7032,
+  "ge50": 0.996160409556314,
+  "ge75": 0.7619453924914675,
+  "ckpt": "/vol/runs/mal_smoke/sel/epoch0.pt",
+  "sec": 150.7,
+  "time": "2026-10-27 05:56:38",
+  "plateau": {
+   "best": 0.7978077258834569,
+   "best_epoch": 1,
+   "bad": 0,
+   "decays": 0,
+   "lr_factor": 1.0,
+   "stop": false,
+   "reason": null
+  }
+ },
+ "n_train_boxes": 54191,
+ "n_kept_after_filter": 54184,
+ "min_obj_size": 0,
+ "steps_per_epoch_per_rank": 6773,
+ "warmups": {
+  "loss_mil_step": 436,
+  "loss_crf_step": 1745,
+  "steps_per_epoch": 6773
+ },
+ "lr": 1.2e-05,
+ "min_lr": 2.4000000000000003e-06,
+ "max_epochs": 2,
+ "batch_per_gpu": 4,
+ "n_gpus": 2,
+ "resume_from": "/vol/runs/mal_smoke/train/ckpt/epoch=0.ckpt",
+ "pixels_verified": [
+  {
+   "split": "train",
+   "n": 792,
+   "verified_against": "stage record rgb_sha256",
+   "stage_vs_local": {
+    "n": 1559,
+    "matched_local": 1558,
+    "hf_only": [
+     "tcd_tile_1878"
+    ]
+   },
+   "seconds": 20.1
+  },
+  {
+   "split": "val",
+   "n": 108,
+   "verified_against": "stage record rgb_sha256",
+   "stage_vs_local": {
+    "n": 1559,
+    "matched_local": 1558,
+    "hf_only": [
+     "tcd_tile_1878"
+    ]
+   },
+   "seconds": 3.0
+  }
+ ],
+ "stage": "train",
+ "method": "mal_smoke",
+ "time": "2026-10-27 06:03:50"
+}

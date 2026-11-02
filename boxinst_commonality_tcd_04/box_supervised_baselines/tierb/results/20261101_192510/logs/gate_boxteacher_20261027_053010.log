@@ -1,0 +1,257 @@
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+Skip loading parameter 'teacher.proposal_generator.fcos_head.cls_logits.weight' to the model due to incompatible shapes: (80, 256, 3, 3) in the checkpoint but (1, 256, 3, 3) in the model! You might want to double check if this is expected.
+Skip loading parameter 'teacher.proposal_generator.fcos_head.cls_logits.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'student.proposal_generator.fcos_head.cls_logits.weight' to the model due to incompatible shapes: (80, 256, 3, 3) in the checkpoint but (1, 256, 3, 3) in the model! You might want to double check if this is expected.
+Skip loading parameter 'student.proposal_generator.fcos_head.cls_logits.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Some model parameters or buffers are not found in the checkpoint:
+student.proposal_generator.fcos_head.cls_logits.{bias, weight}
+teacher.proposal_generator.fcos_head.cls_logits.{bias, weight}
+{
+ "method": "boxteacher",
+ "time": "2026-10-27 05:30:11",
+ "checks": {
+  "G0_env": {
+   "python": "3.10.13",
+   "torch": "1.12.1+cu113",
+   "cuda": "11.3",
+   "cudnn": 8302,
+   "gpu": "NVIDIA A100-SXM4-40GB",
+   "detectron2": "0.6",
+   "numpy": "1.23.5",
+   "pillow": "9.5.0"
+  },
+  "G1_patches": {
+   "method": "boxteacher",
+   "source_sha256": {
+    "adet.modeling.fcos.fcos_outputs": "81f608098f968b6c916eecc355f7c50454ea6347ddb1656c378c053df994601e",
+    "adet.modeling.condinst.condinst": "7ae1a8920ad21c3a814c96d30453df4c40db1bb1b3bf7be67cb02f340b886ece",
+    "boxteacher.condinst": "4ed8fb3c7935b78849a91e0c2d5c7e24627203c6aa7e4fedb0ad2fa19f028bb4",
+    "boxteacher.boxteacher": "db9da433247a82008c28a0854f8e2e50f20a95a7565c3e7f457ea8a80950251e"
+   },
+   "patches": [
+    "P1 canopy ignore (protocol)",
+    "P2 canopy hand-off",
+    "P3 empty crops",
+    "P5 chunked postprocess",
+    "P4 teacher at test scale (protocol)",
+    "P6 CPU assignment loop",
+    "P7 matched collectives on empty GPUs"
+   ]
+  },
+  "G2_val_pixels": {
+   "split": "val",
+   "n": 108,
+   "verified_against": "stage record rgb_sha256",
+   "stage_vs_local": {
+    "n": 1559,
+    "matched_local": 1558,
+    "hf_only": [
+     "tcd_tile_1878"
+    ]
+   },
+   "seconds": 2.3
+  },
+  "G3_ckpt": {
+   "n_ckpt": 924,
+   "n_model": 924,
+   "loaded": 920,
+   "reinitialised": [
+    "student.proposal_generator.fcos_head.cls_logits.bias",
+    "student.proposal_generator.fcos_head.cls_logits.weight",
+    "teacher.proposal_generator.fcos_head.cls_logits.bias",
+    "teacher.proposal_generator.fcos_head.cls_logits.weight"
+   ],
+   "unexpected": [],
+   "ckpt_iter_buffers": {
+    "teacher.mask_head._iter": 0.0,
+    "student.mask_head._iter": 270000.0
+   },
+   "iter_buffers_before_reset": [
+    270000.0,
+    0.0
+   ]
+  },
+  "G3_sched": {
+   "iters_per_epoch": 198,
+   "max_iter": 3960,
+   "max_epochs": 20,
+   "steps": [],
+   "schedule": "plateau (plateau.py)",
+   "warmup_iters": 26,
+   "pairwise_warmup_iters": 264,
+   "boxteacher_mask_warmup_iters": 264,
+   "fraction_of_released_1x": 0.0264
+  },
+  "G3_cfg": {
+   "lr": 0.0001,
+   "opt": "ADAMW",
+   "steps": [],
+   "max_iter": 3960,
+   "warmup": 26,
+   "wd": 0.05,
+   "pairwise_warmup": 264,
+   "bottom_pixels_removed": 0,
+   "num_classes": 1
+  },
+  "G4_quadrants": {
+   "n": 3168,
+   "empty": 496,
+   "max_boxes": 235,
+   "dense": "tcd_tile_1707_q1",
+   "canopy_rich": "tcd_tile_1482_q0"
+  },
+  "G4_mapper": {
+   "aligned_s1": [
+    {
+     "id": "tcd_tile_1707_q1",
+     "boxes": 235,
+     "canopy_frac": 0.03746223449707031,
+     "rasteriser_diff_px": 0
+    },
+    {
+     "id": "tcd_tile_1482_q0",
+     "boxes": 44,
+     "canopy_frac": 0.10379219055175781,
+     "rasteriser_diff_px": 2
+    },
+    {
+     "id": "tcd_tile_1060_q0",
+     "boxes": 0,
+     "canopy_frac": 0.9621429443359375,
+     "rasteriser_diff_px": 0
+    }
+   ],
+   "random_ok": 48,
+   "scales_seen": [
+    0.7998,
+    0.8398,
+    0.8799,
+    0.9199,
+    0.96,
+    1.0
+   ],
+   "coverage_check": true
+  },
+  "G5_fwd_bwd": {
+   "dense+empty": {
+    "loss_fcos_cls": 1.11698,
+    "loss_fcos_loc": 0.41465,
+    "loss_fcos_ctr": 0.6546,
+    "loss_prj": 0.31426,
+    "loss_pairwise": 0.00041,
+    "loss_mask": 0.0,
+    "loss_mask_affinity": 0.0
+   },
+   "empty+empty": {
+    "loss_fcos_cls": 0.01952,
+    "loss_fcos_loc": 0.0,
+    "loss_fcos_ctr": 0.0,
+    "loss_mask": 0.0,
+    "loss_prj": 0.0,
+    "loss_pairwise": 0.0,
+    "loss_mask_affinity": 0.0
+   },
+   "canopy+random": {
+    "loss_fcos_cls": 1.13134,
+    "loss_fcos_loc": 0.49348,
+    "loss_fcos_ctr": 0.68372,
+    "loss_prj": 0.51807,
+    "loss_pairwise": 0.00173,
+    "loss_mask": 0.0,
+    "loss_mask_affinity": 0.0
+   }
+  },
+  "G5_collectives_per_forward": {
+   "dense+empty": 4,
+   "empty+empty": 4,
+   "canopy+random": 4
+  },
+  "G9_teacher_scale": {
+   "scales": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.8798828125,
+    0.9599609375
+   ],
+   "teacher_hw": [
+    [
+     1024,
+     1024
+    ],
+    [
+     1024,
+     1024
+    ],
+    [
+     1024,
+     1024
+    ],
+    [
+     1024,
+     1024
+    ],
+    [
+     1164,
+     1164
+    ],
+    [
+     1067,
+     1067
+    ]
+   ],
+   "expected": [
+    1024,
+    1024,
+    1024,
+    1024,
+    1164,
+    1067
+   ],
+   "exact": true
+  },
+  "G6_canopy_ignore": {
+   "equal_to_released_without_canopy": true,
+   "zero_canopy_max_abs_diff": 0.0,
+   "lace_cell_rule_exact": true,
+   "lace_cells_canopy": 1518,
+   "captured_batch_negatives_ignored": 2246,
+   "loss_cls_released": 1.1313389539718628,
+   "loss_cls_with_ignore": 1.1313354969024658
+  },
+  "G8_assignment": {
+   "random_cases": 300,
+   "real_cases": 0
+  },
+  "G7_postprocess": {
+   "tile": "tcd_tile_1012",
+   "n_instances": 64,
+   "chunk": 16,
+   "masks_boxes_bitwise_equal": true,
+   "scores_max_rel_diff": 0.0
+  },
+  "G10_inference": {
+   "tiles": {
+    "tcd_tile_1012": {
+     "whole_n": 600,
+     "whole_s": 12.36,
+     "sub_n": 5400,
+     "sub_s": 15.36
+    },
+    "tcd_tile_1041": {
+     "whole_n": 600,
+     "whole_s": 12.43,
+     "sub_n": 5393,
+     "sub_s": 15.33
+    }
+   },
+   "peak_mem_gb": 9.69
+  }
+ },
+ "pass": true,
+ "seconds": 205.8
+}
+GATE PASS

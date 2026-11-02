@@ -1,0 +1,105 @@
+{
+ "rule": "highest val mask AP50; ties within 0.001 -> nms0.5, detscore",
+ "rows": {
+  "nms0.5|sprime": {
+   "mask": {
+    "AP50": 0.676,
+    "AP75": 0.249,
+    "AP50_95": 0.3173
+   },
+   "box": {
+    "AP50": 0.6928,
+    "AP75": 0.2979
+   }
+  },
+  "nms0.5|detscore": {
+   "mask": {
+    "AP50": 0.6803,
+    "AP75": 0.2487,
+    "AP50_95": 0.3178
+   },
+   "box": {
+    "AP50": 0.6961,
+    "AP75": 0.2957
+   }
+  },
+  "nms0.6|sprime": {
+   "mask": {
+    "AP50": 0.6657,
+    "AP75": 0.251,
+    "AP50_95": 0.3154
+   },
+   "box": {
+    "AP50": 0.682,
+    "AP75": 0.3018
+   }
+  },
+  "nms0.6|detscore": {
+   "mask": {
+    "AP50": 0.6785,
+    "AP75": 0.2507,
+    "AP50_95": 0.3185
+   },
+   "box": {
+    "AP50": 0.6931,
+    "AP75": 0.2999
+   }
+  }
+ },
+ "selected": "nms0.5|detscore",
+ "nms": 0.5,
+ "rank": "detscore",
+ "box_diag_selected_detscore": {
+  "AP50": 0.6961,
+  "n_det": 53315,
+  "n_gt": 7041,
+  "max_recall": 0.8215,
+  "precision_at_recall": {
+   "0.5": 0.8671,
+   "0.6": 0.804,
+   "0.7": 0.6887
+  },
+  "recall_by_size_px": {
+   "0-24": [
+    0.5767,
+    1819
+   ],
+   "24-48": [
+    0.8826,
+    2163
+   ],
+   "48-96": [
+    0.937,
+    2444
+   ],
+   "96-inf": [
+    0.8715,
+    615
+   ]
+  },
+  "recall_touching_isolated": {
+   "touching": [
+    0.8331,
+    2523
+   ],
+   "isolated": [
+    0.815,
+    4518
+   ]
+  },
+  "missed_causes": {
+   "n_missed": 1257,
+   "no_det_iou<0.1": 0.3819,
+   "poor_loc_0.1-0.5": 0.6158,
+   "taken_iou>=0.5": 0.0024
+  },
+  "fp_above_recall0.6": {
+   "n_dets_to_recall0.6": 5254,
+   "n_fp": 1030,
+   "bg": 0.6718,
+   "loc": 0.3029,
+   "dup": 0.0252
+  }
+ },
+ "date": "2026-11-02 13:44"
+}

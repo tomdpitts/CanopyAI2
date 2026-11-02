@@ -1,0 +1,51 @@
+{
+ "tag": "fcos_s0",
+ "head": "fcos",
+ "ckpt_cfg": {
+  "head": "fcos",
+  "tag": "fcos_s0",
+  "seed": 0,
+  "best_epoch": 25,
+  "val_boxAP50": 0.5497,
+  "recipe": {
+   "lr": 0.001,
+   "wd": 0.0001,
+   "epochs": 40,
+   "bs": 3,
+   "eval_every": 5,
+   "min_epochs": 12,
+   "es_patience": 2,
+   "es_min_delta": 0.005
+  }
+ },
+ "rows": {
+  "sprime": {
+   "mask": {
+    "AP50": 0.6386,
+    "AP75": 0.2033,
+    "AP50_95": 0.2886,
+    "n_det": 245945
+   },
+   "box": {
+    "AP50": 0.6754,
+    "AP75": 0.2965,
+    "AP50_95": 0.3355
+   },
+   "floor": 0.0
+  },
+  "detscore": {
+   "mask": {
+    "AP50": 0.6453,
+    "AP75": 0.2015,
+    "AP50_95": 0.2893,
+    "n_det": 245945
+   },
+   "box": {
+    "AP50": 0.6823,
+    "AP75": 0.2889,
+    "AP50_95": 0.3344
+   },
+   "floor": 0.05
+  }
+ }
+}

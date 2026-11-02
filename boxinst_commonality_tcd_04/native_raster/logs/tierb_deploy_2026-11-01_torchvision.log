@@ -1,0 +1,806 @@
+Building image im-vu6vlcsMOopg1EhXaDiPwi
+
+=> Step 0: FROM base
+
+=> Step 1: RUN python -m pip install contourpy==1.3.2 numpy==2.2.6 pillow==12.3.0 pycocotools==2.0.11 torch==2.13.0 torchvision==0.28.0 transformers==5.12.1 --extra-index-url https://download.pytorch.org/whl/cpu
+Looking in indexes: http://pypi-mirror.modal.local:5555/simple, https://download.pytorch.org/whl/cpu
+Collecting contourpy==1.3.2
+  Downloading http://pypi-mirror.modal.local:5555/simple/contourpy/contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.5 kB)
+Building image im-WTOxzoNXcrGjZqUxdrJ4qn
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Collecting numpy==2.2.6
+  Downloading numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (62 kB)
+Saving image...
+Collecting pillow==12.3.0
+  Downloading pillow-12.3.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+Collecting pycocotools==2.0.11
+  Downloading http://pypi-mirror.modal.local:5555/simple/pycocotools/pycocotools-2.0.11-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (1.3 kB)
+Image saved, took 528.60ms
+
+Built image im-WTOxzoNXcrGjZqUxdrJ4qn in 1.04s
+
+
+Collecting torch==2.13.0
+  Downloading https://download-r2.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (37 kB)
+Collecting torchvision==0.28.0
+  Downloading https://download-r2.pytorch.org/whl/cpu/torchvision-0.28.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl.metadata (5.6 kB)
+Collecting transformers==5.12.1
+  Downloading http://pypi-mirror.modal.local:5555/simple/transformers/transformers-5.12.1-py3-none-any.whl.metadata (33 kB)
+Collecting filelock (from torch==2.13.0)
+  Downloading filelock-4.1.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.13.0)
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting setuptools>=77.0.3 (from torch==2.13.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/setuptools/setuptools-84.2.1-py3-none-any.whl.metadata (6.6 kB)
+Building image im-agoqa07h17nhqZTplqlqvv
+Collecting sympy>=1.13.3 (from torch==2.13.0)
+  Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx>=2.5.1 (from torch==2.13.0)
+  Downloading networkx-3.4.2-py3-none-any.whl.metadata (6.3 kB)
+Collecting jinja2 (from torch==2.13.0)
+  Downloading https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec>=0.8.5 (from torch==2.13.0)
+  Downloading fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+Building image im-rgSmCMqlBPU9KLVTaCQhuq
+Collecting huggingface-hub<2.0,>=1.5.0 (from transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/huggingface-hub/huggingface_hub-1.33.0-py3-none-any.whl.metadata (16 kB)
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Collecting packaging>=20.0 (from transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/packaging/packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pyyaml>=5.1 (from transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml/pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting regex>=2025.10.22 (from transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/regex/regex-2026.9.29-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+Collecting tokenizers<=0.23.0,>=0.22.0 (from transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/tokenizers/tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.3 kB)
+Collecting typer (from transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/typer/typer-0.27.3-py3-none-any.whl.metadata (16 kB)
+Collecting safetensors>=0.4.3 (from transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/safetensors/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.2 kB)
+Collecting tqdm>=4.60 (from transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/tqdm/tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+Collecting click<9.0.0,>=8.4.2 (from huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/click/click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting hf-xet<2.0.0,>=1.6.0 (from huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/hf-xet/hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Collecting httpx<1,>=0.23.0 (from huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/httpx/httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting tomli>=1.1.0 (from huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/tomli/tomli-2.5.0-py3-none-any.whl.metadata (10 kB)
+Collecting anyio (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/anyio/anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+Collecting certifi (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/certifi/certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+Collecting httpcore==1.* (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+Image saved, took 601.16ms
+  Downloading http://pypi-mirror.modal.local:5555/simple/httpcore/httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting idna (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/idna/idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+
+Built image im-rgSmCMqlBPU9KLVTaCQhuq in 1.86s
+
+
+Collecting h11>=0.16 (from httpcore==1.*->httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/h11/h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch==2.13.0)
+  Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting exceptiongroup>=1.0.2 (from anyio->httpx<1,>=0.23.0->huggingface-hub<2.0,>=1.5.0->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/exceptiongroup/exceptiongroup-1.3.1-py3-none-any.whl.metadata (6.7 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.13.0)
+  Downloading http://pypi-mirror.modal.local:5555/simple/markupsafe/markupsafe-3.0.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Collecting shellingham>=1.3.0 (from typer->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/shellingham/shellingham-1.5.4-py2.py3-none-any.whl.metadata (3.5 kB)
+Collecting rich>=13.8.0 (from typer->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/rich/rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting annotated-doc>=0.0.2 (from typer->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/annotated-doc/annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=13.8.0->typer->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/markdown-it-py/markdown_it_py-4.2.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich>=13.8.0->typer->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/pygments/pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->transformers==5.12.1)
+  Downloading http://pypi-mirror.modal.local:5555/simple/mdurl/mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/contourpy/contourpy-1.3.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (325 kB)
+Downloading numpy-2.2.6-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (16.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.8/16.8 MB 226.0 MB/s eta 0:00:00
+Downloading pillow-12.3.0-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 249.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/pycocotools/pycocotools-2.0.11-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (472 kB)
+Downloading https://download-r2.pytorch.org/whl/cpu/torch-2.13.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl (191.8 MB)
+Saving image...
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 191.8/191.8 MB 203.1 MB/s eta 0:00:00
+Downloading https://download-r2.pytorch.org/whl/cpu/torchvision-0.28.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 224.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/transformers/transformers-5.12.1-py3-none-any.whl (11.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.2/11.2 MB 311.7 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/huggingface-hub/huggingface_hub-1.33.0-py3-none-any.whl (846 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 846.4/846.4 kB 1.3 GB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/click/click-8.5.0-py3-none-any.whl (125 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/hf-xet/hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 562.1 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/httpx/httpx-0.28.1-py3-none-any.whl (73 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/httpcore/httpcore-1.0.9-py3-none-any.whl (78 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tokenizers/tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 580.4 MB/s eta 0:00:00
+Downloading filelock-4.1.0-py3-none-any.whl (133 kB)
+Downloading fsspec-2026.9.0-py3-none-any.whl (221 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/h11/h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading networkx-3.4.2-py3-none-any.whl (1.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 230.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/packaging/packaging-26.3-py3-none-any.whl (129 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pyyaml/pyyaml-6.0.3-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (770 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 770.3/770.3 kB 636.4 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/regex/regex-2026.9.29-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (797 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 797.6/797.6 kB 254.2 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/safetensors/safetensors-0.8.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (516 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/setuptools/setuptools-84.2.1-py3-none-any.whl (876 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 876.3/876.3 kB 820.2 MB/s eta 0:00:00
+Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 215.7 MB/s eta 0:00:00
+Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 286.6 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/tomli/tomli-2.5.0-py3-none-any.whl (14 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/tqdm/tqdm-4.70.1-py3-none-any.whl (80 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/anyio/anyio-4.15.1-py3-none-any.whl (132 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/exceptiongroup/exceptiongroup-1.3.1-py3-none-any.whl (16 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/idna/idna-3.20-py3-none-any.whl (69 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/certifi/certifi-2026.10.23-py3-none-any.whl (135 kB)
+Downloading https://download.pytorch.org/whl/jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/markupsafe/markupsafe-3.0.4-cp310-cp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (20 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/typer/typer-0.27.3-py3-none-any.whl (123 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/annotated-doc/annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/rich/rich-15.0.0-py3-none-any.whl (310 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/pygments/pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 513.8 MB/s eta 0:00:00
+Downloading http://pypi-mirror.modal.local:5555/simple/markdown-it-py/markdown_it_py-4.2.0-py3-none-any.whl (91 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/mdurl/mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading http://pypi-mirror.modal.local:5555/simple/shellingham/shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Image saved, took 629.97ms
+
+Built image im-agoqa07h17nhqZTplqlqvv in 3.96s
+
+
+Installing collected packages: mpmath, typing-extensions, tqdm, tomli, sympy, shellingham, setuptools, safetensors, regex, pyyaml, pygments, pillow, packaging, numpy, networkx, mdurl, MarkupSafe, idna, hf-xet, h11, fsspec, filelock, click, certifi, annotated-doc, pycocotools, markdown-it-py, jinja2, httpcore, exceptiongroup, contourpy, torch, rich, anyio, typer, torchvision, httpx, huggingface-hub, tokenizers, transformers
+Building image im-IhynuVZ7YQDk46SdP1WJbH
+Building image im-O7ZRq5exDO2SgTmh71HMed
+Building image im-oOBoAPQriFvnpBZlJA1BSH
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Saving image...
+Image saved, took 782.26ms
+Image saved, took 600.72ms
+
+Built image im-IhynuVZ7YQDk46SdP1WJbH in 3.02s
+
+
+
+Built image im-O7ZRq5exDO2SgTmh71HMed in 2.75s
+
+
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 65.5.1
+    Uninstalling setuptools-65.5.1:
+      Successfully uninstalled setuptools-65.5.1
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.45s
+
+Built image im-oOBoAPQriFvnpBZlJA1BSH in 5.76s
+
+
+
+Successfully installed MarkupSafe-3.0.4 annotated-doc-0.0.5 anyio-4.15.1 certifi-2026.10.23 click-8.5.0 contourpy-1.3.2 exceptiongroup-1.3.1 filelock-4.1.0 fsspec-2026.9.0 h11-0.16.0 hf-xet-1.8.0 httpcore-1.0.9 httpx-0.28.1 huggingface-hub-1.33.0 idna-3.20 jinja2-3.1.6 markdown-it-py-4.2.0 mdurl-0.1.2 mpmath-1.3.0 networkx-3.4.2 numpy-2.2.6 packaging-26.3 pillow-12.3.0 pycocotools-2.0.11 pygments-2.21.0 pyyaml-6.0.3 regex-2026.9.29 rich-15.0.0 safetensors-0.8.0 setuptools-84.2.1 shellingham-1.5.4 sympy-1.14.0 tokenizers-0.22.2 tomli-2.5.0 torch-2.13.0+cpu torchvision-0.28.0+cpu tqdm-4.70.1 transformers-5.12.1 typer-0.27.3 typing-extensions-4.16.0
+
+[notice] A new release of pip is available: 25.1.1 -> 26.2.2
+[notice] To update, run: pip install --upgrade pip
+Saving image...
+Image saved, took 3.97s
+
+Built image im-vu6vlcsMOopg1EhXaDiPwi in 41.16s
+
+
+Building image im-x8v4kaK0Qp5T0aC7ZtqnYv
+
+=> Step 0: FROM base
+
+=> Step 1: ENV PYTHONPATH=/root/proj:/root
+Saving image...
+Image saved, took 507.47ms
+
+Built image im-x8v4kaK0Qp5T0aC7ZtqnYv in 1.64s
+
+
+Building image im-1IdSM8fE8s7LF5HgiVWJGz
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 3.68s
+
+Built image im-1IdSM8fE8s7LF5HgiVWJGz in 5.11s
+
+
+Building image im-k7TCDuk5iJ2mAfS2brUGYF
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 451.69ms
+
+Built image im-k7TCDuk5iJ2mAfS2brUGYF in 1.62s
+
+
+Building image im-UZTjahJfxA5yEjY67be57j
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 606.35ms
+
+Built image im-UZTjahJfxA5yEjY67be57j in 1.32s
+
+
+Building image im-fkW3nqWzp39ss1fuKMeS9r
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 537.04ms
+
+Built image im-fkW3nqWzp39ss1fuKMeS9r in 1.39s
+
+
+Building image im-DnAxR4AVxKEuUeQ0dZ6By8
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 945.86ms
+
+Built image im-DnAxR4AVxKEuUeQ0dZ6By8 in 2.65s
+
+
+Building image im-eXM2NxA7rXlyERBxJ9Sh8O
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 604.63ms
+
+Built image im-eXM2NxA7rXlyERBxJ9Sh8O in 1.94s
+
+
+Building image im-eN7rkHSJxxPESFGOpzqqhL
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 973.54ms
+
+Built image im-eN7rkHSJxxPESFGOpzqqhL in 2.00s
+
+
+Building image im-exg3CS7GwthJeFcKdjORE3
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 648.72ms
+
+Built image im-exg3CS7GwthJeFcKdjORE3 in 1.77s
+
+
+Building image im-zXlUjQtaQsQuHXNFsLRuQi
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 907.50ms
+
+Built image im-zXlUjQtaQsQuHXNFsLRuQi in 1.88s
+
+
+Building image im-Cuk4EhP3bpQdKt4jK9dLrZ
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.57s
+
+Built image im-Cuk4EhP3bpQdKt4jK9dLrZ in 2.97s
+
+
+Building image im-ruEKD1sjXoa0izmtsxZ7HE
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 616.38ms
+
+Built image im-ruEKD1sjXoa0izmtsxZ7HE in 1.75s
+
+
+Building image im-h62oio1ifuWALnn3bLAsnn
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 684.01ms
+
+Built image im-h62oio1ifuWALnn3bLAsnn in 2.01s
+
+
+Building image im-GT1dHHgzVFQCrZi8pYEVmM
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 550.19ms
+
+Built image im-GT1dHHgzVFQCrZi8pYEVmM in 1.58s
+
+
+Building image im-LK1RBg9CDdHf33wTfSeXCj
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 2.03s
+
+Built image im-LK1RBg9CDdHf33wTfSeXCj in 2.92s
+
+
+Building image im-RIRTLcGAUhJbTZsyYqP3Uw
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 653.82ms
+
+Built image im-RIRTLcGAUhJbTZsyYqP3Uw in 4.27s
+
+
+Building image im-zQke3i3DiDGMitwmOrJXBK
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 2.10s
+
+Built image im-zQke3i3DiDGMitwmOrJXBK in 3.02s
+
+
+Building image im-UNAVDyMRcILDmV7SYHgy13
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.03s
+
+Built image im-UNAVDyMRcILDmV7SYHgy13 in 5.40s
+
+
+Building image im-PsPsmDMxDJwc7gvfZC5Ibe
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 644.92ms
+
+Built image im-PsPsmDMxDJwc7gvfZC5Ibe in 1.71s
+
+
+Building image im-ItO6pr6M0gi9DjOREOsiFd
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.37s
+
+Built image im-ItO6pr6M0gi9DjOREOsiFd in 2.32s
+
+
+Building image im-dfz8S8dCUYtMUNdbRfvNPJ
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 818.84ms
+
+Built image im-dfz8S8dCUYtMUNdbRfvNPJ in 1.64s
+
+
+Building image im-KZdBAjghbSEIjEW4vrB85J
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 988.26ms
+
+Built image im-KZdBAjghbSEIjEW4vrB85J in 1.95s
+
+
+Building image im-vWjvfeOxnsYSuV9VrcQQUo
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 649.73ms
+
+Built image im-vWjvfeOxnsYSuV9VrcQQUo in 1.59s
+
+
+Building image im-PdHOq7JNqiXVAFXUZaoupA
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 563.21ms
+
+Built image im-PdHOq7JNqiXVAFXUZaoupA in 1.30s
+
+
+Building image im-iN2fNUWpApDaDDLw5KMX5P
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 706.04ms
+
+Built image im-iN2fNUWpApDaDDLw5KMX5P in 1.64s
+
+
+Building image im-SLBw3ucmX2rNFo9bbA1mbX
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 3.54s
+
+Built image im-SLBw3ucmX2rNFo9bbA1mbX in 5.39s
+
+
+Building image im-WvpDRFALnJB8ivs7ovVeC6
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 623.54ms
+
+Built image im-WvpDRFALnJB8ivs7ovVeC6 in 1.61s
+
+
+Building image im-Q4h71ATBHZ7ylQCR8SlDJP
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 793.66ms
+
+Built image im-Q4h71ATBHZ7ylQCR8SlDJP in 4.83s
+
+
+Building image im-ZOPBogcUP0a5TWFPL1humF
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 650.17ms
+
+Built image im-ZOPBogcUP0a5TWFPL1humF in 2.16s
+
+
+Building image im-CgcgdkHuWeiZDLLz9N8Msi
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.11s
+
+Built image im-CgcgdkHuWeiZDLLz9N8Msi in 3.59s
+
+
+Building image im-DihsqTi8HVdCFCxdJaycSR
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 782.16ms
+
+Built image im-DihsqTi8HVdCFCxdJaycSR in 1.86s
+
+
+Building image im-6nMEgvKGRC7TtarfDWlHGy
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 517.67ms
+
+Built image im-6nMEgvKGRC7TtarfDWlHGy in 2.49s
+
+
+Building image im-9zmqSZQ4Aaj9Nhm0MvJdle
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.12s
+
+Built image im-9zmqSZQ4Aaj9Nhm0MvJdle in 3.24s
+
+
+Building image im-EAlvFWzHnxdGstEVSiFGOS
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.30s
+
+Built image im-EAlvFWzHnxdGstEVSiFGOS in 2.23s
+
+
+Building image im-8yMFsENmXPJTWB8Zd6itxC
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 598.52ms
+
+Built image im-8yMFsENmXPJTWB8Zd6itxC in 1.31s
+
+
+Building image im-0kLkl61ZqyMGvKT9aLpV93
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 828.34ms
+
+Built image im-0kLkl61ZqyMGvKT9aLpV93 in 1.51s
+
+
+Building image im-Tu3bEXIWGXeruUWLXtOOvO
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.13s
+
+Built image im-Tu3bEXIWGXeruUWLXtOOvO in 2.20s
+
+
+Building image im-VcIEkKe4S7t15uVYa6h21o
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 753.70ms
+
+Built image im-VcIEkKe4S7t15uVYa6h21o in 1.44s
+
+
+Building image im-73mCp4tXsj0HhxUvzvZo6d
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 655.40ms
+
+Built image im-73mCp4tXsj0HhxUvzvZo6d in 1.45s
+
+
+Building image im-aPWaxknVfiU5lGomFYRbqO
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.50s
+
+Built image im-aPWaxknVfiU5lGomFYRbqO in 3.23s
+
+
+Building image im-UBgbzfbyt38bQBwjcqlIPc
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 1.15s
+
+Built image im-UBgbzfbyt38bQBwjcqlIPc in 2.03s
+
+
+Building image im-WUCAkvfPebmur5uBbWJQKD
+
+=> Step 0: FROM base
+
+=> Step 1: COPY . /
+Saving image...
+Image saved, took 768.75ms
+
+Built image im-WUCAkvfPebmur5uBbWJQKD in 2.22s
+
+
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/tierb_modal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/val_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/tierb_data
+├── 🔨 Created function d2_gpu1.
+├── 🔨 Created function d2_gpu2_smoke.
+├── 🔨 Created function d2_gpu8_train.
+├── 🔨 Created function d2_gpu8_predict.
+├── 🔨 Created function stage.
+├── 🔨 Created function fetch_weights.
+├── 🔨 Created function mal_gpu1.
+├── 🔨 Created function mal_gpu2_smoke.
+├── 🔨 Created function mal_gpu8_train.
+├── 🔨 Created function mal_gpu8_predict.
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/test_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/score_coco.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/gtbox_lib.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sti
+│   tch_res.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sti
+│   tch_seam.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/run
+│   _stitch_seam.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/gtb
+│   ox_guided_raw/gtbox_lace_guided_r2048.jsonl
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/hun
+│   t/test/gtbox4_lace4px_simple_percrown.jsonl
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/aud
+│   it_2026-10-14/selvabox_evidence/gtbox_sam_persub.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/pre
+│   ds_lace_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sco
+│   red_lace_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/pre
+│   ds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/sco
+│   red_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/data/tcd_sparse/sparse_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created function finalize.
+└── 🔨 Created function report_status.
+✓ App deployed in 216.292s! 🎉
+
+View Deployment: https://modal.com/apps/tomdpitts/main/deployed/tcd04-tierb

@@ -1,0 +1,12 @@
+{
+ "gate": "render_boxes(LACE s0 published boxes) == published lace4px_simple masks + own4 s'",
+ "tiles": [
+  "tcd_val_tile_0",
+  "tcd_val_tile_1",
+  "tcd_val_tile_10"
+ ],
+ "masks_identical": "498/498",
+ "s_prime_max_abs_diff": 0.0,
+ "pass": true,
+ "date": "2026-11-01 23:39"
+}

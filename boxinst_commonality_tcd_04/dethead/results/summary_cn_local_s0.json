@@ -1,0 +1,51 @@
+{
+ "tag": "cn_local_s0",
+ "head": "centernet",
+ "ckpt_cfg": {
+  "head": "centernet",
+  "tag": "cn_local_s0",
+  "seed": 0,
+  "best_epoch": 20,
+  "val_boxAP50": 0.4935,
+  "recipe": {
+   "lr": 0.001,
+   "wd": 0.0001,
+   "epochs": 40,
+   "bs": 3,
+   "eval_every": 5,
+   "min_epochs": 12,
+   "es_patience": 2,
+   "es_min_delta": 0.005
+  }
+ },
+ "rows": {
+  "sprime": {
+   "mask": {
+    "AP50": 0.6501,
+    "AP75": 0.1659,
+    "AP50_95": 0.276,
+    "n_det": 167058
+   },
+   "box": {
+    "AP50": 0.661,
+    "AP75": 0.1687,
+    "AP50_95": 0.2761
+   },
+   "floor": 0.0
+  },
+  "detscore": {
+   "mask": {
+    "AP50": 0.6103,
+    "AP75": 0.1451,
+    "AP50_95": 0.2537,
+    "n_det": 167058
+   },
+   "box": {
+    "AP50": 0.6269,
+    "AP75": 0.1485,
+    "AP50_95": 0.2562
+   },
+   "floor": 0.05
+  }
+ }
+}

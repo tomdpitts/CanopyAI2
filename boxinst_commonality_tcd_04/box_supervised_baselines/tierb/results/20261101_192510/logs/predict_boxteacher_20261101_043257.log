@@ -1,0 +1,39 @@
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+Config '/opt/BoxTeacher/projects/BoxTeacher/configs/coco/boxteacher_swin-base_3x.yaml' has no VERSION. Assuming it to be compatible with latest v2.
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/usr/local/lib/python3.10/site-packages/torch/functional.py:478: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  ../aten/src/ATen/native/TensorShape.cpp:2894.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+[predict] val/sub rank0 5/14 90s
+[predict] val/sub rank0 10/14 181s
+[predict] val/sub complete (108 tiles)
+[predict] test/sub rank0 5/55 91s
+[predict] test/sub rank0 10/55 237s
+[predict] test/sub rank0 15/55 384s
+[predict] test/sub rank0 20/55 515s
+[predict] test/sub rank0 25/55 654s
+[predict] test/sub rank0 30/55 794s
+[predict] test/sub rank0 35/55 881s
+[predict] test/sub rank0 40/55 1020s
+[predict] test/sub rank0 45/55 1163s
+[predict] test/sub rank0 50/55 1306s
+[predict] test/sub rank0 55/55 1438s
+[predict] test/sub complete (439 tiles)

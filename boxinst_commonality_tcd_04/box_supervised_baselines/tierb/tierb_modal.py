@@ -68,7 +68,7 @@ def usd_per_hour(gpus, cores, mem_mib):
 
 
 SPEC = {"gate": (1, 8, 49152), "smoke": (N_SMOKE, 12, 65536), "gpu8": (8, 24, 131072),
-        "stage": (0, 16, 65536), "weights": (0, 4, 16384), "finalize": (0, 32, 131072),
+        "stage": (0, 16, 65536), "weights": (0, 4, 16384), "finalize": (0, 32, 327680),
         "status": (0, 1, 2048)}
 RATE = {k: usd_per_hour(*v) for k, v in SPEC.items()}      # gpu8 ~ $18.9/h, smoke ~ $5.3/h
 USD_8GPU_D2 = USD_8GPU_MAL = RATE["gpu8"]
@@ -111,8 +111,9 @@ img_stage = _add_tierb(img_stage)
 # rasteriser decides GT pixels). finalize re-scores a stored LACE row and requires exact equality.
 img_cpu = (
     modal.Image.debian_slim(python_version="3.10")
-    .pip_install("torch==2.13.0", "numpy==2.2.6", "pillow==12.3.0", "pycocotools==2.0.11",
-                 "contourpy==1.3.2", "transformers==5.12.1",
+    .pip_install("torch==2.13.0", "torchvision==0.28.0",    # torchvision added 2026-11-01: score_coco ->
+                 "numpy==2.2.6", "pillow==12.3.0", "pycocotools==2.0.11",   # evaluate -> dapt.decode/detector
+                 "contourpy==1.3.2", "transformers==5.12.1",       # import it at top level (not used by scoring)
                  extra_index_url="https://download.pytorch.org/whl/cpu")
     .env({"PYTHONPATH": f"{P}:/root"})
 )
@@ -1055,7 +1056,7 @@ def mal_gpu8_predict(i: int, m: str = "mal"):
 
 
 # ------------------------------------------------------------------ CPU: finalize + LACE gate
-@app.function(image=img_cpu, volumes=VOLS, cpu=32, memory=131072, timeout=10 * 3600, retries=RETRY)
+@app.function(image=img_cpu, volumes=VOLS, cpu=32, memory=327680, timeout=10 * 3600, retries=RETRY)
 def finalize(i: int, m: str):
     """Assemble/stitch/score with the FROZEN code (score_coco, stitch_seam/stitch_res, gtbox_lib),
     after re-scoring a stored LACE row to exact equality (scorer environment parity), then apply the

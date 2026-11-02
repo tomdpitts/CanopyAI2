@@ -1,0 +1,49 @@
+{
+ "ckpt": {
+  "n_ckpt": 924,
+  "n_model": 924,
+  "loaded": 920,
+  "reinitialised": [
+   "student.proposal_generator.fcos_head.cls_logits.bias",
+   "student.proposal_generator.fcos_head.cls_logits.weight",
+   "teacher.proposal_generator.fcos_head.cls_logits.bias",
+   "teacher.proposal_generator.fcos_head.cls_logits.weight"
+  ],
+  "unexpected": [],
+  "ckpt_iter_buffers": {
+   "teacher.mask_head._iter": 0.0,
+   "student.mask_head._iter": 270000.0
+  }
+ },
+ "sched": {
+  "iters_per_epoch": 40,
+  "max_iter": 120,
+  "max_epochs": 20,
+  "steps": [],
+  "schedule": "plateau (plateau.py)",
+  "warmup_iters": 26,
+  "pairwise_warmup_iters": 264,
+  "boxteacher_mask_warmup_iters": 264,
+  "fraction_of_released_1x": 0.0264,
+  "smoke": true
+ },
+ "patches": {
+  "method": "boxteacher",
+  "source_sha256": {
+   "adet.modeling.fcos.fcos_outputs": "81f608098f968b6c916eecc355f7c50454ea6347ddb1656c378c053df994601e",
+   "adet.modeling.condinst.condinst": "7ae1a8920ad21c3a814c96d30453df4c40db1bb1b3bf7be67cb02f340b886ece",
+   "boxteacher.condinst": "4ed8fb3c7935b78849a91e0c2d5c7e24627203c6aa7e4fedb0ad2fa19f028bb4",
+   "boxteacher.boxteacher": "db9da433247a82008c28a0854f8e2e50f20a95a7565c3e7f457ea8a80950251e"
+  },
+  "patches": [
+   "P1 canopy ignore (protocol)",
+   "P2 canopy hand-off",
+   "P3 empty crops",
+   "P5 chunked postprocess",
+   "P4 teacher at test scale (protocol)",
+   "P6 CPU assignment loop",
+   "P7 matched collectives on empty GPUs"
+  ]
+ },
+ "num_gpus": 2
+}

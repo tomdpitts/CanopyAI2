@@ -1,0 +1,103 @@
+== 2026-11-01 00:31:03 backup runs/boxteacher_smoke -> runs_archive/boxteacher_smoke_20261027
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ `recursive` is not supported for V1 volumes                                  │
+╰──────────────────────────────────────────────────────────────────────────────╯
+== 2026-11-01 11:14:06 backup runs/boxteacher_smoke -> runs_archive/boxteacher_smoke_20261027
+╭─ Error ──────────────────────────────────────────────────────────────────────╮
+│ `recursive` is not supported for V1 volumes                                  │
+╰──────────────────────────────────────────────────────────────────────────────╯
+cp rc=1
+== 2026-11-01 11:14:32 V1 volume: no recursive cp -> rename in container (/private/tmp/claude-501/-Users-tompitts-dphil-CanopyAI2/e72d3dd9-22bd-4878-a536-4f5eaa95502a/scratchpad/archive_smoke.py below)
+"""One-off: move runs/boxteacher_smoke -> runs_archive/boxteacher_smoke_20261027 on tcd04-tierb-vol
+(rename, nothing deleted), verifying the file list and sizes are identical before and after."""
+import modal
+
+app = modal.App("tcd04-tierb-archive-smoke")
+vol = modal.Volume.from_name("tcd04-tierb-vol")
+SRC, DST = "/vol/runs/boxteacher_smoke", "/vol/runs_archive/boxteacher_smoke_20261027"
+
+
+def listing(root):
+    import os
+    out = {}
+    for d, _, fs in os.walk(root):
+        for f in fs:
+            p = os.path.join(d, f)
+            out[os.path.relpath(p, root)] = os.path.getsize(p)
+    return out
+
+
+@app.function(volumes={"/vol": vol}, cpu=1, memory=1024, timeout=600)
+def move():
+    import os
+    vol.reload()
+    assert os.path.isdir(SRC), f"missing {SRC}"
+    assert not os.path.exists(DST), f"REFUSING: {DST} exists"
+    before = listing(SRC)
+    os.makedirs(os.path.dirname(DST), exist_ok=True)
+    os.rename(SRC, DST)
+    after = listing(DST)
+    assert before == after, "listing changed"
+    assert not os.path.exists(SRC)
+    vol.commit()
+    return {"files": len(before), "bytes": sum(before.values()), "identical": True,
+            "sample": sorted(before)[:40]}
+
+
+@app.local_entrypoint()
+def main():
+    import json
+    print(json.dumps(move.remote(), indent=1))
+https://modal.com/apps/tomdpitts/main/ap-NygCFeO3DimkiApjScoYrR
+│   /private/tmp/claude-501/-Users-tompitts-dphil-CanopyAI2/e72d3dd9-22bd-4878-a
+│   536-4f5eaa95502a/scratchpad/archive_smoke.py
+{
+ "files": 118,
+ "bytes": 8562285557,
+ "identical": true,
+ "sample": [
+  "DONE/predict.json",
+  "DONE/smoke.json",
+  "DONE/train.json",
+  "best.json",
+  "evals.jsonl",
+  "model_best.pth",
+  "plateau.json",
+  "predict/val/sub/Prediction_tcd_tile_1012_0_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1012_0_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1012_0_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1012_1024_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1012_1024_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1012_1024_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1012_512_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1012_512_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1012_512_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1041_0_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1041_0_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1041_0_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1041_1024_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1041_1024_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1041_1024_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1041_512_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1041_512_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1041_512_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1068_0_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1068_0_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1068_0_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1068_1024_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1068_1024_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1068_1024_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1068_512_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1068_512_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1068_512_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1097_0_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1097_0_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1097_0_512.json",
+  "predict/val/sub/Prediction_tcd_tile_1097_1024_0.json",
+  "predict/val/sub/Prediction_tcd_tile_1097_1024_1024.json",
+  "predict/val/sub/Prediction_tcd_tile_1097_1024_512.json"
+ ]
+}
+https://modal.com/apps/tomdpitts/main/ap-NygCFeO3DimkiApjScoYrR
+== 2026-11-01 11:15:32 spawn 4 (smoke boxteacher)
+{"time": "2026-11-01 11:15:35", "index": 4, "step": "smoke", "method": "boxteacher", "fn": "d2_gpu2_smoke", "call_id": "fc-01M6A7CB1DXYH8FRE26X20D1VQ"}

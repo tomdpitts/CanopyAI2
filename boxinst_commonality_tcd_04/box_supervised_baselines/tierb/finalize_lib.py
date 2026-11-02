@@ -30,7 +30,11 @@ PARITY = {"test": (f"{PKG_R}/native_raster/preds_lace_s0_r2048_cgf_r12_tau035_gu
                    f"{PKG_R}/native_raster/scored_lace_s0_r2048_cgf_r12_tau035_guidedrun.json", 0.0),
           "sparse": (f"{PKG_R}/native_raster/preds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json",
                      f"{PKG_R}/native_raster/scored_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json", 0.0)}
-MEM_BYTES = 128 * 2 ** 30          # = finalize's memory request (tierb_modal.py)
+MEM_BYTES = 320 * 2 ** 30          # = finalize's memory request (tierb_modal.py); 128 GiB until 2026-11-01
+# Fraction of MEM_BYTES the stitch pool may plan for. 0.55 until 2026-11-01; B2's first finalize ran 2 workers
+# at 0.55 x 128 GiB, ~1.2 tiles/min (~8 h). The per-worker estimate counts ALL subtile preds, but edge-dropped
+# ones are never held (B2 val: ~3,500 held of 5,400), so it is ~1.5x high; 0.7 is still conservative.
+MEM_FRAC = 0.7
 
 
 class ScorerParityError(RuntimeError):
@@ -38,7 +42,7 @@ class ScorerParityError(RuntimeError):
 
 
 def score_files(entries, split):
-    """entries [(preds_path, floor)] -> [score_coco result]. Exactly score_coco.score_many (one GT
+    """entries [(preds_path, floor[, max_dets])] -> [score_coco result]. Exactly score_coco.score_many (one GT
     build, shared ctx, _score_one per file) but with a per-file floor, so the LACE parity row
     (published at floor 0) and the Tier B rows (floor 0.05) are scored against ONE GT build.
     The first entry of every call is the LACE parity row; it must equal its stored file exactly."""
@@ -60,7 +64,7 @@ def score_files(entries, split):
     if bad:
         raise ScorerParityError(f"{split}: container scorer != stored LACE row: {bad}")
     print(f"[score] {split} parity PASS vs {os.path.basename(ps)}", flush=True)
-    return [SC._score_one(p, ctx, 2048, 600, f) for p, f in entries]
+    return [SC._score_one(e[0], ctx, 2048, e[2] if len(e) > 2 else 600, e[1]) for e in entries]
 
 
 def _w(path, obj):
@@ -104,7 +108,7 @@ def stitch_sub(m, split, tids):
         assert os.path.exists(dn), f"{split}/{t} sub incomplete"
         n_tile[t] = sum(json.load(open(dn))["n"].values())
     max_n = max(n_tile.values()) if n_tile else 1
-    workers = int(max(1, min(28, (0.55 * MEM_BYTES) // (4.2e6 * 1.3 * max(max_n, 1)))))
+    workers = int(max(1, min(28, (MEM_FRAC * MEM_BYTES) // (4.2e6 * 1.3 * max(max_n, 1)))))
     ck = TC.run_dir(m, "results", f"stitch_{split}.jsonl")
     done = {r["tid"]: r for r in TC.read_jsonl(ck)}
     todo = sorted((t for t in tids if t not in done), key=lambda t: -n_tile[t])
@@ -184,8 +188,33 @@ def finalize_d2(m):
                          "n_det": c["mask"]["n_det"]})
     res["rows"] = rows
     res["summary"] = {r["name"]: {k: r[k] for k in ("AP50", "AP50_95", "box_AP50")} for r in rows}
+    res["sensitivity"] = cap_sensitivity_d2(m)
     TC.atomic_json(TC.run_dir(m, "results", "summary.json"), res, indent=1)
     return res
+
+
+def cap_sensitivity_d2(m, cap=1200):
+    """Detection-cap sensitivity (Tom 2026-11-01), as the DT2 maxdets1200 file: re-score the saved test
+    preds at maxDets 1200 and count tiles whose stitched detections (>= floor) exceed the protocol's 600.
+    Record only: never a LACE-gate row (LACE's references are at 600), never a Table 1 row."""
+    out = {}
+    for g in C.GEOMETRIES:
+        p = TC.run_dir(m, "results", f"preds_{m}_{g}_test_r2048.json")
+        if not os.path.exists(p):
+            continue
+        sp = p.replace("preds_", "scored_").replace(".json", f"_maxdets{cap}.json")
+        if not os.path.exists(sp):
+            _w(sp, score_files([(p, FLOOR, cap)], "test")[0])
+        s600 = json.load(open(p.replace("preds_", "scored_")))["canopy_neutral_crowd"]
+        sc = json.load(open(sp))["canopy_neutral_crowd"]
+        preds = json.load(open(p))["preds"]
+        n = np.array([sum(x >= FLOOR for x in v["scores"]) for v in preds.values()])
+        out[f"test/{g}"] = {"maxdets600": {k: s600["mask"][k] for k in ("AP50", "AP50_95")},
+                            f"maxdets{cap}": {k: sc["mask"][k] for k in ("AP50", "AP50_95")},
+                            "delta_AP50": round(sc["mask"]["AP50"] - s600["mask"]["AP50"], 4),
+                            "tiles_over_600": int((n > 600).sum()), "n_tiles": int(len(n)),
+                            "max_dets_per_tile": int(n.max()) if len(n) else 0}
+    return out
 
 
 # ------------------------------------------------------------------ B3 (MAL)

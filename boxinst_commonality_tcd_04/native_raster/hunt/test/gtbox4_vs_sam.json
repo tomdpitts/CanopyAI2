@@ -1,0 +1,37 @@
+{
+ "n_tiles": 366,
+ "n_crowns": 25692,
+ "lace4px_mean_iou": 0.7861,
+ "base_sub": {
+  "sam_mean_iou": 0.789,
+  "lace_minus_sam": -0.0029,
+  "ci95_tile_boot": [
+   -0.0061,
+   0.001
+  ]
+ },
+ "base_whole": {
+  "sam_mean_iou": 0.7461,
+  "lace_minus_sam": 0.0399,
+  "ci95_tile_boot": [
+   0.0345,
+   0.0457
+  ]
+ },
+ "ft_sub": {
+  "sam_mean_iou": 0.7258,
+  "lace_minus_sam": 0.0603,
+  "ci95_tile_boot": [
+   0.0533,
+   0.0673
+  ]
+ },
+ "ft_whole": {
+  "sam_mean_iou": 0.6233,
+  "lace_minus_sam": 0.1628,
+  "ci95_tile_boot": [
+   0.1491,
+   0.1782
+  ]
+ }
+}

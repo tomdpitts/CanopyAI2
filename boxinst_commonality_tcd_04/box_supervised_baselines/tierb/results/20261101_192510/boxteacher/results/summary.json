@@ -1,0 +1,57 @@
+{
+ "method": "boxteacher",
+ "time": "2026-11-01 07:26:41",
+ "val": {
+  "sub": {
+   "box": {
+    "AP50": 0.7214,
+    "AP75": 0.4113,
+    "AP50_95": 0.4065,
+    "n_det": 146411
+   },
+   "mask": {
+    "AP50": 0.7002,
+    "AP75": 0.2967,
+    "AP50_95": 0.345,
+    "n_det": 146411
+   }
+  }
+ },
+ "primary": "sub",
+ "rows": [
+  {
+   "name": "boxteacher/test/sub (primary)",
+   "split": "test",
+   "ranking": "product",
+   "geometry": "sub",
+   "AP50": 0.6642,
+   "AP50_95": 0.3049,
+   "AP75": 0.2231,
+   "box_AP50": 0.7033,
+   "n_det": 611151
+  }
+ ],
+ "summary": {
+  "boxteacher/test/sub (primary)": {
+   "AP50": 0.6642,
+   "AP50_95": 0.3049,
+   "box_AP50": 0.7033
+  }
+ },
+ "sensitivity": {
+  "test/sub": {
+   "maxdets600": {
+    "AP50": 0.6642,
+    "AP50_95": 0.3049
+   },
+   "maxdets1200": {
+    "AP50": 0.6662,
+    "AP50_95": 0.3055
+   },
+   "delta_AP50": 0.002,
+   "tiles_over_600": 437,
+   "n_tiles": 439,
+   "max_dets_per_tile": 2217
+  }
+ }
+}

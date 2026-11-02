@@ -1,0 +1,7 @@
+[data] 792 train / 108 val; ATSS targets 20s; boxes without a positive 29
+[cnxl_ln_s0] ConvNeXt-L + ATSS/GFL device=mps params=1.55M recipe={'lr': 0.001, 'wd': 0.0001, 'epochs': 40, 'bs': 3, 'eval_every': 5, 'min_epochs': 12, 'es_patience': 2, 'es_min_delta': 0.005}
+  ep  1 loss [0.4857, 0.3912] 248s lr 1.0e-03
+  ep  2 loss [0.4705, 0.3387] 247s lr 9.9e-04
+  ep  3 loss [0.4913, 0.3209] 242s lr 9.9e-04
+  ep  4 loss [0.467, 0.3065] 249s lr 9.8e-04
+  ep  5 loss [0.4996, 0.3032] 265s lr 9.6e-04 | val boxAP50 0.3331 ^best
