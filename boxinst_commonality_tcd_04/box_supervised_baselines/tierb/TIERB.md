@@ -1,7 +1,7 @@
 # Tier B: B1 BoxInst, B2 BoxTeacher, B3 MAL head-to-head with LACE
 
 <!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
-> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-03).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
 <!-- TABLE1_CURRENT:end -->
 
 **Status 2026-11-01: B2 BoxTeacher DONE, and the LACE gate FIRED (STOP set). B3 MAL has not been run. §000 (2026-10-29) governs over §00, §00 (2026-10-27) over §0, and §0 over everything below.**
@@ -470,3 +470,6 @@ Re-checked locally after the fixes: syntax, container-style import of the app, `
   - the gate override is now per method;
   - smokes are STOP-safe and retry-safe, with per-phase completion records;
   - `start` now reports HOLD.
+
+## Comparison note (2026-11-03): D1 vs B2
+`dino_det/` pre-registration D1 trains a DINO-Swin-L detector (COCO-trained init) on **B2's exact data path**: the same crops, canopy semantics (adapted to set prediction), plateau schedule and 896-subtile selection set, then runs LACE's masker. Test: D1 0.7035 / 0.335 / box 0.739 vs B2 BoxTeacher 0.664 / 0.305 / box 0.703. Paired tile bootstrap D1 − B2 = +0.039 [0.032, 0.049]. D1 is in `results_439/TABLE1_CURRENT.md`; B2's row is still pending Tom.

@@ -19,7 +19,9 @@ TOPK = 600
 FROZEN = {"e": 0.0, "c": 0.33}                       # lace4px_simple: post4, c_peak 0.33, r 12, eps 1e-4, a 0.3, k 1.6
 GRID = [{"e": e, "c": c} for e in (0.0, 0.05, 0.10) for c in (0.25, 0.33, 0.40)]
 SPLIT = {"test": {"z4": f"{FC}/hunt_z4p_test", "gt": os.path.join(PKG, "test_gt.json"), "n": 439},
-         "val": {"z4": f"{FC}/hunt_z4p_val", "gt": os.path.join(PKG, "modal_tcd_multiseed", "phase4", "val_gt.json"), "n": 108}}
+         "val": {"z4": f"{FC}/hunt_z4p_val", "gt": os.path.join(PKG, "modal_tcd_multiseed", "phase4", "val_gt.json"), "n": 108},
+         # sparse-236 (added 2026-11-03 for dino_det D1-sparse): the paths hunt/test_eval.py SPLITS["sparse"] uses
+         "sparse": {"z4": f"{FC}/hunt_z4p_sparse", "gt": os.path.join(REPO, "data", "tcd_sparse", "sparse_gt.json"), "n": 236}}
 _W = {}
 
 
@@ -42,6 +44,9 @@ def _rgb(split, t):
     if split == "test":
         man = json.load(open(os.path.join(PKG, "modal_tcd_multiseed", "phase4", "manifest.json")))["feat_test"]
         return GA._rgb(os.path.join(REPO, "data", "tcd", "test"), t, man)
+    if split == "sparse":                                  # = hunt/test_eval.py SPLITS["sparse"] rgb + manifest
+        man = json.load(open(os.path.join(REPO, "data", "tcd_sparse", "slice_manifest.json")))["tiles"]
+        return GA._rgb(os.path.join(REPO, "data", "tcd_sparse", "test"), t, man)
     man = json.load(open(GV.MANIFEST))["feat_traintile"]
     return GV.load_rgb_verified(t, man).astype(np.float32) / 255.0
 

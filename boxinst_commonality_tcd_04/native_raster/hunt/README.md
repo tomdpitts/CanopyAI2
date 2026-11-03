@@ -1,7 +1,7 @@
 # hunt — a LACE-style masker that beats SAM 3 zero-shot on AP50 (started 2026-10-16)
 
 <!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
-> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-03).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
 <!-- TABLE1_CURRENT:end -->
 
 Goal: LACE masks on LACE's own boxes beat SAM 3 zero-shot masks on the same boxes, mask AP50, 439 test tiles, 3 seeds. Original target 0.664 ± 0.003 was the HYBRID (SAM masks ranked by LACE's product — not computable by a SAM pipeline); the fair SAM baseline is its own ranking √(s·SAM), **0.648 ± 0.003** (see L30). LACE deployed 0.647 ± 0.003.

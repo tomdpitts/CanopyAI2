@@ -1,0 +1,147 @@
+{
+ "split": "val",
+ "protocol": "score_lite crowd bbox IoU 0.5, maxDets 600, floor 0.05",
+ "rows": {
+  "armC_nms05_detscore": {
+   "box_AP50": 0.7011,
+   "n_det": 34072,
+   "cut_rank_recall0.6": 5290,
+   "score_at_cut": 0.5155,
+   "top": {
+    "<24": {
+     "TP": 539,
+     "FP": 270,
+     "precision": 0.666
+    },
+    "24-48": {
+     "TP": 1529,
+     "FP": 527,
+     "precision": 0.744
+    },
+    "48-96": {
+     "TP": 1860,
+     "FP": 209,
+     "precision": 0.899
+    },
+    ">=96": {
+     "TP": 297,
+     "FP": 59,
+     "precision": 0.834
+    },
+    "FP_canopy": {
+     "none": 1001,
+     "touching_<0.5": 64,
+     ">=0.5": 0
+    },
+    "FP_score_quartiles": [
+     0.536,
+     0.566,
+     0.609
+    ]
+   },
+   "all": {
+    "<24": {
+     "TP": 1213,
+     "FP": 9543,
+     "precision": 0.113
+    },
+    "24-48": {
+     "TP": 2047,
+     "FP": 8302,
+     "precision": 0.198
+    },
+    "48-96": {
+     "TP": 2351,
+     "FP": 6955,
+     "precision": 0.253
+    },
+    ">=96": {
+     "TP": 418,
+     "FP": 3243,
+     "precision": 0.114
+    },
+    "FP_canopy": {
+     "none": 26764,
+     "touching_<0.5": 1266,
+     ">=0.5": 13
+    },
+    "FP_score_quartiles": [
+     0.194,
+     0.256,
+     0.334
+    ]
+   }
+  },
+  "boxteacher": {
+   "box_AP50": 0.7214,
+   "n_det": 39018,
+   "cut_rank_recall0.6": 5096,
+   "score_at_cut": 0.6905,
+   "top": {
+    "<24": {
+     "TP": 252,
+     "FP": 58,
+     "precision": 0.813
+    },
+    "24-48": {
+     "TP": 1483,
+     "FP": 416,
+     "precision": 0.781
+    },
+    "48-96": {
+     "TP": 2016,
+     "FP": 336,
+     "precision": 0.857
+    },
+    ">=96": {
+     "TP": 474,
+     "FP": 61,
+     "precision": 0.886
+    },
+    "FP_canopy": {
+     "none": 818,
+     "touching_<0.5": 52,
+     ">=0.5": 1
+    },
+    "FP_score_quartiles": [
+     0.708,
+     0.73,
+     0.765
+    ]
+   },
+   "all": {
+    "<24": {
+     "TP": 1200,
+     "FP": 11836,
+     "precision": 0.092
+    },
+    "24-48": {
+     "TP": 1947,
+     "FP": 10033,
+     "precision": 0.163
+    },
+    "48-96": {
+     "TP": 2272,
+     "FP": 5905,
+     "precision": 0.278
+    },
+    ">=96": {
+     "TP": 574,
+     "FP": 5251,
+     "precision": 0.099
+    },
+    "FP_canopy": {
+     "none": 31033,
+     "touching_<0.5": 1972,
+     ">=0.5": 20
+    },
+    "FP_score_quartiles": [
+     0.373,
+     0.432,
+     0.51
+    ]
+   }
+  }
+ },
+ "date": "2026-11-02 18:47"
+}

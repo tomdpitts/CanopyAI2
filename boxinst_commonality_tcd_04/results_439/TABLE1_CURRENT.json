@@ -1,6 +1,6 @@
 {
  "generated_by": "results_439/build_table1_current.py",
- "date": "2026-10-27",
+ "date": "2026-11-03",
  "protocol": "canopy-neutral crowd, 2048^2, maxDets 600, pycocotools COCOeval",
  "table1_439": [
   {
@@ -109,7 +109,7 @@
    "note": "seam-fixed"
   },
   {
-   "method": "LACE detector -> SAM 3 zs",
+   "method": "LACE CenterNet detector -> SAM 3 zs",
    "supervision": "box+SAM",
    "images": 900,
    "n_seeds": 3,
@@ -146,7 +146,7 @@
    "note": "same LACE boxes; SAM 3 zero-shot masks; SAM's own ranking sqrt(s * SAM score)"
   },
   {
-   "method": "LACE (ours)",
+   "method": "LACE (CenterNet variant)",
    "supervision": "box",
    "images": 900,
    "n_seeds": 3,
@@ -181,6 +181,27 @@
     "native_raster/hunt/test/scored_lace_s2_r2048_lace4px_simple.json"
    ],
    "note": "lace4px_simple masker (hunt/FROZEN_simple_2026-10-26.json), own 4 px posterior ranking"
+  },
+  {
+   "method": "LACE (D1 variant)",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.7035,
+   "AP50_95": 0.3347,
+   "box_AP50": 0.7391,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.7035,
+     0.3347,
+     0.7391
+    ]
+   ],
+   "sources": [
+    "dino_det/results/scored_dino_swinl_s0_test_sprime_r2048.json"
+   ],
+   "note": "dino_det/README.md pre-registration D1 (2026-11-03): detrex DINO-Swin-L, COCO-trained init, trained by us on the 792 OAM-TCD train tiles (boxes only, LACE canopy rule, Tier B crops + plateau + 896-subtile selection), best epoch 6; unchanged lace4px_simple masker, s' ranking (val-selected); single seed; paired tile bootstrap vs BoxTeacher +0.039 [0.032, 0.049]"
   }
  ],
  "sparse236": [
@@ -227,7 +248,7 @@
    "note": "seam-fixed; same s0 checkpoint as the 439 row (iter 23422); Modal A100 predict 2026-10-27, fc-01M5XCK31BK2D5TW47B91DG2D6"
   },
   {
-   "method": "LACE (ours)",
+   "method": "LACE (CenterNet variant)",
    "supervision": "box",
    "images": 900,
    "n_seeds": 3,
@@ -262,6 +283,27 @@
     "native_raster/hunt/test/scored_lace_sparse_s2_r2048_lace4px_simple.json"
    ],
    "note": "lace4px_simple"
+  },
+  {
+   "method": "LACE (D1 variant)",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.7349,
+   "AP50_95": 0.3962,
+   "box_AP50": 0.7496,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.7349,
+     0.3962,
+     0.7496
+    ]
+   ],
+   "sources": [
+    "dino_det/results/scored_dino_swinl_s0_sparse_sprime_r2048.json"
+   ],
+   "note": "dino_det/README.md pre-registration D1-sparse (2026-11-03): frozen D1 (epoch 6) + lace4px_simple, s' (val-selected for D1), single run"
   }
  ]
 }

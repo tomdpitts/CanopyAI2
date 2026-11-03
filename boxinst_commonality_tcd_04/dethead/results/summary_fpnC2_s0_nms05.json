@@ -1,0 +1,73 @@
+{
+ "tag": "fpnC2_s0_nms05",
+ "selected": "nms0.5|sprime",
+ "modal_meta": {
+  "tag": "fpnC2_s0",
+  "split": "test",
+  "nms": 0.5,
+  "ckpt": "best.pt",
+  "cfg": {
+   "head": "fpnC2",
+   "tag": "fpnC2_s0",
+   "ema": true,
+   "best_epoch": 35,
+   "val_crowd_boxAP60": 0.6045,
+   "recipe": {
+    "lr": 0.001,
+    "wd": 0.0001,
+    "epochs": 40,
+    "bs": 3,
+    "eval_every": 5,
+    "min_epochs": 12,
+    "es_patience": 2,
+    "es_min_delta": 0.005,
+    "es_metric": "crowd box AP@0.6, NMS 0.6, floor 0.05, maxDets 600",
+    "seed": 0
+   }
+  }
+ },
+ "rows": {
+  "sprime": {
+   "mask": {
+    "AP50": 0.6627,
+    "AP75": 0.2046,
+    "AP50_95": 0.2973,
+    "n_det": 209555
+   },
+   "box": {
+    "AP50": 0.693,
+    "AP75": 0.2606,
+    "AP50_95": 0.3298
+   },
+   "floor": 0.0
+  },
+  "detscore": {
+   "mask": {
+    "AP50": 0.6482,
+    "AP75": 0.194,
+    "AP50_95": 0.2881,
+    "n_det": 209555
+   },
+   "box": {
+    "AP50": 0.681,
+    "AP75": 0.2494,
+    "AP50_95": 0.3199
+   },
+   "floor": 0.05
+  },
+  "calibrated": {
+   "mask": {
+    "AP50": 0.6581,
+    "AP75": 0.1967,
+    "AP50_95": 0.2928,
+    "n_det": 209555
+   },
+   "box": {
+    "AP50": 0.6893,
+    "AP75": 0.2553,
+    "AP50_95": 0.3255
+   },
+   "floor": 0.0
+  }
+ }
+}

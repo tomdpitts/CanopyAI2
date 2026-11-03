@@ -1,7 +1,7 @@
 # Box-supervised baselines — plan & handover
 
 <!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
-> **CURRENT HEADLINE NUMBERS (2026-10-27)** — single source of truth: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md) (generated + asserted by `results_439/build_table1_current.py`). **Any 439 / sparse236 test number elsewhere in this file that disagrees with this box is SUPERSEDED** (512 raster, pre-seam-fix baselines, or the 8 px masker).
+> **CURRENT HEADLINE NUMBERS (2026-11-03: LACE (D1 variant) row added)** — single source of truth: [`TABLE1_CURRENT.md`](../results_439/TABLE1_CURRENT.md) (generated + asserted by `results_439/build_table1_current.py`). **Any 439 / sparse236 test number elsewhere in this file that disagrees with this box is SUPERSEDED** (512 raster, pre-seam-fix baselines, or the 8 px masker).
 
 #### Table 1 — OAM-TCD 439 test (canopy-neutral, 2048², maxDets 600)
 
@@ -12,12 +12,15 @@
 | SelvaBox -> SAM 3 (FT) | box+SAM | 3024 | 0.598 | 0.221 | 0.767 |
 | Box2Mask Swin-L | box | 900 | 0.589 | 0.245 | 0.620 |
 | Box2Mask R-50 | box | 900 | 0.451 | 0.165 | 0.512 |
-| LACE detector -> SAM 3 zs, 3 seeds | box+SAM | 900 | 0.648 ± 0.003 | 0.301 ± 0.003 | 0.651 ± 0.009 |
-| LACE (ours), 3 seeds | box | 900 | 0.655 ± 0.004 | 0.280 ± 0.006 | 0.666 ± 0.011 |
+| LACE CenterNet detector -> SAM 3 zs, 3 seeds | box+SAM | 900 | 0.648 ± 0.003 | 0.301 ± 0.003 | 0.651 ± 0.009 |
+| LACE (CenterNet variant), 3 seeds | box | 900 | 0.655 ± 0.004 | 0.280 ± 0.006 | 0.666 ± 0.011 |
+| LACE (D1 variant) | box | 900 | 0.704 | 0.335 | 0.739 |
 
-- LACE → SAM 3 zs: same LACE boxes, SAM 3 **zero-shot** masks, SAM's own ranking √(s·SAM). Box AP50 differs from LACE's because the ranking differs.
+- LACE CenterNet detector → SAM 3 zs: same LACE (CenterNet variant) boxes, SAM 3 **zero-shot** masks, SAM's own ranking √(s·SAM). Box AP50 differs from LACE (CenterNet variant)'s because the ranking differs.
 - SelvaBox → SAM 3 uses the SelvaMask **fine-tuned** SAM 3 (`CanopyRS/sam3-multi-selvabox-selvamask-FT`), not zero-shot.
-- LACE = `lace4px_simple` 4 px masker (Tom's preferred masker 2026-10-26). paper.tex tab:oamtcd439 and tab:sparse236 carry these rows (2026-10-27); abstract/L662 prose, Methods L502/L504, tab:config, tab:compute and both qualitative figures still describe the 8 px masker — see `native_raster/hunt/ADOPT_AUDIT_2026-10-27.md`.
+- **Naming (Tom, 2026-11-03):** D1 *is* LACE — externally (paper, talks) it is just "LACE". In repo docs: **LACE (D1 variant)** = DINO-Swin-L detector + LACE masker; **LACE (CenterNet variant)** = the earlier frozen-DINOv3 CenterNet-style detector + LACE masker (the 0.655 row).
+- LACE masker = `lace4px_simple` 4 px masker (Tom's preferred masker 2026-10-26). paper.tex tab:oamtcd439 and tab:sparse236 carry these rows (2026-10-27); abstract/L662 prose, Methods L502/L504, tab:config, tab:compute and both qualitative figures still describe the 8 px masker — see `native_raster/hunt/ADOPT_AUDIT_2026-10-27.md`.
+- **LACE (D1 variant) (2026-11-03)** = LACE with its detector stage a DINO-Swin-L (detrex, COCO-trained init, never SelvaBox weights) trained by us on OAM-TCD boxes only, + the unchanged LACE masker and s′ ranking; single seed. In paper.tex Table 1 as "LACE (ours)" (2026-11-03). Comparison rows not in this table (pending Tom): BoxTeacher Swin-B 0.664 / 0.305 / box 0.703 (`box_supervised_baselines/tierb/TIERB.md`); frozen-DINOv3 detector C2 + LACE masker 0.663 / 0.297 / box 0.693 (`dethead/README.md`). D1 − BoxTeacher paired tile bootstrap +0.039 [0.032, 0.049] (`dino_det/results/boot_test_mask_ap50.json`). D1 sparse236 row added 2026-11-03 (pre-registration D1-sparse); BoxTeacher has no sparse236 run.
 - ± = sd over 3 detector seeds, ddof 1. Baselines are single runs. 3 dp, round half up (5 rounds up); full precision in TABLE1_CURRENT.json.
 
 #### tab:sparse236 — sparse-canopy holdout (236 tiles, same protocol)
@@ -26,7 +29,8 @@
 |---|---|---|---|---|---|
 | Detectree2 | masks | 900 | 0.636 | 0.353 | 0.644 |
 | Box2Mask Swin-L | box | 900 | 0.604 | 0.262 | 0.627 |
-| LACE (ours), 3 seeds | box | 900 | 0.678 ± 0.011 | 0.319 ± 0.009 | 0.674 ± 0.016 |
+| LACE (CenterNet variant), 3 seeds | box | 900 | 0.678 ± 0.011 | 0.319 ± 0.009 | 0.674 ± 0.016 |
+| LACE (D1 variant) | box | 900 | 0.735 | 0.396 | 0.750 |
 <!-- TABLE1_CURRENT:end -->
 
 > **Status 2026-10-23 (supersedes the 2026-09-02 status and the 512-raster numbers in §2–§5d):** the paper is re-based to the native 2048 raster. Seam-fixed 2048 rows (`../native_raster/NATIVE_RASTER.md` seam-fix table): Box2Mask Swin-L 0.589, R-50 0.451 mask AP50; LACE 4 px masker: `lace4px_g30` 0.656 ± 0.004 and the simpler `lace4px_simple` (no per-pixel step, own-posterior ranking; 2026-10-26) 0.655 ± 0.004 (§13a) — neither yet in paper.tex, which still carries the deployed 8 px masker's 0.647 ± 0.003. Current work: §13 (Tier A done incl. A5/A6, Tier B set up in `tierb/TIERB.md`, Tier C undecided). LACE vs SAM 3 zero-shot on LACE boxes: §13a.

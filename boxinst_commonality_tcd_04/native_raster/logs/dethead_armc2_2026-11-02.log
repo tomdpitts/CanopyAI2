@@ -1,0 +1,152 @@
+2026-11-02 19:43:04 billing baseline before C2:   Metered Cost:                68.96  
+[detach] modal deploy /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/trainC_modal.py
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/trainC_mo
+│   dal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/val_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/score_lite.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/fcos.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/__init__.
+│   py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function train.
+└── 🔨 Created function predict.
+✓ App deployed in 3.369s! 🎉
+
+View Deployment: 
+https://modal.com/apps/tomdpitts/main/deployed/tcd04-dethead-armc
+{
+  "call_id": "fc-01M6DPTGX9Y0RM3KRAZFFGM06V",
+  "app": "tcd04-dethead-armc",
+  "fn": "train",
+  "kwargs": {
+    "tag": "fpnC2_s0",
+    "smoke": 1,
+    "head": "C2"
+  },
+  "note": "arm C2 smoke"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DPTGX9Y0RM3KRAZFFGM06V
+{
+  "call_id": "fc-01M6DPVY470DB9YZFJFGZYGCHA",
+  "app": "tcd04-dethead-armc",
+  "fn": "train",
+  "kwargs": {
+    "tag": "fpnC2_s0",
+    "head": "C2"
+  },
+  "note": "arm C2 full training (prereg 6)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DPVY470DB9YZFJFGZYGCHA
+2026-11-02 20:46:28 fc-01M6DPVY470DB9YZFJFGZYGCHA DONE
+2026-11-02 20:46:28 C2 trained; val predict
+{
+  "call_id": "fc-01M6DTEDMBXDHFGXMNRN0D9AHT",
+  "app": "tcd04-dethead-armc",
+  "fn": "predict",
+  "kwargs": {
+    "tag": "fpnC2_s0",
+    "split": "val",
+    "nms": "0.5,0.6",
+    "head": "C2"
+  },
+  "note": "C2 val preds"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DTEDMBXDHFGXMNRN0D9AHT
+2026-11-02 20:47:32 fc-01M6DTEDMBXDHFGXMNRN0D9AHT DONE
+2026-11-02 20:52:31 C2 selected nms0.5|sprime; test predict nms 0.5
+{
+  "call_id": "fc-01M6DTSG31BNS620TVWEXSQEN2",
+  "app": "tcd04-dethead-armc",
+  "fn": "predict",
+  "kwargs": {
+    "tag": "fpnC2_s0",
+    "split": "test",
+    "nms": 0.5,
+    "head": "C2"
+  },
+  "note": "C2 SINGLE TEST preds"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DTSG31BNS620TVWEXSQEN2
+2026-11-02 20:55:39 fc-01M6DTSG31BNS620TVWEXSQEN2 DONE
+2026-11-02 21:18:41 C2 ALL DONE

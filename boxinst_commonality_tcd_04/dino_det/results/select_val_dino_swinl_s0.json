@@ -1,0 +1,92 @@
+{
+ "rule": "highest val mask AP50; ties within 0.001 -> detscore",
+ "rows": {
+  "detscore": {
+   "mask": {
+    "AP50": 0.7356,
+    "AP75": 0.3375,
+    "AP50_95": 0.3759
+   },
+   "box": {
+    "AP50": 0.7546,
+    "AP75": 0.4594
+   }
+  },
+  "sprime": {
+   "mask": {
+    "AP50": 0.7384,
+    "AP75": 0.3345,
+    "AP50_95": 0.3763
+   },
+   "box": {
+    "AP50": 0.7575,
+    "AP75": 0.4632
+   }
+  }
+ },
+ "selected": "sprime",
+ "box_diag_detscore": {
+  "AP50": 0.7546,
+  "n_det": 51341,
+  "n_gt": 7041,
+  "max_recall": 0.8776,
+  "precision_at_recall": {
+   "0.5": 0.9002,
+   "0.6": 0.8469,
+   "0.7": 0.761
+  },
+  "recall_by_size_px": {
+   "0-24": [
+    0.7817,
+    1819
+   ],
+   "24-48": [
+    0.8715,
+    2163
+   ],
+   "48-96": [
+    0.9411,
+    2444
+   ],
+   "96-inf": [
+    0.9301,
+    615
+   ]
+  },
+  "recall_touching_isolated": {
+   "touching": [
+    0.8641,
+    2523
+   ],
+   "isolated": [
+    0.8851,
+    4518
+   ]
+  },
+  "missed_causes": {
+   "n_missed": 862,
+   "no_det_iou<0.1": 0.297,
+   "poor_loc_0.1-0.5": 0.6949,
+   "taken_iou>=0.5": 0.0081
+  },
+  "fp_above_recall0.6": {
+   "n_dets_to_recall0.6": 4988,
+   "n_fp": 764,
+   "bg": 0.7291,
+   "loc": 0.2605,
+   "dup": 0.0105
+  }
+ },
+ "modal_meta": {
+  "model": "DINO-Swin-L COCO-init, trained on OAM-TCD boxes (prereg D1)",
+  "best_epoch": 6,
+  "val_box": {
+   "AP50": 0.7606,
+   "AP75": 0.4578,
+   "AP50_95": 0.4394,
+   "n_det": 210251
+  },
+  "stitch": "edge 10 px interior, dedup IoU 0.7 / cont 0.85, floor 0.05, top 600"
+ },
+ "date": "2026-11-03 04:16"
+}

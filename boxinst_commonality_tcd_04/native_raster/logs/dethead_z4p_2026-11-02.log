@@ -1,0 +1,406 @@
+2026-11-02 16:43:58 Modal billing baseline (Nov metered) $42.13 before z4p extraction
+[detach] modal deploy /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/z4p_modal.py
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/z4p_modal
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/em_model_4p_fix.npz
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+└── 🔨 Created function extract.
+✓ App deployed in 3.126s! 🎉
+
+View Deployment: 
+https://modal.com/apps/tomdpitts/main/deployed/tcd04-dethead-z4p
+{
+  "call_id": "fc-01M6DCJQRGR395CEKQEE0SS75M",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "train",
+    "tiles": "tcd_tile_1012,tcd_tile_1041"
+  },
+  "note": "z4p G2 parity: 2 val tiles"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DCJQRGR395CEKQEE0SS75M
+tcd_tile_1012 (512, 512, 128) (512, 512, 128) cos mean 1.000000 p1 0.99987 min 0.99972 max|diff| 0.0038
+tcd_tile_1041 (512, 512, 128) (512, 512, 128) cos mean 1.000000 p1 0.99988 min 0.99954 max|diff| 0.0084
+[detach] modal deploy /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/z4p_modal.py
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/z4p_modal
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/em_model_4p_fix.npz
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+└── 🔨 Created function extract.
+✓ App deployed in 2.929s! 🎉
+
+View Deployment: 
+https://modal.com/apps/tomdpitts/main/deployed/tcd04-dethead-z4p
+{
+  "call_id": "fc-01M6DCRB8SH7MZ9RGHBTSM0T63",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "train",
+    "shard": 0,
+    "nshards": 4
+  },
+  "note": "z4p train shard 0/4 H100"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DCRB8SH7MZ9RGHBTSM0T63
+{
+  "call_id": "fc-01M6DCRCD0EKSES8CVTQEXN7BX",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "train",
+    "shard": 1,
+    "nshards": 4
+  },
+  "note": "z4p train shard 1/4 H100"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DCRCD0EKSES8CVTQEXN7BX
+{
+  "call_id": "fc-01M6DCRDG8KP0W93CSCY1BR3KC",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "train",
+    "shard": 2,
+    "nshards": 4
+  },
+  "note": "z4p train shard 2/4 H100"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DCRDG8KP0W93CSCY1BR3KC
+{
+  "call_id": "fc-01M6DCREM9M0GX1HC0Y5FQVNB9",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "train",
+    "shard": 3,
+    "nshards": 4
+  },
+  "note": "z4p train shard 3/4 H100"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DCREM9M0GX1HC0Y5FQVNB9
+{
+  "call_id": "fc-01M6DCRFQN6RBYBGRT53Z1WYDS",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "test",
+    "shard": 0,
+    "nshards": 2
+  },
+  "note": "z4p test shard 0/2 H100"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DCRFQN6RBYBGRT53Z1WYDS
+{
+  "call_id": "fc-01M6DCRGTSDYJS9JA0H1WHEH6P",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "test",
+    "shard": 1,
+    "nshards": 2
+  },
+  "note": "z4p test shard 1/2 H100"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DCRGTSDYJS9JA0H1WHEH6P
+cancelled fc-01M6DCRFQN6RBYBGRT53Z1WYDS
+cancelled fc-01M6DCRGTSDYJS9JA0H1WHEH6P
+2026-11-02 16:51:52 amendment 4b: relaunch all shards (sha1 only where manifest has it)
+[detach] modal deploy /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/z4p_modal.py
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/z4p_modal
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/em_model_4p_fix.npz
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_features_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/phase4_lib_tcd.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+└── 🔨 Created function extract.
+✓ App deployed in 2.848s! 🎉
+
+View Deployment: 
+https://modal.com/apps/tomdpitts/main/deployed/tcd04-dethead-z4p
+{
+  "call_id": "fc-01M6DD0ZJEVNQ0Z1E477WSDRS1",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "train",
+    "shard": 0,
+    "nshards": 4
+  },
+  "note": "z4p train shard 0/4 H100 (4b relaunch)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DD0ZJEVNQ0Z1E477WSDRS1
+{
+  "call_id": "fc-01M6DD10N32SCVVFW8JP65EJH1",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "train",
+    "shard": 1,
+    "nshards": 4
+  },
+  "note": "z4p train shard 1/4 H100 (4b relaunch)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DD10N32SCVVFW8JP65EJH1
+{
+  "call_id": "fc-01M6DD11SJZREQHB34CEKJEYWR",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "train",
+    "shard": 2,
+    "nshards": 4
+  },
+  "note": "z4p train shard 2/4 H100 (4b relaunch)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DD11SJZREQHB34CEKJEYWR
+{
+  "call_id": "fc-01M6DD12XEMVQN2GMH6C5V6HDF",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "train",
+    "shard": 3,
+    "nshards": 4
+  },
+  "note": "z4p train shard 3/4 H100 (4b relaunch)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DD12XEMVQN2GMH6C5V6HDF
+{
+  "call_id": "fc-01M6DD142F3JMMDW7F14E0WMFB",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "test",
+    "shard": 0,
+    "nshards": 2
+  },
+  "note": "z4p test shard 0/2 H100 (4b relaunch)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DD142F3JMMDW7F14E0WMFB
+{
+  "call_id": "fc-01M6DD156ZGS3SX1NJCA8RYT33",
+  "app": "tcd04-dethead-z4p",
+  "fn": "extract",
+  "kwargs": {
+    "split": "test",
+    "shard": 1,
+    "nshards": 2
+  },
+  "note": "z4p test shard 1/2 H100 (4b relaunch)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DD156ZGS3SX1NJCA8RYT33

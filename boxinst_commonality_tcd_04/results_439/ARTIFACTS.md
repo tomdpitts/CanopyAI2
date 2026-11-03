@@ -1,7 +1,7 @@
 # Where every Table 1 artefact lives
 
 <!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
-> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`TABLE1_CURRENT.md`](TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-03).** Current headline table: [`TABLE1_CURRENT.md`](TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
 <!-- TABLE1_CURRENT:end -->
 
 **Rule (learned the hard way, three times):** a prediction that cost GPU time never lives only in

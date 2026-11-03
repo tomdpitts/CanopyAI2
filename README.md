@@ -6,10 +6,24 @@ set. The through-line across the repo is one question: *how far can a frozen DIN
 backbone be pushed on canopy tasks under weak (box-only) supervision, and does
 domain-adaptive pretraining (DAPT) of that backbone help?*
 
-**Headline result: mask mAP50 = 0.504** on the OAM-TCD 439 test — **beating 0.432**,
-the fully-supervised Restor Mask R-CNN benchmark (mask labels + a trained backbone) —
-using **only ITC boxes** and a **frozen** backbone. Training never sees a polygon;
-canopy is COCO-ignore throughout; polygons touch the pipeline only at evaluation.
+**Current headline (2026-11-03; single source of truth:
+[`results_439/TABLE1_CURRENT.md`](boxinst_commonality_tcd_04/results_439/TABLE1_CURRENT.md),
+canopy-neutral, 2048², maxDets 600):** on the OAM-TCD 439 test, box supervision only,
+- **LACE** (D1 variant: DINO-Swin-L detector trained on OAM-TCD boxes only + the
+  training-free 4 px LACE masker; [`dino_det/`](boxinst_commonality_tcd_04/dino_det/README.md)):
+  mask AP50 **0.704**, box AP50 0.739 (single seed), +0.039 [0.032, 0.049] over BoxTeacher
+  (0.664), the strongest box-supervised baseline run;
+- LACE (CenterNet variant: frozen-DINOv3 CenterNet-style detector + the same masker):
+  mask AP50 0.655 ± 0.004 (3 seeds), level with the mask-supervised Restor Mask R-CNN (0.648).
+
+Externally (paper, talks) the D1 variant is simply **LACE**; the variant labels are
+repo-internal only.
+
+Training never sees a polygon; canopy is ignored, never background; polygons touch the
+pipeline only at evaluation.
+
+*(Historical: the earlier headline "mask mAP50 = 0.504, beating 0.432" was on the
+superseded 512-px raster protocol with the 8 px masker; do not quote it.)*
 
 The flagship thread is **[`boxinst_commonality_tcd_04/`](boxinst_commonality_tcd_04/README.md)** —
 read its README for the full method, results table, and replication commands. This
@@ -43,7 +57,7 @@ other roughly in the order listed.
 
 | thread | question | status |
 |--------|----------|--------|
-| **[`boxinst_commonality_tcd_04/`](boxinst_commonality_tcd_04/README.md)** | box-only ITC instance seg on OAM-TCD, frozen DINOv3 | **flagship — mask mAP50 0.504 > supervised 0.432** |
+| **[`boxinst_commonality_tcd_04/`](boxinst_commonality_tcd_04/README.md)** | box-only ITC instance seg on OAM-TCD, frozen DINOv3 | **flagship — 439 test mask AP50 0.704 (LACE, D1 variant) / 0.655 (LACE, CenterNet variant); see `results_439/TABLE1_CURRENT.md`** |
 | [`boxinst/`](boxinst/README.md) | one-shot head: detection + CondInst masks from boxes only | prototype (dryland test mAP50 0.589) |
 | [`boxinst_commonality/`](boxinst_commonality/README.md) | masks from embedding-space commonality instead of a CondInst branch | training-free EM mask route (feeds the flagship) |
 | [`boxinst_tcd/`](boxinst_tcd/README.md) | does the commonality objective help on data that HAS polygons? | box-only training, mask-scored on OAM-TCD |
@@ -99,7 +113,11 @@ Both paths are load-bearing: roughly fourteen docs and `run_*.sh` scripts hardco
 - **The Hugging Face cache does not survive a machine move.** DINOv3 ViT-L/16 weights
   (~1.1 GB) re-download on the first local backbone call.
 
-## Quick start (flagship result)
+## Quick start (original 2025 pipeline; historical)
+
+*Reproduces the original 8 px detector + EM masker on the 512 raster. Current
+configurations are documented in the flagship README (`lace4px_simple` masker), in
+`dethead/` (frozen-feature detector heads) and in `dino_det/` (LACE, D1 variant).*
 
 ```bash
 V=.venv/bin/python
@@ -125,7 +143,11 @@ stored locally (OAM-TCD train/test + an Australian arid-rangeland set).
 
 - Backbone is frozen (web); the DAPT-vs-web comparison is the next step (swap `--arm`).
 - Masks never see a polygon — the EM masker is fit on box interiors, canopy ignored.
-- The headline `det_t8` detector overfits: 0.504 is the early-peak, overfit-limited
-  number. Regularization + more of the ~3,611 available train tiles is the open lever.
+- (Historical) The original `det_t8` detector overfits: 0.504 (512 raster) was the
+  early-peak, overfit-limited number.
+- The frozen-DINOv3 detector heads plateau near test box AP50 0.69 (`dethead/`); the
+  0.704 LACE row (D1 variant) uses a fine-tuned box detector (Swin-L, COCO-pretrained), so its gain
+  over BoxTeacher is mostly detection, and it is a single seed (`dino_det/README.md`
+  lists the open caveats).
 - The directional shadow-prior thread (the repo's original objective) was found to be
   real on raw features but subsumed by DINOv3, and is retained only for history.

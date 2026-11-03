@@ -1,0 +1,837 @@
+/Users/tompitts/dphil/dino_local/detrex/detrex/layers/dcn_v3.py:24: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  def forward(
+/Users/tompitts/dphil/dino_local/detrex/detrex/layers/dcn_v3.py:53: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  def backward(ctx, grad_output):
+/Users/tompitts/dphil/dino_local/venv/lib/python3.10/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/Users/tompitts/dphil/dino_local/venv/lib/python3.10/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+  warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+/Users/tompitts/dphil/dino_local/detrex/detrex/config/config.py:18: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/Users/tompitts/dphil/dino_local/venv/lib/python3.10/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/native/TensorShape.cpp:4223.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.0.bias in checkpoint is torch.Size([80]), while shape of class_embed.0.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.0.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.0.weight in checkpoint is torch.Size([80, 256]), while shape of class_embed.0.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.0.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.1.bias in checkpoint is torch.Size([80]), while shape of class_embed.1.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.1.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.1.weight in checkpoint is torch.Size([80, 256]), while shape of class_embed.1.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.1.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.2.bias in checkpoint is torch.Size([80]), while shape of class_embed.2.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.2.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.2.weight in checkpoint is torch.Size([80, 256]), while shape of class_embed.2.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.2.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.3.bias in checkpoint is torch.Size([80]), while shape of class_embed.3.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.3.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.3.weight in checkpoint is torch.Size([80, 256]), while shape of class_embed.3.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.3.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.4.bias in checkpoint is torch.Size([80]), while shape of class_embed.4.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.4.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.4.weight in checkpoint is torch.Size([80, 256]), while shape of class_embed.4.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.4.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.5.bias in checkpoint is torch.Size([80]), while shape of class_embed.5.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.5.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.5.weight in checkpoint is torch.Size([80, 256]), while shape of class_embed.5.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.5.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.6.bias in checkpoint is torch.Size([80]), while shape of class_embed.6.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.6.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of class_embed.6.weight in checkpoint is torch.Size([80, 256]), while shape of class_embed.6.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: class_embed.6.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of label_enc.weight in checkpoint is torch.Size([80, 256]), while shape of label_enc.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: label_enc.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.0.bias in checkpoint is torch.Size([80]), while shape of transformer.decoder.class_embed.0.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.0.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.0.weight in checkpoint is torch.Size([80, 256]), while shape of transformer.decoder.class_embed.0.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.0.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.1.bias in checkpoint is torch.Size([80]), while shape of transformer.decoder.class_embed.1.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.1.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.1.weight in checkpoint is torch.Size([80, 256]), while shape of transformer.decoder.class_embed.1.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.1.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.2.bias in checkpoint is torch.Size([80]), while shape of transformer.decoder.class_embed.2.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.2.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.2.weight in checkpoint is torch.Size([80, 256]), while shape of transformer.decoder.class_embed.2.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.2.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.3.bias in checkpoint is torch.Size([80]), while shape of transformer.decoder.class_embed.3.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.3.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.3.weight in checkpoint is torch.Size([80, 256]), while shape of transformer.decoder.class_embed.3.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.3.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.4.bias in checkpoint is torch.Size([80]), while shape of transformer.decoder.class_embed.4.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.4.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.4.weight in checkpoint is torch.Size([80, 256]), while shape of transformer.decoder.class_embed.4.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.4.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.5.bias in checkpoint is torch.Size([80]), while shape of transformer.decoder.class_embed.5.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.5.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.5.weight in checkpoint is torch.Size([80, 256]), while shape of transformer.decoder.class_embed.5.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.5.weight will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.6.bias in checkpoint is torch.Size([80]), while shape of transformer.decoder.class_embed.6.bias in model is torch.Size([1]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.6.bias will not be loaded. Please double check and see if this is desired.
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Shape of transformer.decoder.class_embed.6.weight in checkpoint is torch.Size([80, 256]), while shape of transformer.decoder.class_embed.6.weight in model is torch.Size([1, 256]).
+WARNING [11/03 01:39:14 detrex.checkpoint.c2_model_loading]: transformer.decoder.class_embed.6.weight will not be loaded. Please double check and see if this is desired.
+[11/03 01:39:14 detrex.checkpoint.c2_model_loading]: Following weights matched with model:
+| Names in Model                                                     | Names in Checkpoint                                                | Shapes                        |
+|:-------------------------------------------------------------------|:-------------------------------------------------------------------|:------------------------------|
+| backbone.layers.0.blocks.0.attn.proj.bias                          | backbone.layers.0.blocks.0.attn.proj.bias                          | torch.Size([192])             |
+| backbone.layers.0.blocks.0.attn.proj.weight                        | backbone.layers.0.blocks.0.attn.proj.weight                        | torch.Size([192, 192])        |
+| backbone.layers.0.blocks.0.attn.qkv.bias                           | backbone.layers.0.blocks.0.attn.qkv.bias                           | torch.Size([576])             |
+| backbone.layers.0.blocks.0.attn.qkv.weight                         | backbone.layers.0.blocks.0.attn.qkv.weight                         | torch.Size([576, 192])        |
+| backbone.layers.0.blocks.0.attn.relative_position_bias_table       | backbone.layers.0.blocks.0.attn.relative_position_bias_table       | torch.Size([529, 6])          |
+| backbone.layers.0.blocks.0.attn.relative_position_index            | backbone.layers.0.blocks.0.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.0.blocks.0.mlp.fc1.bias                            | backbone.layers.0.blocks.0.mlp.fc1.bias                            | torch.Size([768])             |
+| backbone.layers.0.blocks.0.mlp.fc1.weight                          | backbone.layers.0.blocks.0.mlp.fc1.weight                          | torch.Size([768, 192])        |
+| backbone.layers.0.blocks.0.mlp.fc2.bias                            | backbone.layers.0.blocks.0.mlp.fc2.bias                            | torch.Size([192])             |
+| backbone.layers.0.blocks.0.mlp.fc2.weight                          | backbone.layers.0.blocks.0.mlp.fc2.weight                          | torch.Size([192, 768])        |
+| backbone.layers.0.blocks.0.norm1.bias                              | backbone.layers.0.blocks.0.norm1.bias                              | torch.Size([192])             |
+| backbone.layers.0.blocks.0.norm1.weight                            | backbone.layers.0.blocks.0.norm1.weight                            | torch.Size([192])             |
+| backbone.layers.0.blocks.0.norm2.bias                              | backbone.layers.0.blocks.0.norm2.bias                              | torch.Size([192])             |
+| backbone.layers.0.blocks.0.norm2.weight                            | backbone.layers.0.blocks.0.norm2.weight                            | torch.Size([192])             |
+| backbone.layers.0.blocks.1.attn.proj.bias                          | backbone.layers.0.blocks.1.attn.proj.bias                          | torch.Size([192])             |
+| backbone.layers.0.blocks.1.attn.proj.weight                        | backbone.layers.0.blocks.1.attn.proj.weight                        | torch.Size([192, 192])        |
+| backbone.layers.0.blocks.1.attn.qkv.bias                           | backbone.layers.0.blocks.1.attn.qkv.bias                           | torch.Size([576])             |
+| backbone.layers.0.blocks.1.attn.qkv.weight                         | backbone.layers.0.blocks.1.attn.qkv.weight                         | torch.Size([576, 192])        |
+| backbone.layers.0.blocks.1.attn.relative_position_bias_table       | backbone.layers.0.blocks.1.attn.relative_position_bias_table       | torch.Size([529, 6])          |
+| backbone.layers.0.blocks.1.attn.relative_position_index            | backbone.layers.0.blocks.1.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.0.blocks.1.mlp.fc1.bias                            | backbone.layers.0.blocks.1.mlp.fc1.bias                            | torch.Size([768])             |
+| backbone.layers.0.blocks.1.mlp.fc1.weight                          | backbone.layers.0.blocks.1.mlp.fc1.weight                          | torch.Size([768, 192])        |
+| backbone.layers.0.blocks.1.mlp.fc2.bias                            | backbone.layers.0.blocks.1.mlp.fc2.bias                            | torch.Size([192])             |
+| backbone.layers.0.blocks.1.mlp.fc2.weight                          | backbone.layers.0.blocks.1.mlp.fc2.weight                          | torch.Size([192, 768])        |
+| backbone.layers.0.blocks.1.norm1.bias                              | backbone.layers.0.blocks.1.norm1.bias                              | torch.Size([192])             |
+| backbone.layers.0.blocks.1.norm1.weight                            | backbone.layers.0.blocks.1.norm1.weight                            | torch.Size([192])             |
+| backbone.layers.0.blocks.1.norm2.bias                              | backbone.layers.0.blocks.1.norm2.bias                              | torch.Size([192])             |
+| backbone.layers.0.blocks.1.norm2.weight                            | backbone.layers.0.blocks.1.norm2.weight                            | torch.Size([192])             |
+| backbone.layers.0.downsample.norm.bias                             | backbone.layers.0.downsample.norm.bias                             | torch.Size([768])             |
+| backbone.layers.0.downsample.norm.weight                           | backbone.layers.0.downsample.norm.weight                           | torch.Size([768])             |
+| backbone.layers.0.downsample.reduction.weight                      | backbone.layers.0.downsample.reduction.weight                      | torch.Size([384, 768])        |
+| backbone.layers.1.blocks.0.attn.proj.bias                          | backbone.layers.1.blocks.0.attn.proj.bias                          | torch.Size([384])             |
+| backbone.layers.1.blocks.0.attn.proj.weight                        | backbone.layers.1.blocks.0.attn.proj.weight                        | torch.Size([384, 384])        |
+| backbone.layers.1.blocks.0.attn.qkv.bias                           | backbone.layers.1.blocks.0.attn.qkv.bias                           | torch.Size([1152])            |
+| backbone.layers.1.blocks.0.attn.qkv.weight                         | backbone.layers.1.blocks.0.attn.qkv.weight                         | torch.Size([1152, 384])       |
+| backbone.layers.1.blocks.0.attn.relative_position_bias_table       | backbone.layers.1.blocks.0.attn.relative_position_bias_table       | torch.Size([529, 12])         |
+| backbone.layers.1.blocks.0.attn.relative_position_index            | backbone.layers.1.blocks.0.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.1.blocks.0.mlp.fc1.bias                            | backbone.layers.1.blocks.0.mlp.fc1.bias                            | torch.Size([1536])            |
+| backbone.layers.1.blocks.0.mlp.fc1.weight                          | backbone.layers.1.blocks.0.mlp.fc1.weight                          | torch.Size([1536, 384])       |
+| backbone.layers.1.blocks.0.mlp.fc2.bias                            | backbone.layers.1.blocks.0.mlp.fc2.bias                            | torch.Size([384])             |
+| backbone.layers.1.blocks.0.mlp.fc2.weight                          | backbone.layers.1.blocks.0.mlp.fc2.weight                          | torch.Size([384, 1536])       |
+| backbone.layers.1.blocks.0.norm1.bias                              | backbone.layers.1.blocks.0.norm1.bias                              | torch.Size([384])             |
+| backbone.layers.1.blocks.0.norm1.weight                            | backbone.layers.1.blocks.0.norm1.weight                            | torch.Size([384])             |
+| backbone.layers.1.blocks.0.norm2.bias                              | backbone.layers.1.blocks.0.norm2.bias                              | torch.Size([384])             |
+| backbone.layers.1.blocks.0.norm2.weight                            | backbone.layers.1.blocks.0.norm2.weight                            | torch.Size([384])             |
+| backbone.layers.1.blocks.1.attn.proj.bias                          | backbone.layers.1.blocks.1.attn.proj.bias                          | torch.Size([384])             |
+| backbone.layers.1.blocks.1.attn.proj.weight                        | backbone.layers.1.blocks.1.attn.proj.weight                        | torch.Size([384, 384])        |
+| backbone.layers.1.blocks.1.attn.qkv.bias                           | backbone.layers.1.blocks.1.attn.qkv.bias                           | torch.Size([1152])            |
+| backbone.layers.1.blocks.1.attn.qkv.weight                         | backbone.layers.1.blocks.1.attn.qkv.weight                         | torch.Size([1152, 384])       |
+| backbone.layers.1.blocks.1.attn.relative_position_bias_table       | backbone.layers.1.blocks.1.attn.relative_position_bias_table       | torch.Size([529, 12])         |
+| backbone.layers.1.blocks.1.attn.relative_position_index            | backbone.layers.1.blocks.1.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.1.blocks.1.mlp.fc1.bias                            | backbone.layers.1.blocks.1.mlp.fc1.bias                            | torch.Size([1536])            |
+| backbone.layers.1.blocks.1.mlp.fc1.weight                          | backbone.layers.1.blocks.1.mlp.fc1.weight                          | torch.Size([1536, 384])       |
+| backbone.layers.1.blocks.1.mlp.fc2.bias                            | backbone.layers.1.blocks.1.mlp.fc2.bias                            | torch.Size([384])             |
+| backbone.layers.1.blocks.1.mlp.fc2.weight                          | backbone.layers.1.blocks.1.mlp.fc2.weight                          | torch.Size([384, 1536])       |
+| backbone.layers.1.blocks.1.norm1.bias                              | backbone.layers.1.blocks.1.norm1.bias                              | torch.Size([384])             |
+| backbone.layers.1.blocks.1.norm1.weight                            | backbone.layers.1.blocks.1.norm1.weight                            | torch.Size([384])             |
+| backbone.layers.1.blocks.1.norm2.bias                              | backbone.layers.1.blocks.1.norm2.bias                              | torch.Size([384])             |
+| backbone.layers.1.blocks.1.norm2.weight                            | backbone.layers.1.blocks.1.norm2.weight                            | torch.Size([384])             |
+| backbone.layers.1.downsample.norm.bias                             | backbone.layers.1.downsample.norm.bias                             | torch.Size([1536])            |
+| backbone.layers.1.downsample.norm.weight                           | backbone.layers.1.downsample.norm.weight                           | torch.Size([1536])            |
+| backbone.layers.1.downsample.reduction.weight                      | backbone.layers.1.downsample.reduction.weight                      | torch.Size([768, 1536])       |
+| backbone.layers.2.blocks.0.attn.proj.bias                          | backbone.layers.2.blocks.0.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.0.attn.proj.weight                        | backbone.layers.2.blocks.0.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.0.attn.qkv.bias                           | backbone.layers.2.blocks.0.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.0.attn.qkv.weight                         | backbone.layers.2.blocks.0.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.0.attn.relative_position_bias_table       | backbone.layers.2.blocks.0.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.0.attn.relative_position_index            | backbone.layers.2.blocks.0.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.0.mlp.fc1.bias                            | backbone.layers.2.blocks.0.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.0.mlp.fc1.weight                          | backbone.layers.2.blocks.0.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.0.mlp.fc2.bias                            | backbone.layers.2.blocks.0.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.0.mlp.fc2.weight                          | backbone.layers.2.blocks.0.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.0.norm1.bias                              | backbone.layers.2.blocks.0.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.0.norm1.weight                            | backbone.layers.2.blocks.0.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.0.norm2.bias                              | backbone.layers.2.blocks.0.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.0.norm2.weight                            | backbone.layers.2.blocks.0.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.1.attn.proj.bias                          | backbone.layers.2.blocks.1.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.1.attn.proj.weight                        | backbone.layers.2.blocks.1.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.1.attn.qkv.bias                           | backbone.layers.2.blocks.1.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.1.attn.qkv.weight                         | backbone.layers.2.blocks.1.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.1.attn.relative_position_bias_table       | backbone.layers.2.blocks.1.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.1.attn.relative_position_index            | backbone.layers.2.blocks.1.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.1.mlp.fc1.bias                            | backbone.layers.2.blocks.1.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.1.mlp.fc1.weight                          | backbone.layers.2.blocks.1.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.1.mlp.fc2.bias                            | backbone.layers.2.blocks.1.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.1.mlp.fc2.weight                          | backbone.layers.2.blocks.1.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.1.norm1.bias                              | backbone.layers.2.blocks.1.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.1.norm1.weight                            | backbone.layers.2.blocks.1.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.1.norm2.bias                              | backbone.layers.2.blocks.1.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.1.norm2.weight                            | backbone.layers.2.blocks.1.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.10.attn.proj.bias                         | backbone.layers.2.blocks.10.attn.proj.bias                         | torch.Size([768])             |
+| backbone.layers.2.blocks.10.attn.proj.weight                       | backbone.layers.2.blocks.10.attn.proj.weight                       | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.10.attn.qkv.bias                          | backbone.layers.2.blocks.10.attn.qkv.bias                          | torch.Size([2304])            |
+| backbone.layers.2.blocks.10.attn.qkv.weight                        | backbone.layers.2.blocks.10.attn.qkv.weight                        | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.10.attn.relative_position_bias_table      | backbone.layers.2.blocks.10.attn.relative_position_bias_table      | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.10.attn.relative_position_index           | backbone.layers.2.blocks.10.attn.relative_position_index           | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.10.mlp.fc1.bias                           | backbone.layers.2.blocks.10.mlp.fc1.bias                           | torch.Size([3072])            |
+| backbone.layers.2.blocks.10.mlp.fc1.weight                         | backbone.layers.2.blocks.10.mlp.fc1.weight                         | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.10.mlp.fc2.bias                           | backbone.layers.2.blocks.10.mlp.fc2.bias                           | torch.Size([768])             |
+| backbone.layers.2.blocks.10.mlp.fc2.weight                         | backbone.layers.2.blocks.10.mlp.fc2.weight                         | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.10.norm1.bias                             | backbone.layers.2.blocks.10.norm1.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.10.norm1.weight                           | backbone.layers.2.blocks.10.norm1.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.10.norm2.bias                             | backbone.layers.2.blocks.10.norm2.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.10.norm2.weight                           | backbone.layers.2.blocks.10.norm2.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.11.attn.proj.bias                         | backbone.layers.2.blocks.11.attn.proj.bias                         | torch.Size([768])             |
+| backbone.layers.2.blocks.11.attn.proj.weight                       | backbone.layers.2.blocks.11.attn.proj.weight                       | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.11.attn.qkv.bias                          | backbone.layers.2.blocks.11.attn.qkv.bias                          | torch.Size([2304])            |
+| backbone.layers.2.blocks.11.attn.qkv.weight                        | backbone.layers.2.blocks.11.attn.qkv.weight                        | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.11.attn.relative_position_bias_table      | backbone.layers.2.blocks.11.attn.relative_position_bias_table      | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.11.attn.relative_position_index           | backbone.layers.2.blocks.11.attn.relative_position_index           | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.11.mlp.fc1.bias                           | backbone.layers.2.blocks.11.mlp.fc1.bias                           | torch.Size([3072])            |
+| backbone.layers.2.blocks.11.mlp.fc1.weight                         | backbone.layers.2.blocks.11.mlp.fc1.weight                         | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.11.mlp.fc2.bias                           | backbone.layers.2.blocks.11.mlp.fc2.bias                           | torch.Size([768])             |
+| backbone.layers.2.blocks.11.mlp.fc2.weight                         | backbone.layers.2.blocks.11.mlp.fc2.weight                         | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.11.norm1.bias                             | backbone.layers.2.blocks.11.norm1.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.11.norm1.weight                           | backbone.layers.2.blocks.11.norm1.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.11.norm2.bias                             | backbone.layers.2.blocks.11.norm2.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.11.norm2.weight                           | backbone.layers.2.blocks.11.norm2.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.12.attn.proj.bias                         | backbone.layers.2.blocks.12.attn.proj.bias                         | torch.Size([768])             |
+| backbone.layers.2.blocks.12.attn.proj.weight                       | backbone.layers.2.blocks.12.attn.proj.weight                       | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.12.attn.qkv.bias                          | backbone.layers.2.blocks.12.attn.qkv.bias                          | torch.Size([2304])            |
+| backbone.layers.2.blocks.12.attn.qkv.weight                        | backbone.layers.2.blocks.12.attn.qkv.weight                        | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.12.attn.relative_position_bias_table      | backbone.layers.2.blocks.12.attn.relative_position_bias_table      | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.12.attn.relative_position_index           | backbone.layers.2.blocks.12.attn.relative_position_index           | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.12.mlp.fc1.bias                           | backbone.layers.2.blocks.12.mlp.fc1.bias                           | torch.Size([3072])            |
+| backbone.layers.2.blocks.12.mlp.fc1.weight                         | backbone.layers.2.blocks.12.mlp.fc1.weight                         | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.12.mlp.fc2.bias                           | backbone.layers.2.blocks.12.mlp.fc2.bias                           | torch.Size([768])             |
+| backbone.layers.2.blocks.12.mlp.fc2.weight                         | backbone.layers.2.blocks.12.mlp.fc2.weight                         | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.12.norm1.bias                             | backbone.layers.2.blocks.12.norm1.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.12.norm1.weight                           | backbone.layers.2.blocks.12.norm1.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.12.norm2.bias                             | backbone.layers.2.blocks.12.norm2.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.12.norm2.weight                           | backbone.layers.2.blocks.12.norm2.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.13.attn.proj.bias                         | backbone.layers.2.blocks.13.attn.proj.bias                         | torch.Size([768])             |
+| backbone.layers.2.blocks.13.attn.proj.weight                       | backbone.layers.2.blocks.13.attn.proj.weight                       | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.13.attn.qkv.bias                          | backbone.layers.2.blocks.13.attn.qkv.bias                          | torch.Size([2304])            |
+| backbone.layers.2.blocks.13.attn.qkv.weight                        | backbone.layers.2.blocks.13.attn.qkv.weight                        | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.13.attn.relative_position_bias_table      | backbone.layers.2.blocks.13.attn.relative_position_bias_table      | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.13.attn.relative_position_index           | backbone.layers.2.blocks.13.attn.relative_position_index           | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.13.mlp.fc1.bias                           | backbone.layers.2.blocks.13.mlp.fc1.bias                           | torch.Size([3072])            |
+| backbone.layers.2.blocks.13.mlp.fc1.weight                         | backbone.layers.2.blocks.13.mlp.fc1.weight                         | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.13.mlp.fc2.bias                           | backbone.layers.2.blocks.13.mlp.fc2.bias                           | torch.Size([768])             |
+| backbone.layers.2.blocks.13.mlp.fc2.weight                         | backbone.layers.2.blocks.13.mlp.fc2.weight                         | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.13.norm1.bias                             | backbone.layers.2.blocks.13.norm1.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.13.norm1.weight                           | backbone.layers.2.blocks.13.norm1.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.13.norm2.bias                             | backbone.layers.2.blocks.13.norm2.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.13.norm2.weight                           | backbone.layers.2.blocks.13.norm2.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.14.attn.proj.bias                         | backbone.layers.2.blocks.14.attn.proj.bias                         | torch.Size([768])             |
+| backbone.layers.2.blocks.14.attn.proj.weight                       | backbone.layers.2.blocks.14.attn.proj.weight                       | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.14.attn.qkv.bias                          | backbone.layers.2.blocks.14.attn.qkv.bias                          | torch.Size([2304])            |
+| backbone.layers.2.blocks.14.attn.qkv.weight                        | backbone.layers.2.blocks.14.attn.qkv.weight                        | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.14.attn.relative_position_bias_table      | backbone.layers.2.blocks.14.attn.relative_position_bias_table      | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.14.attn.relative_position_index           | backbone.layers.2.blocks.14.attn.relative_position_index           | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.14.mlp.fc1.bias                           | backbone.layers.2.blocks.14.mlp.fc1.bias                           | torch.Size([3072])            |
+| backbone.layers.2.blocks.14.mlp.fc1.weight                         | backbone.layers.2.blocks.14.mlp.fc1.weight                         | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.14.mlp.fc2.bias                           | backbone.layers.2.blocks.14.mlp.fc2.bias                           | torch.Size([768])             |
+| backbone.layers.2.blocks.14.mlp.fc2.weight                         | backbone.layers.2.blocks.14.mlp.fc2.weight                         | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.14.norm1.bias                             | backbone.layers.2.blocks.14.norm1.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.14.norm1.weight                           | backbone.layers.2.blocks.14.norm1.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.14.norm2.bias                             | backbone.layers.2.blocks.14.norm2.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.14.norm2.weight                           | backbone.layers.2.blocks.14.norm2.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.15.attn.proj.bias                         | backbone.layers.2.blocks.15.attn.proj.bias                         | torch.Size([768])             |
+| backbone.layers.2.blocks.15.attn.proj.weight                       | backbone.layers.2.blocks.15.attn.proj.weight                       | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.15.attn.qkv.bias                          | backbone.layers.2.blocks.15.attn.qkv.bias                          | torch.Size([2304])            |
+| backbone.layers.2.blocks.15.attn.qkv.weight                        | backbone.layers.2.blocks.15.attn.qkv.weight                        | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.15.attn.relative_position_bias_table      | backbone.layers.2.blocks.15.attn.relative_position_bias_table      | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.15.attn.relative_position_index           | backbone.layers.2.blocks.15.attn.relative_position_index           | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.15.mlp.fc1.bias                           | backbone.layers.2.blocks.15.mlp.fc1.bias                           | torch.Size([3072])            |
+| backbone.layers.2.blocks.15.mlp.fc1.weight                         | backbone.layers.2.blocks.15.mlp.fc1.weight                         | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.15.mlp.fc2.bias                           | backbone.layers.2.blocks.15.mlp.fc2.bias                           | torch.Size([768])             |
+| backbone.layers.2.blocks.15.mlp.fc2.weight                         | backbone.layers.2.blocks.15.mlp.fc2.weight                         | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.15.norm1.bias                             | backbone.layers.2.blocks.15.norm1.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.15.norm1.weight                           | backbone.layers.2.blocks.15.norm1.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.15.norm2.bias                             | backbone.layers.2.blocks.15.norm2.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.15.norm2.weight                           | backbone.layers.2.blocks.15.norm2.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.16.attn.proj.bias                         | backbone.layers.2.blocks.16.attn.proj.bias                         | torch.Size([768])             |
+| backbone.layers.2.blocks.16.attn.proj.weight                       | backbone.layers.2.blocks.16.attn.proj.weight                       | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.16.attn.qkv.bias                          | backbone.layers.2.blocks.16.attn.qkv.bias                          | torch.Size([2304])            |
+| backbone.layers.2.blocks.16.attn.qkv.weight                        | backbone.layers.2.blocks.16.attn.qkv.weight                        | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.16.attn.relative_position_bias_table      | backbone.layers.2.blocks.16.attn.relative_position_bias_table      | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.16.attn.relative_position_index           | backbone.layers.2.blocks.16.attn.relative_position_index           | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.16.mlp.fc1.bias                           | backbone.layers.2.blocks.16.mlp.fc1.bias                           | torch.Size([3072])            |
+| backbone.layers.2.blocks.16.mlp.fc1.weight                         | backbone.layers.2.blocks.16.mlp.fc1.weight                         | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.16.mlp.fc2.bias                           | backbone.layers.2.blocks.16.mlp.fc2.bias                           | torch.Size([768])             |
+| backbone.layers.2.blocks.16.mlp.fc2.weight                         | backbone.layers.2.blocks.16.mlp.fc2.weight                         | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.16.norm1.bias                             | backbone.layers.2.blocks.16.norm1.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.16.norm1.weight                           | backbone.layers.2.blocks.16.norm1.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.16.norm2.bias                             | backbone.layers.2.blocks.16.norm2.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.16.norm2.weight                           | backbone.layers.2.blocks.16.norm2.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.17.attn.proj.bias                         | backbone.layers.2.blocks.17.attn.proj.bias                         | torch.Size([768])             |
+| backbone.layers.2.blocks.17.attn.proj.weight                       | backbone.layers.2.blocks.17.attn.proj.weight                       | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.17.attn.qkv.bias                          | backbone.layers.2.blocks.17.attn.qkv.bias                          | torch.Size([2304])            |
+| backbone.layers.2.blocks.17.attn.qkv.weight                        | backbone.layers.2.blocks.17.attn.qkv.weight                        | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.17.attn.relative_position_bias_table      | backbone.layers.2.blocks.17.attn.relative_position_bias_table      | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.17.attn.relative_position_index           | backbone.layers.2.blocks.17.attn.relative_position_index           | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.17.mlp.fc1.bias                           | backbone.layers.2.blocks.17.mlp.fc1.bias                           | torch.Size([3072])            |
+| backbone.layers.2.blocks.17.mlp.fc1.weight                         | backbone.layers.2.blocks.17.mlp.fc1.weight                         | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.17.mlp.fc2.bias                           | backbone.layers.2.blocks.17.mlp.fc2.bias                           | torch.Size([768])             |
+| backbone.layers.2.blocks.17.mlp.fc2.weight                         | backbone.layers.2.blocks.17.mlp.fc2.weight                         | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.17.norm1.bias                             | backbone.layers.2.blocks.17.norm1.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.17.norm1.weight                           | backbone.layers.2.blocks.17.norm1.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.17.norm2.bias                             | backbone.layers.2.blocks.17.norm2.bias                             | torch.Size([768])             |
+| backbone.layers.2.blocks.17.norm2.weight                           | backbone.layers.2.blocks.17.norm2.weight                           | torch.Size([768])             |
+| backbone.layers.2.blocks.2.attn.proj.bias                          | backbone.layers.2.blocks.2.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.2.attn.proj.weight                        | backbone.layers.2.blocks.2.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.2.attn.qkv.bias                           | backbone.layers.2.blocks.2.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.2.attn.qkv.weight                         | backbone.layers.2.blocks.2.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.2.attn.relative_position_bias_table       | backbone.layers.2.blocks.2.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.2.attn.relative_position_index            | backbone.layers.2.blocks.2.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.2.mlp.fc1.bias                            | backbone.layers.2.blocks.2.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.2.mlp.fc1.weight                          | backbone.layers.2.blocks.2.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.2.mlp.fc2.bias                            | backbone.layers.2.blocks.2.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.2.mlp.fc2.weight                          | backbone.layers.2.blocks.2.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.2.norm1.bias                              | backbone.layers.2.blocks.2.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.2.norm1.weight                            | backbone.layers.2.blocks.2.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.2.norm2.bias                              | backbone.layers.2.blocks.2.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.2.norm2.weight                            | backbone.layers.2.blocks.2.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.3.attn.proj.bias                          | backbone.layers.2.blocks.3.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.3.attn.proj.weight                        | backbone.layers.2.blocks.3.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.3.attn.qkv.bias                           | backbone.layers.2.blocks.3.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.3.attn.qkv.weight                         | backbone.layers.2.blocks.3.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.3.attn.relative_position_bias_table       | backbone.layers.2.blocks.3.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.3.attn.relative_position_index            | backbone.layers.2.blocks.3.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.3.mlp.fc1.bias                            | backbone.layers.2.blocks.3.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.3.mlp.fc1.weight                          | backbone.layers.2.blocks.3.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.3.mlp.fc2.bias                            | backbone.layers.2.blocks.3.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.3.mlp.fc2.weight                          | backbone.layers.2.blocks.3.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.3.norm1.bias                              | backbone.layers.2.blocks.3.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.3.norm1.weight                            | backbone.layers.2.blocks.3.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.3.norm2.bias                              | backbone.layers.2.blocks.3.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.3.norm2.weight                            | backbone.layers.2.blocks.3.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.4.attn.proj.bias                          | backbone.layers.2.blocks.4.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.4.attn.proj.weight                        | backbone.layers.2.blocks.4.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.4.attn.qkv.bias                           | backbone.layers.2.blocks.4.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.4.attn.qkv.weight                         | backbone.layers.2.blocks.4.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.4.attn.relative_position_bias_table       | backbone.layers.2.blocks.4.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.4.attn.relative_position_index            | backbone.layers.2.blocks.4.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.4.mlp.fc1.bias                            | backbone.layers.2.blocks.4.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.4.mlp.fc1.weight                          | backbone.layers.2.blocks.4.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.4.mlp.fc2.bias                            | backbone.layers.2.blocks.4.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.4.mlp.fc2.weight                          | backbone.layers.2.blocks.4.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.4.norm1.bias                              | backbone.layers.2.blocks.4.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.4.norm1.weight                            | backbone.layers.2.blocks.4.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.4.norm2.bias                              | backbone.layers.2.blocks.4.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.4.norm2.weight                            | backbone.layers.2.blocks.4.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.5.attn.proj.bias                          | backbone.layers.2.blocks.5.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.5.attn.proj.weight                        | backbone.layers.2.blocks.5.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.5.attn.qkv.bias                           | backbone.layers.2.blocks.5.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.5.attn.qkv.weight                         | backbone.layers.2.blocks.5.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.5.attn.relative_position_bias_table       | backbone.layers.2.blocks.5.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.5.attn.relative_position_index            | backbone.layers.2.blocks.5.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.5.mlp.fc1.bias                            | backbone.layers.2.blocks.5.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.5.mlp.fc1.weight                          | backbone.layers.2.blocks.5.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.5.mlp.fc2.bias                            | backbone.layers.2.blocks.5.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.5.mlp.fc2.weight                          | backbone.layers.2.blocks.5.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.5.norm1.bias                              | backbone.layers.2.blocks.5.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.5.norm1.weight                            | backbone.layers.2.blocks.5.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.5.norm2.bias                              | backbone.layers.2.blocks.5.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.5.norm2.weight                            | backbone.layers.2.blocks.5.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.6.attn.proj.bias                          | backbone.layers.2.blocks.6.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.6.attn.proj.weight                        | backbone.layers.2.blocks.6.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.6.attn.qkv.bias                           | backbone.layers.2.blocks.6.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.6.attn.qkv.weight                         | backbone.layers.2.blocks.6.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.6.attn.relative_position_bias_table       | backbone.layers.2.blocks.6.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.6.attn.relative_position_index            | backbone.layers.2.blocks.6.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.6.mlp.fc1.bias                            | backbone.layers.2.blocks.6.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.6.mlp.fc1.weight                          | backbone.layers.2.blocks.6.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.6.mlp.fc2.bias                            | backbone.layers.2.blocks.6.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.6.mlp.fc2.weight                          | backbone.layers.2.blocks.6.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.6.norm1.bias                              | backbone.layers.2.blocks.6.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.6.norm1.weight                            | backbone.layers.2.blocks.6.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.6.norm2.bias                              | backbone.layers.2.blocks.6.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.6.norm2.weight                            | backbone.layers.2.blocks.6.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.7.attn.proj.bias                          | backbone.layers.2.blocks.7.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.7.attn.proj.weight                        | backbone.layers.2.blocks.7.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.7.attn.qkv.bias                           | backbone.layers.2.blocks.7.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.7.attn.qkv.weight                         | backbone.layers.2.blocks.7.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.7.attn.relative_position_bias_table       | backbone.layers.2.blocks.7.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.7.attn.relative_position_index            | backbone.layers.2.blocks.7.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.7.mlp.fc1.bias                            | backbone.layers.2.blocks.7.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.7.mlp.fc1.weight                          | backbone.layers.2.blocks.7.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.7.mlp.fc2.bias                            | backbone.layers.2.blocks.7.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.7.mlp.fc2.weight                          | backbone.layers.2.blocks.7.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.7.norm1.bias                              | backbone.layers.2.blocks.7.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.7.norm1.weight                            | backbone.layers.2.blocks.7.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.7.norm2.bias                              | backbone.layers.2.blocks.7.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.7.norm2.weight                            | backbone.layers.2.blocks.7.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.8.attn.proj.bias                          | backbone.layers.2.blocks.8.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.8.attn.proj.weight                        | backbone.layers.2.blocks.8.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.8.attn.qkv.bias                           | backbone.layers.2.blocks.8.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.8.attn.qkv.weight                         | backbone.layers.2.blocks.8.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.8.attn.relative_position_bias_table       | backbone.layers.2.blocks.8.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.8.attn.relative_position_index            | backbone.layers.2.blocks.8.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.8.mlp.fc1.bias                            | backbone.layers.2.blocks.8.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.8.mlp.fc1.weight                          | backbone.layers.2.blocks.8.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.8.mlp.fc2.bias                            | backbone.layers.2.blocks.8.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.8.mlp.fc2.weight                          | backbone.layers.2.blocks.8.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.8.norm1.bias                              | backbone.layers.2.blocks.8.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.8.norm1.weight                            | backbone.layers.2.blocks.8.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.8.norm2.bias                              | backbone.layers.2.blocks.8.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.8.norm2.weight                            | backbone.layers.2.blocks.8.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.9.attn.proj.bias                          | backbone.layers.2.blocks.9.attn.proj.bias                          | torch.Size([768])             |
+| backbone.layers.2.blocks.9.attn.proj.weight                        | backbone.layers.2.blocks.9.attn.proj.weight                        | torch.Size([768, 768])        |
+| backbone.layers.2.blocks.9.attn.qkv.bias                           | backbone.layers.2.blocks.9.attn.qkv.bias                           | torch.Size([2304])            |
+| backbone.layers.2.blocks.9.attn.qkv.weight                         | backbone.layers.2.blocks.9.attn.qkv.weight                         | torch.Size([2304, 768])       |
+| backbone.layers.2.blocks.9.attn.relative_position_bias_table       | backbone.layers.2.blocks.9.attn.relative_position_bias_table       | torch.Size([529, 24])         |
+| backbone.layers.2.blocks.9.attn.relative_position_index            | backbone.layers.2.blocks.9.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.2.blocks.9.mlp.fc1.bias                            | backbone.layers.2.blocks.9.mlp.fc1.bias                            | torch.Size([3072])            |
+| backbone.layers.2.blocks.9.mlp.fc1.weight                          | backbone.layers.2.blocks.9.mlp.fc1.weight                          | torch.Size([3072, 768])       |
+| backbone.layers.2.blocks.9.mlp.fc2.bias                            | backbone.layers.2.blocks.9.mlp.fc2.bias                            | torch.Size([768])             |
+| backbone.layers.2.blocks.9.mlp.fc2.weight                          | backbone.layers.2.blocks.9.mlp.fc2.weight                          | torch.Size([768, 3072])       |
+| backbone.layers.2.blocks.9.norm1.bias                              | backbone.layers.2.blocks.9.norm1.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.9.norm1.weight                            | backbone.layers.2.blocks.9.norm1.weight                            | torch.Size([768])             |
+| backbone.layers.2.blocks.9.norm2.bias                              | backbone.layers.2.blocks.9.norm2.bias                              | torch.Size([768])             |
+| backbone.layers.2.blocks.9.norm2.weight                            | backbone.layers.2.blocks.9.norm2.weight                            | torch.Size([768])             |
+| backbone.layers.2.downsample.norm.bias                             | backbone.layers.2.downsample.norm.bias                             | torch.Size([3072])            |
+| backbone.layers.2.downsample.norm.weight                           | backbone.layers.2.downsample.norm.weight                           | torch.Size([3072])            |
+| backbone.layers.2.downsample.reduction.weight                      | backbone.layers.2.downsample.reduction.weight                      | torch.Size([1536, 3072])      |
+| backbone.layers.3.blocks.0.attn.proj.bias                          | backbone.layers.3.blocks.0.attn.proj.bias                          | torch.Size([1536])            |
+| backbone.layers.3.blocks.0.attn.proj.weight                        | backbone.layers.3.blocks.0.attn.proj.weight                        | torch.Size([1536, 1536])      |
+| backbone.layers.3.blocks.0.attn.qkv.bias                           | backbone.layers.3.blocks.0.attn.qkv.bias                           | torch.Size([4608])            |
+| backbone.layers.3.blocks.0.attn.qkv.weight                         | backbone.layers.3.blocks.0.attn.qkv.weight                         | torch.Size([4608, 1536])      |
+| backbone.layers.3.blocks.0.attn.relative_position_bias_table       | backbone.layers.3.blocks.0.attn.relative_position_bias_table       | torch.Size([529, 48])         |
+| backbone.layers.3.blocks.0.attn.relative_position_index            | backbone.layers.3.blocks.0.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.3.blocks.0.mlp.fc1.bias                            | backbone.layers.3.blocks.0.mlp.fc1.bias                            | torch.Size([6144])            |
+| backbone.layers.3.blocks.0.mlp.fc1.weight                          | backbone.layers.3.blocks.0.mlp.fc1.weight                          | torch.Size([6144, 1536])      |
+| backbone.layers.3.blocks.0.mlp.fc2.bias                            | backbone.layers.3.blocks.0.mlp.fc2.bias                            | torch.Size([1536])            |
+| backbone.layers.3.blocks.0.mlp.fc2.weight                          | backbone.layers.3.blocks.0.mlp.fc2.weight                          | torch.Size([1536, 6144])      |
+| backbone.layers.3.blocks.0.norm1.bias                              | backbone.layers.3.blocks.0.norm1.bias                              | torch.Size([1536])            |
+| backbone.layers.3.blocks.0.norm1.weight                            | backbone.layers.3.blocks.0.norm1.weight                            | torch.Size([1536])            |
+| backbone.layers.3.blocks.0.norm2.bias                              | backbone.layers.3.blocks.0.norm2.bias                              | torch.Size([1536])            |
+| backbone.layers.3.blocks.0.norm2.weight                            | backbone.layers.3.blocks.0.norm2.weight                            | torch.Size([1536])            |
+| backbone.layers.3.blocks.1.attn.proj.bias                          | backbone.layers.3.blocks.1.attn.proj.bias                          | torch.Size([1536])            |
+| backbone.layers.3.blocks.1.attn.proj.weight                        | backbone.layers.3.blocks.1.attn.proj.weight                        | torch.Size([1536, 1536])      |
+| backbone.layers.3.blocks.1.attn.qkv.bias                           | backbone.layers.3.blocks.1.attn.qkv.bias                           | torch.Size([4608])            |
+| backbone.layers.3.blocks.1.attn.qkv.weight                         | backbone.layers.3.blocks.1.attn.qkv.weight                         | torch.Size([4608, 1536])      |
+| backbone.layers.3.blocks.1.attn.relative_position_bias_table       | backbone.layers.3.blocks.1.attn.relative_position_bias_table       | torch.Size([529, 48])         |
+| backbone.layers.3.blocks.1.attn.relative_position_index            | backbone.layers.3.blocks.1.attn.relative_position_index            | torch.Size([144, 144])        |
+| backbone.layers.3.blocks.1.mlp.fc1.bias                            | backbone.layers.3.blocks.1.mlp.fc1.bias                            | torch.Size([6144])            |
+| backbone.layers.3.blocks.1.mlp.fc1.weight                          | backbone.layers.3.blocks.1.mlp.fc1.weight                          | torch.Size([6144, 1536])      |
+| backbone.layers.3.blocks.1.mlp.fc2.bias                            | backbone.layers.3.blocks.1.mlp.fc2.bias                            | torch.Size([1536])            |
+| backbone.layers.3.blocks.1.mlp.fc2.weight                          | backbone.layers.3.blocks.1.mlp.fc2.weight                          | torch.Size([1536, 6144])      |
+| backbone.layers.3.blocks.1.norm1.bias                              | backbone.layers.3.blocks.1.norm1.bias                              | torch.Size([1536])            |
+| backbone.layers.3.blocks.1.norm1.weight                            | backbone.layers.3.blocks.1.norm1.weight                            | torch.Size([1536])            |
+| backbone.layers.3.blocks.1.norm2.bias                              | backbone.layers.3.blocks.1.norm2.bias                              | torch.Size([1536])            |
+| backbone.layers.3.blocks.1.norm2.weight                            | backbone.layers.3.blocks.1.norm2.weight                            | torch.Size([1536])            |
+| backbone.norm0.bias                                                | backbone.norm0.bias                                                | torch.Size([192])             |
+| backbone.norm0.weight                                              | backbone.norm0.weight                                              | torch.Size([192])             |
+| backbone.norm1.bias                                                | backbone.norm1.bias                                                | torch.Size([384])             |
+| backbone.norm1.weight                                              | backbone.norm1.weight                                              | torch.Size([384])             |
+| backbone.norm2.bias                                                | backbone.norm2.bias                                                | torch.Size([768])             |
+| backbone.norm2.weight                                              | backbone.norm2.weight                                              | torch.Size([768])             |
+| backbone.norm3.bias                                                | backbone.norm3.bias                                                | torch.Size([1536])            |
+| backbone.norm3.weight                                              | backbone.norm3.weight                                              | torch.Size([1536])            |
+| backbone.patch_embed.norm.bias                                     | backbone.patch_embed.norm.bias                                     | torch.Size([192])             |
+| backbone.patch_embed.norm.weight                                   | backbone.patch_embed.norm.weight                                   | torch.Size([192])             |
+| backbone.patch_embed.proj.bias                                     | backbone.patch_embed.proj.bias                                     | torch.Size([192])             |
+| backbone.patch_embed.proj.weight                                   | backbone.patch_embed.proj.weight                                   | torch.Size([192, 3, 4, 4])    |
+| bbox_embed.0.layers.0.bias                                         | bbox_embed.0.layers.0.bias                                         | torch.Size([256])             |
+| bbox_embed.0.layers.0.weight                                       | bbox_embed.0.layers.0.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.0.layers.1.bias                                         | bbox_embed.0.layers.1.bias                                         | torch.Size([256])             |
+| bbox_embed.0.layers.1.weight                                       | bbox_embed.0.layers.1.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.0.layers.2.bias                                         | bbox_embed.0.layers.2.bias                                         | torch.Size([4])               |
+| bbox_embed.0.layers.2.weight                                       | bbox_embed.0.layers.2.weight                                       | torch.Size([4, 256])          |
+| bbox_embed.1.layers.0.bias                                         | bbox_embed.1.layers.0.bias                                         | torch.Size([256])             |
+| bbox_embed.1.layers.0.weight                                       | bbox_embed.1.layers.0.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.1.layers.1.bias                                         | bbox_embed.1.layers.1.bias                                         | torch.Size([256])             |
+| bbox_embed.1.layers.1.weight                                       | bbox_embed.1.layers.1.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.1.layers.2.bias                                         | bbox_embed.1.layers.2.bias                                         | torch.Size([4])               |
+| bbox_embed.1.layers.2.weight                                       | bbox_embed.1.layers.2.weight                                       | torch.Size([4, 256])          |
+| bbox_embed.2.layers.0.bias                                         | bbox_embed.2.layers.0.bias                                         | torch.Size([256])             |
+| bbox_embed.2.layers.0.weight                                       | bbox_embed.2.layers.0.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.2.layers.1.bias                                         | bbox_embed.2.layers.1.bias                                         | torch.Size([256])             |
+| bbox_embed.2.layers.1.weight                                       | bbox_embed.2.layers.1.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.2.layers.2.bias                                         | bbox_embed.2.layers.2.bias                                         | torch.Size([4])               |
+| bbox_embed.2.layers.2.weight                                       | bbox_embed.2.layers.2.weight                                       | torch.Size([4, 256])          |
+| bbox_embed.3.layers.0.bias                                         | bbox_embed.3.layers.0.bias                                         | torch.Size([256])             |
+| bbox_embed.3.layers.0.weight                                       | bbox_embed.3.layers.0.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.3.layers.1.bias                                         | bbox_embed.3.layers.1.bias                                         | torch.Size([256])             |
+| bbox_embed.3.layers.1.weight                                       | bbox_embed.3.layers.1.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.3.layers.2.bias                                         | bbox_embed.3.layers.2.bias                                         | torch.Size([4])               |
+| bbox_embed.3.layers.2.weight                                       | bbox_embed.3.layers.2.weight                                       | torch.Size([4, 256])          |
+| bbox_embed.4.layers.0.bias                                         | bbox_embed.4.layers.0.bias                                         | torch.Size([256])             |
+| bbox_embed.4.layers.0.weight                                       | bbox_embed.4.layers.0.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.4.layers.1.bias                                         | bbox_embed.4.layers.1.bias                                         | torch.Size([256])             |
+| bbox_embed.4.layers.1.weight                                       | bbox_embed.4.layers.1.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.4.layers.2.bias                                         | bbox_embed.4.layers.2.bias                                         | torch.Size([4])               |
+| bbox_embed.4.layers.2.weight                                       | bbox_embed.4.layers.2.weight                                       | torch.Size([4, 256])          |
+| bbox_embed.5.layers.0.bias                                         | bbox_embed.5.layers.0.bias                                         | torch.Size([256])             |
+| bbox_embed.5.layers.0.weight                                       | bbox_embed.5.layers.0.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.5.layers.1.bias                                         | bbox_embed.5.layers.1.bias                                         | torch.Size([256])             |
+| bbox_embed.5.layers.1.weight                                       | bbox_embed.5.layers.1.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.5.layers.2.bias                                         | bbox_embed.5.layers.2.bias                                         | torch.Size([4])               |
+| bbox_embed.5.layers.2.weight                                       | bbox_embed.5.layers.2.weight                                       | torch.Size([4, 256])          |
+| bbox_embed.6.layers.0.bias                                         | bbox_embed.6.layers.0.bias                                         | torch.Size([256])             |
+| bbox_embed.6.layers.0.weight                                       | bbox_embed.6.layers.0.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.6.layers.1.bias                                         | bbox_embed.6.layers.1.bias                                         | torch.Size([256])             |
+| bbox_embed.6.layers.1.weight                                       | bbox_embed.6.layers.1.weight                                       | torch.Size([256, 256])        |
+| bbox_embed.6.layers.2.bias                                         | bbox_embed.6.layers.2.bias                                         | torch.Size([4])               |
+| bbox_embed.6.layers.2.weight                                       | bbox_embed.6.layers.2.weight                                       | torch.Size([4, 256])          |
+| neck.convs.0.conv.bias                                             | neck.convs.0.conv.bias                                             | torch.Size([256])             |
+| neck.convs.0.conv.weight                                           | neck.convs.0.conv.weight                                           | torch.Size([256, 192, 1, 1])  |
+| neck.convs.0.norm.bias                                             | neck.convs.0.norm.bias                                             | torch.Size([256])             |
+| neck.convs.0.norm.weight                                           | neck.convs.0.norm.weight                                           | torch.Size([256])             |
+| neck.convs.1.conv.bias                                             | neck.convs.1.conv.bias                                             | torch.Size([256])             |
+| neck.convs.1.conv.weight                                           | neck.convs.1.conv.weight                                           | torch.Size([256, 384, 1, 1])  |
+| neck.convs.1.norm.bias                                             | neck.convs.1.norm.bias                                             | torch.Size([256])             |
+| neck.convs.1.norm.weight                                           | neck.convs.1.norm.weight                                           | torch.Size([256])             |
+| neck.convs.2.conv.bias                                             | neck.convs.2.conv.bias                                             | torch.Size([256])             |
+| neck.convs.2.conv.weight                                           | neck.convs.2.conv.weight                                           | torch.Size([256, 768, 1, 1])  |
+| neck.convs.2.norm.bias                                             | neck.convs.2.norm.bias                                             | torch.Size([256])             |
+| neck.convs.2.norm.weight                                           | neck.convs.2.norm.weight                                           | torch.Size([256])             |
+| neck.convs.3.conv.bias                                             | neck.convs.3.conv.bias                                             | torch.Size([256])             |
+| neck.convs.3.conv.weight                                           | neck.convs.3.conv.weight                                           | torch.Size([256, 1536, 1, 1]) |
+| neck.convs.3.norm.bias                                             | neck.convs.3.norm.bias                                             | torch.Size([256])             |
+| neck.convs.3.norm.weight                                           | neck.convs.3.norm.weight                                           | torch.Size([256])             |
+| neck.extra_convs.0.conv.bias                                       | neck.extra_convs.0.conv.bias                                       | torch.Size([256])             |
+| neck.extra_convs.0.conv.weight                                     | neck.extra_convs.0.conv.weight                                     | torch.Size([256, 1536, 3, 3]) |
+| neck.extra_convs.0.norm.bias                                       | neck.extra_convs.0.norm.bias                                       | torch.Size([256])             |
+| neck.extra_convs.0.norm.weight                                     | neck.extra_convs.0.norm.weight                                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.0.layers.0.bias                     | transformer.decoder.bbox_embed.0.layers.0.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.0.layers.0.weight                   | transformer.decoder.bbox_embed.0.layers.0.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.0.layers.1.bias                     | transformer.decoder.bbox_embed.0.layers.1.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.0.layers.1.weight                   | transformer.decoder.bbox_embed.0.layers.1.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.0.layers.2.bias                     | transformer.decoder.bbox_embed.0.layers.2.bias                     | torch.Size([4])               |
+| transformer.decoder.bbox_embed.0.layers.2.weight                   | transformer.decoder.bbox_embed.0.layers.2.weight                   | torch.Size([4, 256])          |
+| transformer.decoder.bbox_embed.1.layers.0.bias                     | transformer.decoder.bbox_embed.1.layers.0.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.1.layers.0.weight                   | transformer.decoder.bbox_embed.1.layers.0.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.1.layers.1.bias                     | transformer.decoder.bbox_embed.1.layers.1.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.1.layers.1.weight                   | transformer.decoder.bbox_embed.1.layers.1.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.1.layers.2.bias                     | transformer.decoder.bbox_embed.1.layers.2.bias                     | torch.Size([4])               |
+| transformer.decoder.bbox_embed.1.layers.2.weight                   | transformer.decoder.bbox_embed.1.layers.2.weight                   | torch.Size([4, 256])          |
+| transformer.decoder.bbox_embed.2.layers.0.bias                     | transformer.decoder.bbox_embed.2.layers.0.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.2.layers.0.weight                   | transformer.decoder.bbox_embed.2.layers.0.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.2.layers.1.bias                     | transformer.decoder.bbox_embed.2.layers.1.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.2.layers.1.weight                   | transformer.decoder.bbox_embed.2.layers.1.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.2.layers.2.bias                     | transformer.decoder.bbox_embed.2.layers.2.bias                     | torch.Size([4])               |
+| transformer.decoder.bbox_embed.2.layers.2.weight                   | transformer.decoder.bbox_embed.2.layers.2.weight                   | torch.Size([4, 256])          |
+| transformer.decoder.bbox_embed.3.layers.0.bias                     | transformer.decoder.bbox_embed.3.layers.0.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.3.layers.0.weight                   | transformer.decoder.bbox_embed.3.layers.0.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.3.layers.1.bias                     | transformer.decoder.bbox_embed.3.layers.1.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.3.layers.1.weight                   | transformer.decoder.bbox_embed.3.layers.1.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.3.layers.2.bias                     | transformer.decoder.bbox_embed.3.layers.2.bias                     | torch.Size([4])               |
+| transformer.decoder.bbox_embed.3.layers.2.weight                   | transformer.decoder.bbox_embed.3.layers.2.weight                   | torch.Size([4, 256])          |
+| transformer.decoder.bbox_embed.4.layers.0.bias                     | transformer.decoder.bbox_embed.4.layers.0.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.4.layers.0.weight                   | transformer.decoder.bbox_embed.4.layers.0.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.4.layers.1.bias                     | transformer.decoder.bbox_embed.4.layers.1.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.4.layers.1.weight                   | transformer.decoder.bbox_embed.4.layers.1.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.4.layers.2.bias                     | transformer.decoder.bbox_embed.4.layers.2.bias                     | torch.Size([4])               |
+| transformer.decoder.bbox_embed.4.layers.2.weight                   | transformer.decoder.bbox_embed.4.layers.2.weight                   | torch.Size([4, 256])          |
+| transformer.decoder.bbox_embed.5.layers.0.bias                     | transformer.decoder.bbox_embed.5.layers.0.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.5.layers.0.weight                   | transformer.decoder.bbox_embed.5.layers.0.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.5.layers.1.bias                     | transformer.decoder.bbox_embed.5.layers.1.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.5.layers.1.weight                   | transformer.decoder.bbox_embed.5.layers.1.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.5.layers.2.bias                     | transformer.decoder.bbox_embed.5.layers.2.bias                     | torch.Size([4])               |
+| transformer.decoder.bbox_embed.5.layers.2.weight                   | transformer.decoder.bbox_embed.5.layers.2.weight                   | torch.Size([4, 256])          |
+| transformer.decoder.bbox_embed.6.layers.0.bias                     | transformer.decoder.bbox_embed.6.layers.0.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.6.layers.0.weight                   | transformer.decoder.bbox_embed.6.layers.0.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.6.layers.1.bias                     | transformer.decoder.bbox_embed.6.layers.1.bias                     | torch.Size([256])             |
+| transformer.decoder.bbox_embed.6.layers.1.weight                   | transformer.decoder.bbox_embed.6.layers.1.weight                   | torch.Size([256, 256])        |
+| transformer.decoder.bbox_embed.6.layers.2.bias                     | transformer.decoder.bbox_embed.6.layers.2.bias                     | torch.Size([4])               |
+| transformer.decoder.bbox_embed.6.layers.2.weight                   | transformer.decoder.bbox_embed.6.layers.2.weight                   | torch.Size([4, 256])          |
+| transformer.decoder.layers.0.attentions.0.attn.in_proj_bias        | transformer.decoder.layers.0.attentions.0.attn.in_proj_bias        | torch.Size([768])             |
+| transformer.decoder.layers.0.attentions.0.attn.in_proj_weight      | transformer.decoder.layers.0.attentions.0.attn.in_proj_weight      | torch.Size([768, 256])        |
+| transformer.decoder.layers.0.attentions.0.attn.out_proj.bias       | transformer.decoder.layers.0.attentions.0.attn.out_proj.bias       | torch.Size([256])             |
+| transformer.decoder.layers.0.attentions.0.attn.out_proj.weight     | transformer.decoder.layers.0.attentions.0.attn.out_proj.weight     | torch.Size([256, 256])        |
+| transformer.decoder.layers.0.attentions.1.attention_weights.bias   | transformer.decoder.layers.0.attentions.1.attention_weights.bias   | torch.Size([160])             |
+| transformer.decoder.layers.0.attentions.1.attention_weights.weight | transformer.decoder.layers.0.attentions.1.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.decoder.layers.0.attentions.1.output_proj.bias         | transformer.decoder.layers.0.attentions.1.output_proj.bias         | torch.Size([256])             |
+| transformer.decoder.layers.0.attentions.1.output_proj.weight       | transformer.decoder.layers.0.attentions.1.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.decoder.layers.0.attentions.1.sampling_offsets.bias    | transformer.decoder.layers.0.attentions.1.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.decoder.layers.0.attentions.1.sampling_offsets.weight  | transformer.decoder.layers.0.attentions.1.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.decoder.layers.0.attentions.1.value_proj.bias          | transformer.decoder.layers.0.attentions.1.value_proj.bias          | torch.Size([256])             |
+| transformer.decoder.layers.0.attentions.1.value_proj.weight        | transformer.decoder.layers.0.attentions.1.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.decoder.layers.0.ffns.0.layers.0.0.bias                | transformer.decoder.layers.0.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.decoder.layers.0.ffns.0.layers.0.0.weight              | transformer.decoder.layers.0.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.decoder.layers.0.ffns.0.layers.1.bias                  | transformer.decoder.layers.0.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.decoder.layers.0.ffns.0.layers.1.weight                | transformer.decoder.layers.0.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.decoder.layers.0.norms.0.bias                          | transformer.decoder.layers.0.norms.0.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.0.norms.0.weight                        | transformer.decoder.layers.0.norms.0.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.0.norms.1.bias                          | transformer.decoder.layers.0.norms.1.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.0.norms.1.weight                        | transformer.decoder.layers.0.norms.1.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.0.norms.2.bias                          | transformer.decoder.layers.0.norms.2.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.0.norms.2.weight                        | transformer.decoder.layers.0.norms.2.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.1.attentions.0.attn.in_proj_bias        | transformer.decoder.layers.1.attentions.0.attn.in_proj_bias        | torch.Size([768])             |
+| transformer.decoder.layers.1.attentions.0.attn.in_proj_weight      | transformer.decoder.layers.1.attentions.0.attn.in_proj_weight      | torch.Size([768, 256])        |
+| transformer.decoder.layers.1.attentions.0.attn.out_proj.bias       | transformer.decoder.layers.1.attentions.0.attn.out_proj.bias       | torch.Size([256])             |
+| transformer.decoder.layers.1.attentions.0.attn.out_proj.weight     | transformer.decoder.layers.1.attentions.0.attn.out_proj.weight     | torch.Size([256, 256])        |
+| transformer.decoder.layers.1.attentions.1.attention_weights.bias   | transformer.decoder.layers.1.attentions.1.attention_weights.bias   | torch.Size([160])             |
+| transformer.decoder.layers.1.attentions.1.attention_weights.weight | transformer.decoder.layers.1.attentions.1.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.decoder.layers.1.attentions.1.output_proj.bias         | transformer.decoder.layers.1.attentions.1.output_proj.bias         | torch.Size([256])             |
+| transformer.decoder.layers.1.attentions.1.output_proj.weight       | transformer.decoder.layers.1.attentions.1.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.decoder.layers.1.attentions.1.sampling_offsets.bias    | transformer.decoder.layers.1.attentions.1.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.decoder.layers.1.attentions.1.sampling_offsets.weight  | transformer.decoder.layers.1.attentions.1.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.decoder.layers.1.attentions.1.value_proj.bias          | transformer.decoder.layers.1.attentions.1.value_proj.bias          | torch.Size([256])             |
+| transformer.decoder.layers.1.attentions.1.value_proj.weight        | transformer.decoder.layers.1.attentions.1.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.decoder.layers.1.ffns.0.layers.0.0.bias                | transformer.decoder.layers.1.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.decoder.layers.1.ffns.0.layers.0.0.weight              | transformer.decoder.layers.1.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.decoder.layers.1.ffns.0.layers.1.bias                  | transformer.decoder.layers.1.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.decoder.layers.1.ffns.0.layers.1.weight                | transformer.decoder.layers.1.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.decoder.layers.1.norms.0.bias                          | transformer.decoder.layers.1.norms.0.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.1.norms.0.weight                        | transformer.decoder.layers.1.norms.0.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.1.norms.1.bias                          | transformer.decoder.layers.1.norms.1.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.1.norms.1.weight                        | transformer.decoder.layers.1.norms.1.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.1.norms.2.bias                          | transformer.decoder.layers.1.norms.2.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.1.norms.2.weight                        | transformer.decoder.layers.1.norms.2.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.2.attentions.0.attn.in_proj_bias        | transformer.decoder.layers.2.attentions.0.attn.in_proj_bias        | torch.Size([768])             |
+| transformer.decoder.layers.2.attentions.0.attn.in_proj_weight      | transformer.decoder.layers.2.attentions.0.attn.in_proj_weight      | torch.Size([768, 256])        |
+| transformer.decoder.layers.2.attentions.0.attn.out_proj.bias       | transformer.decoder.layers.2.attentions.0.attn.out_proj.bias       | torch.Size([256])             |
+| transformer.decoder.layers.2.attentions.0.attn.out_proj.weight     | transformer.decoder.layers.2.attentions.0.attn.out_proj.weight     | torch.Size([256, 256])        |
+| transformer.decoder.layers.2.attentions.1.attention_weights.bias   | transformer.decoder.layers.2.attentions.1.attention_weights.bias   | torch.Size([160])             |
+| transformer.decoder.layers.2.attentions.1.attention_weights.weight | transformer.decoder.layers.2.attentions.1.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.decoder.layers.2.attentions.1.output_proj.bias         | transformer.decoder.layers.2.attentions.1.output_proj.bias         | torch.Size([256])             |
+| transformer.decoder.layers.2.attentions.1.output_proj.weight       | transformer.decoder.layers.2.attentions.1.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.decoder.layers.2.attentions.1.sampling_offsets.bias    | transformer.decoder.layers.2.attentions.1.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.decoder.layers.2.attentions.1.sampling_offsets.weight  | transformer.decoder.layers.2.attentions.1.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.decoder.layers.2.attentions.1.value_proj.bias          | transformer.decoder.layers.2.attentions.1.value_proj.bias          | torch.Size([256])             |
+| transformer.decoder.layers.2.attentions.1.value_proj.weight        | transformer.decoder.layers.2.attentions.1.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.decoder.layers.2.ffns.0.layers.0.0.bias                | transformer.decoder.layers.2.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.decoder.layers.2.ffns.0.layers.0.0.weight              | transformer.decoder.layers.2.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.decoder.layers.2.ffns.0.layers.1.bias                  | transformer.decoder.layers.2.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.decoder.layers.2.ffns.0.layers.1.weight                | transformer.decoder.layers.2.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.decoder.layers.2.norms.0.bias                          | transformer.decoder.layers.2.norms.0.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.2.norms.0.weight                        | transformer.decoder.layers.2.norms.0.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.2.norms.1.bias                          | transformer.decoder.layers.2.norms.1.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.2.norms.1.weight                        | transformer.decoder.layers.2.norms.1.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.2.norms.2.bias                          | transformer.decoder.layers.2.norms.2.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.2.norms.2.weight                        | transformer.decoder.layers.2.norms.2.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.3.attentions.0.attn.in_proj_bias        | transformer.decoder.layers.3.attentions.0.attn.in_proj_bias        | torch.Size([768])             |
+| transformer.decoder.layers.3.attentions.0.attn.in_proj_weight      | transformer.decoder.layers.3.attentions.0.attn.in_proj_weight      | torch.Size([768, 256])        |
+| transformer.decoder.layers.3.attentions.0.attn.out_proj.bias       | transformer.decoder.layers.3.attentions.0.attn.out_proj.bias       | torch.Size([256])             |
+| transformer.decoder.layers.3.attentions.0.attn.out_proj.weight     | transformer.decoder.layers.3.attentions.0.attn.out_proj.weight     | torch.Size([256, 256])        |
+| transformer.decoder.layers.3.attentions.1.attention_weights.bias   | transformer.decoder.layers.3.attentions.1.attention_weights.bias   | torch.Size([160])             |
+| transformer.decoder.layers.3.attentions.1.attention_weights.weight | transformer.decoder.layers.3.attentions.1.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.decoder.layers.3.attentions.1.output_proj.bias         | transformer.decoder.layers.3.attentions.1.output_proj.bias         | torch.Size([256])             |
+| transformer.decoder.layers.3.attentions.1.output_proj.weight       | transformer.decoder.layers.3.attentions.1.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.decoder.layers.3.attentions.1.sampling_offsets.bias    | transformer.decoder.layers.3.attentions.1.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.decoder.layers.3.attentions.1.sampling_offsets.weight  | transformer.decoder.layers.3.attentions.1.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.decoder.layers.3.attentions.1.value_proj.bias          | transformer.decoder.layers.3.attentions.1.value_proj.bias          | torch.Size([256])             |
+| transformer.decoder.layers.3.attentions.1.value_proj.weight        | transformer.decoder.layers.3.attentions.1.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.decoder.layers.3.ffns.0.layers.0.0.bias                | transformer.decoder.layers.3.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.decoder.layers.3.ffns.0.layers.0.0.weight              | transformer.decoder.layers.3.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.decoder.layers.3.ffns.0.layers.1.bias                  | transformer.decoder.layers.3.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.decoder.layers.3.ffns.0.layers.1.weight                | transformer.decoder.layers.3.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.decoder.layers.3.norms.0.bias                          | transformer.decoder.layers.3.norms.0.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.3.norms.0.weight                        | transformer.decoder.layers.3.norms.0.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.3.norms.1.bias                          | transformer.decoder.layers.3.norms.1.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.3.norms.1.weight                        | transformer.decoder.layers.3.norms.1.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.3.norms.2.bias                          | transformer.decoder.layers.3.norms.2.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.3.norms.2.weight                        | transformer.decoder.layers.3.norms.2.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.4.attentions.0.attn.in_proj_bias        | transformer.decoder.layers.4.attentions.0.attn.in_proj_bias        | torch.Size([768])             |
+| transformer.decoder.layers.4.attentions.0.attn.in_proj_weight      | transformer.decoder.layers.4.attentions.0.attn.in_proj_weight      | torch.Size([768, 256])        |
+| transformer.decoder.layers.4.attentions.0.attn.out_proj.bias       | transformer.decoder.layers.4.attentions.0.attn.out_proj.bias       | torch.Size([256])             |
+| transformer.decoder.layers.4.attentions.0.attn.out_proj.weight     | transformer.decoder.layers.4.attentions.0.attn.out_proj.weight     | torch.Size([256, 256])        |
+| transformer.decoder.layers.4.attentions.1.attention_weights.bias   | transformer.decoder.layers.4.attentions.1.attention_weights.bias   | torch.Size([160])             |
+| transformer.decoder.layers.4.attentions.1.attention_weights.weight | transformer.decoder.layers.4.attentions.1.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.decoder.layers.4.attentions.1.output_proj.bias         | transformer.decoder.layers.4.attentions.1.output_proj.bias         | torch.Size([256])             |
+| transformer.decoder.layers.4.attentions.1.output_proj.weight       | transformer.decoder.layers.4.attentions.1.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.decoder.layers.4.attentions.1.sampling_offsets.bias    | transformer.decoder.layers.4.attentions.1.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.decoder.layers.4.attentions.1.sampling_offsets.weight  | transformer.decoder.layers.4.attentions.1.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.decoder.layers.4.attentions.1.value_proj.bias          | transformer.decoder.layers.4.attentions.1.value_proj.bias          | torch.Size([256])             |
+| transformer.decoder.layers.4.attentions.1.value_proj.weight        | transformer.decoder.layers.4.attentions.1.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.decoder.layers.4.ffns.0.layers.0.0.bias                | transformer.decoder.layers.4.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.decoder.layers.4.ffns.0.layers.0.0.weight              | transformer.decoder.layers.4.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.decoder.layers.4.ffns.0.layers.1.bias                  | transformer.decoder.layers.4.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.decoder.layers.4.ffns.0.layers.1.weight                | transformer.decoder.layers.4.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.decoder.layers.4.norms.0.bias                          | transformer.decoder.layers.4.norms.0.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.4.norms.0.weight                        | transformer.decoder.layers.4.norms.0.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.4.norms.1.bias                          | transformer.decoder.layers.4.norms.1.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.4.norms.1.weight                        | transformer.decoder.layers.4.norms.1.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.4.norms.2.bias                          | transformer.decoder.layers.4.norms.2.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.4.norms.2.weight                        | transformer.decoder.layers.4.norms.2.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.5.attentions.0.attn.in_proj_bias        | transformer.decoder.layers.5.attentions.0.attn.in_proj_bias        | torch.Size([768])             |
+| transformer.decoder.layers.5.attentions.0.attn.in_proj_weight      | transformer.decoder.layers.5.attentions.0.attn.in_proj_weight      | torch.Size([768, 256])        |
+| transformer.decoder.layers.5.attentions.0.attn.out_proj.bias       | transformer.decoder.layers.5.attentions.0.attn.out_proj.bias       | torch.Size([256])             |
+| transformer.decoder.layers.5.attentions.0.attn.out_proj.weight     | transformer.decoder.layers.5.attentions.0.attn.out_proj.weight     | torch.Size([256, 256])        |
+| transformer.decoder.layers.5.attentions.1.attention_weights.bias   | transformer.decoder.layers.5.attentions.1.attention_weights.bias   | torch.Size([160])             |
+| transformer.decoder.layers.5.attentions.1.attention_weights.weight | transformer.decoder.layers.5.attentions.1.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.decoder.layers.5.attentions.1.output_proj.bias         | transformer.decoder.layers.5.attentions.1.output_proj.bias         | torch.Size([256])             |
+| transformer.decoder.layers.5.attentions.1.output_proj.weight       | transformer.decoder.layers.5.attentions.1.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.decoder.layers.5.attentions.1.sampling_offsets.bias    | transformer.decoder.layers.5.attentions.1.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.decoder.layers.5.attentions.1.sampling_offsets.weight  | transformer.decoder.layers.5.attentions.1.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.decoder.layers.5.attentions.1.value_proj.bias          | transformer.decoder.layers.5.attentions.1.value_proj.bias          | torch.Size([256])             |
+| transformer.decoder.layers.5.attentions.1.value_proj.weight        | transformer.decoder.layers.5.attentions.1.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.decoder.layers.5.ffns.0.layers.0.0.bias                | transformer.decoder.layers.5.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.decoder.layers.5.ffns.0.layers.0.0.weight              | transformer.decoder.layers.5.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.decoder.layers.5.ffns.0.layers.1.bias                  | transformer.decoder.layers.5.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.decoder.layers.5.ffns.0.layers.1.weight                | transformer.decoder.layers.5.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.decoder.layers.5.norms.0.bias                          | transformer.decoder.layers.5.norms.0.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.5.norms.0.weight                        | transformer.decoder.layers.5.norms.0.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.5.norms.1.bias                          | transformer.decoder.layers.5.norms.1.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.5.norms.1.weight                        | transformer.decoder.layers.5.norms.1.weight                        | torch.Size([256])             |
+| transformer.decoder.layers.5.norms.2.bias                          | transformer.decoder.layers.5.norms.2.bias                          | torch.Size([256])             |
+| transformer.decoder.layers.5.norms.2.weight                        | transformer.decoder.layers.5.norms.2.weight                        | torch.Size([256])             |
+| transformer.decoder.norm.bias                                      | transformer.decoder.norm.bias                                      | torch.Size([256])             |
+| transformer.decoder.norm.weight                                    | transformer.decoder.norm.weight                                    | torch.Size([256])             |
+| transformer.decoder.ref_point_head.layers.0.bias                   | transformer.decoder.ref_point_head.layers.0.bias                   | torch.Size([256])             |
+| transformer.decoder.ref_point_head.layers.0.weight                 | transformer.decoder.ref_point_head.layers.0.weight                 | torch.Size([256, 512])        |
+| transformer.decoder.ref_point_head.layers.1.bias                   | transformer.decoder.ref_point_head.layers.1.bias                   | torch.Size([256])             |
+| transformer.decoder.ref_point_head.layers.1.weight                 | transformer.decoder.ref_point_head.layers.1.weight                 | torch.Size([256, 256])        |
+| transformer.enc_output.bias                                        | transformer.enc_output.bias                                        | torch.Size([256])             |
+| transformer.enc_output.weight                                      | transformer.enc_output.weight                                      | torch.Size([256, 256])        |
+| transformer.enc_output_norm.bias                                   | transformer.enc_output_norm.bias                                   | torch.Size([256])             |
+| transformer.enc_output_norm.weight                                 | transformer.enc_output_norm.weight                                 | torch.Size([256])             |
+| transformer.encoder.layers.0.attentions.0.attention_weights.bias   | transformer.encoder.layers.0.attentions.0.attention_weights.bias   | torch.Size([160])             |
+| transformer.encoder.layers.0.attentions.0.attention_weights.weight | transformer.encoder.layers.0.attentions.0.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.encoder.layers.0.attentions.0.output_proj.bias         | transformer.encoder.layers.0.attentions.0.output_proj.bias         | torch.Size([256])             |
+| transformer.encoder.layers.0.attentions.0.output_proj.weight       | transformer.encoder.layers.0.attentions.0.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.encoder.layers.0.attentions.0.sampling_offsets.bias    | transformer.encoder.layers.0.attentions.0.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.encoder.layers.0.attentions.0.sampling_offsets.weight  | transformer.encoder.layers.0.attentions.0.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.encoder.layers.0.attentions.0.value_proj.bias          | transformer.encoder.layers.0.attentions.0.value_proj.bias          | torch.Size([256])             |
+| transformer.encoder.layers.0.attentions.0.value_proj.weight        | transformer.encoder.layers.0.attentions.0.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.encoder.layers.0.ffns.0.layers.0.0.bias                | transformer.encoder.layers.0.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.encoder.layers.0.ffns.0.layers.0.0.weight              | transformer.encoder.layers.0.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.encoder.layers.0.ffns.0.layers.1.bias                  | transformer.encoder.layers.0.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.encoder.layers.0.ffns.0.layers.1.weight                | transformer.encoder.layers.0.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.encoder.layers.0.norms.0.bias                          | transformer.encoder.layers.0.norms.0.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.0.norms.0.weight                        | transformer.encoder.layers.0.norms.0.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.0.norms.1.bias                          | transformer.encoder.layers.0.norms.1.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.0.norms.1.weight                        | transformer.encoder.layers.0.norms.1.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.1.attentions.0.attention_weights.bias   | transformer.encoder.layers.1.attentions.0.attention_weights.bias   | torch.Size([160])             |
+| transformer.encoder.layers.1.attentions.0.attention_weights.weight | transformer.encoder.layers.1.attentions.0.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.encoder.layers.1.attentions.0.output_proj.bias         | transformer.encoder.layers.1.attentions.0.output_proj.bias         | torch.Size([256])             |
+| transformer.encoder.layers.1.attentions.0.output_proj.weight       | transformer.encoder.layers.1.attentions.0.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.encoder.layers.1.attentions.0.sampling_offsets.bias    | transformer.encoder.layers.1.attentions.0.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.encoder.layers.1.attentions.0.sampling_offsets.weight  | transformer.encoder.layers.1.attentions.0.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.encoder.layers.1.attentions.0.value_proj.bias          | transformer.encoder.layers.1.attentions.0.value_proj.bias          | torch.Size([256])             |
+| transformer.encoder.layers.1.attentions.0.value_proj.weight        | transformer.encoder.layers.1.attentions.0.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.encoder.layers.1.ffns.0.layers.0.0.bias                | transformer.encoder.layers.1.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.encoder.layers.1.ffns.0.layers.0.0.weight              | transformer.encoder.layers.1.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.encoder.layers.1.ffns.0.layers.1.bias                  | transformer.encoder.layers.1.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.encoder.layers.1.ffns.0.layers.1.weight                | transformer.encoder.layers.1.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.encoder.layers.1.norms.0.bias                          | transformer.encoder.layers.1.norms.0.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.1.norms.0.weight                        | transformer.encoder.layers.1.norms.0.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.1.norms.1.bias                          | transformer.encoder.layers.1.norms.1.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.1.norms.1.weight                        | transformer.encoder.layers.1.norms.1.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.2.attentions.0.attention_weights.bias   | transformer.encoder.layers.2.attentions.0.attention_weights.bias   | torch.Size([160])             |
+| transformer.encoder.layers.2.attentions.0.attention_weights.weight | transformer.encoder.layers.2.attentions.0.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.encoder.layers.2.attentions.0.output_proj.bias         | transformer.encoder.layers.2.attentions.0.output_proj.bias         | torch.Size([256])             |
+| transformer.encoder.layers.2.attentions.0.output_proj.weight       | transformer.encoder.layers.2.attentions.0.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.encoder.layers.2.attentions.0.sampling_offsets.bias    | transformer.encoder.layers.2.attentions.0.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.encoder.layers.2.attentions.0.sampling_offsets.weight  | transformer.encoder.layers.2.attentions.0.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.encoder.layers.2.attentions.0.value_proj.bias          | transformer.encoder.layers.2.attentions.0.value_proj.bias          | torch.Size([256])             |
+| transformer.encoder.layers.2.attentions.0.value_proj.weight        | transformer.encoder.layers.2.attentions.0.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.encoder.layers.2.ffns.0.layers.0.0.bias                | transformer.encoder.layers.2.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.encoder.layers.2.ffns.0.layers.0.0.weight              | transformer.encoder.layers.2.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.encoder.layers.2.ffns.0.layers.1.bias                  | transformer.encoder.layers.2.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.encoder.layers.2.ffns.0.layers.1.weight                | transformer.encoder.layers.2.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.encoder.layers.2.norms.0.bias                          | transformer.encoder.layers.2.norms.0.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.2.norms.0.weight                        | transformer.encoder.layers.2.norms.0.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.2.norms.1.bias                          | transformer.encoder.layers.2.norms.1.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.2.norms.1.weight                        | transformer.encoder.layers.2.norms.1.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.3.attentions.0.attention_weights.bias   | transformer.encoder.layers.3.attentions.0.attention_weights.bias   | torch.Size([160])             |
+| transformer.encoder.layers.3.attentions.0.attention_weights.weight | transformer.encoder.layers.3.attentions.0.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.encoder.layers.3.attentions.0.output_proj.bias         | transformer.encoder.layers.3.attentions.0.output_proj.bias         | torch.Size([256])             |
+| transformer.encoder.layers.3.attentions.0.output_proj.weight       | transformer.encoder.layers.3.attentions.0.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.encoder.layers.3.attentions.0.sampling_offsets.bias    | transformer.encoder.layers.3.attentions.0.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.encoder.layers.3.attentions.0.sampling_offsets.weight  | transformer.encoder.layers.3.attentions.0.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.encoder.layers.3.attentions.0.value_proj.bias          | transformer.encoder.layers.3.attentions.0.value_proj.bias          | torch.Size([256])             |
+| transformer.encoder.layers.3.attentions.0.value_proj.weight        | transformer.encoder.layers.3.attentions.0.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.encoder.layers.3.ffns.0.layers.0.0.bias                | transformer.encoder.layers.3.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.encoder.layers.3.ffns.0.layers.0.0.weight              | transformer.encoder.layers.3.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.encoder.layers.3.ffns.0.layers.1.bias                  | transformer.encoder.layers.3.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.encoder.layers.3.ffns.0.layers.1.weight                | transformer.encoder.layers.3.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.encoder.layers.3.norms.0.bias                          | transformer.encoder.layers.3.norms.0.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.3.norms.0.weight                        | transformer.encoder.layers.3.norms.0.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.3.norms.1.bias                          | transformer.encoder.layers.3.norms.1.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.3.norms.1.weight                        | transformer.encoder.layers.3.norms.1.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.4.attentions.0.attention_weights.bias   | transformer.encoder.layers.4.attentions.0.attention_weights.bias   | torch.Size([160])             |
+| transformer.encoder.layers.4.attentions.0.attention_weights.weight | transformer.encoder.layers.4.attentions.0.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.encoder.layers.4.attentions.0.output_proj.bias         | transformer.encoder.layers.4.attentions.0.output_proj.bias         | torch.Size([256])             |
+| transformer.encoder.layers.4.attentions.0.output_proj.weight       | transformer.encoder.layers.4.attentions.0.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.encoder.layers.4.attentions.0.sampling_offsets.bias    | transformer.encoder.layers.4.attentions.0.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.encoder.layers.4.attentions.0.sampling_offsets.weight  | transformer.encoder.layers.4.attentions.0.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.encoder.layers.4.attentions.0.value_proj.bias          | transformer.encoder.layers.4.attentions.0.value_proj.bias          | torch.Size([256])             |
+| transformer.encoder.layers.4.attentions.0.value_proj.weight        | transformer.encoder.layers.4.attentions.0.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.encoder.layers.4.ffns.0.layers.0.0.bias                | transformer.encoder.layers.4.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.encoder.layers.4.ffns.0.layers.0.0.weight              | transformer.encoder.layers.4.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.encoder.layers.4.ffns.0.layers.1.bias                  | transformer.encoder.layers.4.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.encoder.layers.4.ffns.0.layers.1.weight                | transformer.encoder.layers.4.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.encoder.layers.4.norms.0.bias                          | transformer.encoder.layers.4.norms.0.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.4.norms.0.weight                        | transformer.encoder.layers.4.norms.0.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.4.norms.1.bias                          | transformer.encoder.layers.4.norms.1.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.4.norms.1.weight                        | transformer.encoder.layers.4.norms.1.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.5.attentions.0.attention_weights.bias   | transformer.encoder.layers.5.attentions.0.attention_weights.bias   | torch.Size([160])             |
+| transformer.encoder.layers.5.attentions.0.attention_weights.weight | transformer.encoder.layers.5.attentions.0.attention_weights.weight | torch.Size([160, 256])        |
+| transformer.encoder.layers.5.attentions.0.output_proj.bias         | transformer.encoder.layers.5.attentions.0.output_proj.bias         | torch.Size([256])             |
+| transformer.encoder.layers.5.attentions.0.output_proj.weight       | transformer.encoder.layers.5.attentions.0.output_proj.weight       | torch.Size([256, 256])        |
+| transformer.encoder.layers.5.attentions.0.sampling_offsets.bias    | transformer.encoder.layers.5.attentions.0.sampling_offsets.bias    | torch.Size([320])             |
+| transformer.encoder.layers.5.attentions.0.sampling_offsets.weight  | transformer.encoder.layers.5.attentions.0.sampling_offsets.weight  | torch.Size([320, 256])        |
+| transformer.encoder.layers.5.attentions.0.value_proj.bias          | transformer.encoder.layers.5.attentions.0.value_proj.bias          | torch.Size([256])             |
+| transformer.encoder.layers.5.attentions.0.value_proj.weight        | transformer.encoder.layers.5.attentions.0.value_proj.weight        | torch.Size([256, 256])        |
+| transformer.encoder.layers.5.ffns.0.layers.0.0.bias                | transformer.encoder.layers.5.ffns.0.layers.0.0.bias                | torch.Size([2048])            |
+| transformer.encoder.layers.5.ffns.0.layers.0.0.weight              | transformer.encoder.layers.5.ffns.0.layers.0.0.weight              | torch.Size([2048, 256])       |
+| transformer.encoder.layers.5.ffns.0.layers.1.bias                  | transformer.encoder.layers.5.ffns.0.layers.1.bias                  | torch.Size([256])             |
+| transformer.encoder.layers.5.ffns.0.layers.1.weight                | transformer.encoder.layers.5.ffns.0.layers.1.weight                | torch.Size([256, 2048])       |
+| transformer.encoder.layers.5.norms.0.bias                          | transformer.encoder.layers.5.norms.0.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.5.norms.0.weight                        | transformer.encoder.layers.5.norms.0.weight                        | torch.Size([256])             |
+| transformer.encoder.layers.5.norms.1.bias                          | transformer.encoder.layers.5.norms.1.bias                          | torch.Size([256])             |
+| transformer.encoder.layers.5.norms.1.weight                        | transformer.encoder.layers.5.norms.1.weight                        | torch.Size([256])             |
+| transformer.level_embeds                                           | transformer.level_embeds                                           | torch.Size([5, 256])          |
+| transformer.tgt_embed.weight                                       | transformer.tgt_embed.weight                                       | torch.Size([900, 256])        |
+Skip loading parameter 'class_embed.0.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.0.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.1.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.1.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.2.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.2.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.3.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.3.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.4.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.4.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.5.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.5.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.6.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'class_embed.6.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'label_enc.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.0.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.0.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.1.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.1.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.2.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.2.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.3.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.3.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.4.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.4.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.5.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.5.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.6.bias' to the model due to incompatible shapes: (80,) in the checkpoint but (1,) in the model! You might want to double check if this is expected.
+Skip loading parameter 'transformer.decoder.class_embed.6.weight' to the model due to incompatible shapes: (80, 256) in the checkpoint but (1, 256) in the model! You might want to double check if this is expected.
+Some model parameters or buffers are not found in the checkpoint:
+class_embed.0.{bias, weight}
+class_embed.1.{bias, weight}
+class_embed.2.{bias, weight}
+class_embed.3.{bias, weight}
+class_embed.4.{bias, weight}
+class_embed.5.{bias, weight}
+class_embed.6.{bias, weight}
+label_enc.weight
+transformer.decoder.class_embed.0.{bias, weight}
+transformer.decoder.class_embed.1.{bias, weight}
+transformer.decoder.class_embed.2.{bias, weight}
+transformer.decoder.class_embed.3.{bias, weight}
+transformer.decoder.class_embed.4.{bias, weight}
+transformer.decoder.class_embed.5.{bias, weight}
+transformer.decoder.class_embed.6.{bias, weight}
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/smoke_local.py:42: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at /Users/runner/work/pytorch/pytorch/torch/csrc/utils/tensor_numpy.cpp:219.)
+  return {"image": torch.as_tensor(img).permute(2, 0, 1).contiguous(), "instances": inst.to(dev), "height": 1024, "width": 1024}
+  bs1 it0 12.10s loss 49.911
+  bs1 it1 5.01s loss 46.114
+  bs1 it2 6.18s loss 48.255
+  bs1 it3 3.26s loss 0.016
+  bs1 it4 2.77s loss 39.350
+  bs1 it5 2.86s loss 52.924
+  bs1 it6 3.27s loss 33.685
+  bs1 it7 3.17s loss 28.248
+  bs1 it8 2.77s loss 29.536
+  bs1 it9 2.84s loss 24.993
+  bs1 it10 2.88s loss 43.618
+  bs1 it11 2.74s loss 0.231
+  bs1 it12 2.81s loss 25.075
+  bs2 it0 201.61s loss 25.252
+  bs2 it1 355.17s loss 29.455
+  bs2 it2 449.65s loss 28.623

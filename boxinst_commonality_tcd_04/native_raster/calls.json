@@ -464,5 +464,339 @@
       "backbone": "swin-l"
     },
     "note": "Box2Mask Swin-L s0 on sparse-236 (2124 subtiles), A100, 2026-10-27, adoption Phase A extension (Tom go)"
+  },
+  {
+    "call_id": "fc-01M6DCJQRGR395CEKQEE0SS75M",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "train",
+      "tiles": "tcd_tile_1012,tcd_tile_1041"
+    },
+    "note": "z4p G2 parity: 2 val tiles"
+  },
+  {
+    "call_id": "fc-01M6DCRB8SH7MZ9RGHBTSM0T63",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "train",
+      "shard": 0,
+      "nshards": 4
+    },
+    "note": "z4p train shard 0/4 H100"
+  },
+  {
+    "call_id": "fc-01M6DCRCD0EKSES8CVTQEXN7BX",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "train",
+      "shard": 1,
+      "nshards": 4
+    },
+    "note": "z4p train shard 1/4 H100"
+  },
+  {
+    "call_id": "fc-01M6DCRDG8KP0W93CSCY1BR3KC",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "train",
+      "shard": 2,
+      "nshards": 4
+    },
+    "note": "z4p train shard 2/4 H100"
+  },
+  {
+    "call_id": "fc-01M6DCREM9M0GX1HC0Y5FQVNB9",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "train",
+      "shard": 3,
+      "nshards": 4
+    },
+    "note": "z4p train shard 3/4 H100"
+  },
+  {
+    "call_id": "fc-01M6DCRFQN6RBYBGRT53Z1WYDS",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "test",
+      "shard": 0,
+      "nshards": 2
+    },
+    "note": "z4p test shard 0/2 H100"
+  },
+  {
+    "call_id": "fc-01M6DCRGTSDYJS9JA0H1WHEH6P",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "test",
+      "shard": 1,
+      "nshards": 2
+    },
+    "note": "z4p test shard 1/2 H100"
+  },
+  {
+    "call_id": "fc-01M6DD0ZJEVNQ0Z1E477WSDRS1",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "train",
+      "shard": 0,
+      "nshards": 4
+    },
+    "note": "z4p train shard 0/4 H100 (4b relaunch)"
+  },
+  {
+    "call_id": "fc-01M6DD10N32SCVVFW8JP65EJH1",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "train",
+      "shard": 1,
+      "nshards": 4
+    },
+    "note": "z4p train shard 1/4 H100 (4b relaunch)"
+  },
+  {
+    "call_id": "fc-01M6DD11SJZREQHB34CEKJEYWR",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "train",
+      "shard": 2,
+      "nshards": 4
+    },
+    "note": "z4p train shard 2/4 H100 (4b relaunch)"
+  },
+  {
+    "call_id": "fc-01M6DD12XEMVQN2GMH6C5V6HDF",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "train",
+      "shard": 3,
+      "nshards": 4
+    },
+    "note": "z4p train shard 3/4 H100 (4b relaunch)"
+  },
+  {
+    "call_id": "fc-01M6DD142F3JMMDW7F14E0WMFB",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "test",
+      "shard": 0,
+      "nshards": 2
+    },
+    "note": "z4p test shard 0/2 H100 (4b relaunch)"
+  },
+  {
+    "call_id": "fc-01M6DD156ZGS3SX1NJCA8RYT33",
+    "app": "tcd04-dethead-z4p",
+    "fn": "extract",
+    "kwargs": {
+      "split": "test",
+      "shard": 1,
+      "nshards": 2
+    },
+    "note": "z4p test shard 1/2 H100 (4b relaunch)"
+  },
+  {
+    "call_id": "fc-01M6DD6TZ0QAPAXTK0ZPN76ZMV",
+    "app": "tcd04-dethead-armc",
+    "fn": "train",
+    "kwargs": {
+      "tag": "fpnC_s0",
+      "smoke": 1
+    },
+    "note": "arm C smoke (6/6 tiles, 1 epoch)"
+  },
+  {
+    "call_id": "fc-01M6DFZP9GCN0S5T9BMQPJWJNZ",
+    "app": "tcd04-dethead-armc",
+    "fn": "train",
+    "kwargs": {
+      "tag": "fpnC_s0"
+    },
+    "note": "arm C full training (prereg 4)"
+  },
+  {
+    "call_id": "fc-01M6DJT417QJ18WRZDT8Y5T92D",
+    "app": "tcd04-dethead-armc",
+    "fn": "predict",
+    "kwargs": {
+      "tag": "fpnC_s0",
+      "split": "val",
+      "nms": "0.5,0.6"
+    },
+    "note": "arm C val preds (selection)"
+  },
+  {
+    "call_id": "fc-01M6DK5533H4CJGXZG912WZJJP",
+    "app": "tcd04-dethead-armc",
+    "fn": "predict",
+    "kwargs": {
+      "tag": "fpnC_s0",
+      "split": "test",
+      "nms": 0.5
+    },
+    "note": "arm C SINGLE TEST preds at val-selected NMS 0.5"
+  },
+  {
+    "call_id": "fc-01M6DKAW6W04M4JGNFNNXFWJGD",
+    "app": "tcd04-dethead-armc",
+    "fn": "predict",
+    "kwargs": {
+      "tag": "fpnC_s0",
+      "split": "test",
+      "nms": 0.5
+    },
+    "note": "arm C SINGLE TEST preds at val-selected NMS 0.5 (retry after nms-parse crash)"
+  },
+  {
+    "call_id": "fc-01M6DKH5Z4YEEDDF54XXRVPWNZ",
+    "app": "tcd04-dethead-armc",
+    "fn": "predict",
+    "kwargs": {
+      "tag": "fpnC_s0",
+      "split": "test",
+      "nms": 0.5
+    },
+    "note": "arm C SINGLE TEST preds NMS 0.5 (3rd attempt; no output from 1-2)"
+  },
+  {
+    "call_id": "fc-01M6DKHSYG8S7V95V0HTMJAJ89",
+    "app": "tcd04-dethead-armc",
+    "fn": "predict",
+    "kwargs": {
+      "tag": "fpnC_s0",
+      "split": "test",
+      "nms": 0.5
+    },
+    "note": "arm C SINGLE TEST preds NMS 0.5 (4th attempt; no output from 1-3)"
+  },
+  {
+    "call_id": "fc-01M6DPTGX9Y0RM3KRAZFFGM06V",
+    "app": "tcd04-dethead-armc",
+    "fn": "train",
+    "kwargs": {
+      "tag": "fpnC2_s0",
+      "smoke": 1,
+      "head": "C2"
+    },
+    "note": "arm C2 smoke"
+  },
+  {
+    "call_id": "fc-01M6DPVY470DB9YZFJFGZYGCHA",
+    "app": "tcd04-dethead-armc",
+    "fn": "train",
+    "kwargs": {
+      "tag": "fpnC2_s0",
+      "head": "C2"
+    },
+    "note": "arm C2 full training (prereg 6)"
+  },
+  {
+    "call_id": "fc-01M6DTEDMBXDHFGXMNRN0D9AHT",
+    "app": "tcd04-dethead-armc",
+    "fn": "predict",
+    "kwargs": {
+      "tag": "fpnC2_s0",
+      "split": "val",
+      "nms": "0.5,0.6",
+      "head": "C2"
+    },
+    "note": "C2 val preds"
+  },
+  {
+    "call_id": "fc-01M6DTSG31BNS620TVWEXSQEN2",
+    "app": "tcd04-dethead-armc",
+    "fn": "predict",
+    "kwargs": {
+      "tag": "fpnC2_s0",
+      "split": "test",
+      "nms": 0.5,
+      "head": "C2"
+    },
+    "note": "C2 SINGLE TEST preds"
+  },
+  {
+    "call_id": "fc-01M6EDZYPZ7ZQJBFYQ793F2M8Y",
+    "app": "tcd04-dino-swinl",
+    "fn": "smoke",
+    "kwargs": {},
+    "note": "D1 smoke"
+  },
+  {
+    "call_id": "fc-01M6EEECTW0D01W8GEVS99VYDE",
+    "app": "tcd04-dino-swinl",
+    "fn": "train",
+    "kwargs": {},
+    "note": "D1 full training 8xA100-80GB"
+  },
+  {
+    "call_id": "fc-01M6EF150GY8B0MK8AAYAPN344",
+    "app": "tcd04-dino-swinl",
+    "fn": "smoke2",
+    "kwargs": {},
+    "note": "D1 2-GPU smoke"
+  },
+  {
+    "call_id": "fc-01M6EF44ZCBBGFVMY2J2ANB90K",
+    "app": "tcd04-dino-swinl",
+    "fn": "train",
+    "kwargs": {},
+    "note": "D1 full training 8xA100-80GB (relaunch after collate fix)"
+  },
+  {
+    "call_id": "fc-01M6EKMWEK47B6VR3X53V4VSF2",
+    "app": "tcd04-dino-swinl",
+    "fn": "predict",
+    "kwargs": {
+      "split": "val"
+    },
+    "note": "D1 val preds"
+  },
+  {
+    "call_id": "fc-01M6EM5K30SBERZE43ZC3N145T",
+    "app": "tcd04-dino-swinl",
+    "fn": "predict",
+    "kwargs": {
+      "split": "test"
+    },
+    "note": "D1 SINGLE TEST preds"
+  },
+  {
+    "call_id": "fc-01M6FHFBAVWKQ7N33GD4KF0Y4J",
+    "app": "tcd04-dino-swinl",
+    "fn": "predict",
+    "kwargs": {
+      "split": "sparse"
+    },
+    "note": "D1 sparse236 preds (single run)"
+  },
+  {
+    "call_id": "fc-01M6FP7N5HJ83EFVGZW1JK2GCJ",
+    "app": "tcd04-tierb",
+    "fn": "sparse_predict",
+    "kwargs": {
+      "m": "boxteacher"
+    },
+    "note": "B2 BoxTeacher sparse-236 predict (inference only)"
+  },
+  {
+    "call_id": "fc-01M6FPBM3PYPK1JZ23MCJTX6AF",
+    "app": "tcd04-tierb",
+    "fn": "sparse_predict",
+    "kwargs": {
+      "m": "boxteacher"
+    },
+    "note": "B2 sparse-236 predict (retry, cfg-num-gpus 8)"
   }
 ]

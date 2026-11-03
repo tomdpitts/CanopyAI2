@@ -23,7 +23,7 @@ def tables():
 
 def front_block(fp):
     rel = os.path.relpath(CANON, os.path.dirname(fp))
-    return (f"{B0}\n> **CURRENT HEADLINE NUMBERS (2026-10-27)** — single source of truth: [`{os.path.basename(CANON)}`]({rel}) "
+    return (f"{B0}\n> **CURRENT HEADLINE NUMBERS (2026-11-03: LACE (D1 variant) row added)** — single source of truth: [`{os.path.basename(CANON)}`]({rel}) "
             f"(generated + asserted by `results_439/build_table1_current.py`). **Any 439 / sparse236 test number elsewhere in this "
             f"file that disagrees with this box is SUPERSEDED** (512 raster, pre-seam-fix baselines, or the 8 px masker).\n\n"
             f"{tables()}\n{B1}\n")
@@ -31,7 +31,7 @@ def front_block(fp):
 
 def banner(fp):
     rel = os.path.relpath(CANON, os.path.dirname(fp))
-    return (f"{B0}\n> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27).** Current headline table: [`{os.path.basename(CANON)}`]({rel}). "
+    return (f"{B0}\n> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-03).** Current headline table: [`{os.path.basename(CANON)}`]({rel}). "
             f"Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or "
             f"earlier models) and must not be quoted unless they match that table.\n{B1}\n")
 

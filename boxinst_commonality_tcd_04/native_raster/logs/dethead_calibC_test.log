@@ -1,0 +1,76 @@
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_fpnC_s0_nms05_cal_r2048.json: 263400 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=19.14s).
+Accumulating evaluation results...
+DONE (t=0.17s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=26.06s).
+Accumulating evaluation results...
+DONE (t=0.16s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=25.58s).
+Accumulating evaluation results...
+DONE (t=0.16s).
+{
+ "tag": "fpnC_s0_nms05_cal",
+ "params": {
+  "0": {
+   "a": 3.499101,
+   "b": -0.536033,
+   "n": 27456,
+   "pos_rate": 0.1393
+  },
+  "1": {
+   "a": 4.121386,
+   "b": 0.190367,
+   "n": 8960,
+   "pos_rate": 0.2124
+  },
+  "2": {
+   "a": 3.908366,
+   "b": -0.199967,
+   "n": 1926,
+   "pos_rate": 0.1293
+  },
+  "3": {
+   "a": 3.610912,
+   "b": -0.942579,
+   "n": 1035,
+   "pos_rate": 0.03
+  }
+ },
+ "test_informed": true,
+ "mask": {
+  "AP50": 0.6602,
+  "AP75": 0.1961,
+  "AP50_95": 0.2941,
+  "n_det": 263400
+ },
+ "box": {
+  "AP50": 0.6962,
+  "AP75": 0.2589,
+  "AP50_95": 0.3295
+ }
+}

@@ -1,0 +1,155 @@
+{
+ "rule": "highest val mask AP50; ties within 0.001 -> nms0.5, detscore",
+ "rows": {
+  "nms0.5|sprime": {
+   "mask": {
+    "AP50": 0.6841,
+    "AP75": 0.2399,
+    "AP50_95": 0.3187
+   },
+   "box": {
+    "AP50": 0.6999,
+    "AP75": 0.2783
+   }
+  },
+  "nms0.5|detscore": {
+   "mask": {
+    "AP50": 0.6844,
+    "AP75": 0.2272,
+    "AP50_95": 0.314
+   },
+   "box": {
+    "AP50": 0.7011,
+    "AP75": 0.2689
+   }
+  },
+  "nms0.6|sprime": {
+   "mask": {
+    "AP50": 0.6623,
+    "AP75": 0.2428,
+    "AP50_95": 0.3135
+   },
+   "box": {
+    "AP50": 0.6779,
+    "AP75": 0.2816
+   }
+  },
+  "nms0.6|detscore": {
+   "mask": {
+    "AP50": 0.6746,
+    "AP75": 0.2308,
+    "AP50_95": 0.313
+   },
+   "box": {
+    "AP50": 0.6905,
+    "AP75": 0.2733
+   }
+  }
+ },
+ "selected": "nms0.5|detscore",
+ "nms": 0.5,
+ "rank": "detscore",
+ "box_diag_selected_detscore": {
+  "AP50": 0.7011,
+  "n_det": 64800,
+  "n_gt": 7041,
+  "max_recall": 0.8563,
+  "precision_at_recall": {
+   "0.5": 0.8564,
+   "0.6": 0.7987,
+   "0.7": 0.6851
+  },
+  "recall_by_size_px": {
+   "0-24": [
+    0.6778,
+    1819
+   ],
+   "24-48": [
+    0.8881,
+    2163
+   ],
+   "48-96": [
+    0.9456,
+    2444
+   ],
+   "96-inf": [
+    0.9171,
+    615
+   ]
+  },
+  "recall_touching_isolated": {
+   "touching": [
+    0.8688,
+    2523
+   ],
+   "isolated": [
+    0.8493,
+    4518
+   ]
+  },
+  "missed_causes": {
+   "n_missed": 1012,
+   "no_det_iou<0.1": 0.416,
+   "poor_loc_0.1-0.5": 0.5791,
+   "taken_iou>=0.5": 0.0049
+  },
+  "fp_above_recall0.6": {
+   "n_dets_to_recall0.6": 5289,
+   "n_fp": 1065,
+   "bg": 0.6958,
+   "loc": 0.2854,
+   "dup": 0.0188
+  }
+ },
+ "modal_meta": {
+  "0.5": {
+   "tag": "fpnC_s0",
+   "split": "val",
+   "nms": 0.5,
+   "ckpt": "best.pt",
+   "cfg": {
+    "head": "fpnC",
+    "tag": "fpnC_s0",
+    "best_epoch": 30,
+    "val_crowd_boxAP60": 0.5974,
+    "recipe": {
+     "lr": 0.001,
+     "wd": 0.0001,
+     "epochs": 40,
+     "bs": 3,
+     "eval_every": 5,
+     "min_epochs": 12,
+     "es_patience": 2,
+     "es_min_delta": 0.005,
+     "es_metric": "crowd box AP@0.6, NMS 0.6, floor 0.05, maxDets 600",
+     "seed": 0
+    }
+   }
+  },
+  "0.6": {
+   "tag": "fpnC_s0",
+   "split": "val",
+   "nms": 0.6,
+   "ckpt": "best.pt",
+   "cfg": {
+    "head": "fpnC",
+    "tag": "fpnC_s0",
+    "best_epoch": 30,
+    "val_crowd_boxAP60": 0.5974,
+    "recipe": {
+     "lr": 0.001,
+     "wd": 0.0001,
+     "epochs": 40,
+     "bs": 3,
+     "eval_every": 5,
+     "min_epochs": 12,
+     "es_patience": 2,
+     "es_min_delta": 0.005,
+     "es_metric": "crowd box AP@0.6, NMS 0.6, floor 0.05, maxDets 600",
+     "seed": 0
+    }
+   }
+  }
+ },
+ "date": "2026-11-02 18:38"
+}

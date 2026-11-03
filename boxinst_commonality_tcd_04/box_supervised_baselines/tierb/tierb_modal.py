@@ -1134,3 +1134,55 @@ def report_status():
                                                                  "projected_predict_hours", "projected_usd",
                                                                  "sec_per_iter", "sec_per_step", "seconds")}
     return out
+
+
+# ------------------------------------------------------------------ one-off: BoxTeacher sparse-236 INFERENCE (2026-11-03, Tom)
+# Inference only, from the stored model_best.pth; bypasses the step machine (predict/finalize are DONE and STOP is set).
+# The existing DONE/predict.json and results/summary.json are backed up first and restored, so the B2 record is unchanged;
+# the sparse rows land in results/{preds,scored}_<m>_sub_sparse_r2048.json + results/summary_with_sparse.json.
+@app.function(image=img_d2, volumes=VOLS, gpu=GPU1, cpu=8, memory=49152, timeout=4 * 3600, retries=RETRY1)
+def sparse_predict(m: str = "boxteacher"):
+    import shutil
+    sys.path.insert(0, "/root")
+    from tierb import tierb_common as TC
+    _reload()
+    dm = TC.done_marker(m, "predict"); bak = dm + ".before_sparse"
+    if os.path.exists(dm) and not os.path.exists(bak):
+        shutil.copy2(dm, bak)
+    t0 = time.time(); logp = TC.run_dir(m, "predict_sparse.log")
+    try:
+        with open(logp, "a") as f:
+            rc = subprocess.run(_d2("predict", m, ["--num-gpus", "1", "--cfg-num-gpus", "8", "--splits", "sparse"]), cwd=D2_CWD,
+                                stdout=f, stderr=subprocess.STDOUT).returncode
+    finally:
+        if os.path.exists(bak):
+            shutil.copy2(bak, dm)                       # restore the original val,test predict record
+        record_spend("sparse_predict:" + m, STARTUP_MIN + (time.time() - t0) / 60, RATE["gate"])
+        vol.commit()
+    if rc != 0:
+        raise RuntimeError(f"d2_run predict --splits sparse exit {rc}; see {logp}")
+    n = len([f for f in os.listdir(TC.run_dir(m, "predict", "sparse", "sub")) if f.endswith(".done")])
+    return {"tiles_done": n, "minutes": round((time.time() - t0) / 60, 1)}
+
+
+@app.function(image=img_cpu, volumes=VOLS, cpu=32, memory=327680, timeout=6 * 3600, retries=RETRY1)
+def sparse_finalize(m: str = "boxteacher"):
+    import shutil
+    sys.path.insert(0, "/root")
+    from tierb import finalize_lib as FL
+    from tierb import tierb_common as TC
+    _reload()
+    sp = TC.run_dir(m, "results", "summary.json"); bak = sp + ".before_sparse"
+    if os.path.exists(sp) and not os.path.exists(bak):
+        shutil.copy2(sp, bak)
+    t0 = time.time(); com = TC.Committer(vol, period=120).start()
+    try:
+        res = FL.finalize_d2(m)                          # val/test outputs exist -> skipped; sparse stitched + scored
+        TC.atomic_json(TC.run_dir(m, "results", "summary_with_sparse.json"), res, indent=1)
+    finally:
+        if os.path.exists(bak):
+            shutil.copy2(bak, sp)
+        com.close(strict=False)
+        record_spend("sparse_finalize:" + m, STARTUP_MIN + (time.time() - t0) / 60, RATE["finalize"])
+        vol.commit()
+    return {"sparse": [r for r in res["rows"] if r["split"] == "sparse"]}

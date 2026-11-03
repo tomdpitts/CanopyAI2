@@ -668,7 +668,9 @@ def predict_worker(args):
     P.apply(args.method)
     run = run_dir(args.method, args.smoke)
     best = json.load(open(os.path.join(run, "best.json")))
-    cfg = build_cfg(args.method, os.path.join(run, "train"), _sched(args), args.num_gpus, smoke=args.smoke)
+    # --cfg-num-gpus (2026-11-03, sparse-236 inference on 1 GPU): the config describes the 8 x 2 TRAINING layout the
+    # checkpoint was trained with; inference never reads IMS_PER_BATCH, so the model built is identical.
+    cfg = build_cfg(args.method, os.path.join(run, "train"), _sched(args), args.cfg_num_gpus or args.num_gpus, smoke=args.smoke)
     model = build_model(cfg)
     ck = torch.load(os.path.join(run, "model_best.pth"), map_location="cpu")   # authoritative
     if not (ck["iteration"] == best["iter"] - 1 and ck["val_box"] == best["val_box"]):
@@ -727,6 +729,7 @@ def main():
     ap.add_argument("--smoke-period", type=int, default=40)
     ap.add_argument("--splits", default="val,test")      # sparse-236: optional, later, from model_best
     ap.add_argument("--limit-tiles", type=int, default=0)
+    ap.add_argument("--cfg-num-gpus", type=int, default=0)   # predict only: config's GPU count if != --num-gpus
     args = ap.parse_args()
     if args.cmd == "gate":
         from tierb.d2.d2_gate import gate

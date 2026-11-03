@@ -1,0 +1,45 @@
+{
+ "tag": "dino_swinl_s0",
+ "selected": "sprime",
+ "modal_meta": {
+  "model": "DINO-Swin-L COCO-init, trained on OAM-TCD boxes (prereg D1)",
+  "best_epoch": 6,
+  "val_box": {
+   "AP50": 0.7606,
+   "AP75": 0.4578,
+   "AP50_95": 0.4394,
+   "n_det": 210251
+  },
+  "stitch": "edge 10 px interior, dedup IoU 0.7 / cont 0.85, floor 0.05, top 600"
+ },
+ "rows": {
+  "detscore": {
+   "mask": {
+    "AP50": 0.689,
+    "AP75": 0.2563,
+    "AP50_95": 0.3271,
+    "n_det": 200148
+   },
+   "box": {
+    "AP50": 0.7257,
+    "AP75": 0.3901,
+    "AP50_95": 0.3979
+   },
+   "floor": 0.05
+  },
+  "sprime": {
+   "mask": {
+    "AP50": 0.7035,
+    "AP75": 0.2615,
+    "AP50_95": 0.3347,
+    "n_det": 200148
+   },
+   "box": {
+    "AP50": 0.7391,
+    "AP75": 0.4007,
+    "AP50_95": 0.4074
+   },
+   "floor": 0.0
+  }
+ }
+}

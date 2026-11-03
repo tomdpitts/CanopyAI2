@@ -1,0 +1,275 @@
+[detach] modal deploy /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/trainC_modal.py
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/trainC_mo
+│   dal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/val_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/score_lite.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/fcos.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/__init__.
+│   py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function train.
+└── 🔨 Created function predict.
+✓ App deployed in 3.186s! 🎉
+
+View Deployment: 
+https://modal.com/apps/tomdpitts/main/deployed/tcd04-dethead-armc
+{
+  "call_id": "fc-01M6DD6TZ0QAPAXTK0ZPN76ZMV",
+  "app": "tcd04-dethead-armc",
+  "fn": "train",
+  "kwargs": {
+    "tag": "fpnC_s0",
+    "smoke": 1
+  },
+  "note": "arm C smoke (6/6 tiles, 1 epoch)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DD6TZ0QAPAXTK0ZPN76ZMV
+2026-11-02 17:43:40 z4p extraction: all 6 shards DONE; launching arm C training
+{
+  "call_id": "fc-01M6DFZP9GCN0S5T9BMQPJWJNZ",
+  "app": "tcd04-dethead-armc",
+  "fn": "train",
+  "kwargs": {
+    "tag": "fpnC_s0"
+  },
+  "note": "arm C full training (prereg 4)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DFZP9GCN0S5T9BMQPJWJNZ
+{
+  "call_id": "fc-01M6DJT417QJ18WRZDT8Y5T92D",
+  "app": "tcd04-dethead-armc",
+  "fn": "predict",
+  "kwargs": {
+    "tag": "fpnC_s0",
+    "split": "val",
+    "nms": "0.5,0.6"
+  },
+  "note": "arm C val preds (selection)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DJT417QJ18WRZDT8Y5T92D
+{
+  "call_id": "fc-01M6DK5533H4CJGXZG912WZJJP",
+  "app": "tcd04-dethead-armc",
+  "fn": "predict",
+  "kwargs": {
+    "tag": "fpnC_s0",
+    "split": "test",
+    "nms": 0.5
+  },
+  "note": "arm C SINGLE TEST preds at val-selected NMS 0.5"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DK5533H4CJGXZG912WZJJP
+2026-11-02 18:42:08 test predict fc-01M6DK5533H4CJGXZG912WZJJP FAILED before any output (nms float .split); patched, redeploy, respawn
+[detach] modal deploy /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/trainC_modal.py
+✓ Created objects.
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/trainC_mo
+│   dal.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/prepare.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/cache.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_tcd/build_canopy.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst_commonality/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/cache_feats.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/stubs/boxinst/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/manifest.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/val_gt.json
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/modal_tcd_multise
+│   ed/phase4/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/score_lite.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/tierb/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_ba
+│   selines/__init__.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/fcos.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dethead/__init__.
+│   py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_tiles_gt.js
+│   on
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/train_detector_ti
+│   les.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_train_tiles
+│   .py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/cache_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/prepare_test.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/evaluate.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/detector.py
+├── 🔨 Created mount 
+│   /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/__init__.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/head.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/eval.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/decode.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/targets.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/backbone.py
+├── 🔨 Created mount /Users/tompitts/dphil/CanopyAI2/dapt/__init__.py
+├── 🔨 Created function predict.
+└── 🔨 Created function train.
+✓ App deployed in 3.426s! 🎉
+
+View Deployment: 
+https://modal.com/apps/tomdpitts/main/deployed/tcd04-dethead-armc
+{
+  "call_id": "fc-01M6DKAW6W04M4JGNFNNXFWJGD",
+  "app": "tcd04-dethead-armc",
+  "fn": "predict",
+  "kwargs": {
+    "tag": "fpnC_s0",
+    "split": "test",
+    "nms": 0.5
+  },
+  "note": "arm C SINGLE TEST preds at val-selected NMS 0.5 (retry after nms-parse crash)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DKAW6W04M4JGNFNNXFWJGD
+2026-11-02 18:45:38 stale container ta-01M6DK55C8 (old code) served retry call; stopped; respawn test predict
+{
+  "call_id": "fc-01M6DKH5Z4YEEDDF54XXRVPWNZ",
+  "app": "tcd04-dethead-armc",
+  "fn": "predict",
+  "kwargs": {
+    "tag": "fpnC_s0",
+    "split": "test",
+    "nms": 0.5
+  },
+  "note": "arm C SINGLE TEST preds NMS 0.5 (3rd attempt; no output from 1-2)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DKH5Z4YEEDDF54XXRVPWNZ
+2026-11-02 18:45:59 3rd call fc-01M6DKH5Z4 cancelled (stale container stop had aborted without -y); container stopped -y; 4th spawn
+{
+  "call_id": "fc-01M6DKHSYG8S7V95V0HTMJAJ89",
+  "app": "tcd04-dethead-armc",
+  "fn": "predict",
+  "kwargs": {
+    "tag": "fpnC_s0",
+    "split": "test",
+    "nms": 0.5
+  },
+  "note": "arm C SINGLE TEST preds NMS 0.5 (4th attempt; no output from 1-3)"
+}
+
+[detach] running server-side. Safe to close this terminal.
+[detach] collect with:  python detach.py status fc-01M6DKHSYG8S7V95V0HTMJAJ89

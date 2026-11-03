@@ -1,0 +1,38 @@
+{
+ "n_boot": 2000,
+ "seed": 0,
+ "full_AP50": {
+  "D1_sprime": 0.7035,
+  "boxteacher": 0.6642,
+  "C2_sprime": 0.6627,
+  "lace_s0": 0.6556
+ },
+ "D1_minus": {
+  "boxteacher": {
+   "diff": 0.0393,
+   "ci95": [
+    0.0317,
+    0.0494
+   ],
+   "p_le_0": 0.0
+  },
+  "C2_sprime": {
+   "diff": 0.0407,
+   "ci95": [
+    0.0322,
+    0.0527
+   ],
+   "p_le_0": 0.0
+  },
+  "lace_s0": {
+   "diff": 0.0479,
+   "ci95": [
+    0.0388,
+    0.0596
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "note": "test-set sampling uncertainty only (tiles resampled), not training-seed variance",
+ "sec": 44
+}
