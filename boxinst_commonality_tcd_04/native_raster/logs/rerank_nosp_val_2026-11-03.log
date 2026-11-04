@@ -1,0 +1,49 @@
+[nosp] s' 0.7384  detector s 0.7356  cols ['s', 'log_w', 'log_h', 'log_aspect', 'log_marea', 'fill', 'border', 'log_nhi', 'tile_top50', 'max_iou_higher', 'n_nbr']
+  rr s0: r2 0.7443 nosp 0.7404 30s
+  rr s1: r2 0.7444 nosp 0.7402 59s
+  rr s2: r2 0.7435 nosp 0.7398 89s
+  rr s3: r2 0.7438 nosp 0.741 118s
+  rr s4: r2 0.7445 nosp 0.739 148s
+  perm1 s0: r2 0.7441 nosp 0.7393 177s
+  perm1 s1: r2 0.7433 nosp 0.7395 206s
+  perm1 s2: r2 0.7429 nosp 0.7398 236s
+  perm1 s3: r2 0.7423 nosp 0.739 265s
+  perm1 s4: r2 0.7449 nosp 0.7405 295s
+  perm2 s0: r2 0.7465 nosp 0.7432 324s
+  perm2 s1: r2 0.7453 nosp 0.7424 353s
+  perm2 s2: r2 0.746 nosp 0.7429 382s
+  perm2 s3: r2 0.7451 nosp 0.7424 411s
+  perm2 s4: r2 0.7465 nosp 0.7432 440s
+{
+ "sprime": 0.7384,
+ "detector_s": 0.7356,
+ "nosp_cols": [
+  "s",
+  "log_w",
+  "log_h",
+  "log_aspect",
+  "log_marea",
+  "fill",
+  "border",
+  "log_nhi",
+  "tile_top50",
+  "max_iou_higher",
+  "n_nbr"
+ ],
+ "gain_vs_sprime": {
+  "r2": {
+   "mean": 0.0061,
+   "sd": 0.0013
+  },
+  "nosp": {
+   "mean": 0.0024,
+   "sd": 0.0016
+  }
+ },
+ "nosp_minus_r2": {
+  "mean": -0.0037,
+  "sd": 0.0008,
+  "n_pos": 0
+ },
+ "date": "2026-11-03 18:29"
+}

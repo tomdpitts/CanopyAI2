@@ -1,4 +1,4 @@
-"""EVIDENCE ONLY (not in the paper): the SelvaBox auditor's re-rank (audit_2026-10-14/selvabox_evidence/
+"""IN THE PAPER since 2026-11-03 (Table 1 SelvaBox row; env gate selvabox_env_gate_gmean.json, dAP50 -0.0003). Was EVIDENCE ONLY: the SelvaBox auditor's re-rank (audit_2026-10-14/selvabox_evidence/
 rerank_score.py) applied to the SEAM-FIXED file. score = sqrt(det * SAM iou), CanopyRS aggregator-2 key
 (weighted_geometric_mean 0.5/0.5); ioa-disambiguate NMS and the 0.6 threshold NOT applied. 26,986 of the
 307,500 SAM scores are from local MPS SAM 3 (seamfix README), so this is provisional."""

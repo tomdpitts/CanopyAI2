@@ -1,0 +1,72 @@
+{
+ "split": "test",
+ "date": "2026-11-04 15:07",
+ "n_masks_changed": 13171,
+ "n_masks": 200148,
+ "mask_AP": {
+  "baseline": {
+   "AP50": 0.7035,
+   "AP75": 0.2615,
+   "AP50_95": 0.3347
+  },
+  "edgefix": {
+   "AP50": 0.7044,
+   "AP75": 0.2644,
+   "AP50_95": 0.3366
+  },
+  "sam3zs_gmean": {
+   "AP50": 0.7013,
+   "AP75": 0.3107,
+   "AP50_95": 0.3553
+  }
+ },
+ "boot": {
+  "edgefix_minus_baseline": {
+   "AP50": {
+    "diff": 0.0009,
+    "ci95": [
+     0.0005,
+     0.0032
+    ]
+   },
+   "AP75": {
+    "diff": 0.0029,
+    "ci95": [
+     0.0024,
+     0.0048
+    ]
+   },
+   "AP50_95": {
+    "diff": 0.0019,
+    "ci95": [
+     0.0016,
+     0.0027
+    ]
+   }
+  },
+  "edgefix_minus_sam3zs_gmean": {
+   "AP50": {
+    "diff": 0.0031,
+    "ci95": [
+     -0.0019,
+     0.0106
+    ]
+   },
+   "AP75": {
+    "diff": -0.0463,
+    "ci95": [
+     -0.0546,
+     -0.0371
+    ]
+   },
+   "AP50_95": {
+    "diff": -0.0187,
+    "ci95": [
+     -0.0232,
+     -0.0141
+    ]
+   }
+  }
+ },
+ "note": "run once per pre-registration; test-set sampling only; single detector seed"
+}

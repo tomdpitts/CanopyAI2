@@ -55,6 +55,10 @@ RES = 2048
 ALPHA, KAPPA = 0.30, 1.60
 GF_R, GF_EPS, GF_TAU = 12, 1e-4, 0.35
 MARGIN = 16
+# _prob's down-right shift by delta px used to zero-fill the top/left band (prob 0 -> masks stop short of the tile
+# top/left edge). True = edge-replicate that band (dino_det/edgefix_val.py, edgefix_test.py; SAM3_D1.md, adopted
+# 2026-11-04). Set False to reproduce every result rendered before 2026-11-04.
+EDGE_FILL = True
 COMMIT_EVERY = 10
 WORKERS = 7
 
@@ -158,6 +162,8 @@ def _prob(masker, zn, g, b, alpha, kappa, res=RES):
         sh = np.zeros_like(prob)
         s_ = slice(max(0, -delta), res - max(0, delta)); d_ = slice(max(0, delta), res - max(0, -delta))
         sh[d_, d_] = prob[s_, s_]; prob = sh
+        if EDGE_FILL and delta > 0:                        # edge-replicate the vacated top/left band (see EDGE_FILL)
+            prob[:delta, :] = prob[delta, :]; prob[:, :delta] = prob[:, delta:delta + 1]
     x0, y0, x1, y1 = np.asarray(b) / scale
     return (max(0, int(y0)), int(np.ceil(y1)), max(0, int(x0)), int(np.ceil(x1))), prob, r
 

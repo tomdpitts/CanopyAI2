@@ -1,0 +1,36 @@
+[closed] grid 169 37s
+[closed] cv rr: +0.0044 AP50, +0.0020 AP50:95, choices [[np.float64(0.625), np.float64(0.5)], [np.float64(0.625), np.float64(0.5)], [np.float64(0.625), np.float64(0.75)], [np.float64(0.625), np.float64(0.5)], [np.float64(0.625), np.float64(0.5)]]
+[closed] cv perm1: +0.0042 AP50, +0.0016 AP50:95, choices [[np.float64(0.75), np.float64(0.5)], [np.float64(0.625), np.float64(0.5)], [np.float64(0.5), np.float64(0.5)], [np.float64(0.75), np.float64(0.5)], [np.float64(0.75), np.float64(0.5)]]
+[closed] cv perm2: +0.0041 AP50, +0.0018 AP50:95, choices [[np.float64(0.75), np.float64(0.5)], [np.float64(0.625), np.float64(0.5)], [np.float64(0.625), np.float64(0.5)], [np.float64(0.625), np.float64(0.5)], [np.float64(0.625), np.float64(0.5)]]
+[closed] full-val best a=0.75 b=0.5: {'AP50': 0.7425, 'AP75': 0.3361, 'AP50_95': 0.378} vs s' {'AP50': 0.7384, 'AP75': 0.3345, 'AP50_95': 0.3763}
+multiprocessing.pool.RemoteTraceback: 
+"""
+Traceback (most recent call last):
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/multiprocessing/pool.py", line 125, in worker
+    result = (True, func(*args, **kwds))
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/multiprocessing/pool.py", line 48, in mapstar
+    return list(map(*args))
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/side2.py", line 125, in _ratio_tile
+    iou = np.asarray(M.iou(rles, gts, [0] * len(gts))).reshape(len(rles), len(gts)); j = iou.argmax(1); ga = M.area(gts); pa = M.area(rles)
+  File "/Users/tompitts/dphil/CanopyAI2/.venv/lib/python3.10/site-packages/pycocotools/mask.py", line 95, in area
+    return _mask.area(rleObjs)
+  File "pycocotools/_mask.pyx", line 165, in pycocotools._mask.area
+OverflowError: Python integer 600 out of bounds for uint8
+"""
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/side2.py", line 152, in <module>
+    f(rec)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/side2.py", line 140, in ratio
+    rows = sum(pool.map(_ratio_tile, [([SL._as_bytes(r) for r in P[t]["masks_rle"]], by[t2i[t]]) for t in tids]), [])
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/multiprocessing/pool.py", line 367, in map
+    return self._map_async(func, iterable, mapstar, chunksize).get()
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/multiprocessing/pool.py", line 774, in get
+    raise self._value
+OverflowError: Python integer 600 out of bounds for uint8

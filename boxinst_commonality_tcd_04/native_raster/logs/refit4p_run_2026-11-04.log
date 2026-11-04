@@ -1,0 +1,223 @@
+2026-11-04 18:47:57 R4P start
+  loaded 20/120
+  loaded 40/120
+  loaded 60/120
+  loaded 80/120
+  loaded 100/120
+  loaded 120/120
+[fit4p] tiles=120 grid=512 stride=4px origin=8.0px margin=8.0px load 12s
+=== restarted with --line-buffered 18:48:25 ===
+2026-11-04 18:48:26 R4P start
+  loaded 20/120
+  loaded 40/120
+  loaded 60/120
+  loaded 80/120
+  loaded 100/120
+  loaded 120/120
+[fit4p] tiles=120 grid=512 stride=4px origin=8.0px margin=8.0px load 11s
+bg mixture K_bg=12 on 25326910 clear + 761871 ring
+EM over 9153 boxes / 1775561 cells; size terciles [25.1 50.8]px
+  it 1: mean P(fg)=0.735 K=16 1s
+  it 2: mean P(fg)=0.720 K=16 1s
+  it 3: mean P(fg)=0.700 K=16 1s
+  it 4: mean P(fg)=0.683 K=16 1s
+  it 5: mean P(fg)=0.674 K=16 1s
+  it 6: mean P(fg)=0.671 K=16 1s
+  it 7: mean P(fg)=0.671 K=16 1s
+  it 8: mean P(fg)=0.673 K=16 1s
+  it 9: mean P(fg)=0.673 K=16 1s
+  it10: mean P(fg)=0.673 K=16 1s
+  it11: mean P(fg)=0.671 K=16 1s
+  it12: mean P(fg)=0.670 K=16 1s
+  it13: mean P(fg)=0.669 K=16 1s
+  it14: mean P(fg)=0.669 K=16 1s
+  it15: prune -> K=15
+  it15: mean P(fg)=0.670 K=15 1s
+  it16: mean P(fg)=0.661 K=15 1s
+  it17: mean P(fg)=0.670 K=15 1s
+  it18: mean P(fg)=0.671 K=15 1s
+  it19: mean P(fg)=0.672 K=15 1s
+  it20: mean P(fg)=0.673 K=15 1s
+  it21: mean P(fg)=0.675 K=15 1s
+  it22: mean P(fg)=0.674 K=15 1s
+  it23: mean P(fg)=0.675 K=15 1s
+  it24: mean P(fg)=0.675 K=15 1s
+  it25: mean P(fg)=0.675 K=15 1s
+  it26: mean P(fg)=0.675 K=15 1s
+  it27: mean P(fg)=0.675 K=15 1s
+  it28: mean P(fg)=0.676 K=15 1s
+  it29: mean P(fg)=0.676 K=15 1s
+  it30: mean P(fg)=0.677 K=15 1s
+[fit4p] saved boxinst_commonality_tcd_04/masker_refit4p/results/fit_n120/em_model_z4p_n120.npz K=15 in 1.0 min
+[render val n120] 108/108 tiles to render, masker sha1 ac71a267e153
+  20/108 23s
+  40/108 36s
+  60/108 47s
+  80/108 59s
+  100/108 69s
+  108/108 74s
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=5.88s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=6.10s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+{"tag": "n120", "masker_sha1": "ac71a267e1538fe4b9d6aa63959a1b075e487a09", "ranking": "s'", "mask": {"AP50": 0.7404, "AP75": 0.3341, "AP50_95": 0.3772}, "box": {"AP50": 0.7574, "AP75": 0.4624}, "date": "2026-11-04 18:51"}
+2026-11-04 18:51:34 pull complete:      250 tiles
+  loaded 20/250
+  loaded 40/250
+  loaded 60/250
+  loaded 80/250
+  loaded 100/250
+  loaded 120/250
+  loaded 140/250
+  loaded 160/250
+  loaded 180/250
+  loaded 200/250
+  loaded 220/250
+  loaded 240/250
+  loaded 250/250
+[fit4p] tiles=250 grid=512 stride=4px origin=8.0px margin=8.0px load 23s
+Traceback (most recent call last):
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_refit4p/eval4p.py", line 149, in <module>
+    {"val": lambda: val(a.tag), "select": select, "final": final}[a.cmd]()
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_refit4p/eval4p.py", line 149, in <lambda>
+    {"val": lambda: val(a.tag), "select": select, "final": final}[a.cmd]()
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_refit4p/eval4p.py", line 80, in val
+    P, M, tids, sha = render("val", tag)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_refit4p/eval4p.py", line 62, in render
+    npz = NPZ[tag]; sha = hashlib.sha1(open(npz, "rb").read()).hexdigest()
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_refit4p/results/fit_n250/em_model_z4p_n250.npz'
+Traceback (most recent call last):
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/Users/tompitts/.pyenv/versions/3.10.20/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_refit4p/eval4p.py", line 149, in <module>
+    {"val": lambda: val(a.tag), "select": select, "final": final}[a.cmd]()
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_refit4p/eval4p.py", line 93, in select
+    V = {t: json.load(open(os.path.join(RES, f"val_{t}.json"))) for t in ("deployed", "n120", "n250")}
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_refit4p/eval4p.py", line 93, in <dictcomp>
+    V = {t: json.load(open(os.path.join(RES, f"val_{t}.json"))) for t in ("deployed", "n120", "n250")}
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_refit4p/results/val_n250.json'
+=== 18:5x n250 fit died after load (likely OOM: em.fit materialises all clear cells); fit4p (f) gather-only subsampling, verified bit-identical on n120; relaunch 18:58:24 ===
+2026-11-04 18:58:24 R4P start
+[fit4p] boxinst_commonality_tcd_04/masker_refit4p/results/fit_n120/em_model_z4p_n120.npz exists -> skip
+2026-11-04 18:58:27 pull complete:      250 tiles
+  loaded 20/250
+  loaded 40/250
+  loaded 60/250
+  loaded 80/250
+  loaded 100/250
+  loaded 120/250
+  loaded 140/250
+  loaded 160/250
+  loaded 180/250
+  loaded 200/250
+  loaded 220/250
+  loaded 240/250
+  loaded 250/250
+[fit4p] tiles=250 grid=512 stride=4px origin=8.0px margin=8.0px load 20s
+bg mixture K_bg=12 on 53834408 clear + 1479839 ring
+EM over 17385 boxes / 3544636 cells; size terciles [25.7 51.3]px
+  it 1: mean P(fg)=0.744 K=16 2s
+  it 2: mean P(fg)=0.735 K=16 2s
+  it 3: mean P(fg)=0.722 K=16 2s
+  it 4: mean P(fg)=0.705 K=16 2s
+  it 5: mean P(fg)=0.694 K=16 2s
+  it 6: mean P(fg)=0.690 K=16 2s
+  it 7: mean P(fg)=0.689 K=16 2s
+  it 8: mean P(fg)=0.688 K=16 2s
+  it 9: mean P(fg)=0.686 K=16 2s
+  it10: mean P(fg)=0.686 K=16 2s
+  it11: mean P(fg)=0.685 K=16 2s
+  it12: mean P(fg)=0.684 K=16 2s
+  it13: mean P(fg)=0.684 K=16 2s
+  it14: prune -> K=15
+  it14: mean P(fg)=0.684 K=15 2s
+  it15: prune -> K=14
+  it15: mean P(fg)=0.675 K=14 2s
+  it16: prune -> K=13
+  it16: mean P(fg)=0.674 K=13 2s
+  it17: prune -> K=12
+  it17: mean P(fg)=0.673 K=12 2s
+  it18: mean P(fg)=0.673 K=12 2s
+  it19: mean P(fg)=0.683 K=12 2s
+  it20: mean P(fg)=0.684 K=12 2s
+  it21: mean P(fg)=0.684 K=12 2s
+  it22: mean P(fg)=0.684 K=12 2s
+  it23: mean P(fg)=0.684 K=12 2s
+  it24: mean P(fg)=0.684 K=12 2s
+  it25: prune -> K=11
+  it25: mean P(fg)=0.684 K=11 2s
+  it26: mean P(fg)=0.674 K=11 2s
+  it27: prune -> K=10
+  it27: mean P(fg)=0.684 K=10 2s
+  it28: prune -> K=9
+  it28: mean P(fg)=0.674 K=9 2s
+  it29: prune -> K=8
+  it29: mean P(fg)=0.673 K=8 2s
+  it30: mean P(fg)=0.673 K=8 2s
+[fit4p] saved boxinst_commonality_tcd_04/masker_refit4p/results/fit_n250/em_model_z4p_n250.npz K=8 in 1.5 min
+[render val n250] 108/108 tiles to render, masker sha1 9051a75e68b2
+  20/108 23s
+  40/108 35s
+  60/108 47s
+  80/108 59s
+  100/108 69s
+  108/108 73s
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=5.92s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=6.11s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+{"tag": "n250", "masker_sha1": "9051a75e68b286b70e791b4e1ff0dc828d960fc4", "ranking": "s'", "mask": {"AP50": 0.7417, "AP75": 0.339, "AP50_95": 0.3789}, "box": {"AP50": 0.7606, "AP75": 0.4638}, "date": "2026-11-04 19:02"}
+{
+ "rule": "adopt iff val s' mask AP50 >= deployed + 0.003; among passing arms the smallest within 0.001 of the best",
+ "val_AP50": {
+  "deployed": 0.7414,
+  "n120": 0.7404,
+  "n250": 0.7417
+ },
+ "passing": [],
+ "selected": null,
+ "date": "2026-11-04 19:02"
+}
+2026-11-04 19:02:02 R4P val stage DONE

@@ -1,0 +1,17 @@
+{
+ "tcd_val_tile_0": {
+  "n": 9,
+  "iou_min": 1.0,
+  "iou_mean": 1.0,
+  "frac_iou_ge_0.99": 1.0,
+  "sam_score_absdiff_max": 0.0
+ },
+ "tcd_val_tile_1": {
+  "n": 217,
+  "iou_min": 1.0,
+  "iou_mean": 1.0,
+  "frac_iou_ge_0.99": 1.0,
+  "sam_score_absdiff_max": 0.0
+ },
+ "pass": true
+}

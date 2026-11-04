@@ -1,0 +1,49 @@
+[E1] rr s0: logreg -0.0097 mlp1 +0.0038 mlp2 -0.0058 50s
+[E1] rr s1: logreg -0.0094 mlp1 +0.0030 mlp2 -0.0057 98s
+[E1] rr s2: logreg -0.0093 mlp1 +0.0024 mlp2 -0.0025 146s
+[E1] rr s3: logreg -0.0102 mlp1 +0.0041 mlp2 -0.0063 194s
+[E1] rr s4: logreg -0.0092 mlp1 +0.0048 mlp2 -0.0063 241s
+[E1] perm1 s0: logreg -0.0076 mlp1 +0.0016 mlp2 -0.0084 289s
+[E1] perm1 s1: logreg -0.0084 mlp1 +0.0041 mlp2 -0.0069 338s
+[E1] perm1 s2: logreg -0.0081 mlp1 +0.0020 mlp2 -0.0087 387s
+[E1] perm1 s3: logreg -0.0074 mlp1 +0.0037 mlp2 -0.0054 434s
+[E1] perm1 s4: logreg -0.0060 mlp1 +0.0035 mlp2 -0.0053 482s
+[E1] perm2 s0: logreg -0.0065 mlp1 +0.0053 mlp2 -0.0079 530s
+[E1] perm2 s1: logreg -0.0063 mlp1 +0.0048 mlp2 -0.0051 577s
+[E1] perm2 s2: logreg -0.0064 mlp1 +0.0057 mlp2 -0.0067 624s
+[E1] perm2 s3: logreg -0.0072 mlp1 +0.0044 mlp2 -0.0096 671s
+[E1] perm2 s4: logreg -0.0056 mlp1 +0.0044 mlp2 -0.0051 719s
+creating index...
+index created!
+creating index...
+index created!
+{
+ "base_sprime_AP50": 0.7384,
+ "gain_mean_sd": {
+  "logreg": [
+   -0.0078,
+   0.0015
+  ],
+  "mlp1": [
+   0.0038,
+   0.0012
+  ],
+  "mlp2": [
+   -0.0064,
+   0.0018
+  ]
+ },
+ "chosen": "mlp1",
+ "n_pos": 15,
+ "boot_rr_seed0_vs_sprime": {
+  "diff": 0.0038,
+  "ci95": [
+   -0.0072,
+   0.0152
+  ],
+  "p_le_0": 0.256
+ },
+ "gate_pass": false,
+ "R2_val_gain_ref": 0.0061,
+ "date": "2026-11-03 19:05"
+}

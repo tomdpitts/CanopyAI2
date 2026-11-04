@@ -1,0 +1,20 @@
+{
+ "split": "test",
+ "agree_all": {
+  "n": 200148,
+  "mean": 0.7566,
+  "median": 0.7793
+ },
+ "agree_tp": {
+  "n": 23803,
+  "mean": 0.8278,
+  "median": 0.8418
+ },
+ "vs_gt": {
+  "n_gt_matched": 22612,
+  "lace_mean": 0.7325,
+  "sam_mean": 0.7487,
+  "lace_minus_sam": -0.0162,
+  "frac_lace_better": 0.3937
+ }
+}

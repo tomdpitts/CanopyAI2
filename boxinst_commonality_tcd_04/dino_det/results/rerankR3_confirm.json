@@ -1,0 +1,43 @@
+{
+ "R2_fresh": {
+  "gain_mean": 0.00664,
+  "gain_sd": 0.00079,
+  "n_pos": 15,
+  "ap5095_mean": 0.3809
+ },
+ "tried": [
+  {
+   "cfg": {
+    "model": "mlp1x64",
+    "epochs": 30,
+    "dropout": 0.1,
+    "wd": 0.001,
+    "label": "box50",
+    "cols": [
+     "s",
+     "log_sp_s",
+     "log_h",
+     "max_iou_higher"
+    ]
+   },
+   "fresh_gain_mean": 0.00586,
+   "fresh_n_pos": 15,
+   "fresh_ap5095": 0.38126,
+   "pass": true
+  }
+ ],
+ "chosen": {
+  "model": "mlp1x64",
+  "epochs": 30,
+  "dropout": 0.1,
+  "wd": 0.001,
+  "label": "box50",
+  "cols": [
+   "s",
+   "log_sp_s",
+   "log_h",
+   "max_iou_higher"
+  ]
+ },
+ "date": "2026-11-04 00:52"
+}

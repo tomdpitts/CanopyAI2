@@ -1,6 +1,6 @@
 {
  "generated_by": "results_439/build_table1_current.py",
- "date": "2026-11-03",
+ "date": "2026-11-04",
  "protocol": "canopy-neutral crowd, 2048^2, maxDets 600, pycocotools COCOeval",
  "table1_439": [
   {
@@ -50,21 +50,21 @@
    "supervision": "box+SAM",
    "images": 3024,
    "n_seeds": 1,
-   "AP50": 0.5984,
-   "AP50_95": 0.2207,
-   "box_AP50": 0.767,
+   "AP50": 0.6141,
+   "AP50_95": 0.2502,
+   "box_AP50": 0.7618,
    "sd_ddof1": null,
    "per_seed": [
     [
-     0.5984,
-     0.2207,
-     0.767
+     0.6141,
+     0.2502,
+     0.7618
     ]
    ],
    "sources": [
-    "native_raster/seamfix/scored_selvabox_seamfix_on_r2048_md600.json"
+    "native_raster/seamfix/preds_selvabox_seamfix_on_r2048_rankgmean_scored_md600.json"
    ],
-   "note": "SelvaBox DINO-Swin-L -> SAM 3 selvamask-FT checkpoint (NOT zero-shot); seam-fixed"
+   "note": "SelvaBox DINO-Swin-L -> SAM 3 selvamask-FT checkpoint (NOT zero-shot); seam-fixed; sqrt(s * SAM score) ranking (seamfix/selvabox_gmean_rescore.py); env gate seamfix/selvabox_env_gate_gmean.json"
   },
   {
    "method": "Box2Mask Swin-L",
@@ -107,6 +107,27 @@
     "native_raster/seamfix/scored_box2mask_r50_s0_r2048_seamfix.json"
    ],
    "note": "seam-fixed"
+  },
+  {
+   "method": "BoxTeacher Swin-B",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.6642,
+   "AP50_95": 0.3049,
+   "box_AP50": 0.7033,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.6642,
+     0.3049,
+     0.7033
+    ]
+   ],
+   "sources": [
+    "box_supervised_baselines/tierb/results/20261101_192510/boxteacher/results/scored_boxteacher_sub_test_r2048.json"
+   ],
+   "note": "Tier B B2 (box_supervised_baselines/tierb/TIERB.md): trained by us on the 792 OAM-TCD train tiles, LACE canopy rule; 3x3 subtiles, seam-fixed stitch, product ranking"
   },
   {
    "method": "LACE CenterNet detector -> SAM 3 zs",
@@ -202,6 +223,69 @@
     "dino_det/results/scored_dino_swinl_s0_test_sprime_r2048.json"
    ],
    "note": "dino_det/README.md pre-registration D1 (2026-11-03): detrex DINO-Swin-L, COCO-trained init, trained by us on the 792 OAM-TCD train tiles (boxes only, LACE canopy rule, Tier B crops + plateau + 896-subtile selection), best epoch 6; unchanged lace4px_simple masker, s' ranking (val-selected); single seed; paired tile bootstrap vs BoxTeacher +0.039 [0.032, 0.049]"
+  },
+  {
+   "method": "LACE (D1 variant) + edge fix",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.7044,
+   "AP50_95": 0.3366,
+   "box_AP50": 0.7391,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.7044,
+     0.3366,
+     0.7391
+    ]
+   ],
+   "sources": [
+    "dino_det/results/edgefix/scored_d1_edgefix_test_sprime_r2048.json"
+   ],
+   "note": "top/left border fix (GA.EDGE_FILL = True, adopted by Tom 2026-11-04; dino_det/SAM3_D1.md): masks only, s' ranking unchanged (asserted); run once, dino_det/edgefix_test.py"
+  },
+  {
+   "method": "LACE (D1 variant) + edge fix + R3",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.7141,
+   "AP50_95": 0.3424,
+   "box_AP50": 0.7471,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.7141,
+     0.3424,
+     0.7471
+    ]
+   ],
+   "sources": [
+    "dino_det/results/scored_dino_swinl_s0_test_R3_ef_r2048.json"
+   ],
+   "note": "POST-HOC (dino_det/README.md R3 + R3-edgefix, 2026-11-04): edge-fixed masks + R3 reranker (MLP 1x64 on s, log s'/s, log box h, max IoU with a higher-scored det; 25-model mean, val-trained); vs s'+fix AP50 +0.0097 [0.0069, 0.0124], AP50:95 +0.0059 [0.0046, 0.0073]; run once, dino_det/r3_edgefix.py"
+  },
+  {
+   "method": "LACE (D1 variant) + edge fix + R3 + \u03c32",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.7142,
+   "AP50_95": 0.3444,
+   "box_AP50": 0.7471,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.7142,
+     0.3444,
+     0.7471
+    ]
+   ],
+   "sources": [
+    "dino_det/results/scored_dino_swinl_s0_test_R3_ef_blur2_r2048.json"
+   ],
+   "note": "POST-HOC (dino_det/README.md R3-edgefix): R3 + edge fix row with masks Gaussian-smoothed sigma 2 px, threshold 0.5; vs R3 + fix AP50:95 +0.0020 [0.0013, 0.0032], AP50 +0.0001"
   }
  ],
  "sparse236": [
@@ -246,6 +330,27 @@
     "native_raster/seamfix/scored_box2mask_swinl_sparse_s0_r2048_seamfix.json"
    ],
    "note": "seam-fixed; same s0 checkpoint as the 439 row (iter 23422); Modal A100 predict 2026-10-27, fc-01M5XCK31BK2D5TW47B91DG2D6"
+  },
+  {
+   "method": "BoxTeacher Swin-B",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.7206,
+   "AP50_95": 0.3756,
+   "box_AP50": 0.7391,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.7206,
+     0.3756,
+     0.7391
+    ]
+   ],
+   "sources": [
+    "box_supervised_baselines/tierb/results_sparse/scored_boxteacher_sub_sparse_r2048.json"
+   ],
+   "note": "frozen B2 checkpoint, inference only (2026-11-03, TIERB.md 'B2 sparse-236'), same protocol as its 439 row"
   },
   {
    "method": "LACE (CenterNet variant)",
@@ -304,6 +409,69 @@
     "dino_det/results/scored_dino_swinl_s0_sparse_sprime_r2048.json"
    ],
    "note": "dino_det/README.md pre-registration D1-sparse (2026-11-03): frozen D1 (epoch 6) + lace4px_simple, s' (val-selected for D1), single run"
+  },
+  {
+   "method": "LACE (D1 variant) + edge fix",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.735,
+   "AP50_95": 0.398,
+   "box_AP50": 0.7496,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.735,
+     0.398,
+     0.7496
+    ]
+   ],
+   "sources": [
+    "dino_det/results/edgefix/scored_d1_edgefix_sparse_sprime_r2048.json"
+   ],
+   "note": "top/left border fix (GA.EDGE_FILL = True, adopted by Tom 2026-11-04; dino_det/SAM3_D1.md): masks only, s' ranking unchanged (asserted); run once, dino_det/edgefix_test.py"
+  },
+  {
+   "method": "LACE (D1 variant) + edge fix + R3",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.7434,
+   "AP50_95": 0.4031,
+   "box_AP50": 0.757,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.7434,
+     0.4031,
+     0.757
+    ]
+   ],
+   "sources": [
+    "dino_det/results/scored_dino_swinl_s0_sparse_R3_ef_r2048.json"
+   ],
+   "note": "POST-HOC (dino_det/README.md R3 + R3-edgefix, 2026-11-04): edge-fixed masks + R3 reranker (MLP 1x64 on s, log s'/s, log box h, max IoU with a higher-scored det; 25-model mean, val-trained); vs s'+fix AP50 +0.0084 [0.0037, 0.0152], AP50:95 +0.0051 [0.0022, 0.0088]; run once, dino_det/r3_edgefix.py"
+  },
+  {
+   "method": "LACE (D1 variant) + edge fix + R3 + \u03c32",
+   "supervision": "box",
+   "images": 900,
+   "n_seeds": 1,
+   "AP50": 0.7427,
+   "AP50_95": 0.4032,
+   "box_AP50": 0.757,
+   "sd_ddof1": null,
+   "per_seed": [
+    [
+     0.7427,
+     0.4032,
+     0.757
+    ]
+   ],
+   "sources": [
+    "dino_det/results/scored_dino_swinl_s0_sparse_R3_ef_blur2_r2048.json"
+   ],
+   "note": "POST-HOC (dino_det/README.md R3-edgefix): R3 + edge fix row with masks Gaussian-smoothed sigma 2 px, threshold 0.5; vs R3 + fix AP50:95 +0.0001 [-0.0016, 0.0018] (n.s.), AP50 -0.0007"
   }
  ]
 }

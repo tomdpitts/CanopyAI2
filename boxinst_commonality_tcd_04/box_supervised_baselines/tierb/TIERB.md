@@ -1,7 +1,7 @@
 # Tier B: B1 BoxInst, B2 BoxTeacher, B3 MAL head-to-head with LACE
 
 <!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
-> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-03).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-04).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
 <!-- TABLE1_CURRENT:end -->
 
 **Status 2026-11-01: B2 BoxTeacher DONE, and the LACE gate FIRED (STOP set). B3 MAL has not been run. §000 (2026-10-29) governs over §00, §00 (2026-10-27) over §0, and §0 over everything below.**
@@ -61,7 +61,7 @@
 | — | 1-GPU gates ×2 + 2-GPU smokes ×2 → HOLD | 1–2×A100 | — | ~1–1.5 h | ~$9–14 |
 | — | image builds + staging | CPU | — | ~0.5 h | ~$2–3 |
 | — | predictions (B2: 439; B3: GT + LACE s0 boxes) | training container | — | included | ~$1–3 each |
-| — | sparse-236 for B2 (deferred) | 1×A100 | — | ~30 min | ~$2–4 |
+| — | sparse-236 for B2 (deferred; run 2026-11-03, see 'B2 sparse-236') | 1×A100 | — | ~30 min (actual 47.9 min predict + stitch/score) | ~$2–4 (actual $8.85 billed) |
 | **total** | | | | **~3.5–7.5 h** | **~$40–100** (§0 hard stop $72: may need raising, decide at HOLD) |
 
 - **Code changed 2026-10-27.** `tierb_modal.PLAN` is now: stage, fetch_weights, gate B2, gate B3, smoke B2, smoke B3, HOLD, then B2 train/predict/finalize, then B3 train/predict/finalize (checked with `tierb_ctl.py plan`). B1's functions are kept, and `fetch_weights` still downloads its checkpoint. To revisit B1, re-add its four PLAN entries (comment at `PLAN`). Run `tierb_ctl.py deploy` before `start`, as after any edit.
@@ -472,4 +472,10 @@ Re-checked locally after the fixes: syntax, container-style import of the app, `
   - `start` now reports HOLD.
 
 ## Comparison note (2026-11-03): D1 vs B2
-`dino_det/` pre-registration D1 trains a DINO-Swin-L detector (COCO-trained init) on **B2's exact data path**: the same crops, canopy semantics (adapted to set prediction), plateau schedule and 896-subtile selection set, then runs LACE's masker. Test: D1 0.7035 / 0.335 / box 0.739 vs B2 BoxTeacher 0.664 / 0.305 / box 0.703. Paired tile bootstrap D1 − B2 = +0.039 [0.032, 0.049]. D1 is in `results_439/TABLE1_CURRENT.md`; B2's row is still pending Tom.
+`dino_det/` pre-registration D1 trains a DINO-Swin-L detector (COCO-trained init) on **B2's exact data path**: the same crops, canopy semantics (adapted to set prediction), plateau schedule and 896-subtile selection set, then runs LACE's masker. Test: D1 0.7035 / 0.335 / box 0.739 vs B2 BoxTeacher 0.664 / 0.305 / box 0.703. Paired tile bootstrap D1 − B2 = +0.039 [0.032, 0.049]. D1 is in `results_439/TABLE1_CURRENT.md`; B2's rows (439 and sparse-236) were added there and to paper.tex (Table 1, tab:sparse236) on 2026-11-03 (Tom).
+
+## B2 sparse-236 (2026-11-03, inference only, Tom)
+The frozen B2 BoxTeacher checkpoint (no retraining), run once on sparse-236 with the same protocol as its test row: 3×3 subtiles, seam-fixed stitch, product ranking, frozen scorer at 2048², maxDets 600, crowd arm. The scorer-parity re-score of the stored LACE sparse row passed before scoring. Functions `sparse_predict` / `sparse_finalize` are in `tierb_modal.py`; `d2_run.py --cfg-num-gpus 8` keeps the training config's batch assertion intact on 1 GPU.
+- **Result:** mask AP50 **0.7206**, AP50:95 0.3756, AP75 0.359, box AP50 0.7391 (330,233 dets). LACE (D1 variant) on sparse: 0.735 / 0.396 / box 0.750. Paired tile bootstrap D1 − B2 = +0.0143 [−0.0047, 0.0327] (CI includes 0; `dino_det/results/boot_sparse_mask_ap50.json`).
+- **Files:** `results_sparse/{summary_with_sparse.json, scored_boxteacher_sub_sparse_r2048.json}`; preds and stitch are on `tcd04-tierb-vol:runs/boxteacher/results/`. Log: `native_raster/logs/tierb_b2_sparse_2026-11-03.log`.
+- **Cost:** ledger $10.07 (includes a stop/relaunch at 50/236 and a finalize retry); Modal billing for `tcd04-tierb` on 11-03 was $8.85.

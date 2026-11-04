@@ -1,0 +1,86 @@
+  feats test 20/439 5s
+  feats test 40/439 6s
+  feats test 60/439 7s
+  feats test 80/439 9s
+  feats test 100/439 10s
+  feats test 120/439 12s
+  feats test 140/439 13s
+  feats test 160/439 15s
+  feats test 180/439 16s
+  feats test 200/439 17s
+  feats test 220/439 19s
+  feats test 240/439 21s
+  feats test 260/439 22s
+  feats test 280/439 24s
+  feats test 300/439 25s
+  feats test 320/439 26s
+  feats test 340/439 28s
+  feats test 360/439 30s
+  feats test 380/439 31s
+  feats test 400/439 32s
+  feats test 420/439 33s
+  feats test 439/439 35s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_dino_swinl_s0_test_rerankR2_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=17.68s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=24.33s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.12s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+creating index...
+index created!
+{
+ "mask": {
+  "AP50": 0.6869,
+  "AP75": 0.2637,
+  "AP50_95": 0.3306
+ },
+ "box": {
+  "AP50": 0.7206,
+  "AP75": 0.4041
+ },
+ "sprime_ref": {
+  "AP50": 0.7035,
+  "AP75": 0.2615,
+  "AP50_95": 0.3347
+ },
+ "boot_vs_sprime": {
+  "diff": -0.0166,
+  "ci95": [
+   -0.0299,
+   -0.0024
+  ],
+  "p_le_0": 0.9885
+ },
+ "date": "2026-11-03 17:35"
+}

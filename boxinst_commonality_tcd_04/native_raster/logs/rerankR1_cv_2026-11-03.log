@@ -1,0 +1,84 @@
+  feats val 20/108 5s
+  feats val 40/108 7s
+  feats val 60/108 9s
+  feats val 80/108 10s
+  feats val 100/108 12s
+  feats val 108/108 12s
+[R1] val dets 51341: pos 6143 neg 29195 ignored 16003
+[R1] val s' AP50 0.7384 (README 0.7384)
+[R1] logreg: {'AP50': 0.7411, 'gain': 0.0027}
+[R1] mlp: {'AP50': 0.7414, 'gain': 0.003}
+[R1] mlp_no_app: {'AP50': 0.7443, 'gain': 0.0059}
+[R1] mlp_no_ctx: {'AP50': 0.7374, 'gain': -0.001}
+[R1] mlp_score_geom: {'AP50': 0.7399, 'gain': 0.0015}
+creating index...
+index created!
+creating index...
+index created!
+{
+ "base_sprime_AP50": 0.7384,
+ "rows": {
+  "logreg": {
+   "AP50": 0.7411,
+   "gain": 0.0027
+  },
+  "mlp": {
+   "AP50": 0.7414,
+   "gain": 0.003
+  },
+  "mlp_no_app": {
+   "AP50": 0.7443,
+   "gain": 0.0059
+  },
+  "mlp_no_ctx": {
+   "AP50": 0.7374,
+   "gain": -0.001
+  },
+  "mlp_score_geom": {
+   "AP50": 0.7399,
+   "gain": 0.0015
+  }
+ },
+ "chosen": "logreg",
+ "boot_vs_sprime": {
+  "diff": 0.0027,
+  "ci95": [
+   -0.0021,
+   0.0076
+  ],
+  "p_le_0": 0.1285
+ },
+ "gate_pass": false,
+ "n": {
+  "pos": 6143,
+  "neg": 29195,
+  "ign": 16003
+ },
+ "features": [
+  "s",
+  "sp",
+  "log_sp_s",
+  "log_w",
+  "log_h",
+  "log_aspect",
+  "log_marea",
+  "fill",
+  "border",
+  "log_nhi",
+  "tile_top50",
+  "rank_frac",
+  "max_iou_higher",
+  "n_nbr",
+  "R",
+  "G",
+  "B",
+  "exg",
+  "L_std",
+  "L_grad",
+  "ring_dL",
+  "ring_dexg",
+  "ring_quad_asym",
+  "ring_quad_min"
+ ],
+ "date": "2026-11-03 16:22"
+}

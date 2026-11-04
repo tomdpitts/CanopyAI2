@@ -1,0 +1,11 @@
+{
+ "rule": "adopt iff val s' mask AP50 >= deployed + 0.003; among passing arms the smallest within 0.001 of the best",
+ "val_AP50": {
+  "deployed": 0.7414,
+  "n120": 0.7404,
+  "n250": 0.7417
+ },
+ "passing": [],
+ "selected": null,
+ "date": "2026-11-04 19:02"
+}

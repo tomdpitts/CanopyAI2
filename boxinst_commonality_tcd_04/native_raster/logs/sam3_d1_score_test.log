@@ -1,0 +1,171 @@
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_d1_sam3zs_gmean_test_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=18.36s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.08s).
+Accumulating evaluation results...
+DONE (t=0.14s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.44s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_d1_sam3zs_det_test_r2048.json: 200148 dets >= 0.05
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=18.36s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.01s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.53s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+[test sam3zs_gmean] scorer {'AP50': 0.7013, 'AP75': 0.3107, 'AP50_95': 0.3553}  bootstrap-full AP50 0.7013 AP50:95 0.3553
+creating index...
+index created!
+[test sam3zs_det] scorer {'AP50': 0.695, 'AP75': 0.295, 'AP50_95': 0.3464}  bootstrap-full AP50 0.6950 AP50:95 0.3464
+creating index...
+index created!
+[test lace_d1_sprime] scorer {'AP50': 0.7035, 'AP75': 0.2615, 'AP50_95': 0.3347}  bootstrap-full AP50 0.7035 AP50:95 0.3347
+  boot 200/2000 44s
+  boot 400/2000 87s
+  boot 600/2000 130s
+  boot 800/2000 173s
+  boot 1000/2000 216s
+  boot 1200/2000 260s
+  boot 1400/2000 303s
+  boot 1600/2000 346s
+  boot 1800/2000 389s
+  boot 2000/2000 432s
+{
+ "split": "test",
+ "n_boot": 2000,
+ "seed": 0,
+ "full": {
+  "sam3zs_gmean": {
+   "mask": {
+    "AP50": 0.7013,
+    "AP75": 0.3107,
+    "AP50_95": 0.3553
+   },
+   "box_AP50": 0.7301,
+   "boot_reproduces": {
+    "AP50": 0.7013,
+    "AP50_95": 0.3553
+   }
+  },
+  "sam3zs_det": {
+   "mask": {
+    "AP50": 0.695,
+    "AP75": 0.295,
+    "AP50_95": 0.3464
+   },
+   "box_AP50": 0.7257,
+   "boot_reproduces": {
+    "AP50": 0.695,
+    "AP50_95": 0.3464
+   }
+  },
+  "lace_d1_sprime": {
+   "mask": {
+    "AP50": 0.7035,
+    "AP75": 0.2615,
+    "AP50_95": 0.3347
+   },
+   "box_AP50": 0.7391,
+   "boot_reproduces": {
+    "AP50": 0.7035,
+    "AP50_95": 0.3347
+   }
+  }
+ },
+ "lace_d1_minus": {
+  "sam3zs_gmean": {
+   "AP50": {
+    "diff": 0.0022,
+    "ci95": [
+     -0.0033,
+     0.0094
+    ],
+    "p_le_0": 0.1585
+   },
+   "AP50_95": {
+    "diff": -0.0206,
+    "ci95": [
+     -0.0253,
+     -0.0163
+    ],
+    "p_le_0": 1.0
+   }
+  },
+  "sam3zs_det": {
+   "AP50": {
+    "diff": 0.0084,
+    "ci95": [
+     0.0032,
+     0.0159
+    ],
+    "p_le_0": 0.0015
+   },
+   "AP50_95": {
+    "diff": -0.0117,
+    "ci95": [
+     -0.0163,
+     -0.0077
+    ],
+    "p_le_0": 1.0
+   }
+  }
+ },
+ "note": "paired tile bootstrap; test-set sampling only, single detector seed; LACE row = frozen D1 s' (0.7035 test), not later refinements"
+}

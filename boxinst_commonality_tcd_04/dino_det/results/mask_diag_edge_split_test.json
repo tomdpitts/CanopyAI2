@@ -1,0 +1,26 @@
+{
+ "edge": {
+  "n": 1900,
+  "frac": 0.08,
+  "lace_iou": 0.709,
+  "sam_iou": 0.757,
+  "gap": 0.0478,
+  "share_of_total_gap": 0.227
+ },
+ "interior": {
+  "n": 21903,
+  "frac": 0.92,
+  "lace_iou": 0.725,
+  "sam_iou": 0.739,
+  "gap": 0.0141,
+  "share_of_total_gap": 0.773
+ },
+ "all": {
+  "n": 23803,
+  "frac": 1.0,
+  "lace_iou": 0.724,
+  "sam_iou": 0.741,
+  "gap": 0.0168,
+  "share_of_total_gap": 1.0
+ }
+}

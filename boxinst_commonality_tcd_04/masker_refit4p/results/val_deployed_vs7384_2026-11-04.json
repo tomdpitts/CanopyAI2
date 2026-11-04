@@ -1,0 +1,19 @@
+{
+ "tag": "deployed",
+ "masker_sha1": "2f0eaa3f0a17501a482b96b8feacf53f32a18d4e",
+ "ranking": "s'",
+ "mask": {
+  "AP50": 0.7414,
+  "AP75": 0.3392,
+  "AP50_95": 0.3788
+ },
+ "box": {
+  "AP50": 0.7575,
+  "AP75": 0.4632
+ },
+ "date": "2026-11-04 18:27",
+ "parity": {
+  "expected": 0.7384,
+  "pass": false
+ }
+}

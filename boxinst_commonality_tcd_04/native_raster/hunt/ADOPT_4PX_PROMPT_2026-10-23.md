@@ -1,7 +1,7 @@
 # Handover prompt: adopt the 4 px masker `lace4px_simple` into paper.tex (written 2026-10-23, re-pointed 2026-10-26)
 
 <!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
-> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-03).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-04).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
 <!-- TABLE1_CURRENT:end -->
 
 You are taking over a self-contained task in `/Users/tompitts/dphil/CanopyAI2`. Read `CLAUDE.md` and the memory index first; they bind you. Work in two phases: **A — compute** every number the paper needs for the adopted masker; **B — edit `paper.tex`** under Tom's editing rule below. Then **C — draft (do not apply)** one rewrite. Do not commit; Tom commits.

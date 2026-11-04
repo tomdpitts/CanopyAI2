@@ -1,0 +1,28 @@
+creating index...
+index created!
+[test lace_d1_sprime] AP75 0.261491 (scorer 0.2615)
+creating index...
+index created!
+[test sam3zs_gmean] AP75 0.310719 (scorer 0.3107)
+creating index...
+index created!
+[test sam3zs_det] AP75 0.294965 (scorer 0.295)
+  boot 500/2000 11s
+  boot 1000/2000 21s
+  boot 1500/2000 32s
+  boot 2000/2000 42s
+{"split": "test", "n_boot": 2000, "seed": 0, "AP75": {"lace_d1_sprime": 0.261491, "sam3zs_gmean": 0.310719, "sam3zs_det": 0.294965}, "lace_d1_minus": {"sam3zs_gmean": {"diff": -0.0492, "ci95": [-0.0586, -0.0404], "p_le_0": 1.0}, "sam3zs_det": {"diff": -0.0335, "ci95": [-0.0424, -0.0252], "p_le_0": 1.0}}, "note": "test-set sampling only, single detector seed; LACE = frozen D1 s'"}
+creating index...
+index created!
+[sparse lace_d1_sprime] AP75 0.390030 (scorer 0.39)
+creating index...
+index created!
+[sparse sam3zs_gmean] AP75 0.450450 (scorer 0.4505)
+creating index...
+index created!
+[sparse sam3zs_det] AP75 0.437849 (scorer 0.4378)
+  boot 500/2000 6s
+  boot 1000/2000 12s
+  boot 1500/2000 19s
+  boot 2000/2000 25s
+{"split": "sparse", "n_boot": 2000, "seed": 0, "AP75": {"lace_d1_sprime": 0.39003, "sam3zs_gmean": 0.45045, "sam3zs_det": 0.437849}, "lace_d1_minus": {"sam3zs_gmean": {"diff": -0.0604, "ci95": [-0.0783, -0.0417], "p_le_0": 1.0}, "sam3zs_det": {"diff": -0.0478, "ci95": [-0.066, -0.0292], "p_le_0": 1.0}}, "note": "test-set sampling only, single detector seed; LACE = frozen D1 s'"}

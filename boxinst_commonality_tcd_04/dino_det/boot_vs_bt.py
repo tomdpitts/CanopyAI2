@@ -2,7 +2,8 @@
 LACE s0. Matching is per image in COCOeval (segm, IoU 0.5, maxDets 600, crowd arm), so per-tile statuses are computed once and
 AP is recomputed on each resample of tiles (with replacement, same draw for every system). 2,000 resamples, seed 0.
 Captures test-set sampling uncertainty only, not training-seed variance.
-  PYTHONPATH=. .venv/bin/python -u -m boxinst_commonality_tcd_04.dino_det.boot_vs_bt
+  PYTHONPATH=. .venv/bin/python -u -m boxinst_commonality_tcd_04.dino_det.boot_vs_bt [--split sparse]
+--split sparse (2026-11-03): same procedure on the 236 sparse tiles, D1 vs BoxTeacher (B2 frozen, inference only) and LACE s0.
 """
 import contextlib, io, json, os, time
 import numpy as np
@@ -13,6 +14,9 @@ ROWS = {"D1_sprime": (os.path.join(HERE, "results", "preds_dino_swinl_s0_test_sp
         "boxteacher": (os.path.join(BT, "preds_boxteacher_sub_test_r2048.json"), 0.05),
         "C2_sprime": (os.path.join(PKG, "dethead", "results", "preds_fpnC2_s0_nms05_sprime_r2048.json"), 0.0),
         "lace_s0": (os.path.join(PKG, "native_raster", "hunt", "test", "preds_lace_s0_r2048_lace4px_simple.json"), 0.0)}
+SP_ROWS = {"D1_sprime": (os.path.join(HERE, "results", "preds_dino_swinl_s0_sparse_sprime_r2048.json"), 0.0),
+           "boxteacher": (os.path.join(PKG, "box_supervised_baselines", "tierb", "results_sparse", "preds_boxteacher_sub_sparse_r2048.json"), 0.05),
+           "lace_s0": (os.path.join(PKG, "native_raster", "hunt", "test", "preds_lace_sparse_s0_r2048_lace4px_simple.json"), 0.0)}
 N, SEED = 2000, 0
 
 
@@ -46,13 +50,15 @@ def ap(tiles, data, rec_thrs):
     return float(q.mean())
 
 
-def main():
+def main(split="test"):
     from boxinst_commonality_tcd_04.box_supervised_baselines.tierb import score_lite as SL
-    out = os.path.join(HERE, "results", "boot_test_mask_ap50.json")
-    g = json.load(open(os.path.join(PKG, "test_gt.json"))); tids = sorted(g); gd, t2i = SL.build_gt_crowd(g, 2048)
+    out = os.path.join(HERE, "results", f"boot_{split}_mask_ap50.json"); assert not os.path.exists(out) or split == "test", out
+    gt = os.path.join(PKG, "test_gt.json") if split == "test" else os.path.join(os.path.dirname(PKG), "data", "tcd_sparse", "sparse_gt.json")
+    rows = ROWS if split == "test" else SP_ROWS
+    g = json.load(open(gt)); tids = sorted(g); gd, t2i = SL.build_gt_crowd(g, 2048)
     ids = np.array([t2i[t] for t in tids])
     D = {}
-    for k, (fp, floor) in ROWS.items():
+    for k, (fp, floor) in rows.items():
         P = json.load(open(fp)); P = P.get("preds", P)
         D[k] = per_tile({t: P[t] for t in tids}, gd, t2i, floor)
         # images with no detections still carry GT: give them empty arrays
@@ -67,7 +73,7 @@ def main():
         a = ap(s, D["D1_sprime"], SL.REC_THRS)
         for k in diffs:
             diffs[k].append(a - ap(s, D[k], SL.REC_THRS))
-    rec = {"n_boot": N, "seed": SEED, "full_AP50": {k: round(v, 4) for k, v in full.items()},
+    rec = {"split": split, "n_tiles": len(ids), "n_boot": N, "seed": SEED, "full_AP50": {k: round(v, 4) for k, v in full.items()},
            "D1_minus": {k: {"diff": round(full["D1_sprime"] - full[k], 4), "ci95": [round(float(np.percentile(v, 2.5)), 4), round(float(np.percentile(v, 97.5)), 4)],
                             "p_le_0": round(float(np.mean(np.asarray(v) <= 0)), 4)} for k, v in diffs.items()},
            "note": "test-set sampling uncertainty only (tiles resampled), not training-seed variance", "sec": round(time.time() - t0)}
@@ -75,4 +81,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    ap_ = argparse.ArgumentParser(); ap_.add_argument("--split", choices=["test", "sparse"], default="test")
+    main(ap_.parse_args().split)

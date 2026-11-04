@@ -1,0 +1,5 @@
+[fasteval] build 33s
+s_prime {'fast': {'AP50': 0.7384, 'AP75': 0.3345, 'AP50_95': 0.3763}, 'score_lite': {'AP50': 0.7384, 'AP75': 0.3345, 'AP50_95': 0.3763}, 'match': True, 'fast_s': 0.23}
+s {'fast': {'AP50': 0.7356, 'AP75': 0.3375, 'AP50_95': 0.3759}, 'score_lite': {'AP50': 0.7356, 'AP75': 0.3375, 'AP50_95': 0.3759}, 'match': True, 'fast_s': 0.2}
+reverse {'fast': {'AP50': 0.5791, 'AP75': 0.2364, 'AP50_95': 0.2834}, 'score_lite': {'AP50': 0.5791, 'AP75': 0.2364, 'AP50_95': 0.2834}, 'match': True, 'fast_s': 0.21}
+PARITY PASS

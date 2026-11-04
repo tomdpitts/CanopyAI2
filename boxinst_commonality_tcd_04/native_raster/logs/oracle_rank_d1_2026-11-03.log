@@ -1,0 +1,116 @@
+[oracle] rasterising GT at 2048 (x2) ...
+[oracle] GT done 266s
+  iou 50/439 266s
+  iou 100/439 266s
+  iou 150/439 266s
+  iou 200/439 266s
+  iou 250/439 266s
+  iou 300/439 266s
+  iou 350/439 266s
+  iou 400/439 266s
+{"n_gt": 25705, "n_det": 200148, "assigned_tp50": 22308, "R50_ceiling": 0.8678, "dup_dets_iou50_unassigned": 1182}
+[score_coco] preds_dino_swinl_s0_test_oracle_tp_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=17.31s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=23.73s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=22.59s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+[oracle] oracle_tp: {'mask': {'AP50': 0.8614, 'AP75': 0.4356, 'AP50_95': 0.4584}, 'box': {'AP50': 0.8675, 'AP75': 0.5295}} 344s
+[score_coco] preds_dino_swinl_s0_test_oracle_iou_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=17.24s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=23.66s).
+Accumulating evaluation results...
+DONE (t=0.11s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=22.73s).
+Accumulating evaluation results...
+DONE (t=0.11s).
+[oracle] oracle_iou: {'mask': {'AP50': 0.8555, 'AP75': 0.4353, 'AP50_95': 0.4567}, 'box': {'AP50': 0.8657, 'AP75': 0.5285}} 422s
+{
+ "src": "boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_test_sprime_r2048.json",
+ "stats": {
+  "n_gt": 25705,
+  "n_det": 200148,
+  "assigned_tp50": 22308,
+  "R50_ceiling": 0.8678,
+  "dup_dets_iou50_unassigned": 1182
+ },
+ "rows": {
+  "oracle_tp": {
+   "mask": {
+    "AP50": 0.8614,
+    "AP75": 0.4356,
+    "AP50_95": 0.4584
+   },
+   "box": {
+    "AP50": 0.8675,
+    "AP75": 0.5295
+   }
+  },
+  "oracle_iou": {
+   "mask": {
+    "AP50": 0.8555,
+    "AP75": 0.4353,
+    "AP50_95": 0.4567
+   },
+   "box": {
+    "AP50": 0.8657,
+    "AP75": 0.5285
+   }
+  }
+ },
+ "date": "2026-11-03 15:52"
+}

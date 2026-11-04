@@ -16,6 +16,8 @@ Nothing outside it was overwritten. Inputs that were read but not modified: `../
 | `../selvabox_seamfix_local.py` | SAM 3 refill on MPS (verify / refill / assemble) |
 | `../selvabox_seamfix_modal.py` | the same on A100; written, NOT deployed (Modal workspace paused 2026-10-14) |
 | `selvabox_env_gate.py` | local-vs-A100 SAM masks at AP level, 44 tiles |
+| `selvabox_env_gate_gmean.py` | same 44 tiles, local-vs-A100 masks + SAM scores under det and sqrt(det*SAM) ranking (2026-11-03): dAP50 -0.0002 / -0.0003; justifies the gmean-ranked Table 1 SelvaBox row (0.614 / 0.250 / box 0.762) |
+| `selvabox_gmean_rescore.py` | sqrt(det*SAM) re-rank of the seam-fixed file -> `preds_selvabox_seamfix_on_r2048_rankgmean_scored_md{600,1600}.json` |
 | `score_rest.sh` | scoring of the SelvaBox and sparse rows |
 | `seam_analysis_seamfix.py`, `empty_tile_share.py`, `b2m_cap_subset_seamfix.py` | downstream numbers |
 | `../ablation_r2048/box_iou_strata_res_seamfix.py` | tab:strata-maskiou on the fixed files |

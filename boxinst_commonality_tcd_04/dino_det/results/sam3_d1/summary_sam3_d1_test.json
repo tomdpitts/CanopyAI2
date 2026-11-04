@@ -1,0 +1,82 @@
+{
+ "split": "test",
+ "n_boot": 2000,
+ "seed": 0,
+ "full": {
+  "sam3zs_gmean": {
+   "mask": {
+    "AP50": 0.7013,
+    "AP75": 0.3107,
+    "AP50_95": 0.3553
+   },
+   "box_AP50": 0.7301,
+   "boot_reproduces": {
+    "AP50": 0.7013,
+    "AP50_95": 0.3553
+   }
+  },
+  "sam3zs_det": {
+   "mask": {
+    "AP50": 0.695,
+    "AP75": 0.295,
+    "AP50_95": 0.3464
+   },
+   "box_AP50": 0.7257,
+   "boot_reproduces": {
+    "AP50": 0.695,
+    "AP50_95": 0.3464
+   }
+  },
+  "lace_d1_sprime": {
+   "mask": {
+    "AP50": 0.7035,
+    "AP75": 0.2615,
+    "AP50_95": 0.3347
+   },
+   "box_AP50": 0.7391,
+   "boot_reproduces": {
+    "AP50": 0.7035,
+    "AP50_95": 0.3347
+   }
+  }
+ },
+ "lace_d1_minus": {
+  "sam3zs_gmean": {
+   "AP50": {
+    "diff": 0.0022,
+    "ci95": [
+     -0.0033,
+     0.0094
+    ],
+    "p_le_0": 0.1585
+   },
+   "AP50_95": {
+    "diff": -0.0206,
+    "ci95": [
+     -0.0253,
+     -0.0163
+    ],
+    "p_le_0": 1.0
+   }
+  },
+  "sam3zs_det": {
+   "AP50": {
+    "diff": 0.0084,
+    "ci95": [
+     0.0032,
+     0.0159
+    ],
+    "p_le_0": 0.0015
+   },
+   "AP50_95": {
+    "diff": -0.0117,
+    "ci95": [
+     -0.0163,
+     -0.0077
+    ],
+    "p_le_0": 1.0
+   }
+  }
+ },
+ "note": "paired tile bootstrap; test-set sampling only, single detector seed; LACE row = frozen D1 s' (0.7035 test), not later refinements"
+}

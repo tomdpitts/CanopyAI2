@@ -1,0 +1,367 @@
+[stage1] machinery screen, 14 features
+  [stage1] 11 configs x 15 runs 36s
+  R2 reference reproduced run-for-run
+  mlp2x64  ep30 do0.1 wd0.001 box50    n=14 gain +0.0061±0.0012 pos 15/15 AP50:95 0.3807 vsR2 +0.0000
+  logreg   ep30 do0.1 wd0.001 box50    n=14 gain -0.0005±0.0050 pos 11/15 AP50:95 0.3776 vsR2 -0.0066
+  mlp1x8   ep30 do0.1 wd0.001 box50    n=14 gain -0.0005±0.0022 pos  6/15 AP50:95 0.3774 vsR2 -0.0066
+  mlp1x16  ep30 do0.1 wd0.001 box50    n=14 gain +0.0021±0.0010 pos 15/15 AP50:95 0.3784 vsR2 -0.0040
+  mlp1x64  ep30 do0.1 wd0.001 box50    n=14 gain +0.0059±0.0011 pos 15/15 AP50:95 0.3805 vsR2 -0.0002
+  mlp2x64  ep30 do0.0 wd0.001 box50    n=14 gain +0.0054±0.0014 pos 15/15 AP50:95 0.3798 vsR2 -0.0007
+  mlp2x64  ep10 do0.1 wd0.001 box50    n=14 gain +0.0053±0.0006 pos 15/15 AP50:95 0.3802 vsR2 -0.0007
+  mlp2x64  ep60 do0.1 wd0.001 box50    n=14 gain +0.0050±0.0012 pos 15/15 AP50:95 0.3798 vsR2 -0.0010
+  mlp2x64  ep30 do0.1 wd0.01 box50    n=14 gain +0.0061±0.0012 pos 15/15 AP50:95 0.3807 vsR2 +0.0000
+  mlp2x64  ep30 do0.1 wd0.0 box50    n=14 gain +0.0061±0.0013 pos 15/15 AP50:95 0.3807 vsR2 +0.0000
+  mlp2x64  ep30 do0.1 wd0.001 crowdneg n=14 gain -0.0146±0.0020 pos  0/15 AP50:95 0.3641 vsR2 -0.0207
+[stage2] logreg: start logreg   ep30 do0.1 wd0.001 box50    n=14 gain -0.0005±0.0050 pos 11/15 AP50:95 0.3776 vsR2 -0.0066
+  [stage2:logreg:13] 14 configs x 15 runs 13s
+  logreg -tile_top50      -> logreg   ep30 do0.1 wd0.001 box50    n=13 gain +0.0005±0.0034 pos 12/15 AP50:95 0.3780 vsR2 -0.0056
+  [stage2:logreg:12] 13 configs x 15 runs 12s
+  logreg -n_nbr           -> logreg   ep30 do0.1 wd0.001 box50    n=12 gain +0.0002±0.0035 pos 12/15 AP50:95 0.3777 vsR2 -0.0059
+  [stage2:logreg:11] 12 configs x 15 runs 11s
+  logreg -log_w           -> logreg   ep30 do0.1 wd0.001 box50    n=11 gain -0.0005±0.0050 pos 12/15 AP50:95 0.3772 vsR2 -0.0066
+  [stage2:logreg:10] 11 configs x 15 runs 10s
+  logreg -log_sp_s        -> logreg   ep30 do0.1 wd0.001 box50    n=10 gain +0.0005±0.0036 pos 12/15 AP50:95 0.3781 vsR2 -0.0055
+  [stage2:logreg:9] 10 configs x 15 runs 9s
+  logreg -log_h           -> logreg   ep30 do0.1 wd0.001 box50    n= 9 gain +0.0004±0.0038 pos 12/15 AP50:95 0.3776 vsR2 -0.0057
+  [stage2:logreg:8] 9 configs x 15 runs 8s
+  logreg -fill            -> logreg   ep30 do0.1 wd0.001 box50    n= 8 gain +0.0023±0.0009 pos 15/15 AP50:95 0.3794 vsR2 -0.0038
+  [stage2:logreg:7] 8 configs x 15 runs 7s
+  logreg -border          -> logreg   ep30 do0.1 wd0.001 box50    n= 7 gain +0.0010±0.0025 pos 12/15 AP50:95 0.3783 vsR2 -0.0051
+  [stage2:logreg:6] 7 configs x 15 runs 7s
+  logreg -log_marea       -> logreg   ep30 do0.1 wd0.001 box50    n= 6 gain +0.0009±0.0021 pos 12/15 AP50:95 0.3770 vsR2 -0.0052
+  [stage2:logreg:5] 6 configs x 15 runs 6s
+  logreg -log_aspect      -> logreg   ep30 do0.1 wd0.001 box50    n= 5 gain -0.0002±0.0043 pos 12/15 AP50:95 0.3760 vsR2 -0.0063
+  [stage2:logreg:4] 5 configs x 15 runs 5s
+  logreg -max_iou_higher  -> logreg   ep30 do0.1 wd0.001 box50    n= 4 gain -0.0026±0.0060 pos  7/15 AP50:95 0.3752 vsR2 -0.0087
+  [stage2:logreg:3] 4 configs x 15 runs 4s
+  logreg -log_nhi         -> logreg   ep30 do0.1 wd0.001 box50    n= 3 gain -0.0076±0.0174 pos 11/15 AP50:95 0.3744 vsR2 -0.0136
+  [stage2:logreg:2] 3 configs x 15 runs 3s
+  logreg -rank_frac       -> logreg   ep30 do0.1 wd0.001 box50    n= 2 gain +0.0003±0.0013 pos 10/15 AP50:95 0.3771 vsR2 -0.0058
+  [stage2:logreg:1] 2 configs x 15 runs 2s
+  logreg -s               -> logreg   ep30 do0.1 wd0.001 box50    n= 1 gain -0.1183±0.2437 pos  4/15 AP50:95 0.3140 vsR2 -0.1244
+[stage2] mlp1x8: start mlp1x8   ep30 do0.1 wd0.001 box50    n=14 gain -0.0005±0.0022 pos  6/15 AP50:95 0.3774 vsR2 -0.0066
+  [stage2:mlp1x8:13] 14 configs x 15 runs 20s
+  mlp1x8 -log_w           -> mlp1x8   ep30 do0.1 wd0.001 box50    n=13 gain -0.0005±0.0016 pos  6/15 AP50:95 0.3779 vsR2 -0.0066
+  [stage2:mlp1x8:12] 13 configs x 15 runs 18s
+  mlp1x8 -log_marea       -> mlp1x8   ep30 do0.1 wd0.001 box50    n=12 gain +0.0004±0.0022 pos  9/15 AP50:95 0.3779 vsR2 -0.0057
+  [stage2:mlp1x8:11] 12 configs x 15 runs 17s
+  mlp1x8 -log_nhi         -> mlp1x8   ep30 do0.1 wd0.001 box50    n=11 gain +0.0007±0.0015 pos 10/15 AP50:95 0.3779 vsR2 -0.0054
+  [stage2:mlp1x8:10] 11 configs x 15 runs 15s
+  mlp1x8 -log_h           -> mlp1x8   ep30 do0.1 wd0.001 box50    n=10 gain +0.0028±0.0010 pos 15/15 AP50:95 0.3788 vsR2 -0.0033
+  [stage2:mlp1x8:9] 10 configs x 15 runs 14s
+  mlp1x8 -tile_top50      -> mlp1x8   ep30 do0.1 wd0.001 box50    n= 9 gain +0.0033±0.0012 pos 15/15 AP50:95 0.3789 vsR2 -0.0028
+  [stage2:mlp1x8:8] 9 configs x 15 runs 13s
+  mlp1x8 -fill            -> mlp1x8   ep30 do0.1 wd0.001 box50    n= 8 gain +0.0047±0.0008 pos 15/15 AP50:95 0.3796 vsR2 -0.0014
+  [stage2:mlp1x8:7] 8 configs x 15 runs 11s
+  mlp1x8 -log_sp_s        -> mlp1x8   ep30 do0.1 wd0.001 box50    n= 7 gain +0.0050±0.0013 pos 15/15 AP50:95 0.3799 vsR2 -0.0011
+  [stage2:mlp1x8:6] 7 configs x 15 runs 10s
+  mlp1x8 -border          -> mlp1x8   ep30 do0.1 wd0.001 box50    n= 6 gain +0.0036±0.0021 pos 14/15 AP50:95 0.3793 vsR2 -0.0025
+  [stage2:mlp1x8:5] 6 configs x 15 runs 9s
+  mlp1x8 -rank_frac       -> mlp1x8   ep30 do0.1 wd0.001 box50    n= 5 gain +0.0031±0.0013 pos 15/15 AP50:95 0.3785 vsR2 -0.0030
+  [stage2:mlp1x8:4] 5 configs x 15 runs 7s
+  mlp1x8 -log_aspect      -> mlp1x8   ep30 do0.1 wd0.001 box50    n= 4 gain +0.0033±0.0010 pos 15/15 AP50:95 0.3787 vsR2 -0.0028
+  [stage2:mlp1x8:3] 4 configs x 15 runs 6s
+  mlp1x8 -n_nbr           -> mlp1x8   ep30 do0.1 wd0.001 box50    n= 3 gain +0.0016±0.0009 pos 14/15 AP50:95 0.3773 vsR2 -0.0045
+  [stage2:mlp1x8:2] 3 configs x 15 runs 5s
+  mlp1x8 -max_iou_higher  -> mlp1x8   ep30 do0.1 wd0.001 box50    n= 2 gain +0.0004±0.0006 pos 11/15 AP50:95 0.3774 vsR2 -0.0057
+  [stage2:mlp1x8:1] 2 configs x 15 runs 3s
+  mlp1x8 -s               -> mlp1x8   ep30 do0.1 wd0.001 box50    n= 1 gain -0.0013±0.0006 pos  0/15 AP50:95 0.3758 vsR2 -0.0074
+[stage2] mlp1x16: start mlp1x16  ep30 do0.1 wd0.001 box50    n=14 gain +0.0021±0.0010 pos 15/15 AP50:95 0.3784 vsR2 -0.0040
+  [stage2:mlp1x16:13] 14 configs x 15 runs 22s
+  mlp1x16 -log_nhi         -> mlp1x16  ep30 do0.1 wd0.001 box50    n=13 gain +0.0034±0.0013 pos 15/15 AP50:95 0.3800 vsR2 -0.0027
+  [stage2:mlp1x16:12] 13 configs x 15 runs 19s
+  mlp1x16 -tile_top50      -> mlp1x16  ep30 do0.1 wd0.001 box50    n=12 gain +0.0037±0.0020 pos 14/15 AP50:95 0.3802 vsR2 -0.0024
+  [stage2:mlp1x16:11] 12 configs x 15 runs 18s
+  mlp1x16 -fill            -> mlp1x16  ep30 do0.1 wd0.001 box50    n=11 gain +0.0038±0.0013 pos 15/15 AP50:95 0.3797 vsR2 -0.0023
+  [stage2:mlp1x16:10] 11 configs x 15 runs 17s
+  mlp1x16 -log_w           -> mlp1x16  ep30 do0.1 wd0.001 box50    n=10 gain +0.0043±0.0012 pos 15/15 AP50:95 0.3802 vsR2 -0.0018
+  [stage2:mlp1x16:9] 10 configs x 15 runs 15s
+  mlp1x16 -log_h           -> mlp1x16  ep30 do0.1 wd0.001 box50    n= 9 gain +0.0045±0.0011 pos 15/15 AP50:95 0.3797 vsR2 -0.0016
+  [stage2:mlp1x16:8] 9 configs x 15 runs 14s
+  mlp1x16 -log_marea       -> mlp1x16  ep30 do0.1 wd0.001 box50    n= 8 gain +0.0057±0.0007 pos 15/15 AP50:95 0.3796 vsR2 -0.0003
+  [stage2:mlp1x16:7] 8 configs x 15 runs 12s
+  mlp1x16 -log_sp_s        -> mlp1x16  ep30 do0.1 wd0.001 box50    n= 7 gain +0.0055±0.0007 pos 15/15 AP50:95 0.3799 vsR2 -0.0006
+  [stage2:mlp1x16:6] 7 configs x 15 runs 11s
+  mlp1x16 -rank_frac       -> mlp1x16  ep30 do0.1 wd0.001 box50    n= 6 gain +0.0046±0.0010 pos 15/15 AP50:95 0.3792 vsR2 -0.0014
+  [stage2:mlp1x16:5] 6 configs x 15 runs 9s
+  mlp1x16 -border          -> mlp1x16  ep30 do0.1 wd0.001 box50    n= 5 gain +0.0042±0.0010 pos 15/15 AP50:95 0.3792 vsR2 -0.0019
+  [stage2:mlp1x16:4] 5 configs x 15 runs 8s
+  mlp1x16 -log_aspect      -> mlp1x16  ep30 do0.1 wd0.001 box50    n= 4 gain +0.0032±0.0010 pos 15/15 AP50:95 0.3785 vsR2 -0.0029
+  [stage2:mlp1x16:3] 4 configs x 15 runs 7s
+  mlp1x16 -n_nbr           -> mlp1x16  ep30 do0.1 wd0.001 box50    n= 3 gain +0.0022±0.0009 pos 15/15 AP50:95 0.3773 vsR2 -0.0039
+  [stage2:mlp1x16:2] 3 configs x 15 runs 5s
+  mlp1x16 -s               -> mlp1x16  ep30 do0.1 wd0.001 box50    n= 2 gain +0.0014±0.0007 pos 15/15 AP50:95 0.3758 vsR2 -0.0047
+  [stage2:mlp1x16:1] 2 configs x 15 runs 4s
+  mlp1x16 -max_iou_higher  -> mlp1x16  ep30 do0.1 wd0.001 box50    n= 1 gain -0.0014±0.0006 pos  0/15 AP50:95 0.3757 vsR2 -0.0075
+[stage2] mlp1x64: start mlp1x64  ep30 do0.1 wd0.001 box50    n=14 gain +0.0059±0.0011 pos 15/15 AP50:95 0.3805 vsR2 -0.0002
+  [stage2:mlp1x64:13] 14 configs x 15 runs 30s
+  mlp1x64 -log_nhi         -> mlp1x64  ep30 do0.1 wd0.001 box50    n=13 gain +0.0070±0.0010 pos 15/15 AP50:95 0.3812 vsR2 +0.0009
+  [stage2:mlp1x64:12] 13 configs x 15 runs 28s
+  mlp1x64 -tile_top50      -> mlp1x64  ep30 do0.1 wd0.001 box50    n=12 gain +0.0075±0.0010 pos 15/15 AP50:95 0.3815 vsR2 +0.0014
+  [stage2:mlp1x64:11] 12 configs x 15 runs 27s
+  mlp1x64 -sp              -> mlp1x64  ep30 do0.1 wd0.001 box50    n=11 gain +0.0075±0.0007 pos 15/15 AP50:95 0.3814 vsR2 +0.0014
+  [stage2:mlp1x64:10] 11 configs x 15 runs 25s
+  mlp1x64 -fill            -> mlp1x64  ep30 do0.1 wd0.001 box50    n=10 gain +0.0072±0.0009 pos 15/15 AP50:95 0.3815 vsR2 +0.0011
+  [stage2:mlp1x64:9] 10 configs x 15 runs 22s
+  mlp1x64 -log_aspect      -> mlp1x64  ep30 do0.1 wd0.001 box50    n= 9 gain +0.0073±0.0008 pos 15/15 AP50:95 0.3818 vsR2 +0.0012
+  [stage2:mlp1x64:8] 9 configs x 15 runs 20s
+  mlp1x64 -n_nbr           -> mlp1x64  ep30 do0.1 wd0.001 box50    n= 8 gain +0.0071±0.0008 pos 15/15 AP50:95 0.3820 vsR2 +0.0010
+  [stage2:mlp1x64:7] 8 configs x 15 runs 18s
+  mlp1x64 -rank_frac       -> mlp1x64  ep30 do0.1 wd0.001 box50    n= 7 gain +0.0066±0.0012 pos 15/15 AP50:95 0.3818 vsR2 +0.0005
+  [stage2:mlp1x64:6] 7 configs x 15 runs 16s
+  mlp1x64 -border          -> mlp1x64  ep30 do0.1 wd0.001 box50    n= 6 gain +0.0066±0.0013 pos 15/15 AP50:95 0.3819 vsR2 +0.0006
+  [stage2:mlp1x64:5] 6 configs x 15 runs 14s
+  mlp1x64 -log_marea       -> mlp1x64  ep30 do0.1 wd0.001 box50    n= 5 gain +0.0064±0.0013 pos 15/15 AP50:95 0.3818 vsR2 +0.0003
+  [stage2:mlp1x64:4] 5 configs x 15 runs 12s
+  mlp1x64 -log_w           -> mlp1x64  ep30 do0.1 wd0.001 box50    n= 4 gain +0.0053±0.0013 pos 15/15 AP50:95 0.3810 vsR2 -0.0008
+  [stage2:mlp1x64:3] 4 configs x 15 runs 10s
+  mlp1x64 -max_iou_higher  -> mlp1x64  ep30 do0.1 wd0.001 box50    n= 3 gain +0.0025±0.0012 pos 15/15 AP50:95 0.3807 vsR2 -0.0036
+  [stage2:mlp1x64:2] 3 configs x 15 runs 8s
+  mlp1x64 -log_h           -> mlp1x64  ep30 do0.1 wd0.001 box50    n= 2 gain +0.0002±0.0008 pos  8/15 AP50:95 0.3775 vsR2 -0.0059
+  [stage2:mlp1x64:1] 2 configs x 15 runs 5s
+  mlp1x64 -log_sp_s        -> mlp1x64  ep30 do0.1 wd0.001 box50    n= 1 gain -0.0047±0.0009 pos  0/15 AP50:95 0.3745 vsR2 -0.0108
+[stage2] mlp2x64: start mlp2x64  ep30 do0.1 wd0.001 box50    n=14 gain +0.0061±0.0012 pos 15/15 AP50:95 0.3807 vsR2 +0.0000
+  [stage2:mlp2x64:13] 14 configs x 15 runs 49s
+  mlp2x64 -log_nhi         -> mlp2x64  ep30 do0.1 wd0.001 box50    n=13 gain +0.0069±0.0011 pos 15/15 AP50:95 0.3811 vsR2 +0.0008
+  [stage2:mlp2x64:12] 13 configs x 15 runs 48s
+  mlp2x64 -tile_top50      -> mlp2x64  ep30 do0.1 wd0.001 box50    n=12 gain +0.0079±0.0011 pos 15/15 AP50:95 0.3815 vsR2 +0.0018
+  [stage2:mlp2x64:11] 12 configs x 15 runs 44s
+  mlp2x64 -log_h           -> mlp2x64  ep30 do0.1 wd0.001 box50    n=11 gain +0.0078±0.0011 pos 15/15 AP50:95 0.3811 vsR2 +0.0017
+  [stage2:mlp2x64:10] 11 configs x 15 runs 40s
+  mlp2x64 -sp              -> mlp2x64  ep30 do0.1 wd0.001 box50    n=10 gain +0.0076±0.0010 pos 15/15 AP50:95 0.3810 vsR2 +0.0016
+  [stage2:mlp2x64:9] 10 configs x 15 runs 36s
+  mlp2x64 -log_w           -> mlp2x64  ep30 do0.1 wd0.001 box50    n= 9 gain +0.0079±0.0012 pos 15/15 AP50:95 0.3814 vsR2 +0.0018
+  [stage2:mlp2x64:8] 9 configs x 15 runs 32s
+  mlp2x64 -n_nbr           -> mlp2x64  ep30 do0.1 wd0.001 box50    n= 8 gain +0.0075±0.0009 pos 15/15 AP50:95 0.3817 vsR2 +0.0014
+  [stage2:mlp2x64:7] 8 configs x 15 runs 29s
+  mlp2x64 -fill            -> mlp2x64  ep30 do0.1 wd0.001 box50    n= 7 gain +0.0075±0.0013 pos 15/15 AP50:95 0.3821 vsR2 +0.0014
+  [stage2:mlp2x64:6] 7 configs x 15 runs 26s
+  mlp2x64 -border          -> mlp2x64  ep30 do0.1 wd0.001 box50    n= 6 gain +0.0068±0.0013 pos 15/15 AP50:95 0.3821 vsR2 +0.0007
+  [stage2:mlp2x64:5] 6 configs x 15 runs 22s
+  mlp2x64 -log_aspect      -> mlp2x64  ep30 do0.1 wd0.001 box50    n= 5 gain +0.0065±0.0011 pos 15/15 AP50:95 0.3818 vsR2 +0.0004
+  [stage2:mlp2x64:4] 5 configs x 15 runs 19s
+  mlp2x64 -rank_frac       -> mlp2x64  ep30 do0.1 wd0.001 box50    n= 4 gain +0.0056±0.0014 pos 15/15 AP50:95 0.3812 vsR2 -0.0004
+  [stage2:mlp2x64:3] 4 configs x 15 runs 15s
+  mlp2x64 -log_marea       -> mlp2x64  ep30 do0.1 wd0.001 box50    n= 3 gain +0.0026±0.0012 pos 15/15 AP50:95 0.3775 vsR2 -0.0035
+  [stage2:mlp2x64:2] 3 configs x 15 runs 12s
+  mlp2x64 -max_iou_higher  -> mlp2x64  ep30 do0.1 wd0.001 box50    n= 2 gain +0.0003±0.0012 pos  7/15 AP50:95 0.3773 vsR2 -0.0058
+  [stage2:mlp2x64:1] 2 configs x 15 runs 9s
+  mlp2x64 -log_sp_s        -> mlp2x64  ep30 do0.1 wd0.001 box50    n= 1 gain -0.0052±0.0013 pos  0/15 AP50:95 0.3742 vsR2 -0.0112
+[select] 145 admissible; top 10:
+  mlp1x64  ep30 do0.1 wd0.001 box50    n= 4 gain +0.0053±0.0013 pos 15/15 AP50:95 0.3810 vsR2 -0.0008  ['s', 'log_sp_s', 'log_h', 'max_iou_higher']
+  mlp2x64  ep30 do0.1 wd0.001 box50    n= 4 gain +0.0056±0.0014 pos 15/15 AP50:95 0.3812 vsR2 -0.0004  ['s', 'log_sp_s', 'log_marea', 'max_iou_higher']
+  mlp1x64  ep30 do0.1 wd0.001 box50    n= 5 gain +0.0064±0.0013 pos 15/15 AP50:95 0.3818 vsR2 +0.0003  ['s', 'log_sp_s', 'log_w', 'log_h', 'max_iou_higher']
+  mlp1x64  ep30 do0.1 wd0.001 box50    n= 5 gain +0.0062±0.0012 pos 15/15 AP50:95 0.3818 vsR2 +0.0002  ['s', 'log_sp_s', 'log_h', 'log_marea', 'max_iou_higher']
+  mlp1x64  ep30 do0.1 wd0.001 box50    n= 5 gain +0.0059±0.0012 pos 15/15 AP50:95 0.3815 vsR2 -0.0002  ['s', 'log_sp_s', 'log_w', 'log_marea', 'max_iou_higher']
+  mlp2x64  ep30 do0.1 wd0.001 box50    n= 5 gain +0.0065±0.0011 pos 15/15 AP50:95 0.3818 vsR2 +0.0004  ['s', 'log_sp_s', 'log_marea', 'rank_frac', 'max_iou_higher']
+  mlp2x64  ep30 do0.1 wd0.001 box50    n= 5 gain +0.0062±0.0015 pos 15/15 AP50:95 0.3816 vsR2 +0.0001  ['s', 'log_sp_s', 'log_aspect', 'log_marea', 'max_iou_higher']
+  mlp1x64  ep30 do0.1 wd0.001 box50    n= 6 gain +0.0066±0.0013 pos 15/15 AP50:95 0.3819 vsR2 +0.0006  ['s', 'log_sp_s', 'log_w', 'log_h', 'log_marea', 'max_iou_higher']
+  mlp1x64  ep30 do0.1 wd0.001 box50    n= 6 gain +0.0065±0.0012 pos 15/15 AP50:95 0.3815 vsR2 +0.0004  ['s', 'log_sp_s', 'log_w', 'log_h', 'border', 'max_iou_higher']
+  mlp1x64  ep30 do0.1 wd0.001 box50    n= 6 gain +0.0064±0.0012 pos 15/15 AP50:95 0.3816 vsR2 +0.0003  ['s', 'log_sp_s', 'log_h', 'log_marea', 'border', 'max_iou_higher']
+  [confirm:R2] 1 configs x 15 runs 6s
+  [confirm] 1 configs x 15 runs 4s
+  [confirm] mlp1x64  ep30 do0.1 wd0.001 box50    n= 4 gain +0.0059±0.0006 pos 15/15 AP50:95 0.3813 vsR2 -0.0008 PASS
+[confirm] chosen {'model': 'mlp1x64', 'epochs': 30, 'dropout': 0.1, 'wd': 0.001, 'label': 'box50', 'cols': ['s', 'log_sp_s', 'log_h', 'max_iou_higher']}
+[side] exponent {"0.00": {"AP50": 0.7356, "AP75": 0.3375, "AP50_95": 0.3759}, "0.25": {"AP50": 0.7393, "AP75": 0.3389, "AP50_95": 0.3781}, "0.50": {"AP50": 0.7406, "AP75": 0.3381, "AP50_95": 0.3783}, "0.75": {"AP50": 0.7401, "AP75": 0.3364, "AP50_95": 0.3776}, "1.00": {"AP50": 0.7384, "AP75": 0.3345, "AP50_95": 0.3763}, "1.25": {"AP50": 0.7354, "AP75": 0.3321, "AP50_95": 0.3744}, "1.50": {"AP50": 0.7313, "AP75": 0.3292, "AP50_95": 0.3718}, "1.75": {"AP50": 0.7264, "AP75": 0.3253, "AP50_95": 0.3687}}
+  [side:labels] 4 configs x 15 runs 12s
+  [side] mlp2x64  ep30 do0.1 wd0.001 box50    n=14 gain +0.0061±0.0012 pos 15/15 AP50:95 0.3807
+  [side] mlp2x64  ep30 do0.1 wd0.001 soft     n=14 gain +0.0060±0.0015 pos 15/15 AP50:95 0.3811
+  [side] mlp2x64  ep30 do0.1 wd0.001 multi    n=14 gain +0.0051±0.0017 pos 15/15 AP50:95 0.3806
+  [side] mlp1x64  ep30 do0.1 wd0.001 box50    n= 4 gain +0.0053±0.0013 pos 15/15 AP50:95 0.3810
+  [side] mlp1x64  ep30 do0.1 wd0.001 soft     n= 4 gain +0.0048±0.0014 pos 15/15 AP50:95 0.3810
+  [side] mlp1x64  ep30 do0.1 wd0.001 multi    n= 4 gain +0.0033±0.0016 pos 15/15 AP50:95 0.3803
+[side] morph -3: {'AP50': 0.5593, 'AP75': 0.1007, 'AP50_95': 0.2094} 82s
+[side] morph -2: {'AP50': 0.6664, 'AP75': 0.1782, 'AP50_95': 0.2806} 82s
+[side] morph -1: {'AP50': 0.725, 'AP75': 0.2667, 'AP50_95': 0.3455} 84s
+[side] morph +1: {'AP50': 0.7273, 'AP75': 0.3182, 'AP50_95': 0.362} 85s
+[side] morph +2: {'AP50': 0.6939, 'AP75': 0.2565, 'AP50_95': 0.322} 85s
+[side] morph +3: {'AP50': 0.6448, 'AP75': 0.1843, 'AP50_95': 0.2726} 85s
+creating index...
+index created!
+creating index...
+index created!
+[final] val boot rr s0 vs s': {'diff': 0.0026, 'ci95': [-0.0009, 0.0059], 'p_le_0': 0.064}
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_dino_swinl_s0_test_rerankR3_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=17.77s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=24.34s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.59s).
+Accumulating evaluation results...
+DONE (t=0.14s).
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+[final] test: {"mask": {"AP50": 0.7131, "AP75": 0.2685, "AP50_95": 0.3406}, "box": {"AP50": 0.7471, "AP75": 0.4078}, "boot": {"vs_sprime": {"diff": 0.0097, "ci95": [0.0069, 0.0124], "p_le_0": 0.0}, "vs_rerankR2": {"diff": -0.002, "ci95": [-0.0048, 0.0007], "p_le_0": 0.923}}}
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_dino_swinl_s0_sparse_rerankR3_r2048.json: 106514 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=10.12s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=12.44s).
+Accumulating evaluation results...
+DONE (t=0.06s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.15s).
+Accumulating evaluation results...
+DONE (t=0.06s).
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+[final] sparse: {"mask": {"AP50": 0.7432, "AP75": 0.3964, "AP50_95": 0.4013}, "box": {"AP50": 0.757, "AP75": 0.4697}, "boot": {"vs_sprime": {"diff": 0.0083, "ci95": [0.0037, 0.0152], "p_le_0": 0.0}, "vs_rerankR2": {"diff": 0.0081, "ci95": [0.0048, 0.0119], "p_le_0": 0.0}}, "boot_vs_sprime_220_not_in_439": {"diff": 0.0089, "ci95": [0.0041, 0.0163], "p_le_0": 0.0, "n": 220}}
+{
+ "chosen": {
+  "model": "mlp1x64",
+  "epochs": 30,
+  "dropout": 0.1,
+  "wd": 0.001,
+  "label": "box50",
+  "cols": [
+   "s",
+   "log_sp_s",
+   "log_h",
+   "max_iou_higher"
+  ]
+ },
+ "val_boot_rr_s0_vs_sprime": {
+  "diff": 0.0026,
+  "ci95": [
+   -0.0009,
+   0.0059
+  ],
+  "p_le_0": 0.064
+ },
+ "test": {
+  "mask": {
+   "AP50": 0.7131,
+   "AP75": 0.2685,
+   "AP50_95": 0.3406
+  },
+  "box": {
+   "AP50": 0.7471,
+   "AP75": 0.4078
+  },
+  "boot": {
+   "vs_sprime": {
+    "diff": 0.0097,
+    "ci95": [
+     0.0069,
+     0.0124
+    ],
+    "p_le_0": 0.0
+   },
+   "vs_rerankR2": {
+    "diff": -0.002,
+    "ci95": [
+     -0.0048,
+     0.0007
+    ],
+    "p_le_0": 0.923
+   }
+  }
+ },
+ "sparse": {
+  "mask": {
+   "AP50": 0.7432,
+   "AP75": 0.3964,
+   "AP50_95": 0.4013
+  },
+  "box": {
+   "AP50": 0.757,
+   "AP75": 0.4697
+  },
+  "boot": {
+   "vs_sprime": {
+    "diff": 0.0083,
+    "ci95": [
+     0.0037,
+     0.0152
+    ],
+    "p_le_0": 0.0
+   },
+   "vs_rerankR2": {
+    "diff": 0.0081,
+    "ci95": [
+     0.0048,
+     0.0119
+    ],
+    "p_le_0": 0.0
+   }
+  },
+  "boot_vs_sprime_220_not_in_439": {
+   "diff": 0.0089,
+   "ci95": [
+    0.0041,
+    0.0163
+   ],
+   "p_le_0": 0.0,
+   "n": 220
+  }
+ },
+ "confirmed": true,
+ "date": "2026-11-04 01:21"
+}

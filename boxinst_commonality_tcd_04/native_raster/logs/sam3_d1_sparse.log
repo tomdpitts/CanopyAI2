@@ -1,0 +1,240 @@
+  reuse test tcd_val_tile_126
+  reuse test tcd_val_tile_128
+  reuse test tcd_val_tile_129
+  reuse test tcd_val_tile_17
+  reuse test tcd_val_tile_210
+  reuse test tcd_val_tile_262
+  reuse test tcd_val_tile_291
+  reuse test tcd_val_tile_341
+  reuse test tcd_val_tile_356
+  reuse test tcd_val_tile_362
+  reuse test tcd_val_tile_389
+  reuse test tcd_val_tile_425
+  reuse test tcd_val_tile_46
+  reuse test tcd_val_tile_57
+  reuse test tcd_val_tile_83
+  reuse test tcd_val_tile_96
+[sam3_d1 sparse] 236 tiles, 16 done, 220 to do (101840 boxes)
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights:  83%|████████▎ | 569/685 [00:00<00:00, 5683.07it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 5944.53it/s]
+  17/236 tcd_tile_1024 80 boxes 5s 15.5 box/s eta 6571s
+  18/236 tcd_tile_1028 600 boxes 14s 47.1 box/s eta 2148s
+  19/236 tcd_tile_1045 541 boxes 24s 51.2 box/s eta 1967s
+  20/236 tcd_tile_106 451 boxes 33s 51.2 box/s eta 1957s
+  21/236 tcd_tile_1080 600 boxes 43s 53.4 box/s eta 1864s
+  22/236 tcd_tile_1083 600 boxes 52s 54.8 box/s eta 1808s
+  23/236 tcd_tile_1084 600 boxes 62s 55.7 box/s eta 1764s
+  24/236 tcd_tile_1114 541 boxes 72s 56.0 box/s eta 1748s
+  25/236 tcd_tile_1201 539 boxes 81s 56.2 box/s eta 1732s
+  26/236 tcd_tile_1204 344 boxes 87s 56.2 box/s eta 1726s
+  27/236 tcd_tile_1209 369 boxes 96s 55.1 box/s eta 1753s
+  28/236 tcd_tile_1216 10 boxes 98s 54.0 box/s eta 1788s
+  29/236 tcd_tile_1241 326 boxes 106s 52.8 box/s eta 1823s
+  30/236 tcd_tile_1242 77 boxes 110s 51.6 box/s eta 1865s
+  31/236 tcd_tile_1247 182 boxes 118s 49.8 box/s eta 1926s
+  32/236 tcd_tile_1301 600 boxes 128s 50.6 box/s eta 1884s
+  33/236 tcd_tile_133 600 boxes 138s 51.3 box/s eta 1846s
+  34/236 tcd_tile_1347 163 boxes 144s 50.0 box/s eta 1892s
+  35/236 tcd_tile_1350 495 boxes 166s 46.5 box/s eta 2023s
+  36/236 tcd_tile_1374 600 boxes 185s 44.9 box/s eta 2085s
+  37/236 tcd_tile_1389 600 boxes 200s 44.6 box/s eta 2083s
+  38/236 tcd_tile_1392 22 boxes 203s 43.9 box/s eta 2114s
+  39/236 tcd_tile_1394 600 boxes 216s 44.1 box/s eta 2093s
+  40/236 tcd_tile_1421 600 boxes 231s 43.9 box/s eta 2087s
+  41/236 tcd_tile_1453 185 boxes 238s 43.3 box/s eta 2111s
+  42/236 tcd_tile_1454 476 boxes 249s 43.5 box/s eta 2095s
+  43/236 tcd_tile_1472 177 boxes 255s 43.0 box/s eta 2113s
+  44/236 tcd_tile_1489 373 boxes 266s 42.6 box/s eta 2122s
+  45/236 tcd_tile_1516 222 boxes 274s 42.2 box/s eta 2140s
+  46/236 tcd_tile_1540 595 boxes 300s 40.6 box/s eta 2211s
+  47/236 tcd_tile_1571 286 boxes 311s 40.0 box/s eta 2233s
+  48/236 tcd_tile_160 600 boxes 345s 37.8 box/s eta 2349s
+  49/236 tcd_tile_1607 600 boxes 364s 37.6 box/s eta 2348s
+  50/236 tcd_tile_1622 600 boxes 385s 37.0 box/s eta 2366s
+  51/236 tcd_tile_1635 551 boxes 416s 35.6 box/s eta 2444s
+  52/236 tcd_tile_1638 600 boxes 446s 34.5 box/s eta 2503s
+  53/236 tcd_tile_1657 556 boxes 461s 34.6 box/s eta 2480s
+  54/236 tcd_tile_1658 337 boxes 471s 34.6 box/s eta 2472s
+  55/236 tcd_tile_1762 430 boxes 483s 34.6 box/s eta 2459s
+  56/236 tcd_tile_1778 319 boxes 492s 34.6 box/s eta 2447s
+  57/236 tcd_tile_1809 600 boxes 507s 34.8 box/s eta 2420s
+  58/236 tcd_tile_1850 534 boxes 528s 34.5 box/s eta 2428s
+  59/236 tcd_tile_1857 176 boxes 536s 34.3 box/s eta 2435s
+  60/236 tcd_tile_1863 401 boxes 548s 34.2 box/s eta 2428s
+  61/236 tcd_tile_1900 180 boxes 554s 34.2 box/s eta 2426s
+  62/236 tcd_tile_1902 600 boxes 574s 34.1 box/s eta 2417s
+  63/236 tcd_tile_1942 600 boxes 594s 33.9 box/s eta 2410s
+  64/236 tcd_tile_1948 600 boxes 616s 33.6 box/s eta 2411s
+  65/236 tcd_tile_1961 579 boxes 647s 32.9 box/s eta 2444s
+  66/236 tcd_tile_2009 164 boxes 653s 32.9 box/s eta 2441s
+  67/236 tcd_tile_2013 600 boxes 683s 32.3 box/s eta 2466s
+  68/236 tcd_tile_2020 600 boxes 694s 32.7 box/s eta 2422s
+  69/236 tcd_tile_2097 600 boxes 731s 31.9 box/s eta 2466s
+  70/236 tcd_tile_2101 600 boxes 759s 31.5 box/s eta 2476s
+  71/236 tcd_tile_2102 600 boxes 785s 31.2 box/s eta 2482s
+  72/236 tcd_tile_2133 406 boxes 797s 31.2 box/s eta 2465s
+  73/236 tcd_tile_2136 600 boxes 821s 31.1 box/s eta 2459s
+  74/236 tcd_tile_2142 551 boxes 844s 30.9 box/s eta 2457s
+  75/236 tcd_tile_2157 600 boxes 883s 30.2 box/s eta 2492s
+  76/236 tcd_tile_2199 574 boxes 893s 30.5 box/s eta 2449s
+  77/236 tcd_tile_2209 600 boxes 905s 30.7 box/s eta 2408s
+  78/236 tcd_tile_2217 218 boxes 921s 30.4 box/s eta 2424s
+  79/236 tcd_tile_222 567 boxes 954s 30.0 box/s eta 2444s
+  80/236 tcd_tile_2225 553 boxes 966s 30.2 box/s eta 2410s
+  81/236 tcd_tile_2232 600 boxes 984s 30.2 box/s eta 2384s
+  82/236 tcd_tile_2242 600 boxes 1002s 30.3 box/s eta 2360s
+  83/236 tcd_tile_225 592 boxes 1025s 30.2 box/s eta 2348s
+  84/236 tcd_tile_2254 600 boxes 1050s 30.0 box/s eta 2340s
+  85/236 tcd_tile_2268 570 boxes 1074s 29.9 box/s eta 2332s
+  86/236 tcd_tile_2317 342 boxes 1083s 30.0 box/s eta 2316s
+  87/236 tcd_tile_2321 202 boxes 1091s 29.9 box/s eta 2312s
+  88/236 tcd_tile_2322 3 boxes 1092s 29.9 box/s eta 2313s
+  89/236 tcd_tile_2353 600 boxes 1120s 29.7 box/s eta 2310s
+  90/236 tcd_tile_2360 600 boxes 1147s 29.5 box/s eta 2302s
+  91/236 tcd_tile_2361 600 boxes 1185s 29.1 box/s eta 2318s
+  92/236 tcd_tile_2399 600 boxes 1208s 29.0 box/s eta 2301s
+  93/236 tcd_tile_2424 600 boxes 1255s 28.4 box/s eta 2330s
+  94/236 tcd_tile_2448 462 boxes 1281s 28.2 box/s eta 2331s
+  95/236 tcd_tile_2471 600 boxes 1330s 27.6 box/s eta 2359s
+  96/236 tcd_tile_2480 489 boxes 1346s 27.6 box/s eta 2339s
+  97/236 tcd_tile_2499 600 boxes 1378s 27.4 box/s eta 2334s
+  98/236 tcd_tile_2517 137 boxes 1386s 27.4 box/s eta 2334s
+  99/236 tcd_tile_2527 511 boxes 1423s 27.0 box/s eta 2344s
+  100/236 tcd_tile_2533 600 boxes 1456s 26.8 box/s eta 2340s
+  101/236 tcd_tile_2560 129 boxes 1464s 26.8 box/s eta 2341s
+  102/236 tcd_tile_2584 573 boxes 1478s 26.9 box/s eta 2308s
+  103/236 tcd_tile_2599 567 boxes 1506s 26.8 box/s eta 2298s
+  104/236 tcd_tile_2664 600 boxes 1543s 26.5 box/s eta 2296s
+  105/236 tcd_tile_2707 600 boxes 1566s 26.5 box/s eta 2275s
+  106/236 tcd_tile_2715 6 boxes 1569s 26.5 box/s eta 2278s
+  107/236 tcd_tile_2745 505 boxes 1598s 26.3 box/s eta 2273s
+  108/236 tcd_tile_2757 600 boxes 1616s 26.4 box/s eta 2243s
+  109/236 tcd_tile_2764 600 boxes 1627s 26.6 box/s eta 2205s
+  110/236 tcd_tile_2775 531 boxes 1643s 26.6 box/s eta 2180s
+  111/236 tcd_tile_2810 481 boxes 1668s 26.5 box/s eta 2170s
+  112/236 tcd_tile_2841 469 boxes 1701s 26.3 box/s eta 2173s
+  113/236 tcd_tile_2842 416 boxes 1721s 26.2 box/s eta 2162s
+  114/236 tcd_tile_2854 600 boxes 1758s 26.0 box/s eta 2156s
+  115/236 tcd_tile_2855 600 boxes 1781s 26.0 box/s eta 2134s
+  116/236 tcd_tile_2857 320 boxes 1801s 25.9 box/s eta 2130s
+  117/236 tcd_tile_2858 600 boxes 1826s 25.9 box/s eta 2109s
+  118/236 tcd_tile_2879 598 boxes 1851s 25.9 box/s eta 2088s
+  119/236 tcd_tile_2896 453 boxes 1862s 25.9 box/s eta 2063s
+  120/236 tcd_tile_2898 600 boxes 1886s 25.9 box/s eta 2042s
+  121/236 tcd_tile_290 600 boxes 1921s 25.8 box/s eta 2030s
+  122/236 tcd_tile_2910 600 boxes 1942s 25.8 box/s eta 2006s
+  123/236 tcd_tile_2915 45 boxes 1948s 25.7 box/s eta 2008s
+  124/236 tcd_tile_2919 600 boxes 1968s 25.8 box/s eta 1981s
+  125/236 tcd_tile_2954 144 boxes 1976s 25.8 box/s eta 1978s
+  126/236 tcd_tile_2973 465 boxes 2006s 25.6 box/s eta 1972s
+  127/236 tcd_tile_2976 600 boxes 2036s 25.5 box/s eta 1955s
+  128/236 tcd_tile_2980 440 boxes 2056s 25.5 box/s eta 1940s
+  129/236 tcd_tile_3004 600 boxes 2084s 25.4 box/s eta 1921s
+  130/236 tcd_tile_3012 470 boxes 2097s 25.5 box/s eta 1897s
+  131/236 tcd_tile_3038 11 boxes 2100s 25.5 box/s eta 1899s
+  132/236 tcd_tile_3051 600 boxes 2122s 25.5 box/s eta 1874s
+  133/236 tcd_tile_3088 568 boxes 2153s 25.4 box/s eta 1859s
+  134/236 tcd_tile_3090 600 boxes 2186s 25.3 box/s eta 1844s
+  135/236 tcd_tile_3122 600 boxes 2200s 25.4 box/s eta 1811s
+  136/236 tcd_tile_314 141 boxes 2213s 25.3 box/s eta 1813s
+  137/236 tcd_tile_3142 437 boxes 2233s 25.3 box/s eta 1797s
+  138/236 tcd_tile_3175 509 boxes 2257s 25.2 box/s eta 1780s
+  139/236 tcd_tile_318 155 boxes 2265s 25.2 box/s eta 1776s
+  140/236 tcd_tile_3188 600 boxes 2295s 25.1 box/s eta 1756s
+  141/236 tcd_tile_3192 600 boxes 2323s 25.1 box/s eta 1736s
+  142/236 tcd_tile_3209 600 boxes 2367s 24.9 box/s eta 1726s
+  143/236 tcd_tile_3235 128 boxes 2373s 24.9 box/s eta 1722s
+  144/236 tcd_tile_325 484 boxes 2391s 24.9 box/s eta 1701s
+  145/236 tcd_tile_3265 568 boxes 2419s 24.8 box/s eta 1682s
+  146/236 tcd_tile_3271 600 boxes 2433s 24.9 box/s eta 1651s
+  147/236 tcd_tile_3295 241 boxes 2448s 24.9 box/s eta 1645s
+  148/236 tcd_tile_3309 600 boxes 2490s 24.7 box/s eta 1632s
+  149/236 tcd_tile_333 600 boxes 2529s 24.6 box/s eta 1618s
+  150/236 tcd_tile_3344 600 boxes 2566s 24.4 box/s eta 1601s
+  151/236 tcd_tile_3352 214 boxes 2574s 24.5 box/s eta 1592s
+  152/236 tcd_tile_3373 407 boxes 2605s 24.3 box/s eta 1584s
+  153/236 tcd_tile_3397 600 boxes 2632s 24.3 box/s eta 1561s
+  154/236 tcd_tile_3417 600 boxes 2666s 24.2 box/s eta 1541s
+  155/236 tcd_tile_342 38 boxes 2670s 24.2 box/s eta 1541s
+  156/236 tcd_tile_3421 280 boxes 2682s 24.2 box/s eta 1530s
+  157/236 tcd_tile_3449 600 boxes 2702s 24.2 box/s eta 1502s
+  158/236 tcd_tile_3464 600 boxes 2720s 24.3 box/s eta 1474s
+  159/236 tcd_tile_3482 568 boxes 2760s 24.1 box/s eta 1459s
+  160/236 tcd_tile_3488 346 boxes 2774s 24.1 box/s eta 1445s
+  161/236 tcd_tile_354 173 boxes 2788s 24.1 box/s eta 1441s
+  162/236 tcd_tile_3564 600 boxes 2820s 24.0 box/s eta 1420s
+  163/236 tcd_tile_3569 558 boxes 2840s 24.0 box/s eta 1395s
+  164/236 tcd_tile_3574 592 boxes 2869s 24.0 box/s eta 1372s
+  165/236 tcd_tile_3644 600 boxes 2891s 24.0 box/s eta 1346s
+  166/236 tcd_tile_3654 227 boxes 2901s 24.0 box/s eta 1337s
+  167/236 tcd_tile_3673 457 boxes 2923s 24.0 box/s eta 1319s
+  168/236 tcd_tile_3680 600 boxes 2945s 24.0 box/s eta 1293s
+  169/236 tcd_tile_3714 600 boxes 2976s 24.0 box/s eta 1271s
+  170/236 tcd_tile_3716 600 boxes 2992s 24.1 box/s eta 1242s
+  171/236 tcd_tile_3742 600 boxes 3013s 24.1 box/s eta 1215s
+  172/236 tcd_tile_3763 6 boxes 3015s 24.1 box/s eta 1215s
+  173/236 tcd_tile_3770 158 boxes 3021s 24.1 box/s eta 1209s
+  174/236 tcd_tile_3776 600 boxes 3058s 24.0 box/s eta 1188s
+  175/236 tcd_tile_3789 600 boxes 3114s 23.7 box/s eta 1175s
+  176/236 tcd_tile_38 327 boxes 3137s 23.7 box/s eta 1165s
+  177/236 tcd_tile_3808 600 boxes 3159s 23.7 box/s eta 1138s
+  178/236 tcd_tile_3813 600 boxes 3182s 23.7 box/s eta 1112s
+  179/236 tcd_tile_3824 304 boxes 3206s 23.6 box/s eta 1103s
+  180/236 tcd_tile_3835 600 boxes 3256s 23.5 box/s eta 1086s
+  181/236 tcd_tile_3837 92 boxes 3264s 23.4 box/s eta 1083s
+  182/236 tcd_tile_3840 181 boxes 3271s 23.4 box/s eta 1076s
+  183/236 tcd_tile_3881 139 boxes 3290s 23.3 box/s eta 1074s
+  184/236 tcd_tile_3885 553 boxes 3318s 23.3 box/s eta 1052s
+  185/236 tcd_tile_3903 600 boxes 3339s 23.3 box/s eta 1024s
+  186/236 tcd_tile_3968 600 boxes 3378s 23.3 box/s eta 1002s
+  187/236 tcd_tile_3969 555 boxes 3413s 23.2 box/s eta 982s
+  188/236 tcd_tile_3986 402 boxes 3432s 23.2 box/s eta 965s
+  189/236 tcd_tile_399 600 boxes 3449s 23.2 box/s eta 937s
+  190/236 tcd_tile_4022 600 boxes 3477s 23.2 box/s eta 911s
+  191/236 tcd_tile_4058 494 boxes 3519s 23.1 box/s eta 895s
+  192/236 tcd_tile_4065 600 boxes 3539s 23.1 box/s eta 868s
+  193/236 tcd_tile_4081 44 boxes 3545s 23.1 box/s eta 867s
+  194/236 tcd_tile_4117 600 boxes 3567s 23.1 box/s eta 840s
+  195/236 tcd_tile_4127 507 boxes 3592s 23.1 box/s eta 819s
+  196/236 tcd_tile_413 600 boxes 3619s 23.1 box/s eta 793s
+  197/236 tcd_tile_4132 94 boxes 3626s 23.1 box/s eta 790s
+  198/236 tcd_tile_4133 85 boxes 3633s 23.0 box/s eta 787s
+  199/236 tcd_tile_4136 500 boxes 3650s 23.1 box/s eta 764s
+  200/236 tcd_tile_4153 496 boxes 3660s 23.1 box/s eta 740s
+  201/236 tcd_tile_4163 600 boxes 3676s 23.2 box/s eta 712s
+  202/236 tcd_tile_426 527 boxes 3696s 23.2 box/s eta 689s
+  203/236 tcd_tile_46 600 boxes 3716s 23.3 box/s eta 662s
+  204/236 tcd_tile_469 264 boxes 3732s 23.2 box/s eta 652s
+  205/236 tcd_tile_49 600 boxes 3764s 23.2 box/s eta 627s
+  206/236 tcd_tile_516 600 boxes 3777s 23.3 box/s eta 599s
+  207/236 tcd_tile_528 600 boxes 3796s 23.3 box/s eta 572s
+  208/236 tcd_tile_557 399 boxes 3809s 23.3 box/s eta 555s
+  209/236 tcd_tile_559 600 boxes 3842s 23.3 box/s eta 530s
+  210/236 tcd_tile_567 2 boxes 3842s 23.3 box/s eta 530s
+  211/236 tcd_tile_583 600 boxes 3865s 23.3 box/s eta 504s
+  212/236 tcd_tile_609 555 boxes 3886s 23.3 box/s eta 479s
+  213/236 tcd_tile_652 600 boxes 3925s 23.2 box/s eta 455s
+  214/236 tcd_tile_678 600 boxes 3939s 23.3 box/s eta 428s
+  215/236 tcd_tile_689 6 boxes 3941s 23.3 box/s eta 428s
+  216/236 tcd_tile_709 600 boxes 3979s 23.2 box/s eta 404s
+  217/236 tcd_tile_716 600 boxes 4007s 23.2 box/s eta 378s
+  218/236 tcd_tile_739 523 boxes 4028s 23.2 box/s eta 355s
+  219/236 tcd_tile_752 600 boxes 4043s 23.3 box/s eta 329s
+  220/236 tcd_tile_795 272 boxes 4073s 23.2 box/s eta 318s
+  221/236 tcd_tile_811 188 boxes 4088s 23.1 box/s eta 311s
+  222/236 tcd_tile_820 427 boxes 4102s 23.2 box/s eta 292s
+  223/236 tcd_tile_836 600 boxes 4112s 23.3 box/s eta 265s
+  224/236 tcd_tile_844 600 boxes 4129s 23.3 box/s eta 239s
+  225/236 tcd_tile_874 121 boxes 4134s 23.3 box/s eta 234s
+  226/236 tcd_tile_884 17 boxes 4138s 23.3 box/s eta 233s
+  227/236 tcd_tile_912 600 boxes 4159s 23.3 box/s eta 207s
+  228/236 tcd_tile_915 341 boxes 4170s 23.3 box/s eta 192s
+  229/236 tcd_tile_919 600 boxes 4199s 23.3 box/s eta 167s
+  230/236 tcd_tile_921 600 boxes 4211s 23.4 box/s eta 141s
+  231/236 tcd_tile_925 600 boxes 4236s 23.4 box/s eta 115s
+  232/236 tcd_tile_926 600 boxes 4253s 23.5 box/s eta 89s
+  233/236 tcd_tile_943 600 boxes 4292s 23.4 box/s eta 64s
+  234/236 tcd_tile_95 484 boxes 4315s 23.4 box/s eta 43s
+  235/236 tcd_tile_986 600 boxes 4336s 23.4 box/s eta 17s
+  236/236 tcd_tile_993 405 boxes 4349s 23.4 box/s eta 0s
+[sam3_d1 sparse] done

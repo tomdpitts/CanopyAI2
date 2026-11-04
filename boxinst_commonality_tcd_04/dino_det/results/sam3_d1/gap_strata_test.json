@@ -1,0 +1,1920 @@
+{
+ "all": {
+  "n": 22612,
+  "frac_n": 1.0,
+  "lace": 0.732,
+  "sam": 0.749,
+  "gap": 0.016,
+  "gap_share": 1.0,
+  "lace_better": 0.394,
+  "err_per_gt_area": {
+   "l_fp_tree": 0.026,
+   "l_fp_can": 0.01,
+   "l_fp_bg": 0.166,
+   "l_fn": 0.136,
+   "s_fp_tree": 0.011,
+   "s_fp_can": 0.006,
+   "s_fp_bg": 0.147,
+   "s_fn": 0.142,
+   "l_ratio": 1.065,
+   "s_ratio": 1.021
+  }
+ },
+ "n_crowns": 22612,
+ "total_gap_mass": 367.1,
+ "crown_size_sqrt_px": {
+  "[0,20)": {
+   "n": 4609,
+   "frac_n": 0.204,
+   "lace": 0.681,
+   "sam": 0.694,
+   "gap": 0.013,
+   "gap_share": 0.158,
+   "lace_better": 0.433,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.012,
+    "l_fp_can": 0.005,
+    "l_fp_bg": 0.294,
+    "l_fn": 0.129,
+    "s_fp_tree": 0.007,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.286,
+    "s_fn": 0.12,
+    "l_ratio": 1.181,
+    "s_ratio": 1.177
+   }
+  },
+  "[20,30)": {
+   "n": 4013,
+   "frac_n": 0.177,
+   "lace": 0.718,
+   "sam": 0.74,
+   "gap": 0.022,
+   "gap_share": 0.24,
+   "lace_better": 0.361,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.016,
+    "l_fp_can": 0.005,
+    "l_fp_bg": 0.176,
+    "l_fn": 0.155,
+    "s_fp_tree": 0.01,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.177,
+    "s_fn": 0.132,
+    "l_ratio": 1.041,
+    "s_ratio": 1.059
+   }
+  },
+  "[30,45)": {
+   "n": 4605,
+   "frac_n": 0.204,
+   "lace": 0.73,
+   "sam": 0.754,
+   "gap": 0.024,
+   "gap_share": 0.299,
+   "lace_better": 0.324,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.023,
+    "l_fp_can": 0.009,
+    "l_fp_bg": 0.159,
+    "l_fn": 0.146,
+    "s_fp_tree": 0.012,
+    "s_fp_can": 0.007,
+    "s_fp_bg": 0.14,
+    "s_fn": 0.138,
+    "l_ratio": 1.045,
+    "s_ratio": 1.021
+   }
+  },
+  "[45,70)": {
+   "n": 5999,
+   "frac_n": 0.265,
+   "lace": 0.755,
+   "sam": 0.77,
+   "gap": 0.015,
+   "gap_share": 0.248,
+   "lace_better": 0.394,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.033,
+    "l_fp_can": 0.015,
+    "l_fp_bg": 0.119,
+    "l_fn": 0.13,
+    "s_fp_tree": 0.012,
+    "s_fp_can": 0.008,
+    "s_fp_bg": 0.084,
+    "s_fn": 0.155,
+    "l_ratio": 1.036,
+    "s_ratio": 0.949
+   }
+  },
+  "[70,110)": {
+   "n": 2784,
+   "frac_n": 0.123,
+   "lace": 0.777,
+   "sam": 0.78,
+   "gap": 0.004,
+   "gap_share": 0.028,
+   "lace_better": 0.491,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.045,
+    "l_fp_can": 0.018,
+    "l_fp_bg": 0.077,
+    "l_fn": 0.125,
+    "s_fp_tree": 0.013,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.043,
+    "s_fn": 0.174,
+    "l_ratio": 1.012,
+    "s_ratio": 0.888
+   }
+  },
+  "[110,1e+09)": {
+   "n": 602,
+   "frac_n": 0.027,
+   "lace": 0.815,
+   "sam": 0.831,
+   "gap": 0.016,
+   "gap_share": 0.027,
+   "lace_better": 0.4,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.058,
+    "l_fp_can": 0.017,
+    "l_fp_bg": 0.058,
+    "l_fn": 0.092,
+    "s_fp_tree": 0.019,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.026,
+    "s_fn": 0.133,
+    "l_ratio": 1.04,
+    "s_ratio": 0.917
+   }
+  }
+ },
+ "box_iou": {
+  "[0.5,0.6)": {
+   "n": 1593,
+   "frac_n": 0.07,
+   "lace": 0.564,
+   "sam": 0.574,
+   "gap": 0.01,
+   "gap_share": 0.044,
+   "lace_better": 0.436,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.065,
+    "l_fp_can": 0.016,
+    "l_fp_bg": 0.341,
+    "l_fn": 0.226,
+    "s_fp_tree": 0.051,
+    "s_fp_can": 0.012,
+    "s_fp_bg": 0.311,
+    "s_fn": 0.232,
+    "l_ratio": 1.195,
+    "s_ratio": 1.142
+   }
+  },
+  "[0.6,0.7)": {
+   "n": 3559,
+   "frac_n": 0.157,
+   "lace": 0.649,
+   "sam": 0.661,
+   "gap": 0.012,
+   "gap_share": 0.116,
+   "lace_better": 0.436,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.026,
+    "l_fp_can": 0.011,
+    "l_fp_bg": 0.242,
+    "l_fn": 0.185,
+    "s_fp_tree": 0.016,
+    "s_fp_can": 0.007,
+    "s_fp_bg": 0.22,
+    "s_fn": 0.191,
+    "l_ratio": 1.093,
+    "s_ratio": 1.052
+   }
+  },
+  "[0.7,0.8)": {
+   "n": 6583,
+   "frac_n": 0.291,
+   "lace": 0.721,
+   "sam": 0.737,
+   "gap": 0.016,
+   "gap_share": 0.282,
+   "lace_better": 0.396,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.02,
+    "l_fp_can": 0.009,
+    "l_fp_bg": 0.171,
+    "l_fn": 0.145,
+    "s_fp_tree": 0.008,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.153,
+    "s_fn": 0.148,
+    "l_ratio": 1.054,
+    "s_ratio": 1.017
+   }
+  },
+  "[0.8,0.9)": {
+   "n": 8127,
+   "frac_n": 0.359,
+   "lace": 0.78,
+   "sam": 0.797,
+   "gap": 0.017,
+   "gap_share": 0.379,
+   "lace_better": 0.385,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.022,
+    "l_fp_can": 0.01,
+    "l_fp_bg": 0.122,
+    "l_fn": 0.108,
+    "s_fp_tree": 0.006,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.105,
+    "s_fn": 0.116,
+    "l_ratio": 1.045,
+    "s_ratio": 1.0
+   }
+  },
+  "[0.9,1.01)": {
+   "n": 2750,
+   "frac_n": 0.122,
+   "lace": 0.825,
+   "sam": 0.849,
+   "gap": 0.024,
+   "gap_share": 0.18,
+   "lace_better": 0.336,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.026,
+    "l_fp_can": 0.01,
+    "l_fp_bg": 0.087,
+    "l_fn": 0.081,
+    "s_fp_tree": 0.005,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.065,
+    "s_fn": 0.091,
+    "l_ratio": 1.042,
+    "s_ratio": 0.983
+   }
+  }
+ },
+ "det_score": {
+  "[0,0.2)": {
+   "n": 1862,
+   "frac_n": 0.082,
+   "lace": 0.678,
+   "sam": 0.692,
+   "gap": 0.014,
+   "gap_share": 0.069,
+   "lace_better": 0.437,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.052,
+    "l_fp_can": 0.022,
+    "l_fp_bg": 0.229,
+    "l_fn": 0.144,
+    "s_fp_tree": 0.021,
+    "s_fp_can": 0.011,
+    "s_fp_bg": 0.173,
+    "s_fn": 0.184,
+    "l_ratio": 1.156,
+    "s_ratio": 1.02
+   }
+  },
+  "[0.2,0.3)": {
+   "n": 2519,
+   "frac_n": 0.111,
+   "lace": 0.688,
+   "sam": 0.708,
+   "gap": 0.02,
+   "gap_share": 0.138,
+   "lace_better": 0.38,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.04,
+    "l_fp_can": 0.018,
+    "l_fp_bg": 0.23,
+    "l_fn": 0.137,
+    "s_fp_tree": 0.017,
+    "s_fp_can": 0.01,
+    "s_fp_bg": 0.189,
+    "s_fn": 0.157,
+    "l_ratio": 1.149,
+    "s_ratio": 1.058
+   }
+  },
+  "[0.3,0.4)": {
+   "n": 3544,
+   "frac_n": 0.157,
+   "lace": 0.704,
+   "sam": 0.724,
+   "gap": 0.02,
+   "gap_share": 0.195,
+   "lace_better": 0.385,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.031,
+    "l_fp_can": 0.015,
+    "l_fp_bg": 0.199,
+    "l_fn": 0.142,
+    "s_fp_tree": 0.013,
+    "s_fp_can": 0.009,
+    "s_fp_bg": 0.175,
+    "s_fn": 0.149,
+    "l_ratio": 1.103,
+    "s_ratio": 1.048
+   }
+  },
+  "[0.4,0.5)": {
+   "n": 3836,
+   "frac_n": 0.17,
+   "lace": 0.722,
+   "sam": 0.739,
+   "gap": 0.017,
+   "gap_share": 0.176,
+   "lace_better": 0.387,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.027,
+    "l_fp_can": 0.01,
+    "l_fp_bg": 0.171,
+    "l_fn": 0.143,
+    "s_fp_tree": 0.013,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.159,
+    "s_fn": 0.143,
+    "l_ratio": 1.065,
+    "s_ratio": 1.035
+   }
+  },
+  "[0.5,0.6)": {
+   "n": 3532,
+   "frac_n": 0.156,
+   "lace": 0.739,
+   "sam": 0.756,
+   "gap": 0.017,
+   "gap_share": 0.164,
+   "lace_better": 0.396,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.02,
+    "l_fp_can": 0.007,
+    "l_fp_bg": 0.146,
+    "l_fn": 0.144,
+    "s_fp_tree": 0.008,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.137,
+    "s_fn": 0.141,
+    "l_ratio": 1.029,
+    "s_ratio": 1.008
+   }
+  },
+  "[0.6,1.01)": {
+   "n": 7319,
+   "frac_n": 0.324,
+   "lace": 0.778,
+   "sam": 0.791,
+   "gap": 0.013,
+   "gap_share": 0.258,
+   "lace_better": 0.394,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.013,
+    "l_fp_can": 0.004,
+    "l_fp_bg": 0.12,
+    "l_fn": 0.124,
+    "s_fp_tree": 0.006,
+    "s_fp_can": 0.002,
+    "s_fp_bg": 0.11,
+    "s_fn": 0.123,
+    "l_ratio": 1.013,
+    "s_ratio": 0.995
+   }
+  }
+ },
+ "gt_fill": {
+  "[0,0.5)": {
+   "n": 976,
+   "frac_n": 0.043,
+   "lace": 0.613,
+   "sam": 0.644,
+   "gap": 0.031,
+   "gap_share": 0.083,
+   "lace_better": 0.309,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.053,
+    "l_fp_can": 0.023,
+    "l_fp_bg": 0.39,
+    "l_fn": 0.13,
+    "s_fp_tree": 0.022,
+    "s_fp_can": 0.014,
+    "s_fp_bg": 0.292,
+    "s_fn": 0.166,
+    "l_ratio": 1.336,
+    "s_ratio": 1.162
+   }
+  },
+  "[0.5,0.6)": {
+   "n": 2497,
+   "frac_n": 0.11,
+   "lace": 0.697,
+   "sam": 0.719,
+   "gap": 0.022,
+   "gap_share": 0.151,
+   "lace_better": 0.387,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.051,
+    "l_fp_can": 0.018,
+    "l_fp_bg": 0.196,
+    "l_fn": 0.136,
+    "s_fp_tree": 0.02,
+    "s_fp_can": 0.01,
+    "s_fp_bg": 0.151,
+    "s_fn": 0.163,
+    "l_ratio": 1.128,
+    "s_ratio": 1.017
+   }
+  },
+  "[0.6,0.7)": {
+   "n": 6010,
+   "frac_n": 0.266,
+   "lace": 0.734,
+   "sam": 0.75,
+   "gap": 0.017,
+   "gap_share": 0.271,
+   "lace_better": 0.4,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.035,
+    "l_fp_can": 0.012,
+    "l_fp_bg": 0.149,
+    "l_fn": 0.138,
+    "s_fp_tree": 0.015,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.125,
+    "s_fn": 0.152,
+    "l_ratio": 1.057,
+    "s_ratio": 0.994
+   }
+  },
+  "[0.7,0.8)": {
+   "n": 10704,
+   "frac_n": 0.473,
+   "lace": 0.747,
+   "sam": 0.762,
+   "gap": 0.014,
+   "gap_share": 0.423,
+   "lace_better": 0.394,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.015,
+    "l_fp_can": 0.007,
+    "l_fp_bg": 0.154,
+    "l_fn": 0.134,
+    "s_fp_tree": 0.007,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.146,
+    "s_fn": 0.131,
+    "l_ratio": 1.042,
+    "s_ratio": 1.027
+   }
+  },
+  "[0.8,1.01)": {
+   "n": 2425,
+   "frac_n": 0.107,
+   "lace": 0.75,
+   "sam": 0.761,
+   "gap": 0.011,
+   "gap_share": 0.072,
+   "lace_better": 0.416,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.01,
+    "l_fp_can": 0.006,
+    "l_fp_bg": 0.143,
+    "l_fn": 0.14,
+    "s_fp_tree": 0.005,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.14,
+    "s_fn": 0.135,
+    "l_ratio": 1.019,
+    "s_ratio": 1.014
+   }
+  }
+ },
+ "gt_aspect": {
+  "[1,1.25)": {
+   "n": 17020,
+   "frac_n": 0.753,
+   "lace": 0.738,
+   "sam": 0.751,
+   "gap": 0.013,
+   "gap_share": 0.587,
+   "lace_better": 0.413,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.025,
+    "l_fp_can": 0.011,
+    "l_fp_bg": 0.159,
+    "l_fn": 0.133,
+    "s_fp_tree": 0.01,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.143,
+    "s_fn": 0.142,
+    "l_ratio": 1.062,
+    "s_ratio": 1.017
+   }
+  },
+  "[1.25,1.5)": {
+   "n": 3778,
+   "frac_n": 0.167,
+   "lace": 0.72,
+   "sam": 0.739,
+   "gap": 0.019,
+   "gap_share": 0.193,
+   "lace_better": 0.361,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.026,
+    "l_fp_can": 0.009,
+    "l_fp_bg": 0.18,
+    "l_fn": 0.143,
+    "s_fp_tree": 0.013,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.159,
+    "s_fn": 0.145,
+    "l_ratio": 1.071,
+    "s_ratio": 1.033
+   }
+  },
+  "[1.5,2)": {
+   "n": 1313,
+   "frac_n": 0.058,
+   "lace": 0.708,
+   "sam": 0.74,
+   "gap": 0.032,
+   "gap_share": 0.114,
+   "lace_better": 0.314,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.029,
+    "l_fp_can": 0.008,
+    "l_fp_bg": 0.2,
+    "l_fn": 0.145,
+    "s_fp_tree": 0.013,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.165,
+    "s_fn": 0.141,
+    "l_ratio": 1.092,
+    "s_ratio": 1.042
+   }
+  },
+  "[2,1e+09)": {
+   "n": 501,
+   "frac_n": 0.022,
+   "lace": 0.69,
+   "sam": 0.768,
+   "gap": 0.078,
+   "gap_share": 0.106,
+   "lace_better": 0.202,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.034,
+    "l_fp_can": 0.005,
+    "l_fp_bg": 0.207,
+    "l_fn": 0.16,
+    "s_fp_tree": 0.009,
+    "s_fp_can": 0.001,
+    "s_fp_bg": 0.14,
+    "s_fn": 0.131,
+    "l_ratio": 1.086,
+    "s_ratio": 1.019
+   }
+  }
+ },
+ "n_neighbours_in_box": {
+  "[0,1)": {
+   "n": 14791,
+   "frac_n": 0.654,
+   "lace": 0.732,
+   "sam": 0.745,
+   "gap": 0.013,
+   "gap_share": 0.53,
+   "lace_better": 0.408,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.0,
+    "l_fp_can": 0.008,
+    "l_fp_bg": 0.184,
+    "l_fn": 0.142,
+    "s_fp_tree": 0.0,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.172,
+    "s_fn": 0.136,
+    "l_ratio": 1.05,
+    "s_ratio": 1.042
+   }
+  },
+  "[1,2)": {
+   "n": 4746,
+   "frac_n": 0.21,
+   "lace": 0.738,
+   "sam": 0.758,
+   "gap": 0.021,
+   "gap_share": 0.266,
+   "lace_better": 0.366,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.051,
+    "l_fp_can": 0.013,
+    "l_fp_bg": 0.146,
+    "l_fn": 0.126,
+    "s_fp_tree": 0.024,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.116,
+    "s_fn": 0.145,
+    "l_ratio": 1.083,
+    "s_ratio": 1.001
+   }
+  },
+  "[2,4)": {
+   "n": 2566,
+   "frac_n": 0.113,
+   "lace": 0.729,
+   "sam": 0.755,
+   "gap": 0.026,
+   "gap_share": 0.181,
+   "lace_better": 0.362,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.102,
+    "l_fp_can": 0.017,
+    "l_fp_bg": 0.113,
+    "l_fn": 0.123,
+    "s_fp_tree": 0.041,
+    "s_fp_can": 0.008,
+    "s_fp_bg": 0.075,
+    "s_fn": 0.163,
+    "l_ratio": 1.106,
+    "s_ratio": 0.959
+   }
+  },
+  "[4,7)": {
+   "n": 502,
+   "frac_n": 0.022,
+   "lace": 0.723,
+   "sam": 0.739,
+   "gap": 0.016,
+   "gap_share": 0.022,
+   "lace_better": 0.4,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.148,
+    "l_fp_can": 0.012,
+    "l_fp_bg": 0.098,
+    "l_fn": 0.114,
+    "s_fp_tree": 0.057,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.053,
+    "s_fn": 0.186,
+    "l_ratio": 1.139,
+    "s_ratio": 0.927
+   }
+  },
+  "[7,1e+09)": {
+   "n": 7,
+   "frac_n": 0.0,
+   "lace": 0.663,
+   "sam": 0.722,
+   "gap": 0.059,
+   "gap_share": 0.001,
+   "lace_better": 0.286,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.368,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.095,
+    "l_fn": 0.08,
+    "s_fp_tree": 0.208,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.02,
+    "s_fn": 0.147,
+    "l_ratio": 1.383,
+    "s_ratio": 1.081
+   }
+  }
+ },
+ "box_cov_other_trees": {
+  "[0,1e-09)": {
+   "n": 14791,
+   "frac_n": 0.654,
+   "lace": 0.732,
+   "sam": 0.745,
+   "gap": 0.013,
+   "gap_share": 0.53,
+   "lace_better": 0.408,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.0,
+    "l_fp_can": 0.008,
+    "l_fp_bg": 0.184,
+    "l_fn": 0.142,
+    "s_fp_tree": 0.0,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.172,
+    "s_fn": 0.136,
+    "l_ratio": 1.05,
+    "s_ratio": 1.042
+   }
+  },
+  "[1e-09,0.1)": {
+   "n": 5653,
+   "frac_n": 0.25,
+   "lace": 0.754,
+   "sam": 0.766,
+   "gap": 0.013,
+   "gap_share": 0.195,
+   "lace_better": 0.408,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.025,
+    "l_fp_can": 0.014,
+    "l_fp_bg": 0.142,
+    "l_fn": 0.124,
+    "s_fp_tree": 0.007,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.105,
+    "s_fn": 0.152,
+    "l_ratio": 1.056,
+    "s_ratio": 0.966
+   }
+  },
+  "[0.1,0.25)": {
+   "n": 1758,
+   "frac_n": 0.078,
+   "lace": 0.702,
+   "sam": 0.744,
+   "gap": 0.042,
+   "gap_share": 0.201,
+   "lace_better": 0.267,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.151,
+    "l_fp_can": 0.017,
+    "l_fp_bg": 0.113,
+    "l_fn": 0.123,
+    "s_fp_tree": 0.06,
+    "s_fp_can": 0.007,
+    "s_fp_bg": 0.084,
+    "s_fn": 0.159,
+    "l_ratio": 1.152,
+    "s_ratio": 0.991
+   }
+  },
+  "[0.25,0.5)": {
+   "n": 367,
+   "frac_n": 0.016,
+   "lace": 0.586,
+   "sam": 0.659,
+   "gap": 0.072,
+   "gap_share": 0.072,
+   "lace_better": 0.21,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.441,
+    "l_fp_can": 0.016,
+    "l_fp_bg": 0.084,
+    "l_fn": 0.131,
+    "s_fp_tree": 0.268,
+    "s_fp_can": 0.008,
+    "s_fp_bg": 0.069,
+    "s_fn": 0.153,
+    "l_ratio": 1.404,
+    "s_ratio": 1.188
+   }
+  },
+  "[0.5,1.01)": {
+   "n": 43,
+   "frac_n": 0.002,
+   "lace": 0.725,
+   "sam": 0.737,
+   "gap": 0.012,
+   "gap_share": 0.001,
+   "lace_better": 0.488,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.214,
+    "l_fp_can": 0.002,
+    "l_fp_bg": 0.068,
+    "l_fn": 0.127,
+    "s_fp_tree": 0.179,
+    "s_fp_can": 0.002,
+    "s_fp_bg": 0.077,
+    "s_fn": 0.116,
+    "l_ratio": 1.157,
+    "s_ratio": 1.141
+   }
+  }
+ },
+ "box_cov_canopy": {
+  "[0,1e-09)": {
+   "n": 18892,
+   "frac_n": 0.835,
+   "lace": 0.729,
+   "sam": 0.745,
+   "gap": 0.016,
+   "gap_share": 0.819,
+   "lace_better": 0.394,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.024,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.181,
+    "l_fn": 0.138,
+    "s_fp_tree": 0.011,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.162,
+    "s_fn": 0.14,
+    "l_ratio": 1.068,
+    "s_ratio": 1.032
+   }
+  },
+  "[1e-09,0.1)": {
+   "n": 2214,
+   "frac_n": 0.098,
+   "lace": 0.756,
+   "sam": 0.768,
+   "gap": 0.012,
+   "gap_share": 0.073,
+   "lace_better": 0.426,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.033,
+    "l_fp_can": 0.012,
+    "l_fp_bg": 0.119,
+    "l_fn": 0.134,
+    "s_fp_tree": 0.013,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.091,
+    "s_fn": 0.157,
+    "l_ratio": 1.03,
+    "s_ratio": 0.952
+   }
+  },
+  "[0.1,0.3)": {
+   "n": 756,
+   "frac_n": 0.033,
+   "lace": 0.746,
+   "sam": 0.774,
+   "gap": 0.029,
+   "gap_share": 0.059,
+   "lace_better": 0.337,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.036,
+    "l_fp_can": 0.087,
+    "l_fp_bg": 0.084,
+    "l_fn": 0.116,
+    "s_fp_tree": 0.015,
+    "s_fp_can": 0.041,
+    "s_fp_bg": 0.065,
+    "s_fn": 0.142,
+    "l_ratio": 1.092,
+    "s_ratio": 0.979
+   }
+  },
+  "[0.3,0.6)": {
+   "n": 151,
+   "frac_n": 0.007,
+   "lace": 0.706,
+   "sam": 0.746,
+   "gap": 0.04,
+   "gap_share": 0.016,
+   "lace_better": 0.225,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.028,
+    "l_fp_can": 0.225,
+    "l_fp_bg": 0.053,
+    "l_fn": 0.106,
+    "s_fp_tree": 0.008,
+    "s_fp_can": 0.146,
+    "s_fp_bg": 0.044,
+    "s_fn": 0.125,
+    "l_ratio": 1.196,
+    "s_ratio": 1.072
+   }
+  },
+  "[0.6,1.01)": {
+   "n": 599,
+   "frac_n": 0.026,
+   "lace": 0.747,
+   "sam": 0.767,
+   "gap": 0.02,
+   "gap_share": 0.032,
+   "lace_better": 0.381,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.027,
+    "l_fp_can": 0.178,
+    "l_fp_bg": 0.002,
+    "l_fn": 0.129,
+    "s_fp_tree": 0.008,
+    "s_fp_can": 0.119,
+    "s_fp_bg": 0.002,
+    "s_fn": 0.147,
+    "l_ratio": 1.054,
+    "s_ratio": 0.974
+   }
+  }
+ },
+ "lace_area_ratio": {
+  "[0,0.5)": {
+   "n": 26,
+   "frac_n": 0.001,
+   "lace": 0.424,
+   "sam": 0.582,
+   "gap": 0.158,
+   "gap_share": 0.011,
+   "lace_better": 0.115,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.0,
+    "l_fp_can": 0.001,
+    "l_fp_bg": 0.011,
+    "l_fn": 0.572,
+    "s_fp_tree": 0.0,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.024,
+    "s_fn": 0.402,
+    "l_ratio": 0.44,
+    "s_ratio": 0.622
+   }
+  },
+  "[0.5,0.75)": {
+   "n": 1709,
+   "frac_n": 0.076,
+   "lace": 0.64,
+   "sam": 0.674,
+   "gap": 0.034,
+   "gap_share": 0.158,
+   "lace_better": 0.317,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.002,
+    "l_fp_can": 0.001,
+    "l_fp_bg": 0.02,
+    "l_fn": 0.347,
+    "s_fp_tree": 0.001,
+    "s_fp_can": 0.001,
+    "s_fp_bg": 0.031,
+    "s_fn": 0.304,
+    "l_ratio": 0.676,
+    "s_ratio": 0.728
+   }
+  },
+  "[0.75,0.9)": {
+   "n": 4451,
+   "frac_n": 0.197,
+   "lace": 0.751,
+   "sam": 0.757,
+   "gap": 0.006,
+   "gap_share": 0.077,
+   "lace_better": 0.439,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.006,
+    "l_fp_can": 0.003,
+    "l_fp_bg": 0.041,
+    "l_fn": 0.214,
+    "s_fp_tree": 0.002,
+    "s_fp_can": 0.002,
+    "s_fp_bg": 0.051,
+    "s_fn": 0.203,
+    "l_ratio": 0.836,
+    "s_ratio": 0.852
+   }
+  },
+  "[0.9,1.1)": {
+   "n": 8461,
+   "frac_n": 0.374,
+   "lace": 0.794,
+   "sam": 0.798,
+   "gap": 0.004,
+   "gap_share": 0.089,
+   "lace_better": 0.46,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.016,
+    "l_fp_can": 0.008,
+    "l_fp_bg": 0.091,
+    "l_fn": 0.119,
+    "s_fp_tree": 0.005,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.086,
+    "s_fn": 0.13,
+    "l_ratio": 0.996,
+    "s_ratio": 0.964
+   }
+  },
+  "[1.1,1.33)": {
+   "n": 4825,
+   "frac_n": 0.213,
+   "lace": 0.734,
+   "sam": 0.756,
+   "gap": 0.023,
+   "gap_share": 0.298,
+   "lace_better": 0.344,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.033,
+    "l_fp_can": 0.014,
+    "l_fp_bg": 0.222,
+    "l_fn": 0.075,
+    "s_fp_tree": 0.01,
+    "s_fp_can": 0.007,
+    "s_fp_bg": 0.193,
+    "s_fn": 0.094,
+    "l_ratio": 1.195,
+    "s_ratio": 1.116
+   }
+  },
+  "[1.33,2)": {
+   "n": 2887,
+   "frac_n": 0.128,
+   "lace": 0.605,
+   "sam": 0.646,
+   "gap": 0.041,
+   "gap_share": 0.322,
+   "lace_better": 0.28,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.073,
+    "l_fp_can": 0.025,
+    "l_fp_bg": 0.491,
+    "l_fn": 0.05,
+    "s_fp_tree": 0.043,
+    "s_fp_can": 0.015,
+    "s_fp_bg": 0.407,
+    "s_fn": 0.073,
+    "l_ratio": 1.539,
+    "s_ratio": 1.392
+   }
+  },
+  "[2,1e+09)": {
+   "n": 253,
+   "frac_n": 0.011,
+   "lace": 0.428,
+   "sam": 0.494,
+   "gap": 0.066,
+   "gap_share": 0.045,
+   "lace_better": 0.162,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.147,
+    "l_fp_can": 0.058,
+    "l_fp_bg": 1.088,
+    "l_fn": 0.031,
+    "s_fp_tree": 0.107,
+    "s_fp_can": 0.039,
+    "s_fp_bg": 0.804,
+    "s_fn": 0.063,
+    "l_ratio": 2.257,
+    "s_ratio": 1.886
+   }
+  }
+ },
+ "sam_placement": {
+  "subtile": {
+   "n": 22612,
+   "frac_n": 1.0,
+   "lace": 0.732,
+   "sam": 0.749,
+   "gap": 0.016,
+   "gap_share": 1.0,
+   "lace_better": 0.394,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.026,
+    "l_fp_can": 0.01,
+    "l_fp_bg": 0.166,
+    "l_fn": 0.136,
+    "s_fp_tree": 0.011,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.147,
+    "s_fn": 0.142,
+    "l_ratio": 1.065,
+    "s_ratio": 1.021
+   }
+  },
+  "whole_tile": null
+ },
+ "tile_edge": {
+  "interior": {
+   "n": 20967,
+   "frac_n": 0.927,
+   "lace": 0.733,
+   "sam": 0.747,
+   "gap": 0.014,
+   "gap_share": 0.784,
+   "lace_better": 0.402,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.025,
+    "l_fp_can": 0.011,
+    "l_fp_bg": 0.167,
+    "l_fn": 0.135,
+    "s_fp_tree": 0.011,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.148,
+    "s_fn": 0.144,
+    "l_ratio": 1.066,
+    "s_ratio": 1.021
+   }
+  },
+  "edge": {
+   "n": 1645,
+   "frac_n": 0.073,
+   "lace": 0.727,
+   "sam": 0.776,
+   "gap": 0.048,
+   "gap_share": 0.216,
+   "lace_better": 0.283,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.036,
+    "l_fp_can": 0.007,
+    "l_fp_bg": 0.162,
+    "l_fn": 0.143,
+    "s_fp_tree": 0.015,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.129,
+    "s_fn": 0.124,
+    "l_ratio": 1.061,
+    "s_ratio": 1.024
+   }
+  }
+ },
+ "biome": {
+  "Atlantic mixed forests": {
+   "n": 139,
+   "frac_n": 0.006,
+   "lace": 0.72,
+   "sam": 0.738,
+   "gap": 0.018,
+   "gap_share": 0.007,
+   "lace_better": 0.374,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.005,
+    "l_fp_can": 0.008,
+    "l_fp_bg": 0.253,
+    "l_fn": 0.109,
+    "s_fp_tree": 0.003,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.191,
+    "s_fn": 0.129,
+    "l_ratio": 1.158,
+    "s_ratio": 1.068
+   }
+  },
+  "Bahia coastal forests": {
+   "n": 293,
+   "frac_n": 0.013,
+   "lace": 0.702,
+   "sam": 0.726,
+   "gap": 0.024,
+   "gap_share": 0.019,
+   "lace_better": 0.379,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.042,
+    "l_fp_can": 0.014,
+    "l_fp_bg": 0.176,
+    "l_fn": 0.153,
+    "s_fp_tree": 0.017,
+    "s_fp_can": 0.008,
+    "s_fp_bg": 0.197,
+    "s_fn": 0.129,
+    "l_ratio": 1.078,
+    "s_ratio": 1.094
+   }
+  },
+  "California interior chaparral and woodlands": {
+   "n": 79,
+   "frac_n": 0.003,
+   "lace": 0.766,
+   "sam": 0.782,
+   "gap": 0.016,
+   "gap_share": 0.003,
+   "lace_better": 0.316,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.01,
+    "l_fp_can": 0.005,
+    "l_fp_bg": 0.213,
+    "l_fn": 0.075,
+    "s_fp_tree": 0.001,
+    "s_fp_can": 0.001,
+    "s_fp_bg": 0.188,
+    "s_fn": 0.085,
+    "l_ratio": 1.153,
+    "s_ratio": 1.105
+   }
+  },
+  "Cauca Valley montane forests": {
+   "n": 6,
+   "frac_n": 0.0,
+   "lace": 0.707,
+   "sam": 0.716,
+   "gap": 0.008,
+   "gap_share": 0.0,
+   "lace_better": 0.167,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.0,
+    "l_fp_can": 0.018,
+    "l_fp_bg": 0.045,
+    "l_fn": 0.246,
+    "s_fp_tree": 0.0,
+    "s_fp_can": 0.015,
+    "s_fp_bg": 0.075,
+    "s_fn": 0.22,
+    "l_ratio": 0.817,
+    "s_ratio": 0.87
+   }
+  },
+  "Cerrado": {
+   "n": 48,
+   "frac_n": 0.002,
+   "lace": 0.772,
+   "sam": 0.795,
+   "gap": 0.023,
+   "gap_share": 0.003,
+   "lace_better": 0.292,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.002,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.144,
+    "l_fn": 0.124,
+    "s_fp_tree": 0.0,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.11,
+    "s_fn": 0.126,
+    "l_ratio": 1.022,
+    "s_ratio": 0.985
+   }
+  },
+  "Crimean Submediterranean forest complex": {
+   "n": 228,
+   "frac_n": 0.01,
+   "lace": 0.759,
+   "sam": 0.778,
+   "gap": 0.018,
+   "gap_share": 0.011,
+   "lace_better": 0.36,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.024,
+    "l_fp_can": 0.009,
+    "l_fp_bg": 0.078,
+    "l_fn": 0.162,
+    "s_fp_tree": 0.013,
+    "s_fp_can": 0.003,
+    "s_fp_bg": 0.056,
+    "s_fn": 0.17,
+    "l_ratio": 0.948,
+    "s_ratio": 0.902
+   }
+  },
+  "East European forest steppe": {
+   "n": 511,
+   "frac_n": 0.023,
+   "lace": 0.734,
+   "sam": 0.748,
+   "gap": 0.015,
+   "gap_share": 0.02,
+   "lace_better": 0.391,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.015,
+    "l_fp_can": 0.003,
+    "l_fp_bg": 0.175,
+    "l_fn": 0.14,
+    "s_fp_tree": 0.007,
+    "s_fp_can": 0.001,
+    "s_fp_bg": 0.137,
+    "s_fn": 0.155,
+    "l_ratio": 1.054,
+    "s_ratio": 0.989
+   }
+  },
+  "Eastern Australian temperate forests": {
+   "n": 27,
+   "frac_n": 0.001,
+   "lace": 0.711,
+   "sam": 0.744,
+   "gap": 0.033,
+   "gap_share": 0.002,
+   "lace_better": 0.296,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.007,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.236,
+    "l_fn": 0.126,
+    "s_fp_tree": 0.001,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.239,
+    "s_fn": 0.092,
+    "l_ratio": 1.117,
+    "s_ratio": 1.147
+   }
+  },
+  "Eastern Cordillera real montane forests": {
+   "n": 67,
+   "frac_n": 0.003,
+   "lace": 0.728,
+   "sam": 0.744,
+   "gap": 0.016,
+   "gap_share": 0.003,
+   "lace_better": 0.418,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.005,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.215,
+    "l_fn": 0.125,
+    "s_fp_tree": 0.001,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.221,
+    "s_fn": 0.108,
+    "l_ratio": 1.095,
+    "s_ratio": 1.114
+   }
+  },
+  "Eastern Guinean forests": {
+   "n": 203,
+   "frac_n": 0.009,
+   "lace": 0.688,
+   "sam": 0.7,
+   "gap": 0.012,
+   "gap_share": 0.007,
+   "lace_better": 0.399,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.011,
+    "l_fp_can": 0.022,
+    "l_fp_bg": 0.251,
+    "l_fn": 0.148,
+    "s_fp_tree": 0.008,
+    "s_fp_can": 0.017,
+    "s_fp_bg": 0.233,
+    "s_fn": 0.148,
+    "l_ratio": 1.136,
+    "s_ratio": 1.11
+   }
+  },
+  "Ecuadorian dry forests": {
+   "n": 78,
+   "frac_n": 0.003,
+   "lace": 0.741,
+   "sam": 0.768,
+   "gap": 0.028,
+   "gap_share": 0.006,
+   "lace_better": 0.359,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.054,
+    "l_fp_can": 0.006,
+    "l_fp_bg": 0.2,
+    "l_fn": 0.097,
+    "s_fp_tree": 0.045,
+    "s_fp_can": 0.002,
+    "s_fp_bg": 0.162,
+    "s_fn": 0.095,
+    "l_ratio": 1.164,
+    "s_ratio": 1.114
+   }
+  },
+  "Guinean forest-savanna mosaic": {
+   "n": 29,
+   "frac_n": 0.001,
+   "lace": 0.814,
+   "sam": 0.843,
+   "gap": 0.03,
+   "gap_share": 0.002,
+   "lace_better": 0.172,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.007,
+    "l_fp_can": 0.002,
+    "l_fp_bg": 0.094,
+    "l_fn": 0.108,
+    "s_fp_tree": 0.0,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.089,
+    "s_fn": 0.088,
+    "l_ratio": 0.996,
+    "s_ratio": 1.002
+   }
+  },
+  "Hispaniolan moist forests": {
+   "n": 127,
+   "frac_n": 0.006,
+   "lace": 0.697,
+   "sam": 0.699,
+   "gap": 0.001,
+   "gap_share": 0.001,
+   "lace_better": 0.512,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.0,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.101,
+    "l_fn": 0.235,
+    "s_fp_tree": 0.0,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.1,
+    "s_fn": 0.234,
+    "l_ratio": 0.866,
+    "s_ratio": 0.867
+   }
+  },
+  "Humid Pampas": {
+   "n": 77,
+   "frac_n": 0.003,
+   "lace": 0.747,
+   "sam": 0.78,
+   "gap": 0.033,
+   "gap_share": 0.007,
+   "lace_better": 0.286,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.022,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.172,
+    "l_fn": 0.121,
+    "s_fp_tree": 0.011,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.152,
+    "s_fn": 0.105,
+    "l_ratio": 1.073,
+    "s_ratio": 1.057
+   }
+  },
+  "Irrawaddy moist deciduous forests": {
+   "n": 257,
+   "frac_n": 0.011,
+   "lace": 0.726,
+   "sam": 0.741,
+   "gap": 0.015,
+   "gap_share": 0.01,
+   "lace_better": 0.393,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.008,
+    "l_fp_can": 0.008,
+    "l_fp_bg": 0.262,
+    "l_fn": 0.092,
+    "s_fp_tree": 0.003,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.233,
+    "s_fn": 0.1,
+    "l_ratio": 1.186,
+    "s_ratio": 1.14
+   }
+  },
+  "Lesser Antillean dry forests": {
+   "n": 70,
+   "frac_n": 0.003,
+   "lace": 0.743,
+   "sam": 0.749,
+   "gap": 0.006,
+   "gap_share": 0.001,
+   "lace_better": 0.443,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.027,
+    "l_fp_can": 0.013,
+    "l_fp_bg": 0.194,
+    "l_fn": 0.1,
+    "s_fp_tree": 0.013,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.141,
+    "s_fn": 0.14,
+    "l_ratio": 1.134,
+    "s_ratio": 1.019
+   }
+  },
+  "Lower Gangetic Plains moist deciduous forests": {
+   "n": 302,
+   "frac_n": 0.013,
+   "lace": 0.698,
+   "sam": 0.707,
+   "gap": 0.009,
+   "gap_share": 0.007,
+   "lace_better": 0.437,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.026,
+    "l_fp_can": 0.013,
+    "l_fp_bg": 0.162,
+    "l_fn": 0.177,
+    "s_fp_tree": 0.016,
+    "s_fp_can": 0.008,
+    "s_fp_bg": 0.12,
+    "s_fn": 0.202,
+    "l_ratio": 1.023,
+    "s_ratio": 0.941
+   }
+  },
+  "Luzon rain forests": {
+   "n": 76,
+   "frac_n": 0.003,
+   "lace": 0.754,
+   "sam": 0.763,
+   "gap": 0.009,
+   "gap_share": 0.002,
+   "lace_better": 0.408,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.035,
+    "l_fp_can": 0.007,
+    "l_fp_bg": 0.232,
+    "l_fn": 0.076,
+    "s_fp_tree": 0.022,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.204,
+    "s_fn": 0.096,
+    "l_ratio": 1.198,
+    "s_ratio": 1.134
+   }
+  },
+  "Mesoamerican Gulf-Caribbean mangroves": {
+   "n": 17,
+   "frac_n": 0.001,
+   "lace": 0.665,
+   "sam": 0.664,
+   "gap": -0.001,
+   "gap_share": -0.0,
+   "lace_better": 0.529,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.013,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.326,
+    "l_fn": 0.133,
+    "s_fp_tree": 0.013,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.285,
+    "s_fn": 0.159,
+    "l_ratio": 1.207,
+    "s_ratio": 1.139
+   }
+  },
+  "Middle Atlantic coastal forests": {
+   "n": 613,
+   "frac_n": 0.027,
+   "lace": 0.747,
+   "sam": 0.757,
+   "gap": 0.01,
+   "gap_share": 0.017,
+   "lace_better": 0.447,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.032,
+    "l_fp_can": 0.001,
+    "l_fp_bg": 0.203,
+    "l_fn": 0.098,
+    "s_fp_tree": 0.018,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.169,
+    "s_fn": 0.118,
+    "l_ratio": 1.138,
+    "s_ratio": 1.069
+   }
+  },
+  "Mindanao-Eastern Visayas rain forests": {
+   "n": 548,
+   "frac_n": 0.024,
+   "lace": 0.611,
+   "sam": 0.626,
+   "gap": 0.015,
+   "gap_share": 0.022,
+   "lace_better": 0.387,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.009,
+    "l_fp_can": 0.006,
+    "l_fp_bg": 0.436,
+    "l_fn": 0.146,
+    "s_fp_tree": 0.005,
+    "s_fp_can": 0.003,
+    "s_fp_bg": 0.322,
+    "s_fn": 0.187,
+    "l_ratio": 1.305,
+    "s_ratio": 1.144
+   }
+  },
+  "Mount Lofty woodlands": {
+   "n": 25,
+   "frac_n": 0.001,
+   "lace": 0.786,
+   "sam": 0.797,
+   "gap": 0.011,
+   "gap_share": 0.001,
+   "lace_better": 0.48,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.019,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.153,
+    "l_fn": 0.091,
+    "s_fp_tree": 0.002,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.144,
+    "s_fn": 0.103,
+    "l_ratio": 1.081,
+    "s_ratio": 1.043
+   }
+  },
+  "New England-Acadian forests": {
+   "n": 13,
+   "frac_n": 0.001,
+   "lace": 0.656,
+   "sam": 0.705,
+   "gap": 0.049,
+   "gap_share": 0.002,
+   "lace_better": 0.308,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.0,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.496,
+    "l_fn": 0.085,
+    "s_fp_tree": 0.0,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.294,
+    "s_fn": 0.108,
+    "l_ratio": 1.411,
+    "s_ratio": 1.186
+   }
+  },
+  "Nihonkai montane deciduous forests": {
+   "n": 457,
+   "frac_n": 0.02,
+   "lace": 0.714,
+   "sam": 0.745,
+   "gap": 0.031,
+   "gap_share": 0.038,
+   "lace_better": 0.304,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.02,
+    "l_fp_can": 0.007,
+    "l_fp_bg": 0.226,
+    "l_fn": 0.125,
+    "s_fp_tree": 0.006,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.164,
+    "s_fn": 0.138,
+    "l_ratio": 1.128,
+    "s_ratio": 1.036
+   }
+  },
+  "North Island temperate forests": {
+   "n": 21,
+   "frac_n": 0.001,
+   "lace": 0.742,
+   "sam": 0.767,
+   "gap": 0.025,
+   "gap_share": 0.001,
+   "lace_better": 0.286,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.007,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.248,
+    "l_fn": 0.097,
+    "s_fp_tree": 0.002,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.167,
+    "s_fn": 0.117,
+    "l_ratio": 1.158,
+    "s_ratio": 1.052
+   }
+  },
+  "Northeastern coastal forests": {
+   "n": 173,
+   "frac_n": 0.008,
+   "lace": 0.772,
+   "sam": 0.765,
+   "gap": -0.007,
+   "gap_share": -0.003,
+   "lace_better": 0.509,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.059,
+    "l_fp_can": 0.007,
+    "l_fp_bg": 0.111,
+    "l_fn": 0.121,
+    "s_fp_tree": 0.021,
+    "s_fp_can": 0.003,
+    "s_fp_bg": 0.067,
+    "s_fn": 0.181,
+    "l_ratio": 1.055,
+    "s_ratio": 0.909
+   }
+  },
+  "Northern Zanzibar-Inhambane coastal forest mosaic": {
+   "n": 11737,
+   "frac_n": 0.519,
+   "lace": 0.737,
+   "sam": 0.753,
+   "gap": 0.016,
+   "gap_share": 0.513,
+   "lace_better": 0.39,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.021,
+    "l_fp_can": 0.009,
+    "l_fp_bg": 0.147,
+    "l_fn": 0.146,
+    "s_fp_tree": 0.009,
+    "s_fp_can": 0.006,
+    "s_fp_bg": 0.143,
+    "s_fn": 0.14,
+    "l_ratio": 1.03,
+    "s_ratio": 1.018
+   }
+  },
+  "Pannonian mixed forests": {
+   "n": 199,
+   "frac_n": 0.009,
+   "lace": 0.772,
+   "sam": 0.79,
+   "gap": 0.019,
+   "gap_share": 0.01,
+   "lace_better": 0.307,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.007,
+    "l_fp_can": 0.002,
+    "l_fp_bg": 0.17,
+    "l_fn": 0.107,
+    "s_fp_tree": 0.004,
+    "s_fp_can": 0.001,
+    "s_fp_bg": 0.137,
+    "s_fn": 0.111,
+    "l_ratio": 1.072,
+    "s_ratio": 1.032
+   }
+  },
+  "Po Basin mixed forests": {
+   "n": 22,
+   "frac_n": 0.001,
+   "lace": 0.695,
+   "sam": 0.712,
+   "gap": 0.017,
+   "gap_share": 0.001,
+   "lace_better": 0.409,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.034,
+    "l_fp_can": 0.001,
+    "l_fp_bg": 0.148,
+    "l_fn": 0.195,
+    "s_fp_tree": 0.031,
+    "s_fp_can": 0.001,
+    "s_fp_bg": 0.101,
+    "s_fn": 0.209,
+    "l_ratio": 0.987,
+    "s_ratio": 0.923
+   }
+  },
+  "Puget lowland forests": {
+   "n": 1042,
+   "frac_n": 0.046,
+   "lace": 0.762,
+   "sam": 0.784,
+   "gap": 0.022,
+   "gap_share": 0.062,
+   "lace_better": 0.391,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.054,
+    "l_fp_can": 0.007,
+    "l_fp_bg": 0.14,
+    "l_fn": 0.105,
+    "s_fp_tree": 0.024,
+    "s_fp_can": 0.002,
+    "s_fp_bg": 0.103,
+    "s_fn": 0.128,
+    "l_ratio": 1.096,
+    "s_ratio": 1.002
+   }
+  },
+  "Sarmatic mixed forests": {
+   "n": 766,
+   "frac_n": 0.034,
+   "lace": 0.769,
+   "sam": 0.796,
+   "gap": 0.027,
+   "gap_share": 0.057,
+   "lace_better": 0.343,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.054,
+    "l_fp_can": 0.02,
+    "l_fp_bg": 0.111,
+    "l_fn": 0.109,
+    "s_fp_tree": 0.023,
+    "s_fp_can": 0.005,
+    "s_fp_bg": 0.078,
+    "s_fn": 0.13,
+    "l_ratio": 1.074,
+    "s_ratio": 0.975
+   }
+  },
+  "Scandinavian and Russian taiga": {
+   "n": 36,
+   "frac_n": 0.002,
+   "lace": 0.719,
+   "sam": 0.737,
+   "gap": 0.018,
+   "gap_share": 0.002,
+   "lace_better": 0.5,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.052,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.201,
+    "l_fn": 0.121,
+    "s_fp_tree": 0.023,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.129,
+    "s_fn": 0.168,
+    "l_ratio": 1.132,
+    "s_ratio": 0.983
+   }
+  },
+  "Serra do Mar coastal forests": {
+   "n": 27,
+   "frac_n": 0.001,
+   "lace": 0.716,
+   "sam": 0.72,
+   "gap": 0.004,
+   "gap_share": 0.0,
+   "lace_better": 0.333,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.004,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.252,
+    "l_fn": 0.117,
+    "s_fp_tree": 0.01,
+    "s_fp_can": 0.008,
+    "s_fp_bg": 0.254,
+    "s_fn": 0.105,
+    "l_ratio": 1.139,
+    "s_ratio": 1.167
+   }
+  },
+  "Sonoran desert": {
+   "n": 90,
+   "frac_n": 0.004,
+   "lace": 0.779,
+   "sam": 0.8,
+   "gap": 0.021,
+   "gap_share": 0.005,
+   "lace_better": 0.356,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.018,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.139,
+    "l_fn": 0.114,
+    "s_fp_tree": 0.011,
+    "s_fp_can": 0.0,
+    "s_fp_bg": 0.126,
+    "s_fn": 0.101,
+    "l_ratio": 1.043,
+    "s_ratio": 1.036
+   }
+  },
+  "Sumatran lowland rain forests": {
+   "n": 1191,
+   "frac_n": 0.053,
+   "lace": 0.729,
+   "sam": 0.733,
+   "gap": 0.003,
+   "gap_share": 0.011,
+   "lace_better": 0.485,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.047,
+    "l_fp_can": 0.043,
+    "l_fp_bg": 0.101,
+    "l_fn": 0.146,
+    "s_fp_tree": 0.015,
+    "s_fp_can": 0.029,
+    "s_fp_bg": 0.083,
+    "s_fn": 0.181,
+    "l_ratio": 1.039,
+    "s_ratio": 0.944
+   }
+  },
+  "Taiheiyo evergreen forests": {
+   "n": 981,
+   "frac_n": 0.043,
+   "lace": 0.748,
+   "sam": 0.771,
+   "gap": 0.023,
+   "gap_share": 0.061,
+   "lace_better": 0.347,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.024,
+    "l_fp_can": 0.004,
+    "l_fp_bg": 0.21,
+    "l_fn": 0.095,
+    "s_fp_tree": 0.012,
+    "s_fp_can": 0.002,
+    "s_fp_bg": 0.174,
+    "s_fn": 0.099,
+    "l_ratio": 1.142,
+    "s_ratio": 1.089
+   }
+  },
+  "Western European broadleaf forests": {
+   "n": 19,
+   "frac_n": 0.001,
+   "lace": 0.705,
+   "sam": 0.717,
+   "gap": 0.012,
+   "gap_share": 0.001,
+   "lace_better": 0.421,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.0,
+    "l_fp_can": 0.0,
+    "l_fp_bg": 0.244,
+    "l_fn": 0.138,
+    "s_fp_tree": 0.0,
+    "s_fp_can": 0.002,
+    "s_fp_bg": 0.192,
+    "s_fn": 0.154,
+    "l_ratio": 1.106,
+    "s_ratio": 1.04
+   }
+  },
+  "unknown": {
+   "n": 2018,
+   "frac_n": 0.089,
+   "lace": 0.706,
+   "sam": 0.721,
+   "gap": 0.015,
+   "gap_share": 0.084,
+   "lace_better": 0.415,
+   "err_per_gt_area": {
+    "l_fp_tree": 0.029,
+    "l_fp_can": 0.009,
+    "l_fp_bg": 0.209,
+    "l_fn": 0.134,
+    "s_fp_tree": 0.008,
+    "s_fp_can": 0.004,
+    "s_fp_bg": 0.169,
+    "s_fn": 0.157,
+    "l_ratio": 1.114,
+    "s_ratio": 1.024
+   }
+  }
+ },
+ "split": "test"
+}

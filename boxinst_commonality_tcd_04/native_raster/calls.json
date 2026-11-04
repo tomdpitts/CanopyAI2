@@ -798,5 +798,60 @@
       "m": "boxteacher"
     },
     "note": "B2 sparse-236 predict (retry, cfg-num-gpus 8)"
+  },
+  {
+    "call_id": "fc-01M6FQSY117JTZZPC11QQSV0XV",
+    "app": "tcd04-tierb",
+    "fn": "sparse_predict",
+    "kwargs": {
+      "m": "boxteacher"
+    },
+    "note": "B2 sparse-236 predict (after app stop)"
+  },
+  {
+    "call_id": "fc-01M6FTJM5SXFK920PP99959E1X",
+    "app": "tcd04-tierb",
+    "fn": "sparse_finalize",
+    "kwargs": {
+      "m": "boxteacher"
+    },
+    "note": "B2 sparse-236 stitch + score"
+  },
+  {
+    "call_id": "fc-01M6G5R31QQQBXG240VWWDR0E6",
+    "app": "tcd04-dino-swinl",
+    "fn": "embed",
+    "kwargs": {
+      "split": "val",
+      "limit": 2
+    },
+    "note": "E1 smoke: 2 val tiles"
+  },
+  {
+    "call_id": "fc-01M6G5W8H3BYYM5HG5RR3B4YWZ",
+    "app": "tcd04-dino-swinl",
+    "fn": "embed",
+    "kwargs": {
+      "split": "val"
+    },
+    "note": "E1 extract val"
+  },
+  {
+    "call_id": "fc-01M6G5W9N48WQ72RNG31ZGEPFE",
+    "app": "tcd04-dino-swinl",
+    "fn": "embed",
+    "kwargs": {
+      "split": "test"
+    },
+    "note": "E1 extract test"
+  },
+  {
+    "call_id": "fc-01M6G5WATGCQFM0X1805PBRPPY",
+    "app": "tcd04-dino-swinl",
+    "fn": "embed",
+    "kwargs": {
+      "split": "sparse"
+    },
+    "note": "E1 extract sparse"
   }
 ]

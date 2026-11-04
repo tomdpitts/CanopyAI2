@@ -1,0 +1,90 @@
+  feats sparse 20/236 9s
+  feats sparse 40/236 11s
+  feats sparse 60/236 13s
+  feats sparse 80/236 14s
+  feats sparse 100/236 16s
+  feats sparse 120/236 17s
+  feats sparse 140/236 19s
+  feats sparse 160/236 21s
+  feats sparse 180/236 22s
+  feats sparse 200/236 24s
+  feats sparse 220/236 25s
+  feats sparse 236/236 26s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_dino_swinl_s0_sparse_rerankR2_r2048.json: 106514 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=10.27s).
+Accumulating evaluation results...
+DONE (t=0.08s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=12.62s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.62s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+{
+ "mask": {
+  "AP50": 0.7351,
+  "AP75": 0.3933,
+  "AP50_95": 0.3965
+ },
+ "box": {
+  "AP50": 0.7493,
+  "AP75": 0.4671
+ },
+ "sprime_ref": {
+  "AP50": 0.7349,
+  "AP75": 0.39,
+  "AP50_95": 0.396
+ },
+ "boot_vs_sprime_236": {
+  "diff": 0.0002,
+  "ci95": [
+   -0.0043,
+   0.0054
+  ],
+  "p_le_0": 0.4535
+ },
+ "boot_vs_sprime_220_not_in_439": {
+  "diff": 0.0007,
+  "ci95": [
+   -0.0037,
+   0.0063
+  ],
+  "p_le_0": 0.392,
+  "n": 220
+ },
+ "confirmed": false,
+ "date": "2026-11-03 19:39"
+}

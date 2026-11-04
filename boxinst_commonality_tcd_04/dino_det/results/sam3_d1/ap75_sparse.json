@@ -1,0 +1,29 @@
+{
+ "split": "sparse",
+ "n_boot": 2000,
+ "seed": 0,
+ "AP75": {
+  "lace_d1_sprime": 0.39003,
+  "sam3zs_gmean": 0.45045,
+  "sam3zs_det": 0.437849
+ },
+ "lace_d1_minus": {
+  "sam3zs_gmean": {
+   "diff": -0.0604,
+   "ci95": [
+    -0.0783,
+    -0.0417
+   ],
+   "p_le_0": 1.0
+  },
+  "sam3zs_det": {
+   "diff": -0.0478,
+   "ci95": [
+    -0.066,
+    -0.0292
+   ],
+   "p_le_0": 1.0
+  }
+ },
+ "note": "test-set sampling only, single detector seed; LACE = frozen D1 s'"
+}

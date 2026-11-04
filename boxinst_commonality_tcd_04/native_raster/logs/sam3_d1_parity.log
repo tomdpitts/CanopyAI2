@@ -1,0 +1,6 @@
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 7753.17it/s]
+tcd_val_tile_0 {'n': 9, 'iou_min': 1.0, 'iou_mean': 1.0, 'frac_iou_ge_0.99': 1.0, 'sam_score_absdiff_max': 0.0}
+tcd_val_tile_1 {'n': 217, 'iou_min': 1.0, 'iou_mean': 1.0, 'frac_iou_ge_0.99': 1.0, 'sam_score_absdiff_max': 0.0}
+[parity] PASS
+EXIT 0

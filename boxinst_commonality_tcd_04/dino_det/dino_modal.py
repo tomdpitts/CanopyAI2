@@ -209,3 +209,103 @@ def predict(split: str = "val"):
                "preds": preds}, open(out + ".tmp", "w")); os.replace(out + ".tmp", out)
     _spend(RUN, "predict", time.time() - t0); vol.commit()
     return {"out": out, "n_tiles": len(preds), "n_det": sum(len(v["scores"]) for v in preds.values()), "spent_usd_total": round(_spent(RUN), 2)}
+
+
+# ---------------------------------------------------------------- pre-registration E1: decoder features of kept dets
+def stitch_idx(raw, floor=0.05, iou_thr=0.7, cont_thr=0.85, keep=600):
+    """stitch() with the same rule, but also returning the indices of the kept candidates in window-then-query order.
+    raw: [(oy, ox, boxes_window, scores)]. -> (boxes, scores, cand_idx). The parity gate against preds_<split>.json enforces equality with stitch()."""
+    import numpy as np
+    B, S, I, n = [], [], [], 0
+    for oy, ox, bx, sc in raw:
+        for b, s in zip(bx, sc):
+            if not (s < floor or _edge_cut(b, oy, ox)):
+                B.append([b[0] + ox, b[1] + oy, b[2] + ox, b[3] + oy]); S.append(float(s)); I.append(n)
+            n += 1
+    if not B:
+        return [], [], []
+    B, S, I = np.asarray(B, float), np.asarray(S, float), np.asarray(I); order = np.argsort(-S, kind="stable"); kept = []
+    area = (B[:, 2] - B[:, 0]).clip(0) * (B[:, 3] - B[:, 1]).clip(0)
+    for i in order:
+        if kept:
+            K = np.asarray(kept)
+            ix = (np.minimum(B[i, 2], B[K, 2]) - np.maximum(B[i, 0], B[K, 0])).clip(0)
+            iy = (np.minimum(B[i, 3], B[K, 3]) - np.maximum(B[i, 1], B[K, 1])).clip(0)
+            inter = ix * iy
+            if ((inter / np.maximum(area[i] + area[K] - inter, 1e-9)) > iou_thr).any() or (inter / max(area[i], 1e-9) > cont_thr).any():
+                continue
+        kept.append(i)
+        if len(kept) == keep:
+            break
+    return B[kept].tolist(), S[kept].tolist(), I[kept].tolist()
+
+
+@app.function(image=image, gpu="A100-80GB", cpu=SPEC["predict"][1], memory=SPEC["predict"][2] * 1024, volumes={"/vol": vol},
+              timeout=4 * 3600, retries=modal.Retries(max_retries=2, initial_delay=30.0))
+def embed(split: str = "val", limit: int = 0):
+    """E1: the 256-d input of class_embed[L-1] for every kept det -> emb_<split>/<tid>.npy (float16), plus parity vs preds_<split>.json.
+    limit > 0 = smoke (first `limit` tiles, to emb_<split>_smoke). Resumable per tile; aborts if > 5 tiles fail parity."""
+    import sys
+    import numpy as np
+    import torch
+    sys.path.insert(0, "/opt/detrex"); sys.path.insert(0, "/root"); sys.path.insert(0, "/root/proj/dino_det")
+    from tierb import tierb_common as TC
+    import train_dino as T
+    d = f"{RUN}/emb_{split}" + ("_smoke" if limit else ""); os.makedirs(d, exist_ok=True)
+    logf = open(f"{d}/run.log", "a")
+    def log(m):
+        logf.write(f"{time.strftime('%F %T')} {m}\n"); logf.flush(); print(m, flush=True)
+    if os.path.exists(f"{d}/DONE.json"):
+        return json.load(open(f"{d}/DONE.json"))
+    t0 = time.time()
+    P = json.load(open(f"{RUN}/preds_{split}.json"))["preds"]
+    tids = TC.manifest()["ids"][split]; tids = tids[:limit] if limit else tids
+    model, _ = T.build_model("cuda"); ck = torch.load(f"{RUN}/model_best.pth", map_location="cpu", weights_only=False)
+    model.load_state_dict(ck["model"]); model.eval()
+    L = len(model.transformer.decoder.layers); head = model.class_embed[L - 1]
+    assert head is not model.class_embed[-1] or L == len(model.class_embed), "class_embed layout"
+    cap = {"n": 0}
+    def hook(m, inp, out):
+        cap["n"] += 1; cap["x"] = inp[0].detach(); cap["logit"] = out.detach()
+    head.register_forward_hook(hook)
+    log(f"[E1] {split}: {len(tids)} tiles, L={L}, n_class_embed={len(model.class_embed)}, epoch={ck['epoch']}")
+    origins = [(oy, ox) for oy in (0, 512, 1024) for ox in (0, 512, 1024)]
+    fails = []; pf = open(f"{d}/parity.jsonl", "a")
+    for k, t in enumerate(tids):
+        if os.path.exists(f"{d}/{t}.npy"):
+            continue
+        rgb = TC.load_rgb(t); raw, E = [], []
+        for oy, ox in origins:
+            a = rgb[oy:oy + 1024, ox:ox + 1024]; cap["n"] = 0
+            with torch.no_grad():
+                out = model([{"image": torch.as_tensor(np.ascontiguousarray(a.transpose(2, 0, 1))), "height": 1024, "width": 1024}])[0]["instances"]
+            assert cap["n"] == 1, f"hook fired {cap['n']}x"
+            lg = cap["logit"]; assert lg.shape[0] == 1 and lg.shape[-1] == 1, lg.shape
+            tv, ti = torch.topk(lg.sigmoid().view(1, -1), model.select_box_nums_for_evaluation, dim=1)
+            assert torch.allclose(tv[0].cpu(), out.scores.cpu()), "topk scores != model output"
+            E.append(cap["x"][0, ti[0]].float().cpu().numpy())
+            raw.append((oy, ox, np.round(out.pred_boxes.tensor.cpu().numpy(), 3).tolist(), np.round(out.scores.cpu().numpy(), 6).tolist()))
+        E = np.concatenate(E, 0)
+        b, s, idx = stitch_idx(raw)
+        ref = P[t]; ok = len(b) == len(ref["scores"])
+        db = float(np.abs(np.asarray(b) - np.asarray(ref["boxes_2048"])).max()) if ok and b else (0.0 if ok else None)
+        ds = float(np.abs(np.asarray(s) - np.asarray(ref["scores"])).max()) if ok and s else (0.0 if ok else None)
+        ok = ok and db <= 0.01 and ds <= 1e-5
+        pf.write(json.dumps({"tid": t, "ok": ok, "n": len(b), "n_ref": len(ref["scores"]), "max_dbox": db, "max_ds": ds}) + "\n"); pf.flush()
+        if not ok:
+            fails.append(t); log(f"  PARITY FAIL {t}: n {len(b)} vs {len(ref['scores'])}, dbox {db}, ds {ds}")
+            if len(fails) > 5:
+                vol.commit(); raise RuntimeError(f"E1 parity: {len(fails)} tiles failed; abort")
+        np.save(f"{d}/{t}.npy", E[idx].astype(np.float16))
+        if (k + 1) % 10 == 0 or k + 1 == len(tids):
+            vol.commit(); log(f"  {split} {k+1}/{len(tids)} {time.time()-t0:.0f}s fails={len(fails)}")
+    rows = [json.loads(l) for l in open(f"{d}/parity.jsonl")]
+    rec = {"split": split, "n_tiles": len(tids), "n_files": sum(os.path.exists(f"{d}/{t}.npy") for t in tids),
+           "parity_fail": sorted({r["tid"] for r in rows if not r["ok"]}), "max_dbox": max((r["max_dbox"] or 0) for r in rows),
+           "max_ds": max((r["max_ds"] or 0) for r in rows), "sec": round(time.time() - t0)}
+    if not limit:
+        np.savez(f"{d}.npz.tmp.npz", **{t: np.load(f"{d}/{t}.npy") for t in tids if os.path.exists(f"{d}/{t}.npy")}, _done=json.dumps(rec))
+        os.replace(f"{d}.npz.tmp.npz", f"{d}.npz")                           # one file for a reliable `modal volume get`
+        json.dump(rec, open(f"{d}/DONE.json", "w"), indent=1)
+    _spend(RUN, "predict", time.time() - t0); vol.commit(); log(f"[E1] done {json.dumps(rec)}")
+    return {**rec, "spent_usd_total": round(_spent(RUN), 2)}

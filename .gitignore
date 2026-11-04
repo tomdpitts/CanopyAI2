@@ -142,3 +142,7 @@ boxinst_commonality_tcd_04/**/stitch_*.jsonl
 # Regenerable / on Modal volumes; scored_*/summary_*/select_* JSONs stay tracked.
 boxinst_commonality_tcd_04/dethead/results/modal/
 boxinst_commonality_tcd_04/dino_det/results/modal/
+# 2026-11-04: raw dino_det preds (incl. *_bug.json) and masker refit EM checkpoints; scored_* stay tracked
+boxinst_commonality_tcd_04/dino_det/results/preds_*_r2048*.json
+boxinst_commonality_tcd_04/masker_refit4p/results/*/state0.npz
+boxinst_commonality_tcd_04/masker_refit4p/results/*/ckpt.npz

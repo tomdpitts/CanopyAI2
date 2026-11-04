@@ -1,0 +1,31 @@
+{
+ "split": "sparse",
+ "n_tiles": 236,
+ "n_boot": 2000,
+ "seed": 0,
+ "full_AP50": {
+  "D1_sprime": 0.7349,
+  "boxteacher": 0.7206,
+  "lace_s0": 0.6903
+ },
+ "D1_minus": {
+  "boxteacher": {
+   "diff": 0.0143,
+   "ci95": [
+    -0.0047,
+    0.0327
+   ],
+   "p_le_0": 0.0625
+  },
+  "lace_s0": {
+   "diff": 0.0446,
+   "ci95": [
+    0.0255,
+    0.0613
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "note": "test-set sampling uncertainty only (tiles resampled), not training-seed variance",
+ "sec": 21
+}

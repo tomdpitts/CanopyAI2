@@ -1,0 +1,118 @@
+  tile 40/439 8s
+  tile 80/439 11s
+  tile 120/439 15s
+  tile 160/439 19s
+  tile 200/439 22s
+  tile 240/439 25s
+  tile 280/439 29s
+  tile 320/439 33s
+  tile 360/439 37s
+  tile 400/439 40s
+  tile 439/439 44s
+{
+ "median_tp_sprime": 0.1792,
+ "canopy_frac_bins": [
+  0,
+  0.01,
+  0.1,
+  0.2,
+  0.3,
+  0.4,
+  0.5
+ ],
+ "frac_hist": {
+  "tp": [
+   20104,
+   1093,
+   332,
+   127,
+   47,
+   8
+  ],
+  "bg_all": [
+   90043,
+   1638,
+   971,
+   693,
+   647,
+   683
+  ],
+  "bg_hi": [
+   972,
+   23,
+   9,
+   4,
+   3,
+   4
+  ]
+ },
+ "sqrt_area_px_q10_25_50_75_90": {
+  "tp": [
+   15.5,
+   22.4,
+   38.5,
+   59.5,
+   78.3
+  ],
+  "bg_all": [
+   10.4,
+   14.0,
+   21.0,
+   32.9,
+   50.8
+  ],
+  "bg_hi": [
+   16.9,
+   22.5,
+   32.1,
+   43.3,
+   55.0
+  ]
+ },
+ "bg_hi_n": 1015,
+ "bg_hi_tiles_nonzero": 181,
+ "bg_hi_top10_tiles": [
+  [
+   "tcd_val_tile_193",
+   77
+  ],
+  [
+   "tcd_val_tile_372",
+   44
+  ],
+  [
+   "tcd_val_tile_375",
+   40
+  ],
+  [
+   "tcd_val_tile_48",
+   27
+  ],
+  [
+   "tcd_val_tile_292",
+   27
+  ],
+  [
+   "tcd_val_tile_366",
+   26
+  ],
+  [
+   "tcd_val_tile_223",
+   26
+  ],
+  [
+   "tcd_val_tile_56",
+   24
+  ],
+  [
+   "tcd_val_tile_432",
+   23
+  ],
+  [
+   "tcd_val_tile_414",
+   22
+  ]
+ ],
+ "bg_hi_maxiou_gt0": 71
+}
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/fp_bg_top100_dino_swinl_s0_test.jpg

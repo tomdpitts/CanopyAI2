@@ -1,0 +1,103 @@
+{
+ "date": "2026-11-04 14:42",
+ "parity_baseline_render": {
+  "tcd_tile_1068": {
+   "n": 600,
+   "masks_identical": 600,
+   "s_prime_maxabs": 0.0
+  },
+  "tcd_tile_1041": {
+   "n": 600,
+   "masks_identical": 600,
+   "s_prime_maxabs": 0.0
+  },
+  "tcd_tile_1012": {
+   "n": 600,
+   "masks_identical": 600,
+   "s_prime_maxabs": 0.0
+  }
+ },
+ "n_masks": 51341,
+ "n_masks_changed": 3625,
+ "mask_AP_sprime": {
+  "baseline": {
+   "AP50": 0.7384,
+   "AP75": 0.3345,
+   "AP50_95": 0.3763
+  },
+  "edgefix": {
+   "AP50": 0.7414,
+   "AP75": 0.3392,
+   "AP50_95": 0.3788
+  }
+ },
+ "edgefix_minus_baseline_boot": {
+  "AP50": {
+   "diff": 0.003,
+   "ci95": [
+    0.0005,
+    0.0038
+   ]
+  },
+  "AP75": {
+   "diff": 0.0047,
+   "ci95": [
+    0.0026,
+    0.0079
+   ]
+  },
+  "AP50_95": {
+   "diff": 0.0025,
+   "ci95": [
+    0.0016,
+    0.0032
+   ]
+  }
+ },
+ "matched_crown_mean_iou": {
+  "baseline": {
+   "all": 0.7451,
+   "tile_edge": 0.7495,
+   "interior": 0.7448
+  },
+  "edgefix": {
+   "all": 0.747,
+   "tile_edge": 0.7759,
+   "interior": 0.7448
+  }
+ },
+ "n_crowns": {
+  "all": 6186,
+  "tile_edge": 445
+ },
+ "border_miss_top_left": {
+  "baseline": {
+   "top": {
+    "0-4": 0.509,
+    "4-8": 0.321,
+    "8-16": 0.197
+   },
+   "left": {
+    "0-4": 0.495,
+    "4-8": 0.305,
+    "8-16": 0.19
+   }
+  },
+  "edgefix": {
+   "top": {
+    "0-4": 0.175,
+    "4-8": 0.178,
+    "8-16": 0.163
+   },
+   "left": {
+    "0-4": 0.154,
+    "4-8": 0.163,
+    "8-16": 0.157
+   }
+  }
+ },
+ "decision": {
+  "AP50_ok": true,
+  "edge_iou_up": true
+ }
+}

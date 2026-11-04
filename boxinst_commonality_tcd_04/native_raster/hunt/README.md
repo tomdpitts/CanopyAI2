@@ -1,7 +1,7 @@
 # hunt — a LACE-style masker that beats SAM 3 zero-shot on AP50 (started 2026-10-16)
 
 <!-- TABLE1_CURRENT:begin (auto, results_439/mark_superseded.py) -->
-> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-03).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
+> ⚠️ **SUPERSEDED 439 / sparse236 NUMBERS (marked 2026-10-27; table updated 2026-11-04).** Current headline table: [`TABLE1_CURRENT.md`](../../results_439/TABLE1_CURRENT.md). Test-set numbers in this file are a historical experiment record (512 raster, pre-seam-fix baselines, 8 px masker or earlier models) and must not be quoted unless they match that table.
 <!-- TABLE1_CURRENT:end -->
 
 Goal: LACE masks on LACE's own boxes beat SAM 3 zero-shot masks on the same boxes, mask AP50, 439 test tiles, 3 seeds. Original target 0.664 ± 0.003 was the HYBRID (SAM masks ranked by LACE's product — not computable by a SAM pipeline); the fair SAM baseline is its own ranking √(s·SAM), **0.648 ± 0.003** (see L30). LACE deployed 0.647 ± 0.003.
@@ -73,6 +73,8 @@ Test harness `test_eval.py` (gate: deployed spec = published masks 498/498 byte-
 ### L27 — 4 px posterior scored past the box edge (prior clamped; `post4pad`, `results/b26_pad.json`; gate pad0 = g30 exactly): margin 2 px 0.6781, 4 px 0.6730–0.6773, 8 px 0.6474–0.6753. No.
 ### L28 — 4 px masker refit: NOT pursued (reasoning)
 The masker's parameters (PCA whitening, vMF prototypes, background mixture, box-normalised spatial prior) are functions of the per-cell feature distribution and box geometry, both stride-invariant (4 px and 8 px cells are the same backbone sampled at different shifts). A refit would converge to ≈ the same model; and a 1024-d refit at 4 px needs ~160 GB RAM.
+**Tested 2026-11-04 (masker_refit4p/README.md, pre-registration R4P):** a 4 px refit gives D1 val s′ mask AP50 0.7404 (same 120 tiles) and 0.7417 (250 tiles), against 0.7414 for the deployed masker. Neither reaches the +0.003 gate, so the deployed masker is kept and the argument above holds empirically.
+
 ### L29 — flip test-time augmentation: considered and ABANDONED (2026-10-19)
 Not part of the method, triples backbone cost, and SAM 3 could equally use it. Code, spec and cached views deleted.
 ### L30 — CANDIDATE 1 ON TEST (`test/`, `test/compare_lace4px_g30.json`, `logs/hunt_test_cand1.log`) — all 3 seeds, 439 tiles
