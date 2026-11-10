@@ -1,0 +1,40 @@
+[strata_d1] rows={'Restor MRCNN rpn1000': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/preds_restor_rpn1000_r2048_treeonly.json', 'DetecTree2 s0': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/seamfix/preds_dt2_s0v2_r2048_seamfix.json', 'Box2Mask Swin-L': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json', 'Box2Mask R-50': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/seamfix/preds_box2mask_r50_s0_r2048_seamfix.json', 'BoxTeacher Swin-B': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/box_supervised_baselines/tierb/results/20261101_192510/boxteacher/results/preds_boxteacher_sub_test_r2048.json', 'LACE (D1) + edge fix + R3': '/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json'} floor=0.05 max_dets=600
+[strata_d1] capped: max dets/tile 377
+[strata] Restor MRCNN rpn1000: 18532 matched
+[strata_d1] capped: max dets/tile 600
+[strata] DetecTree2 s0: 20483 matched
+[strata_d1] capped: max dets/tile 502
+[strata] Box2Mask Swin-L: 17604 matched
+[strata_d1] capped: max dets/tile 437
+[strata] Box2Mask R-50: 14780 matched
+[strata_d1] capped: max dets/tile 600
+[strata] BoxTeacher Swin-B: 21130 matched
+[strata_d1] capped: max dets/tile 599
+[strata] LACE (D1) + edge fix + R3: 20727 matched
+[strata] common subset (matched by ALL 6 rows): 11755 crowns
+
+=== COMMON SUBSET -- the 11755 crowns EVERY row found (paired) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU                   |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+-------------------------------------------------------------------------------------------------------------------------------------------
+Restor MRCNN rpn1000      |   0.6098 (467)   |  0.6908 (1480)   |  0.7628 (3705)   |  0.8247 (4776)   |  0.8727 (1327)   |  0.7852 (11755) 
+DetecTree2 s0             |   0.6000 (702)   |  0.6796 (1872)   |  0.7541 (3491)   |  0.8258 (4254)   |  0.8812 (1436)   |  0.7745 (11755) 
+Box2Mask Swin-L           |   0.5517 (666)   |  0.6360 (1865)   |  0.6994 (3608)   |  0.7566 (4231)   |  0.8156 (1385)   |  0.7153 (11755) 
+Box2Mask R-50             |   0.5154 (919)   |  0.5840 (2084)   |  0.6444 (3597)   |  0.7139 (3914)   |  0.7895 (1241)   |  0.6621 (11755) 
+BoxTeacher Swin-B         |   0.5681 (518)   |  0.6531 (1536)   |  0.7257 (3222)   |  0.7862 (4685)   |  0.8399 (1794)   |  0.7508 (11755) 
+LACE (D1) + edge fix + R3 |   0.5913 (386)   |  0.6674 (1283)   |  0.7354 (3170)   |  0.7928 (4983)   |  0.8400 (1933)   |  0.7648 (11755) 
+mean box IoU: Restor MRCNN rpn1000=0.7925  DetecTree2 s0=0.7817  Box2Mask Swin-L=0.7817  Box2Mask R-50=0.7699  BoxTeacher Swin-B=0.7983  LACE (D1) + edge fix + R3=0.8074
+
+=== ALL MATCHES (confounded: rows match different crowns) ===
+mean mask IoU (n)   -- compare DOWN each column, never across
+box IoU                   |     0.5-0.6      |     0.6-0.7      |     0.7-0.8      |     0.8-0.9      |     0.9-1.0      |       all       
+-------------------------------------------------------------------------------------------------------------------------------------------
+Restor MRCNN rpn1000      |  0.5849 (1426)   |  0.6787 (2942)   |  0.7549 (5883)   |  0.8186 (6621)   |  0.8652 (1660)   |  0.7624 (18532) 
+DetecTree2 s0             |  0.5741 (2391)   |  0.6672 (4061)   |  0.7464 (6061)   |  0.8188 (6128)   |  0.8760 (1842)   |  0.7439 (20483) 
+Box2Mask Swin-L           |  0.5396 (1914)   |  0.6271 (3364)   |  0.6947 (5246)   |  0.7526 (5434)   |  0.8113 (1646)   |  0.6937 (17604) 
+Box2Mask R-50             |  0.5079 (1719)   |  0.5822 (2906)   |  0.6448 (4415)   |  0.7135 (4410)   |  0.7878 (1330)   |  0.6500 (14780) 
+BoxTeacher Swin-B         |  0.5498 (2075)   |  0.6388 (3678)   |  0.7164 (5957)   |  0.7786 (7059)   |  0.8337 (2361)   |  0.7204 (21130) 
+LACE (D1) + edge fix + R3 |  0.5713 (1529)   |  0.6539 (3176)   |  0.7248 (5955)   |  0.7831 (7519)   |  0.8304 (2548)   |  0.7368 (20727) 
+mean box IoU: Restor MRCNN rpn1000=0.7719  DetecTree2 s0=0.7535  Box2Mask Swin-L=0.7578  Box2Mask R-50=0.7535  BoxTeacher Swin-B=0.7677  LACE (D1) + edge fix + R3=0.7802
+
+-> boxinst_commonality_tcd_04/ablation/results_r2048/box_iou_strata_d1_r2048.json

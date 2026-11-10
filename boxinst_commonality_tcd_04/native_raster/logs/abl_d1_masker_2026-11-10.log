@@ -1,0 +1,859 @@
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+[masker] val deployed-render gate PASS (3 tiles byte-identical)
+[masker] render val a=0 k=1: 108/108
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+  40/108 38s
+  80/108 71s
+  108/108 99s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_val_a0_k1_sprime_r2048.json: 51341 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=4.65s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=6.10s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=5.99s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+[masker] val a=0 kappa=10: {'AP50': 0.7034, 'AP75': 0.2785, 'AP50_95': 0.3418}
+[masker] render val a=0 k=1.6: 108/108
+  40/108 30s
+  80/108 52s
+  108/108 66s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_val_a0_k1.6_sprime_r2048.json: 51341 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=4.54s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=5.99s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=5.85s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+[masker] val a=0 kappa=16: {'AP50': 0.713, 'AP75': 0.2916, 'AP50_95': 0.3508}
+[masker] render val a=0.3 k=1: 108/108
+  40/108 30s
+  80/108 53s
+  108/108 68s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_val_a0.3_k1_sprime_r2048.json: 51341 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=4.56s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=5.93s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=5.93s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+[masker] val a=0.3 kappa=10: {'AP50': 0.741, 'AP75': 0.3414, 'AP50_95': 0.3791}
+[masker] render val a=0.3 k=1.6: 108/108
+  40/108 30s
+  80/108 53s
+  108/108 68s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_val_a0.3_k1.6_sprime_r2048.json: 51341 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=4.72s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=6.11s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=5.83s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+[masker] val a=0.3 kappa=16: {'AP50': 0.7414, 'AP75': 0.3392, 'AP50_95': 0.3788}
+[masker] render val a=1 k=1: 108/108
+  40/108 30s
+  80/108 52s
+  108/108 67s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_val_a1_k1_sprime_r2048.json: 51341 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=4.57s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=6.07s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=5.78s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+[masker] val a=1 kappa=10: {'AP50': 0.7283, 'AP75': 0.3213, 'AP50_95': 0.3657}
+[masker] render val a=1 k=1.6: 108/108
+  40/108 30s
+  80/108 53s
+  108/108 68s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_val_a1_k1.6_sprime_r2048.json: 51341 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=4.79s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=5.96s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=5.82s).
+Accumulating evaluation results...
+DONE (t=0.03s).
+[masker] val a=1 kappa=16: {'AP50': 0.7299, 'AP75': 0.3369, 'AP50_95': 0.3725}
+[masker] test deployed-render gate PASS (3 tiles byte-identical)
+[masker] R3 gate PASS max |d| 9.5e-09
+[masker] render test a=0 k=1.6: 439/439
+  40/439 25s
+  80/439 51s
+  120/439 73s
+  160/439 98s
+  200/439 119s
+  240/439 144s
+  280/439 166s
+  320/439 188s
+  360/439 214s
+  400/439 233s
+  439/439 253s
+[masker] render test a=1 k=1: 439/439
+  40/439 24s
+  80/439 48s
+  120/439 69s
+  160/439 95s
+  200/439 115s
+  240/439 140s
+  280/439 161s
+  320/439 183s
+  360/439 210s
+  400/439 229s
+  439/439 249s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_test_a0.3_k16_shat_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=18.48s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=24.50s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.72s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+[masker] test a0.3_k16 shat: {'AP50': 0.7141, 'AP75': 0.2713, 'AP50_95': 0.3424}
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_test_a0.3_k16_sprime_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=18.00s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=24.10s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.93s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+[masker] test a0.3_k16 sprime: {'AP50': 0.7044, 'AP75': 0.2644, 'AP50_95': 0.3366}
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_test_a0_k16_shat_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=18.98s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.48s).
+Accumulating evaluation results...
+DONE (t=0.14s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=25.07s).
+Accumulating evaluation results...
+DONE (t=0.14s).
+[masker] test a0_k16 shat: {'AP50': 0.6923, 'AP75': 0.2304, 'AP50_95': 0.3183}
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_test_a0_k16_sprime_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=17.88s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=28.30s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=27.55s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+[masker] test a0_k16 sprime: {'AP50': 0.6848, 'AP75': 0.2213, 'AP50_95': 0.3119}
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_test_a1_k10_shat_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=18.08s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=24.38s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.46s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+[masker] test a1_k10 shat: {'AP50': 0.6989, 'AP75': 0.2577, 'AP50_95': 0.33}
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_test_a1_k10_sprime_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=17.68s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=24.30s).
+Accumulating evaluation results...
+DONE (t=0.12s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=23.49s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+[masker] test a1_k10 sprime: {'AP50': 0.6857, 'AP75': 0.2536, 'AP50_95': 0.3244}
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+{
+ "date_start": "2026-11-10 17:18",
+ "val": {
+  "rows": {
+   "a0_k10": {
+    "mask": {
+     "AP50": 0.7034,
+     "AP75": 0.2785,
+     "AP50_95": 0.3418
+    },
+    "box": {
+     "AP50": 0.7322
+    }
+   },
+   "a0_k16": {
+    "mask": {
+     "AP50": 0.713,
+     "AP75": 0.2916,
+     "AP50_95": 0.3508
+    },
+    "box": {
+     "AP50": 0.7366
+    }
+   },
+   "a0.3_k10": {
+    "mask": {
+     "AP50": 0.741,
+     "AP75": 0.3414,
+     "AP50_95": 0.3791
+    },
+    "box": {
+     "AP50": 0.7585
+    }
+   },
+   "a0.3_k16": {
+    "mask": {
+     "AP50": 0.7414,
+     "AP75": 0.3392,
+     "AP50_95": 0.3788
+    },
+    "box": {
+     "AP50": 0.7575
+    }
+   },
+   "a1_k10": {
+    "mask": {
+     "AP50": 0.7283,
+     "AP75": 0.3213,
+     "AP50_95": 0.3657
+    },
+    "box": {
+     "AP50": 0.7522
+    }
+   },
+   "a1_k16": {
+    "mask": {
+     "AP50": 0.7299,
+     "AP75": 0.3369,
+     "AP50_95": 0.3725
+    },
+    "box": {
+     "AP50": 0.7523
+    }
+   }
+  },
+  "claims": {
+   "alpha_lt1_beats_alpha1_every_kappa": false,
+   "kappa16_beats_kappa10_every_alpha": true,
+   "note": "alpha<1 claim read as: every alpha<1 cell beats alpha=1 at the same kappa"
+  }
+ },
+ "test": {
+  "rows": {
+   "a0.3_k16_shat": {
+    "mask": {
+     "AP50": 0.7141,
+     "AP75": 0.2713,
+     "AP50_95": 0.3424
+    },
+    "box": {
+     "AP50": 0.7471
+    }
+   },
+   "a0.3_k16_sprime": {
+    "mask": {
+     "AP50": 0.7044,
+     "AP75": 0.2644,
+     "AP50_95": 0.3366
+    },
+    "box": {
+     "AP50": 0.7391
+    }
+   },
+   "a0_k16_shat": {
+    "mask": {
+     "AP50": 0.6923,
+     "AP75": 0.2304,
+     "AP50_95": 0.3183
+    },
+    "box": {
+     "AP50": 0.7296
+    }
+   },
+   "a0_k16_sprime": {
+    "mask": {
+     "AP50": 0.6848,
+     "AP75": 0.2213,
+     "AP50_95": 0.3119
+    },
+    "box": {
+     "AP50": 0.7253
+    }
+   },
+   "a1_k10_shat": {
+    "mask": {
+     "AP50": 0.6989,
+     "AP75": 0.2577,
+     "AP50_95": 0.33
+    },
+    "box": {
+     "AP50": 0.7394
+    }
+   },
+   "a1_k10_sprime": {
+    "mask": {
+     "AP50": 0.6857,
+     "AP75": 0.2536,
+     "AP50_95": 0.3244
+    },
+    "box": {
+     "AP50": 0.7273
+    }
+   }
+  },
+  "boot": {
+   "shat": {
+    "a0.3_k16_minus_a0_k16": {
+     "AP50": {
+      "diff": 0.0218,
+      "ci95": [
+       0.0174,
+       0.028
+      ]
+     },
+     "AP50_95": {
+      "diff": 0.0241,
+      "ci95": [
+       0.0211,
+       0.0268
+      ]
+     }
+    },
+    "a0.3_k16_minus_a1_k10": {
+     "AP50": {
+      "diff": 0.0152,
+      "ci95": [
+       0.0116,
+       0.0213
+      ]
+     },
+     "AP50_95": {
+      "diff": 0.0124,
+      "ci95": [
+       0.0091,
+       0.0157
+      ]
+     }
+    }
+   },
+   "sprime": {
+    "a0.3_k16_minus_a0_k16": {
+     "AP50": {
+      "diff": 0.0196,
+      "ci95": [
+       0.0155,
+       0.0253
+      ]
+     },
+     "AP50_95": {
+      "diff": 0.0247,
+      "ci95": [
+       0.0217,
+       0.0272
+      ]
+     }
+    },
+    "a0.3_k16_minus_a1_k10": {
+     "AP50": {
+      "diff": 0.0187,
+      "ci95": [
+       0.0149,
+       0.0251
+      ]
+     },
+     "AP50_95": {
+      "diff": 0.0121,
+      "ci95": [
+       0.0089,
+       0.0154
+      ]
+     }
+    }
+   }
+  }
+ },
+ "date_end": "2026-11-10 18:39",
+ "note": "ONE look per pre-registration ABL-D1 item 3; single detector run"
+}

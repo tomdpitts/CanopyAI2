@@ -1,11 +1,18 @@
-% LACE architecture figure, inference, two-row layout (2026-10-31): Input -> 1 Interlaced encoding -> 2 Detection
-% on top; 3 Box->Mask (one E-step per predicted box, then rescore) -> Output below, fed by F~ and the boxes.
+% LACE architecture figure, inference, two-row layout. 2026-11-05: LACE (D1 variant) -- the detector is DINO-DETR
+% (Swin-L) on RGB, so the top row is Input -> 1 Detection, with Input -> 2 Interlaced encoding routed above it;
+% 3 Box->Mask (one E-step per predicted box, then rescore) -> Output below, fed by the boxes and F~.
+% CenterNet-variant version (encoding -> detection on F~): _backup_pre_d1_2026-11-05/.
 % The once-only fit of the box-to-mask module is its own figure, lace_masker_fit.tex (split 2026-10-29).
 % Build: tectonic lace_architecture.tex   (from this directory)
-% Every inset is one OAM-TCD holdout crop run through the deployed s0 pipeline; see
-% arch/make_arch_panels.py and arch/arch_meta.json for provenance.
+% Every inset is one OAM-TCD holdout crop run through the paper's headline pipeline (D1 + edge fix + R3); see
+% arch/make_arch_panels_d1_prefix.py and arch/d1_arch_meta.json for provenance. The d1_* inputs below override the
+% CenterNet-variant macros of arch_preamble.tex (still used by lace_masker_fit.tex).
 \documentclass[tikz,border=3pt]{standalone}
 \input{arch/arch_preamble.tex}
+\input{arch/d1_zoom_cells.tex}
+\input{arch/d1_enc_window.tex}
+\input{arch/d1_window.tex}
+\definecolor{cropc}{HTML}{00B4D8}  % input crop <-> its place in the detection tile (not white: lost on the panel; not near trn orange)
 
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
@@ -18,20 +25,45 @@
 
 % --- input
 \node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PA.north west) {Input tile};
-\node[img] at (1.5,-1.75) {\includegraphics[width=2.2cm]{arch/in_rgb.jpg}};
-% window shown in the encoding panel
-\pgfmathsetmacro{\ips}{2.2/\cropS}
-\pgfmathsetmacro{\wxa}{0.4+\encwx*\ips}\pgfmathsetmacro{\wxb}{\wxa+\encws*\ips}
-\pgfmathsetmacro{\wya}{-0.65-\encwy*\ips}\pgfmathsetmacro{\wyb}{\wya-\encws*\ips}
-\draw[neon, line width=1.0pt] (\wxa,\wya) rectangle (\wxb,\wyb);
-\node[lbl] at (1.5,-3.08) {RGB, $0.1$\,m/px};
+\node[img] (inimg) at (1.5,-1.75) {\includegraphics[width=2.2cm]{arch/d1_tile.jpg}};
+% crop shown in the detection / output insets (cyan), on the 2048 px tile
+\begin{scope}[shift={(inimg.north west)}, x=2.2cm/2048, y=-2.2cm/2048]
+  \draw[trn, line width=0.9pt] (\subx,\suby) rectangle ++(\subS,\subS);
+  \draw[cropc, line width=1.0pt] (\cropx,\cropy) rectangle ++(\cropS,\cropS);
+\end{scope}
+\node[lbl] at (1.5,-3.08) {RGB, $2048$\,px, $0.1$\,m/px};
 
-% --- 1 dense encoding: 16 px patch grids offset by 8 (4) px, final layer, interlaced
-\node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PB.north west) {1)\;Interlaced encoding};
-\node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PB.north east) {\frozenicon};
+% --- 1 detection: DINO-DETR (Swin-L) on RGB, 3 x 3 subtiles of 1024 px at stride 512, stitched
+\node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PB.north west) {1)\;Detection};
+\node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PB.north east) {\fireicon};
+\node[img, anchor=north west] (subimg) at (3.75,-0.8) {\includegraphics[width=2.0cm]{arch/d1_sub.jpg}};
+\draw[trn, line width=1.0pt] (subimg.south west) rectangle (subimg.north east);
+\begin{scope}[shift={(3.75,-0.8)}, x=2.0cm/\subS, y=-2.0cm/\subS]
+  \draw[cropc, line width=0.9pt] ({\cropx-\subx},{\cropy-\suby}) rectangle ++(\cropS,\cropS);
+\end{scope}
+\node[lbl] at (4.75,-3.08) {$1024$\,px subtiles, $3\times3$};
+\draw[arr] (5.9,-1.81) -- (6.4,-1.81);
+\node[lbl, anchor=south, inner sep=1pt] at (6.85,-1.08) {DINO-DETR};
+\node[font=\tiny\bfseries, text=trn, anchor=south, inner sep=1pt] at (6.85,-1.29) {Swin-L};
+\foreach \i in {0,...,5}{
+  \fill[trn!45, rounded corners=0.6pt] (6.55,{-1.3-0.17*\i}) rectangle ++(0.6,-0.11);
+}
+\draw[arr] (7.3,-1.81) -- (7.7,-1.81);
+\node[img] (boximg) at (8.85,-1.8) {\includegraphics[width=2.0cm]{arch/d1_det_boxes.jpg}};
+\draw[cropc, line width=1.0pt] (boximg.south west) rectangle (boximg.north east);
+\begin{scope}[shift={(boximg.north west)}, x=2.0cm/\cropS, y=-2.0cm/\cropS]
+  \draw[neon, line width=1.0pt] (\encwx,\encwy) rectangle ++(\encws,\encws);
+\end{scope}
+\node[lbl] at (8.85,-3.08) {boxes, score $s$};
+
+% --- 2 dense encoding: 16 px patch grids, final layer, interlaced. Labels say 4 px (16 offsets, deployed); the drawing
+% stays the schematic 4-offset / 8 px picture (Tom 2026-11-05: change wording, not the visual) (panel C; content shifted 7.6 cm)
+\node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PC.north west) {2)\;Interlaced encoding};
+\node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PC.north east) {\frozenicon};
+\begin{scope}[xshift=7.6cm]
 % 48 x 48 px image window at 0.04 cm/px; (px, py) with py measured downwards from the top
 \def\ex{3.95}\def\ey{-0.85}
-\node[inner sep=0, anchor=north west] at (\ex,\ey) {\includegraphics[width=1.92cm]{arch/enc_rgb.png}};
+\node[inner sep=0, anchor=north west] at (\ex,\ey) {\includegraphics[width=1.92cm]{arch/d1_enc_rgb.png}};
 \begin{scope}[shift={(\ex,\ey)}, x=0.04cm, y=-0.04cm, line width=1.0pt]
   % light fill per patch
   \foreach \dy/\dx/\c in {0/0/q0, 0/8/q1, 8/0/q2, 8/8/q3}{
@@ -62,7 +94,7 @@
   }}
 }
 \draw[neon, line width=1.0pt] (\ex,\ey) rectangle ++(1.92,-1.92);
-\node[lbl, anchor=west] at (3.65,-3.08) {$16$\,px patches, offsets $8$\,/\,$4$\,px};
+\node[lbl, anchor=west] at (3.65,-3.08) {$16$\,px patches, $4$\,px offsets};
 \draw[arr] (6.0,-1.81) -- (6.75,-1.81);
 % ViT layer stack, last layer (Layer 24) taken
 \node[lbl, anchor=south, inner sep=1pt] at (7.2,-1.08) {DINOv3 ViT-L/16};
@@ -81,16 +113,8 @@
   }}
   \draw[white, line width=0.4pt, step=0.26] (0,0) grid (1.3,1.3);
 \end{scope}
-\node[lbl] at (8.65,-3.08) {strides $8$\,/\,$4$\,px};
-
-% --- 2 detection
-\node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PC.north west) {2)\;Detection};
-\node[font=\small] at ([xshift=-0.27cm, yshift=-0.3cm]PC.north east) {\fireicon};
-\node[img] (heat) at (12.6,-1.8) {\includegraphics[width=2.0cm]{arch/det_heat.png}};
-\node[img] (dbox) at (16.1,-1.8) {\includegraphics[width=2.0cm]{arch/det_boxes.jpg}};
-\draw[arr] ([xshift=0.15cm]heat.east) -- ([xshift=-0.15cm]dbox.west);
-\node[lbl] at (12.6,-3.08) {centre heatmap};
-\node[lbl] at (16.1,-3.08) {boxes};
+\node[lbl] at (8.65,-3.08) {stride $4$\,px};
+\end{scope}
 
 % --- 3 box-to-mask: one E-step (a-c) per predicted box, threshold, rescore
 \node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PD.north west) {3)\;Box\,$\to$\,Mask};
@@ -114,25 +138,26 @@
 \shade[left color=bmid, right color=bfg] (3.25,-6.88) rectangle (4.95,-6.77);
 \node[tlbl, anchor=east] at (1.53,-6.825) {background};
 \node[tlbl, anchor=west] at (4.97,-6.825) {crown};
-\node[eq] at (6.1,-6.825) {rescored by the mean and decisiveness of $p_{fg}$};
+\node[eq] at (6.1,-6.825) {mask-aware confidence from the mean and decisiveness of $p_{fg}$};
 
 % --- output
 \node[title, anchor=north west] at ([xshift=0.2cm, yshift=-3pt]PE.north west) {Output};
-\node[img] at (14.25,-5.7) {\includegraphics[width=2.2cm]{arch/out_masks.jpg}};
+\node[img] at (14.25,-5.7) {\includegraphics[width=2.2cm]{arch/d1_out_masks.jpg}};
 \shade[left color=vlo, right color=vmid] (15.95,-5.0) rectangle (16.65,-4.9);
 \shade[left color=vmid, right color=vhi] (16.65,-5.0) rectangle (17.35,-4.9);
 \node[tlbl, anchor=north west] at (15.91,-5.03) {low};
 \node[tlbl, anchor=north east] at (17.39,-5.03) {high};
-\node[lbl] at (16.65,-6.1) {RGB-guided\\upsampling to\\$2048$\,px,\\ranked by $s'$};
+\node[lbl] at (16.65,-6.1) {RGB-guided\\upsampling to\\$2048$\,px,\\ranked\\by $\hat s$};
 
 % --- arrows
 \draw[arr] (PA.east |- 0,-1.81) -- (PB.west |- 0,-1.81);
-\draw[arr] (PB.east |- 0,-1.81) -- (PC.west |- 0,-1.81);
+% RGB to the encoder, routed above the detection panel (the detector does not read F~)
+\draw[arr] (1.5,0) -- (1.5,0.3) -- (12.51,0.3) -- (12.51,0);
 \draw[arr] (PD.east |- 0,-5.575) -- (PE.west |- 0,-5.575);
-\draw[arr, frz!80] (5.0,-3.35) -- (5.0,-3.9);
-\node[lbl, anchor=west, text=frz] at (5.1,-3.625) {$\widetilde F\in\mathbb{R}^{1024\times256\times256}$\,/\,$\mathbb{R}^{1024\times512\times512}$};
-\draw[arr] (12.0,-3.35) -- (12.0,-3.9);
-\node[lbl, anchor=west] at (12.1,-3.625) {boxes};
+\draw[arr] (8.85,-3.35) -- (8.85,-3.9);
+\node[lbl, anchor=west] at (8.95,-3.625) {boxes, $s$};
+\draw[arr, frz!80] (11.75,-3.35) -- (11.75,-3.9);
+\node[lbl, anchor=west, text=frz] at (11.85,-3.625) {$\widetilde F\in\mathbb{R}^{1024\times512\times512}$};
 
 \end{tikzpicture}
 \end{document}

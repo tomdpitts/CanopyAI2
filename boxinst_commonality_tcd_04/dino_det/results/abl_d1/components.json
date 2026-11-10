@@ -1,0 +1,85 @@
+{
+ "date": "2026-11-10 17:21",
+ "n_tiles": 108,
+ "n_crowns": {
+  "gt": 7041,
+  "pred": 6143
+ },
+ "mean_crown_iou": {
+  "gt": {
+   "b0_abs_infer0": 0.7412,
+   "b0_abs_infer1": 0.7842,
+   "b0_rec": 0.795,
+   "b05_abs_infer0": 0.7585,
+   "b05_abs_infer1": 0.7897,
+   "b05_rec": 0.798
+  },
+  "pred": {
+   "b0_abs_infer0": 0.6873,
+   "b0_abs_infer1": 0.7364,
+   "b0_rec": 0.7461,
+   "b05_abs_infer0": 0.7075,
+   "b05_abs_infer1": 0.7398,
+   "b05_rec": 0.7476
+  }
+ },
+ "tables": {
+  "fit+infer": {
+   "gt": {
+    "cells": {
+     "b0/absolute": 0.7412,
+     "b0/recentred": 0.795,
+     "b05/absolute": 0.7585,
+     "b05/recentred": 0.798
+    },
+    "repulsion_alone": 0.0173,
+    "recentring_alone": 0.0538,
+    "both": 0.0568,
+    "interaction": -0.0143,
+    "additive_prediction": 0.0711
+   },
+   "pred": {
+    "cells": {
+     "b0/absolute": 0.6873,
+     "b0/recentred": 0.7461,
+     "b05/absolute": 0.7075,
+     "b05/recentred": 0.7476
+    },
+    "repulsion_alone": 0.0202,
+    "recentring_alone": 0.0588,
+    "both": 0.0603,
+    "interaction": -0.0187,
+    "additive_prediction": 0.079
+   }
+  },
+  "fit-only": {
+   "gt": {
+    "cells": {
+     "b0/absolute": 0.7842,
+     "b0/recentred": 0.795,
+     "b05/absolute": 0.7897,
+     "b05/recentred": 0.798
+    },
+    "repulsion_alone": 0.0055,
+    "recentring_alone": 0.0108,
+    "both": 0.0138,
+    "interaction": -0.0025,
+    "additive_prediction": 0.0163
+   },
+   "pred": {
+    "cells": {
+     "b0/absolute": 0.7364,
+     "b0/recentred": 0.7461,
+     "b05/absolute": 0.7398,
+     "b05/recentred": 0.7476
+    },
+    "repulsion_alone": 0.0034,
+    "recentring_alone": 0.0097,
+    "both": 0.0112,
+    "interaction": -0.0019,
+    "additive_prediction": 0.0131
+   }
+  }
+ },
+ "note": "ONE look per pre-registration ABL-D1 item 4; primary definition fit+infer; single detector run, EM seed 0"
+}

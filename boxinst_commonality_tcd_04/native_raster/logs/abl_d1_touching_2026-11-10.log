@@ -1,0 +1,27 @@
+[rle_io] installed res=2048 results_dir=boxinst_commonality_tcd_04/ablation/results_r2048/side_t04_r2048_d1
+selftest OK: box_iou_mat == brute force on 200 random configurations
+[s0]
+    200/439
+    400/439
+    439/439
+  [rle_io] 512 ref gate not applicable at 2048 (s0); using score_coco legacy arm instead
+
+=== GT crowds: 39.3% of 25705 GT crowns touch another ===
+
+--- BOX-matched (can see mask failures; failure_analysis.py convention) ---
+group                  n   %boxTP  mask IoU  fail<0.5  gt size
+isolated (s0)      13651    60.6%    0.7330    0.0223     42.0
+touching (s0)       8874    39.4%    0.7353    0.0241     68.9
+isolated band                        0.7330    0.0223   (+-0.0000 / +-0.0000)
+touching band                        0.7353    0.0241   (+-0.0000 / +-0.0000)
+
+--- MASK-matched (fail rate vacuous by construction) ---
+group              n    %TPs  mask IoU  fail<0.5  gt size   cover
+isolated (s0)   13579   60.8%    0.7356    0.0000     42.1  1.0404
+touching (s0)    8764   39.2%    0.7399    0.0000     69.0  1.0356
+isolated band                    0.7356 +-0.0000
+touching band                    0.7399 +-0.0000
+
+-> boxinst_commonality_tcd_04/ablation/results_r2048/strata_instance_d1_r2048.json
+[d1] gate PASS: t04 AP re-score 0.7141
+t04 exit 0

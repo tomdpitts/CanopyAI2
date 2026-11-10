@@ -1,0 +1,33 @@
+R3_ef best-F1 threshold 0.32 (F1 0.6995)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/ablation/results/figs/arch/make_arch_panels_d1.py:84: RuntimeWarning: divide by zero encountered in matmul
+  A = logsumexp(k * (z @ M.C.T) + np.log((pis / psum).T + 1e-9), 1) - bgll
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/ablation/results/figs/arch/make_arch_panels_d1.py:84: RuntimeWarning: overflow encountered in matmul
+  A = logsumexp(k * (z @ M.C.T) + np.log((pis / psum).T + 1e-9), 1) - bgll
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/ablation/results/figs/arch/make_arch_panels_d1.py:84: RuntimeWarning: invalid value encountered in matmul
+  A = logsumexp(k * (z @ M.C.T) + np.log((pis / psum).T + 1e-9), 1) - bgll
+  [0] box=[426, 762, 536, 873] 110x112px s=0.870 pbar=0.651 m=0.847 s'=0.479 iouh=0.00 final=0.992 band=2
+  [1] box=[186, 760, 281, 844] 95x84px s=0.864 pbar=0.608 m=0.823 s'=0.432 iouh=0.00 final=0.989 band=2
+  [2] box=[146, 1077, 216, 1157] 70x80px s=0.886 pbar=0.612 m=0.705 s'=0.382 iouh=0.00 final=0.987 band=2
+  [3] box=[313, 1109, 402, 1198] 89x89px s=0.790 pbar=0.577 m=0.806 s'=0.368 iouh=0.00 final=0.981 band=2
+  [4] box=[261, 969, 323, 1027] 62x58px s=0.822 pbar=0.553 m=0.857 s'=0.390 iouh=0.00 final=0.981 band=2
+  [5] box=[388, 1225, 451, 1286] 62x61px s=0.832 pbar=0.579 m=0.719 s'=0.347 iouh=0.00 final=0.978 band=2
+  [6] box=[123, 867, 211, 944] 88x77px s=0.762 pbar=0.581 m=0.823 s'=0.365 iouh=0.00 final=0.977 band=2
+  [7] box=[612, 1156, 658, 1195] 46x39px s=0.847 pbar=0.552 m=0.820 s'=0.384 iouh=0.00 final=0.977 band=1
+  [8] box=[288, 798, 351, 861] 63x62px s=0.770 pbar=0.571 m=0.836 s'=0.367 iouh=0.00 final=0.974 band=2
+  [9] box=[566, 1062, 622, 1112] 56x50px s=0.796 pbar=0.550 m=0.783 s'=0.343 iouh=0.00 final=0.971 band=2
+  [10] box=[579, 1199, 605, 1222] 26x24px s=0.771 pbar=0.534 m=0.753 s'=0.310 iouh=0.00 final=0.939 band=0
+  [11] box=[571, 1166, 593, 1192] 22x26px s=0.696 pbar=0.560 m=0.722 s'=0.281 iouh=0.00 final=0.909 band=0
+  [12] box=[409, 884, 431, 901] 22x17px s=0.580 pbar=0.528 m=0.725 s'=0.222 iouh=0.00 final=0.761 band=0
+  [13] box=[516, 940, 561, 975] 45x35px s=0.357 pbar=0.548 m=0.754 s'=0.148 iouh=0.00 final=0.470 band=1

@@ -1,0 +1,197 @@
+{
+ "date_start": "2026-11-04 23:29",
+ "prereg": "dino_det/README.md IL-test",
+ "gate_real4": {
+  "tiles": {
+   "tcd_val_tile_0": {
+    "n": 37,
+    "identical": 37,
+    "s_prime_maxabs": 0.0
+   },
+   "tcd_val_tile_10": {
+    "n": 404,
+    "identical": 404,
+    "s_prime_maxabs": 0.0
+   },
+   "tcd_val_tile_1": {
+    "n": 438,
+    "identical": 438,
+    "s_prime_maxabs": 0.0
+   }
+  },
+  "pass": true
+ },
+ "feat_stats_mean_over_tiles": {
+  "gate_cos_mean": 1.0,
+  "gate_cos_p1": 0.99993,
+  "interp8_lattice_maxabs": 0.00012,
+  "interp8_cos_real4_offlattice_mean": 0.98064,
+  "interp8_cos_real4_offlattice_p1": 0.88446,
+  "interp16_lattice_maxabs": 0.00012,
+  "interp16_cos_real4_offlattice_mean": 0.94965,
+  "interp16_cos_real4_offlattice_p1": 0.73146
+ },
+ "feat_stats_min_over_tiles": {
+  "gate_cos_mean": 1.0,
+  "gate_cos_p1": 0.99992,
+  "interp8_lattice_maxabs": 0.00012,
+  "interp8_cos_real4_offlattice_mean": 0.96653,
+  "interp8_cos_real4_offlattice_p1": 0.81106,
+  "interp16_lattice_maxabs": 0.00012,
+  "interp16_cos_real4_offlattice_mean": 0.87704,
+  "interp16_cos_real4_offlattice_p1": 0.52843
+ },
+ "n_masks": 200148,
+ "n_masks_changed_vs_real4": {
+  "interp8": 180680,
+  "interp16": 188977
+ },
+ "rows": {
+  "sprime": {
+   "real4": {
+    "AP50": 0.7044,
+    "AP75": 0.2644,
+    "AP50_95": 0.3366
+   },
+   "interp8": {
+    "AP50": 0.7043,
+    "AP75": 0.2619,
+    "AP50_95": 0.3356
+   },
+   "interp16": {
+    "AP50": 0.6992,
+    "AP75": 0.249,
+    "AP50_95": 0.3292
+   }
+  },
+  "dets": {
+   "real4": {
+    "AP50": 0.69,
+    "AP75": 0.2589,
+    "AP50_95": 0.3288
+   },
+   "interp8": {
+    "AP50": 0.6901,
+    "AP75": 0.2566,
+    "AP50_95": 0.3278
+   },
+   "interp16": {
+    "AP50": 0.6872,
+    "AP75": 0.2454,
+    "AP50_95": 0.3229
+   }
+  }
+ },
+ "boot": {
+  "sprime": {
+   "real4_minus_interp8": {
+    "AP50": {
+     "diff": 0.0001,
+     "ci95": [
+      -0.0007,
+      0.0018
+     ],
+     "p_le_0": 0.422
+    },
+    "AP75": {
+     "diff": 0.0025,
+     "ci95": [
+      0.0009,
+      0.005
+     ],
+     "p_le_0": 0.001
+    },
+    "AP50_95": {
+     "diff": 0.0009,
+     "ci95": [
+      0.0002,
+      0.0015
+     ],
+     "p_le_0": 0.004
+    }
+   },
+   "real4_minus_interp16": {
+    "AP50": {
+     "diff": 0.0052,
+     "ci95": [
+      0.0035,
+      0.0091
+     ],
+     "p_le_0": 0.0
+    },
+    "AP75": {
+     "diff": 0.0155,
+     "ci95": [
+      0.0112,
+      0.0207
+     ],
+     "p_le_0": 0.0
+    },
+    "AP50_95": {
+     "diff": 0.0074,
+     "ci95": [
+      0.0056,
+      0.0091
+     ],
+     "p_le_0": 0.0
+    }
+   }
+  },
+  "dets": {
+   "real4_minus_interp8": {
+    "AP50": {
+     "diff": -0.0001,
+     "ci95": [
+      -0.0007,
+      0.0017
+     ],
+     "p_le_0": 0.5765
+    },
+    "AP75": {
+     "diff": 0.0023,
+     "ci95": [
+      0.001,
+      0.0047
+     ],
+     "p_le_0": 0.002
+    },
+    "AP50_95": {
+     "diff": 0.001,
+     "ci95": [
+      0.0004,
+      0.0015
+     ],
+     "p_le_0": 0.0
+    }
+   },
+   "real4_minus_interp16": {
+    "AP50": {
+     "diff": 0.0028,
+     "ci95": [
+      0.0017,
+      0.0059
+     ],
+     "p_le_0": 0.0
+    },
+    "AP75": {
+     "diff": 0.0135,
+     "ci95": [
+      0.0098,
+      0.0184
+     ],
+     "p_le_0": 0.0
+    },
+    "AP50_95": {
+     "diff": 0.0059,
+     "ci95": [
+      0.0044,
+      0.0075
+     ],
+     "p_le_0": 0.0
+    }
+   }
+  }
+ },
+ "date_end": "2026-11-05 00:13",
+ "note": "run once per pre-registration IL-test; test 439 only; single detector seed"
+}

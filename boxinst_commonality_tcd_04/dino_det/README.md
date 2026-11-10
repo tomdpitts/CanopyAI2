@@ -617,3 +617,188 @@ fasteval reproduced score_coco on all 5 rows of both splits. s′ unchanged by t
 
 ## Pointer: 4 px masker refit (R4P, 2026-11-04)
 The masker refit on the 4 px lattice was run on D1 val boxes: n120 0.7404 and n250 0.7417, against 0.7414 for the deployed masker. It FAILED the +0.003 gate, so the deployed masker is kept. Details: `../masker_refit4p/README.md`. Note: D1's val s′ reference is 0.7414 with the shared EDGE_FILL edge fix; 0.7384 is the pre-fix value.
+
+## Pre-registration GC-test (2026-11-04, Tom: "i think 439 is enough. run it locally"; BEFORE any number): guide controls on D1 test
+Purpose: replace the CenterNet-era test evidence for the guided render (paper.tex %CHECK above "By taking the 4 px interlaced grid…": test +0.022 over 0.632) with D1 numbers. ONE look, test 439 only (sparse-236 not run). `guide_controls_test.py`, `results/guidectl/guidectl_test.json`, masks `feat_cache/guidectl_test_<arm>/`, log `native_raster/logs/guidectl_test_2026-11-04.log`.
+- **Boxes / masker:** frozen D1 test boxes and scores, lace4px_simple post4 (c_peak 0.33, α 0.3, κ 1.6), `EDGE_FILL = True`. Only the upsampling step differs between arms.
+- **Arms:** `guided` = deployed colour-guided r 12, ε 1e-4 (masks reused from `results/edgefix/preds_d1_edgefix_test_sprime_r2048.json`; gate: re-render of the first 3 sorted tiles must be byte-identical); `bilinear` = r 0 (posterior bilinear only); `blur` = constant guide, box filter 2r+1 (r 12); `wrongtile` = colour guide from the next test tile in sorted order (wrapping). All arms at the frozen c_peak 0.33 (no per-arm threshold tuning on test; val b29 used the same fixed 0.33).
+- **Rankings:** primary s′ (= the "LACE (D1 variant) + edge fix" row; s′ asserted identical across arms); secondary R3 (frozen R3 scores from `preds_dino_swinl_s0_test_R3_ef_r2048.json`, = the "+ edge fix + R3" row).
+- **Scoring:** frozen score_coco, canopy-neutral crowd arm, maxDets 600; mask AP50 / AP75 / AP50:95; paired tile bootstrap (2,000, seed 0) of guided − each control, both rankings. Reported whatever the outcome; no decision rides on it beyond what the paper prose says.
+
+## RESULTS, GC-test (2026-11-04; `results/guidectl/guidectl_test.json`, preds/scored `results/guidectl/{preds,scored}_d1_gc_<arm>_<rank>_test_r2048.json`, masks `feat_cache/guidectl_test_<arm>/`, log `native_raster/logs/guidectl_test_2026-11-04.log`)
+Gate PASS (guided re-render of 3 tiles byte-identical to the edge-fixed masks, s′ max |Δ| 0). s′ asserted identical across arms; fasteval == score_coco on all 8 rows. Masks changed vs guided: bilinear 199,955 / blur 197,685 / wrong tile 198,610 of 200,148. Test 439, canopy-neutral crowd, mask AP:
+
+| Ranking | Arm | AP50 | AP75 | AP50:95 |
+|---|---|---|---|---|
+| s′ | guided (deployed) | 0.7044 | 0.2644 | 0.3366 |
+| s′ | bilinear | 0.7004 | 0.2407 | 0.3254 |
+| s′ | blur | 0.6704 | 0.1839 | 0.2877 |
+| s′ | wrong tile | 0.6807 | 0.1966 | 0.2982 |
+| R3 | guided (deployed) | 0.7141 | 0.2713 | 0.3424 |
+| R3 | bilinear | 0.7098 | 0.2458 | 0.3304 |
+| R3 | blur | 0.6809 | 0.1923 | 0.2944 |
+| R3 | wrong tile | 0.6907 | 0.2044 | 0.3046 |
+
+Paired tile bootstrap, guided − control (2,000, seed 0), diff [95% CI]; p(≤0) = 0 for every cell:
+
+| Ranking | vs | ΔAP50 | ΔAP75 | ΔAP50:95 |
+|---|---|---|---|---|
+| s′ | bilinear | +0.0040 [0.0026, 0.0078] | +0.0237 [0.0167, 0.0315] | +0.0111 [0.0086, 0.0138] |
+| s′ | blur | +0.0340 [0.0277, 0.0417] | +0.0805 [0.0689, 0.0938] | +0.0489 [0.0425, 0.0549] |
+| s′ | wrong tile | +0.0237 [0.0196, 0.0304] | +0.0679 [0.0578, 0.0790] | +0.0383 [0.0334, 0.0428] |
+| R3 | bilinear | +0.0043 [0.0029, 0.0080] | +0.0255 [0.0189, 0.0330] | +0.0120 [0.0096, 0.0146] |
+| R3 | blur | +0.0332 [0.0270, 0.0407] | +0.0790 [0.0672, 0.0919] | +0.0481 [0.0418, 0.0539] |
+| R3 | wrong tile | +0.0234 [0.0193, 0.0298] | +0.0669 [0.0572, 0.0777] | +0.0378 [0.0329, 0.0422] |
+
+**Reading.** On D1 the guided render's AP50 gain over bilinear is small (+0.004, CI > 0), well below the CenterNet-era +0.022 cited in paper.tex; the gain is now chiefly at strict IoU (AP75 +0.024–0.026, AP50:95 +0.011–0.012). Both controls lose to bilinear on every metric, so the gain comes from the tile's own image edges, not smoothing (confirms val b29 on test). Single look, single detector seed. paper.tex NOT edited (Tom decides).
+
+## Pre-registration IL-test (2026-11-04, Tom: "run c and update appendix with results"; BEFORE any number): interlaced vs interpolated masker features on D1 test
+Purpose: replace the stale NEON / CenterNet-era `tab:grid` (paper.tex, "Feature grid: interlacing versus interpolation") with a masker-level OAM-TCD result on the current pipeline. ONE look, test 439 only. `interlace_test.py`, `results/interlace/interlace_test.json`, masks `feat_cache/interlace_test_<arm>/`, log `native_raster/logs/interlace_test_2026-11-04.log`.
+- **Boxes / masker:** frozen D1 test boxes and scores, lace4px_simple post4 (c_peak 0.33, α 0.3, κ 1.6, guided r 12, ε 1e-4), `EDGE_FILL = True`, masker npz `em_model_4p_fix.npz` at s 4 / origin 8. Only the 4 px feature lattice `zn4` the masker reads differs between arms.
+- **Arms:** `real4` = deployed, 16 offsets interlaced (`hunt_z4p_test`; masks reused from `results/edgefix/preds_d1_edgefix_test_sprime_r2048.json`; gate: re-render of the first 3 sorted tiles byte-identical). `interp8` = 4 offsets {0,8}² interlaced (8 px, Modal `feat_4p_test`), bilinearly interpolated to the 4 px lattice. `interp16` = native single-pass 16 px grid (phase (0,0) of `feat_4p_test`, = `[:, 0::2, 0::2]`), bilinearly interpolated to the 4 px lattice.
+- **Interpolation:** on the masker's unnormalised whitened projection `(f − μ)U/scale` (affine, so identical to interpolating the 1024-d DINOv3 features then projecting), then L2-normalised and fp16-rounded as the stored `zn4`. Source cell centres map exactly onto 4 px cells (16 px cell g → 4 px cell 4g; 8 px cell g → 2g); cells past the last source centre are edge-clamped.
+- **Gates:** (1) per tile, projection of `feat_4p_test` vs `hunt_z4p_test[0::2, 0::2]`: cos mean ≥ 0.999 and 1st percentile ≥ 0.99 (local t457 venv vs Modal, previously 1.0000); (2) each interpolated arm reproduces its source projection exactly at the source lattice cells (max |Δ| < 1e-3 after fp16); (3) deployed re-render gate above. Also logged: cosine of each interpolated arm to `real4` at the off-source cells (the 4 px analogue of the paper's cos ≈ 0.955 claim).
+- **Rankings:** primary own s′ (each arm's s′ from its own posterior; the pipeline as deployed); secondary detector s (masks only differ; isolates mask quality).
+- **Scoring:** frozen score_coco, canopy-neutral crowd arm, maxDets 600; mask AP50 / AP75 / AP50:95; fasteval asserted equal; paired tile bootstrap (2,000, seed 0) of real4 − each interpolated arm, both rankings.
+- **Caveat stated in advance:** c_peak / α / κ were tuned on real-4 px features (hunt, val), which favours `real4`; no per-arm re-tuning on test. Single detector seed. Reported whatever the outcome.
+
+## Pre-registration CAP-test (2026-11-04, Tom: "proceed" on the appendix staleness list; BEFORE any number): does the 600-per-tile stitch cap bind for LACE (D1 + edge fix + R3)?
+Purpose: paper.tex appendix "Detection budget" says only Detectree2 exceeds 600 dets/tile. Check on D1 before cap. `cap_test.py`, `results/cap/cap_test.json`, masks `feat_cache/cap_test/`, log `native_raster/logs/cap_test_2026-11-04.log`. Test 439 only, ONE look.
+- **Already measured (counting only, no AP):** raw subtile dets `runs/dino_swinl_s0/raw_test.jsonl` (copied to `results/modal/raw/`); `dino_modal.stitch` re-run locally reproduces the published 600-capped preds exactly (scores, all 439 tiles). Uncapped (`keep=∞`, same floor 0.05 / edge / dedup): 212 / 439 tiles exceed 600, max 1,186, +47,711 dets (median 576/tile).
+- **Masks:** lace4px_simple post4, `EDGE_FILL = True`, on the uncapped box list per tile (tiles with ≤ 600 dets reuse published masks). Gate: on every re-rendered tile the first 600 masks and s′ equal `results/edgefix/preds_d1_edgefix_test_sprime_r2048.json`.
+- **Ranking:** R3 refit exactly as `rerank3.final` (mlp1x64 on s, log s′/s, log h, max IoU with a higher-s det; 25 models, seeds 0–4 × rr folds, val-trained). Gate: refit scores on the published capped set equal the published R3 scores (max |Δ| < 1e-6).
+- **Score:** frozen score_coco, crowd arm, floor 0; uncapped list at maxDets 1,200 vs published R3 + edge fix (0.7141 / 0.3424). Also the uncapped list at maxDets 600 (top 600 by R3 instead of top 600 by s). Paired tile bootstrap (2,000, seed 0) on AP50 and AP50:95. Reported whatever the outcome.
+
+## RESULTS, IL-test (2026-11-04/05; `results/interlace/interlace_test.json`, preds/scored `results/interlace/{preds,scored}_d1_il_<arm>_<rank>_test_r2048.json`, masks + per-tile feature stats `feat_cache/interlace_test_<arm>/`, log `native_raster/logs/interlace_test_2026-11-04.log`)
+Gates: real4 re-render of 3 tiles byte-identical to the edge-fixed masks (s′ max |Δ| 0) PASS; `feat_4p_test` projection vs `hunt_z4p_test[0::2,0::2]` cos mean 1.0000 (worst-tile p1 0.9999) PASS on all 439; interpolated arms reproduce their source at lattice cells (max |Δ| 1.2e-4, fp16) PASS; fasteval == score_coco on all 6 rows. Masks changed vs real4: interp8 180,680 / interp16 188,977 of 200,148.
+Feature cosine to real4 at off-source cells (mean over tiles; worst tile): interp16 **0.950** (0.877), p1 0.731; interp8 0.981 (0.967), p1 0.884.
+
+Test 439, canopy-neutral crowd, mask AP (s′ rows = each arm's own s′; real4 s′ = the published "+ edge fix" row):
+
+| Ranking | Arm | AP50 | AP75 | AP50:95 |
+|---|---|---|---|---|
+| s′ | real4 (16 offsets, deployed) | 0.7044 | 0.2644 | 0.3366 |
+| s′ | interp8 (4 offsets → 4 px bilinear) | 0.7043 | 0.2619 | 0.3356 |
+| s′ | interp16 (native 16 px → 4 px bilinear) | 0.6992 | 0.2490 | 0.3292 |
+| detector s | real4 | 0.6900 | 0.2589 | 0.3288 |
+| detector s | interp8 | 0.6901 | 0.2566 | 0.3278 |
+| detector s | interp16 | 0.6872 | 0.2454 | 0.3229 |
+
+Paired tile bootstrap, real4 − arm (2,000, seed 0), diff [95% CI] p(≤0):
+
+| Ranking | vs | ΔAP50 | ΔAP75 | ΔAP50:95 |
+|---|---|---|---|---|
+| s′ | interp8 | +0.0001 [−0.0007, 0.0018] 0.42 | +0.0025 [0.0009, 0.0050] 0.001 | +0.0009 [0.0002, 0.0015] 0.004 |
+| s′ | interp16 | +0.0052 [0.0035, 0.0091] 0 | +0.0155 [0.0112, 0.0207] 0 | +0.0074 [0.0056, 0.0091] 0 |
+| detector s | interp8 | −0.0001 [−0.0007, 0.0017] 0.58 | +0.0023 [0.0010, 0.0047] 0.002 | +0.0010 [0.0004, 0.0015] 0 |
+| detector s | interp16 | +0.0028 [0.0017, 0.0059] 0 | +0.0135 [0.0098, 0.0184] 0 | +0.0059 [0.0044, 0.0075] 0 |
+
+**Reading.** Interlacing beats interpolating the native grid on every metric under both rankings (CIs clear of 0), but the masker-level effect is modest at AP50 (+0.005 s′, +0.003 detector s) and larger at strict IoU (AP75 +0.014–0.016). Four offsets carry essentially all of it at AP50 (interp8 ties real4); sixteen offsets add only +0.002–0.003 AP75 / +0.001 AP50:95 over four. Caveat (pre-stated): masker knobs were tuned on real-4 px features, favouring real4. Single look, single detector seed. Replaces the NEON `tab:grid` in paper.tex (2026-11-05).
+
+## RESULTS, CAP-test (2026-11-05; `results/cap/cap_test.json`, `results/cap/{preds_d1_R3_ef_uncapped_test_r2048.json, scored_*.json}`, log `native_raster/logs/cap_test_2026-11-04.log`)
+Gates: uncapped stitch prefix = published boxes/scores (439/439); first 600 masks + s′ of all 212 re-rendered tiles = published edge-fixed preds (PASS); R3 refit vs published R3 scores max |Δ| 9.5e-9 (PASS). First run crashed after the mask gate (empty-tile reduction in the R3 helper; fixed, rerun resumed from cached masks, no number had been produced).
+
+| test 439 | mask AP50 | AP75 | AP50:95 | box AP50 |
+|---|---|---|---|---|
+| published R3 + edge fix (stitch cap 600, maxDets 600) | 0.7141 | 0.2713 | 0.3424 | 0.7471 |
+| uncapped, maxDets 1,200 | **0.7188** | 0.2725 | 0.3438 | 0.7531 |
+| uncapped, maxDets 600 (top 600 by R3) | 0.7143 | 0.2713 | 0.3424 | 0.7473 |
+
+- Uncapped @1,200 − published: AP50 **+0.0047 [+0.0018, +0.0058]**, AP50:95 +0.0014 [+0.0006, +0.0019].
+- Uncapped @600 − published: AP50 +0.0002 [−0.0018, +0.0023], AP50:95 0.0000 (n.s.): choosing the 600 by R3 instead of by s does not matter.
+- **Reading:** the 600 cap binds for LACE (212 / 439 tiles; max 1,186) and costs it ≈ +0.005 AP50, so the protocol is conservative for LACE. Headline stays at the protocol cap (0.714). paper.tex "Detection budget" paragraph updated 2026-11-05.
+
+## RESULTS, sparse s-ranking on edge-fixed masks (2026-11-05; `sparse_dets_ef.py`, `results/edgefix/{preds,scored}_d1_edgefix_sparse_dets_r2048.json`, log `native_raster/logs/sparse_dets_ef_2026-11-05.log`)
+For paper tab:factors (Tom: "A" = s / s′ / learned ranking on test + sparse, existing numbers; R2 not shown). The only sparse s row predated the edge fix, so the published edge-fixed sparse masks were re-ranked by detector s (boxes asserted identical). Pure re-ordering, no choice made from it; frozen score_coco.
+- Sparse-236, s, edge fix: mask AP50 **0.7265**, AP75 0.3874, AP50:95 0.3913; box AP50 0.7414 (= pre-fix detscore file, as expected). Pre-fix s was 0.7263 / 0.3897.
+- tab:factors rows (paper.tex, 2026-11-05): test s 0.6900 / 0.3288 (`results/interlace/scored_d1_il_real4_dets_test_r2048.json`), s′ 0.7044 / 0.3366, learned (R3 + edge fix) 0.7141 / 0.3424; sparse s 0.7265 / 0.3913, s′ 0.7350 / 0.3980, learned 0.7434 / 0.4031.
+
+## Pre-registration ABL-D1 (2026-11-10, Tom: "proceed with your recommendations"; BEFORE any number): re-base the four CenterNet-era ablations onto LACE (D1 + edge fix + ŝ)
+Paper items: tab:strata, touching-crowns paragraph, tab:masker, tab:components (all `% TODO POSTRUN` in paper.tex). ONE look per split per item, everything local. Common frozen inputs: D1 boxes and detector scores, lace4px_simple post4 (c_peak 0.33, r 12, ε 1e-4), `GA.EDGE_FILL = True`, 4 px features `hunt_z4p_{val,test}`, ŝ = the frozen R3 heads (refit exactly as `rerank3.final`, gated against the published R3 scores as in CAP-test; no refit on new data). Scoring: frozen score_coco (crowd arm, maxDets 600, floor 0); paired tile bootstrap (2,000, seed 0). Single detector run, so no seed bands.
+1. **tab:strata** (`native_raster/ablation_r2048/run_strata_d1.py`, wraps `ablation/scripts/t03_strata_tile.py` unmodified, seed 0 only): published `preds_dino_swinl_s0_test_R3_ef_r2048.json`, canopy-fraction bins as before; mask AP50, box AP50, mask − box. Gate: the script's pooled-all mask AP50 = 0.7141 (± 0.0005).
+2. **Touching crowns** (same wrapper, `t04_strata_instance.py` unmodified): same preds; box-matched arm (box IoU ≥ 0.5, greedy by ŝ): mean mask IoU, fail rate (mask IoU < 0.5), mean GT size, touching vs isolated. Gate: its AP re-score = 0.7141 (± 0.0005).
+3. **tab:masker** (`masker_scalars_d1.py`): test 439, arms (α, κ) = (0, 16), (1.0, 10), (0.3, 16) = deployed (κ = 10 × kappa_scale). Deployed arm reuses `results/edgefix/preds_d1_edgefix_test_sprime_r2048.json`; gate: re-render of the first 3 sorted tiles byte-identical. Rankings: **ŝ (primary, the deployed system)** and each arm's own s′ (secondary, the current caption). Report AP50 / AP75 / AP50:95 and paired bootstrap deployed − arm. Val check for the footnote's directional claims (val 108, own s′ only, since ŝ is val-trained): α ∈ {0, 0.3, 1.0} × κ ∈ {10, 16}; claims tested: "α < 1 beats α = 1 at every κ", "κ > 10 beats κ = 10 at every α".
+4. **tab:components** (`components_d1.py`): val 108, K_fg = 16, EM seed 0. M-step: β = 0 vs β = 0.5. E-step recentring on/off. Maskers (all share the deployed whitening, verified: mu/U/scale identical, so `hunt_z4p_val` is reused): β0/absolute = `phase4/em_model_4p_b0_fix.npz`; β0/recentred = `phase4_collapse/results/npz/k16_s0_b0_c1.npz`; β0.5/absolute = `.../k16_s0_b0.5_c0.npz`; β0.5/recentred = deployed `em_model_4p_fix.npz`; all applied at s 4 / origin 8, α 0.3, κ 16.
+   - **Definition finding (before running):** every published components eval (`phase4_collapse/collapse_lib.eval_boxsource`, `guided_ablate_modal.components_eval`) called `box_mask` with its default `contrast=True`, so the "absolute" cells were fitted without recentring but still applied WITH it. **Primary arm "fit+infer":** the recentring flag is applied at fit (npz) and at inference (`box_mask(contrast=flag)`). **Secondary arm "fit-only":** inference always recentred, as published.
+   - Box sources: GT boxes (oracle, all val crowns) and D1 val boxes (`results/modal/dino_swinl_s0_preds_val.json`), box-matched TPs at box IoU ≥ 0.5, greedy by detector s. Metric: mean per-crown mask IoU at 2048 (post4 mask vs rasterised GT polygon). Effects relative to β0/absolute, plus interaction.
+- Reported whatever the outcome; paper edits only after all four, and the components definition choice goes to Tom.
+
+## RESULTS, ABL-D1 (2026-11-10; ONE look each, all gates PASS; single detector run, no seed bands)
+Logs `native_raster/logs/abl_d1_{strata,touching,masker,components}_2026-11-10.log`. Deviation from pre-reg item 4: D1 val boxes read from `feat_cache/dino_swinl_s0_val_mask.json` (the exact file `edgefix_val` rendered from; verified identical to `results/modal/dino_swinl_s0_preds_val.json`). The `label` strings inside the two strata JSONs ("knobbed masker, 3 seeds") are inherited from the unmodified t03/t04 scripts and are wrong: the input is the D1 + edge fix + ŝ Table 1 file, seed 0 only.
+
+**1. tab:strata** (`ablation/results_r2048/strata_tile_d1_r2048.json`; gate pooled-all 0.7141 PASS)
+
+| canopy fraction | tiles | n_gt | mask AP50 | box AP50 | mask − box |
+|---|---|---|---|---|---|
+| [0, 0.10) | 196 | 7523 | 0.6547 | 0.6651 | −0.0103 |
+| [0.10, 0.25) | 95 | 8630 | 0.7382 | 0.7466 | −0.0084 |
+| [0.25, 0.50) | 86 | 7262 | 0.7588 | 0.7598 | −0.0010 |
+| [0.50, 1.00] | 62 | 2290 | 0.6999 | 0.7020 | −0.0021 |
+
+Claims: "lowest on open tiles" HOLDS; "peaks in [0.25, 0.50)" HOLDS; "mask − box positive in all bins, largest on densest" **DIES** (negative in all four bins; least negative on the two densest bins).
+
+**2. Touching crowns** (`ablation/results_r2048/strata_instance_d1_r2048.json`; gate AP re-score 0.7141 PASS). Box-matched arm, 22,525 box TPs; GT touching rate 39.3% of 25,705 (model-independent).
+
+| | n | mean mask IoU | fail rate (IoU < 0.5) | mean GT size px |
+|---|---|---|---|---|
+| touching | 8874 | 0.7353 | 0.0241 | 68.9 |
+| isolated | 13651 | 0.7330 | 0.0223 | 42.0 |
+
+Claims: "score almost identically" HOLDS (touching now marginally higher); "fail slightly more often" HOLDS.
+
+**3. tab:masker** (`results/abl_d1/masker_scalars.json`, preds/scored `results/abl_d1/{preds,scored}_{val,test}_*_r2048.json`, masks `feat_cache/abl_masker_{val,test}_a*_k*/`; gates: val + test deployed re-render byte-identical on 3 tiles, R3 refit max |Δ| < 1e-6, deployed ŝ 0.7141 and s′ 0.7044 reproduced)
+
+Val 108, own s′, mask AP50 / AP50:95:
+
+| α \ κ | 10 | 16 |
+|---|---|---|
+| 0 | 0.7034 / 0.3418 | 0.7130 / 0.3508 |
+| 0.3 | 0.7410 / 0.3791 | **0.7414** / 0.3788 |
+| 1.0 | 0.7283 / 0.3657 | 0.7299 / 0.3725 |
+
+Claims: "κ > 10 beats κ = 10 at every α" HOLDS (margin at α 0.3 is +0.0004 AP50, and AP50:95 is −0.0003 there). "α < 1 beats α = 1 at every κ" **DIES** as worded: α = 0 is below α = 1 at both κ; α = 0.3 beats α = 1 at both κ.
+
+Test 439, mask AP50 / AP75 / AP50:95 (box AP50):
+
+| arm | ŝ (primary) | own s′ |
+|---|---|---|
+| α 0, κ 16 | 0.6923 / 0.2304 / 0.3183 (0.7296) | 0.6848 / 0.2213 / 0.3119 (0.7253) |
+| α 1.0, κ 10 | 0.6989 / 0.2577 / 0.3300 (0.7394) | 0.6857 / 0.2536 / 0.3244 (0.7273) |
+| α 0.3, κ 16 (deployed) | **0.7141 / 0.2713 / 0.3424** (0.7471) | 0.7044 / 0.2644 / 0.3366 (0.7391) |
+
+Paired bootstrap deployed − arm, diff [95% CI]:
+
+| ranking | vs | ΔAP50 | ΔAP50:95 |
+|---|---|---|---|
+| ŝ | α 0 | +0.0218 [0.0174, 0.0280] | +0.0241 [0.0211, 0.0268] |
+| ŝ | α 1, κ 10 | +0.0152 [0.0116, 0.0213] | +0.0124 [0.0091, 0.0157] |
+| s′ | α 0 | +0.0196 [0.0155, 0.0253] | +0.0247 [0.0217, 0.0272] |
+| s′ | α 1, κ 10 | +0.0187 [0.0149, 0.0251] | +0.0121 [0.0089, 0.0157] |
+
+Reading: "removing the spatial prior costs 0.021 AP50 / 0.018 AP50:95" HOLDS and strengthens (ŝ: 0.022 / 0.024). Note box AP50 also moves across arms because s′ (and hence ŝ) depends on the posterior.
+
+**4. tab:components** (`results/abl_d1/components.json`, per-tile `feat_cache/abl_comp_val/`; gates: whitening identical for 4 npz, deployed render = `edgefix_val` on 3 tiles). Val 108; 7,041 GT crowns; 6,143 D1 box-matched TPs. Mean crown IoU:
+
+| M-step | E-step | GT fit+infer | D1 fit+infer | GT fit-only | D1 fit-only |
+|---|---|---|---|---|---|
+| β 0 | absolute | 0.7412 | 0.6873 | 0.7842 | 0.7364 |
+| β 0 | recentred | 0.7950 | 0.7461 | 0.7950 | 0.7461 |
+| β 0.5 | absolute | 0.7585 | 0.7075 | 0.7897 | 0.7398 |
+| β 0.5 (deployed) | recentred | **0.7980** | **0.7476** | 0.7980 | 0.7476 |
+
+Effects vs β0/absolute, fit+infer (primary): GT repulsion +0.0173, recentring +0.0538, both +0.0568, interaction −0.0143; D1 repulsion +0.0202, recentring +0.0588, both +0.0603, interaction −0.0187. Claims: "substitutes, not complements" HOLDS (both regimes); "recentring slightly larger" → recentring now ~3× repulsion; deployed cell now best in both columns (published: β0/recentred beat it on GT). Fit-only (as published): effects ~5× smaller. Definition choice → Tom (recommended: fit+infer primary, caption says so).
+
+## Pre-registration ABL-D1 item 5 (2026-11-10, BEFORE any number): tab:collapse Crown IoU column on the deployed 4 px path
+Found while clearing item 4: tab:collapse's Crown IoU column (0.7537 / 0.7541 / 0.7539 / 0.7472 / 0.7486 / 0.7470) is on the old render path, while the collapse prose now cites tab:components' new cells (0.7950 / 0.7980) for the same two maskers. Fix: re-measure that one column exactly as item 4's GT arm (`components_d1._tile` logic, GT boxes only, contrast True, α 0.3, κ 16, EDGE_FILL, s 4 / origin 8), val 108, 7,041 crowns. Maskers `phase4_collapse/results/npz/`: k16 β0 = `k16_s0_b0_c1`, k16 β0.1 = `k16_s0_b0.1_c1`, k16 β0.25 = `k16_s0_b0.25_c1`, k16 β0.5 = deployed (`k16_s0_b0.5.npz` is byte-identical to `em_model_4p_fix.npz`; the old column's 0.7472 = tab:components' deployed cell), k2 β0 = `k2_s0_b0_c1`, k2 β0.5 = `k2_s0_b0.5` (last three + β0.1 pulled 2026-11-10 from `tcd04-phase4-vol:/collapse/*/em_*_fix.npz`; whitening verified identical to deployed). Gate: k16 β0 and β0.5 reproduce item 4's GT cells 0.7950 / 0.7980. Geometry columns (fit-time) unchanged. Claim re-checked: "crown IoU moves by at most 0.007 across the K16 block, collapsed β=0.5 cells lowest". ONE look. Script `dino_det/collapse_iou_d1.py` → `results/abl_d1/collapse_iou.json`.
+
+## RESULTS, ABL-D1 item 5 (2026-11-10; `results/abl_d1/collapse_iou.json`, per-tile `feat_cache/abl_collapse_val/`, log `native_raster/logs/abl_d1_collapse_2026-11-10.log`)
+Gates PASS (whitening identical ×6; k16 β0 / β0.5 = item 4 GT cells 0.7950 / 0.7980). Crown IoU on GT boxes, 7,041 crowns: k16 β0 0.7950, β0.1 0.7953, β0.25 0.7958, β0.5 (deployed) 0.7980; k2 β0 0.7980, k2 β0.5 0.7985. K16 span 0.003 (was 0.007). Claim "collapsed β=0.5 cells lowest" **FLIPS**: they are now highest. "β is a geometry knob with ~no accuracy consequence" holds. paper.tex tab:collapse column + footnote updated 2026-11-10.
+
+## Pre-registration T3 (2026-11-10, Tom: "ok please run 1 end to end including table update"; BEFORE any number): fill paper Table 3 (tab:factors, cvpr_full numbering)
+ONE look, test 439 + sparse-236, local CPU (`t3_abl.py`, `results/t3_abl.json`, preds/scored `results/preds_dino_swinl_s0_<split>_t3_<row>_r2048.json`, log `native_raster/logs/t3_abl_2026-11-10.log`). Ablations of frozen configs: nothing is selected on these numbers, and every number goes into Table 3 whatever it is.
+- **Fixed in every row:** the D1 detection set (decode floor on s), the edge-fixed masks (`results/edgefix/preds_d1_edgefix_<split>_sprime_r2048.json`, boxes asserted identical), frozen score_coco (canopy-neutral crowd, 2048², maxDets 600, score floor 0). Only the ranking changes.
+- **Factor rows:** `sm` = s·m and `sp` = s·p̄, with p̄ = mean r and m = mean |2r−1| over the in-box 4 px posterior r from `GA._prob` (α 0.3, κ×1.6, deployed `em_model_4p_fix.npz`, as `abl_lib.render`). **Gate 1:** s·p̄·m must reproduce the cached s′ on every box of both splits (|Δ| < 1e-7); otherwise stop.
+- **ŝ input-drop rows:** `no_s`, `no_logpm`, `no_logh`, `no_iou` = the frozen R3 recipe (mlp1x64, 30 epochs, dropout 0.1, wd 1e-3, box-0.5 labels; 25 models = 5 seeds × rr folds on val; mean) refit without that one input, applied to the cached test/sparse features (`feat_cache/rerankR1_<split>.npz`). **Gate 2:** the same code with all 4 inputs must reproduce the published R3 scores (|Δ| < 1e-6); otherwise stop.
+- **Gate 3:** fasteval reproduces score_coco on every row (|Δ| < 1.5e-4).
+- **Report:** mask AP50 / AP75 / AP50:95 per row and split; paired tile bootstrap (2,000, seed 0) on AP50 and AP50:95: factor rows vs s′, input-drop rows vs ŝ.
+- **Disclosure:** six more scored looks per split at ablation rows; ŝ itself is unchanged.

@@ -1,0 +1,54 @@
+{
+ "split": "sparse",
+ "n_tiles": 236,
+ "n_boot": 2000,
+ "seed": 0,
+ "files": {
+  "lace_r3ef": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_sparse_R3_ef_r2048.json",
+  "sam3zs_gmean": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/sam3_d1/preds_d1_sam3zs_gmean_sparse_r2048.json"
+ },
+ "full": {
+  "lace_r3ef": {
+   "scorer": {
+    "AP50": 0.7434,
+    "AP75": 0.4006,
+    "AP50_95": 0.4031
+   },
+   "bootstrap_full": {
+    "AP50": 0.7434,
+    "AP50_95": 0.4031
+   }
+  },
+  "sam3zs_gmean": {
+   "scorer": {
+    "AP50": 0.7399,
+    "AP75": 0.4505,
+    "AP50_95": 0.4252
+   },
+   "bootstrap_full": {
+    "AP50": 0.7399,
+    "AP50_95": 0.4252
+   }
+  }
+ },
+ "note": "paired tile bootstrap, test-set sampling only, single detector seed; each pipeline at its own ranking (LACE R3, SAM sqrt(s*SAM)); LACE R3 is post-hoc",
+ "same_boxes": true,
+ "lace_minus_sam3": {
+  "AP50": {
+   "diff": 0.0035,
+   "ci95": [
+    -0.0016,
+    0.0116
+   ],
+   "p_le_0": 0.074
+  },
+  "AP50_95": {
+   "diff": -0.0221,
+   "ci95": [
+    -0.0298,
+    -0.0126
+   ],
+   "p_le_0": 1.0
+  }
+ }
+}

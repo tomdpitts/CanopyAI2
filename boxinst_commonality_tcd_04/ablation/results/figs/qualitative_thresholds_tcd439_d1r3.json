@@ -1,0 +1,10 @@
+{
+ "LACE (ours)": {
+  "threshold": 0.32,
+  "f1": 0.6995346598202824,
+  "tp": 17438,
+  "fp": 6713,
+  "fn": 8267,
+  "preds": "boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json"
+ }
+}

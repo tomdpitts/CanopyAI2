@@ -2,17 +2,21 @@
 % lace_architecture.tex 2026-10-29; inference is in that figure).
 % Build: tectonic lace_masker_fit.tex   (from this directory)
 % Insets: arch/make_arch_panels.py (the partition inset applies the fit's rule to the holdout crop's GT boxes).
+% 2026-11-05/06: added (5) mask confidence inside the module (redrawn 2026-11-06 as mask-aware confidence -> \hat s), parameter-free s' extended by a small learned head
+% (repo name R3, dino_det/README.md), for LACE (D1 variant). Its p_fg inset is the Fig 1 zoom crown under the deployed 4 px
+% masker: arch/d1_zoom_cells.tex from arch/make_arch_panels_d1_prefix.py (overrides the s0 zoom macros below the preamble).
 \documentclass[tikz,border=3pt]{standalone}
 \input{arch/arch_preamble.tex}
+\input{arch/d1_zoom_cells.tex}
 
 \begin{document}
 \begin{tikzpicture}[x=1cm,y=1cm]
 \pgfmathsetmacro{\zmax}{max(\zoomnx,\zoomny)}
 
 % ------------------------------------------------ FIT
-\node[sub, minimum width=15.8cm, minimum height=7.95cm, anchor=north west] (FIT) at (0.2,-5.95) {};
+\node[sub, minimum width=15.8cm, minimum height=12.25cm, anchor=north west] (FIT) at (0.2,-5.95) {};
 \node[head, font=\small\bfseries] at (0.4,-6.12) {Box-to-mask module};
-\node[tlbl, anchor=north east] at (15.8,-6.16) {input: frozen features $\widetilde F$ and training boxes only};
+\node[tlbl, anchor=north east] at (15.8,-6.16) {input: frozen features $\widetilde F$ and boxes only};
 
 % --- (1) whiten
 \node[card, minimum width=3.7cm, minimum height=3.0cm, anchor=north west] (A1) at (0.4,-6.6) {};
@@ -84,31 +88,33 @@
 \draw[sarr, line width=0.7pt] (A2.east) -- (A3.west);
 
 % --- (4) Expectation-Maximisation
-\node[card, minimum width=10.6cm, minimum height=3.75cm, anchor=north west] (EM) at (0.4,-9.95) {};
+\node[card, minimum width=15.4cm, minimum height=4.1cm, anchor=north west] (EM) at (0.4,-9.95) {};
 \begin{scope}[shift={(0.4,-9.95)}]
   \node[num] at (0.27,-0.27) {4};
   \node[chead, anchor=west] at (0.47,-0.27) {Expectation-Maximisation\quad\cycleicon\,\normalfont×30};
-  \node[font=\footnotesize] at (10.33,-0.27) {\fireicon};
-  \node[chead, anchor=west, text=ffit!75!black] at (0.12,-0.75) {E-step\;\normalfont\textcolor{ink!60}{per box}};
-  \node[num, fill=bfg] at (0.27,-1.25) {a};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.47,-1.25) {Subtract background log-likelihood\\from foreground log-likelihood\;$\to A$};
-  \node[num, fill=bfg] at (0.27,-1.95) {b};
-  \node[eq] at (0.47,-1.95) {Subtract within-box mean\;$\to \bar A$};
-  \node[num, fill=bfg] at (0.27,-2.65) {c};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.47,-2.65) {Add spatial prior (log-odds)\\and apply a sigmoid\;$\to p_{fg}$};
-  \draw[ink!20, line width=0.4pt] (5.6,-0.6) -- (5.6,-2.95);
-  \node[chead, anchor=west, text=ffit!75!black] at (5.85,-0.75) {M-step\;\normalfont\textcolor{ink!60}{all boxes}};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (5.85,-1.25) {Responsibility-weighted mean\\of cells per prototype};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (5.85,-1.95) {Subtract matched\\outside-box centroid};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (5.85,-2.65) {Re-estimate spatial prior as\\per-bin mean responsibility};
-  \draw[arr, ffit] (2.4,-3.2) -- node[tlbl, above=1.5pt, text=ffit!75!black]{responsibilities $r_{nk}$} (7.4,-3.2);
-  \draw[arr, ffit] (7.4,-3.45) -- node[tlbl, below=1.5pt, text=ffit!75!black]{prototypes $C_k$, spatial prior $\rho$} (2.4,-3.45);
+  \node[font=\footnotesize] at (15.13,-0.27) {\fireicon};
+  % E and M share one white box (2026-11-07, Tom), same height as the fitted-masker box; columns spread evenly
+  \node[sub, minimum width=10.13cm, minimum height=3.45cm, anchor=north west] at (0.12,-0.5) {};
+  \node[chead, anchor=west, text=ffit!75!black] at (0.57,-0.75) {E-step\;\normalfont\textcolor{ink!60}{per box}};
+  \node[num, fill=bfg] at (0.72,-1.25) {a};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.92,-1.25) {Subtract background log-likelihood\\from foreground log-likelihood\;$\to A$};
+  \node[num, fill=bfg] at (0.72,-1.95) {b};
+  \node[eq] at (0.92,-1.95) {Subtract within-box mean\;$\to \bar A$};
+  \node[num, fill=bfg] at (0.72,-2.65) {c};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.92,-2.65) {Add spatial prior (log-odds)\\and apply a sigmoid\;$\to p_{fg}$};
+  \draw[ink!20, line width=0.4pt] (5.55,-0.6) -- (5.55,-2.8);
+  \node[chead, anchor=west, text=ffit!75!black] at (6.6,-0.75) {M-step\;\normalfont\textcolor{ink!60}{all boxes}};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (6.6,-1.25) {Responsibility-weighted mean\\of cells per prototype};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (6.6,-1.95) {Subtract matched\\outside-box centroid};
+  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (6.6,-2.65) {Re-estimate spatial prior as\\per-bin mean responsibility};
+  \draw[arr, ffit] (2.9,-3.2) -- node[tlbl, above=1.5pt, text=ffit!75!black]{responsibilities $r_{nk}$} (7.9,-3.2);
+  \draw[arr, ffit] (7.9,-3.45) -- node[tlbl, below=1.5pt, text=ffit!75!black]{prototypes $C_k$, spatial prior $\rho$} (2.9,-3.45);
 \end{scope}
 \draw[arr] (10.72,-9.6) -- (10.72,-9.95);
 
-% --- fitted masker
-\node[card, minimum width=4.2cm, minimum height=3.75cm, anchor=north west] (OUT) at (11.6,-9.95) {};
-\begin{scope}[shift={(11.6,-9.95)}]
+% --- fitted masker: the output of (4), drawn inside it
+\node[sub, minimum width=4.2cm, minimum height=3.45cm, anchor=north west] (OUT) at (11.4,-10.45) {};
+\begin{scope}[shift={(11.4,-10.45)}]
   \node[chead, anchor=west] at (0.15,-0.27) {Fitted masker};
   \begin{scope}[xshift=0.775cm]
   % everything carried to inference, keyed to the step that produces it
@@ -125,7 +131,52 @@
   \node[tlbl, anchor=north] at (1.325,-3.2) {spatial prior (1 of 3 size bands)};
   \end{scope}
 \end{scope}
-\draw[arr] (EM.east) -- (OUT.west);
+\draw[arr] (10.75,-12.17) -- (11.3,-12.17);
+
+% --- (5) mask-aware confidence (2026-11-06 redraw, Tom): parameter-free s' (no flame) feeds a small learned MLP (flame) whose output is \hat s
+% (repo name R3, dino_det/README.md). Card 3.0 -> 3.3 cm tall, FIT frame grown to match.
+\node[card, minimum width=15.4cm, minimum height=3.3cm, anchor=north west] (R5) at (0.4,-14.7) {};
+\begin{scope}[shift={(0.4,-14.7)}]
+  \node[num] at (0.27,-0.27) {5};
+  \node[chead, anchor=west] at (0.47,-0.27) {Mask-aware confidence};
+  \pgfmathsetmacro{\ps}{1.6/max(\zoomnx,\zoomny)}
+  \begin{scope}[shift={(0.3,-2.75)}, scale=\ps]
+    \zoompfg
+    \draw[trn, line width=0.5pt] \zoombox;
+  \end{scope}
+  \node[tlbl] at (1.1,-2.93) {$p_{fg}$ in box};
+  \draw[sarr, line width=0.7pt] (2.0,-1.95) -- (2.4,-1.95);
+  % parameter-free product
+  \node[eq] at (2.5,-1.2) {$\bar p$ = mean of $p_{fg}$\;\textcolor{ink!60}{(crown fraction)}};
+  \node[eq] at (2.5,-1.65) {$m$ = mean of $|2p_{fg}-1|$\;\textcolor{ink!60}{(decisiveness)}};
+  \node[eq] at (2.5,-2.15) {$s' = s\,\bar p\,m$};
+  \node[tlbl, anchor=west, text=ink!60] at (2.5,-2.55) {$s$: detector score};
+  \draw[sarr, line width=0.7pt] (6.6,-1.725) -- node[tlbl, above=1pt]{$s,\ \bar p\,m$} (7.75,-1.725);
+  % learned head
+  \begin{scope}[xshift=7.0cm]
+  \node[font=\footnotesize] at (3.0,-0.5) {\fireicon};
+  \foreach \j in {0,...,5}{ \coordinate (h\j) at (3.0,{-0.9-0.33*\j}); }
+  \coordinate (o) at (4.05,-1.725);
+  \foreach \i/\t in {0/{$s$}, 1/{$\log \bar p\,m$}, 2/{$\log h$}, 3/{$\mathrm{IoU}_{\uparrow}$}}{
+    \coordinate (x\i) at (1.9,{-1.05-0.45*\i});
+    \foreach \j in {0,...,5}{ \draw[ink!22, line width=0.3pt] (x\i) -- (h\j); }
+    \node[eq, anchor=east] at (1.75,{-1.05-0.45*\i}) {\t};
+  }
+  \foreach \j in {0,...,5}{ \draw[ink!22, line width=0.3pt] (h\j) -- (o); }
+  \foreach \i in {0,...,3}{ \fill[frz!70, draw=white, line width=0.3pt] (x\i) circle (2.2pt); }
+  \foreach \j in {0,...,5}{ \fill[trn!80, draw=white, line width=0.3pt] (h\j) circle (2.2pt); }
+  \fill[trn, draw=white, line width=0.3pt] (o) circle (2.6pt);
+  \node[tlbl, align=center] at (2.6,-2.95) {MLP, $64$ hidden; mean of $25$, fit on\\validation detections with box labels};
+  \draw[sarr, line width=0.7pt] (4.2,-1.725) -- (4.85,-1.725);
+  \node[eq] at (4.9,-1.725) {$\hat s$};
+  % rank glyph: detections sorted by \hat s (2026-11-06, Tom: "c for now")
+  \draw[sarr, line width=0.7pt] (5.35,-1.725) -- (5.95,-1.725);
+  \foreach \k/\w in {0/1.0, 1/0.8, 2/0.6, 3/0.4, 4/0.25}{ \fill[trn, opacity={1-0.17*\k}, rounded corners=0.4pt] (6.1,{-1.235-0.21*\k}) rectangle ++(\w,-0.14); }
+  \node[tlbl] at (6.6,-2.55) {ranked detections};
+  \end{scope}
+\end{scope}
+\draw[arr] (OUT.south) -- (OUT.south |- 0,-14.3) -| (3.2,-14.7);
+\node[tlbl, anchor=west] at (3.3,-14.52) {$p_{fg}$ of each detection};
 
 \end{tikzpicture}
 \end{document}

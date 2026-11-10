@@ -1,0 +1,78 @@
+{
+ "date": "2026-11-05 00:20",
+ "n_tiles_over_600": 212,
+ "max_dets_uncapped": 1186,
+ "extra_dets": 47711,
+ "n_dets_uncapped": 247859,
+ "r3_gate_max_abs": 9.536743172944284e-09,
+ "rows": {
+  "published_600": {
+   "mask": {
+    "AP50": 0.7141,
+    "AP75": 0.2713,
+    "AP50_95": 0.3424
+   },
+   "box": {
+    "AP50": 0.7471,
+    "AP75": 0.4078
+   }
+  },
+  "uncapped_md1200": {
+   "mask": {
+    "AP50": 0.7188,
+    "AP75": 0.2725,
+    "AP50_95": 0.3438
+   },
+   "box": {
+    "AP50": 0.7531,
+    "AP75": 0.4099
+   }
+  },
+  "uncapped_md600": {
+   "mask": {
+    "AP50": 0.7143,
+    "AP75": 0.2713,
+    "AP50_95": 0.3424
+   },
+   "box": {
+    "AP50": 0.7473,
+    "AP75": 0.408
+   }
+  }
+ },
+ "boot": {
+  "uncapped_md1200_minus_published_600": {
+   "AP50": {
+    "diff": 0.0047,
+    "ci95": [
+     0.0018,
+     0.0058
+    ]
+   },
+   "AP50_95": {
+    "diff": 0.0014,
+    "ci95": [
+     0.0006,
+     0.0019
+    ]
+   }
+  },
+  "uncapped_md600_minus_published_600": {
+   "AP50": {
+    "diff": 0.0002,
+    "ci95": [
+     -0.0018,
+     0.0023
+    ]
+   },
+   "AP50_95": {
+    "diff": 0.0,
+    "ci95": [
+     -0.0004,
+     0.0004
+    ]
+   }
+  }
+ },
+ "note": "ONE look per pre-registration CAP-test; single detector seed"
+}

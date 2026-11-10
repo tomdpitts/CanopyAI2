@@ -1,0 +1,71 @@
+creating index...
+index created!
+[test lace_r3ef] scorer {'AP50': 0.7141, 'AP75': 0.2713, 'AP50_95': 0.3424} bootstrap-full AP50 0.7141 AP50:95 0.3424
+creating index...
+index created!
+[test sam3zs_gmean] scorer {'AP50': 0.7013, 'AP75': 0.3107, 'AP50_95': 0.3553} bootstrap-full AP50 0.7013 AP50:95 0.3553
+[test] same box set per tile: True
+  boot 200/2000 29s
+  boot 400/2000 58s
+  boot 600/2000 87s
+  boot 800/2000 116s
+  boot 1000/2000 146s
+  boot 1200/2000 175s
+  boot 1400/2000 204s
+  boot 1600/2000 233s
+  boot 1800/2000 263s
+  boot 2000/2000 292s
+{
+ "split": "test",
+ "n_tiles": 439,
+ "n_boot": 2000,
+ "seed": 0,
+ "files": {
+  "lace_r3ef": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json",
+  "sam3zs_gmean": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/sam3_d1/preds_d1_sam3zs_gmean_test_r2048.json"
+ },
+ "full": {
+  "lace_r3ef": {
+   "scorer": {
+    "AP50": 0.7141,
+    "AP75": 0.2713,
+    "AP50_95": 0.3424
+   },
+   "bootstrap_full": {
+    "AP50": 0.7141,
+    "AP50_95": 0.3424
+   }
+  },
+  "sam3zs_gmean": {
+   "scorer": {
+    "AP50": 0.7013,
+    "AP75": 0.3107,
+    "AP50_95": 0.3553
+   },
+   "bootstrap_full": {
+    "AP50": 0.7013,
+    "AP50_95": 0.3553
+   }
+  }
+ },
+ "note": "paired tile bootstrap, test-set sampling only, single detector seed; each pipeline at its own ranking (LACE R3, SAM sqrt(s*SAM)); LACE R3 is post-hoc",
+ "same_boxes": true,
+ "lace_minus_sam3": {
+  "AP50": {
+   "diff": 0.0128,
+   "ci95": [
+    0.0072,
+    0.0207
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": -0.0128,
+   "ci95": [
+    -0.0174,
+    -0.0082
+   ],
+   "p_le_0": 1.0
+  }
+ }
+}

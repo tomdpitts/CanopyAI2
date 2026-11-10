@@ -1,0 +1,54 @@
+{
+ "tile": "tcd_val_tile_147",
+ "crop_xywh": [
+  128,
+  768,
+  512
+ ],
+ "preds_masks_rank": "boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json",
+ "preds_sprime": "boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_test_sprime_r2048.json",
+ "preds_detscore": "boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_test_detscore_r2048.json",
+ "feats": "/Users/tompitts/dphil/feat_cache/hunt_z4p_test/tcd_val_tile_147.npy",
+ "em": "/Users/tompitts/dphil/feat_cache/em_model_4p_fix.npz",
+ "alpha": 0.3,
+ "kappa_scale": 1.6,
+ "c_peak": 0.33,
+ "show_thr_r3": 0.32,
+ "r3_range_shown": [
+  0.45,
+  1.0
+ ],
+ "mask_colour": "rank within shown set (viridis, top = yellow)",
+ "n_shown": 14,
+ "subtile_xy": [
+  0,
+  512,
+  1024
+ ],
+ "encoder_window_xywh": [
+  400,
+  784,
+  48
+ ],
+ "zoom_index": 0,
+ "zoom_cell_px": 8,
+ "zoom": {
+  "box": [
+   426.3999938964844,
+   761.5999755859375,
+   536.2999877929688,
+   873.4000244140625
+  ],
+  "s": 0.87,
+  "pbar": 0.62,
+  "m": 0.864,
+  "s2": 0.479,
+  "band": 2
+ },
+ "checks": {
+  "max_abs_pfg_vs_GA_prob": 0.0,
+  "max_abs_sprime_vs_pub": 4.991468308124247e-09
+ },
+ "generator": "arch/make_arch_panels_d1_prefix.py",
+ "note": "LACE (D1 variant) + edge fix + R3, the paper's headline pipeline; local posterior reproduces it"
+}

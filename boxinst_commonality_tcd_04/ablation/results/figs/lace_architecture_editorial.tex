@@ -1,0 +1,150 @@
+% LACE architecture, EDITORIAL layout (Tom 2026-11-06: "needs to stand out in a sea of AI-generated diagrams"; chose
+% Editorial / Nature over Blender 3D, TikZ 2.5D and hand-inked). No panels: images on white, hairline zoom lines instead
+% of colour-coded marker boxes, one accent (detector orange), letter-spaced stage heads over thin rules. Fork / merge
+% flow: Input -> (1 Detection | 2 Interlaced encoding) -> 3 Box to mask -> Output.
+% Same insets as lace_architecture.tex: arch/make_arch_panels_d1_prefix.py, arch/d1_arch_meta.json.
+% Build: tectonic lace_architecture_editorial.tex   (from this directory)
+\documentclass[tikz,border=4pt]{standalone}
+\input{arch/arch_preamble.tex}
+\input{arch/d1_zoom_cells.tex}
+\input{arch/d1_enc_window.tex}
+\input{arch/d1_window.tex}
+\definecolor{acc}{HTML}{D9822B}    % the one accent = trn (boxes are drawn in it inside the jpgs)
+\definecolor{hair}{HTML}{9A9A9A}
+\tikzset{
+  flow/.style={-{Stealth[length=4.2pt,width=3.4pt]}, line width=0.6pt, ink!75},
+  fan/.style={hair, line width=0.35pt},
+  zmark/.style={white, line width=0.8pt},
+  pic/.style={inner sep=0pt, anchor=north west},
+  fcap/.style={font=\scriptsize, text=ink!80, align=left, inner sep=0pt, anchor=north west},
+  note/.style={font=\scriptsize\itshape, text=ink!55, inner sep=0pt, anchor=base west},
+  plet/.style={font=\scriptsize\bfseries, text=ink, inner sep=0pt, anchor=south west},
+}
+% stage head: number, letter-spaced caps, thin rule of width #3 cm; #4 = italic note (right of the head)
+\newcommand{\stage}[5]{%
+  \node[inner sep=0pt, anchor=base west, font=\fontsize{7.6}{9}\selectfont\addfontfeature{LetterSpace=12}\bfseries, text=ink]
+    at (#1,#2) {#3};
+  \node[note, anchor=base east] at ({#1+#4},#2) {#5};
+  \draw[ink, line width=0.5pt] (#1,{#2-0.14}) -- ++(#4,0);
+}
+
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+\pgfmathsetmacro{\zmax}{max(\zoomnx,\zoomny)}
+\pgfmathsetmacro{\ms}{1.55/\zmax}
+
+% ============================================================ input: the full 2048 px tile
+\stage{0}{0}{INPUT}{2.6}{}
+\node[pic] (tile) at (0,-0.55) {\includegraphics[width=2.6cm]{arch/d1_tile.jpg}};
+\begin{scope}[shift={(0,-0.55)}, x=2.6cm/2048, y=-2.6cm/2048]
+  \draw[zmark] (\subx,\suby) rectangle ++(\subS,\subS);
+  \draw[zmark, line width=0.6pt] ({\cropx+\encwx},{\cropy+\encwy}) rectangle ++(\encws,\encws);
+  \coordinate (subNE) at ({\subx+\subS},\suby);  \coordinate (subSE) at ({\subx+\subS},{\suby+\subS});
+  \coordinate (encNE) at ({\cropx+\encwx+\encws},{\cropy+\encwy}); \coordinate (encSE) at ({\cropx+\encwx+\encws},{\cropy+\encwy+\encws});
+\end{scope}
+\node[fcap] at (0,-3.28) {RGB tile,\\$2048$\,px,\\$0.1$\,m/px};
+
+% ============================================================ 1 detection (top track)
+\stage{3.45}{0}{1\quad DETECTION}{6.55}{trained on boxes}
+\node[pic] (sub) at (3.45,-0.55) {\includegraphics[width=2.0cm]{arch/d1_sub.jpg}};
+\begin{scope}[shift={(3.45,-0.55)}, x=2.0cm/\subS, y=-2.0cm/\subS]
+  \draw[zmark] ({\cropx-\subx},{\cropy-\suby}) rectangle ++(\cropS,\cropS);
+  \coordinate (crNE) at ({\cropx-\subx+\cropS},{\cropy-\suby}); \coordinate (crSE) at ({\cropx-\subx+\cropS},{\cropy-\suby+\cropS});
+\end{scope}
+\draw[fan] (subNE) -- (sub.north west);
+\draw[fan] (subSE) -- (sub.south west);
+\node[fcap] at (3.45,-2.68) {one of $3\times3$\\$1024$\,px subtiles};
+% detector glyph: backbone trapezoid + decoder block, line art
+\draw[flow] (5.6,-1.55) -- (5.95,-1.55);
+\draw[ink!75, line width=0.6pt, fill=acc!10, line join=round] (6.05,-0.95) -- (6.7,-1.25) -- (6.7,-1.85) -- (6.05,-2.15) -- cycle;
+\draw[ink!75, line width=0.6pt, fill=acc!25, rounded corners=1pt] (6.8,-1.25) rectangle (7.15,-1.85);
+\foreach \i in {0,...,4}{ \fill[acc] (7.33,{-1.29-0.13*\i}) circle (0.7pt); }
+\node[font=\tiny, text=ink!65, anchor=north] at (6.7,-2.25) {DINO-DETR, Swin-L};
+\node[font=\tiny, text=ink!65, anchor=north] at (7.33,-0.8) {queries};
+\draw[flow] (7.5,-1.55) -- (7.95,-1.55);
+\node[pic] (crop) at (8.0,-0.55) {\includegraphics[width=2.0cm]{arch/d1_det_boxes.jpg}};
+\node[fcap] at (8.0,-2.68) {boxes with\\detector score $s$};
+
+% ============================================================ 2 interlaced encoding (bottom track)
+\stage{3.45}{-3.6}{2\quad INTERLACED ENCODING}{6.55}{frozen}
+\def\ex{3.45}\def\ey{-4.15}
+\node[pic] (win) at (\ex,\ey) {\includegraphics[width=1.92cm]{arch/d1_enc_rgb.png}};
+\begin{scope}[shift={(\ex,\ey)}, x=0.04cm, y=-0.04cm, line width=0.9pt]
+  \foreach \dy/\dx/\c in {0/0/q0, 0/8/q1, 8/0/q2, 8/8/q3}{
+    \fill[\c, opacity=0.10] (16+\dx,16+\dy) rectangle ++(16,16);
+  }
+  \foreach \c/\ax/\ay/\bx/\by in {
+      q0/16/16/24/16, q0/16/32/24/32, q0/16/16/16/24, q0/32/16/32/24,
+      q1/32/16/40/16, q1/32/32/40/32, q1/24/16/24/24, q1/40/16/40/24,
+      q2/16/24/24/24, q2/16/40/24/40, q2/16/32/16/40, q2/32/32/32/40,
+      q3/32/24/40/24, q3/32/40/40/40, q3/24/32/24/40, q3/40/32/40/40}{
+    \draw[\c, line cap=rect] (\ax,\ay) -- (\bx,\by);
+  }
+  \foreach \c/\d/\ax/\ay/\bx/\by in {
+      q0/q1/24/16/32/16, q0/q1/24/32/32/32, q2/q3/24/24/32/24, q2/q3/24/40/32/40,
+      q0/q2/16/24/16/32, q0/q2/32/24/32/32, q1/q3/24/24/24/32, q1/q3/40/24/40/32}{
+    \draw[\c] (\ax,\ay) -- (\bx,\by);
+    \draw[\d, dash pattern=on 1.5pt off 1.5pt] (\ax,\ay) -- (\bx,\by);
+  }
+\end{scope}
+\foreach \dy/\dx/\c in {0/0/q0, 0/8/q1, 8/0/q2, 8/8/q3}{
+  \foreach \i in {0,1,2}{ \foreach \j in {0,1,2}{
+    \pgfmathtruncatemacro{\px}{\dx+8+16*\i}\pgfmathtruncatemacro{\py}{\dy+8+16*\j}
+    \ifnum\px<47 \ifnum\py<47
+      \fill[\c, draw=white, line width=0.3pt] ({\ex+0.04*\px},{\ey-0.04*\py}) circle (1.4pt);
+    \fi\fi
+  }}
+}
+\draw[fan] (encNE) .. controls (2.2,-1.6) and (3.1,-3.4) .. (win.north west);
+\draw[fan] (encSE) .. controls (1.9,-2.2) and (2.6,-5.6) .. (win.south west);
+\node[fcap] at (3.45,-6.25) {$16$\,px patches at\\$4$\,px offsets};
+% ViT glyph: layer stack, final layer taken
+\draw[flow] (5.6,-5.11) -- (5.95,-5.11);
+\foreach \i in {0,...,5}{
+  \ifnum\i=0 \def\c{ink!80}\else\def\c{ink!18}\fi
+  \fill[\c, rounded corners=0.5pt] (6.05,{-4.6-0.17*\i}) rectangle ++(0.75,-0.1);
+}
+\node[font=\tiny, text=ink!65, anchor=south] at (6.43,-4.58) {layer 24};
+\node[font=\tiny, text=ink!65, anchor=north] at (6.43,-5.68) {DINOv3 ViT-L/16};
+\draw[flow] (6.95,-5.11) -- (7.35,-5.11);
+\begin{scope}[shift={(7.45,-5.76)}]
+  \foreach \i in {0,...,4}{ \foreach \j in {0,...,4}{
+    \pgfmathtruncatemacro{\q}{mod(\i,2)+2*mod(4-\j,2)}
+    \ifcase\q \def\c{q0}\or\def\c{q1}\or\def\c{q2}\else\def\c{q3}\fi
+    \fill[\c!60] (0.26*\i,0.26*\j) rectangle ++(0.26,0.26);
+  }}
+  \draw[white, line width=0.4pt, step=0.26] (0,0) grid (1.3,1.3);
+\end{scope}
+\node[fcap] at (7.45,-6.25) {interlaced, stride $4$\,px\\$\widetilde F\in\mathbb{R}^{1024\times512\times512}$};
+
+% ============================================================ 3 box to mask (merge)
+\stage{10.75}{0}{3\quad BOX $\to$ MASK}{3.75}{}
+\draw[flow] (10.1,-1.55) -- (10.62,-1.55);
+\draw[flow] (8.85,-5.11) -- (10.35,-5.11) |- (10.62,-3.85);   % right-angled connector (Tom 2026-11-06)
+\foreach \x/\y/\m/\n/\t in {10.75/-0.75/\zoomA/a/{$A$}, 12.95/-0.75/\zoomAbar/b/{$\bar A$},
+                            10.75/-2.95/\zoompfg/c/{$p_{fg}$}, 12.95/-2.95/\zoommask/d/{$p_{fg}\geq\tau$}}{
+  \node[plet] at (\x,{\y-0.02}) {\n\enspace\normalfont\t};
+  \begin{scope}[shift={(\x,{\y-0.12-1.55})}, scale=\ms]
+    \m
+    \draw[acc, line width=0.45pt] \zoombox;
+  \end{scope}
+}
+\shade[left color=bbg, right color=bmid] (10.75,-4.95) rectangle (11.9,-5.03);
+\shade[left color=bmid, right color=bfg] (11.9,-4.95) rectangle (13.05,-5.03);
+\node[font=\tiny, text=ink!65, anchor=north west] at (10.75,-5.1) {background};
+\node[font=\tiny, text=ink!65, anchor=north east] at (13.05,-5.1) {crown};
+\node[fcap, text width=3.75cm] at (10.75,-5.55) {one E-step on the cells of each box (zoomed: one box); rescored by the mean and decisiveness of $p_{fg}$};
+
+% ============================================================ output
+\draw[flow] (14.65,-1.65) -- (15.17,-1.65);
+\stage{15.3}{0}{OUTPUT}{2.6}{}
+\node[pic] (out) at (15.3,-0.55) {\includegraphics[width=2.6cm]{arch/d1_out_masks.jpg}};
+\node[fcap, text width=2.6cm] at (15.3,-3.28) {instance masks at $2048$\,px,\\RGB-guided upsampling};
+\shade[left color=vlo, right color=vmid] (15.3,-4.42) rectangle (16.6,-4.5);
+\shade[left color=vmid, right color=vhi] (16.6,-4.42) rectangle (17.9,-4.5);
+\node[font=\tiny, text=ink!65, anchor=north west] at (15.3,-4.57) {lower};
+\node[font=\tiny, text=ink!65, anchor=north east] at (17.9,-4.57) {higher};
+\node[font=\tiny, text=ink!65, anchor=north] at (16.6,-4.57) {learned rank};
+
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,142 @@
+{
+  "label": "Instance-level crown-overlap stratification, 439 OAM-TCD, knobbed, 3 seeds",
+  "definition": "touching = GT box has box-IoU > 0 with another GT box (masker_lab/failure_analysis.py:106)",
+  "gating": {
+    "ap": "reproduces published per-seed mask AP (lib/gate.py)",
+    "box_iou_mat": "exact vs brute force, 200 random configs",
+    "not_gated": "failure_analysis_results.json's 0.316/0.4614 profile is from a different model and cohort (200 tiles, 16px native-4096 beta=0, live det_t8, box-IoU matching) and is not reproducible from the deployed 8px knobbed preds"
+  },
+  "gt_level": {
+    "n_gt_crowns": 25705,
+    "touching_rate": 0.3932,
+    "note": "model-independent property of the OAM-TCD test annotations"
+  },
+  "matching_arms": {
+    "boxmatched": "preds matched to GT by BOX IoU>=0.5, then mask IoU measured. This is failure_analysis.py's convention and the only arm that can observe a mask failure. USE THIS ONE.",
+    "maskmatched": "preds matched by MASK IoU>=0.5. Its mask-fail rate is zero by construction and is reported only for completeness; its mean mask IoU is conditioned on the mask already having succeeded."
+  },
+  "band_mean_std_boxmatched": {
+    "touching": {
+      "mean_mask_iou": [
+        0.7353,
+        0.0
+      ],
+      "mask_fail_rate_iou_lt_0.5": [
+        0.0241,
+        0.0
+      ],
+      "frac_of_box_tps": [
+        0.394,
+        0.0
+      ]
+    },
+    "isolated": {
+      "mean_mask_iou": [
+        0.733,
+        0.0
+      ],
+      "mask_fail_rate_iou_lt_0.5": [
+        0.0223,
+        0.0
+      ],
+      "frac_of_box_tps": [
+        0.606,
+        0.0
+      ]
+    }
+  },
+  "band_mean_std_maskmatched": {
+    "touching": {
+      "mean_mask_iou": [
+        0.7399,
+        0.0
+      ],
+      "mask_fail_rate_iou_lt_0.5": [
+        0.0,
+        0.0
+      ],
+      "frac_of_tps": [
+        0.3922,
+        0.0
+      ]
+    },
+    "isolated": {
+      "mean_mask_iou": [
+        0.7356,
+        0.0
+      ],
+      "mask_fail_rate_iou_lt_0.5": [
+        0.0,
+        0.0
+      ],
+      "frac_of_tps": [
+        0.6078,
+        0.0
+      ]
+    }
+  },
+  "per_seed": {
+    "0": {
+      "n_matched_tp": 22343,
+      "n_box_tp": 22525,
+      "ap": {
+        "mask_mAP50": 0.7141,
+        "mask_mAP50_95": 0.343,
+        "per_iou": [
+          0.7141,
+          0.6785,
+          0.6237,
+          0.5373,
+          0.418,
+          0.2723,
+          0.1304,
+          0.0425,
+          0.0121,
+          0.0014
+        ]
+      },
+      "by_touching_boxmatched": {
+        "touching": {
+          "n": 8874,
+          "frac_of_box_tps": 0.394,
+          "mean_mask_iou": 0.7353,
+          "mask_fail_rate_iou_lt_0.5": 0.0241,
+          "mean_gt_size_px": 68.87
+        },
+        "isolated": {
+          "n": 13651,
+          "frac_of_box_tps": 0.606,
+          "mean_mask_iou": 0.733,
+          "mask_fail_rate_iou_lt_0.5": 0.0223,
+          "mean_gt_size_px": 42.03
+        }
+      },
+      "overall_mask_fail_rate_among_box_tps": 0.023,
+      "by_touching": {
+        "touching": {
+          "n": 8764,
+          "frac_of_tps": 0.3922,
+          "mean_mask_iou": 0.7399,
+          "median_mask_iou": 0.751,
+          "mask_fail_rate_iou_lt_0.5": 0.0,
+          "mean_gt_size_px": 68.9568,
+          "mean_box_oversize": 0.9558,
+          "mean_gt_fill": 0.7021,
+          "mean_cover_ratio": 1.0356
+        },
+        "isolated": {
+          "n": 13579,
+          "frac_of_tps": 0.6078,
+          "mean_mask_iou": 0.7356,
+          "median_mask_iou": 0.7484,
+          "mask_fail_rate_iou_lt_0.5": 0.0,
+          "mean_gt_size_px": 42.1009,
+          "mean_box_oversize": 1.0357,
+          "mean_gt_fill": 0.7688,
+          "mean_cover_ratio": 1.0404
+        }
+      },
+      "delta_mean_mask_iou_isolated_minus_touching": -0.0043
+    }
+  }
+}
