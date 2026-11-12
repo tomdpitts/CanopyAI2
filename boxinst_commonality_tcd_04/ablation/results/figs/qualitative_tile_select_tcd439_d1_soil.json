@@ -1,0 +1,107 @@
+{
+ "rule": "Candidates: OAM-TCD 439 holdout tiles (unseen by LACE, Restor and BoxTeacher; the sparse-236 slice is NOT used because 220\nof its tiles are in the OAM-TCD train split Restor was trained on) whose image is >= MIN_SOIL bare soil, with >= MIN_CROWNS\nGT crowns and <= MAX_CANOPY canopy-class area (so scorer-ignored regions are immaterial). Bare-soil fraction is measured\nfrom the RGB image alone (512 px resize, nodata excluded): a pixel is soil if warm-toned (R - B >= 15), not green\n(excess green 2G - R - B < 10) and not dark (mean > 80); this rejects vegetation, shadow and grey roads/roofs. Tile median\nis 0.05. For each candidate, per-tile mask AP50 (COCO 101-point interpolation, greedy score-ordered matching at\nIoU >= 0.5, predictions > 50 % in canopy ignored) is computed for LACE and Restor. The chosen tile is the candidate whose\nLACE - Restor AP50 margin is closest to the candidate median.",
+ "min_soil": 0.4,
+ "n": 7,
+ "median_margin": 0.1197,
+ "frac_lace_ahead": 0.8571,
+ "chosen": "tcd_val_tile_122",
+ "ranked": [
+  {
+   "tile": "tcd_val_tile_122",
+   "biome": 1,
+   "soil": 0.5036,
+   "crowns": 166,
+   "canopy": 0.0041,
+   "ap50_lace": 0.6439,
+   "ap50_restor": 0.5242,
+   "margin": 0.1197
+  },
+  {
+   "tile": "tcd_val_tile_93",
+   "biome": 1,
+   "soil": 0.411,
+   "crowns": 220,
+   "canopy": 0.02868,
+   "ap50_lace": 0.6851,
+   "ap50_restor": 0.5649,
+   "margin": 0.1202
+  },
+  {
+   "tile": "tcd_val_tile_436",
+   "biome": 4,
+   "soil": 0.4601,
+   "crowns": 10,
+   "canopy": 0.02798,
+   "ap50_lace": 0.6501,
+   "ap50_restor": 0.5164,
+   "margin": 0.1337
+  },
+  {
+   "tile": "tcd_val_tile_120",
+   "biome": 4,
+   "soil": 0.5564,
+   "crowns": 11,
+   "canopy": 0.00038,
+   "ap50_lace": 0.4292,
+   "ap50_restor": 0.3682,
+   "margin": 0.061
+  },
+  {
+   "tile": "tcd_val_tile_158",
+   "biome": 1,
+   "soil": 0.4521,
+   "crowns": 10,
+   "canopy": 0.0,
+   "ap50_lace": 0.1514,
+   "ap50_restor": 0.1049,
+   "margin": 0.0465
+  },
+  {
+   "tile": "tcd_val_tile_240",
+   "biome": 1,
+   "soil": 0.794,
+   "crowns": 226,
+   "canopy": 0.04818,
+   "ap50_lace": 0.7178,
+   "ap50_restor": 0.5117,
+   "margin": 0.206
+  },
+  {
+   "tile": "tcd_val_tile_262",
+   "biome": 7,
+   "soil": 0.5681,
+   "crowns": 13,
+   "canopy": 0.00317,
+   "ap50_lace": 0.828,
+   "ap50_restor": 0.8853,
+   "margin": -0.0573
+  }
+ ],
+ "sensitivity": {
+  "0.3": {
+   "min_soil": 0.3,
+   "n": 12,
+   "median_margin": 0.0632,
+   "frac_lace_ahead": 0.8333,
+   "chosen": "tcd_val_tile_360"
+  },
+  "0.4": {
+   "min_soil": 0.4,
+   "n": 7,
+   "median_margin": 0.1197,
+   "frac_lace_ahead": 0.8571,
+   "chosen": "tcd_val_tile_122"
+  },
+  "0.5": {
+   "min_soil": 0.5,
+   "n": 4,
+   "median_margin": 0.0903,
+   "frac_lace_ahead": 0.75,
+   "chosen": "tcd_val_tile_120"
+  }
+ },
+ "models": {
+  "LACE": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json",
+  "Restor": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/preds_restor_rpn1000_r2048_treeonly.json"
+ }
+}

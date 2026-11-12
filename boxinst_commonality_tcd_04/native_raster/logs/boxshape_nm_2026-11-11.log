@@ -1,0 +1,106 @@
+[test] lace: mask {'AP50': 0.7141, 'AP75': 0.2713, 'AP50_95': 0.3424, 'n_det': 200148}
+[test] lace_nologpm: mask {'AP50': 0.7058, 'AP75': 0.2701, 'AP50_95': 0.3399, 'n_det': 200148}
+[test] box: mask {'AP50': 0.6405, 'AP75': 0.0467, 'AP50_95': 0.2166, 'n_det': 200148}
+[test] ellipse: mask {'AP50': 0.6938, 'AP75': 0.224, 'AP50_95': 0.3158, 'n_det': 200148}
+[test] gates PASS
+[test] resample 200/2000
+[test] resample 400/2000
+[test] resample 600/2000
+[test] resample 800/2000
+[test] resample 1000/2000
+[test] resample 1200/2000
+[test] resample 1400/2000
+[test] resample 1600/2000
+[test] resample 1800/2000
+[test] resample 2000/2000
+{
+ "box": {
+  "AP50": {
+   "diff": 0.0736,
+   "ci95": [
+    0.0619,
+    0.0896
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.1258,
+   "ci95": [
+    0.1162,
+    0.1356
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "ellipse": {
+  "AP50": {
+   "diff": 0.0203,
+   "ci95": [
+    0.0171,
+    0.0264
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0266,
+   "ci95": [
+    0.0217,
+    0.0322
+   ],
+   "p_le_0": 0.0
+  }
+ }
+}
+[sparse] lace: mask {'AP50': 0.7434, 'AP75': 0.4006, 'AP50_95': 0.4031, 'n_det': 106514}
+[sparse] lace_nologpm: mask {'AP50': 0.7396, 'AP75': 0.3988, 'AP50_95': 0.4011, 'n_det': 106514}
+[sparse] box: mask {'AP50': 0.7116, 'AP75': 0.0809, 'AP50_95': 0.2765, 'n_det': 106514}
+[sparse] ellipse: mask {'AP50': 0.7351, 'AP75': 0.3238, 'AP50_95': 0.3677, 'n_det': 106514}
+[sparse] gates PASS
+[sparse] resample 200/2000
+[sparse] resample 400/2000
+[sparse] resample 600/2000
+[sparse] resample 800/2000
+[sparse] resample 1000/2000
+[sparse] resample 1200/2000
+[sparse] resample 1400/2000
+[sparse] resample 1600/2000
+[sparse] resample 1800/2000
+[sparse] resample 2000/2000
+{
+ "box": {
+  "AP50": {
+   "diff": 0.0318,
+   "ci95": [
+    0.024,
+    0.0436
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.1266,
+   "ci95": [
+    0.1105,
+    0.143
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "ellipse": {
+  "AP50": {
+   "diff": 0.0083,
+   "ci95": [
+    0.0044,
+    0.0145
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0354,
+   "ci95": [
+    0.0254,
+    0.0453
+   ],
+   "p_le_0": 0.0
+  }
+ }
+}

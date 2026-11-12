@@ -802,3 +802,99 @@ ONE look, test 439 + sparse-236, local CPU (`t3_abl.py`, `results/t3_abl.json`, 
 - **Gate 3:** fasteval reproduces score_coco on every row (|Δ| < 1.5e-4).
 - **Report:** mask AP50 / AP75 / AP50:95 per row and split; paired tile bootstrap (2,000, seed 0) on AP50 and AP50:95: factor rows vs s′, input-drop rows vs ŝ.
 - **Disclosure:** six more scored looks per split at ablation rows; ŝ itself is unchanged.
+
+## RESULTS, T3 (2026-11-10; `results/t3_abl.json`, `results/{preds,scored}_dino_swinl_s0_{test,sparse}_t3_<row>_r2048.json`, per-tile p̄/m `feat_cache/t3_pm_{test,sparse}/`, log `native_raster/logs/t3_abl_2026-11-10.log`): ALL GATES PASS, ONE look
+Gate 1: max |s·p̄·m − s′| = 5.0e-9 on both splits (8 dp rounding of s′). Gate 2: 4-input refit = published R3 exactly (0.0). Gate 3: fasteval = score_coco on all 8 rows of both splits.
+
+| Ranking | test AP50 | AP75 | AP50:95 | sparse AP50 | AP75 | AP50:95 | Δ vs ref, AP50 [95% CI] test / sparse | Δ AP50:95 test / sparse |
+|---|---|---|---|---|---|---|---|---|
+| s′ (ref for factor rows) | 0.7044 | 0.2644 | 0.3366 | 0.7350 | 0.3944 | 0.3980 | | |
+| s·m (drop p̄) | 0.7012 | 0.2572 | 0.3319 | 0.7304 | 0.3890 | 0.3939 | −0.0032 [−0.0046, −0.0017] / −0.0046 [−0.0096, −0.0014] | −0.0047 [−0.0054, −0.0035] / −0.0041 [−0.0068, −0.0018] |
+| s·p̄ (drop m) | 0.6959 | 0.2665 | 0.3345 | 0.7327 | 0.3944 | 0.3964 | −0.0085 [−0.0126, −0.0045] / −0.0023 [−0.0075, +0.0031] | −0.0020 [−0.0040, +0.0003] / −0.0016 [−0.0050, +0.0023] |
+| ŝ (ref for drop rows) | 0.7141 | 0.2713 | 0.3424 | 0.7434 | 0.4006 | 0.4031 | | |
+| ŝ − s | 0.6407 | 0.2374 | 0.3036 | 0.6444 | 0.3349 | 0.3415 | −0.0734 [−0.0894, −0.0568] / −0.0990 [−0.1139, −0.0827] | −0.0388 / −0.0615 (CIs < 0) |
+| ŝ − log(p̄m) | 0.7058 | 0.2701 | 0.3399 | 0.7396 | 0.3988 | 0.4011 | −0.0083 [−0.0102, −0.0062] / −0.0038 [−0.0065, −0.0015] | −0.0025 / −0.0020 (CIs < 0) |
+| ŝ − log h | 0.7068 | 0.2643 | 0.3365 | 0.7373 | 0.3937 | 0.3979 | −0.0073 [−0.0097, −0.0047] / −0.0061 [−0.0130, −0.0018] | −0.0059 / −0.0051 (CIs < 0) |
+| ŝ − IoU↑ | 0.7082 | 0.2705 | 0.3405 | 0.7395 | 0.4007 | 0.4021 | −0.0059 [−0.0075, −0.0044] / −0.0039 [−0.0054, −0.0026] | −0.0019 / −0.0010 (CIs < 0) |
+
+- **Every ŝ input is needed:** dropping any one lowers AP50 on both splits with the CI excluding 0. The detector score matters most by far (−0.07 / −0.10).
+- **The mask term in ŝ is real but modest:** without log(p̄m), ŝ falls to 0.706 / 0.740, about level with s′ (0.704 / 0.735). The box cues (log h, IoU↑) on their own recover roughly the s′ gain; log(p̄m) adds +0.008 test / +0.004 sparse on top.
+- **Both factors of s′ help on test** (drop p̄ −0.003, drop m −0.009 AP50); on sparse, drop p̄ −0.005 (CI < 0) but drop m −0.002 (n.s.).
+- Paper Table 3 (tab:factors) filled 2026-11-10 from these files (3 dp half up); bolding unchanged (ŝ best in every column).
+
+## Pre-registration T1-boot (2026-11-11, Tom: "set up cheap half run and execute"; BEFORE any number)
+
+Paired tile-bootstrap CIs for LACE − every baseline row of tab:oamtcd439 (test 439: Restor rpn1000 tree-only, Detectree2, Box2Mask Swin-L, Box2Mask R-50, BoxTeacher) and tab:sparse236 (sparse 236: Detectree2, Box2Mask Swin-L, BoxTeacher). LACE = deployed D1 + edge fix + R3 (ŝ), `preds_dino_swinl_s0_{test,sparse}_R3_ef_r2048.json`. Mask AP50 and AP50:95, canopy-neutral crowd arm, maxDets 600, each row's own protocol floor (LACE 0.0, baselines 0.05). 2,000 resamples, seed 0, same draw for every row. Test-set sampling uncertainty only (single training seed everywhere).
+- **Gate:** each row's full-sample AP50 and AP50:95 from the bootstrap code reproduces its `scored_*.json` within 5e-4, else abort before resampling.
+- **Prior record:** D1 (s′) − BoxTeacher sparse AP50 +0.014 [−0.005, 0.033] (`results/boot_sparse_mask_ap50.json`), CI included 0; the ŝ comparison (+0.022) was never bootstrapped.
+- **Use:** a Δ [95% CI] column for Table 1 and the sparse table; the abstract's sparse BoxTeacher claim (changed 2026-11-11) stands or is softened on this result.
+- Script `t1_boot.py`; outputs `results/t1_boot_{test,sparse}.json`; log `native_raster/logs/t1_boot_2026-11-11.log`. ONE look per split.
+
+## Pre-registration BOXSHAPE (2026-11-11; PREPARED, NOT RUN — awaiting Tom's greenlight, after T1-boot)
+
+Geometric-masker control. LACE's deployed test/sparse detections (D1 + edge fix + R3), boxes, ŝ scores, floor 0.0 and order held fixed; each mask replaced by (a) the filled box, (b) the inscribed ellipse (72-vertex polygon, pycocotools rasterised at 2048). No ŝ refit: the ranking is held fixed by design so only mask geometry varies (ŝ reads LACE's posterior via log(p̄m), which helps every arm equally). CPU only, local.
+- **Gate:** the unchanged "lace" arm reproduces `scored_dino_swinl_s0_{split}_R3_ef_r2048.json` mask AP50 / AP50:95 to 4 dp.
+- **Readout (fixed now):** LACE − box and LACE − ellipse, mask AP50 and AP50:95, paired tile bootstrap (2,000, seed 0). AP50:95 is the primary measure of masker value: a tight box around a round crown gives ≈ π/4 IoU, so AP50 is expected to discriminate weakly. A LACE − ellipse AP50:95 CI excluding 0 supports "the masker adds delineation beyond box geometry"; a CI including 0 at AP50 alone is expected and not a negative.
+- Smoke (2026-11-11, no AP read): 40×20 box → area 800, ellipse → 628 (π·20·10 = 628.3).
+- Script `boxshape.py`; outputs `results/boxshape_{split}.json`, `results/preds_boxshape_{box,ellipse}_{split}_r2048.json`; log `native_raster/logs/boxshape_<date>.log`. ONE look per split.
+
+### T1-boot result (2026-11-11, one look per split; gate PASS on all 10 rows, exact to 4 dp)
+
+LACE (ŝ) − row, paired tile bootstrap 2,000, seed 0. `results/t1_boot_{test,sparse}.json`, log `native_raster/logs/t1_boot_2026-11-11.log` (test 334 s, sparse 137 s).
+
+| Split | Row | ΔAP50 [95% CI] | ΔAP50:95 [95% CI] |
+|---|---|---|---|
+| test | Restor | +0.066 [0.051, 0.082] | +0.009 [0.000, 0.017] |
+| test | Detectree2 | +0.084 [0.075, 0.097] | +0.033 [0.027, 0.038] |
+| test | Box2Mask Swin-L | +0.125 [0.108, 0.145] | +0.098 [0.088, 0.107] |
+| test | Box2Mask R-50 | +0.264 [0.245, 0.285] | +0.178 [0.167, 0.190] |
+| test | BoxTeacher | +0.050 [0.043, 0.060] | +0.038 [0.033, 0.042] |
+| sparse | Detectree2 | +0.107 [0.085, 0.135] | +0.050 [0.038, 0.063] |
+| sparse | Box2Mask Swin-L | +0.139 [0.095, 0.175] | +0.141 [0.109, 0.174] |
+| sparse | BoxTeacher | +0.023 [0.009, 0.039] | +0.028 [0.017, 0.038] |
+
+- Every CI excludes 0. Sparse LACE − BoxTeacher is now significant (s′-era +0.014 [−0.005, 0.033] was not); the abstract claim stands.
+- Weakest: test LACE − Restor AP50:95 +0.0092 [0.0001, 0.0169], lower bound at 0 — report as marginal.
+- Test-set sampling only; single training seed for every row.
+
+### BOXSHAPE result (2026-11-11, Tom greenlit; one look per split; gate PASS both splits, lace arm exact to 4 dp)
+
+Same D1 boxes, ŝ scores and order in every arm; only mask geometry differs. `results/boxshape_{test,sparse}.json`, log `native_raster/logs/boxshape_2026-11-11.log`.
+
+| Split | Arm | AP50 | AP75 | AP50:95 |
+|---|---|---|---|---|
+| test | LACE masks | 0.714 | 0.271 | 0.342 |
+| test | inscribed ellipse | 0.701 | 0.223 | 0.317 |
+| test | filled box | 0.647 | 0.040 | 0.217 |
+| sparse | LACE masks | 0.743 | 0.401 | 0.403 |
+| sparse | inscribed ellipse | 0.739 | 0.323 | 0.369 |
+| sparse | filled box | 0.714 | 0.080 | 0.276 |
+
+LACE − arm, paired tile bootstrap (2,000, seed 0): test ellipse AP50 +0.013 [0.010, 0.018], AP50:95 +0.025 [0.020, 0.030]; test box +0.068 [0.056, 0.083], +0.126 [0.116, 0.135]; sparse ellipse +0.005 [0.002, 0.010], +0.034 [0.024, 0.044]; sparse box +0.030 [0.022, 0.040], +0.127 [0.111, 0.144].
+- **Masker beats geometry on every split and metric (all CIs exclude 0).** Per the pre-registered readout, AP50:95 is primary: +0.025 test, +0.034 sparse over the ellipse.
+- **But D1 boxes + ellipse alone (0.701 / 0.317 test) beat every Table 1 baseline at AP50** (BoxTeacher 0.664, Restor 0.648); at AP50:95 the ellipse (0.317) trails Restor (0.333), and LACE masks (0.342) are what put LACE ahead. Most of the AP50 margin over baselines is the detector + ranking.
+- Ellipse at AP50 ≈ SAM 3 zs on the same boxes (0.701); LACE's +0.013 over each is the same size.
+- Caveat: ŝ reads LACE's posterior (log p̄m), so the ellipse/box arms inherit LACE-informed ranking; with s-only ranking they would likely score lower.
+
+## Pre-registration BOXSHAPE-2 (2026-11-11, Tom: geometric rows "shouldn't access the LACE reranking" → "ŝ without mask"; BEFORE any number)
+
+Second look at the geometric controls, superseding BOXSHAPE for tab:masker. Filled box / inscribed ellipse on the same D1 boxes, ranked by the 3-input ŝ refit without log(p̄m) (s, log h, IoU↑; T3 `no_logpm` scores), because a geometric masker has no posterior. LACE reference = deployed 4-input ŝ with LACE masks. So LACE − ellipse now measures the mask module's full contribution (shape + its ranking signal), not shape alone.
+- **Gates:** (1) `no_logpm` boxes identical and same order as deployed (checked, both splits); (2) `no_logpm` + LACE masks reproduces t3_abl 0.7058/0.3399 test, 0.7396/0.4011 sparse; (3) deployed reproduces 0.7141/0.3424, 0.7434/0.4031.
+- **Disclosure:** second look, chosen after BOXSHAPE was read; the ranking choice is a definitional fix, not tuned on the result.
+- Script `boxshape_nm.py`; outputs `results/boxshape_nm_{split}.json`, `results/preds_boxshape_nm_{box,ellipse}_{split}_r2048.json`; log `native_raster/logs/boxshape_nm_2026-11-11.log`.
+
+### BOXSHAPE-2 result (2026-11-11; all three gates PASS both splits)
+
+`results/boxshape_nm_{test,sparse}.json`. Geometric arms ranked by 3-input ŝ (no log p̄m); LACE deployed.
+
+| Split | Arm | AP50 | AP75 | AP50:95 |
+|---|---|---|---|---|
+| test | ellipse | 0.694 | 0.224 | 0.316 |
+| test | filled box | 0.641 | 0.047 | 0.217 |
+| sparse | ellipse | 0.735 | 0.324 | 0.368 |
+| sparse | filled box | 0.712 | 0.081 | 0.277 |
+
+LACE − ellipse: test AP50 +0.020 [0.017, 0.026], AP50:95 +0.027 [0.022, 0.032]; sparse +0.008 [0.004, 0.015], +0.035 [0.025, 0.045]. LACE − box: test +0.074 [0.062, 0.090], +0.126 [0.116, 0.136]; sparse +0.032 [0.024, 0.044], +0.127 [0.111, 0.143].
+- Ellipse drops 0.007 AP50 test / 0.003 sparse vs BOXSHAPE (the log p̄m ranking signal), close to the tab:factors −log(p̄m) cost.
+- Ellipse on D1 boxes (0.694) still beats every Table 1 baseline at AP50; trails Restor at AP50:95 (0.316 vs 0.333).
+- tab:masker geometric rows, caption and footnote updated to these numbers (supersedes BOXSHAPE).

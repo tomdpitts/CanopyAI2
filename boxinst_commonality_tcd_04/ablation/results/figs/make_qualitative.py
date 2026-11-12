@@ -6,14 +6,14 @@ Two sets, selected with --set:
 
 Every panel is a CROP_PX window of the 2048 tile (auto-chosen: most GT centroids). Fills are
 per-instance colours shared between a prediction and the GT crown it matches (mask IoU >= 0.5,
-COCO-style greedy score-ordered matching); white outline = match, red = false positive, dashed
+COCO-style greedy score-ordered matching); white outline = match, red = false positive, solid
 yellow = GT crown the model missed. Predictions sitting >50 % in unlabelled canopy are ignored by
 the scorer and are NOT drawn; tiles were chosen with <0.5 % canopy so this is immaterial. Each
 model is shown above its own best-F1 score threshold over the whole set (display only; the AP
 tables use the full ranked list). Thresholds are cached in qualitative_thresholds_<set>.json.
 
 Usage: .venv/bin/python boxinst_commonality_tcd_04/ablation/results/figs/make_qualitative.py --set tcd439
-env overrides: TILES=180,122,...  CROP_PX=768  SUFFIX=_x
+env overrides: TILES=180,122,...  CROP_PX=768  CROP_XY=x0,y0 (single tile)  FILL_ALPHA=0.42  SUFFIX=_x
   LACE_PREDS=<path relative to native_raster/> replaces the LACE file; thresholds then go to
   qualitative_thresholds_<set><SUFFIX>.json (baseline thresholds copied from the main file, LACE recomputed).
 """
@@ -34,6 +34,7 @@ OUT = os.path.dirname(os.path.abspath(__file__))
 RES = 2048
 IOU_T = 0.5
 OUT_PX = 900
+FILL_ALPHA = 0.42
 
 SETS = {
     "tcd439": dict(
@@ -43,6 +44,13 @@ SETS = {
                 ("Detectree2", "seamfix/preds_dt2_s0v2_r2048_seamfix.json"),
                 ("Box2Mask Swin-L", "seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json")],
         tiles="125,146,24,100", per_row=1, crop=768),
+    # 2026-11-12: D1 strip. Tile 122 = median LACE-Restor margin among bare-soil 439 tiles (select_qual_tile.py); crop (128,640) by eye.
+    "tcd439_d1": dict(
+        gt=os.path.join(ROOT, "test_gt.json"), imgdir=os.path.join(REPO, "data/tcd/test"), prefix="tcd_val_tile_",
+        models=[("LACE (ours)", "../dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json"),
+                ("Restor", "preds_restor_rpn1000_r2048_treeonly.json"),
+                ("BoxTeacher", "../box_supervised_baselines/tierb/results/20261101_192510/boxteacher/results/preds_boxteacher_sub_test_r2048.json")],
+        tiles="122", per_row=1, crop=512, crop_xy=(128, 640), fill_alpha=0.0),
     "sparse": dict(
         gt=os.path.join(REPO, "data/tcd_sparse/sparse_gt.json"), imgdir=os.path.join(REPO, "data/tcd_sparse/test"), prefix="tcd_tile_",
         models=[("LACE (ours)", "preds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json"),
@@ -121,14 +129,15 @@ def dashed(m, period=28, duty=18):
     return o
 
 
-def render(img, masks, fills, edges, dashes=(), alpha=0.42):
+def render(img, masks, fills, edges, dashes=(), alpha=None):
+    alpha = FILL_ALPHA if alpha is None else alpha
     out = img.copy()
     for m, c in zip(masks, fills):
         out[m] = out[m] * (1 - alpha) + c * alpha
     for m, c in edges:
         out[outline(m)] = c
-    for m, c in dashes:
-        out[dashed(outline(m, 5))] = c
+    for m, c in dashes:  # 2026-11-12: missed crowns drawn solid (dashed was messy on small crowns)
+        out[outline(m)] = c
     return out
 
 
@@ -148,6 +157,8 @@ def auto_crop(gt_masks, size, stride=64):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--set", default="tcd439", choices=SETS); a = ap.parse_args()
     cfg = SETS[a.set]
+    global FILL_ALPHA
+    FILL_ALPHA = float(os.environ.get("FILL_ALPHA", cfg.get("fill_alpha", 0.42)))  # 2026-11-12 D1 strip: outlines only
     tiles = [cfg["prefix"] + x for x in os.environ.get("TILES", cfg["tiles"]).split(",")]
     crop_px = int(os.environ.get("CROP_PX", cfg["crop"]))
     suffix = os.environ.get("SUFFIX", "")
@@ -176,10 +187,11 @@ def main():
     npan = 1 + len(models)
     ncol = npan * per_row
     nrow = (len(tiles) + per_row - 1) // per_row
-    fig_w = 18.4 / 2.54
+    fig_w = float(os.environ.get("FIG_W_CM", 18.4)) / 2.54
+    k = min(1.0, fig_w / (18.4 / 2.54) * 1.9)  # font scale for column-width figures
     pw = fig_w / ncol
     gap = 0.012
-    fig, axes = plt.subplots(nrow, ncol, figsize=(fig_w, pw * nrow + 0.35), squeeze=False,
+    fig, axes = plt.subplots(nrow, ncol, figsize=(fig_w, pw * nrow + (0.35 if k >= 1 else 0.45)), squeeze=False,
                              gridspec_kw=dict(wspace=gap, hspace=gap * 1.2))
     crops, counts = {}, {}
     for ti, t in enumerate(tiles):
@@ -189,7 +201,8 @@ def main():
         gt_rles = polys_to_rles(g["trees"])
         gt_masks = [mu.decode(x).astype(bool) for x in gt_rles]
         canopy = union_rle(polys_to_rles(g["canopy"]))
-        x0, y0 = crops.setdefault(t, auto_crop(gt_masks, crop_px))
+        x0, y0 = crops.setdefault(t, tuple(map(int, os.environ["CROP_XY"].split(","))) if os.environ.get("CROP_XY")
+                                  else tuple(cfg["crop_xy"]) if cfg.get("crop_xy") and len(tiles) == 1 else auto_crop(gt_masks, crop_px))
         inwin = lambda m: bool(m[y0:y0 + crop_px, x0:x0 + crop_px].any())
 
         def show(ax, arr, title, label):
@@ -199,14 +212,14 @@ def main():
             im = im.resize((OUT_PX, OUT_PX), Image.LANCZOS)
             ax.imshow(im, interpolation="none"); ax.set_axis_off()
             if r == 0:
-                ax.set_title(title, fontsize=7.5, pad=2.5)
-            ax.text(0.015, 0.985, label, transform=ax.transAxes, fontsize=5.6, va="top", ha="left", color="white",
+                ax.set_title(title, fontsize=7.5 * k, pad=2.5 * k)
+            ax.text(0.015, 0.985, label, transform=ax.transAxes, fontsize=5.6 * k, va="top", ha="left", color="white",
                     bbox=dict(boxstyle="round,pad=0.25", fc="black", ec="none", alpha=0.65))
 
         gt_fill = [PAL[i % len(PAL)] for i in range(len(gt_masks))]
         gt_img = render(img, gt_masks, gt_fill, [(m, WHITE) for m in gt_masks])
         tname = t.replace(cfg["prefix"], "tile ")
-        show(axes[r, c0], gt_img, "Ground truth", f"{tname}   {sum(inwin(m) for m in gt_masks)} crowns")
+        show(axes[r, c0], gt_img, "GT" if k < 1 else "Ground truth", f"{sum(inwin(m) for m in gt_masks)} crowns" if k < 1 else f"{tname}   {sum(inwin(m) for m in gt_masks)} crowns")
 
         for ci, (lab, _) in enumerate(models):
             p = preds[lab][t]
@@ -229,16 +242,19 @@ def main():
             fn = sum(1 for m in fn_masks if inwin(m))
             f1 = 2 * tp / max(2 * tp + fp + fn, 1)
             counts[f"{t}|{lab}"] = dict(f1=round(f1, 4), tp=tp, fp=fp, fn=fn)
-            show(axes[r, c0 + 1 + ci], arr, lab, f"F1 {f1:.2f}  TP {tp}  FP {fp}  FN {fn}")
+            show(axes[r, c0 + 1 + ci], arr, lab, f"F1 {f1:.2f}" if k < 1 else f"F1 {f1:.2f}  TP {tp}  FP {fp}  FN {fn}")
         print("rendered", t, flush=True)
 
     handles = [Line2D([0], [0], color="white", lw=1.4, label="matched (IoU $\\geq$ 0.5)"),
                Line2D([0], [0], color="#ff2828", lw=1.4, label="false positive"),
-               Line2D([0], [0], color="#ffeb3b", lw=1.4, ls=(0, (3, 2)), label="missed crown")]
-    fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=6.5, frameon=True, facecolor="#3a3a3a",
+               Line2D([0], [0], color="#ffeb3b", lw=1.4, label="missed crown")]
+    fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=6.5 * k, frameon=True, facecolor="#3a3a3a",
                edgecolor="none", labelcolor="white", fancybox=True, bbox_to_anchor=(0.5, -0.003),
                handlelength=2.2, columnspacing=1.6)
-    plt.subplots_adjust(left=0.003, right=0.997, top=0.955, bottom=0.05)
+    if k < 1:
+        plt.subplots_adjust(left=0.003, right=0.997, top=0.88, bottom=0.17)
+    else:
+        plt.subplots_adjust(left=0.003, right=0.997, top=0.955, bottom=0.05)
     stem = os.path.join(OUT, f"qualitative_{a.set}{suffix}")
     fig.savefig(stem + ".png", dpi=400)
     im = Image.open(stem + ".png").convert("RGB")

@@ -1,6 +1,8 @@
 % LACE box-to-mask module: the once-only EM fit on training boxes (split out of
 % lace_architecture.tex 2026-10-29; inference is in that figure).
 % Build: tectonic lace_masker_fit.tex   (from this directory)
+% 2026-11-12 v2 (Tom approved): two rows, frame 12.25 -> 6.75 cm. Row 2 = (4) EM in words (no equations) with the fitted masker inside it,
+% then a compact (5): s' product removed (dropped from the paper 2026-11-11), p_fg inset dropped (shown in Fig 1 panel c).
 % Insets: arch/make_arch_panels.py (the partition inset applies the fit's rule to the holdout crop's GT boxes).
 % 2026-11-05/06: added (5) mask confidence inside the module (redrawn 2026-11-06 as mask-aware confidence -> \hat s), parameter-free s' extended by a small learned head
 % (repo name R3, dino_det/README.md), for LACE (D1 variant). Its p_fg inset is the Fig 1 zoom crown under the deployed 4 px
@@ -14,29 +16,29 @@
 \pgfmathsetmacro{\zmax}{max(\zoomnx,\zoomny)}
 
 % ------------------------------------------------ FIT
-\node[sub, minimum width=15.8cm, minimum height=12.25cm, anchor=north west] (FIT) at (0.2,-5.95) {};
+\node[sub, minimum width=15.8cm, minimum height=6.75cm, anchor=north west] (FIT) at (0.2,-5.95) {};
 \node[head, font=\small\bfseries] at (0.4,-6.12) {Box-to-mask module};
 \node[tlbl, anchor=north east] at (15.8,-6.16) {input: frozen features $\widetilde F$ and boxes only};
 
 % --- (1) whiten
-\node[card, minimum width=3.7cm, minimum height=3.0cm, anchor=north west] (A1) at (0.4,-6.6) {};
+\node[card, minimum width=3.7cm, minimum height=2.6cm, anchor=north west] (A1) at (0.4,-6.6) {};
 \begin{scope}[shift={(0.4,-6.6)}]
   \node[num] at (0.27,-0.27) {1};
   \node[chead, anchor=west] at (0.47,-0.27) {Whiten};
   \begin{scope}[xshift=0.375cm]   % content centred in widened card
-  \begin{scope}[shift={(0.78,-1.75)}]
+  \begin{scope}[shift={(0.78,-1.5)}]
     \shade[ball color=frz!10] (0,0) circle (0.55);
     \draw[ink!45, line width=0.4pt] (0,0) circle (0.55);
     \draw[ink!30, dashed, line width=0.3pt] (0,0) ellipse (0.55 and 0.16);
     \foreach \a/\b in {20/0.35, 40/0.5, 55/0.3, 75/0.45, 30/0.6}{\fill[crown] ({0.55*cos(\a)*sqrt(1-\b*\b)},{0.55*\b}) circle (1.2pt);}
     \foreach \a/\b in {200/-0.3, 230/-0.5, 250/-0.2, 215/0.1, 260/-0.6, 190/0.25}{\fill[soil] ({0.55*cos(\a)*sqrt(1-\b*\b)},{0.55*\b}) circle (1.2pt);}
   \end{scope}
-  \node[tlbl, anchor=west, align=left] at (1.45,-1.75) {PCA-whiten\\to $128$ dims,\\project onto\\unit sphere};
+  \node[tlbl, anchor=west, align=left] at (1.45,-1.5) {PCA-whiten\\to $128$ dims,\\project onto\\unit sphere};
   \end{scope}
 \end{scope}
 
 % --- (2) background mixture
-\node[card, minimum width=5.35cm, minimum height=3.0cm, anchor=north west] (A2) at (4.6,-6.6) {};
+\node[card, minimum width=5.35cm, minimum height=2.6cm, anchor=north west] (A2) at (4.6,-6.6) {};
 \begin{scope}[shift={(4.6,-6.6)}]
   \node[num] at (0.27,-0.27) {2};
   \node[chead, anchor=west] at (0.47,-0.27) {Background mixture};
@@ -59,124 +61,104 @@
 \end{scope}
 
 % --- (3) initialise foreground
-\node[card, minimum width=5.35cm, minimum height=3.0cm, anchor=north west] (A3) at (10.45,-6.6) {};
+\node[card, minimum width=5.35cm, minimum height=2.6cm, anchor=north west] (A3) at (10.45,-6.6) {};
 \begin{scope}[shift={(10.45,-6.6)}]
   \node[num] at (0.27,-0.27) {3};
   \node[chead, anchor=west] at (0.47,-0.27) {Initialise foreground};
   \begin{scope}[xshift=0.8cm]
   \node[tlbl, anchor=west] at (0.12,-0.68) {in-box cells ranked by background likelihood};
   \foreach \i/\L in {0/1.25,1/1.12,2/1.02,3/0.93,4/0.85,5/0.76,6/0.66,7/0.55,8/0.46,9/0.36}{
-    \pgfmathsetmacro{\yy}{-0.9-0.15*\i}
-    \ifnum\i<5 \fill[frz!35] (0.15,\yy) rectangle ++(\L,-0.1);
-    \else \fill[crown!80] (0.15,\yy) rectangle ++(\L,-0.1); \fi
+    \pgfmathsetmacro{\yy}{-0.85-0.12*\i}
+    \ifnum\i<5 \fill[frz!35] (0.15,\yy) rectangle ++(\L,-0.08);
+    \else \fill[crown!80] (0.15,\yy) rectangle ++(\L,-0.08); \fi
   }
-  \draw[ink!70, dashed, line width=0.5pt] (0.1,-1.625) -- (1.5,-1.625);
-  \node[tlbl, anchor=west] at (1.52,-1.625) {median};
-  \draw[sarr] (1.0,-2.12) -- node[tlbl, above, anchor=south]{$k$-means} (2.3,-2.12);
-  \begin{scope}[shift={(2.42,-2.5)}]
+  \draw[ink!70, dashed, line width=0.5pt] (0.1,-1.43) -- (1.5,-1.43);
+  \node[tlbl, anchor=west] at (1.52,-1.43) {median};
+  \draw[sarr] (1.0,-1.85) -- node[tlbl, above, anchor=south]{$k$-means} (2.3,-1.85);
+  \begin{scope}[shift={(2.42,-2.2)}]
     \foreach \i in {0,...,15}{
       \pgfmathtruncatemacro{\cx}{mod(\i,4)}\pgfmathtruncatemacro{\cy}{div(\i,4)}
       \pgfmathsetmacro{\sh}{45+3*\i}
-      \fill[crown!\sh] (0.26*\cx,0.26*\cy) rectangle ++(0.2,0.2);
+      \fill[crown!\sh] (0.22*\cx,0.22*\cy) rectangle ++(0.17,0.17);
     }
   \end{scope}
-  \node[tlbl, anchor=north east] at (3.6,-2.56) {$K_{fg}{=}16$ prototypes $C_k$};
+  \node[tlbl, anchor=north east] at (3.6,-2.24) {$K_{fg}{=}16$ prototypes $C_k$};
   \end{scope}
 \end{scope}
 
 \draw[sarr, line width=0.7pt] (A1.east) -- (A2.west);
 \draw[sarr, line width=0.7pt] (A2.east) -- (A3.west);
 
-% --- (4) Expectation-Maximisation
-\node[card, minimum width=15.4cm, minimum height=4.1cm, anchor=north west] (EM) at (0.4,-9.95) {};
-\begin{scope}[shift={(0.4,-9.95)}]
+
+% ================= v2 ROW 2 (2026-11-12): (4) EM with the fitted masker drawn inside it | (5) mask-aware confidence
+% line-wrap arrow: end of row 1 -> EM
+\draw[arr] (13.125,-9.2) -- (13.125,-9.42) -- (4.0,-9.42) -- (4.0,-9.65);
+
+% --- (4) Expectation-Maximisation: words, not equations (Tom 2026-11-12: instantly graspable); its output, the fitted masker, inside it
+\node[card, minimum width=11.05cm, minimum height=2.65cm, anchor=north west] (EM) at (0.4,-9.65) {};
+\begin{scope}[shift={(0.4,-9.65)}]
   \node[num] at (0.27,-0.27) {4};
   \node[chead, anchor=west] at (0.47,-0.27) {Expectation-Maximisation\quad\cycleicon\,\normalfont×30};
-  \node[font=\footnotesize] at (15.13,-0.27) {\fireicon};
-  % E and M share one white box (2026-11-07, Tom), same height as the fitted-masker box; columns spread evenly
-  \node[sub, minimum width=10.13cm, minimum height=3.45cm, anchor=north west] at (0.12,-0.5) {};
-  \node[chead, anchor=west, text=ffit!75!black] at (0.57,-0.75) {E-step\;\normalfont\textcolor{ink!60}{per box}};
-  \node[num, fill=bfg] at (0.72,-1.25) {a};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.92,-1.25) {Subtract background log-likelihood\\from foreground log-likelihood\;$\to A$};
-  \node[num, fill=bfg] at (0.72,-1.95) {b};
-  \node[eq] at (0.92,-1.95) {Subtract within-box mean\;$\to \bar A$};
-  \node[num, fill=bfg] at (0.72,-2.65) {c};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (0.92,-2.65) {Add spatial prior (log-odds)\\and apply a sigmoid\;$\to p_{fg}$};
-  \draw[ink!20, line width=0.4pt] (5.55,-0.6) -- (5.55,-2.8);
-  \node[chead, anchor=west, text=ffit!75!black] at (6.6,-0.75) {M-step\;\normalfont\textcolor{ink!60}{all boxes}};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (6.6,-1.25) {Responsibility-weighted mean\\of cells per prototype};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (6.6,-1.95) {Subtract matched\\outside-box centroid};
-  \node[eq, align=left, font=\fontsize{7}{7.4}\selectfont] at (6.6,-2.65) {Re-estimate spatial prior as\\per-bin mean responsibility};
-  \draw[arr, ffit] (2.9,-3.2) -- node[tlbl, above=1.5pt, text=ffit!75!black]{responsibilities $r_{nk}$} (7.9,-3.2);
-  \draw[arr, ffit] (7.9,-3.45) -- node[tlbl, below=1.5pt, text=ffit!75!black]{prototypes $C_k$, spatial prior $\rho$} (2.9,-3.45);
-\end{scope}
-\draw[arr] (10.72,-9.6) -- (10.72,-9.95);
-
-% --- fitted masker: the output of (4), drawn inside it
-\node[sub, minimum width=4.2cm, minimum height=3.45cm, anchor=north west] (OUT) at (11.4,-10.45) {};
-\begin{scope}[shift={(11.4,-10.45)}]
-  \node[chead, anchor=west] at (0.15,-0.27) {Fitted masker};
-  \begin{scope}[xshift=0.775cm]
-  % everything carried to inference, keyed to the step that produces it
-  \foreach \y/\n/\t in {-0.68/1/whitening, -0.96/2/background mixture, -1.24/4/foreground prototypes, -1.52/4/spatial prior}{
-    \node[num, scale=0.8] at (0.27,\y) {\n};
-    \node[tlbl, anchor=west] at (0.45,\y) {\t};
+  \node[font=\footnotesize] at (10.78,-0.27) {\fireicon};
+  \node[sub, minimum width=7.0cm, minimum height=2.0cm, anchor=north west] at (0.12,-0.5) {};
+  \node[chead, anchor=west, text=ffit!75!black] at (0.3,-0.75) {E-step\;\normalfont\textcolor{ink!60}{per box}};
+  \foreach \y/\n/\s/\t in {-1.17/a/{$A$}/{crown vs.\ background},
+                           -1.6/b/{$\bar A$}/{mean-centring},
+                           -2.03/c/{$p_{fg}$}/{crown probability}}{
+    \node[num, fill=bfg] at (0.45,\y) {\n};
+    \node[eq] at (0.62,\y) {\s};
+    \node[eq] at (1.12,\y) {\t};
   }
-  % spatial prior: crown probability per relative-position bin (sum over prototypes), one size band
-  \begin{scope}[shift={(0.685,-3.15)}, scale=0.16]
-    \rhocells
-    \draw[white, line width=0.25pt, step=1] (0,0) grid (8,8);
-    \draw[trn, line width=0.6pt] (0,0) rectangle (8,8);
-  \end{scope}
-  \node[tlbl, anchor=north] at (1.325,-3.2) {spatial prior (1 of 3 size bands)};
+  \draw[arr, ffit] (3.75,-1.38) -- node[tlbl, above=1pt, text=ffit!75!black]{$r_{nk}$} (4.55,-1.38);
+  \draw[arr, ffit] (4.55,-1.82) -- node[tlbl, below=1pt, text=ffit!75!black]{$C_k,\ \rho$} (3.75,-1.82);
+  \node[chead, anchor=west, text=ffit!75!black] at (4.72,-0.75) {M-step\;\normalfont\textcolor{ink!60}{all boxes}};
+  \foreach \y/\s/\t in {-1.17/{$C_k$}/{pull to crown cells},
+                        -1.6/{$C_k$}/{push from outside},
+                        -2.03/{$\rho$}/{spatial prior}}{
+    \node[eq] at (4.72,\y) {\s};
+    \node[eq] at (5.2,\y) {\t};
+  }
+  \draw[arr] (7.12,-1.5) -- (7.42,-1.5);
+  % fitted masker: everything carried to inference, keyed to the step that produces it
+  \node[sub, minimum width=3.5cm, minimum height=2.0cm, anchor=north west] at (7.42,-0.5) {};
+  \begin{scope}[shift={(7.42,-0.5)}]
+    \node[chead, anchor=west] at (0.15,-0.22) {Fitted masker};
+    \foreach \y/\n/\t in {-0.6/1/{whitening $\mu, W, \lambda$}, -0.92/2/{background mixture $G_j$}, -1.24/4/{foreground prototypes $C_k$}, -1.56/4/{spatial prior $\rho$, 3 size bands}}{
+      \node[num, scale=0.8] at (0.3,\y) {\n};
+      \node[tlbl, anchor=west] at (0.46,\y) {\t};
+    }
+    \begin{scope}[shift={(2.7,-1.07)}, scale=0.094]
+      \rhocells
+      \draw[white, line width=0.25pt, step=1] (0,0) grid (8,8);
+      \draw[trn, line width=0.6pt] (0,0) rectangle (8,8);
+    \end{scope}
   \end{scope}
 \end{scope}
-\draw[arr] (10.75,-12.17) -- (11.3,-12.17);
+\draw[arr] (11.45,-10.975) -- (11.75,-10.975);
 
-% --- (5) mask-aware confidence (2026-11-06 redraw, Tom): parameter-free s' (no flame) feeds a small learned MLP (flame) whose output is \hat s
-% (repo name R3, dino_det/README.md). Card 3.0 -> 3.3 cm tall, FIT frame grown to match.
-\node[card, minimum width=15.4cm, minimum height=3.3cm, anchor=north west] (R5) at (0.4,-14.7) {};
-\begin{scope}[shift={(0.4,-14.7)}]
+% --- (5) mask-aware confidence, compact: s' product removed (gone from the paper 2026-11-11); p_fg inset dropped (Fig 1 panel c)
+\node[card, minimum width=4.05cm, minimum height=2.65cm, anchor=north west] (R5) at (11.75,-9.65) {};
+\begin{scope}[shift={(11.75,-9.65)}]
   \node[num] at (0.27,-0.27) {5};
   \node[chead, anchor=west] at (0.47,-0.27) {Mask-aware confidence};
-  \pgfmathsetmacro{\ps}{1.6/max(\zoomnx,\zoomny)}
-  \begin{scope}[shift={(0.3,-2.75)}, scale=\ps]
-    \zoompfg
-    \draw[trn, line width=0.5pt] \zoombox;
-  \end{scope}
-  \node[tlbl] at (1.1,-2.93) {$p_{fg}$ in box};
-  \draw[sarr, line width=0.7pt] (2.0,-1.95) -- (2.4,-1.95);
-  % parameter-free product
-  \node[eq] at (2.5,-1.2) {$\bar p$ = mean of $p_{fg}$\;\textcolor{ink!60}{(crown fraction)}};
-  \node[eq] at (2.5,-1.65) {$m$ = mean of $|2p_{fg}-1|$\;\textcolor{ink!60}{(decisiveness)}};
-  \node[eq] at (2.5,-2.15) {$s' = s\,\bar p\,m$};
-  \node[tlbl, anchor=west, text=ink!60] at (2.5,-2.55) {$s$: detector score};
-  \draw[sarr, line width=0.7pt] (6.6,-1.725) -- node[tlbl, above=1pt]{$s,\ \bar p\,m$} (7.75,-1.725);
-  % learned head
-  \begin{scope}[xshift=7.0cm]
-  \node[font=\footnotesize] at (3.0,-0.5) {\fireicon};
-  \foreach \j in {0,...,5}{ \coordinate (h\j) at (3.0,{-0.9-0.33*\j}); }
-  \coordinate (o) at (4.05,-1.725);
-  \foreach \i/\t in {0/{$s$}, 1/{$\log \bar p\,m$}, 2/{$\log h$}, 3/{$\mathrm{IoU}_{\uparrow}$}}{
-    \coordinate (x\i) at (1.9,{-1.05-0.45*\i});
+  \node[font=\footnotesize] at (3.78,-0.27) {\fireicon};
+  \foreach \j in {0,...,5}{ \coordinate (h\j) at (1.75,{-0.56-0.19*\j}); }
+  \coordinate (o) at (2.3,-1.0);
+  \foreach \i/\t in {0/{$s$}, 1/{$\log \bar p\,D$}, 2/{$\log h$}, 3/{$\mathrm{IoU}_{\uparrow}$}}{
+    \coordinate (x\i) at (1.2,{-0.6-0.27*\i});
     \foreach \j in {0,...,5}{ \draw[ink!22, line width=0.3pt] (x\i) -- (h\j); }
-    \node[eq, anchor=east] at (1.75,{-1.05-0.45*\i}) {\t};
+    \node[eq, anchor=east] at (1.08,{-0.6-0.27*\i}) {\t};
   }
   \foreach \j in {0,...,5}{ \draw[ink!22, line width=0.3pt] (h\j) -- (o); }
-  \foreach \i in {0,...,3}{ \fill[frz!70, draw=white, line width=0.3pt] (x\i) circle (2.2pt); }
-  \foreach \j in {0,...,5}{ \fill[trn!80, draw=white, line width=0.3pt] (h\j) circle (2.2pt); }
-  \fill[trn, draw=white, line width=0.3pt] (o) circle (2.6pt);
-  \node[tlbl, align=center] at (2.6,-2.95) {MLP, $64$ hidden; mean of $25$, fit on\\validation detections with box labels};
-  \draw[sarr, line width=0.7pt] (4.2,-1.725) -- (4.85,-1.725);
-  \node[eq] at (4.9,-1.725) {$\hat s$};
-  % rank glyph: detections sorted by \hat s (2026-11-06, Tom: "c for now")
-  \draw[sarr, line width=0.7pt] (5.35,-1.725) -- (5.95,-1.725);
-  \foreach \k/\w in {0/1.0, 1/0.8, 2/0.6, 3/0.4, 4/0.25}{ \fill[trn, opacity={1-0.17*\k}, rounded corners=0.4pt] (6.1,{-1.235-0.21*\k}) rectangle ++(\w,-0.14); }
-  \node[tlbl] at (6.6,-2.55) {ranked detections};
-  \end{scope}
+  \foreach \i in {0,...,3}{ \fill[frz!70, draw=white, line width=0.3pt] (x\i) circle (2.0pt); }
+  \foreach \j in {0,...,5}{ \fill[trn!80, draw=white, line width=0.3pt] (h\j) circle (2.0pt); }
+  \fill[trn, draw=white, line width=0.3pt] (o) circle (2.4pt);
+  \draw[sarr, line width=0.6pt] (2.42,-1.0) -- (2.72,-1.0);
+  \node[eq] at (2.74,-1.0) {$\hat s$};
+  \draw[sarr, line width=0.6pt] (3.05,-1.0) -- (3.25,-1.0);
+  \foreach \k/\w in {0/0.55, 1/0.44, 2/0.33, 3/0.22, 4/0.14}{ \fill[trn, opacity={1-0.17*\k}, rounded corners=0.3pt] (3.32,{-0.7-0.13*\k}) rectangle ++(\w,-0.09); }
+  \node[tlbl, align=left, anchor=north west] at (0.15,-1.66) {$s$: detector score,\; $h$: box height\\$\bar p$, $D$: mean, decisiveness of $p_{fg}$ in box\\$\mathrm{IoU}_{\uparrow}$: overlap with a higher-scoring box\\$25$ MLPs, fit on validation detections};
 \end{scope}
-\draw[arr] (OUT.south) -- (OUT.south |- 0,-14.3) -| (3.2,-14.7);
-\node[tlbl, anchor=west] at (3.3,-14.52) {$p_{fg}$ of each detection};
 
 \end{tikzpicture}
 \end{document}

@@ -1,0 +1,56 @@
+{
+ "set": "tcd439_d1",
+ "tiles": [
+  "tcd_val_tile_122"
+ ],
+ "thresholds": {
+  "LACE (ours)": {
+   "threshold": 0.32,
+   "f1": 0.6995346598202824,
+   "tp": 17438,
+   "fp": 6713,
+   "fn": 8267
+  },
+  "Restor": {
+   "threshold": 0.24,
+   "f1": 0.6878085986110554,
+   "tp": 17134,
+   "fp": 6983,
+   "fn": 8571
+  },
+  "BoxTeacher": {
+   "threshold": 0.65,
+   "f1": 0.6611630893414052,
+   "tp": 16218,
+   "fp": 7136,
+   "fn": 9487
+  }
+ },
+ "crop_px": 512,
+ "crop_xy": {
+  "tcd_val_tile_122": [
+   128,
+   640
+  ]
+ },
+ "counts": {
+  "tcd_val_tile_122|LACE (ours)": {
+   "f1": 0.7059,
+   "tp": 18,
+   "fp": 5,
+   "fn": 10
+  },
+  "tcd_val_tile_122|Restor": {
+   "f1": 0.6512,
+   "tp": 14,
+   "fp": 1,
+   "fn": 14
+  },
+  "tcd_val_tile_122|BoxTeacher": {
+   "f1": 0.6222,
+   "tp": 14,
+   "fp": 3,
+   "fn": 14
+  }
+ }
+}

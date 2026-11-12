@@ -1,0 +1,218 @@
+creating index...
+index created!
+[sparse] LACE: AP50 0.7434 (scored 0.7434) AP50:95 0.4031 (scored 0.4031) missing 0 gate PASS [14s]
+creating index...
+index created!
+[sparse] Detectree2: AP50 0.6362 (scored 0.6362) AP50:95 0.3532 (scored 0.3532) missing 0 gate PASS [12s]
+creating index...
+index created!
+[sparse] Box2Mask_SwinL: AP50 0.6044 (scored 0.6044) AP50:95 0.2618 (scored 0.2618) missing 0 gate PASS [9s]
+creating index...
+index created!
+[sparse] BoxTeacher: AP50 0.7206 (scored 0.7206) AP50:95 0.3756 (scored 0.3756) missing 0 gate PASS [16s]
+[sparse] resample 100/2000 [7s]
+[sparse] resample 200/2000 [14s]
+[sparse] resample 300/2000 [21s]
+[sparse] resample 400/2000 [27s]
+[sparse] resample 500/2000 [34s]
+[sparse] resample 600/2000 [41s]
+[sparse] resample 700/2000 [48s]
+[sparse] resample 800/2000 [55s]
+[sparse] resample 900/2000 [62s]
+[sparse] resample 1000/2000 [69s]
+[sparse] resample 1100/2000 [76s]
+[sparse] resample 1200/2000 [83s]
+[sparse] resample 1300/2000 [89s]
+[sparse] resample 1400/2000 [96s]
+[sparse] resample 1500/2000 [103s]
+[sparse] resample 1600/2000 [110s]
+[sparse] resample 1700/2000 [117s]
+[sparse] resample 1800/2000 [124s]
+[sparse] resample 1900/2000 [131s]
+[sparse] resample 2000/2000 [137s]
+{
+ "Detectree2": {
+  "AP50": {
+   "diff": 0.1072,
+   "ci95": [
+    0.0853,
+    0.1349
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0499,
+   "ci95": [
+    0.0384,
+    0.0625
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "Box2Mask_SwinL": {
+  "AP50": {
+   "diff": 0.139,
+   "ci95": [
+    0.0948,
+    0.1748
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.1412,
+   "ci95": [
+    0.1089,
+    0.1735
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "BoxTeacher": {
+  "AP50": {
+   "diff": 0.0228,
+   "ci95": [
+    0.0088,
+    0.0391
+   ],
+   "p_le_0": 0.002
+  },
+  "AP50_95": {
+   "diff": 0.0275,
+   "ci95": [
+    0.0171,
+    0.038
+   ],
+   "p_le_0": 0.0
+  }
+ }
+}
+creating index...
+index created!
+[test] LACE: AP50 0.7141 (scored 0.7141) AP50:95 0.3424 (scored 0.3424) missing 0 gate PASS [26s]
+creating index...
+index created!
+[test] Restor: AP50 0.6480 (scored 0.648) AP50:95 0.3332 (scored 0.3332) missing 0 gate PASS [10s]
+creating index...
+index created!
+[test] Detectree2: AP50 0.6297 (scored 0.6297) AP50:95 0.3099 (scored 0.3099) missing 0 gate PASS [23s]
+creating index...
+index created!
+[test] Box2Mask_SwinL: AP50 0.5894 (scored 0.5894) AP50:95 0.2446 (scored 0.2446) missing 0 gate PASS [17s]
+creating index...
+index created!
+[test] Box2Mask_R50: AP50 0.4505 (scored 0.4505) AP50:95 0.1646 (scored 0.1646) missing 0 gate PASS [15s]
+creating index...
+index created!
+[test] BoxTeacher: AP50 0.6642 (scored 0.6642) AP50:95 0.3049 (scored 0.3049) missing 0 gate PASS [31s]
+[test] resample 100/2000 [17s]
+[test] resample 200/2000 [34s]
+[test] resample 300/2000 [50s]
+[test] resample 400/2000 [67s]
+[test] resample 500/2000 [84s]
+[test] resample 600/2000 [101s]
+[test] resample 700/2000 [117s]
+[test] resample 800/2000 [134s]
+[test] resample 900/2000 [151s]
+[test] resample 1000/2000 [167s]
+[test] resample 1100/2000 [184s]
+[test] resample 1200/2000 [201s]
+[test] resample 1300/2000 [217s]
+[test] resample 1400/2000 [234s]
+[test] resample 1500/2000 [251s]
+[test] resample 1600/2000 [268s]
+[test] resample 1700/2000 [284s]
+[test] resample 1800/2000 [301s]
+[test] resample 1900/2000 [317s]
+[test] resample 2000/2000 [334s]
+{
+ "Restor": {
+  "AP50": {
+   "diff": 0.0661,
+   "ci95": [
+    0.0513,
+    0.0817
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0092,
+   "ci95": [
+    0.0001,
+    0.0169
+   ],
+   "p_le_0": 0.0245
+  }
+ },
+ "Detectree2": {
+  "AP50": {
+   "diff": 0.0844,
+   "ci95": [
+    0.0752,
+    0.0968
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0325,
+   "ci95": [
+    0.0265,
+    0.0384
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "Box2Mask_SwinL": {
+  "AP50": {
+   "diff": 0.1247,
+   "ci95": [
+    0.1078,
+    0.1452
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0978,
+   "ci95": [
+    0.0884,
+    0.1072
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "Box2Mask_R50": {
+  "AP50": {
+   "diff": 0.2636,
+   "ci95": [
+    0.2448,
+    0.2851
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.1779,
+   "ci95": [
+    0.1667,
+    0.1897
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "BoxTeacher": {
+  "AP50": {
+   "diff": 0.0499,
+   "ci95": [
+    0.0428,
+    0.06
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0375,
+   "ci95": [
+    0.0329,
+    0.0424
+   ],
+   "p_le_0": 0.0
+  }
+ }
+}

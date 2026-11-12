@@ -1,0 +1,110 @@
+{
+ "split": "sparse",
+ "n_tiles": 236,
+ "n_boot": 2000,
+ "seed": 0,
+ "gate": {
+  "LACE": {
+   "ours": {
+    "AP50": 0.7434,
+    "AP50_95": 0.4031
+   },
+   "scored": {
+    "AP50": 0.7434,
+    "AP50_95": 0.4031
+   },
+   "missing_tiles": 0
+  },
+  "Detectree2": {
+   "ours": {
+    "AP50": 0.6362,
+    "AP50_95": 0.3532
+   },
+   "scored": {
+    "AP50": 0.6362,
+    "AP50_95": 0.3532
+   },
+   "missing_tiles": 0
+  },
+  "Box2Mask_SwinL": {
+   "ours": {
+    "AP50": 0.6044,
+    "AP50_95": 0.2618
+   },
+   "scored": {
+    "AP50": 0.6044,
+    "AP50_95": 0.2618
+   },
+   "missing_tiles": 0
+  },
+  "BoxTeacher": {
+   "ours": {
+    "AP50": 0.7206,
+    "AP50_95": 0.3756
+   },
+   "scored": {
+    "AP50": 0.7206,
+    "AP50_95": 0.3756
+   },
+   "missing_tiles": 0
+  }
+ },
+ "LACE_minus": {
+  "Detectree2": {
+   "AP50": {
+    "diff": 0.1072,
+    "ci95": [
+     0.0853,
+     0.1349
+    ],
+    "p_le_0": 0.0
+   },
+   "AP50_95": {
+    "diff": 0.0499,
+    "ci95": [
+     0.0384,
+     0.0625
+    ],
+    "p_le_0": 0.0
+   }
+  },
+  "Box2Mask_SwinL": {
+   "AP50": {
+    "diff": 0.139,
+    "ci95": [
+     0.0948,
+     0.1748
+    ],
+    "p_le_0": 0.0
+   },
+   "AP50_95": {
+    "diff": 0.1412,
+    "ci95": [
+     0.1089,
+     0.1735
+    ],
+    "p_le_0": 0.0
+   }
+  },
+  "BoxTeacher": {
+   "AP50": {
+    "diff": 0.0228,
+    "ci95": [
+     0.0088,
+     0.0391
+    ],
+    "p_le_0": 0.002
+   },
+   "AP50_95": {
+    "diff": 0.0275,
+    "ci95": [
+     0.0171,
+     0.038
+    ],
+    "p_le_0": 0.0
+   }
+  }
+ },
+ "note": "paired tile bootstrap, test-set sampling uncertainty only (not training-seed variance); LACE = D1 + edge fix + R3 (hat s)",
+ "sec": 137
+}

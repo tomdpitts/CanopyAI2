@@ -1,0 +1,252 @@
+[test] rendered box -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/preds_boxshape_box_test_r2048.json [2s]
+[test] rendered ellipse -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/preds_boxshape_ellipse_test_r2048.json [4s]
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.07s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.21s).
+Accumulating evaluation results...
+DONE (t=0.14s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.15s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+[test] lace: mask {'AP50': 0.7141, 'AP75': 0.2713, 'AP50_95': 0.3424, 'n_det': 200148} [51s]
+creating index...
+index created!
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.07s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.23s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.82s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+[test] box: mask {'AP50': 0.6466, 'AP75': 0.04, 'AP50_95': 0.2167, 'n_det': 200148} [52s]
+creating index...
+index created!
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.08s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.36s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.15s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+[test] ellipse: mask {'AP50': 0.7014, 'AP75': 0.2233, 'AP50_95': 0.3172, 'n_det': 200148} [51s]
+creating index...
+index created!
+[test] gate PASS
+[test] resample 200/2000
+[test] resample 400/2000
+[test] resample 600/2000
+[test] resample 800/2000
+[test] resample 1000/2000
+[test] resample 1200/2000
+[test] resample 1400/2000
+[test] resample 1600/2000
+[test] resample 1800/2000
+[test] resample 2000/2000
+{
+ "box": {
+  "AP50": {
+   "diff": 0.0675,
+   "ci95": [
+    0.0559,
+    0.0834
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.1257,
+   "ci95": [
+    0.1159,
+    0.1354
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "ellipse": {
+  "AP50": {
+   "diff": 0.0127,
+   "ci95": [
+    0.0103,
+    0.0182
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0252,
+   "ci95": [
+    0.0203,
+    0.0301
+   ],
+   "p_le_0": 0.0
+  }
+ }
+}
+[sparse] rendered box -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/preds_boxshape_box_sparse_r2048.json [1s]
+[sparse] rendered ellipse -> /Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/preds_boxshape_ellipse_sparse_r2048.json [2s]
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.12s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.54s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=12.81s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+[sparse] lace: mask {'AP50': 0.7434, 'AP75': 0.4006, 'AP50_95': 0.4031, 'n_det': 106514} [26s]
+creating index...
+index created!
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.11s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.52s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=13.14s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+[sparse] box: mask {'AP50': 0.7139, 'AP75': 0.0799, 'AP50_95': 0.2761, 'n_det': 106514} [27s]
+creating index...
+index created!
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.47s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=12.87s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+[sparse] ellipse: mask {'AP50': 0.7385, 'AP75': 0.3234, 'AP50_95': 0.3687, 'n_det': 106514} [26s]
+creating index...
+index created!
+[sparse] gate PASS
+[sparse] resample 200/2000
+[sparse] resample 400/2000
+[sparse] resample 600/2000
+[sparse] resample 800/2000
+[sparse] resample 1000/2000
+[sparse] resample 1200/2000
+[sparse] resample 1400/2000
+[sparse] resample 1600/2000
+[sparse] resample 1800/2000
+[sparse] resample 2000/2000
+{
+ "box": {
+  "AP50": {
+   "diff": 0.0295,
+   "ci95": [
+    0.0221,
+    0.04
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.127,
+   "ci95": [
+    0.1107,
+    0.1435
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "ellipse": {
+  "AP50": {
+   "diff": 0.0049,
+   "ci95": [
+    0.0018,
+    0.01
+   ],
+   "p_le_0": 0.0035
+  },
+  "AP50_95": {
+   "diff": 0.0344,
+   "ci95": [
+    0.0239,
+    0.0443
+   ],
+   "p_le_0": 0.0
+  }
+ }
+}
