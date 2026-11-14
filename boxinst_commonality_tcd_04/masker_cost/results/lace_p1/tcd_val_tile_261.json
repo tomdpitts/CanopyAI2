@@ -1,0 +1,17 @@
+{
+ "tile": "tcd_val_tile_261",
+ "warmup": false,
+ "n_boxes": 509,
+ "time": {
+  "feat_s": 59.825465958565474,
+  "render_s": 5.262270166538656,
+  "total_s": 65.08773612510413
+ },
+ "gate": {
+  "feat_cos_mean": 1.0,
+  "feat_cos_min": 0.9997252225875854,
+  "rle_identical": 509,
+  "iou_mean": 1.0,
+  "iou_min": 1.0
+ }
+}

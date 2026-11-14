@@ -1,0 +1,41 @@
+[env] {"method": "lace4", "pass": 1, "machine": "arm64", "chip": "Apple M4 Max", "mem_gb": 64, "platform": "macOS-26.6.2-arm64-arm-64bit", "python": "3.10.20", "executable": "/Users/tompitts/dphil/feat_cache/venv_feat_t457/bin/python", "torch": "2.12.1", "transformers": "4.57.1", "numpy": "2.2.6", "device": "mps", "date": "2026-11-14 12:08", "params": {"dinov3_vitl16": 303129600, "lace_masker_npz": 138894}}
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/bench.py:119: RuntimeWarning: divide by zero encountered in matmul
+  Vs[dy // 8::k, dx // 8::k] = ((f.reshape(1024, -1).T - em.mu) @ em.U / em.scale).reshape(128, 128, 128)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/bench.py:119: RuntimeWarning: overflow encountered in matmul
+  Vs[dy // 8::k, dx // 8::k] = ((f.reshape(1024, -1).T - em.mu) @ em.U / em.scale).reshape(128, 128, 128)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/bench.py:119: RuntimeWarning: invalid value encountered in matmul
+  Vs[dy // 8::k, dx // 8::k] = ((f.reshape(1024, -1).T - em.mu) @ em.U / em.scale).reshape(128, 128, 128)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:175: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:175: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:175: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:82: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:82: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:82: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+[lace4 p1 2/20] tcd_val_tile_243 n=348 WARMUP LACE 21.9s (feat 18.3, render 3.6) | cos 1.000000 ident 330/348  [22s]
+[lace4 p1 2/20] tcd_val_tile_241 n=600 LACE 25.0s (feat 18.7, render 6.2) | cos 1.000000 ident 587/600  [47s]
+[lace4 p1 2/20] tcd_val_tile_31 n=543 LACE 25.3s (feat 19.3, render 6.0) | cos 1.000000 ident 474/543  [72s]
+[lace4 p1 2/20] tcd_val_tile_323 n=534 LACE 24.4s (feat 18.9, render 5.5) | cos 1.000000 ident 513/534  [97s]
+[lace4 p1 2/20] tcd_val_tile_10 n=404 LACE 22.8s (feat 18.6, render 4.2) | cos 1.000000 ident 341/404  [119s]
+[lace4 p1 2/20] tcd_val_tile_4 n=600 LACE 25.0s (feat 18.9, render 6.1) | cos 1.000000 ident 576/600  [144s]
+[lace4 p1 2/20] tcd_val_tile_221 n=600 LACE 27.6s (feat 21.4, render 6.2) | cos 1.000000 ident 569/600  [172s]
+[lace4 p1 2/20] tcd_val_tile_62 n=600 LACE 25.7s (feat 19.6, render 6.1) | cos 1.000000 ident 569/600  [198s]
+[lace4 p1 2/20] tcd_val_tile_147 n=600 LACE 25.0s (feat 18.8, render 6.3) | cos 1.000000 ident 549/600  [223s]
+[lace4 p1 2/20] tcd_val_tile_102 n=600 LACE 26.2s (feat 19.9, render 6.3) | cos 1.000000 ident 533/600  [249s]
+[lace4 p1 2/20] tcd_val_tile_261 n=509 LACE 24.9s (feat 19.5, render 5.4) | cos 1.000000 ident 439/509  [274s]
+[lace4 p1 2/20] tcd_val_tile_122 n=490 LACE 24.1s (feat 19.2, render 4.9) | cos 1.000000 ident 475/490  [298s]
+[lace4 p1 2/20] tcd_val_tile_325 n=600 LACE 25.2s (feat 18.8, render 6.4) | cos 1.000000 ident 486/600  [323s]
+[lace4 p1 2/20] tcd_val_tile_387 n=266 LACE 21.6s (feat 18.7, render 2.9) | cos 1.000000 ident 172/266  [345s]
+[lace4 p1 2/20] tcd_val_tile_401 n=600 LACE 24.8s (feat 18.7, render 6.1) | cos 1.000000 ident 578/600  [370s]
+[lace4 p1 2/20] tcd_val_tile_371 n=600 LACE 24.8s (feat 18.6, render 6.2) | cos 1.000000 ident 550/600  [394s]
+[lace4 p1 2/20] tcd_val_tile_248 n=600 LACE 24.9s (feat 18.7, render 6.2) | cos 1.000000 ident 567/600  [419s]
+[lace4 p1 2/20] tcd_val_tile_246 n=600 LACE 24.9s (feat 18.5, render 6.3) | cos 1.000000 ident 554/600  [444s]
+[lace4 p1 2/20] tcd_val_tile_417 n=420 LACE 22.7s (feat 18.5, render 4.2) | cos 1.000000 ident 410/420  [467s]
+[lace4 p1 2/20] tcd_val_tile_310 n=65 LACE 19.1s (feat 18.5, render 0.7) | cos 1.000000 ident 61/65  [486s]
+[lace4 p1 2/20] tcd_val_tile_173 n=600 LACE 24.4s (feat 18.1, render 6.3) | cos 1.000000 ident 466/600  [511s]
+[bench lace4 p1] done

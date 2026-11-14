@@ -1,0 +1,9 @@
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 8544.23it/s]
+[env] {"method": "sam", "pass": 1, "machine": "arm64", "chip": "Apple M4 Max", "mem_gb": 64, "platform": "macOS-26.6.2-arm64-arm-64bit", "python": "3.10.20", "executable": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/../../.venv/bin/python", "torch": "2.13.0", "transformers": "5.12.1", "numpy": "2.2.6", "device": "mps", "date": "2026-11-13 22:20", "params": {"sam3_tracker": 458260369}}
+Traceback (most recent call last):
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/bench.py", line 130, in <module>
+    main(sys.argv[1], int(sys.argv[2]))
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/bench.py", line 91, in main
+    assert hashlib.sha1(np.ascontiguousarray(u8).tobytes()).hexdigest() == man[t]["rgb_sha1"], t
+KeyError: 'rgb_sha1'

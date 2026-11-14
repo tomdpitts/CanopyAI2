@@ -1,0 +1,16 @@
+{
+ "tile": "tcd_val_tile_173",
+ "warmup": false,
+ "n_boxes": 600,
+ "time": {
+  "encoder_s": 6.0329582914710045,
+  "n_encodes": 9,
+  "decode_post_s": 4.6127203749492764,
+  "total_s": 10.645678666420281
+ },
+ "gate": {
+  "iou_mean": 1.0,
+  "iou_min": 1.0,
+  "frac_iou_ge_0.99": 1.0
+ }
+}

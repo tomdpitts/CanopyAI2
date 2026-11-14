@@ -1,0 +1,18 @@
+{
+ "method": "sam",
+ "pass": 2,
+ "machine": "arm64",
+ "chip": "Apple M4 Max",
+ "mem_gb": 64,
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "python": "3.10.20",
+ "executable": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/../../.venv/bin/python",
+ "torch": "2.13.0",
+ "transformers": "5.12.1",
+ "numpy": "2.2.6",
+ "device": "mps",
+ "date": "2026-11-13 22:48",
+ "params": {
+  "sam3_tracker": 458260369
+ }
+}

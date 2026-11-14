@@ -1,7 +1,7 @@
 % LACE box-to-mask module: the once-only EM fit on training boxes (split out of
 % lace_architecture.tex 2026-10-29; inference is in that figure).
 % Build: tectonic lace_masker_fit.tex   (from this directory)
-% 2026-11-12 v2 (Tom approved): two rows, frame 12.25 -> 6.75 cm. Row 2 = (4) EM in words (no equations) with the fitted masker inside it,
+% 2026-11-13 v4: (5) = one green OUTPUT box holding the fitted masker AND mask-aware confidence. 2026-11-12 v3: fitted masker is its own OUTPUT card (see row 2). v2 (Tom approved): two rows, frame 12.25 -> 6.75 cm. Row 2 = (4) EM in words (no equations) with the fitted masker inside it,
 % then a compact (5): s' product removed (dropped from the paper 2026-11-11), p_fg inset dropped (shown in Fig 1 panel c).
 % Insets: arch/make_arch_panels.py (the partition inset applies the fit's rule to the holdout crop's GT boxes).
 % 2026-11-05/06: added (5) mask confidence inside the module (redrawn 2026-11-06 as mask-aware confidence -> \hat s), parameter-free s' extended by a small learned head
@@ -18,7 +18,6 @@
 % ------------------------------------------------ FIT
 \node[sub, minimum width=15.8cm, minimum height=6.75cm, anchor=north west] (FIT) at (0.2,-5.95) {};
 \node[head, font=\small\bfseries] at (0.4,-6.12) {Box-to-mask module};
-\node[tlbl, anchor=north east] at (15.8,-6.16) {input: frozen features $\widetilde F$ and boxes only};
 
 % --- (1) whiten
 \node[card, minimum width=3.7cm, minimum height=2.6cm, anchor=north west] (A1) at (0.4,-6.6) {};
@@ -94,12 +93,14 @@
 % line-wrap arrow: end of row 1 -> EM
 \draw[arr] (13.125,-9.2) -- (13.125,-9.42) -- (4.0,-9.42) -- (4.0,-9.65);
 
-% --- (4) Expectation-Maximisation: words, not equations (Tom 2026-11-12: instantly graspable); its output, the fitted masker, inside it
-\node[card, minimum width=11.05cm, minimum height=2.65cm, anchor=north west] (EM) at (0.4,-9.65) {};
+% --- (4) Expectation-Maximisation: words, not equations (Tom 2026-11-12: instantly graspable)
+% 2026-11-12 v3: fitted masker pulled out of the EM card into its own OUTPUT card (Tom: figure read as if s-hat were the output);
+% (5) drawn dashed with a grey arrow = a later step that uses the output, not the output itself.
+\node[card, minimum width=7.35cm, minimum height=2.65cm, anchor=north west] (EM) at (0.4,-9.65) {};
 \begin{scope}[shift={(0.4,-9.65)}]
   \node[num] at (0.27,-0.27) {4};
   \node[chead, anchor=west] at (0.47,-0.27) {Expectation-Maximisation\quad\cycleicon\,\normalfont×30};
-  \node[font=\footnotesize] at (10.78,-0.27) {\fireicon};
+  \node[font=\footnotesize] at (7.08,-0.27) {\fireicon};
   \node[sub, minimum width=7.0cm, minimum height=2.0cm, anchor=north west] at (0.12,-0.5) {};
   \node[chead, anchor=west, text=ffit!75!black] at (0.3,-0.75) {E-step\;\normalfont\textcolor{ink!60}{per box}};
   \foreach \y/\n/\s/\t in {-1.17/a/{$A$}/{crown vs.\ background},
@@ -118,46 +119,49 @@
     \node[eq] at (4.72,\y) {\s};
     \node[eq] at (5.2,\y) {\t};
   }
-  \draw[arr] (7.12,-1.5) -- (7.42,-1.5);
-  % fitted masker: everything carried to inference, keyed to the step that produces it
-  \node[sub, minimum width=3.5cm, minimum height=2.0cm, anchor=north west] at (7.42,-0.5) {};
-  \begin{scope}[shift={(7.42,-0.5)}]
-    \node[chead, anchor=west] at (0.15,-0.22) {Fitted masker};
-    \foreach \y/\n/\t in {-0.6/1/{whitening $\mu, W, \lambda$}, -0.92/2/{background mixture $G_j$}, -1.24/4/{foreground prototypes $C_k$}, -1.56/4/{spatial prior $\rho$, 3 size bands}}{
-      \node[num, scale=0.8] at (0.3,\y) {\n};
-      \node[tlbl, anchor=west] at (0.46,\y) {\t};
-    }
-    \begin{scope}[shift={(2.7,-1.07)}, scale=0.094]
-      \rhocells
-      \draw[white, line width=0.25pt, step=1] (0,0) grid (8,8);
-      \draw[trn, line width=0.6pt] (0,0) rectangle (8,8);
-    \end{scope}
-  \end{scope}
 \end{scope}
-\draw[arr] (11.45,-10.975) -- (11.75,-10.975);
+\draw[arr, line width=0.7pt] (7.75,-10.975) -- (8.05,-10.975);
 
-% --- (5) mask-aware confidence, compact: s' product removed (gone from the paper 2026-11-11); p_fg inset dropped (Fig 1 panel c)
-\node[card, minimum width=4.05cm, minimum height=2.65cm, anchor=north west] (R5) at (11.75,-9.65) {};
-\begin{scope}[shift={(11.75,-9.65)}]
+% --- (5) OUTPUT (v4, Tom 2026-11-13): one green box holding both fitted products carried to inference:
+% the fitted masker (left, keyed to the step that produces each part) and the mask-aware confidence s-hat (right; fit after
+% the masker, since one of its inputs is the masker's p_fg). s' product removed (gone from the paper 2026-11-11).
+\node[big, minimum width=7.75cm, minimum height=2.65cm, anchor=north west] (OUT) at (8.05,-9.65) {};
+\begin{scope}[shift={(8.05,-9.65)}]
   \node[num] at (0.27,-0.27) {5};
-  \node[chead, anchor=west] at (0.47,-0.27) {Mask-aware confidence};
-  \node[font=\footnotesize] at (3.78,-0.27) {\fireicon};
-  \foreach \j in {0,...,5}{ \coordinate (h\j) at (1.75,{-0.56-0.19*\j}); }
-  \coordinate (o) at (2.3,-1.0);
+  \node[chead, anchor=west, text=ffit!75!black] at (0.47,-0.27) {Output};
+  \draw[ink!25, line width=0.4pt] (3.5,-0.55) -- (3.5,-2.5);
+  % left: fitted masker
+  \node[chead, anchor=west, text=ink!75] at (0.15,-0.66) {fitted masker};
+  \foreach \y/\n/\t in {-1.0/1/{whitening $\mu, W, \lambda$}, -1.32/2/{background $G_j$}, -1.64/4/{prototypes $C_k$}, -1.96/4/{spatial prior $\rho$}}{
+    \node[num, scale=0.8] at (0.3,\y) {\n};
+    \node[tlbl, anchor=west] at (0.46,\y) {\t};
+  }
+  \begin{scope}[shift={(2.55,-2.2)}, scale=0.094]
+    \rhocells
+    \draw[white, line width=0.25pt, step=1] (0,0) grid (8,8);
+    \draw[trn, line width=0.6pt] (0,0) rectangle (8,8);
+  \end{scope}
+  % right: mask-aware confidence s-hat
+  \begin{scope}[xshift=3.55cm]
+  \node[chead, anchor=west, text=ink!75] at (0.15,-0.66) {mask-aware confidence};
+  \node[font=\footnotesize] at (3.9,-0.66) {\fireicon};
+  \foreach \j in {0,...,5}{ \coordinate (h\j) at (1.75,{-0.92-0.16*\j}); }
+  \coordinate (o) at (2.3,-1.32);
   \foreach \i/\t in {0/{$s$}, 1/{$\log \bar p\,D$}, 2/{$\log h$}, 3/{$\mathrm{IoU}_{\uparrow}$}}{
-    \coordinate (x\i) at (1.2,{-0.6-0.27*\i});
+    \coordinate (x\i) at (1.2,{-0.96-0.24*\i});
     \foreach \j in {0,...,5}{ \draw[ink!22, line width=0.3pt] (x\i) -- (h\j); }
-    \node[eq, anchor=east] at (1.08,{-0.6-0.27*\i}) {\t};
+    \node[eq, anchor=east] at (1.08,{-0.96-0.24*\i}) {\t};
   }
   \foreach \j in {0,...,5}{ \draw[ink!22, line width=0.3pt] (h\j) -- (o); }
   \foreach \i in {0,...,3}{ \fill[frz!70, draw=white, line width=0.3pt] (x\i) circle (2.0pt); }
   \foreach \j in {0,...,5}{ \fill[trn!80, draw=white, line width=0.3pt] (h\j) circle (2.0pt); }
   \fill[trn, draw=white, line width=0.3pt] (o) circle (2.4pt);
-  \draw[sarr, line width=0.6pt] (2.42,-1.0) -- (2.72,-1.0);
-  \node[eq] at (2.74,-1.0) {$\hat s$};
-  \draw[sarr, line width=0.6pt] (3.05,-1.0) -- (3.25,-1.0);
-  \foreach \k/\w in {0/0.55, 1/0.44, 2/0.33, 3/0.22, 4/0.14}{ \fill[trn, opacity={1-0.17*\k}, rounded corners=0.3pt] (3.32,{-0.7-0.13*\k}) rectangle ++(\w,-0.09); }
-  \node[tlbl, align=left, anchor=north west] at (0.15,-1.66) {$s$: detector score,\; $h$: box height\\$\bar p$, $D$: mean, decisiveness of $p_{fg}$ in box\\$\mathrm{IoU}_{\uparrow}$: overlap with a higher-scoring box\\$25$ MLPs, fit on validation detections};
+  \draw[sarr, line width=0.6pt] (2.42,-1.32) -- (2.72,-1.32);
+  \node[eq] at (2.74,-1.32) {$\hat s$};
+  \draw[sarr, line width=0.6pt] (3.05,-1.32) -- (3.25,-1.32);
+  \foreach \k/\w in {0/0.55, 1/0.44, 2/0.33, 3/0.22, 4/0.14}{ \fill[trn, opacity={1-0.17*\k}, rounded corners=0.3pt] (3.32,{-1.02-0.13*\k}) rectangle ++(\w,-0.09); }
+  \node[tlbl, align=left, anchor=north west] at (0.15,-1.82) {$s$: detector score,\; $h$: box height\\$\bar p$, $D$: mean, decisiveness of $p_{fg}$ in box\\$\mathrm{IoU}_{\uparrow}$: overlap with a higher-scoring box};
+  \end{scope}
 \end{scope}
 
 \end{tikzpicture}

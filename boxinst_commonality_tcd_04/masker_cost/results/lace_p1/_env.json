@@ -1,0 +1,19 @@
+{
+ "method": "lace",
+ "pass": 1,
+ "machine": "arm64",
+ "chip": "Apple M4 Max",
+ "mem_gb": 64,
+ "platform": "macOS-26.6.2-arm64-arm-64bit",
+ "python": "3.10.20",
+ "executable": "/Users/tompitts/dphil/feat_cache/venv_feat_t457/bin/python",
+ "torch": "2.12.1",
+ "transformers": "4.57.1",
+ "numpy": "2.2.6",
+ "device": "mps",
+ "date": "2026-11-13 22:24",
+ "params": {
+  "dinov3_vitl16": 303129600,
+  "lace_masker_npz": 138894
+ }
+}

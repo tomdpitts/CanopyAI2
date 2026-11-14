@@ -51,6 +51,16 @@ SETS = {
                 ("Restor", "preds_restor_rpn1000_r2048_treeonly.json"),
                 ("BoxTeacher", "../box_supervised_baselines/tierb/results/20261101_192510/boxteacher/results/preds_boxteacher_sub_test_r2048.json")],
         tiles="122", per_row=1, crop=512, crop_xy=(128, 640), fill_alpha=0.0),
+    # 2026-11-13: proposed main-text comparison grid. Tiles by rule in select_qual_grid.py -> qualitative_grid_select_tcd439.json
+    # (median LACE-Restor margin per canopy band open/intermediate/closed + 5th-percentile failure); auto-crop; canopy class shaded.
+    "tcd439_grid": dict(
+        gt=os.path.join(ROOT, "test_gt.json"), imgdir=os.path.join(REPO, "data/tcd/test"), prefix="tcd_val_tile_",
+        models=[("LACE (ours)", "../dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json"),
+                ("SAM 3 on LACE boxes", "../dino_det/results/sam3_d1/preds_d1_sam3zs_gmean_test_r2048.json"),
+                ("Restor", "preds_restor_rpn1000_r2048_treeonly.json"),
+                ("BoxTeacher", "../box_supervised_baselines/tierb/results/20261101_192510/boxteacher/results/preds_boxteacher_sub_test_r2048.json")],
+        tiles="72,380,197,341", per_row=1, crop=512, fill_alpha=0.0, canopy_tint=True,
+        row_labels=["open", "intermediate", "closed", "failure"]),
     "sparse": dict(
         gt=os.path.join(REPO, "data/tcd_sparse/sparse_gt.json"), imgdir=os.path.join(REPO, "data/tcd_sparse/test"), prefix="tcd_tile_",
         models=[("LACE (ours)", "preds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json"),
@@ -201,6 +211,8 @@ def main():
         gt_rles = polys_to_rles(g["trees"])
         gt_masks = [mu.decode(x).astype(bool) for x in gt_rles]
         canopy = union_rle(polys_to_rles(g["canopy"]))
+        if cfg.get("canopy_tint") and canopy is not None:  # scorer-ignored canopy class: grey wash in every panel
+            cm = mu.decode(canopy).astype(bool); img[cm] = img[cm] * 0.45 + 140 * 0.55
         x0, y0 = crops.setdefault(t, tuple(map(int, os.environ["CROP_XY"].split(","))) if os.environ.get("CROP_XY")
                                   else tuple(cfg["crop_xy"]) if cfg.get("crop_xy") and len(tiles) == 1 else auto_crop(gt_masks, crop_px))
         inwin = lambda m: bool(m[y0:y0 + crop_px, x0:x0 + crop_px].any())
@@ -219,6 +231,8 @@ def main():
         gt_fill = [PAL[i % len(PAL)] for i in range(len(gt_masks))]
         gt_img = render(img, gt_masks, gt_fill, [(m, WHITE) for m in gt_masks])
         tname = t.replace(cfg["prefix"], "tile ")
+        if cfg.get("row_labels"):
+            tname = f"{cfg['row_labels'][ti]}: {tname}"
         show(axes[r, c0], gt_img, "GT" if k < 1 else "Ground truth", f"{sum(inwin(m) for m in gt_masks)} crowns" if k < 1 else f"{tname}   {sum(inwin(m) for m in gt_masks)} crowns")
 
         for ci, (lab, _) in enumerate(models):

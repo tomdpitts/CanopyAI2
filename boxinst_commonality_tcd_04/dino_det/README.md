@@ -898,3 +898,14 @@ LACE − ellipse: test AP50 +0.020 [0.017, 0.026], AP50:95 +0.027 [0.022, 0.032]
 - Ellipse drops 0.007 AP50 test / 0.003 sparse vs BOXSHAPE (the log p̄m ranking signal), close to the tab:factors −log(p̄m) cost.
 - Ellipse on D1 boxes (0.694) still beats every Table 1 baseline at AP50; trails Restor at AP50:95 (0.316 vs 0.333).
 - tab:masker geometric rows, caption and footnote updated to these numbers (supersedes BOXSHAPE).
+
+## Pre-registration SAMEBOX (2026-11-13; BEFORE any number)
+
+Main-text "same boxes, different maskers" table (CVPR, replaces §SAM3 Masker; Tom 11-13). Adds the one missing interval: mask shape alone at identical ranking. Arms all on D1 boxes, all ranked by the 3-input ŝ (no log p̄m; T3 `no_logpm` scores, identical order): LACE masks (`preds_dino_swinl_s0_{split}_t3_no_logpm_r2048.json`), inscribed ellipse and filled box (`preds_boxshape_nm_{ellipse,box}_{split}_r2048.json`). Paired tile bootstrap (t1_boot N=2000, seed 0) of LACE-masks − ellipse and − box, AP50 / AP75 / AP50:95.
+- **Gate:** every arm re-scores to the `boxshape_nm_{split}.json` values to 4 dp.
+- **Disclosure:** arms and ranking already scored 11-11 (BOXSHAPE-2); only the intervals are new. No new predictions.
+- Script `samebox.py`; outputs `results/samebox_{split}.json`; log `native_raster/logs/samebox_2026-11-13.log`.
+
+### SAMEBOX result (2026-11-13; gate PASS both splits)
+
+`results/samebox_{test,sparse}.json`. LACE masks − ellipse, identical boxes and 3-input ŝ ranking (mask shape only): test AP50 +0.012 [0.010, 0.017], AP75 +0.046 [0.035, 0.057], AP50:95 +0.024 [0.019, 0.029]; sparse +0.005 [0.001, 0.009], +0.075 [0.052, 0.098], +0.033 [0.023, 0.043]. LACE masks − box: test +0.065 [0.054, 0.081], +0.223 [0.206, 0.248], +0.123 [0.114, 0.133]; sparse +0.028 [0.021, 0.038], +0.318 [0.276, 0.360], +0.125 [0.108, 0.141]. Merged into paper.tex as tab:samebox, §"Same boxes, different maskers" (replaces "SAM3 Masker" heading), 2026-11-13.

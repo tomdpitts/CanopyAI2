@@ -1,0 +1,280 @@
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.22s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.45s).
+Accumulating evaluation results...
+DONE (t=0.16s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.28s).
+Accumulating evaluation results...
+DONE (t=0.16s).
+[test] lace_masks: mask {'AP50': 0.7058, 'AP75': 0.2701, 'AP50_95': 0.3399, 'n_det': 200148}
+creating index...
+index created!
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.24s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.58s).
+Accumulating evaluation results...
+DONE (t=0.16s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.51s).
+Accumulating evaluation results...
+DONE (t=0.16s).
+[test] ellipse: mask {'AP50': 0.6938, 'AP75': 0.224, 'AP50_95': 0.3158, 'n_det': 200148}
+creating index...
+index created!
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.25s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.11s).
+Accumulating evaluation results...
+DONE (t=0.15s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.05s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.68s).
+Accumulating evaluation results...
+DONE (t=0.16s).
+[test] box: mask {'AP50': 0.6405, 'AP75': 0.0467, 'AP50_95': 0.2166, 'n_det': 200148}
+creating index...
+index created!
+[test] gate PASS
+[test] resample 200/2000
+[test] resample 400/2000
+[test] resample 600/2000
+[test] resample 800/2000
+[test] resample 1000/2000
+[test] resample 1200/2000
+[test] resample 1400/2000
+[test] resample 1600/2000
+[test] resample 1800/2000
+[test] resample 2000/2000
+{
+ "ellipse": {
+  "AP50": {
+   "diff": 0.012,
+   "ci95": [
+    0.0097,
+    0.0174
+   ],
+   "p_le_0": 0.0
+  },
+  "AP75": {
+   "diff": 0.0461,
+   "ci95": [
+    0.0353,
+    0.0568
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0241,
+   "ci95": [
+    0.0194,
+    0.029
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "box": {
+  "AP50": {
+   "diff": 0.0653,
+   "ci95": [
+    0.0543,
+    0.0808
+   ],
+   "p_le_0": 0.0
+  },
+  "AP75": {
+   "diff": 0.2234,
+   "ci95": [
+    0.2055,
+    0.2481
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.1233,
+   "ci95": [
+    0.1137,
+    0.1326
+   ],
+   "p_le_0": 0.0
+  }
+ }
+}
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.09s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.38s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=12.66s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+[sparse] lace_masks: mask {'AP50': 0.7396, 'AP75': 0.3988, 'AP50_95': 0.4011, 'n_det': 106514}
+creating index...
+index created!
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.08s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.42s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=12.77s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+[sparse] ellipse: mask {'AP50': 0.7351, 'AP75': 0.3238, 'AP50_95': 0.3677, 'n_det': 106514}
+creating index...
+index created!
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.09s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.32s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=13.09s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+[sparse] box: mask {'AP50': 0.7116, 'AP75': 0.0809, 'AP50_95': 0.2765, 'n_det': 106514}
+creating index...
+index created!
+[sparse] gate PASS
+[sparse] resample 200/2000
+[sparse] resample 400/2000
+[sparse] resample 600/2000
+[sparse] resample 800/2000
+[sparse] resample 1000/2000
+[sparse] resample 1200/2000
+[sparse] resample 1400/2000
+[sparse] resample 1600/2000
+[sparse] resample 1800/2000
+[sparse] resample 2000/2000
+{
+ "ellipse": {
+  "AP50": {
+   "diff": 0.0045,
+   "ci95": [
+    0.0013,
+    0.0094
+   ],
+   "p_le_0": 0.0045
+  },
+  "AP75": {
+   "diff": 0.075,
+   "ci95": [
+    0.0521,
+    0.0979
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.0334,
+   "ci95": [
+    0.023,
+    0.0431
+   ],
+   "p_le_0": 0.0
+  }
+ },
+ "box": {
+  "AP50": {
+   "diff": 0.028,
+   "ci95": [
+    0.0208,
+    0.0383
+   ],
+   "p_le_0": 0.0
+  },
+  "AP75": {
+   "diff": 0.3179,
+   "ci95": [
+    0.2759,
+    0.3598
+   ],
+   "p_le_0": 0.0
+  },
+  "AP50_95": {
+   "diff": 0.1246,
+   "ci95": [
+    0.1079,
+    0.1413
+   ],
+   "p_le_0": 0.0
+  }
+ }
+}

@@ -1,0 +1,193 @@
+{
+ "rule": "Rule (fixed before any tile was viewed): candidates are OAM-TCD 439 holdout tiles with >= MIN_CROWNS GT crowns, excluding\ntile 122 (already Figure 1). Tiles are stratified by labelled-canopy fraction (tile_index.json canopy_frac, the\nTable S7 / tab:strata variable) into three bands: open [0, 0.10), intermediate [0.10, 0.50), closed [0.50, 1]. Per-tile mask\nAP50 (select_qual_tile.ap50: COCO 101-point, greedy score-ordered at IoU >= 0.5, predictions > 50 % in canopy ignored) is\ncomputed for LACE and Restor (the headline mask-supervised competitor, as Figure 1). In each band the chosen tile is the\none whose LACE - Restor margin is closest to that band's median margin. A fourth \"failure\" row is the tile at the\nFAIL_Q quantile of the margin over all candidates (LACE well behind Restor), chosen to show LACE's typical failure, not\nits single worst tile. Crops are the script's auto-crop (most GT centroids in a 512 px window), never by eye.",
+ "n_candidates": 291,
+ "bands": {
+  "open": {
+   "edges": [
+    0.0,
+    0.1
+   ],
+   "n": 96,
+   "median_margin": 0.0377,
+   "frac_lace_ahead": 0.7812,
+   "chosen": {
+    "tile": "tcd_val_tile_72",
+    "biome": "Irrawaddy moist deciduous forests",
+    "canopy_frac": 0.05873,
+    "crowns": 45,
+    "ap50_lace": 0.407,
+    "ap50_restor": 0.3693,
+    "margin": 0.0377
+   },
+   "next3": [
+    {
+     "tile": "tcd_val_tile_302",
+     "biome": "Atlantic mixed forests",
+     "canopy_frac": 0.08081,
+     "crowns": 40,
+     "ap50_lace": 0.5961,
+     "ap50_restor": 0.5585,
+     "margin": 0.0376
+    },
+    {
+     "tile": "tcd_val_tile_424",
+     "biome": "Mindanao-Eastern Visayas rain forests",
+     "canopy_frac": 0.06611,
+     "crowns": 97,
+     "ap50_lace": 0.3079,
+     "ap50_restor": 0.2697,
+     "margin": 0.0383
+    },
+    {
+     "tile": "tcd_val_tile_141",
+     "biome": "Nihonkai montane deciduous forests",
+     "canopy_frac": 0.05368,
+     "crowns": 32,
+     "ap50_lace": 0.6625,
+     "ap50_restor": 0.6276,
+     "margin": 0.0349
+    }
+   ]
+  },
+  "intermediate": {
+   "edges": [
+    0.1,
+    0.5
+   ],
+   "n": 156,
+   "median_margin": 0.0581,
+   "frac_lace_ahead": 0.8013,
+   "chosen": {
+    "tile": "tcd_val_tile_380",
+    "biome": "Northern Zanzibar-Inhambane coastal forest mosaic",
+    "canopy_frac": 0.28494,
+    "crowns": 128,
+    "ap50_lace": 0.7241,
+    "ap50_restor": 0.666,
+    "margin": 0.0581
+   },
+   "next3": [
+    {
+     "tile": "tcd_val_tile_336",
+     "biome": "Northern Zanzibar-Inhambane coastal forest mosaic",
+     "canopy_frac": 0.11554,
+     "crowns": 136,
+     "ap50_lace": 0.8601,
+     "ap50_restor": 0.8022,
+     "margin": 0.058
+    },
+    {
+     "tile": "tcd_val_tile_165",
+     "biome": "Sarmatic mixed forests",
+     "canopy_frac": 0.43356,
+     "crowns": 66,
+     "ap50_lace": 0.6436,
+     "ap50_restor": 0.5858,
+     "margin": 0.0578
+    },
+    {
+     "tile": "tcd_val_tile_133",
+     "biome": "",
+     "canopy_frac": 0.17391,
+     "crowns": 107,
+     "ap50_lace": 0.6016,
+     "ap50_restor": 0.5432,
+     "margin": 0.0584
+    }
+   ]
+  },
+  "closed": {
+   "edges": [
+    0.5,
+    1.01
+   ],
+   "n": 39,
+   "median_margin": 0.0526,
+   "frac_lace_ahead": 0.8205,
+   "chosen": {
+    "tile": "tcd_val_tile_197",
+    "biome": "",
+    "canopy_frac": 0.57926,
+    "crowns": 47,
+    "ap50_lace": 0.3929,
+    "ap50_restor": 0.3403,
+    "margin": 0.0526
+   },
+   "next3": [
+    {
+     "tile": "tcd_val_tile_56",
+     "biome": "Northern Zanzibar-Inhambane coastal forest mosaic",
+     "canopy_frac": 0.55887,
+     "crowns": 88,
+     "ap50_lace": 0.8057,
+     "ap50_restor": 0.7532,
+     "margin": 0.0525
+    },
+    {
+     "tile": "tcd_val_tile_271",
+     "biome": "",
+     "canopy_frac": 0.61654,
+     "crowns": 88,
+     "ap50_lace": 0.9114,
+     "ap50_restor": 0.8593,
+     "margin": 0.052
+    },
+    {
+     "tile": "tcd_val_tile_95",
+     "biome": "Taiheiyo evergreen forests",
+     "canopy_frac": 0.52608,
+     "crowns": 88,
+     "ap50_lace": 0.6521,
+     "ap50_restor": 0.6005,
+     "margin": 0.0516
+    }
+   ]
+  }
+ },
+ "models": {
+  "LACE": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json",
+  "Restor": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/preds_restor_rpn1000_r2048_treeonly.json"
+ },
+ "failure": {
+  "quantile": 0.05,
+  "margin_at_q": -0.0862,
+  "chosen": {
+   "tile": "tcd_val_tile_341",
+   "biome": "Cerrado",
+   "canopy_frac": 0.1751,
+   "crowns": 14,
+   "ap50_lace": 0.6227,
+   "ap50_restor": 0.708,
+   "margin": -0.0853
+  },
+  "next3": [
+   {
+    "tile": "tcd_val_tile_431",
+    "biome": "Taiheiyo evergreen forests",
+    "canopy_frac": 0.02037,
+    "crowns": 42,
+    "ap50_lace": 0.7261,
+    "ap50_restor": 0.8132,
+    "margin": -0.0871
+   },
+   {
+    "tile": "tcd_val_tile_74",
+    "biome": "Northern Zanzibar-Inhambane coastal forest mosaic",
+    "canopy_frac": 0.17933,
+    "crowns": 27,
+    "ap50_lace": 0.6957,
+    "ap50_restor": 0.7859,
+    "margin": -0.0902
+   },
+   {
+    "tile": "tcd_val_tile_354",
+    "biome": "Eastern Australian temperate forests",
+    "canopy_frac": 0.3293,
+    "crowns": 14,
+    "ap50_lace": 0.7446,
+    "ap50_restor": 0.8248,
+    "margin": -0.0802
+   }
+  ]
+ }
+}

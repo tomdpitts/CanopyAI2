@@ -1,0 +1,83 @@
+{
+ "split": "sparse",
+ "scored": {
+  "lace_masks": {
+   "AP50": 0.7396,
+   "AP75": 0.3988,
+   "AP50_95": 0.4011,
+   "n_det": 106514
+  },
+  "ellipse": {
+   "AP50": 0.7351,
+   "AP75": 0.3238,
+   "AP50_95": 0.3677,
+   "n_det": 106514
+  },
+  "box": {
+   "AP50": 0.7116,
+   "AP75": 0.0809,
+   "AP50_95": 0.2765,
+   "n_det": 106514
+  }
+ },
+ "src": {
+  "lace_masks": "preds_dino_swinl_s0_sparse_t3_no_logpm_r2048.json",
+  "ellipse": "preds_boxshape_nm_ellipse_sparse_r2048.json",
+  "box": "preds_boxshape_nm_box_sparse_r2048.json"
+ },
+ "LACEmasks_minus": {
+  "ellipse": {
+   "AP50": {
+    "diff": 0.0045,
+    "ci95": [
+     0.0013,
+     0.0094
+    ],
+    "p_le_0": 0.0045
+   },
+   "AP75": {
+    "diff": 0.075,
+    "ci95": [
+     0.0521,
+     0.0979
+    ],
+    "p_le_0": 0.0
+   },
+   "AP50_95": {
+    "diff": 0.0334,
+    "ci95": [
+     0.023,
+     0.0431
+    ],
+    "p_le_0": 0.0
+   }
+  },
+  "box": {
+   "AP50": {
+    "diff": 0.028,
+    "ci95": [
+     0.0208,
+     0.0383
+    ],
+    "p_le_0": 0.0
+   },
+   "AP75": {
+    "diff": 0.3179,
+    "ci95": [
+     0.2759,
+     0.3598
+    ],
+    "p_le_0": 0.0
+   },
+   "AP50_95": {
+    "diff": 0.1246,
+    "ci95": [
+     0.1079,
+     0.1413
+    ],
+    "p_le_0": 0.0
+   }
+  }
+ },
+ "note": "all arms: same D1 boxes, same 3-input hat s (no log p m) scores and order; only the mask differs. Paired tile bootstrap, test sampling only."
+}

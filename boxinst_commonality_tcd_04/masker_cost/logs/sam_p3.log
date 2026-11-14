@@ -1,0 +1,25 @@
+[transformers] You are using a model of type `sam3_video` to instantiate a model of type `sam3_tracker`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading weights:   0%|          | 0/685 [00:00<?, ?it/s]Loading weights: 100%|██████████| 685/685 [00:00<00:00, 8564.22it/s]
+[env] {"method": "sam", "pass": 3, "machine": "arm64", "chip": "Apple M4 Max", "mem_gb": 64, "platform": "macOS-26.6.2-arm64-arm-64bit", "python": "3.10.20", "executable": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/../../.venv/bin/python", "torch": "2.13.0", "transformers": "5.12.1", "numpy": "2.2.6", "device": "mps", "date": "2026-11-14 12:21", "params": {"sam3_tracker": 458260369}}
+[sam p3 0/20] tcd_val_tile_243 n=348 WARMUP SAM3 7.7s (enc 5.2 x8, dec+post 2.6) | iou 1.0000  [8s]
+[sam p3 1/20] tcd_val_tile_241 n=600 SAM3 9.8s (enc 5.6 x9, dec+post 4.2) | iou 1.0000  [18s]
+[sam p3 2/20] tcd_val_tile_31 n=543 SAM3 9.4s (enc 5.6 x9, dec+post 3.8) | iou 1.0000  [27s]
+[sam p3 3/20] tcd_val_tile_323 n=534 SAM3 9.3s (enc 5.6 x9, dec+post 3.7) | iou 1.0000  [36s]
+[sam p3 4/20] tcd_val_tile_10 n=404 SAM3 8.8s (enc 5.7 x9, dec+post 3.1) | iou 1.0000  [45s]
+[sam p3 5/20] tcd_val_tile_4 n=600 SAM3 10.6s (enc 5.6 x9, dec+post 5.0) | iou 1.0000  [56s]
+[sam p3 6/20] tcd_val_tile_221 n=600 SAM3 10.7s (enc 5.6 x9, dec+post 5.1) | iou 1.0000  [66s]
+[sam p3 7/20] tcd_val_tile_62 n=600 SAM3 13.0s (enc 5.6 x9, dec+post 7.4) | iou 1.0000  [80s]
+[sam p3 8/20] tcd_val_tile_147 n=600 SAM3 12.7s (enc 5.6 x9, dec+post 7.1) | iou 1.0000  [92s]
+[sam p3 9/20] tcd_val_tile_102 n=600 SAM3 10.7s (enc 5.6 x9, dec+post 5.1) | iou 1.0000  [103s]
+[sam p3 10/20] tcd_val_tile_261 n=509 SAM3 8.6s (enc 5.1 x8, dec+post 3.5) | iou 1.0000  [112s]
+[sam p3 11/20] tcd_val_tile_122 n=490 SAM3 9.7s (enc 5.6 x9, dec+post 4.0) | iou 1.0000  [121s]
+[sam p3 12/20] tcd_val_tile_325 n=600 SAM3 14.6s (enc 5.9 x9, dec+post 8.7) | iou 1.0000  [136s]
+[sam p3 13/20] tcd_val_tile_387 n=266 SAM3 8.2s (enc 5.6 x9, dec+post 2.6) | iou 1.0000  [144s]
+[sam p3 14/20] tcd_val_tile_401 n=600 SAM3 15.6s (enc 5.7 x9, dec+post 9.8) | iou 1.0000  [160s]
+[sam p3 15/20] tcd_val_tile_371 n=600 SAM3 10.8s (enc 5.0 x8, dec+post 5.8) | iou 1.0000  [171s]
+[sam p3 16/20] tcd_val_tile_248 n=600 SAM3 12.9s (enc 5.6 x9, dec+post 7.3) | iou 1.0000  [184s]
+[sam p3 17/20] tcd_val_tile_246 n=600 SAM3 11.7s (enc 5.6 x9, dec+post 6.2) | iou 1.0000  [195s]
+[sam p3 18/20] tcd_val_tile_417 n=420 SAM3 9.5s (enc 5.6 x9, dec+post 4.0) | iou 1.0000  [205s]
+[sam p3 19/20] tcd_val_tile_310 n=65 SAM3 6.3s (enc 5.8 x9, dec+post 0.5) | iou 1.0000  [211s]
+[sam p3 20/20] tcd_val_tile_173 n=600 SAM3 10.4s (enc 5.6 x9, dec+post 4.8) | iou 1.0000  [222s]
+[bench sam p3] done

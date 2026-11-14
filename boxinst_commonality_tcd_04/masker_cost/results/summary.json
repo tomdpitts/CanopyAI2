@@ -1,0 +1,161 @@
+{
+ "n_tiles": 20,
+ "boxes_per_tile": {
+  "median": 600.0,
+  "mean": 521.55,
+  "min": 65.0,
+  "max": 600.0
+ },
+ "boxes_total": 10431,
+ "lace_s": {
+  "feat_s": {
+   "median": 59.907,
+   "mean": 60.331,
+   "min": 59.394,
+   "max": 63.323
+  },
+  "render_s": {
+   "median": 6.065,
+   "mean": 5.381,
+   "min": 0.656,
+   "max": 6.404
+  },
+  "total_s": {
+   "median": 66.043,
+   "mean": 65.712,
+   "min": 60.197,
+   "max": 69.371
+  }
+ },
+ "sam3_p1_s": {
+  "encoder_s": {
+   "median": 5.759,
+   "mean": 5.804,
+   "min": 4.983,
+   "max": 6.564
+  },
+  "decode_post_s": {
+   "median": 4.265,
+   "mean": 4.743,
+   "min": 0.517,
+   "max": 8.491
+  },
+  "total_s": {
+   "median": 10.092,
+   "mean": 10.547,
+   "min": 7.081,
+   "max": 14.254
+  }
+ },
+ "sam3_p2_s": {
+  "encoder_s": {
+   "median": 5.588,
+   "mean": 5.534,
+   "min": 4.952,
+   "max": 5.696
+  },
+  "decode_post_s": {
+   "median": 4.121,
+   "mean": 4.026,
+   "min": 0.484,
+   "max": 8.194
+  },
+  "total_s": {
+   "median": 9.689,
+   "mean": 9.56,
+   "min": 6.096,
+   "max": 13.886
+  }
+ },
+ "sam3_n_encodes": {
+  "median": 9.0,
+  "mean": 8.9,
+  "min": 8.0,
+  "max": 9.0
+ },
+ "sam3_drift_p2_minus_p1_total_s": {
+  "median": -0.664,
+  "mean": -0.987,
+  "min": -3.358,
+  "max": 0.542
+ },
+ "ratio_lace_total_over_sam3_total": {
+  "median": 6.705,
+  "mean": 6.677,
+  "min": 4.68,
+  "max": 9.137
+ },
+ "ratio_lace_render_over_sam3_total": {
+  "median": 0.554,
+  "mean": 0.529,
+  "min": 0.1,
+  "max": 0.669
+ },
+ "ms_per_box": {
+  "lace_render": 10.32,
+  "sam3_decode_post_p1": 9.09
+ },
+ "gates": {
+  "lace_feat_cos_mean_min": 0.9999996,
+  "lace_rle_identical": "10431/10431",
+  "sam_p1_iou_mean_min": 1.0,
+  "sam_p2_iou_mean_min": 1.0
+ },
+ "env": {
+  "lace_p1": {
+   "method": "lace",
+   "pass": 1,
+   "machine": "arm64",
+   "chip": "Apple M4 Max",
+   "mem_gb": 64,
+   "platform": "macOS-26.6.2-arm64-arm-64bit",
+   "python": "3.10.20",
+   "executable": "/Users/tompitts/dphil/feat_cache/venv_feat_t457/bin/python",
+   "torch": "2.12.1",
+   "transformers": "4.57.1",
+   "numpy": "2.2.6",
+   "device": "mps",
+   "date": "2026-11-13 22:24",
+   "params": {
+    "dinov3_vitl16": 303129600,
+    "lace_masker_npz": 138894
+   }
+  },
+  "sam_p1": {
+   "method": "sam",
+   "pass": 1,
+   "machine": "arm64",
+   "chip": "Apple M4 Max",
+   "mem_gb": 64,
+   "platform": "macOS-26.6.2-arm64-arm-64bit",
+   "python": "3.10.20",
+   "executable": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/../../.venv/bin/python",
+   "torch": "2.13.0",
+   "transformers": "5.12.1",
+   "numpy": "2.2.6",
+   "device": "mps",
+   "date": "2026-11-13 22:21",
+   "params": {
+    "sam3_tracker": 458260369
+   }
+  },
+  "sam_p2": {
+   "method": "sam",
+   "pass": 2,
+   "machine": "arm64",
+   "chip": "Apple M4 Max",
+   "mem_gb": 64,
+   "platform": "macOS-26.6.2-arm64-arm-64bit",
+   "python": "3.10.20",
+   "executable": "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/masker_cost/../../.venv/bin/python",
+   "torch": "2.13.0",
+   "transformers": "5.12.1",
+   "numpy": "2.2.6",
+   "device": "mps",
+   "date": "2026-11-13 22:48",
+   "params": {
+    "sam3_tracker": 458260369
+   }
+  }
+ }
+}
