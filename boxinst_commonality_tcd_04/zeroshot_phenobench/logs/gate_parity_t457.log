@@ -1,0 +1,4 @@
+    from boxinst_commonality_tcd_04.native_raster.guided_ablate_modal import EDGE_FILL, _rle
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/native_raster/guided_ablate_modal.py", line 36, in <module>
+    import modal
+ModuleNotFoundError: No module named 'modal'

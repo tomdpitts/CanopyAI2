@@ -1,0 +1,275 @@
+[pb pipeline val] 772 images, torch 2.12.1, transformers 4.57.1
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:80: RuntimeWarning: divide by zero encountered in matmul
+  Zn = (f.astype(np.float32) - mu) @ U / scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:80: RuntimeWarning: overflow encountered in matmul
+  Zn = (f.astype(np.float32) - mu) @ U / scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:80: RuntimeWarning: invalid value encountered in matmul
+  Zn = (f.astype(np.float32) - mu) @ U / scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:21: RuntimeWarning: divide by zero encountered in matmul
+  a = np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:21: RuntimeWarning: overflow encountered in matmul
+  a = np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:21: RuntimeWarning: invalid value encountered in matmul
+  a = np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:25: RuntimeWarning: divide by zero encountered in matmul
+  return C, np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:25: RuntimeWarning: overflow encountered in matmul
+  return C, np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:25: RuntimeWarning: invalid value encountered in matmul
+  return C, np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:112: RuntimeWarning: divide by zero encountered in matmul
+  bg_all = logsumexp(np.log(wbg)[None] + kappa * (Zn @ Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:112: RuntimeWarning: overflow encountered in matmul
+  bg_all = logsumexp(np.log(wbg)[None] + kappa * (Zn @ Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:112: RuntimeWarning: invalid value encountered in matmul
+  bg_all = logsumexp(np.log(wbg)[None] + kappa * (Zn @ Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:82: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:82: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:82: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:135: RuntimeWarning: divide by zero encountered in matmul
+  newC += r.T @ Zn[idx]; fg_mass += pfg.sum(); n_tot += len(idx)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:135: RuntimeWarning: overflow encountered in matmul
+  newC += r.T @ Zn[idx]; fg_mass += pfg.sum(); n_tot += len(idx)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:135: RuntimeWarning: invalid value encountered in matmul
+  newC += r.T @ Zn[idx]; fg_mass += pfg.sum(); n_tot += len(idx)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:56: RuntimeWarning: divide by zero encountered in matmul
+  a = softmax(kappa * (negZ @ pos.T), axis=1)             # (M,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:56: RuntimeWarning: overflow encountered in matmul
+  a = softmax(kappa * (negZ @ pos.T), axis=1)             # (M,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:56: RuntimeWarning: invalid value encountered in matmul
+  a = softmax(kappa * (negZ @ pos.T), axis=1)             # (M,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:57: RuntimeWarning: divide by zero encountered in matmul
+  neg = (a.T @ negZ) / (a.sum(0)[:, None] + 1e-8)         # (K,D)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:57: RuntimeWarning: overflow encountered in matmul
+  neg = (a.T @ negZ) / (a.sum(0)[:, None] + 1e-8)         # (K,D)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/_verbatim.py:57: RuntimeWarning: invalid value encountered in matmul
+  neg = (a.T @ negZ) / (a.sum(0)[:, None] + 1e-8)         # (K,D)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:170: RuntimeWarning: divide by zero encountered in matmul
+  z = (F.reshape(-1, F.shape[-1]).astype(np.float32) - self.mu) @ self.U / self.scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:170: RuntimeWarning: overflow encountered in matmul
+  z = (F.reshape(-1, F.shape[-1]).astype(np.float32) - self.mu) @ self.U / self.scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:170: RuntimeWarning: invalid value encountered in matmul
+  z = (F.reshape(-1, F.shape[-1]).astype(np.float32) - self.mu) @ self.U / self.scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:175: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:175: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py:175: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+  [1/772] 05-15_00052_P0030859 n=6 | lace_tt 0.656 | lace_tt_a0 0.653 | lace_tree 0.621 | box 0.402 | ellipse 0.443 | exg 0.419  feat 15.0s tot 15.6s  done 1, left 771  [0.3 min]
+  [2/772] 05-15_00053_P0030859 n=7 | lace_tt 0.630 | lace_tt_a0 0.632 | lace_tree 0.566 | box 0.348 | ellipse 0.340 | exg 0.364  feat 14.9s tot 15.5s  done 2, left 770  [0.5 min]
+  [3/772] 05-15_00053_P0030943 n=10 | lace_tt 0.641 | lace_tt_a0 0.650 | lace_tree 0.568 | box 0.423 | ellipse 0.432 | exg 0.437  feat 15.8s tot 16.4s  done 3, left 769  [0.8 min]
+  [4/772] 05-15_00054_P0030859 n=10 | lace_tt 0.642 | lace_tt_a0 0.664 | lace_tree 0.618 | box 0.378 | ellipse 0.396 | exg 0.486  feat 16.1s tot 16.7s  done 4, left 768  [1.1 min]
+  [6/772] 05-15_00055_P0030859 n=12 | lace_tt 0.568 | lace_tt_a0 0.581 | lace_tree 0.613 | box 0.423 | ellipse 0.458 | exg 0.503  feat 16.1s tot 16.9s  done 5, left 767  [1.4 min]
+  [7/772] 05-15_00055_P0030943 n=14 | lace_tt 0.623 | lace_tt_a0 0.647 | lace_tree 0.595 | box 0.423 | ellipse 0.413 | exg 0.446  feat 16.0s tot 16.7s  done 6, left 766  [1.6 min]
+  [8/772] 05-15_00056_P0030859 n=10 | lace_tt 0.557 | lace_tt_a0 0.565 | lace_tree 0.586 | box 0.425 | ellipse 0.436 | exg 0.410  feat 15.8s tot 16.5s  done 7, left 765  [1.9 min]
+  [48/772] 05-15_00098_P0030859 n=8 | lace_tt 0.617 | lace_tt_a0 0.607 | lace_tree 0.577 | box 0.393 | ellipse 0.390 | exg 0.410  feat 16.1s tot 16.7s  done 8, left 764  [2.2 min]
+  [100/772] 05-15_00141_P0030953 n=16 | lace_tt 0.652 | lace_tt_a0 0.654 | lace_tree 0.612 | box 0.448 | ellipse 0.463 | exg 0.464  feat 16.7s tot 17.4s  done 9, left 763  [2.5 min]
+  [149/772] 05-15_00164_P0030859 n=12 | lace_tt 0.620 | lace_tt_a0 0.617 | lace_tree 0.615 | box 0.467 | ellipse 0.477 | exg 0.489  feat 17.0s tot 17.6s  done 10, left 762  [2.8 min]
+  [150/772] 05-15_00164_P0030953 n=11 | lace_tt 0.584 | lace_tt_a0 0.572 | lace_tree 0.558 | box 0.362 | ellipse 0.364 | exg 0.383  feat 16.9s tot 17.5s  done 11, left 761  [3.1 min]
+  [180/772] 05-15_00179_P0030859 n=9 | lace_tt 0.583 | lace_tt_a0 0.590 | lace_tree 0.537 | box 0.362 | ellipse 0.356 | exg 0.495  feat 17.3s tot 17.9s  done 12, left 760  [3.4 min]
+  [202/772] 05-15_00185_P0030859 n=13 | lace_tt 0.687 | lace_tt_a0 0.700 | lace_tree 0.705 | box 0.556 | ellipse 0.554 | exg 0.581  feat 16.7s tot 17.4s  done 13, left 759  [3.6 min]
+  [238/772] 05-15_00202_P0030953 n=6 | lace_tt 0.592 | lace_tt_a0 0.604 | lace_tree 0.599 | box 0.389 | ellipse 0.421 | exg 0.522  feat 16.4s tot 17.0s  done 14, left 758  [3.9 min]
+  [249/772] 05-15_00206_P0030695 n=8 | lace_tt 0.568 | lace_tt_a0 0.587 | lace_tree 0.533 | box 0.383 | ellipse 0.393 | exg 0.466  feat 16.6s tot 17.2s  done 15, left 757  [4.2 min]
+  [257/772] 05-15_00215_P0030686 n=9 | lace_tt 0.632 | lace_tt_a0 0.655 | lace_tree 0.633 | box 0.445 | ellipse 0.497 | exg 0.454  feat 16.3s tot 16.9s  done 16, left 756  [4.5 min]
+  [258/772] 05-15_00215_P0030695 n=10 | lace_tt 0.640 | lace_tt_a0 0.648 | lace_tree 0.632 | box 0.420 | ellipse 0.459 | exg 0.579  feat 16.0s tot 16.6s  done 17, left 755  [4.8 min]
+  [271/772] 05-15_00219_P0030792 n=11 | lace_tt 0.634 | lace_tt_a0 0.635 | lace_tree 0.567 | box 0.387 | ellipse 0.371 | exg 0.408  feat 15.8s tot 16.4s  done 18, left 754  [5.1 min]
+  [275/772] 05-15_00220_P0030792 n=11 | lace_tt 0.644 | lace_tt_a0 0.649 | lace_tree 0.579 | box 0.373 | ellipse 0.365 | exg 0.395  feat 15.8s tot 16.4s  done 19, left 753  [5.3 min]
+  [281/772] 05-15_00222_P0030695 n=10 | lace_tt 0.611 | lace_tt_a0 0.585 | lace_tree 0.673 | box 0.465 | ellipse 0.485 | exg 0.682  feat 16.4s tot 17.2s  done 20, left 752  [5.6 min]
+  [296/772] 05-15_00227_P0030953 n=10 | lace_tt 0.568 | lace_tt_a0 0.577 | lace_tree 0.539 | box 0.361 | ellipse 0.399 | exg 0.291  feat 16.1s tot 16.7s  done 21, left 751  [5.9 min]
+  [315/772] 05-15_00239_P0030792 n=7 | lace_tt 0.636 | lace_tt_a0 0.613 | lace_tree 0.590 | box 0.411 | ellipse 0.405 | exg 0.429  feat 16.0s tot 16.6s  done 22, left 750  [6.2 min]
+  [334/772] 05-15_00245_P0030953 n=12 | lace_tt 0.600 | lace_tt_a0 0.607 | lace_tree 0.529 | box 0.366 | ellipse 0.381 | exg 0.316  feat 16.0s tot 16.6s  done 23, left 749  [6.4 min]
+  [376/772] 05-15_00277_P0030695 n=10 | lace_tt 0.644 | lace_tt_a0 0.640 | lace_tree 0.653 | box 0.520 | ellipse 0.519 | exg 0.535  feat 15.9s tot 16.5s  done 24, left 748  [6.7 min]
+  [385/772] 05-15_00281_P0030792 n=6 | lace_tt 0.620 | lace_tt_a0 0.595 | lace_tree 0.550 | box 0.364 | ellipse 0.341 | exg 0.390  feat 15.9s tot 16.5s  done 25, left 747  [7.0 min]
+  [389/772] 05-15_00284_P0030695 n=9 | lace_tt 0.528 | lace_tt_a0 0.540 | lace_tree 0.499 | box 0.356 | ellipse 0.343 | exg 0.435  feat 15.9s tot 16.5s  done 26, left 746  [7.3 min]
+  [408/772] 05-26_00054_P0034282 n=18 | lace_tt 0.484 | lace_tt_a0 0.501 | lace_tree 0.512 | box 0.334 | ellipse 0.360 | exg 0.334  feat 15.9s tot 16.8s  done 27, left 745  [7.5 min]
+  [413/772] 05-26_00059_P0034282 n=19 | lace_tt 0.578 | lace_tt_a0 0.593 | lace_tree 0.569 | box 0.402 | ellipse 0.422 | exg 0.598  feat 15.8s tot 16.6s  done 28, left 744  [7.8 min]
+  [436/772] 05-26_00120_P0034282 n=15 | lace_tt 0.526 | lace_tt_a0 0.529 | lace_tree 0.583 | box 0.414 | ellipse 0.444 | exg 0.510  feat 15.8s tot 16.6s  done 29, left 743  [8.1 min]
+  [438/772] 05-26_00122_P0034282 n=12 | lace_tt 0.608 | lace_tt_a0 0.632 | lace_tree 0.659 | box 0.433 | ellipse 0.467 | exg 0.536  feat 15.7s tot 16.5s  done 30, left 742  [8.4 min]
+  [442/772] 05-26_00131_P0034121 n=13 | lace_tt 0.576 | lace_tt_a0 0.594 | lace_tree 0.655 | box 0.440 | ellipse 0.446 | exg 0.658  feat 15.8s tot 16.5s  done 31, left 741  [8.7 min]
+  [448/772] 05-26_00137_P0034121 n=15 | lace_tt 0.666 | lace_tt_a0 0.676 | lace_tree 0.706 | box 0.473 | ellipse 0.490 | exg 0.685  feat 15.8s tot 16.6s  done 32, left 740  [8.9 min]
+  [452/772] 05-26_00140_P0034282 n=17 | lace_tt 0.579 | lace_tt_a0 0.584 | lace_tree 0.633 | box 0.475 | ellipse 0.477 | exg 0.423  feat 15.7s tot 16.6s  done 33, left 739  [9.2 min]
+  [461/772] 05-26_00155_P0034121 n=14 | lace_tt 0.612 | lace_tt_a0 0.639 | lace_tree 0.628 | box 0.402 | ellipse 0.437 | exg 0.490  feat 15.7s tot 16.4s  done 34, left 738  [9.5 min]
+  [462/772] 05-26_00156_P0034016 n=11 | lace_tt 0.647 | lace_tt_a0 0.659 | lace_tree 0.684 | box 0.455 | ellipse 0.503 | exg 0.438  feat 15.7s tot 16.5s  done 35, left 737  [9.8 min]
+  [467/772] 05-26_00158_P0034121 n=20 | lace_tt 0.577 | lace_tt_a0 0.592 | lace_tree 0.625 | box 0.406 | ellipse 0.442 | exg 0.685  feat 15.7s tot 16.5s  done 36, left 736  [10.0 min]
+  [478/772] 05-26_00163_P0034016 n=16 | lace_tt 0.581 | lace_tt_a0 0.584 | lace_tree 0.604 | box 0.404 | ellipse 0.429 | exg 0.318  feat 15.8s tot 16.6s  done 37, left 735  [10.3 min]
+  [491/772] 05-26_00177_P0034121 n=11 | lace_tt 0.628 | lace_tt_a0 0.650 | lace_tree 0.665 | box 0.430 | ellipse 0.453 | exg 0.586  feat 15.7s tot 16.4s  done 38, left 734  [10.6 min]
+  [502/772] 05-26_00185_P0034016 n=18 | lace_tt 0.473 | lace_tt_a0 0.479 | lace_tree 0.593 | box 0.415 | ellipse 0.446 | exg 0.381  feat 15.8s tot 16.6s  done 39, left 733  [10.9 min]
+  [510/772] 05-26_00196_P0034121 n=12 | lace_tt 0.611 | lace_tt_a0 0.625 | lace_tree 0.673 | box 0.438 | ellipse 0.463 | exg 0.483  feat 15.7s tot 16.5s  done 40, left 732  [11.1 min]
+  [516/772] 05-26_00199_P0034121 n=12 | lace_tt 0.652 | lace_tt_a0 0.661 | lace_tree 0.638 | box 0.424 | ellipse 0.447 | exg 0.725  feat 15.6s tot 16.3s  done 41, left 731  [11.4 min]
+  [519/772] 05-26_00201_P0034016 n=18 | lace_tt 0.503 | lace_tt_a0 0.506 | lace_tree 0.627 | box 0.435 | ellipse 0.472 | exg 0.603  feat 15.7s tot 16.7s  done 42, left 730  [11.7 min]
+  [533/772] 05-26_00217_P0034121 n=18 | lace_tt 0.637 | lace_tt_a0 0.635 | lace_tree 0.703 | box 0.459 | ellipse 0.505 | exg 0.493  feat 15.6s tot 16.4s  done 43, left 729  [12.0 min]
+  [539/772] 05-26_00220_P0034121 n=13 | lace_tt 0.674 | lace_tt_a0 0.687 | lace_tree 0.651 | box 0.438 | ellipse 0.472 | exg 0.446  feat 15.6s tot 16.2s  done 44, left 728  [12.2 min]
+  [542/772] 05-26_00222_P0034016 n=19 | lace_tt 0.577 | lace_tt_a0 0.583 | lace_tree 0.695 | box 0.499 | ellipse 0.531 | exg 0.647  feat 15.7s tot 16.7s  done 45, left 727  [12.5 min]
+  [558/772] 05-26_00240_P0034016 n=19 | lace_tt 0.581 | lace_tt_a0 0.599 | lace_tree 0.635 | box 0.451 | ellipse 0.479 | exg 0.443  feat 15.6s tot 16.4s  done 46, left 726  [12.8 min]
+  [570/772] 06-05_00024_P0037822 n=19 | lace_tt 0.618 | lace_tt_a0 0.645 | lace_tree 0.650 | box 0.416 | ellipse 0.444 | exg 0.667  feat 15.7s tot 16.8s  done 47, left 725  [13.1 min]
+  [573/772] 06-05_00027_P0037822 n=15 | lace_tt 0.572 | lace_tt_a0 0.585 | lace_tree 0.609 | box 0.447 | ellipse 0.482 | exg 0.602  feat 15.6s tot 16.6s  done 48, left 724  [13.3 min]
+  [577/772] 06-05_00029_P0037991 n=11 | lace_tt 0.527 | lace_tt_a0 0.539 | lace_tree 0.574 | box 0.394 | ellipse 0.457 | exg 0.746  feat 15.7s tot 16.6s  done 49, left 723  [13.6 min]
+  [583/772] 06-05_00032_P0037991 n=9 | lace_tt 0.471 | lace_tt_a0 0.472 | lace_tree 0.535 | box 0.384 | ellipse 0.416 | exg 0.763  feat 15.6s tot 16.4s  done 50, left 722  [13.9 min]
+  [602/772] 06-05_00053_P0037822 n=19 | lace_tt 0.640 | lace_tt_a0 0.670 | lace_tree 0.704 | box 0.478 | ellipse 0.512 | exg 0.817  feat 15.8s tot 16.7s  done 51, left 721  [14.2 min]
+  [625/772] 06-05_00074_P0037822 n=16 | lace_tt 0.647 | lace_tt_a0 0.662 | lace_tree 0.684 | box 0.473 | ellipse 0.486 | exg 0.820  feat 15.6s tot 16.5s  done 52, left 720  [14.4 min]
+  [626/772] 06-05_00074_P0037991 n=16 | lace_tt 0.512 | lace_tt_a0 0.526 | lace_tree 0.560 | box 0.371 | ellipse 0.397 | exg 0.705  feat 15.7s tot 16.6s  done 53, left 719  [14.7 min]
+  [666/772] 06-05_00108_P0037822 n=23 | lace_tt 0.555 | lace_tt_a0 0.575 | lace_tree 0.629 | box 0.452 | ellipse 0.477 | exg 0.695  feat 15.6s tot 16.8s  done 54, left 718  [15.0 min]
+  [677/772] 06-05_00114_P0037991 n=17 | lace_tt 0.547 | lace_tt_a0 0.547 | lace_tree 0.618 | box 0.421 | ellipse 0.458 | exg 0.672  feat 15.7s tot 16.9s  done 55, left 717  [15.3 min]
+  [680/772] 06-05_00115_P0037991 n=14 | lace_tt 0.566 | lace_tt_a0 0.571 | lace_tree 0.646 | box 0.470 | ellipse 0.511 | exg 0.615  feat 15.3s tot 16.3s  done 56, left 716  [15.5 min]
+  [687/772] 06-05_00117_P0038051 n=12 | lace_tt 0.496 | lace_tt_a0 0.496 | lace_tree 0.556 | box 0.390 | ellipse 0.432 | exg 0.752  feat 15.1s tot 15.9s  done 57, left 715  [15.8 min]
+  [693/772] 06-05_00121_P0037991 n=22 | lace_tt 0.596 | lace_tt_a0 0.605 | lace_tree 0.650 | box 0.480 | ellipse 0.514 | exg 0.718  feat 15.2s tot 16.2s  done 58, left 714  [16.1 min]
+  [705/772] 06-05_00134_P0037991 n=17 | lace_tt 0.543 | lace_tt_a0 0.551 | lace_tree 0.582 | box 0.402 | ellipse 0.447 | exg 0.690  feat 15.2s tot 16.2s  done 59, left 713  [16.3 min]
+  [712/772] 06-05_00136_P0038051 n=13 | lace_tt 0.534 | lace_tt_a0 0.550 | lace_tree 0.598 | box 0.396 | ellipse 0.435 | exg 0.606  feat 15.2s tot 16.0s  done 60, left 712  [16.6 min]
+  [723/772] 06-05_00142_P0037991 n=23 | lace_tt 0.611 | lace_tt_a0 0.624 | lace_tree 0.627 | box 0.455 | ellipse 0.490 | exg 0.663  feat 15.2s tot 16.2s  done 61, left 711  [16.9 min]
+  [733/772] 06-05_00156_P0037991 n=14 | lace_tt 0.611 | lace_tt_a0 0.614 | lace_tree 0.669 | box 0.461 | ellipse 0.530 | exg 0.691  feat 15.3s tot 16.3s  done 62, left 710  [17.2 min]
+  [744/772] 06-05_00163_P0037991 n=23 | lace_tt 0.550 | lace_tt_a0 0.558 | lace_tree 0.591 | box 0.419 | ellipse 0.449 | exg 0.550  feat 15.3s tot 16.4s  done 63, left 709  [17.4 min]
+  [756/772] 06-05_00182_P0038051 n=20 | lace_tt 0.569 | lace_tt_a0 0.588 | lace_tree 0.638 | box 0.421 | ellipse 0.470 | exg 0.716  feat 15.3s tot 16.2s  done 64, left 708  [17.7 min]
+  [758/772] 06-05_00196_P0038051 n=32 | lace_tt 0.506 | lace_tt_a0 0.525 | lace_tree 0.533 | box 0.378 | ellipse 0.405 | exg 0.559  feat 15.4s tot 16.7s  done 65, left 707  [18.0 min]
+  [765/772] 06-05_00216_P0038051 n=32 | lace_tt 0.482 | lace_tt_a0 0.486 | lace_tree 0.504 | box 0.395 | ellipse 0.416 | exg 0.466  feat 15.3s tot 16.8s  done 66, left 706  [18.3 min]
+  [5/772] 05-15_00054_P0030943 n=14 | lace_tt 0.619 | lace_tt_a0 0.633 | lace_tree 0.630 | box 0.458 | ellipse 0.451 | exg 0.475  feat 15.2s tot 15.9s  done 67, left ?  [18.5 min]
+  [9/772] 05-15_00057_P0030859 n=7 | lace_tt 0.681 | lace_tt_a0 0.688 | lace_tree 0.620 | box 0.398 | ellipse 0.395 | exg 0.422  feat 15.4s tot 16.0s  done 68, left ?  [18.8 min]
+  [10/772] 05-15_00058_P0030859 n=10 | lace_tt 0.719 | lace_tt_a0 0.720 | lace_tree 0.687 | box 0.488 | ellipse 0.493 | exg 0.508  feat 15.5s tot 16.1s  done 69, left ?  [19.1 min]
+  [11/772] 05-15_00059_P0030859 n=9 | lace_tt 0.741 | lace_tt_a0 0.750 | lace_tree 0.717 | box 0.562 | ellipse 0.550 | exg 0.579  feat 15.4s tot 16.0s  done 70, left ?  [19.3 min]
+  [12/772] 05-15_00060_P0030859 n=8 | lace_tt 0.716 | lace_tt_a0 0.725 | lace_tree 0.735 | box 0.587 | ellipse 0.620 | exg 0.607  feat 15.6s tot 16.2s  done 71, left ?  [19.6 min]
+  [13/772] 05-15_00061_P0030859 n=12 | lace_tt 0.589 | lace_tt_a0 0.590 | lace_tree 0.636 | box 0.497 | ellipse 0.531 | exg 0.447  feat 15.5s tot 16.2s  done 72, left ?  [19.9 min]
+  [14/772] 05-15_00062_P0030859 n=14 | lace_tt 0.682 | lace_tt_a0 0.686 | lace_tree 0.700 | box 0.497 | ellipse 0.545 | exg 0.632  feat 15.7s tot 16.5s  done 73, left ?  [20.1 min]
+  [15/772] 05-15_00070_P0030859 n=8 | lace_tt 0.716 | lace_tt_a0 0.742 | lace_tree 0.762 | box 0.515 | ellipse 0.534 | exg 0.661  feat 15.5s tot 16.1s  done 74, left ?  [20.4 min]
+  [16/772] 05-15_00071_P0030859 n=10 | lace_tt 0.679 | lace_tt_a0 0.700 | lace_tree 0.684 | box 0.540 | ellipse 0.529 | exg 0.392  feat 15.7s tot 16.4s  done 75, left ?  [20.7 min]
+  [17/772] 05-15_00071_P0030943 n=16 | lace_tt 0.541 | lace_tt_a0 0.565 | lace_tree 0.559 | box 0.375 | ellipse 0.397 | exg 0.455  feat 15.6s tot 16.4s  done 76, left ?  [21.0 min]
+  [18/772] 05-15_00072_P0030859 n=10 | lace_tt 0.633 | lace_tt_a0 0.639 | lace_tree 0.615 | box 0.493 | ellipse 0.487 | exg 0.509  feat 15.8s tot 16.4s  done 77, left ?  [21.2 min]
+  [19/772] 05-15_00072_P0030943 n=15 | lace_tt 0.612 | lace_tt_a0 0.634 | lace_tree 0.622 | box 0.441 | ellipse 0.468 | exg 0.521  feat 15.8s tot 16.6s  done 78, left ?  [21.5 min]
+  [20/772] 05-15_00073_P0030859 n=10 | lace_tt 0.617 | lace_tt_a0 0.632 | lace_tree 0.590 | box 0.462 | ellipse 0.462 | exg 0.492  feat 15.7s tot 16.3s  done 79, left ?  [21.8 min]
+  [21/772] 05-15_00073_P0030943 n=16 | lace_tt 0.606 | lace_tt_a0 0.615 | lace_tree 0.630 | box 0.477 | ellipse 0.500 | exg 0.364  feat 15.6s tot 16.3s  done 80, left ?  [22.0 min]
+  [22/772] 05-15_00074_P0030859 n=11 | lace_tt 0.616 | lace_tt_a0 0.621 | lace_tree 0.551 | box 0.383 | ellipse 0.372 | exg 0.408  feat 15.8s tot 16.5s  done 81, left ?  [22.3 min]
+  [23/772] 05-15_00074_P0030943 n=13 | lace_tt 0.583 | lace_tt_a0 0.577 | lace_tree 0.558 | box 0.446 | ellipse 0.463 | exg 0.460  feat 15.7s tot 16.3s  done 82, left ?  [22.6 min]
+  [24/772] 05-15_00075_P0030859 n=10 | lace_tt 0.622 | lace_tt_a0 0.637 | lace_tree 0.565 | box 0.348 | ellipse 0.378 | exg 0.523  feat 15.7s tot 16.4s  done 83, left ?  [22.9 min]
+  [25/772] 05-15_00075_P0030943 n=11 | lace_tt 0.635 | lace_tt_a0 0.649 | lace_tree 0.627 | box 0.474 | ellipse 0.470 | exg 0.489  feat 15.4s tot 16.0s  done 84, left ?  [23.1 min]
+  [26/772] 05-15_00076_P0030859 n=9 | lace_tt 0.555 | lace_tt_a0 0.575 | lace_tree 0.636 | box 0.406 | ellipse 0.445 | exg 0.680  feat 15.5s tot 16.2s  done 85, left ?  [23.4 min]
+  [27/772] 05-15_00076_P0030943 n=11 | lace_tt 0.695 | lace_tt_a0 0.694 | lace_tree 0.636 | box 0.467 | ellipse 0.453 | exg 0.484  feat 15.6s tot 16.2s  done 86, left ?  [23.7 min]
+  [28/772] 05-15_00077_P0030859 n=9 | lace_tt 0.597 | lace_tt_a0 0.602 | lace_tree 0.543 | box 0.362 | ellipse 0.364 | exg 0.435  feat 15.5s tot 16.1s  done 87, left ?  [23.9 min]
+  [29/772] 05-15_00078_P0030859 n=8 | lace_tt 0.598 | lace_tt_a0 0.581 | lace_tree 0.579 | box 0.377 | ellipse 0.375 | exg 0.403  feat 15.5s tot 16.1s  done 88, left ?  [24.2 min]
+  [30/772] 05-15_00079_P0030859 n=7 | lace_tt 0.683 | lace_tt_a0 0.678 | lace_tree 0.680 | box 0.470 | ellipse 0.480 | exg 0.495  feat 15.7s tot 16.3s  done 89, left ?  [24.5 min]
+  [31/772] 05-15_00080_P0030859 n=6 | lace_tt 0.783 | lace_tt_a0 0.790 | lace_tree 0.777 | box 0.575 | ellipse 0.594 | exg 0.593  feat 15.7s tot 16.3s  done 90, left ?  [24.7 min]
+  [32/772] 05-15_00081_P0030859 n=5 | lace_tt 0.664 | lace_tt_a0 0.675 | lace_tree 0.715 | box 0.494 | ellipse 0.550 | exg 0.524  feat 15.7s tot 16.3s  done 91, left ?  [25.0 min]
+  [33/772] 05-15_00082_P0030859 n=8 | lace_tt 0.645 | lace_tt_a0 0.662 | lace_tree 0.684 | box 0.477 | ellipse 0.524 | exg 0.631  feat 15.6s tot 16.3s  done 92, left ?  [25.3 min]
+  [34/772] 05-15_00083_P0030859 n=11 | lace_tt 0.716 | lace_tt_a0 0.735 | lace_tree 0.743 | box 0.501 | ellipse 0.544 | exg 0.720  feat 15.8s tot 16.5s  done 93, left ?  [25.6 min]
+  [35/772] 05-15_00091_P0030859 n=12 | lace_tt 0.609 | lace_tt_a0 0.636 | lace_tree 0.659 | box 0.434 | ellipse 0.451 | exg 0.661  feat 15.7s tot 16.4s  done 94, left ?  [25.8 min]
+  [36/772] 05-15_00092_P0030859 n=14 | lace_tt 0.643 | lace_tt_a0 0.670 | lace_tree 0.660 | box 0.515 | ellipse 0.525 | exg 0.397  feat 15.5s tot 16.2s  done 95, left ?  [26.1 min]
+  [37/772] 05-15_00092_P0030943 n=16 | lace_tt 0.525 | lace_tt_a0 0.544 | lace_tree 0.576 | box 0.387 | ellipse 0.399 | exg 0.495  feat 15.3s tot 16.1s  done 96, left ?  [26.4 min]
+  [38/772] 05-15_00093_P0030859 n=11 | lace_tt 0.548 | lace_tt_a0 0.578 | lace_tree 0.591 | box 0.475 | ellipse 0.484 | exg 0.383  feat 15.3s tot 16.0s  done 97, left ?  [26.6 min]
+  [39/772] 05-15_00093_P0030943 n=13 | lace_tt 0.565 | lace_tt_a0 0.576 | lace_tree 0.607 | box 0.415 | ellipse 0.434 | exg 0.483  feat 15.3s tot 16.0s  done 98, left ?  [26.9 min]
+  [40/772] 05-15_00094_P0030859 n=10 | lace_tt 0.589 | lace_tt_a0 0.596 | lace_tree 0.560 | box 0.414 | ellipse 0.423 | exg 0.430  feat 15.3s tot 16.0s  done 99, left ?  [27.2 min]
+  [41/772] 05-15_00094_P0030943 n=13 | lace_tt 0.614 | lace_tt_a0 0.616 | lace_tree 0.596 | box 0.444 | ellipse 0.470 | exg 0.378  feat 15.3s tot 15.9s  done 100, left ?  [27.4 min]
+  [42/772] 05-15_00095_P0030859 n=13 | lace_tt 0.574 | lace_tt_a0 0.594 | lace_tree 0.550 | box 0.396 | ellipse 0.394 | exg 0.393  feat 15.3s tot 16.0s  done 101, left ?  [27.7 min]
+  [43/772] 05-15_00095_P0030943 n=14 | lace_tt 0.650 | lace_tt_a0 0.650 | lace_tree 0.585 | box 0.467 | ellipse 0.454 | exg 0.481  feat 15.3s tot 16.0s  done 102, left ?  [28.0 min]
+  [44/772] 05-15_00096_P0030859 n=13 | lace_tt 0.581 | lace_tt_a0 0.595 | lace_tree 0.522 | box 0.351 | ellipse 0.365 | exg 0.565  feat 15.3s tot 16.0s  done 103, left ?  [28.2 min]
+  [45/772] 05-15_00096_P0030943 n=10 | lace_tt 0.666 | lace_tt_a0 0.662 | lace_tree 0.591 | box 0.427 | ellipse 0.393 | exg 0.445  feat 15.4s tot 16.0s  done 104, left ?  [28.5 min]
+  [46/772] 05-15_00097_P0030859 n=8 | lace_tt 0.551 | lace_tt_a0 0.563 | lace_tree 0.568 | box 0.383 | ellipse 0.393 | exg 0.611  feat 15.3s tot 15.9s  done 105, left ?  [28.8 min]
+  [47/772] 05-15_00097_P0030943 n=11 | lace_tt 0.648 | lace_tt_a0 0.653 | lace_tree 0.614 | box 0.438 | ellipse 0.431 | exg 0.455  feat 15.4s tot 16.0s  done 106, left ?  [29.0 min]
+  [49/772] 05-15_00099_P0030859 n=9 | lace_tt 0.571 | lace_tt_a0 0.575 | lace_tree 0.566 | box 0.370 | ellipse 0.377 | exg 0.392  feat 15.3s tot 15.9s  done 107, left ?  [29.3 min]
+  [50/772] 05-15_00100_P0030859 n=10 | lace_tt 0.659 | lace_tt_a0 0.671 | lace_tree 0.635 | box 0.458 | ellipse 0.465 | exg 0.485  feat 15.3s tot 16.0s  done 108, left ?  [29.6 min]
+  [51/772] 05-15_00101_P0030859 n=8 | lace_tt 0.729 | lace_tt_a0 0.730 | lace_tree 0.706 | box 0.554 | ellipse 0.563 | exg 0.578  feat 15.3s tot 15.9s  done 109, left ?  [29.8 min]
+  [52/772] 05-15_00102_P0030859 n=7 | lace_tt 0.623 | lace_tt_a0 0.639 | lace_tree 0.588 | box 0.445 | ellipse 0.441 | exg 0.466  feat 15.4s tot 15.9s  done 110, left ?  [30.1 min]
+  [53/772] 05-15_00103_P0030859 n=9 | lace_tt 0.672 | lace_tt_a0 0.694 | lace_tree 0.695 | box 0.453 | ellipse 0.483 | exg 0.443  feat 15.4s tot 16.1s  done 111, left ?  [30.4 min]
+  [54/772] 05-15_00104_P0030859 n=9 | lace_tt 0.708 | lace_tt_a0 0.726 | lace_tree 0.782 | box 0.485 | ellipse 0.541 | exg 0.693  feat 15.3s tot 16.0s  done 112, left ?  [30.6 min]
+  [55/772] 05-15_00112_P0030859 n=14 | lace_tt 0.579 | lace_tt_a0 0.603 | lace_tree 0.601 | box 0.401 | ellipse 0.419 | exg 0.654  feat 15.4s tot 16.1s  done 113, left ?  [30.9 min]
+  [56/772] 05-15_00113_P0030859 n=12 | lace_tt 0.577 | lace_tt_a0 0.591 | lace_tree 0.611 | box 0.451 | ellipse 0.468 | exg 0.469  feat 15.3s tot 16.0s  done 114, left ?  [31.2 min]
+  [57/772] 05-15_00114_P0030859 n=11 | lace_tt 0.610 | lace_tt_a0 0.632 | lace_tree 0.633 | box 0.504 | ellipse 0.533 | exg 0.519  feat 15.4s tot 16.0s  done 115, left ?  [31.4 min]
+  [58/772] 05-15_00114_P0030943 n=15 | lace_tt 0.599 | lace_tt_a0 0.613 | lace_tree 0.641 | box 0.454 | ellipse 0.493 | exg 0.404  feat 15.3s tot 16.1s  done 116, left ?  [31.7 min]
+  [59/772] 05-15_00115_P0030859 n=9 | lace_tt 0.579 | lace_tt_a0 0.590 | lace_tree 0.609 | box 0.467 | ellipse 0.507 | exg 0.616  feat 15.3s tot 16.0s  done 117, left ?  [32.0 min]
+  [60/772] 05-15_00115_P0030943 n=11 | lace_tt 0.620 | lace_tt_a0 0.615 | lace_tree 0.661 | box 0.476 | ellipse 0.507 | exg 0.435  feat 15.3s tot 16.0s  done 118, left ?  [32.2 min]
+  [61/772] 05-15_00116_P0030859 n=8 | lace_tt 0.584 | lace_tt_a0 0.592 | lace_tree 0.604 | box 0.411 | ellipse 0.443 | exg 0.549  feat 15.3s tot 15.9s  done 119, left ?  [32.5 min]
+  [62/772] 05-15_00116_P0030943 n=10 | lace_tt 0.656 | lace_tt_a0 0.661 | lace_tree 0.610 | box 0.395 | ellipse 0.415 | exg 0.434  feat 15.3s tot 16.0s  done 120, left ?  [32.8 min]
+  [63/772] 05-15_00117_P0030859 n=14 | lace_tt 0.601 | lace_tt_a0 0.628 | lace_tree 0.612 | box 0.406 | ellipse 0.436 | exg 0.566  feat 15.4s tot 16.1s  done 121, left ?  [33.0 min]
+  [64/772] 05-15_00117_P0030943 n=10 | lace_tt 0.660 | lace_tt_a0 0.665 | lace_tree 0.580 | box 0.368 | ellipse 0.373 | exg 0.385  feat 15.3s tot 15.9s  done 122, left ?  [33.3 min]
+  [65/772] 05-15_00118_P0030859 n=10 | lace_tt 0.595 | lace_tt_a0 0.626 | lace_tree 0.638 | box 0.458 | ellipse 0.473 | exg 0.515  feat 15.3s tot 16.0s  done 123, left ?  [33.6 min]
+  [66/772] 05-15_00118_P0030943 n=9 | lace_tt 0.632 | lace_tt_a0 0.625 | lace_tree 0.606 | box 0.429 | ellipse 0.419 | exg 0.448  feat 15.4s tot 16.0s  done 124, left ?  [33.8 min]
+  [67/772] 05-15_00119_P0030859 n=9 | lace_tt 0.658 | lace_tt_a0 0.651 | lace_tree 0.676 | box 0.556 | ellipse 0.577 | exg 0.566  feat 15.3s tot 15.9s  done 125, left ?  [34.1 min]
+  [68/772] 05-15_00120_P0030859 n=12 | lace_tt 0.633 | lace_tt_a0 0.638 | lace_tree 0.643 | box 0.498 | ellipse 0.519 | exg 0.514  feat 15.4s tot 16.0s  done 126, left ?  [34.4 min]
+  [69/772] 05-15_00121_P0030859 n=10 | lace_tt 0.648 | lace_tt_a0 0.652 | lace_tree 0.631 | box 0.447 | ellipse 0.459 | exg 0.472  feat 15.3s tot 15.9s  done 127, left ?  [34.6 min]
+  [70/772] 05-15_00122_P0030859 n=7 | lace_tt 0.716 | lace_tt_a0 0.715 | lace_tree 0.685 | box 0.529 | ellipse 0.541 | exg 0.552  feat 15.7s tot 16.2s  done 128, left ?  [34.9 min]
+  [71/772] 05-15_00123_P0030859 n=8 | lace_tt 0.603 | lace_tt_a0 0.607 | lace_tree 0.571 | box 0.426 | ellipse 0.430 | exg 0.198  feat 15.5s tot 16.1s  done 129, left ?  [35.2 min]
+  [72/772] 05-15_00124_P0030859 n=11 | lace_tt 0.688 | lace_tt_a0 0.700 | lace_tree 0.673 | box 0.446 | ellipse 0.486 | exg 0.437  feat 15.4s tot 16.0s  done 130, left ?  [35.4 min]
+  [73/772] 05-15_00125_P0030859 n=10 | lace_tt 0.711 | lace_tt_a0 0.741 | lace_tree 0.794 | box 0.483 | ellipse 0.551 | exg 0.781  feat 15.6s tot 16.3s  done 131, left ?  [35.7 min]
+  [74/772] 05-15_00133_P0030859 n=12 | lace_tt 0.550 | lace_tt_a0 0.566 | lace_tree 0.592 | box 0.384 | ellipse 0.412 | exg 0.614  feat 15.4s tot 16.1s  done 132, left ?  [36.0 min]
+  [75/772] 05-15_00134_P0030859 n=9 | lace_tt 0.555 | lace_tt_a0 0.573 | lace_tree 0.633 | box 0.443 | ellipse 0.475 | exg 0.488  feat 15.4s tot 16.0s  done 133, left ?  [36.2 min]
+  [76/772] 05-15_00135_P0030686 n=10 | lace_tt 0.686 | lace_tt_a0 0.726 | lace_tree 0.745 | box 0.473 | ellipse 0.506 | exg 0.662  feat 15.4s tot 16.1s  done 134, left ?  [36.5 min]
+  [77/772] 05-15_00135_P0030859 n=9 | lace_tt 0.619 | lace_tt_a0 0.649 | lace_tree 0.664 | box 0.477 | ellipse 0.511 | exg 0.477  feat 15.4s tot 16.0s  done 135, left ?  [36.8 min]
+  [78/772] 05-15_00135_P0030943 n=15 | lace_tt 0.575 | lace_tt_a0 0.592 | lace_tree 0.637 | box 0.463 | ellipse 0.495 | exg 0.404  feat 15.4s tot 16.2s  done 136, left ?  [37.1 min]
+  [79/772] 05-15_00136_P0030686 n=7 | lace_tt 0.724 | lace_tt_a0 0.715 | lace_tree 0.754 | box 0.559 | ellipse 0.564 | exg 0.609  feat 15.3s tot 15.9s  done 137, left ?  [37.3 min]
+  [80/772] 05-15_00136_P0030859 n=8 | lace_tt 0.613 | lace_tt_a0 0.642 | lace_tree 0.639 | box 0.427 | ellipse 0.472 | exg 0.599  feat 15.4s tot 16.0s  done 138, left ?  [37.6 min]
+  [81/772] 05-15_00136_P0030943 n=15 | lace_tt 0.611 | lace_tt_a0 0.623 | lace_tree 0.658 | box 0.500 | ellipse 0.521 | exg 0.242  feat 15.5s tot 16.2s  done 139, left ?  [37.9 min]
+  [82/772] 05-15_00136_P0030953 n=15 | lace_tt 0.590 | lace_tt_a0 0.615 | lace_tree 0.558 | box 0.407 | ellipse 0.426 | exg 0.338  feat 15.5s tot 16.2s  done 140, left ?  [38.1 min]
+  [83/772] 05-15_00137_P0030686 n=5 | lace_tt 0.617 | lace_tt_a0 0.623 | lace_tree 0.647 | box 0.448 | ellipse 0.416 | exg 0.464  feat 15.4s tot 15.9s  done 141, left ?  [38.4 min]
+  [84/772] 05-15_00137_P0030859 n=10 | lace_tt 0.603 | lace_tt_a0 0.610 | lace_tree 0.642 | box 0.480 | ellipse 0.508 | exg 0.483  feat 15.5s tot 16.1s  done 142, left ?  [38.7 min]
+  [85/772] 05-15_00137_P0030943 n=15 | lace_tt 0.644 | lace_tt_a0 0.665 | lace_tree 0.631 | box 0.455 | ellipse 0.484 | exg 0.336  feat 15.4s tot 16.1s  done 143, left ?  [38.9 min]
+  [86/772] 05-15_00137_P0030953 n=13 | lace_tt 0.570 | lace_tt_a0 0.577 | lace_tree 0.542 | box 0.416 | ellipse 0.449 | exg 0.292  feat 15.4s tot 16.0s  done 144, left ?  [39.2 min]
+  [87/772] 05-15_00138_P0030686 n=5 | lace_tt 0.647 | lace_tt_a0 0.653 | lace_tree 0.652 | box 0.513 | ellipse 0.489 | exg 0.536  feat 15.4s tot 15.9s  done 145, left ?  [39.5 min]
+  [88/772] 05-15_00138_P0030859 n=13 | lace_tt 0.621 | lace_tt_a0 0.648 | lace_tree 0.679 | box 0.468 | ellipse 0.518 | exg 0.527  feat 15.4s tot 16.2s  done 146, left ?  [39.7 min]
+  [89/772] 05-15_00138_P0030943 n=12 | lace_tt 0.657 | lace_tt_a0 0.672 | lace_tree 0.609 | box 0.412 | ellipse 0.422 | exg 0.445  feat 15.4s tot 16.1s  done 147, left ?  [40.0 min]
+  [90/772] 05-15_00138_P0030953 n=10 | lace_tt 0.566 | lace_tt_a0 0.584 | lace_tree 0.598 | box 0.438 | ellipse 0.487 | exg 0.276  feat 15.4s tot 16.1s  done 148, left ?  [40.3 min]
+  [91/772] 05-15_00139_P0030686 n=6 | lace_tt 0.564 | lace_tt_a0 0.580 | lace_tree 0.605 | box 0.412 | ellipse 0.430 | exg 0.499  feat 15.7s tot 16.2s  done 149, left ?  [40.5 min]
+  [92/772] 05-15_00139_P0030859 n=11 | lace_tt 0.618 | lace_tt_a0 0.645 | lace_tree 0.709 | box 0.487 | ellipse 0.538 | exg 0.544  feat 16.2s tot 17.0s  done 150, left ?  [40.8 min]
+  [93/772] 05-15_00139_P0030943 n=9 | lace_tt 0.693 | lace_tt_a0 0.687 | lace_tree 0.646 | box 0.455 | ellipse 0.443 | exg 0.472  feat 16.2s tot 16.8s  done 151, left ?  [41.1 min]
+  [94/772] 05-15_00139_P0030953 n=7 | lace_tt 0.594 | lace_tt_a0 0.592 | lace_tree 0.611 | box 0.389 | ellipse 0.439 | exg 0.293  feat 15.8s tot 16.4s  done 152, left ?  [41.4 min]
+  [95/772] 05-15_00140_P0030686 n=8 | lace_tt 0.587 | lace_tt_a0 0.618 | lace_tree 0.667 | box 0.438 | ellipse 0.470 | exg 0.553  feat 15.7s tot 16.3s  done 153, left ?  [41.6 min]
+  [96/772] 05-15_00140_P0030859 n=9 | lace_tt 0.657 | lace_tt_a0 0.669 | lace_tree 0.719 | box 0.553 | ellipse 0.590 | exg 0.344  feat 15.7s tot 16.3s  done 154, left ?  [41.9 min]
+  [97/772] 05-15_00140_P0030953 n=8 | lace_tt 0.698 | lace_tt_a0 0.705 | lace_tree 0.676 | box 0.483 | ellipse 0.491 | exg 0.505  feat 15.4s tot 16.0s  done 155, left ?  [42.2 min]
+  [98/772] 05-15_00141_P0030686 n=10 | lace_tt 0.550 | lace_tt_a0 0.577 | lace_tree 0.563 | box 0.365 | ellipse 0.370 | exg 0.385  feat 15.3s tot 16.0s  done 156, left ?  [42.4 min]
+  [99/772] 05-15_00141_P0030859 n=11 | lace_tt 0.687 | lace_tt_a0 0.697 | lace_tree 0.672 | box 0.519 | ellipse 0.535 | exg 0.535  feat 15.4s tot 16.1s  done 157, left ?  [42.7 min]
+  [101/772] 05-15_00142_P0030686 n=9 | lace_tt 0.521 | lace_tt_a0 0.548 | lace_tree 0.526 | box 0.340 | ellipse 0.336 | exg 0.360  feat 15.4s tot 16.0s  done 158, left ?  [43.0 min]
+  [102/772] 05-15_00142_P0030859 n=11 | lace_tt 0.678 | lace_tt_a0 0.683 | lace_tree 0.620 | box 0.430 | ellipse 0.433 | exg 0.454  feat 15.5s tot 16.2s  done 159, left ?  [43.2 min]
+  [103/772] 05-15_00142_P0030953 n=16 | lace_tt 0.637 | lace_tt_a0 0.643 | lace_tree 0.582 | box 0.400 | ellipse 0.414 | exg 0.415  feat 15.4s tot 16.1s  done 160, left ?  [43.5 min]
+  [104/772] 05-15_00143_P0030859 n=8 | lace_tt 0.638 | lace_tt_a0 0.628 | lace_tree 0.616 | box 0.441 | ellipse 0.450 | exg 0.460  feat 15.3s tot 15.9s  done 161, left ?  [43.8 min]
+  [105/772] 05-15_00143_P0030953 n=10 | lace_tt 0.636 | lace_tt_a0 0.616 | lace_tree 0.613 | box 0.384 | ellipse 0.388 | exg 0.399  feat 15.4s tot 15.9s  done 162, left ?  [44.0 min]
+  [106/772] 05-15_00144_P0030859 n=11 | lace_tt 0.665 | lace_tt_a0 0.665 | lace_tree 0.619 | box 0.456 | ellipse 0.481 | exg 0.216  feat 15.4s tot 16.0s  done 163, left ?  [44.3 min]
+  [107/772] 05-15_00145_P0030859 n=13 | lace_tt 0.678 | lace_tt_a0 0.694 | lace_tree 0.637 | box 0.454 | ellipse 0.491 | exg 0.326  feat 15.4s tot 16.1s  done 164, left ?  [44.6 min]
+  [108/772] 05-15_00146_P0030859 n=11 | lace_tt 0.648 | lace_tt_a0 0.670 | lace_tree 0.693 | box 0.473 | ellipse 0.527 | exg 0.541  feat 15.8s tot 16.4s  done 165, left ?  [44.9 min]
+  [109/772] 05-15_00150_P0030686 n=11 | lace_tt 0.651 | lace_tt_a0 0.644 | lace_tree 0.628 | box 0.473 | ellipse 0.483 | exg 0.486  feat 15.6s tot 16.2s  done 166, left ?  [45.1 min]
+  [110/772] 05-15_00153_P0030686 n=6 | lace_tt 0.700 | lace_tt_a0 0.709 | lace_tree 0.718 | box 0.515 | ellipse 0.552 | exg 0.485  feat 15.4s tot 16.0s  done 167, left ?  [45.4 min]
+  [111/772] 05-15_00154_P0030686 n=8 | lace_tt 0.692 | lace_tt_a0 0.702 | lace_tree 0.664 | box 0.477 | ellipse 0.527 | exg 0.588  feat 15.3s tot 16.0s  done 168, left ?  [45.7 min]
+  [112/772] 05-15_00154_P0030859 n=13 | lace_tt 0.568 | lace_tt_a0 0.589 | lace_tree 0.611 | box 0.408 | ellipse 0.446 | exg 0.644  feat 15.4s tot 16.2s  done 169, left ?  [45.9 min]
+  [113/772] 05-15_00155_P0030686 n=12 | lace_tt 0.639 | lace_tt_a0 0.662 | lace_tree 0.665 | box 0.435 | ellipse 0.457 | exg 0.713  feat 15.4s tot 16.2s  done 170, left ?  [46.2 min]
+  [114/772] 05-15_00155_P0030859 n=9 | lace_tt 0.536 | lace_tt_a0 0.539 | lace_tree 0.619 | box 0.393 | ellipse 0.442 | exg 0.585  feat 15.4s tot 16.0s  done 171, left ?  [46.5 min]
+  [115/772] 05-15_00156_P0030686 n=13 | lace_tt 0.636 | lace_tt_a0 0.661 | lace_tree 0.672 | box 0.475 | ellipse 0.495 | exg 0.620  feat 15.3s tot 16.0s  done 172, left ?  [46.7 min]
+  [116/772] 05-15_00156_P0030859 n=8 | lace_tt 0.665 | lace_tt_a0 0.667 | lace_tree 0.642 | box 0.397 | ellipse 0.421 | exg 0.481  feat 15.6s tot 16.2s  done 173, left ?  [47.0 min]
+  [117/772] 05-15_00156_P0030943 n=13 | lace_tt 0.614 | lace_tt_a0 0.629 | lace_tree 0.596 | box 0.433 | ellipse 0.447 | exg 0.305  feat 15.5s tot 16.1s  done 174, left ?  [47.3 min]
+  [118/772] 05-15_00156_P0030953 n=17 | lace_tt 0.618 | lace_tt_a0 0.635 | lace_tree 0.645 | box 0.473 | ellipse 0.492 | exg 0.359  feat 15.5s tot 16.3s  done 175, left ?  [47.5 min]
+  [119/772] 05-15_00157_P0030686 n=11 | lace_tt 0.655 | lace_tt_a0 0.655 | lace_tree 0.668 | box 0.506 | ellipse 0.508 | exg 0.593  feat 15.5s tot 16.1s  done 176, left ?  [47.8 min]
+  [120/772] 05-15_00157_P0030859 n=8 | lace_tt 0.621 | lace_tt_a0 0.628 | lace_tree 0.619 | box 0.372 | ellipse 0.405 | exg 0.516  feat 15.6s tot 16.3s  done 177, left ?  [48.1 min]
+  [121/772] 05-15_00157_P0030943 n=15 | lace_tt 0.620 | lace_tt_a0 0.633 | lace_tree 0.583 | box 0.425 | ellipse 0.427 | exg 0.439  feat 15.4s tot 16.1s  done 178, left ?  [48.3 min]
+  [122/772] 05-15_00157_P0030953 n=17 | lace_tt 0.619 | lace_tt_a0 0.634 | lace_tree 0.586 | box 0.412 | ellipse 0.417 | exg 0.410  feat 15.4s tot 16.2s  done 179, left ?  [48.6 min]
+  [123/772] 05-15_00158_P0030686 n=8 | lace_tt 0.678 | lace_tt_a0 0.676 | lace_tree 0.683 | box 0.501 | ellipse 0.499 | exg 0.516  feat 15.7s tot 16.2s  done 180, left ?  [48.9 min]
+  [124/772] 05-15_00158_P0030859 n=10 | lace_tt 0.567 | lace_tt_a0 0.578 | lace_tree 0.542 | box 0.387 | ellipse 0.416 | exg 0.483  feat 15.6s tot 16.2s  done 181, left ?  [49.2 min]
+  [125/772] 05-15_00158_P0030943 n=15 | lace_tt 0.648 | lace_tt_a0 0.662 | lace_tree 0.601 | box 0.456 | ellipse 0.461 | exg 0.233  feat 15.5s tot 16.2s  done 182, left ?  [49.4 min]
+  [126/772] 05-15_00158_P0030953 n=14 | lace_tt 0.578 | lace_tt_a0 0.583 | lace_tree 0.519 | box 0.373 | ellipse 0.386 | exg 0.302  feat 15.9s tot 16.6s  done 183, left ?  [49.7 min]
+  [127/772] 05-15_00159_P0030686 n=6 | lace_tt 0.589 | lace_tt_a0 0.599 | lace_tree 0.625 | box 0.459 | ellipse 0.436 | exg 0.487  feat 15.5s tot 16.0s  done 184, left ?  [50.0 min]
+  [128/772] 05-15_00159_P0030859 n=12 | lace_tt 0.539 | lace_tt_a0 0.559 | lace_tree 0.597 | box 0.406 | ellipse 0.442 | exg 0.605  feat 15.3s tot 16.1s  done 185, left ?  [50.2 min]
+  [129/772] 05-15_00159_P0030943 n=14 | lace_tt 0.670 | lace_tt_a0 0.671 | lace_tree 0.625 | box 0.434 | ellipse 0.439 | exg 0.432  feat 15.3s tot 16.0s  done 186, left ?  [50.5 min]
+  [130/772] 05-15_00159_P0030953 n=12 | lace_tt 0.561 | lace_tt_a0 0.573 | lace_tree 0.517 | box 0.375 | ellipse 0.382 | exg 0.164  feat 15.4s tot 16.1s  done 187, left ?  [50.8 min]
+  [131/772] 05-15_00160_P0030686 n=6 | lace_tt 0.705 | lace_tt_a0 0.713 | lace_tree 0.669 | box 0.480 | ellipse 0.518 | exg 0.490  feat 15.4s tot 15.9s  done 188, left ?  [51.0 min]
+  [132/772] 05-15_00160_P0030695 n=7 | lace_tt 0.597 | lace_tt_a0 0.603 | lace_tree 0.572 | box 0.443 | ellipse 0.463 | exg 0.461  feat 15.5s tot 16.1s  done 189, left ?  [51.3 min]
+  [133/772] 05-15_00160_P0030859 n=14 | lace_tt 0.645 | lace_tt_a0 0.654 | lace_tree 0.684 | box 0.475 | ellipse 0.503 | exg 0.509  feat 15.8s tot 16.5s  done 190, left ?  [51.6 min]
+  [134/772] 05-15_00160_P0030943 n=11 | lace_tt 0.629 | lace_tt_a0 0.667 | lace_tree 0.624 | box 0.403 | ellipse 0.397 | exg 0.552  feat 15.4s tot 16.1s  done 191, left ?  [51.9 min]
+  [135/772] 05-15_00160_P0030953 n=11 | lace_tt 0.593 | lace_tt_a0 0.614 | lace_tree 0.610 | box 0.427 | ellipse 0.446 | exg 0.204  feat 15.8s tot 16.4s  done 192, left ?  [52.1 min]
+  [136/772] 05-15_00161_P0030686 n=9 | lace_tt 0.700 | lace_tt_a0 0.720 | lace_tree 0.705 | box 0.511 | ellipse 0.560 | exg 0.403  feat 15.5s tot 16.1s  done 193, left ?  [52.4 min]
+  [137/772] 05-15_00161_P0030695 n=7 | lace_tt 0.568 | lace_tt_a0 0.556 | lace_tree 0.549 | box 0.446 | ellipse 0.464 | exg 0.462  feat 15.5s tot 16.0s  done 194, left ?  [52.7 min]
+  [138/772] 05-15_00161_P0030859 n=14 | lace_tt 0.657 | lace_tt_a0 0.669 | lace_tree 0.666 | box 0.489 | ellipse 0.515 | exg 0.345  feat 15.6s tot 16.3s  done 195, left ?  [52.9 min]
+  [139/772] 05-15_00161_P0030953 n=14 | lace_tt 0.646 | lace_tt_a0 0.659 | lace_tree 0.665 | box 0.478 | ellipse 0.514 | exg 0.496  feat 15.4s tot 16.1s  done 196, left ?  [53.2 min]
+  [140/772] 05-15_00162_P0030686 n=9 | lace_tt 0.588 | lace_tt_a0 0.610 | lace_tree 0.654 | box 0.450 | ellipse 0.473 | exg 0.383  feat 15.4s tot 16.1s  done 197, left ?  [53.5 min]
+  [141/772] 05-15_00162_P0030695 n=5 | lace_tt 0.639 | lace_tt_a0 0.634 | lace_tree 0.549 | box 0.372 | ellipse 0.385 | exg 0.387  feat 15.4s tot 15.9s  done 198, left ?  [53.7 min]
+  [142/772] 05-15_00162_P0030859 n=13 | lace_tt 0.686 | lace_tt_a0 0.697 | lace_tree 0.619 | box 0.457 | ellipse 0.467 | exg 0.476  feat 15.6s tot 16.3s  done 199, left ?  [54.0 min]
+  [143/772] 05-15_00162_P0030953 n=18 | lace_tt 0.653 | lace_tt_a0 0.663 | lace_tree 0.647 | box 0.463 | ellipse 0.478 | exg 0.476  feat 15.4s tot 16.1s  done 200, left ?  [54.3 min]
+  [144/772] 05-15_00163_P0030686 n=6 | lace_tt 0.622 | lace_tt_a0 0.606 | lace_tree 0.557 | box 0.369 | ellipse 0.370 | exg 0.382  feat 15.4s tot 16.0s  done 201, left ?  [54.5 min]
+  [145/772] 05-15_00163_P0030695 n=5 | lace_tt 0.717 | lace_tt_a0 0.720 | lace_tree 0.699 | box 0.546 | ellipse 0.554 | exg 0.569  feat 15.6s tot 16.1s  done 202, left ?  [54.8 min]
+  [146/772] 05-15_00163_P0030859 n=13 | lace_tt 0.669 | lace_tt_a0 0.674 | lace_tree 0.600 | box 0.431 | ellipse 0.435 | exg 0.459  feat 15.6s tot 16.3s  done 203, left ?  [55.1 min]
+  [147/772] 05-15_00163_P0030953 n=13 | lace_tt 0.674 | lace_tt_a0 0.663 | lace_tree 0.649 | box 0.438 | ellipse 0.432 | exg 0.450  feat 16.0s tot 16.6s  done 204, left ?  [55.4 min]
+Traceback (most recent call last):
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/pipeline.py", line 43, in <module>
+    main()
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/pipeline.py", line 35, in main
+    msg = RUNMOD.process(t, F4, tree, f"[{S.index(t)+1}/{len(S)}]"); del F4
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/run.py", line 88, in process
+    model, rep = LC.fit_image(F4[0::2, 0::2], boxes, H, W)
+  File "/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_phenobench/code/lace_core.py", line 119, in fit_image
+    raise RuntimeError(f"only {len(fgZ)} fg-init cells < K_fg {a['k']}")
+RuntimeError: only 11 fg-init cells < K_fg 16

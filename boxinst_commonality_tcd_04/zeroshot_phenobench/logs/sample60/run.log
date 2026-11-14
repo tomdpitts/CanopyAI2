@@ -1,0 +1,182 @@
+[pb run] 60 images, arms ('lace_tt', 'lace_tt_a0', 'lace_tree', 'box', 'ellipse', 'exg')
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:80: RuntimeWarning: divide by zero encountered in matmul
+  Zn = (f.astype(np.float32) - mu) @ U / scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:80: RuntimeWarning: overflow encountered in matmul
+  Zn = (f.astype(np.float32) - mu) @ U / scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:80: RuntimeWarning: invalid value encountered in matmul
+  Zn = (f.astype(np.float32) - mu) @ U / scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:21: RuntimeWarning: divide by zero encountered in matmul
+  a = np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:21: RuntimeWarning: overflow encountered in matmul
+  a = np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:21: RuntimeWarning: invalid value encountered in matmul
+  a = np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:25: RuntimeWarning: divide by zero encountered in matmul
+  return C, np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:25: RuntimeWarning: overflow encountered in matmul
+  return C, np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:25: RuntimeWarning: invalid value encountered in matmul
+  return C, np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:112: RuntimeWarning: divide by zero encountered in matmul
+  bg_all = logsumexp(np.log(wbg)[None] + kappa * (Zn @ Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:112: RuntimeWarning: overflow encountered in matmul
+  bg_all = logsumexp(np.log(wbg)[None] + kappa * (Zn @ Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:112: RuntimeWarning: invalid value encountered in matmul
+  bg_all = logsumexp(np.log(wbg)[None] + kappa * (Zn @ Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:82: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:82: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:82: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:135: RuntimeWarning: divide by zero encountered in matmul
+  newC += r.T @ Zn[idx]; fg_mass += pfg.sum(); n_tot += len(idx)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:135: RuntimeWarning: overflow encountered in matmul
+  newC += r.T @ Zn[idx]; fg_mass += pfg.sum(); n_tot += len(idx)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:135: RuntimeWarning: invalid value encountered in matmul
+  newC += r.T @ Zn[idx]; fg_mass += pfg.sum(); n_tot += len(idx)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:56: RuntimeWarning: divide by zero encountered in matmul
+  a = softmax(kappa * (negZ @ pos.T), axis=1)             # (M,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:56: RuntimeWarning: overflow encountered in matmul
+  a = softmax(kappa * (negZ @ pos.T), axis=1)             # (M,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:56: RuntimeWarning: invalid value encountered in matmul
+  a = softmax(kappa * (negZ @ pos.T), axis=1)             # (M,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:57: RuntimeWarning: divide by zero encountered in matmul
+  neg = (a.T @ negZ) / (a.sum(0)[:, None] + 1e-8)         # (K,D)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:57: RuntimeWarning: overflow encountered in matmul
+  neg = (a.T @ negZ) / (a.sum(0)[:, None] + 1e-8)         # (K,D)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:57: RuntimeWarning: invalid value encountered in matmul
+  neg = (a.T @ negZ) / (a.sum(0)[:, None] + 1e-8)         # (K,D)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:170: RuntimeWarning: divide by zero encountered in matmul
+  z = (F.reshape(-1, F.shape[-1]).astype(np.float32) - self.mu) @ self.U / self.scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:170: RuntimeWarning: overflow encountered in matmul
+  z = (F.reshape(-1, F.shape[-1]).astype(np.float32) - self.mu) @ self.U / self.scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:170: RuntimeWarning: invalid value encountered in matmul
+  z = (F.reshape(-1, F.shape[-1]).astype(np.float32) - self.mu) @ self.U / self.scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:175: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:175: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:175: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:175: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:175: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:175: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:82: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:82: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:82: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:170: RuntimeWarning: divide by zero encountered in matmul
+  z = (F.reshape(-1, F.shape[-1]).astype(np.float32) - self.mu) @ self.U / self.scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:170: RuntimeWarning: overflow encountered in matmul
+  z = (F.reshape(-1, F.shape[-1]).astype(np.float32) - self.mu) @ self.U / self.scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:170: RuntimeWarning: invalid value encountered in matmul
+  z = (F.reshape(-1, F.shape[-1]).astype(np.float32) - self.mu) @ self.U / self.scale
+  1/60 06-05_00024_P0037822 n=19 | lace_tt 0.618 | lace_tt_a0 0.645 | lace_tree 0.650 | box 0.416 | ellipse 0.444 | exg 0.667  [1s]
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:80: RuntimeWarning: divide by zero encountered in matmul
+  Zn = (f.astype(np.float32) - mu) @ U / scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:80: RuntimeWarning: overflow encountered in matmul
+  Zn = (f.astype(np.float32) - mu) @ U / scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:80: RuntimeWarning: invalid value encountered in matmul
+  Zn = (f.astype(np.float32) - mu) @ U / scale
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:21: RuntimeWarning: divide by zero encountered in matmul
+  a = np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:21: RuntimeWarning: overflow encountered in matmul
+  a = np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:21: RuntimeWarning: invalid value encountered in matmul
+  a = np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:25: RuntimeWarning: divide by zero encountered in matmul
+  return C, np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:25: RuntimeWarning: overflow encountered in matmul
+  return C, np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:25: RuntimeWarning: invalid value encountered in matmul
+  return C, np.argmax(X @ C.T, 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:112: RuntimeWarning: divide by zero encountered in matmul
+  bg_all = logsumexp(np.log(wbg)[None] + kappa * (Zn @ Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:112: RuntimeWarning: overflow encountered in matmul
+  bg_all = logsumexp(np.log(wbg)[None] + kappa * (Zn @ Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:112: RuntimeWarning: invalid value encountered in matmul
+  bg_all = logsumexp(np.log(wbg)[None] + kappa * (Zn @ Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:135: RuntimeWarning: divide by zero encountered in matmul
+  newC += r.T @ Zn[idx]; fg_mass += pfg.sum(); n_tot += len(idx)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:135: RuntimeWarning: overflow encountered in matmul
+  newC += r.T @ Zn[idx]; fg_mass += pfg.sum(); n_tot += len(idx)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/lace_core.py:135: RuntimeWarning: invalid value encountered in matmul
+  newC += r.T @ Zn[idx]; fg_mass += pfg.sum(); n_tot += len(idx)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:56: RuntimeWarning: divide by zero encountered in matmul
+  a = softmax(kappa * (negZ @ pos.T), axis=1)             # (M,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:56: RuntimeWarning: overflow encountered in matmul
+  a = softmax(kappa * (negZ @ pos.T), axis=1)             # (M,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:56: RuntimeWarning: invalid value encountered in matmul
+  a = softmax(kappa * (negZ @ pos.T), axis=1)             # (M,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:57: RuntimeWarning: divide by zero encountered in matmul
+  neg = (a.T @ negZ) / (a.sum(0)[:, None] + 1e-8)         # (K,D)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:57: RuntimeWarning: overflow encountered in matmul
+  neg = (a.T @ negZ) / (a.sum(0)[:, None] + 1e-8)         # (K,D)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/zeroshot_livecell/code/_verbatim.py:57: RuntimeWarning: invalid value encountered in matmul
+  neg = (a.T @ negZ) / (a.sum(0)[:, None] + 1e-8)         # (K,D)
+  2/60 06-05_00027_P0037822 n=15 | lace_tt 0.572 | lace_tt_a0 0.585 | lace_tree 0.609 | box 0.447 | ellipse 0.482 | exg 0.602  [2s]
+  3/60 06-05_00029_P0037991 n=11 | lace_tt 0.527 | lace_tt_a0 0.539 | lace_tree 0.574 | box 0.394 | ellipse 0.457 | exg 0.746  [3s]
+  4/60 06-05_00032_P0037991 n=9 | lace_tt 0.471 | lace_tt_a0 0.472 | lace_tree 0.535 | box 0.384 | ellipse 0.416 | exg 0.763  [4s]
+  5/60 06-05_00053_P0037822 n=19 | lace_tt 0.640 | lace_tt_a0 0.670 | lace_tree 0.704 | box 0.478 | ellipse 0.512 | exg 0.817  [5s]
+  6/60 06-05_00074_P0037822 n=16 | lace_tt 0.647 | lace_tt_a0 0.662 | lace_tree 0.684 | box 0.473 | ellipse 0.486 | exg 0.820  [6s]
+  7/60 06-05_00074_P0037991 n=16 | lace_tt 0.512 | lace_tt_a0 0.526 | lace_tree 0.560 | box 0.371 | ellipse 0.397 | exg 0.705  [7s]
+  8/60 06-05_00108_P0037822 n=23 | lace_tt 0.555 | lace_tt_a0 0.575 | lace_tree 0.629 | box 0.452 | ellipse 0.477 | exg 0.695  [8s]
+  9/60 06-05_00114_P0037991 n=17 | lace_tt 0.547 | lace_tt_a0 0.547 | lace_tree 0.618 | box 0.421 | ellipse 0.458 | exg 0.672  [9s]
+  10/60 06-05_00115_P0037991 n=14 | lace_tt 0.566 | lace_tt_a0 0.571 | lace_tree 0.646 | box 0.470 | ellipse 0.511 | exg 0.615  [10s]
+  11/60 06-05_00117_P0038051 n=12 | lace_tt 0.496 | lace_tt_a0 0.496 | lace_tree 0.556 | box 0.390 | ellipse 0.432 | exg 0.752  [11s]
+  12/60 06-05_00121_P0037991 n=22 | lace_tt 0.596 | lace_tt_a0 0.605 | lace_tree 0.650 | box 0.480 | ellipse 0.514 | exg 0.718  [12s]
+  13/60 06-05_00134_P0037991 n=17 | lace_tt 0.543 | lace_tt_a0 0.551 | lace_tree 0.582 | box 0.402 | ellipse 0.447 | exg 0.690  [13s]
+  14/60 06-05_00136_P0038051 n=13 | lace_tt 0.534 | lace_tt_a0 0.550 | lace_tree 0.598 | box 0.396 | ellipse 0.435 | exg 0.606  [14s]
+  15/60 06-05_00142_P0037991 n=23 | lace_tt 0.611 | lace_tt_a0 0.624 | lace_tree 0.627 | box 0.455 | ellipse 0.490 | exg 0.663  [15s]
+  16/60 06-05_00156_P0037991 n=14 | lace_tt 0.611 | lace_tt_a0 0.614 | lace_tree 0.669 | box 0.461 | ellipse 0.530 | exg 0.691  [16s]
+  17/60 06-05_00163_P0037991 n=23 | lace_tt 0.550 | lace_tt_a0 0.558 | lace_tree 0.591 | box 0.419 | ellipse 0.449 | exg 0.550  [17s]
+  18/60 06-05_00182_P0038051 n=20 | lace_tt 0.569 | lace_tt_a0 0.588 | lace_tree 0.638 | box 0.421 | ellipse 0.470 | exg 0.716  [18s]
+  19/60 06-05_00196_P0038051 n=32 | lace_tt 0.506 | lace_tt_a0 0.525 | lace_tree 0.533 | box 0.378 | ellipse 0.405 | exg 0.559  [20s]
+  20/60 06-05_00216_P0038051 n=32 | lace_tt 0.482 | lace_tt_a0 0.486 | lace_tree 0.504 | box 0.395 | ellipse 0.416 | exg 0.466  [21s]
+  21/60 05-15_00054_P0030859 n=10 | lace_tt 0.642 | lace_tt_a0 0.664 | lace_tree 0.618 | box 0.378 | ellipse 0.396 | exg 0.486  [22s]
+  22/60 05-15_00098_P0030859 n=8 | lace_tt 0.617 | lace_tt_a0 0.607 | lace_tree 0.577 | box 0.393 | ellipse 0.390 | exg 0.410  [23s]
+  23/60 05-15_00141_P0030953 n=16 | lace_tt 0.652 | lace_tt_a0 0.654 | lace_tree 0.612 | box 0.448 | ellipse 0.463 | exg 0.464  [23s]
+  24/60 05-15_00164_P0030859 n=12 | lace_tt 0.620 | lace_tt_a0 0.617 | lace_tree 0.615 | box 0.467 | ellipse 0.477 | exg 0.489  [24s]
+  25/60 05-15_00164_P0030953 n=11 | lace_tt 0.584 | lace_tt_a0 0.572 | lace_tree 0.558 | box 0.362 | ellipse 0.364 | exg 0.383  [25s]
+  26/60 05-15_00179_P0030859 n=9 | lace_tt 0.583 | lace_tt_a0 0.590 | lace_tree 0.537 | box 0.362 | ellipse 0.356 | exg 0.495  [26s]
+  27/60 05-15_00185_P0030859 n=13 | lace_tt 0.687 | lace_tt_a0 0.700 | lace_tree 0.705 | box 0.556 | ellipse 0.554 | exg 0.581  [26s]
+  28/60 05-15_00202_P0030953 n=6 | lace_tt 0.592 | lace_tt_a0 0.604 | lace_tree 0.599 | box 0.389 | ellipse 0.421 | exg 0.522  [27s]
+  29/60 05-15_00206_P0030695 n=8 | lace_tt 0.568 | lace_tt_a0 0.587 | lace_tree 0.533 | box 0.383 | ellipse 0.393 | exg 0.466  [28s]
+  30/60 05-15_00215_P0030686 n=9 | lace_tt 0.632 | lace_tt_a0 0.655 | lace_tree 0.633 | box 0.445 | ellipse 0.497 | exg 0.454  [28s]
+  31/60 05-15_00215_P0030695 n=10 | lace_tt 0.640 | lace_tt_a0 0.648 | lace_tree 0.632 | box 0.420 | ellipse 0.459 | exg 0.579  [29s]
+  32/60 05-15_00219_P0030792 n=11 | lace_tt 0.634 | lace_tt_a0 0.635 | lace_tree 0.567 | box 0.387 | ellipse 0.371 | exg 0.408  [30s]
+  33/60 05-15_00220_P0030792 n=11 | lace_tt 0.644 | lace_tt_a0 0.649 | lace_tree 0.579 | box 0.373 | ellipse 0.365 | exg 0.395  [30s]
+  34/60 05-15_00222_P0030695 n=10 | lace_tt 0.611 | lace_tt_a0 0.585 | lace_tree 0.673 | box 0.465 | ellipse 0.485 | exg 0.682  [31s]
+  35/60 05-15_00227_P0030953 n=10 | lace_tt 0.568 | lace_tt_a0 0.577 | lace_tree 0.539 | box 0.361 | ellipse 0.399 | exg 0.291  [32s]
+  36/60 05-15_00239_P0030792 n=7 | lace_tt 0.636 | lace_tt_a0 0.613 | lace_tree 0.590 | box 0.411 | ellipse 0.405 | exg 0.429  [32s]
+  37/60 05-15_00245_P0030953 n=12 | lace_tt 0.600 | lace_tt_a0 0.607 | lace_tree 0.529 | box 0.366 | ellipse 0.381 | exg 0.316  [33s]
+  38/60 05-15_00277_P0030695 n=10 | lace_tt 0.644 | lace_tt_a0 0.640 | lace_tree 0.653 | box 0.520 | ellipse 0.519 | exg 0.535  [34s]
+  39/60 05-15_00281_P0030792 n=6 | lace_tt 0.620 | lace_tt_a0 0.595 | lace_tree 0.550 | box 0.364 | ellipse 0.341 | exg 0.390  [34s]
+  40/60 05-15_00284_P0030695 n=9 | lace_tt 0.528 | lace_tt_a0 0.540 | lace_tree 0.499 | box 0.356 | ellipse 0.343 | exg 0.435  [35s]
+  41/60 05-26_00054_P0034282 n=18 | lace_tt 0.484 | lace_tt_a0 0.501 | lace_tree 0.512 | box 0.334 | ellipse 0.360 | exg 0.334  [36s]
+  42/60 05-26_00059_P0034282 n=19 | lace_tt 0.578 | lace_tt_a0 0.593 | lace_tree 0.569 | box 0.402 | ellipse 0.422 | exg 0.598  [37s]
+  43/60 05-26_00120_P0034282 n=15 | lace_tt 0.526 | lace_tt_a0 0.529 | lace_tree 0.583 | box 0.414 | ellipse 0.444 | exg 0.510  [38s]
+  44/60 05-26_00122_P0034282 n=12 | lace_tt 0.608 | lace_tt_a0 0.632 | lace_tree 0.659 | box 0.433 | ellipse 0.467 | exg 0.536  [39s]
+  45/60 05-26_00131_P0034121 n=13 | lace_tt 0.576 | lace_tt_a0 0.594 | lace_tree 0.655 | box 0.440 | ellipse 0.446 | exg 0.658  [39s]
+  46/60 05-26_00137_P0034121 n=15 | lace_tt 0.666 | lace_tt_a0 0.676 | lace_tree 0.706 | box 0.473 | ellipse 0.490 | exg 0.685  [40s]
+  47/60 05-26_00140_P0034282 n=17 | lace_tt 0.579 | lace_tt_a0 0.584 | lace_tree 0.633 | box 0.475 | ellipse 0.477 | exg 0.423  [41s]
+  48/60 05-26_00155_P0034121 n=14 | lace_tt 0.612 | lace_tt_a0 0.639 | lace_tree 0.628 | box 0.402 | ellipse 0.437 | exg 0.490  [42s]
+  49/60 05-26_00156_P0034016 n=11 | lace_tt 0.647 | lace_tt_a0 0.659 | lace_tree 0.684 | box 0.455 | ellipse 0.503 | exg 0.438  [43s]
+  50/60 05-26_00158_P0034121 n=20 | lace_tt 0.577 | lace_tt_a0 0.592 | lace_tree 0.625 | box 0.406 | ellipse 0.442 | exg 0.685  [44s]
+  51/60 05-26_00163_P0034016 n=16 | lace_tt 0.581 | lace_tt_a0 0.584 | lace_tree 0.604 | box 0.404 | ellipse 0.429 | exg 0.318  [44s]
+  52/60 05-26_00177_P0034121 n=11 | lace_tt 0.628 | lace_tt_a0 0.650 | lace_tree 0.665 | box 0.430 | ellipse 0.453 | exg 0.586  [45s]
+  53/60 05-26_00185_P0034016 n=18 | lace_tt 0.473 | lace_tt_a0 0.479 | lace_tree 0.593 | box 0.415 | ellipse 0.446 | exg 0.381  [46s]
+  54/60 05-26_00196_P0034121 n=12 | lace_tt 0.611 | lace_tt_a0 0.625 | lace_tree 0.673 | box 0.438 | ellipse 0.463 | exg 0.483  [47s]
+  55/60 05-26_00199_P0034121 n=12 | lace_tt 0.652 | lace_tt_a0 0.661 | lace_tree 0.638 | box 0.424 | ellipse 0.447 | exg 0.725  [48s]
+  56/60 05-26_00201_P0034016 n=18 | lace_tt 0.503 | lace_tt_a0 0.506 | lace_tree 0.627 | box 0.435 | ellipse 0.472 | exg 0.603  [49s]
+  57/60 05-26_00217_P0034121 n=18 | lace_tt 0.637 | lace_tt_a0 0.635 | lace_tree 0.703 | box 0.459 | ellipse 0.505 | exg 0.493  [50s]
+  58/60 05-26_00220_P0034121 n=13 | lace_tt 0.674 | lace_tt_a0 0.687 | lace_tree 0.651 | box 0.438 | ellipse 0.472 | exg 0.446  [50s]
+  59/60 05-26_00222_P0034016 n=19 | lace_tt 0.577 | lace_tt_a0 0.583 | lace_tree 0.695 | box 0.499 | ellipse 0.531 | exg 0.647  [51s]
+  60/60 05-26_00240_P0034016 n=19 | lace_tt 0.581 | lace_tt_a0 0.599 | lace_tree 0.635 | box 0.451 | ellipse 0.479 | exg 0.443  [52s]
+[pb run] done

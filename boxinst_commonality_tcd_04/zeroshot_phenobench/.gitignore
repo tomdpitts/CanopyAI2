@@ -1,0 +1,16 @@
+# Downloaded / regenerable files stay local (README documents how to regenerate)
+data/
+features/
+*.npy
+*.npz
+# Per-image mask records (8k files, ~65 MB): local only; summaries, gates and logs are tracked
+results/*/lace_tt/
+results/*/lace_tt_a0/
+results/*/lace_tree/
+results/*/box/
+results/*/ellipse/
+results/*/exg/
+results/*/sam3/
+results/*/sam3_boxclip/
+results/*/gt/
+results/xvenv_check/
