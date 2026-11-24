@@ -8,8 +8,8 @@ products in ../cvpr are never touched), then:
   - style file copied from the CVPR kit as lacepreprint.sty, comments stripped and every 'cvpr'/'CVPR' token renamed
   - \\confName/\\confYear removed; real authors/affiliation/contact; no pagebackref
   - back matter as in arXiv v1 (contributions, funding, data availability, conflicts, AI-assistance statement)
-  - supplementary becomes a continuous appendix (no page reset, no repeated title); "Supplementary~\\ref" -> "Appendix~\\ref"
-  - content = the CVPR version (CVPR-only rewrites in, omit blocks out, supp blocks in the appendix)
+  - the appendix runs on continuously (no page reset, no repeated title)
+  - content = the CVPR version (CVPR-only rewrites in, omit blocks out)
 Outputs here: paper_v2.tex, paper_v2.pdf, paper_v2.bbl, lace.bib, lacepreprint.sty, ieeenat_fullname.bst, figs/,
 abstract_for_form.txt, lace_arxiv_v2.tar.gz (upload this), build_report.txt.
 Guard: build fails if 'cvpr' (any case) appears in any file of the tarball or in the PDF text.
@@ -70,19 +70,18 @@ Department of Data Science, University of Technology Sydney\\
 {\tt\small thomas.pitts@uts.edu.au}}
 \hypersetup{pdfauthor={Thomas Pitts, Kunqi Li, Bin Liang}}""")
 rep("\\label{cvpr:body-end}\n", "")
-m = re.search(r"\\section\*\{LLM Usage Statement\}\n(.*?)\n\n\\clearpage", doc, flags=re.S)
+# make_cvpr.py emits the statement BEFORE the references since 2026-11-13; lift it (and its CVPR comment line) out
+m = re.search(r"(?:% CVPR[^\n]*\n)?\\section\*\{LLM Usage Statement\}\n(.*?)\n\n(?=\{\n\\small\n\\bibliographystyle)", doc, flags=re.S)
 assert m, "LLM Usage Statement block not found"
 ai = m.group(1).strip()
-doc = doc[:m.start()] + "\\clearpage" + doc[m.end():]
+doc = doc[:m.start()] + doc[m.end():]
 back = (f"\\section*{{Author Contributions}}\n{contrib}\n\n\\section*{{Funding}}\n{funding}\n\n"
         f"\\section*{{Data Availability}}\n{data}\n\n\\section*{{Conflicts of Interest}}\n{coi}\n\n"
         f"\\section*{{Use of AI Assistance}}\n{ai}\n\n")
 rep("{\n\\small\n\\bibliographystyle{ieeenat_fullname}", back + "{\n\\small\n\\bibliographystyle{ieeenat_fullname}")
-rep("\\clearpage\n\\setcounter{page}{1}\n\\maketitlesupplementary\n\\appendix\n", "\\clearpage\n\\appendix\n")
-doc = doc.replace("Supplementary~\\ref{", "Appendix~\\ref{")
-doc = doc.replace("history in Supplementary)", "history in the appendix)")
-assert not re.search(r"Supplementary(?! Analyses)", doc), "stray Supplementary wording"
-doc = doc.replace(r"\section{Material Moved from the Main Paper}", r"\section{Additional Method and Experimental Details}")
+rep("\\clearpage\n\\setcounter{page}{1}\n\\newpage\\twocolumn[\\centering\\Large\\textbf{\\thetitle}\\\\\\vspace{0.5em}Appendix\\\\\\vspace{1.0em}]\n\\appendix\n",
+    "\\clearpage\n\\appendix\n")
+assert "Supplementary" not in doc, "stray Supplementary wording: the paper says Appendix throughout"
 doc = re.sub(r"\n{3,}", "\n\n", doc)
 bad = sorted({c for c in doc if ord(c) > 127})
 assert not bad, f"non-ASCII would break pdflatex on arXiv: {bad}"

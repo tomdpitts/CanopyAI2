@@ -269,6 +269,13 @@ Lines: 186 (Brandt 2016), 195 ×2, 197 (ICLR workshop paper, BalSAM), 201 ("cite
 - **Verdict:** NOT SUPPORTED
 - **Note:** Crowther gives no "outside forests" fraction and no <10% canopy-cover statistic; its counts are forest trees only (trees ≥10 cm DBH, scaled by forested land area per pixel). The 1/3 figure is not in this paper and needs a different source (a trees-outside-forests inventory study, e.g. Schnell et al. 2015 Environ. Monit. Assess., or an FAO TOF assessment) — verify before re-citing.
 
+### paper.tex L188 (added 2026-11-16; replaces the two L187 claims above, which are no longer in the paper)
+> At the same time, 1/4 of all trees globally are located in grassland, savannah, desert and tundra biomes~\cite{crowther2015}.
+- **Location:** Table 1 (biome totals, billions of trees); total in Abstract
+- **Quote:** Tropical grasslands 318.0, Temperate grasslands 148.3, Flooded grasslands 64.6, Montane grasslands 60.3, Tundra 94.9, Deserts 53.0; "the global number of trees is approximately 3.04 trillion"
+- **Verdict:** SUPPORTED (derived)
+- **Note:** The fraction is not stated in the paper; it is the sum of six Table 1 rows, 739.1 of 3,041 billion = 24.3%. "Savannah" is the WWF tropical grasslands, savannas and shrublands biome. Mediterranean forests (53.4) are excluded; including them gives 26.1%. Checked against the cached `crowther2015.txt`, and confirmed by Tom.
+
 ## bastin2017 — The extent of forest in dryland biomes (Bastin 2017)
 **PDF:** `/Users/tompitts/dphil/refs/lace_bib_pdfs/bastin2017.pdf` — from https://core.ac.uk/download/83940896.pdf (White Rose eprints 115833, accepted author manuscript, line-numbered; PDF pages are manuscript pages, no journal pagination)
 **Bib check:** OK (Science 356(6338), 635–638, 2017; cover sheet: Bastin, Berrahmouni, Grainger + 28 more = 31 authors)
