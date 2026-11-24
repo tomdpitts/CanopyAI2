@@ -1,0 +1,10 @@
+creating index...
+index created!
+test sam {'AP50': 0.7013, 'AP75': 0.3107, 'AP50_95': 0.3553}
+creating index...
+index created!
+test F2_sam_at_gmean_shat {'AP50': 0.7203, 'AP75': 0.3259, 'AP50_95': 0.3678}
+creating index...
+index created!
+test F2c_sam_at_gmean_shat3 {'AP50': 0.7121, 'AP75': 0.3225, 'AP50_95': 0.3638}
+{"F2_sam_at_gmean_shat_minus_F2c_sam_at_gmean_shat3": {"AP50": {"diff": 0.0082, "ci95": [0.0062, 0.01]}, "AP75": {"diff": 0.0034, "ci95": [0.002, 0.0045]}, "AP50_95": {"diff": 0.004, "ci95": [0.003, 0.0051]}}, "F2c_sam_at_gmean_shat3_minus_sam": {"AP50": {"diff": 0.0108, "ci95": [0.0063, 0.0154]}, "AP75": {"diff": 0.0118, "ci95": [0.0092, 0.0142]}, "AP50_95": {"diff": 0.0085, "ci95": [0.0061, 0.0108]}}}
