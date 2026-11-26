@@ -1,0 +1,28 @@
+{
+ "g1": {
+  "desc": "render_boxes(D1 test boxes, EDGE_FILL True) == preds_d1_edgefix_test_sprime masks byte-identical + s' < 1e-6",
+  "tiles": {
+   "tcd_val_tile_0": {
+    "masks_identical": "37/37",
+    "s_prime_max_abs": 0.0
+   },
+   "tcd_val_tile_1": {
+    "masks_identical": "438/438",
+    "s_prime_max_abs": 0.0
+   },
+   "tcd_val_tile_10": {
+    "masks_identical": "404/404",
+    "s_prime_max_abs": 0.0
+   }
+  },
+  "pass": true,
+  "date": "2026-11-26 15:24"
+ },
+ "g3": {
+  "desc": "rerank._feats reproduces rerankR1_val.npz (3 val tiles); R3 recipe refit reproduces published R3 test scores",
+  "feats_match": true,
+  "r3_refit_max_abs": 0.0,
+  "pass": true,
+  "date": "2026-11-26 15:24"
+ }
+}

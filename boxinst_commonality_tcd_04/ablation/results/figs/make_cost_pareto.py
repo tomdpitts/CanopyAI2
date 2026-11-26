@@ -18,16 +18,22 @@ x = estimated annotator-hours for every OAM-TCD label the row consumed in traini
   annotator produced, not the post-filtering counts a loader kept.
 
 Row label sets:
-  LACE        792 train tiles as boxes + 108 val tiles as polygons (val masks select alpha, kappa, tau, guide, and
-              select the learned confidence by val mask AP50; its training target is box-match, box IoU >= 0.5,
-              dino_det/rerank3.py label "box50")
+  LACE        same 900 tiles, boxes. 2026-11-26 (Tom): the 108 val masks that selected alpha, kappa, tau, guide and the
+              learned confidence (by val mask AP50) are a one-off development cost, like the baselines' authors'
+              tuning, NOT a per-deployment cost: on new data the settings are reused unchanged (sparse slice;
+              PhenoBench masker "nothing refitted"). So they are not charged; disclosed in caption + text.
+              Previously charged as polygons (392 h, 11x); LACE-0 (box-only selection, 0.694) was the alternative,
+              declined.
   Detectree2  same 900 tiles, polygons
   Box2Mask    same 900 tiles, boxes (selected on val box AP50)
   BoxTeacher  same 900 tiles, boxes (selected on val box AP50, box_supervised_baselines/tierb/TIERB.md)
   Restor      all 4,169 OAM-TCD train tiles, polygons
   No row's non-OAM-TCD pretraining is counted (COCO, detectree2 tropical polygons, DINOv3).
 
-y = canopy-neutral mask AP50 / AP50:95 at 2048, Table 1 (paper.tex tab:oamtcd439), read from
+2026-11-26: figure is AP50 only (single panel); the AP50:95 panel was dropped as too busy. AP50:95 and its
+frontier are still written to cost_pareto_data.json.
+
+y = canopy-neutral mask AP50 at 2048 (AP50:95 kept in the JSON only), Table 1 (paper.tex tab:oamtcd439), read from
   results_439/TABLE1_CURRENT.json (table1_439, full precision). All rows are single runs, so no seed band is drawn.
 
 Outputs (next to this script): cost_pareto.pdf, cost_pareto.png (preview), cost_pareto_data.json.
@@ -93,7 +99,7 @@ def label_sets(tiles):
     va = [k for k, v in gt.items() if v["partition"] == "val"]
     # each entry: list of (tile ids, tree label type)
     return {
-        "LACE (ours)":       [(tr, "box"), (va, "poly")],
+        "LACE (ours)":       [(tr + va, "box")],
         "Detectree2":        [(tr + va, "poly")],
         "Box2Mask Swin-L":   [(tr + va, "box")],
         "Box2Mask R-50":     [(tr + va, "box")],
@@ -138,7 +144,7 @@ def main():
                          "font.size": 7.5, "axes.edgecolor": AXIS, "axes.linewidth": 0.6,
                          "xtick.color": MUTED, "ytick.color": MUTED, "xtick.labelcolor": INK2,
                          "ytick.labelcolor": INK2, "pdf.fonttype": 42})
-    fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.85), constrained_layout=True)
+    fig, ax0 = plt.subplots(1, 1, figsize=(5.0, 2.6), constrained_layout=True)
     # label offsets (points) per panel, tuned so nothing collides
     OFFS = {
         "ap50":   {"LACE (ours)": (8, -9), "Restor Mask R-CNN": (-4, 8), "Detectree2": (6, -6),
@@ -147,8 +153,7 @@ def main():
                    "BoxTeacher": (3, -8), "Box2Mask Swin-L": (3, -8), "Box2Mask R-50": (3, -8)},
     }
     HA = {"Restor Mask R-CNN": {"ap50": "right", "ap5095": "right"}}
-    for ax, key, ylab, ylim in [(axes[0], "ap50", "Mask AP$_{50}$", (0.40, 0.765)),
-                                (axes[1], "ap5095", "Mask AP$_{50:95}$", (0.14, 0.365))]:
+    for ax, key, ylab, ylim in [(ax0, "ap50", "Mask AP$_{50}$", (0.40, 0.765))]:
         ax.set_xscale("log")
         ax.set_xlim(200, 7000)
         ax.set_ylim(*ylim)
@@ -159,17 +164,10 @@ def main():
         ax.tick_params(length=2.5, width=0.6)
         ax.set_xticks([300, 1000, 3000])
         ax.set_xticklabels(["300", "1k", "3k"])
-        ax.set_xlabel("Estimated annotator-hours, OAM-TCD labels (log)", color=INK2)
+        ax.set_xlabel("Estimated annotator-hours (log)", color=INK2)
         ax.set_ylabel(ylab, color=INK2)
 
-        fr = frontier([(r["hours"], r[key]) for r in data])
-        xs, ys = [], []
-        for i, (c, y) in enumerate(fr):
-            xs += [c]; ys += [y]
-            if i + 1 < len(fr):
-                xs += [fr[i + 1][0]]; ys += [y]
-        xs += [ax.get_xlim()[1]]; ys += [fr[-1][1]]
-        ax.plot(xs, ys, color=MUTED, lw=1.0, ls=(0, (3, 2)), zorder=1)
+        # 2026-11-26: frontier line dropped (LACE dominates, so it was a flat line); still computed in the JSON
 
         for r in data:
             st = STYLE[r["supervision"]]
@@ -192,16 +190,16 @@ def main():
             ax.annotate("", xy=(lace["hours"], yb), xytext=(restor["hours"], yb),
                         arrowprops=dict(arrowstyle="<->", color=INK, lw=0.7, shrinkA=0, shrinkB=0))
             ax.text((lace["hours"] * restor["hours"]) ** 0.5, yb + 0.004,
-                    f"{ratio:.0f}× fewer hours, {lace['ap50'] - restor['ap50']:+.3f} AP$_{{50}}$", ha="center", va="bottom",
+                    f"{ratio:.0f}× fewer hours", ha="center", va="bottom",
                     fontsize=7.5, color=INK)
 
     handles = [Line2D([], [], ls="none", marker="*", ms=10, mfc=STYLE["box"]["color"], mec=INK, mew=0.6,
                       label="LACE (box labels)")]
     handles += [Line2D([], [], ls="none", marker=STYLE[k]["marker"], ms=5, mfc=STYLE[k]["color"], mec="white",
                        label=STYLE[k]["label"]) for k in ("box", "mask")]
-    handles += [Line2D([], [], color=MUTED, lw=1.0, ls=(0, (3, 2)), label="Pareto frontier")]
-    axes[0].legend(handles=handles, loc="lower right", fontsize=6.5, frameon=False, handlelength=1.6,
-                   borderaxespad=0.2, labelcolor=INK2)
+    leg = ax0.legend(handles=handles, loc="lower right", fontsize=6.5, frameon=True, fancybox=False,
+                     handlelength=1.6, borderpad=0.6, borderaxespad=0.6, labelcolor=INK2)
+    leg.get_frame().set(edgecolor=AXIS, linewidth=0.6, facecolor="white", alpha=1.0)
 
     for ext, kw in (("pdf", {}), ("png", {"dpi": 300})):
         fig.savefig(os.path.join(OUT, f"cost_pareto.{ext}"), **kw)

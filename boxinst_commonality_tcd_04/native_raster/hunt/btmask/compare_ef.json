@@ -1,0 +1,190 @@
+{
+ "date_start": "2026-11-26 15:26",
+ "test": {
+  "gate2_A_reproduces_published": true,
+  "published_A": {
+   "AP50": 0.6642,
+   "AP75": 0.2231,
+   "AP50_95": 0.3049
+  },
+  "gate4_fasteval": {
+   "A": {
+    "AP50": 0.6642,
+    "AP50_95": 0.3049
+   },
+   "B": {
+    "AP50": 0.6676,
+    "AP50_95": 0.3185
+   },
+   "C": {
+    "AP50": 0.6852,
+    "AP50_95": 0.324
+   }
+  },
+  "metrics": {
+   "A": {
+    "AP50": 0.6642,
+    "AP75": 0.2231,
+    "AP50_95": 0.3049,
+    "n_det": 263132,
+    "box_AP50": 0.7033,
+    "floor": 0.05
+   },
+   "B": {
+    "AP50": 0.6676,
+    "AP75": 0.256,
+    "AP50_95": 0.3185,
+    "n_det": 263132,
+    "box_AP50": 0.7033,
+    "floor": 0.05
+   },
+   "C": {
+    "AP50": 0.6852,
+    "AP75": 0.2549,
+    "AP50_95": 0.324,
+    "n_det": 263132,
+    "box_AP50": 0.7198,
+    "floor": 0.0
+   }
+  },
+  "boot": {
+   "B_minus_A": {
+    "AP50": {
+     "diff": 0.0034,
+     "ci95": [
+      0.0008,
+      0.0071
+     ],
+     "p_le_0": 0.0065
+    },
+    "AP50_95": {
+     "diff": 0.0136,
+     "ci95": [
+      0.0107,
+      0.0171
+     ],
+     "p_le_0": 0.0
+    }
+   },
+   "C_minus_A": {
+    "AP50": {
+     "diff": 0.021,
+     "ci95": [
+      0.0172,
+      0.0253
+     ],
+     "p_le_0": 0.0
+    },
+    "AP50_95": {
+     "diff": 0.0191,
+     "ci95": [
+      0.0158,
+      0.0227
+     ],
+     "p_le_0": 0.0
+    }
+   }
+  },
+  "C_run": true,
+  "files": {
+   "A": "native_raster/hunt/btmask/preds_A_ef_test_r2048.json",
+   "B": "native_raster/hunt/btmask/preds_B_ef_test_r2048.json",
+   "C": "native_raster/hunt/btmask/preds_C_ef_test_r2048.json"
+  },
+  "date": "2026-11-26 15:59"
+ },
+ "sparse": {
+  "gate2_A_reproduces_published": true,
+  "published_A": {
+   "AP50": 0.7206,
+   "AP75": 0.359,
+   "AP50_95": 0.3756
+  },
+  "gate4_fasteval": {
+   "A": {
+    "AP50": 0.7206,
+    "AP50_95": 0.3756
+   },
+   "B": {
+    "AP50": 0.7232,
+    "AP50_95": 0.3893
+   },
+   "C": {
+    "AP50": 0.7297,
+    "AP50_95": 0.3909
+   }
+  },
+  "metrics": {
+   "A": {
+    "AP50": 0.7206,
+    "AP75": 0.359,
+    "AP50_95": 0.3756,
+    "n_det": 141521,
+    "box_AP50": 0.7391,
+    "floor": 0.05
+   },
+   "B": {
+    "AP50": 0.7232,
+    "AP75": 0.384,
+    "AP50_95": 0.3893,
+    "n_det": 141521,
+    "box_AP50": 0.7391,
+    "floor": 0.05
+   },
+   "C": {
+    "AP50": 0.7297,
+    "AP75": 0.3834,
+    "AP50_95": 0.3909,
+    "n_det": 141521,
+    "box_AP50": 0.7451,
+    "floor": 0.0
+   }
+  },
+  "boot": {
+   "B_minus_A": {
+    "AP50": {
+     "diff": 0.0026,
+     "ci95": [
+      -0.001,
+      0.0063
+     ],
+     "p_le_0": 0.0725
+    },
+    "AP50_95": {
+     "diff": 0.0137,
+     "ci95": [
+      0.0075,
+      0.0202
+     ],
+     "p_le_0": 0.0
+    }
+   },
+   "C_minus_A": {
+    "AP50": {
+     "diff": 0.0091,
+     "ci95": [
+      0.0025,
+      0.0167
+     ],
+     "p_le_0": 0.002
+    },
+    "AP50_95": {
+     "diff": 0.0153,
+     "ci95": [
+      0.0077,
+      0.0238
+     ],
+     "p_le_0": 0.0
+    }
+   }
+  },
+  "C_run": true,
+  "files": {
+   "A": "native_raster/hunt/btmask/preds_A_ef_sparse_r2048.json",
+   "B": "native_raster/hunt/btmask/preds_B_ef_sparse_r2048.json",
+   "C": "native_raster/hunt/btmask/preds_C_ef_sparse_r2048.json"
+  },
+  "date": "2026-11-26 16:16"
+ },
+ "date_end": "2026-11-26 16:16"
+}

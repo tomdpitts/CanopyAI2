@@ -9,8 +9,13 @@ display-eligibility (>= 10 GT crowns in the crop, LACE in-crop F1 >= 0.8 at its 
 v2's, read from qualitative_grid_select_tcd439_v2.json. A candidate is OPEN-CROP if the OAM-TCD canopy class covers
 < MAX_CROP_CANOPY of its 512 px auto-crop. Canopy-density bands are dropped. Three rows are picked from the open-crop
 tiles at the 25th, 50th and 75th percentile of the margin over ALL open-crop candidates (eligible or not): for each
-quantile, the display-eligible open-crop tile with margin closest to it, no tile used twice. The failure row is v1/v2's
-tile 341 (5th-percentile margin over all candidates), unchanged and exempt from eligibility, labelled as a failure.
+quantile, the display-eligible open-crop tile with margin closest to it, no tile used twice. The failure row is the
+open-crop tile (eligibility exempt) with margin closest to the 5th percentile over all open-crop candidates.
+
+2026-11-26 failure-row change (Tom): v1-v3 used tile 341 (5th percentile over ALL candidates). After viewing it, Tom judged it
+confusing: its two FPs are duplicate detections (tight + full box per crown, missed by the stitch dedup), and the FP masks
+fit GT better than the matched ones. Rule above set after viewing 341, before viewing its pick; it gives tile 431
+(runner-up 427, |d| 0.0078 vs 0.0082). The q25/q50/q75 rows are unchanged.
 The eligibility filter conditions on LACE's own in-crop F1; the caption must say so.
 
 Usage: .venv/bin/python boxinst_commonality_tcd_04/ablation/results/figs/select_qual_grid_v3.py
@@ -49,9 +54,11 @@ def main():
         out["rows"][f"q{int(q * 100)}"] = dict(quantile=q, margin_at_q=round(tq, 4), chosen=ranked[0], next3=ranked[1:4])
         print(f"q{q:.2f} margin {tq:+.4f} -> {ranked[0]['tile']} margin {ranked[0]['margin']:+.4f} "
               f"crop canopy {ranked[0]['crop_canopy_frac']:.3f} F1 {ranked[0]['crop_f1']} crowns {ranked[0]['crop_crowns']} {ranked[0]['biome']}", flush=True)
-    f = next(r for r in rows if r["tile"] == v2["failure"]["chosen"]["tile"])
-    out["failure"] = dict(v2["failure"], chosen=f)
-    print(f"failure {f['tile']} crop canopy {f['crop_canopy_frac']:.3f}", flush=True)
+    tq = float(np.quantile(m, 0.05)); ranked = sorted([r for r in op if r["tile"] not in used], key=lambda r: abs(r["margin"] - tq))
+    f = ranked[0]
+    out["failure"] = dict(quantile=0.05, margin_at_q=round(tq, 4), over="open-crop candidates", chosen=f, next3=ranked[1:4],
+                          replaced=dict(tile=v2["failure"]["chosen"]["tile"], rule="5th percentile over all candidates (v1-v3)"))
+    print(f"failure q0.05 margin {tq:+.4f} -> {f['tile']} margin {f['margin']:+.4f} crop canopy {f['crop_canopy_frac']:.3f}", flush=True)
     out["all_rows"] = rows
     json.dump(out, open(os.path.join(HERE, "qualitative_grid_select_tcd439_v3.json"), "w"), indent=1)
 

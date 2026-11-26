@@ -1,0 +1,82 @@
+{
+ "set": "tcd439_fig1",
+ "tiles": [
+  "tcd_val_tile_390"
+ ],
+ "thresholds": {
+  "LACE (ours)": {
+   "threshold": 0.32,
+   "f1": 0.6995346598202824,
+   "tp": 17438,
+   "fp": 6713,
+   "fn": 8267
+  },
+  "Restor": {
+   "threshold": 0.24,
+   "f1": 0.6878085986110554,
+   "tp": 17134,
+   "fp": 6983,
+   "fn": 8571
+  },
+  "BoxTeacher": {
+   "threshold": 0.65,
+   "f1": 0.6611630893414052,
+   "tp": 16218,
+   "fp": 7136,
+   "fn": 9487
+  },
+  "Detectree2": {
+   "threshold": 0.48,
+   "f1": 0.6331,
+   "tp": 15967,
+   "fp": 8766,
+   "fn": 9738
+  },
+  "Box2Mask": {
+   "threshold": 0.76,
+   "f1": 0.6396,
+   "tp": 14653,
+   "fp": 5460,
+   "fn": 11052
+  }
+ },
+ "crop_px": 512,
+ "crop_xy": {
+  "tcd_val_tile_390": [
+   1216,
+   0
+  ]
+ },
+ "counts": {
+  "tcd_val_tile_390|LACE (ours)": {
+   "f1": 0.8718,
+   "tp": 17,
+   "fp": 2,
+   "fn": 3
+  },
+  "tcd_val_tile_390|Restor": {
+   "f1": 0.8095,
+   "tp": 17,
+   "fp": 5,
+   "fn": 3
+  },
+  "tcd_val_tile_390|Detectree2": {
+   "f1": 0.5714,
+   "tp": 10,
+   "fp": 5,
+   "fn": 10
+  },
+  "tcd_val_tile_390|BoxTeacher": {
+   "f1": 0.6061,
+   "tp": 10,
+   "fp": 3,
+   "fn": 10
+  },
+  "tcd_val_tile_390|Box2Mask": {
+   "f1": 0.7059,
+   "tp": 12,
+   "fp": 2,
+   "fn": 8
+  }
+ }
+}

@@ -73,15 +73,29 @@ SETS = {
         row_labels=["open", "intermediate", "closed", "failure"]),
     # 2026-11-25 re-pick (Tom: "images without (or very little) closed canopy"): open-crop tiles only (canopy class < 2 % of
     # the auto-crop), rows at the 25th/50th/75th percentile of LACE - Restor margin; see select_qual_grid_v3.py ->
-    # qualitative_grid_select_tcd439_v3.json. Failure row 341 unchanged (exempt).
+    # qualitative_grid_select_tcd439_v3.json. Failure row 341 -> 431 on 2026-11-26 (open-crop 5th percentile; see v3 docstring).
     "tcd439_grid3": dict(
         gt=os.path.join(ROOT, "test_gt.json"), imgdir=os.path.join(REPO, "data/tcd/test"), prefix="tcd_val_tile_",
         models=[("LACE (ours)", "../dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json"),
                 ("SAM 3 on LACE boxes", "../dino_det/results/sam3_d1/preds_d1_sam3zs_gmean_test_r2048.json"),
                 ("Restor", "preds_restor_rpn1000_r2048_treeonly.json"),
                 ("BoxTeacher", "../box_supervised_baselines/tierb/results/20261101_192510/boxteacher/results/preds_boxteacher_sub_test_r2048.json")],
-        tiles="146,333,93,341", per_row=1, crop=512, fill_alpha=0.0, canopy_tint=True,
+        tiles="146,333,93,431", per_row=1, crop=512, fill_alpha=0.0, canopy_tint=True,
         row_labels=["margin q25", "margin median", "margin q75", "failure"]),
+    # 2026-11-27 Fig 1 re-pick (Tom, review pt 21): the by-eye crop of tcd439_d1 replaced by a rule pick from
+    # select_qual_grid_v3.py's pool: the display-eligible open-crop tile closest to the median LACE-Restor margin (0.0483)
+    # that is NOT already in fig:qualgrid (333 is its median row) -> tile 390 (margin 0.0512), its v3 auto-crop (1216,0).
+    # Runner-up 213 (dense palm plantation) rejected as not open ground. NB the unadopted v4 grid draft also uses 390.
+    # Detectree2 and Box2Mask Swin-L added. Thresholds = Table 1
+    # best-F1 (qualitative_thresholds_tcd439_grid3.json + table1_best_f1.json), seeded into qualitative_thresholds_tcd439_fig1.json.
+    "tcd439_fig1": dict(
+        gt=os.path.join(ROOT, "test_gt.json"), imgdir=os.path.join(REPO, "data/tcd/test"), prefix="tcd_val_tile_",
+        models=[("LACE (ours)", "../dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json"),
+                ("Restor", "preds_restor_rpn1000_r2048_treeonly.json"),
+                ("Detectree2", "seamfix/preds_dt2_s0v2_r2048_seamfix.json"),
+                ("BoxTeacher", "../box_supervised_baselines/tierb/results/20261101_192510/boxteacher/results/preds_boxteacher_sub_test_r2048.json"),
+                ("Box2Mask", "seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json")],
+        tiles="390", per_row=1, crop=512, crop_xy=(1216, 0), fill_alpha=0.0, canopy_tint=True),
     "sparse": dict(
         gt=os.path.join(REPO, "data/tcd_sparse/sparse_gt.json"), imgdir=os.path.join(REPO, "data/tcd_sparse/test"), prefix="tcd_tile_",
         models=[("LACE (ours)", "preds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json"),

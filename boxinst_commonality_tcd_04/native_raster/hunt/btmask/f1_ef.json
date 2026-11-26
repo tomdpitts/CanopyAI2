@@ -1,0 +1,38 @@
+{
+ "test|A": {
+  "threshold": 0.65,
+  "f1": 0.6612,
+  "tp": 16218,
+  "fp": 7136,
+  "fn": 9487,
+  "precision": 0.6944,
+  "recall": 0.6309
+ },
+ "test|D": {
+  "threshold": 0.85,
+  "f1": 0.6669,
+  "tp": 16188,
+  "fp": 6651,
+  "fn": 9517,
+  "precision": 0.7088,
+  "recall": 0.6298
+ },
+ "sparse|A": {
+  "threshold": 0.69,
+  "f1": 0.7122,
+  "tp": 9911,
+  "fp": 2983,
+  "fn": 5026,
+  "precision": 0.7687,
+  "recall": 0.6635
+ },
+ "sparse|D": {
+  "threshold": 0.89,
+  "f1": 0.7192,
+  "tp": 9944,
+  "fp": 2772,
+  "fn": 4993,
+  "precision": 0.782,
+  "recall": 0.6657
+ }
+}

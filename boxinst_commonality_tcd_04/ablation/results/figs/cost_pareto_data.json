@@ -2,16 +2,16 @@
  "t_poly_s": 54.0,
  "t_box_s": 7.0,
  "time_source": "Jain & Grauman ICCV 2013 user study",
- "restor_over_lace": 11.006147968192241,
+ "restor_over_lace": 14.38078745847984,
  "rows": [
   {
    "name": "LACE (ours)",
    "supervision": "box",
-   "hours": 391.72833333333335,
+   "hours": 299.8041666666667,
    "counts": {
     "tiles": 900,
-    "tree_box": 54318,
-    "tree_poly": 7041,
+    "tree_box": 61359,
+    "tree_poly": 0,
     "canopy": 12033
    },
    "ap50": 0.7141,
@@ -98,20 +98,12 @@
  "frontier_ap50": [
   [
    299.8041666666667,
-   0.6642
-  ],
-  [
-   391.72833333333335,
    0.7141
   ]
  ],
  "frontier_ap5095": [
   [
    299.8041666666667,
-   0.3049
-  ],
-  [
-   391.72833333333335,
    0.3424
   ]
  ]

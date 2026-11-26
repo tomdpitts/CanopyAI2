@@ -4,7 +4,7 @@
   "tcd_val_tile_146",
   "tcd_val_tile_333",
   "tcd_val_tile_93",
-  "tcd_val_tile_341"
+  "tcd_val_tile_431"
  ],
  "thresholds": {
   "LACE (ours)": {
@@ -50,9 +50,9 @@
    1216,
    1152
   ],
-  "tcd_val_tile_341": [
-   256,
-   0
+  "tcd_val_tile_431": [
+   64,
+   768
   ]
  },
  "counts": {
@@ -128,29 +128,29 @@
    "fp": 1,
    "fn": 29
   },
-  "tcd_val_tile_341|LACE (ours)": {
-   "f1": 0.75,
-   "tp": 3,
-   "fp": 2,
+  "tcd_val_tile_431|LACE (ours)": {
+   "f1": 0.7097,
+   "tp": 11,
+   "fp": 3,
+   "fn": 6
+  },
+  "tcd_val_tile_431|SAM 3 on LACE boxes": {
+   "f1": 0.6667,
+   "tp": 11,
+   "fp": 5,
+   "fn": 6
+  },
+  "tcd_val_tile_431|Restor": {
+   "f1": 0.9189,
+   "tp": 17,
+   "fp": 3,
    "fn": 0
   },
-  "tcd_val_tile_341|SAM 3 on LACE boxes": {
-   "f1": 0.75,
-   "tp": 3,
-   "fp": 2,
-   "fn": 0
-  },
-  "tcd_val_tile_341|Restor": {
-   "f1": 1.0,
-   "tp": 3,
-   "fp": 0,
-   "fn": 0
-  },
-  "tcd_val_tile_341|BoxTeacher": {
-   "f1": 1.0,
-   "tp": 3,
-   "fp": 0,
-   "fn": 0
+  "tcd_val_tile_431|BoxTeacher": {
+   "f1": 0.6842,
+   "tp": 13,
+   "fp": 8,
+   "fn": 4
   }
  }
 }

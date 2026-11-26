@@ -1,5 +1,5 @@
 {
- "rule": "Rule v3 (fixed before any new tile was viewed): candidates, per-tile LACE - Restor AP50 margin, auto-crop and\ndisplay-eligibility (>= 10 GT crowns in the crop, LACE in-crop F1 >= 0.8 at its best-F1 display threshold) are exactly\nv2's, read from qualitative_grid_select_tcd439_v2.json. A candidate is OPEN-CROP if the OAM-TCD canopy class covers\n< MAX_CROP_CANOPY of its 512 px auto-crop. Canopy-density bands are dropped. Three rows are picked from the open-crop\ntiles at the 25th, 50th and 75th percentile of the margin over ALL open-crop candidates (eligible or not): for each\nquantile, the display-eligible open-crop tile with margin closest to it, no tile used twice. The failure row is v1/v2's\ntile 341 (5th-percentile margin over all candidates), unchanged and exempt from eligibility, labelled as a failure.\nThe eligibility filter conditions on LACE's own in-crop F1; the caption must say so.",
+ "rule": "Rule v3 (fixed before any new tile was viewed): candidates, per-tile LACE - Restor AP50 margin, auto-crop and\ndisplay-eligibility (>= 10 GT crowns in the crop, LACE in-crop F1 >= 0.8 at its best-F1 display threshold) are exactly\nv2's, read from qualitative_grid_select_tcd439_v2.json. A candidate is OPEN-CROP if the OAM-TCD canopy class covers\n< MAX_CROP_CANOPY of its 512 px auto-crop. Canopy-density bands are dropped. Three rows are picked from the open-crop\ntiles at the 25th, 50th and 75th percentile of the margin over ALL open-crop candidates (eligible or not): for each\nquantile, the display-eligible open-crop tile with margin closest to it, no tile used twice. The failure row is the\nopen-crop tile (eligibility exempt) with margin closest to the 5th percentile over all open-crop candidates.",
  "max_crop_canopy": 0.02,
  "n_candidates": 291,
  "n_open_crop": 71,
@@ -280,29 +280,98 @@
  },
  "failure": {
   "quantile": 0.05,
-  "margin_at_q": -0.0862,
+  "margin_at_q": -0.0948,
+  "over": "open-crop candidates",
   "chosen": {
-   "tile": "tcd_val_tile_341",
-   "biome": "Cerrado",
-   "canopy_frac": 0.1751,
-   "crowns": 14,
-   "ap50_lace": 0.6227,
-   "ap50_restor": 0.708,
-   "margin": -0.0853,
+   "tile": "tcd_val_tile_431",
+   "biome": "Taiheiyo evergreen forests",
+   "canopy_frac": 0.02037,
+   "crowns": 42,
+   "ap50_lace": 0.7261,
+   "ap50_restor": 0.8132,
+   "margin": -0.0871,
    "crop_xy": [
-    256,
-    0
+    64,
+    768
    ],
-   "crop_crowns": 3,
-   "crop_f1": 0.75,
-   "tp": 3,
-   "fp": 2,
-   "fn": 0,
+   "crop_crowns": 17,
+   "crop_f1": 0.7097,
+   "tp": 11,
+   "fp": 3,
+   "fn": 6,
    "eligible": false,
-   "crop_canopy_frac": 0.0,
+   "crop_canopy_frac": 0.0027,
    "open_crop": true
   },
-  "note": "unchanged from v1; exempt from eligibility"
+  "next3": [
+   {
+    "tile": "tcd_val_tile_427",
+    "biome": "Mindanao-Eastern Visayas rain forests",
+    "canopy_frac": 0.07157,
+    "crowns": 46,
+    "ap50_lace": 0.3969,
+    "ap50_restor": 0.4995,
+    "margin": -0.1026,
+    "crop_xy": [
+     1472,
+     0
+    ],
+    "crop_crowns": 11,
+    "crop_f1": 0.3871,
+    "tp": 6,
+    "fp": 14,
+    "fn": 5,
+    "eligible": false,
+    "crop_canopy_frac": 0.0034,
+    "open_crop": true
+   },
+   {
+    "tile": "tcd_val_tile_341",
+    "biome": "Cerrado",
+    "canopy_frac": 0.1751,
+    "crowns": 14,
+    "ap50_lace": 0.6227,
+    "ap50_restor": 0.708,
+    "margin": -0.0853,
+    "crop_xy": [
+     256,
+     0
+    ],
+    "crop_crowns": 3,
+    "crop_f1": 0.75,
+    "tp": 3,
+    "fp": 2,
+    "fn": 0,
+    "eligible": false,
+    "crop_canopy_frac": 0.0,
+    "open_crop": true
+   },
+   {
+    "tile": "tcd_val_tile_192",
+    "biome": "East European forest steppe",
+    "canopy_frac": 0.06037,
+    "crowns": 15,
+    "ap50_lace": 0.5031,
+    "ap50_restor": 0.6113,
+    "margin": -0.1082,
+    "crop_xy": [
+     0,
+     960
+    ],
+    "crop_crowns": 11,
+    "crop_f1": 0.6316,
+    "tp": 6,
+    "fp": 2,
+    "fn": 5,
+    "eligible": false,
+    "crop_canopy_frac": 0.0,
+    "open_crop": true
+   }
+  ],
+  "replaced": {
+   "tile": "tcd_val_tile_341",
+   "rule": "5th percentile over all candidates (v1-v3)"
+  }
  },
  "all_rows": [
   {
