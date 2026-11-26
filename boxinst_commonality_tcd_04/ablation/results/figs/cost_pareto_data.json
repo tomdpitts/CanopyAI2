@@ -1,31 +1,28 @@
 {
- "t_poly_s": 79.2,
+ "t_poly_s": 54.0,
  "t_box_s": 7.0,
- "t_box_hi_s": 34.5,
- "restor_over_lace": 12.038953151505423,
- "restor_over_lace_box34": 6.725782579954488,
+ "time_source": "Jain & Grauman ICCV 2013 user study",
+ "restor_over_lace": 11.006147968192241,
  "rows": [
   {
    "name": "LACE (ours)",
    "supervision": "box",
-   "hours": 525.2463333333333,
-   "hours_box34": 940.1754999999999,
+   "hours": 391.72833333333335,
    "counts": {
     "tiles": 900,
     "tree_box": 54318,
     "tree_poly": 7041,
     "canopy": 12033
    },
-   "ap50": 0.647,
-   "ap50_sd": 0.0025,
-   "ap5095": 0.2778,
-   "ap5095_sd": 0.0051
+   "ap50": 0.7141,
+   "ap50_sd": null,
+   "ap5095": 0.3424,
+   "ap5095_sd": null
   },
   {
    "name": "Restor Mask R-CNN",
    "supervision": "mask",
-   "hours": 6323.416,
-   "hours_box34": 6323.416,
+   "hours": 4311.42,
    "counts": {
     "tiles": 4169,
     "tree_box": 0,
@@ -40,8 +37,7 @@
   {
    "name": "Detectree2",
    "supervision": "mask",
-   "hours": 1614.6239999999998,
-   "hours_box34": 1614.6239999999998,
+   "hours": 1100.88,
    "counts": {
     "tiles": 900,
     "tree_box": 0,
@@ -54,26 +50,24 @@
    "ap5095_sd": null
   },
   {
-   "name": "SelvaBox $\\rightarrow$ SAM 3",
-   "supervision": "boxsam",
-   "hours": 1476.8554444444444,
-   "hours_box34": 3317.5068333333334,
+   "name": "BoxTeacher",
+   "supervision": "box",
+   "hours": 299.8041666666667,
    "counts": {
-    "tiles": 3611,
-    "tree_box": 240958,
+    "tiles": 900,
+    "tree_box": 61359,
     "tree_poly": 0,
-    "canopy": 45833
+    "canopy": 12033
    },
-   "ap50": 0.5984,
+   "ap50": 0.6642,
    "ap50_sd": null,
-   "ap5095": 0.2207,
+   "ap5095": 0.3049,
    "ap5095_sd": null
   },
   {
    "name": "Box2Mask Swin-L",
    "supervision": "box",
-   "hours": 384.03516666666667,
-   "hours_box34": 852.7497500000001,
+   "hours": 299.8041666666667,
    "counts": {
     "tiles": 900,
     "tree_box": 61359,
@@ -88,8 +82,7 @@
   {
    "name": "Box2Mask R-50",
    "supervision": "box",
-   "hours": 384.03516666666667,
-   "hours_box34": 852.7497500000001,
+   "hours": 299.8041666666667,
    "counts": {
     "tiles": 900,
     "tree_box": 61359,
@@ -104,34 +97,22 @@
  ],
  "frontier_ap50": [
   [
-   384.03516666666667,
-   0.5894
+   299.8041666666667,
+   0.6642
   ],
   [
-   525.2463333333333,
-   0.647
-  ],
-  [
-   6323.416,
-   0.648
+   391.72833333333335,
+   0.7141
   ]
  ],
  "frontier_ap5095": [
   [
-   384.03516666666667,
-   0.2446
+   299.8041666666667,
+   0.3049
   ],
   [
-   525.2463333333333,
-   0.2778
-  ],
-  [
-   1614.6239999999998,
-   0.3099
-  ],
-  [
-   6323.416,
-   0.3332
+   391.72833333333335,
+   0.3424
   ]
  ]
 }

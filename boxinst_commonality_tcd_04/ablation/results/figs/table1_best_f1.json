@@ -1,0 +1,284 @@
+{
+ "doc": "Matching = make_qualitative.best_f1_threshold: per tile, greedy score-ordered mask IoU >= 0.5, unmatched preds > 50 % inside\nthe canopy class ignored (as the COCO scorer's iscrowd), one global score threshold per row swept 0.05..0.95 step 0.01,\nF1 maximised over the whole split. Descriptive only; AP in the tables is the frozen COCOeval number. Pred files are the\nexact sources behind TABLE1_CURRENT.json (Tables 1-2) and boxshape_nm_{split}.json / sam3_d1 summaries (Table 3).",
+ "rows": {
+  "test|Restor Mask R-CNN": {
+   "source": "preds_restor_rpn1000_r2048_treeonly.json",
+   "threshold": 0.24,
+   "f1": 0.6878,
+   "tp": 17134,
+   "fp": 6983,
+   "fn": 8571,
+   "precision": 0.7105,
+   "recall": 0.6666
+  },
+  "test|Detectree2": {
+   "source": "seamfix/preds_dt2_s0v2_r2048_seamfix.json",
+   "threshold": 0.48,
+   "f1": 0.6331,
+   "tp": 15967,
+   "fp": 8766,
+   "fn": 9738,
+   "precision": 0.6456,
+   "recall": 0.6212
+  },
+  "test|Box2Mask Swin-L": {
+   "source": "seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json",
+   "threshold": 0.76,
+   "f1": 0.6396,
+   "tp": 14653,
+   "fp": 5460,
+   "fn": 11052,
+   "precision": 0.7285,
+   "recall": 0.57
+  },
+  "test|Box2Mask R-50": {
+   "source": "seamfix/preds_box2mask_r50_s0_r2048_seamfix.json",
+   "threshold": 0.65,
+   "f1": 0.5415,
+   "tp": 12116,
+   "fp": 6930,
+   "fn": 13589,
+   "precision": 0.6361,
+   "recall": 0.4713
+  },
+  "test|BoxTeacher": {
+   "source": "../box_supervised_baselines/tierb/results/20261101_192510/boxteacher/results/preds_boxteacher_sub_test_r2048.json",
+   "threshold": 0.65,
+   "f1": 0.6612,
+   "tp": 16218,
+   "fp": 7136,
+   "fn": 9487,
+   "precision": 0.6944,
+   "recall": 0.6309
+  },
+  "test|LACE (ours)": {
+   "source": "../dino_det/results/preds_dino_swinl_s0_test_R3_ef_r2048.json",
+   "threshold": 0.32,
+   "f1": 0.6995,
+   "tp": 17438,
+   "fp": 6713,
+   "fn": 8267,
+   "precision": 0.722,
+   "recall": 0.6784
+  },
+  "test|LACE detector + SAM 3 zs": {
+   "source": "../dino_det/results/sam3_d1/preds_d1_sam3zs_gmean_test_r2048.json",
+   "threshold": 0.53,
+   "f1": 0.684,
+   "tp": 17190,
+   "fp": 7371,
+   "fn": 8515,
+   "precision": 0.6999,
+   "recall": 0.6687
+  },
+  "sparse|Detectree2": {
+   "split": "sparse",
+   "source": "seamfix/preds_dt2_sparse_s0v2_r2048_seamfix.json",
+   "threshold": 0.57,
+   "f1": 0.6398,
+   "tp": 9172,
+   "fp": 4563,
+   "fn": 5765,
+   "precision": 0.6678,
+   "recall": 0.614
+  },
+  "sparse|Box2Mask Swin-L": {
+   "split": "sparse",
+   "source": "seamfix/preds_box2mask_swinl_sparse_s0_r2048_seamfix.json",
+   "threshold": 0.79,
+   "f1": 0.6562,
+   "tp": 8944,
+   "fp": 3380,
+   "fn": 5993,
+   "precision": 0.7257,
+   "recall": 0.5988
+  },
+  "sparse|BoxTeacher": {
+   "split": "sparse",
+   "source": "../box_supervised_baselines/tierb/results_sparse/preds_boxteacher_sub_sparse_r2048.json",
+   "threshold": 0.69,
+   "f1": 0.722,
+   "tp": 10140,
+   "fp": 3013,
+   "fn": 4797,
+   "precision": 0.7709,
+   "recall": 0.6789
+  },
+  "sparse|LACE (ours)": {
+   "split": "sparse",
+   "source": "../dino_det/results/preds_dino_swinl_s0_sparse_R3_ef_r2048.json",
+   "threshold": 0.51,
+   "f1": 0.7305,
+   "tp": 10156,
+   "fp": 2711,
+   "fn": 4781,
+   "precision": 0.7893,
+   "recall": 0.6799
+  },
+  "test|Filled box (shared ranking)": {
+   "split": "test",
+   "source": "../dino_det/results/preds_boxshape_nm_box_test_r2048.json",
+   "threshold": 0.32,
+   "f1": 0.6396,
+   "tp": 15924,
+   "fp": 8161,
+   "fn": 9781,
+   "precision": 0.6612,
+   "recall": 0.6195
+  },
+  "test|Ellipse (shared ranking)": {
+   "split": "test",
+   "source": "../dino_det/results/preds_boxshape_nm_ellipse_test_r2048.json",
+   "threshold": 0.32,
+   "f1": 0.6817,
+   "tp": 16951,
+   "fp": 7076,
+   "fn": 8754,
+   "precision": 0.7055,
+   "recall": 0.6594
+  },
+  "test|LACE (shared ranking)": {
+   "split": "test",
+   "source": "../dino_det/results/preds_dino_swinl_s0_test_t3_no_logpm_r2048.json",
+   "threshold": 0.32,
+   "f1": 0.6901,
+   "tp": 17154,
+   "fp": 6852,
+   "fn": 8551,
+   "precision": 0.7146,
+   "recall": 0.6673
+  },
+  "sparse|Filled box (shared ranking)": {
+   "split": "sparse",
+   "source": "../dino_det/results/preds_boxshape_nm_box_sparse_r2048.json",
+   "threshold": 0.49,
+   "f1": 0.7054,
+   "tp": 9902,
+   "fp": 3234,
+   "fn": 5035,
+   "precision": 0.7538,
+   "recall": 0.6629
+  },
+  "sparse|Ellipse (shared ranking)": {
+   "split": "sparse",
+   "source": "../dino_det/results/preds_boxshape_nm_ellipse_sparse_r2048.json",
+   "threshold": 0.49,
+   "f1": 0.7222,
+   "tp": 10130,
+   "fp": 2988,
+   "fn": 4807,
+   "precision": 0.7722,
+   "recall": 0.6782
+  },
+  "sparse|LACE (shared ranking)": {
+   "split": "sparse",
+   "source": "../dino_det/results/preds_dino_swinl_s0_sparse_t3_no_logpm_r2048.json",
+   "threshold": 0.49,
+   "f1": 0.7262,
+   "tp": 10181,
+   "fp": 2922,
+   "fn": 4756,
+   "precision": 0.777,
+   "recall": 0.6816
+  },
+  "sparse|LACE detector + SAM 3 zs": {
+   "split": "sparse",
+   "source": "../dino_det/results/sam3_d1/preds_d1_sam3zs_gmean_sparse_r2048.json",
+   "threshold": 0.59,
+   "f1": 0.7192,
+   "tp": 10167,
+   "fp": 3170,
+   "fn": 4770,
+   "precision": 0.7623,
+   "recall": 0.6807
+  },
+  "test|T5 s (detector score)": {
+   "split": "test",
+   "source": "../dino_det/results/interlace/preds_d1_il_real4_dets_test_r2048.json",
+   "threshold": 0.35,
+   "f1": 0.674,
+   "tp": 16514,
+   "fp": 6781,
+   "fn": 9191,
+   "precision": 0.7089,
+   "recall": 0.6424
+  },
+  "sparse|T5 s (detector score)": {
+   "split": "sparse",
+   "source": "../dino_det/results/edgefix/preds_d1_edgefix_sparse_dets_r2048.json",
+   "threshold": 0.41,
+   "f1": 0.7112,
+   "tp": 10052,
+   "fp": 3279,
+   "fn": 4885,
+   "precision": 0.754,
+   "recall": 0.673
+  },
+  "test|T5 hat s - s": {
+   "split": "test",
+   "source": "../dino_det/results/preds_dino_swinl_s0_test_t3_no_s_r2048.json",
+   "threshold": 0.31,
+   "f1": 0.628,
+   "tp": 15531,
+   "fp": 8228,
+   "fn": 10174,
+   "precision": 0.6537,
+   "recall": 0.6042
+  },
+  "test|T5 hat s - log h": {
+   "split": "test",
+   "source": "../dino_det/results/preds_dino_swinl_s0_test_t3_no_logh_r2048.json",
+   "threshold": 0.35,
+   "f1": 0.694,
+   "tp": 16878,
+   "fp": 6057,
+   "fn": 8827,
+   "precision": 0.7359,
+   "recall": 0.6566
+  },
+  "test|T5 hat s - IoU_up": {
+   "split": "test",
+   "source": "../dino_det/results/preds_dino_swinl_s0_test_t3_no_iou_r2048.json",
+   "threshold": 0.33,
+   "f1": 0.692,
+   "tp": 17041,
+   "fp": 6502,
+   "fn": 8664,
+   "precision": 0.7238,
+   "recall": 0.6629
+  },
+  "sparse|T5 hat s - s": {
+   "split": "sparse",
+   "source": "../dino_det/results/preds_dino_swinl_s0_sparse_t3_no_s_r2048.json",
+   "threshold": 0.39,
+   "f1": 0.6512,
+   "tp": 9189,
+   "fp": 4096,
+   "fn": 5748,
+   "precision": 0.6917,
+   "recall": 0.6152
+  },
+  "sparse|T5 hat s - log h": {
+   "split": "sparse",
+   "source": "../dino_det/results/preds_dino_swinl_s0_sparse_t3_no_logh_r2048.json",
+   "threshold": 0.5,
+   "f1": 0.7244,
+   "tp": 10190,
+   "fp": 3005,
+   "fn": 4747,
+   "precision": 0.7723,
+   "recall": 0.6822
+  },
+  "sparse|T5 hat s - IoU_up": {
+   "split": "sparse",
+   "source": "../dino_det/results/preds_dino_swinl_s0_sparse_t3_no_iou_r2048.json",
+   "threshold": 0.52,
+   "f1": 0.7246,
+   "tp": 9985,
+   "fp": 2638,
+   "fn": 4952,
+   "precision": 0.791,
+   "recall": 0.6685
+  }
+ }
+}

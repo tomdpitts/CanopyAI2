@@ -1088,3 +1088,15 @@ Lines: 186 (Brandt 2016), 195 ×2, 197 (ICLR workshop paper, BalSAM), 201 ("cite
 - **Quote:** "We detect an object as a pair of keypoints—the top-left corner and bottom-right corner of the bounding box. We use a single convolutional network to predict a heatmap for the top-left corners of all instances of the same object category, a heatmap for all bottom-right corners, and an embedding vector for each detected corner."
 - **Verdict:** SUPPORTED
 - **Note:** CornerNet is the keypoint-heatmap predecessor CenterNet builds on (CenterNet §2 "CornerNet [30] detects two bounding box corners as keypoints"); it predicts corner heatmaps, not centre heatmaps — wording "CenterNet design" is accurate for centernet, "keypoint-heatmap design" would cover both.
+
+## jain2013 — Predicting Sufficient Annotation Strength for Interactive Foreground Segmentation (Jain & Grauman, ICCV 2013)
+**PDF:** `/Users/tompitts/dphil/refs/lace_bib_pdfs/jain2013.pdf` — from CVF open access. Added 2026-11-26.
+**Bib check:** OK — Crossref 10.1109/ICCV.2013.166, pp 1313–1320, 2 authors.
+
+### paper.tex Annotation cost paragraph, fig:cost caption, Introduction ("much faster and therefore cheaper")
+> We price a crown polygon at $54$~s and a box at $7$~s, the times measured on the same images and annotators in the user study of Jain and Grauman~\cite{jain2013}
+- **Location:** PDF p.8, §5 "User study" para and the batch-mode results para
+- **Quote:** "we use the average time required by the 101 users in our user study: 7 sec for bounding box, 20 sec for sloppy contour, 54 sec for tight polygon." / "We randomly select one third of the images from each dataset to make a diverse pool of 420 images. … time them as they work on each image. If an object has multiple foreground objects, they must annotate each one. We collect responses from 5 users for each annotation mode per image, then record the median time spent. In total, we obtain 2,100 responses per modality, from 101 unique users."
+- **Verdict:** SUPPORTED
+- **Note:** Times are per image, not per object; the datasets (IIS, MSRC, iCoseg) are mostly single-object. MTurk novices, natural images. It replaces the Box2Mask-quoted 79.2 s / 7 s pairing. That pairing mixed COCO's draw-only polygon time (Lin 2014, "over 22 worker hours per 1,000 segmentations") with Papadopoulos 2017's extreme-clicking box (their own new method). papadopoulos2017 was removed from lace.bib.
+

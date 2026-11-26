@@ -1,0 +1,665 @@
+{
+ "date_start": "2026-11-26 12:07",
+ "spec": {
+  "kind": "post4",
+  "alpha": 1.0,
+  "kappa": 1.0,
+  "r": 0,
+  "tau": 0.5
+ },
+ "gates": {
+  "G1": "PASS",
+  "G3": "PASS",
+  "G2": {
+   "PASS": {
+    "s": [
+     0.7546,
+     0.7546
+    ],
+    "s_prime": [
+     0.7522,
+     0.7522
+    ],
+    "reverse": [
+     0.6244,
+     0.6244
+    ]
+   }
+  }
+ },
+ "val": {
+  "n_dets": 51341,
+  "pos": 6143,
+  "neg": 29300,
+  "ign": 15898,
+  "box_ap50_s": 0.7546,
+  "box_ap50_sprime": 0.7522
+ },
+ "selection": {
+  "ref": {
+   "gain_mean": 0.00604,
+   "gain_sd": 0.00105,
+   "n_pos": 15
+  },
+  "n_admissible": 812,
+  "top": [
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00553,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00593,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00665,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00589,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "B",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.0051,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00794,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00764,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.0072,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "border",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00706,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "border",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00625,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "log_aspect",
+      "B",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00654,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "max_iou_higher",
+      "B",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00633,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "log_aspect",
+      "max_iou_higher",
+      "B"
+     ]
+    },
+    "gain_mean": 0.0057,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "log_aspect",
+      "max_iou_higher",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00567,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00929,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "rank_frac",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00827,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "rank_frac",
+      "exg",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00796,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "rank_frac",
+      "max_iou_higher",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00509,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x8",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "sp",
+      "log_aspect",
+      "max_iou_higher",
+      "n_nbr",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00558,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "border",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00761,
+    "n_pos": 15
+   }
+  ],
+  "fresh_ref_gain": 0.00811,
+  "tried": [
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00561,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00684,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00686,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00634,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "B",
+      "ring_dL"
+     ]
+    },
+    "fresh_gain_mean": 0.0048,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00867,
+    "fresh_n_pos": 15,
+    "pass": true
+   }
+  ],
+  "chosen": {
+   "model": "mlp2x64",
+   "epochs": 30,
+   "dropout": 0.1,
+   "wd": 0.001,
+   "label": "box50",
+   "cols": [
+    "s",
+    "log_marea",
+    "max_iou_higher",
+    "exg"
+   ]
+  }
+ },
+ "test": {
+  "rows": {
+   "shat": {
+    "mask": {
+     "AP50": 0.6943,
+     "AP75": 0.1544,
+     "AP50_95": 0.2915
+    },
+    "box": {
+     "AP50": 0.7437,
+     "AP75": 0.4095
+    }
+   },
+   "s": {
+    "mask": {
+     "AP50": 0.6752,
+     "AP75": 0.1417,
+     "AP50_95": 0.2806
+    },
+    "box": {
+     "AP50": 0.7257,
+     "AP75": 0.3901
+    }
+   }
+  },
+  "deployed": {
+   "mask": {
+    "AP50": 0.7141,
+    "AP75": 0.2713,
+    "AP50_95": 0.3424
+   },
+   "box": {
+    "AP50": 0.7471
+   }
+  },
+  "boot": {
+   "deployed_minus_shat": {
+    "AP50": {
+     "diff": 0.0198,
+     "ci95": [
+      0.0167,
+      0.0249
+     ]
+    },
+    "AP50_95": {
+     "diff": 0.0509,
+     "ci95": [
+      0.0475,
+      0.055
+     ]
+    }
+   },
+   "deployed_minus_s": {
+    "AP50": {
+     "diff": 0.0389,
+     "ci95": [
+      0.0332,
+      0.0466
+     ]
+    },
+    "AP50_95": {
+     "diff": 0.0618,
+     "ci95": [
+      0.058,
+      0.0668
+     ]
+    }
+   }
+  }
+ },
+ "sparse": {
+  "rows": {
+   "shat": {
+    "mask": {
+     "AP50": 0.722,
+     "AP75": 0.1927,
+     "AP50_95": 0.3214
+    },
+    "box": {
+     "AP50": 0.7492,
+     "AP75": 0.465
+    }
+   },
+   "s": {
+    "mask": {
+     "AP50": 0.7147,
+     "AP75": 0.1844,
+     "AP50_95": 0.3156
+    },
+    "box": {
+     "AP50": 0.7414,
+     "AP75": 0.4563
+    }
+   }
+  },
+  "deployed": {
+   "mask": {
+    "AP50": 0.7434,
+    "AP75": 0.4006,
+    "AP50_95": 0.4031
+   },
+   "box": {
+    "AP50": 0.757
+   }
+  },
+  "boot": {
+   "deployed_minus_shat": {
+    "AP50": {
+     "diff": 0.0214,
+     "ci95": [
+      0.015,
+      0.0295
+     ]
+    },
+    "AP50_95": {
+     "diff": 0.0816,
+     "ci95": [
+      0.0711,
+      0.0925
+     ]
+    }
+   },
+   "deployed_minus_s": {
+    "AP50": {
+     "diff": 0.0287,
+     "ci95": [
+      0.0199,
+      0.04
+     ]
+    },
+    "AP50_95": {
+     "diff": 0.0875,
+     "ci95": [
+      0.0765,
+      0.0973
+     ]
+    }
+   }
+  }
+ },
+ "date_end": "2026-11-26 13:39",
+ "note": "ONE look per pre-registration LACE-0; single detector run"
+}

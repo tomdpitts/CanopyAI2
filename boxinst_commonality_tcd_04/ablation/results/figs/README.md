@@ -89,24 +89,21 @@ local extraction, kept only as the counter-example.
 
 No panel shows LACE below F1 0.8 in its window (Tom). Candidates screened with `window_f1_scan.py` (`window_f1_scan_<set>.json`), confirmed by the rendered `_meta.json`. Previous figures: `_backup_pre_tileselect_2026-10-08/` and `_backup_pre_guided_2026-10-07/`.
 
-# Annotation-cost Pareto figure (DRAFT, not in paper.tex)
+# Annotation-cost Pareto figure (in paper.tex as fig:cost since 2026-11-24)
 
-Made 2026-10-13 for review. `cost_pareto.pdf` (7.0 x 2.85 in, two panels), preview `cost_pareto.png`, numbers `cost_pareto_data.json`.
+`cost_pareto.pdf` (7.0 x 2.85 in, two panels), preview `cost_pareto.png`, numbers `cost_pareto_data.json`. First made 2026-10-13.
 Regenerate: `.venv/bin/python boxinst_commonality_tcd_04/ablation/results/figs/make_cost_pareto.py` (~20 s; reads all 4,169 train metas).
 
 x = estimated annotator-hours for every OAM-TCD label a Table 1 row consumed in training or model selection; y = Table 1 mask AP50 (left) and AP50:95 (right) at 2048.
-Prices are the ones Box2Mask (in lace.bib) quotes: 79.2 s per polygon (COCO), 7 s per box (extreme clicking); whisker re-prices boxes at 34.5 s (conventional drawing, Su et al. 2012 via Papadopoulos et al. 2017, arXiv 1708.02750).
+Prices (2026-11-26): Jain & Grauman ICCV 2013 user study, 7 s per bounding box, 54 s per tight polygon (same 420 images, 101 MTurk users, both draw-only). This replaces Box2Mask's 79.2 s (COCO) / 7 s (extreme clicking) pairing and the 34.5 s whisker (draw + verify), which mixed protocols; the whisker was dropped.
 Canopy groups are charged as polygons for every row (all rows consume them). LACE's 108 val tiles are charged as polygons (val masks select alpha, kappa, tau, guide).
 Counts are from tile metadata: 900-tile cohort 61,359 crowns + 12,033 canopy (val 7,041 + 1,401); full train 240,958 + 46,470.
 
-| row | hours (7 s box) | hours (34.5 s box) |
-|---|---|---|
-| Box2Mask (both) | 384 | 853 |
-| LACE | 525 | 940 |
-| SelvaBox -> SAM 3 | 1,477 | 3,318 |
-| Detectree2 | 1,615 | 1,615 |
-| Restor | 6,323 | 6,323 |
+| row | hours |
+|---|---|
+| Box2Mask (both), BoxTeacher | 300 |
+| LACE | 392 |
+| Detectree2 | 1,101 |
+| Restor | 4,311 |
 
-Restor / LACE = 12.0x (6.7x at 34.5 s). Frontier: AP50 Box2Mask Swin-L -> LACE -> Restor; AP50:95 Box2Mask Swin-L -> LACE -> Detectree2 -> Restor.
-Canopy polygons are 265 h of LACE's 525 h. Non-OAM-TCD pretraining (COCO, detectree2 checkpoint, SA-Co, DINOv3, SelvaBox's other datasets) is not counted.
-SelvaBox tile set reconstructed as folds 0-4 tiles with >= 1 crown: 3,032 + 579; their Table 19 says 3,024 train.
+Restor / LACE = 11.0x. Canopy polygons are 180 h of LACE's 392 h. Non-OAM-TCD pretraining (COCO, detectree2 checkpoint, DINOv3) is not counted.

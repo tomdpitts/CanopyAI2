@@ -1,0 +1,1450 @@
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+12:07:56 [gate] G1 PASS: deployed spec reproduces edgefix_val masks (3 tiles)
+12:08:00 [gate] G3 PASS: R1 feature extractor reproduces rerankR1_val.npz (3 tiles)
+12:08:00 [render] val: 108/108 to do
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+12:08:21   render val 20/108 22s
+12:08:34   render val 40/108 34s
+12:08:45   render val 60/108 45s
+12:08:56   render val 80/108 57s
+12:09:06   render val 100/108 66s
+12:09:11   render val 108/108 71s
+12:09:15   feats val 40/108 4s
+12:09:18   feats val 80/108 8s
+12:09:20   feats val 108/108 10s
+12:10:51 [gate] G2 PASS: box fasteval == score_lite {'s': [0.7546, 0.7546], 's_prime': [0.7522, 0.7522], 'reverse': [0.6244, 0.6244]}
+12:10:59   [ref] 1 configs x 15 runs 8s
+12:10:59 [stage2] ref mlp2x64 x24 gain +0.0060 pos 15/15
+12:11:00   [stage2:logreg:24] 1 configs x 15 runs 1s
+12:11:20   [stage2:logreg:23] 24 configs x 15 runs 19s
+12:11:20   logreg   -exg             n=23 gain +0.0034 pos 12/15
+12:11:38   [stage2:logreg:22] 23 configs x 15 runs 18s
+12:11:38   logreg   -tile_top50      n=22 gain +0.0042 pos 13/15
+12:11:54   [stage2:logreg:21] 22 configs x 15 runs 17s
+12:11:54   logreg   -ring_dexg       n=21 gain +0.0042 pos 12/15
+12:12:10   [stage2:logreg:20] 21 configs x 15 runs 15s
+12:12:10   logreg   -L_grad          n=20 gain +0.0041 pos 13/15
+12:12:24   [stage2:logreg:19] 20 configs x 15 runs 14s
+12:12:24   logreg   -ring_dL         n=19 gain +0.0042 pos 13/15
+12:12:38   [stage2:logreg:18] 19 configs x 15 runs 14s
+12:12:38   logreg   -ring_quad_asym  n=18 gain +0.0043 pos 13/15
+12:12:52   [stage2:logreg:17] 18 configs x 15 runs 14s
+12:12:52   logreg   -R               n=17 gain +0.0040 pos 13/15
+12:13:04   [stage2:logreg:16] 17 configs x 15 runs 13s
+12:13:04   logreg   -L_std           n=16 gain +0.0040 pos 13/15
+12:13:16   [stage2:logreg:15] 16 configs x 15 runs 12s
+12:13:16   logreg   -ring_quad_min   n=15 gain +0.0036 pos 13/15
+12:13:27   [stage2:logreg:14] 15 configs x 15 runs 11s
+12:13:27   logreg   -fill            n=14 gain +0.0024 pos 12/15
+12:13:37   [stage2:logreg:13] 14 configs x 15 runs 10s
+12:13:37   logreg   -log_marea       n=13 gain +0.0036 pos 13/15
+12:13:46   [stage2:logreg:12] 13 configs x 15 runs 9s
+12:13:46   logreg   -log_w           n=12 gain +0.0029 pos 12/15
+12:13:54   [stage2:logreg:11] 12 configs x 15 runs 8s
+12:13:54   logreg   -n_nbr           n=11 gain +0.0030 pos 12/15
+12:14:01   [stage2:logreg:10] 11 configs x 15 runs 7s
+12:14:01   logreg   -log_aspect      n=10 gain +0.0033 pos 14/15
+12:14:08   [stage2:logreg:9] 10 configs x 15 runs 7s
+12:14:08   logreg   -border          n= 9 gain +0.0032 pos 12/15
+12:14:14   [stage2:logreg:8] 9 configs x 15 runs 6s
+12:14:14   logreg   -log_sp_s        n= 8 gain +0.0017 pos 12/15
+12:14:20   [stage2:logreg:7] 8 configs x 15 runs 6s
+12:14:20   logreg   -rank_frac       n= 7 gain +0.0015 pos 12/15
+12:14:24   [stage2:logreg:6] 7 configs x 15 runs 5s
+12:14:24   logreg   -log_nhi         n= 6 gain +0.0027 pos 12/15
+12:14:29   [stage2:logreg:5] 6 configs x 15 runs 4s
+12:14:29   logreg   -log_h           n= 5 gain +0.0017 pos 12/15
+12:14:32   [stage2:logreg:4] 5 configs x 15 runs 4s
+12:14:32   logreg   -max_iou_higher  n= 4 gain +0.0022 pos 13/15
+12:14:35   [stage2:logreg:3] 4 configs x 15 runs 3s
+12:14:35   logreg   -B               n= 3 gain +0.0005 pos 12/15
+12:14:37   [stage2:logreg:2] 3 configs x 15 runs 2s
+12:14:37   logreg   -G               n= 2 gain +0.0010 pos 12/15
+12:14:38   [stage2:logreg:1] 2 configs x 15 runs 1s
+12:14:38   logreg   -sp              n= 1 gain -0.1136 pos 12/15
+12:14:40   [stage2:mlp1x8:24] 1 configs x 15 runs 2s
+12:15:13   [stage2:mlp1x8:23] 24 configs x 15 runs 33s
+12:15:13   mlp1x8   -tile_top50      n=23 gain +0.0025 pos 14/15
+12:15:44   [stage2:mlp1x8:22] 23 configs x 15 runs 31s
+12:15:44   mlp1x8   -ring_quad_asym  n=22 gain +0.0034 pos 15/15
+12:16:15   [stage2:mlp1x8:21] 22 configs x 15 runs 31s
+12:16:15   mlp1x8   -G               n=21 gain +0.0039 pos 15/15
+12:16:44   [stage2:mlp1x8:20] 21 configs x 15 runs 29s
+12:16:44   mlp1x8   -L_std           n=20 gain +0.0037 pos 15/15
+12:17:11   [stage2:mlp1x8:19] 20 configs x 15 runs 27s
+12:17:11   mlp1x8   -B               n=19 gain +0.0055 pos 15/15
+12:17:36   [stage2:mlp1x8:18] 19 configs x 15 runs 25s
+12:17:36   mlp1x8   -log_nhi         n=18 gain +0.0064 pos 15/15
+12:18:01   [stage2:mlp1x8:17] 18 configs x 15 runs 24s
+12:18:01   mlp1x8   -ring_quad_min   n=17 gain +0.0050 pos 15/15
+12:18:22   [stage2:mlp1x8:16] 17 configs x 15 runs 22s
+12:18:22   mlp1x8   -log_marea       n=16 gain +0.0055 pos 15/15
+12:18:42   [stage2:mlp1x8:15] 16 configs x 15 runs 20s
+12:18:42   mlp1x8   -log_w           n=15 gain +0.0046 pos 14/15
+12:19:01   [stage2:mlp1x8:14] 15 configs x 15 runs 19s
+12:19:01   mlp1x8   -L_grad          n=14 gain +0.0063 pos 15/15
+12:19:18   [stage2:mlp1x8:13] 14 configs x 15 runs 17s
+12:19:18   mlp1x8   -fill            n=13 gain +0.0072 pos 15/15
+12:19:34   [stage2:mlp1x8:12] 13 configs x 15 runs 16s
+12:19:34   mlp1x8   -ring_dexg       n=12 gain +0.0067 pos 15/15
+12:19:50   [stage2:mlp1x8:11] 12 configs x 15 runs 16s
+12:19:50   mlp1x8   -border          n=11 gain +0.0069 pos 15/15
+12:20:04   [stage2:mlp1x8:10] 11 configs x 15 runs 14s
+12:20:04   mlp1x8   -ring_dL         n=10 gain +0.0069 pos 15/15
+12:20:16   [stage2:mlp1x8:9] 10 configs x 15 runs 12s
+12:20:16   mlp1x8   -R               n= 9 gain +0.0065 pos 15/15
+12:20:27   [stage2:mlp1x8:8] 9 configs x 15 runs 11s
+12:20:27   mlp1x8   -log_h           n= 8 gain +0.0061 pos 15/15
+12:20:37   [stage2:mlp1x8:7] 8 configs x 15 runs 10s
+12:20:37   mlp1x8   -log_sp_s        n= 7 gain +0.0064 pos 15/15
+12:20:46   [stage2:mlp1x8:6] 7 configs x 15 runs 9s
+12:20:46   mlp1x8   -rank_frac       n= 6 gain +0.0056 pos 15/15
+12:20:53   [stage2:mlp1x8:5] 6 configs x 15 runs 7s
+12:20:53   mlp1x8   -log_aspect      n= 5 gain +0.0044 pos 15/15
+12:20:59   [stage2:mlp1x8:4] 5 configs x 15 runs 6s
+12:20:59   mlp1x8   -n_nbr           n= 4 gain +0.0042 pos 15/15
+12:21:04   [stage2:mlp1x8:3] 4 configs x 15 runs 5s
+12:21:04   mlp1x8   -max_iou_higher  n= 3 gain +0.0031 pos 15/15
+12:21:08   [stage2:mlp1x8:2] 3 configs x 15 runs 4s
+12:21:08   mlp1x8   -exg             n= 2 gain +0.0005 pos 12/15
+12:21:11   [stage2:mlp1x8:1] 2 configs x 15 runs 3s
+12:21:11   mlp1x8   -sp              n= 1 gain +0.0008 pos 13/15
+12:21:13   [stage2:mlp1x16:24] 1 configs x 15 runs 2s
+12:21:49   [stage2:mlp1x16:23] 24 configs x 15 runs 36s
+12:21:49   mlp1x16  -L_grad          n=23 gain +0.0039 pos 15/15
+12:22:23   [stage2:mlp1x16:22] 23 configs x 15 runs 34s
+12:22:23   mlp1x16  -G               n=22 gain +0.0051 pos 15/15
+12:22:55   [stage2:mlp1x16:21] 22 configs x 15 runs 32s
+12:22:55   mlp1x16  -log_nhi         n=21 gain +0.0060 pos 15/15
+12:23:25   [stage2:mlp1x16:20] 21 configs x 15 runs 30s
+12:23:25   mlp1x16  -tile_top50      n=20 gain +0.0074 pos 15/15
+12:23:54   [stage2:mlp1x16:19] 20 configs x 15 runs 29s
+12:23:54   mlp1x16  -B               n=19 gain +0.0079 pos 15/15
+12:24:20   [stage2:mlp1x16:18] 19 configs x 15 runs 26s
+12:24:20   mlp1x16  -ring_quad_min   n=18 gain +0.0082 pos 15/15
+12:24:45   [stage2:mlp1x16:17] 18 configs x 15 runs 25s
+12:24:45   mlp1x16  -ring_quad_asym  n=17 gain +0.0078 pos 15/15
+12:25:08   [stage2:mlp1x16:16] 17 configs x 15 runs 23s
+12:25:08   mlp1x16  -L_std           n=16 gain +0.0085 pos 15/15
+12:25:30   [stage2:mlp1x16:15] 16 configs x 15 runs 22s
+12:25:30   mlp1x16  -log_h           n=15 gain +0.0086 pos 15/15
+12:25:50   [stage2:mlp1x16:14] 15 configs x 15 runs 20s
+12:25:50   mlp1x16  -log_w           n=14 gain +0.0088 pos 15/15
+12:26:09   [stage2:mlp1x16:13] 14 configs x 15 runs 19s
+12:26:09   mlp1x16  -n_nbr           n=13 gain +0.0083 pos 15/15
+12:26:26   [stage2:mlp1x16:12] 13 configs x 15 runs 17s
+12:26:26   mlp1x16  -fill            n=12 gain +0.0079 pos 15/15
+12:26:42   [stage2:mlp1x16:11] 12 configs x 15 runs 16s
+12:26:42   mlp1x16  -ring_dexg       n=11 gain +0.0081 pos 15/15
+12:26:56   [stage2:mlp1x16:10] 11 configs x 15 runs 14s
+12:26:56   mlp1x16  -ring_dL         n=10 gain +0.0078 pos 15/15
+12:27:09   [stage2:mlp1x16:9] 10 configs x 15 runs 13s
+12:27:09   mlp1x16  -rank_frac       n= 9 gain +0.0081 pos 15/15
+12:27:21   [stage2:mlp1x16:8] 9 configs x 15 runs 12s
+12:27:21   mlp1x16  -sp              n= 8 gain +0.0083 pos 15/15
+12:27:32   [stage2:mlp1x16:7] 8 configs x 15 runs 11s
+12:27:32   mlp1x16  -log_sp_s        n= 7 gain +0.0077 pos 15/15
+12:27:41   [stage2:mlp1x16:6] 7 configs x 15 runs 9s
+12:27:41   mlp1x16  -R               n= 6 gain +0.0076 pos 15/15
+12:27:49   [stage2:mlp1x16:5] 6 configs x 15 runs 8s
+12:27:49   mlp1x16  -border          n= 5 gain +0.0072 pos 15/15
+12:27:56   [stage2:mlp1x16:4] 5 configs x 15 runs 7s
+12:27:56   mlp1x16  -log_aspect      n= 4 gain +0.0066 pos 15/15
+12:28:02   [stage2:mlp1x16:3] 4 configs x 15 runs 6s
+12:28:02   mlp1x16  -max_iou_higher  n= 3 gain +0.0055 pos 15/15
+12:28:06   [stage2:mlp1x16:2] 3 configs x 15 runs 4s
+12:28:06   mlp1x16  -log_marea       n= 2 gain +0.0032 pos 15/15
+12:28:09   [stage2:mlp1x16:1] 2 configs x 15 runs 3s
+12:28:09   mlp1x16  -exg             n= 1 gain +0.0006 pos 12/15
+12:28:13   [stage2:mlp1x64:24] 1 configs x 15 runs 4s
+12:29:05   [stage2:mlp1x64:23] 24 configs x 15 runs 52s
+12:29:05   mlp1x64  -log_nhi         n=23 gain +0.0065 pos 15/15
+12:29:56   [stage2:mlp1x64:22] 23 configs x 15 runs 51s
+12:29:56   mlp1x64  -tile_top50      n=22 gain +0.0081 pos 15/15
+12:30:45   [stage2:mlp1x64:21] 22 configs x 15 runs 49s
+12:30:45   mlp1x64  -L_grad          n=21 gain +0.0089 pos 15/15
+12:31:32   [stage2:mlp1x64:20] 21 configs x 15 runs 47s
+12:31:32   mlp1x64  -L_std           n=20 gain +0.0098 pos 15/15
+12:32:16   [stage2:mlp1x64:19] 20 configs x 15 runs 44s
+12:32:16   mlp1x64  -G               n=19 gain +0.0102 pos 15/15
+12:32:58   [stage2:mlp1x64:18] 19 configs x 15 runs 42s
+12:32:58   mlp1x64  -R               n=18 gain +0.0105 pos 15/15
+12:33:37   [stage2:mlp1x64:17] 18 configs x 15 runs 39s
+12:33:37   mlp1x64  -ring_quad_min   n=17 gain +0.0110 pos 15/15
+12:34:15   [stage2:mlp1x64:16] 17 configs x 15 runs 38s
+12:34:15   mlp1x64  -ring_quad_asym  n=16 gain +0.0114 pos 15/15
+12:34:49   [stage2:mlp1x64:15] 16 configs x 15 runs 35s
+12:34:49   mlp1x64  -fill            n=15 gain +0.0112 pos 15/15
+12:35:22   [stage2:mlp1x64:14] 15 configs x 15 runs 32s
+12:35:22   mlp1x64  -log_h           n=14 gain +0.0112 pos 15/15
+12:35:53   [stage2:mlp1x64:13] 14 configs x 15 runs 31s
+12:35:53   mlp1x64  -exg             n=13 gain +0.0111 pos 15/15
+12:36:23   [stage2:mlp1x64:12] 13 configs x 15 runs 30s
+12:36:23   mlp1x64  -log_marea       n=12 gain +0.0108 pos 15/15
+12:36:48   [stage2:mlp1x64:11] 12 configs x 15 runs 25s
+12:36:48   mlp1x64  -sp              n=11 gain +0.0103 pos 15/15
+12:37:11   [stage2:mlp1x64:10] 11 configs x 15 runs 23s
+12:37:11   mlp1x64  -log_sp_s        n=10 gain +0.0097 pos 15/15
+12:37:32   [stage2:mlp1x64:9] 10 configs x 15 runs 20s
+12:37:32   mlp1x64  -rank_frac       n= 9 gain +0.0103 pos 15/15
+12:37:52   [stage2:mlp1x64:8] 9 configs x 15 runs 20s
+12:37:52   mlp1x64  -border          n= 8 gain +0.0094 pos 15/15
+12:38:08   [stage2:mlp1x64:7] 8 configs x 15 runs 17s
+12:38:08   mlp1x64  -n_nbr           n= 7 gain +0.0094 pos 15/15
+12:38:23   [stage2:mlp1x64:6] 7 configs x 15 runs 15s
+12:38:23   mlp1x64  -ring_dexg       n= 6 gain +0.0081 pos 15/15
+12:38:36   [stage2:mlp1x64:5] 6 configs x 15 runs 13s
+12:38:36   mlp1x64  -max_iou_higher  n= 5 gain +0.0065 pos 15/15
+12:38:47   [stage2:mlp1x64:4] 5 configs x 15 runs 11s
+12:38:47   mlp1x64  -log_aspect      n= 4 gain +0.0051 pos 15/15
+12:38:56   [stage2:mlp1x64:3] 4 configs x 15 runs 9s
+12:38:56   mlp1x64  -B               n= 3 gain +0.0032 pos 15/15
+12:39:02   [stage2:mlp1x64:2] 3 configs x 15 runs 7s
+12:39:02   mlp1x64  -ring_dL         n= 2 gain +0.0020 pos 15/15
+12:39:07   [stage2:mlp1x64:1] 2 configs x 15 runs 5s
+12:39:07   mlp1x64  -log_w           n= 1 gain +0.0006 pos 10/15
+12:40:34   [stage2:mlp2x64:23] 24 configs x 15 runs 87s
+12:40:34   mlp2x64  -L_grad          n=23 gain +0.0065 pos 15/15
+12:41:59   [stage2:mlp2x64:22] 23 configs x 15 runs 84s
+12:41:59   mlp2x64  -tile_top50      n=22 gain +0.0075 pos 15/15
+12:43:16   [stage2:mlp2x64:21] 22 configs x 15 runs 77s
+12:43:16   mlp2x64  -L_std           n=21 gain +0.0090 pos 15/15
+12:44:29   [stage2:mlp2x64:20] 21 configs x 15 runs 73s
+12:44:29   mlp2x64  -log_nhi         n=20 gain +0.0097 pos 15/15
+12:45:41   [stage2:mlp2x64:19] 20 configs x 15 runs 72s
+12:45:41   mlp2x64  -ring_quad_asym  n=19 gain +0.0102 pos 15/15
+12:46:47   [stage2:mlp2x64:18] 19 configs x 15 runs 66s
+12:46:47   mlp2x64  -R               n=18 gain +0.0104 pos 15/15
+12:47:48   [stage2:mlp2x64:17] 18 configs x 15 runs 61s
+12:47:48   mlp2x64  -B               n=17 gain +0.0113 pos 15/15
+12:48:47   [stage2:mlp2x64:16] 17 configs x 15 runs 59s
+12:48:47   mlp2x64  -ring_quad_min   n=16 gain +0.0114 pos 15/15
+12:49:43   [stage2:mlp2x64:15] 16 configs x 15 runs 56s
+12:49:43   mlp2x64  -log_w           n=15 gain +0.0118 pos 15/15
+12:50:34   [stage2:mlp2x64:14] 15 configs x 15 runs 51s
+12:50:34   mlp2x64  -sp              n=14 gain +0.0113 pos 15/15
+12:51:23   [stage2:mlp2x64:13] 14 configs x 15 runs 49s
+12:51:23   mlp2x64  -log_h           n=13 gain +0.0112 pos 15/15
+12:52:10   [stage2:mlp2x64:12] 13 configs x 15 runs 47s
+12:52:10   mlp2x64  -n_nbr           n=12 gain +0.0111 pos 15/15
+12:52:52   [stage2:mlp2x64:11] 12 configs x 15 runs 42s
+12:52:52   mlp2x64  -border          n=11 gain +0.0109 pos 15/15
+12:53:31   [stage2:mlp2x64:10] 11 configs x 15 runs 39s
+12:53:31   mlp2x64  -fill            n=10 gain +0.0108 pos 15/15
+12:54:04   [stage2:mlp2x64:9] 10 configs x 15 runs 33s
+12:54:04   mlp2x64  -ring_dexg       n= 9 gain +0.0108 pos 15/15
+12:54:33   [stage2:mlp2x64:8] 9 configs x 15 runs 29s
+12:54:33   mlp2x64  -log_sp_s        n= 8 gain +0.0103 pos 15/15
+12:55:01   [stage2:mlp2x64:7] 8 configs x 15 runs 27s
+12:55:01   mlp2x64  -log_aspect      n= 7 gain +0.0103 pos 15/15
+12:55:24   [stage2:mlp2x64:6] 7 configs x 15 runs 23s
+12:55:24   mlp2x64  -G               n= 6 gain +0.0097 pos 15/15
+12:55:44   [stage2:mlp2x64:5] 6 configs x 15 runs 20s
+12:55:44   mlp2x64  -rank_frac       n= 5 gain +0.0093 pos 15/15
+12:56:01   [stage2:mlp2x64:4] 5 configs x 15 runs 17s
+12:56:01   mlp2x64  -ring_dL         n= 4 gain +0.0079 pos 15/15
+12:56:15   [stage2:mlp2x64:3] 4 configs x 15 runs 14s
+12:56:15   mlp2x64  -max_iou_higher  n= 3 gain +0.0059 pos 15/15
+12:56:27   [stage2:mlp2x64:2] 3 configs x 15 runs 11s
+12:56:27   mlp2x64  -exg             n= 2 gain +0.0027 pos 14/15
+12:56:35   [stage2:mlp2x64:1] 2 configs x 15 runs 8s
+12:56:35   mlp2x64  -log_marea       n= 1 gain +0.0003 pos 10/15
+12:56:35 [select] 812 admissible
+12:56:35    mlp1x16  n=3 gain +0.0055 pos 15/15 ['s', 'log_marea', 'exg']
+12:56:35    mlp2x64  n=3 gain +0.0059 pos 15/15 ['s', 'log_marea', 'exg']
+12:56:35    mlp1x16  n=4 gain +0.0066 pos 15/15 ['s', 'log_marea', 'max_iou_higher', 'exg']
+12:56:35    mlp1x16  n=4 gain +0.0059 pos 15/15 ['s', 'log_aspect', 'log_marea', 'exg']
+12:56:35    mlp1x64  n=4 gain +0.0051 pos 15/15 ['s', 'log_w', 'B', 'ring_dL']
+12:56:35    mlp2x64  n=4 gain +0.0079 pos 15/15 ['s', 'log_marea', 'max_iou_higher', 'exg']
+12:56:35    mlp2x64  n=4 gain +0.0076 pos 15/15 ['s', 'log_marea', 'exg', 'ring_dL']
+12:56:35    mlp1x16  n=5 gain +0.0072 pos 15/15 ['s', 'log_aspect', 'log_marea', 'max_iou_higher', 'exg']
+12:56:35    mlp1x16  n=5 gain +0.0071 pos 15/15 ['s', 'log_marea', 'border', 'max_iou_higher', 'exg']
+12:56:35    mlp1x16  n=5 gain +0.0063 pos 15/15 ['s', 'log_aspect', 'log_marea', 'border', 'exg']
+12:56:41   [confirm:ref] 1 configs x 15 runs 6s
+12:56:43   [confirm] 1 configs x 15 runs 2s
+12:56:43   [confirm] mlp1x16 ['s', 'log_marea', 'exg'] fresh gain +0.0056 pos 15/15 fail
+12:56:48   [confirm] 1 configs x 15 runs 5s
+12:56:48   [confirm] mlp2x64 ['s', 'log_marea', 'exg'] fresh gain +0.0068 pos 15/15 fail
+12:56:50   [confirm] 1 configs x 15 runs 2s
+12:56:50   [confirm] mlp1x16 ['s', 'log_marea', 'max_iou_higher', 'exg'] fresh gain +0.0069 pos 15/15 fail
+12:56:52   [confirm] 1 configs x 15 runs 2s
+12:56:52   [confirm] mlp1x16 ['s', 'log_aspect', 'log_marea', 'exg'] fresh gain +0.0063 pos 15/15 fail
+12:56:55   [confirm] 1 configs x 15 runs 3s
+12:56:55   [confirm] mlp1x64 ['s', 'log_w', 'B', 'ring_dL'] fresh gain +0.0048 pos 15/15 fail
+12:57:01   [confirm] 1 configs x 15 runs 6s
+12:57:01   [confirm] mlp2x64 ['s', 'log_marea', 'max_iou_higher', 'exg'] fresh gain +0.0087 pos 15/15 PASS
+12:57:01 [select] chosen {'model': 'mlp2x64', 'epochs': 30, 'dropout': 0.1, 'wd': 0.001, 'label': 'box50', 'cols': ['s', 'log_marea', 'max_iou_higher', 'exg']} (None -> s-hat := s)
+12:57:14 [render] test: 439/439 to do
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: divide by zero encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: overflow encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality_tcd_04/em.py:108: RuntimeWarning: invalid value encountered in matmul
+  return logsumexp(np.log(self.wbg)[None] + k * (zn @ self.Gbg.T), 1)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: divide by zero encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: overflow encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+/Users/tompitts/dphil/CanopyAI2/boxinst_commonality/em.py:211: RuntimeWarning: invalid value encountered in matmul
+  zc = kappa * (z @ C.T)                              # (n,K)
+12:57:33   render test 20/439 19s
+12:57:44   render test 40/439 30s
+12:57:54   render test 60/439 40s
+12:58:08   render test 80/439 54s
+12:58:19   render test 100/439 65s
+12:58:29   render test 120/439 75s
+12:58:41   render test 140/439 87s
+12:58:54   render test 160/439 100s
+12:59:03   render test 180/439 110s
+12:59:14   render test 200/439 120s
+12:59:26   render test 220/439 132s
+12:59:39   render test 240/439 145s
+12:59:49   render test 260/439 156s
+13:00:00   render test 280/439 167s
+13:00:12   render test 300/439 178s
+13:00:23   render test 320/439 189s
+13:00:36   render test 340/439 202s
+13:00:49   render test 360/439 216s
+13:00:58   render test 380/439 224s
+13:01:09   render test 400/439 235s
+13:01:19   render test 420/439 245s
+13:01:28   render test 439/439 254s
+13:01:32   feats test 40/439 3s
+13:01:35   feats test 80/439 6s
+13:01:37   feats test 120/439 9s
+13:01:40   feats test 160/439 12s
+13:01:43   feats test 200/439 14s
+13:01:46   feats test 240/439 18s
+13:01:49   feats test 280/439 21s
+13:01:52   feats test 320/439 24s
+13:01:55   feats test 360/439 27s
+13:01:58   feats test 400/439 29s
+13:02:00   feats test 439/439 32s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_lace0_test_shat_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=18.42s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.11s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.14s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+13:07:53 [test] LACE-0 shat: {'mask': {'AP50': 0.6943, 'AP75': 0.1544, 'AP50_95': 0.2915}, 'box': {'AP50': 0.7437, 'AP75': 0.4095}}
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_lace0_test_s_r2048.json: 200148 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=18.69s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=25.44s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.04s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=24.30s).
+Accumulating evaluation results...
+DONE (t=0.13s).
+13:13:47 [test] LACE-0 s: {'mask': {'AP50': 0.6752, 'AP75': 0.1417, 'AP50_95': 0.2806}, 'box': {'AP50': 0.7257, 'AP75': 0.3901}}
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+13:24:27 [test] boot {'deployed_minus_shat': {'AP50': {'diff': 0.0198, 'ci95': [0.0167, 0.0249]}, 'AP50_95': {'diff': 0.0509, 'ci95': [0.0475, 0.055]}}, 'deployed_minus_s': {'AP50': {'diff': 0.0389, 'ci95': [0.0332, 0.0466]}, 'AP50_95': {'diff': 0.0618, 'ci95': [0.058, 0.0668]}}}
+13:24:27 [render] sparse: 236/236 to do
+13:24:39   render sparse 20/236 12s
+13:24:51   render sparse 40/236 24s
+13:25:06   render sparse 60/236 39s
+13:25:16   render sparse 80/236 49s
+13:25:28   render sparse 100/236 61s
+13:25:41   render sparse 120/236 74s
+13:25:52   render sparse 140/236 85s
+13:26:03   render sparse 160/236 96s
+13:26:15   render sparse 180/236 108s
+13:26:25   render sparse 200/236 118s
+13:26:36   render sparse 220/236 129s
+13:26:43   render sparse 236/236 136s
+13:26:46   feats sparse 40/236 3s
+13:26:49   feats sparse 80/236 6s
+13:26:52   feats sparse 120/236 8s
+13:26:55   feats sparse 160/236 11s
+13:26:57   feats sparse 200/236 14s
+13:27:00   feats sparse 236/236 16s
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_lace0_sparse_shat_r2048.json: 106514 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=10.79s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=13.18s).
+Accumulating evaluation results...
+DONE (t=0.06s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.52s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+13:30:08 [sparse] LACE-0 shat: {'mask': {'AP50': 0.722, 'AP75': 0.1927, 'AP50_95': 0.3214}, 'box': {'AP50': 0.7492, 'AP75': 0.465}}
+[score_coco] rasterising GT at 2048^2 (once, shared) ...
+[score_coco] preds_lace0_sparse_s_r2048.json: 106514 dets >= 0.0
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=10.77s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=13.26s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.02s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=12.60s).
+Accumulating evaluation results...
+DONE (t=0.07s).
+13:33:18 [sparse] LACE-0 s: {'mask': {'AP50': 0.7147, 'AP75': 0.1844, 'AP50_95': 0.3156}, 'box': {'AP50': 0.7414, 'AP75': 0.4563}}
+creating index...
+index created!
+creating index...
+index created!
+creating index...
+index created!
+13:39:10 [sparse] boot {'deployed_minus_shat': {'AP50': {'diff': 0.0214, 'ci95': [0.015, 0.0295]}, 'AP50_95': {'diff': 0.0816, 'ci95': [0.0711, 0.0925]}}, 'deployed_minus_s': {'AP50': {'diff': 0.0287, 'ci95': [0.0199, 0.04]}, 'AP50_95': {'diff': 0.0875, 'ci95': [0.0765, 0.0973]}}}
+13:39:10 {
+ "date_start": "2026-11-26 12:07",
+ "spec": {
+  "kind": "post4",
+  "alpha": 1.0,
+  "kappa": 1.0,
+  "r": 0,
+  "tau": 0.5
+ },
+ "gates": {
+  "G1": "PASS",
+  "G3": "PASS",
+  "G2": {
+   "PASS": {
+    "s": [
+     0.7546,
+     0.7546
+    ],
+    "s_prime": [
+     0.7522,
+     0.7522
+    ],
+    "reverse": [
+     0.6244,
+     0.6244
+    ]
+   }
+  }
+ },
+ "val": {
+  "n_dets": 51341,
+  "pos": 6143,
+  "neg": 29300,
+  "ign": 15898,
+  "box_ap50_s": 0.7546,
+  "box_ap50_sprime": 0.7522
+ },
+ "selection": {
+  "ref": {
+   "gain_mean": 0.00604,
+   "gain_sd": 0.00105,
+   "n_pos": 15
+  },
+  "n_admissible": 812,
+  "top": [
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00553,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00593,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00665,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00589,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "B",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.0051,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00794,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00764,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.0072,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "border",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00706,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "border",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00625,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "log_aspect",
+      "B",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00654,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "max_iou_higher",
+      "B",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00633,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "log_aspect",
+      "max_iou_higher",
+      "B"
+     ]
+    },
+    "gain_mean": 0.0057,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "log_aspect",
+      "max_iou_higher",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00567,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00929,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "rank_frac",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00827,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "rank_frac",
+      "exg",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00796,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "rank_frac",
+      "max_iou_higher",
+      "ring_dL"
+     ]
+    },
+    "gain_mean": 0.00509,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x8",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "sp",
+      "log_aspect",
+      "max_iou_higher",
+      "n_nbr",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00558,
+    "n_pos": 15
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "border",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "gain_mean": 0.00761,
+    "n_pos": 15
+   }
+  ],
+  "fresh_ref_gain": 0.00811,
+  "tried": [
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00561,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00684,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00686,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp1x16",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_aspect",
+      "log_marea",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00634,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp1x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_w",
+      "B",
+      "ring_dL"
+     ]
+    },
+    "fresh_gain_mean": 0.0048,
+    "fresh_n_pos": 15,
+    "pass": false
+   },
+   {
+    "cfg": {
+     "model": "mlp2x64",
+     "epochs": 30,
+     "dropout": 0.1,
+     "wd": 0.001,
+     "label": "box50",
+     "cols": [
+      "s",
+      "log_marea",
+      "max_iou_higher",
+      "exg"
+     ]
+    },
+    "fresh_gain_mean": 0.00867,
+    "fresh_n_pos": 15,
+    "pass": true
+   }
+  ],
+  "chosen": {
+   "model": "mlp2x64",
+   "epochs": 30,
+   "dropout": 0.1,
+   "wd": 0.001,
+   "label": "box50",
+   "cols": [
+    "s",
+    "log_marea",
+    "max_iou_higher",
+    "exg"
+   ]
+  }
+ },
+ "test": {
+  "rows": {
+   "shat": {
+    "mask": {
+     "AP50": 0.6943,
+     "AP75": 0.1544,
+     "AP50_95": 0.2915
+    },
+    "box": {
+     "AP50": 0.7437,
+     "AP75": 0.4095
+    }
+   },
+   "s": {
+    "mask": {
+     "AP50": 0.6752,
+     "AP75": 0.1417,
+     "AP50_95": 0.2806
+    },
+    "box": {
+     "AP50": 0.7257,
+     "AP75": 0.3901
+    }
+   }
+  },
+  "deployed": {
+   "mask": {
+    "AP50": 0.7141,
+    "AP75": 0.2713,
+    "AP50_95": 0.3424
+   },
+   "box": {
+    "AP50": 0.7471
+   }
+  },
+  "boot": {
+   "deployed_minus_shat": {
+    "AP50": {
+     "diff": 0.0198,
+     "ci95": [
+      0.0167,
+      0.0249
+     ]
+    },
+    "AP50_95": {
+     "diff": 0.0509,
+     "ci95": [
+      0.0475,
+      0.055
+     ]
+    }
+   },
+   "deployed_minus_s": {
+    "AP50": {
+     "diff": 0.0389,
+     "ci95": [
+      0.0332,
+      0.0466
+     ]
+    },
+    "AP50_95": {
+     "diff": 0.0618,
+     "ci95": [
+      0.058,
+      0.0668
+     ]
+    }
+   }
+  }
+ },
+ "sparse": {
+  "rows": {
+   "shat": {
+    "mask": {
+     "AP50": 0.722,
+     "AP75": 0.1927,
+     "AP50_95": 0.3214
+    },
+    "box": {
+     "AP50": 0.7492,
+     "AP75": 0.465
+    }
+   },
+   "s": {
+    "mask": {
+     "AP50": 0.7147,
+     "AP75": 0.1844,
+     "AP50_95": 0.3156
+    },
+    "box": {
+     "AP50": 0.7414,
+     "AP75": 0.4563
+    }
+   }
+  },
+  "deployed": {
+   "mask": {
+    "AP50": 0.7434,
+    "AP75": 0.4006,
+    "AP50_95": 0.4031
+   },
+   "box": {
+    "AP50": 0.757
+   }
+  },
+  "boot": {
+   "deployed_minus_shat": {
+    "AP50": {
+     "diff": 0.0214,
+     "ci95": [
+      0.015,
+      0.0295
+     ]
+    },
+    "AP50_95": {
+     "diff": 0.0816,
+     "ci95": [
+      0.0711,
+      0.0925
+     ]
+    }
+   },
+   "deployed_minus_s": {
+    "AP50": {
+     "diff": 0.0287,
+     "ci95": [
+      0.0199,
+      0.04
+     ]
+    },
+    "AP50_95": {
+     "diff": 0.0875,
+     "ci95": [
+      0.0765,
+      0.0973
+     ]
+    }
+   }
+  }
+ },
+ "date_end": "2026-11-26 13:39",
+ "note": "ONE look per pre-registration LACE-0; single detector run"
+}
