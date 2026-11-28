@@ -55,7 +55,7 @@ T_POLY, T_BOX = 54.0, 7.0
 T1 = os.path.join(ROOT, "results_439", "TABLE1_CURRENT.json")
 ROW_KEYS = [
     ("LACE (ours)",       "box",  "LACE (D1 variant) + edge fix + R3"),
-    ("Restor Mask R-CNN", "mask", "Restor Mask R-CNN"),
+    ("Mask R-CNN (OAM-TCD)", "mask", "Restor Mask R-CNN"),  # 2026-11-28 display renamed; T1 key unchanged
     ("Detectree2",        "mask", "Detectree2"),
     ("BoxTeacher",        "box",  "BoxTeacher Swin-B"),
     ("Box2Mask Swin-L",   "box",  "Box2Mask Swin-L"),
@@ -104,7 +104,7 @@ def label_sets(tiles):
         "Box2Mask Swin-L":   [(tr + va, "box")],
         "Box2Mask R-50":     [(tr + va, "box")],
         "BoxTeacher":        [(tr + va, "box")],
-        "Restor Mask R-CNN": [(list(tiles), "poly")],
+        "Mask R-CNN (OAM-TCD)": [(list(tiles), "poly")],
     }
 
 
@@ -137,7 +137,7 @@ def main():
         data.append(dict(name=name, supervision=sup, hours=h, counts=n,
                          ap50=a50, ap50_sd=a50sd, ap5095=a5095, ap5095_sd=a5095sd))
     d = {r["name"]: r for r in data}
-    lace, restor = d["LACE (ours)"], d["Restor Mask R-CNN"]
+    lace, restor = d["LACE (ours)"], d["Mask R-CNN (OAM-TCD)"]
     ratio = restor["hours"] / lace["hours"]
 
     plt.rcParams.update({"font.family": "sans-serif", "font.sans-serif": ["Helvetica", "Arial", "DejaVu Sans"],
@@ -147,12 +147,12 @@ def main():
     fig, ax0 = plt.subplots(1, 1, figsize=(5.0, 2.6), constrained_layout=True)
     # label offsets (points) per panel, tuned so nothing collides
     OFFS = {
-        "ap50":   {"LACE (ours)": (8, -9), "Restor Mask R-CNN": (-4, 8), "Detectree2": (6, -6),
+        "ap50":   {"LACE (ours)": (8, -9), "Mask R-CNN (OAM-TCD)": (-4, 8), "Detectree2": (6, -6),
                    "BoxTeacher": (3, -8), "Box2Mask Swin-L": (3, -8), "Box2Mask R-50": (3, -8)},
-        "ap5095": {"LACE (ours)": (8, -9), "Restor Mask R-CNN": (-4, -8), "Detectree2": (5, -8),
+        "ap5095": {"LACE (ours)": (8, -9), "Mask R-CNN (OAM-TCD)": (-4, -8), "Detectree2": (5, -8),
                    "BoxTeacher": (3, -8), "Box2Mask Swin-L": (3, -8), "Box2Mask R-50": (3, -8)},
     }
-    HA = {"Restor Mask R-CNN": {"ap50": "right", "ap5095": "right"}}
+    HA = {"Mask R-CNN (OAM-TCD)": {"ap50": "right", "ap5095": "right"}}
     for ax, key, ylab, ylim in [(ax0, "ap50", "Mask AP$_{50}$", (0.40, 0.765))]:
         ax.set_xscale("log")
         ax.set_xlim(200, 7000)

@@ -1,7 +1,7 @@
 {
  "set": "tcd439_fig1",
  "tiles": [
-  "tcd_val_tile_390"
+  "tcd_val_tile_397"
  ],
  "thresholds": {
   "LACE (ours)": {
@@ -42,41 +42,41 @@
  },
  "crop_px": 512,
  "crop_xy": {
-  "tcd_val_tile_390": [
-   1216,
-   0
+  "tcd_val_tile_397": [
+   640,
+   1536
   ]
  },
  "counts": {
-  "tcd_val_tile_390|LACE (ours)": {
-   "f1": 0.8718,
-   "tp": 17,
+  "tcd_val_tile_397|LACE (ours)": {
+   "f1": 0.9412,
+   "tp": 16,
+   "fp": 1,
+   "fn": 1
+  },
+  "tcd_val_tile_397|Restor": {
+   "f1": 0.9412,
+   "tp": 16,
    "fp": 2,
-   "fn": 3
+   "fn": 0
   },
-  "tcd_val_tile_390|Restor": {
-   "f1": 0.8095,
-   "tp": 17,
-   "fp": 5,
-   "fn": 3
+  "tcd_val_tile_397|Detectree2": {
+   "f1": 0.9412,
+   "tp": 16,
+   "fp": 1,
+   "fn": 1
   },
-  "tcd_val_tile_390|Detectree2": {
-   "f1": 0.5714,
-   "tp": 10,
-   "fp": 5,
-   "fn": 10
+  "tcd_val_tile_397|BoxTeacher": {
+   "f1": 0.9412,
+   "tp": 16,
+   "fp": 1,
+   "fn": 1
   },
-  "tcd_val_tile_390|BoxTeacher": {
-   "f1": 0.6061,
-   "tp": 10,
-   "fp": 3,
-   "fn": 10
-  },
-  "tcd_val_tile_390|Box2Mask": {
-   "f1": 0.7059,
-   "tp": 12,
+  "tcd_val_tile_397|Box2Mask": {
+   "f1": 0.875,
+   "tp": 14,
    "fp": 2,
-   "fn": 8
+   "fn": 2
   }
  }
 }

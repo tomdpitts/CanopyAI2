@@ -95,7 +95,10 @@ SETS = {
                 ("Detectree2", "seamfix/preds_dt2_s0v2_r2048_seamfix.json"),
                 ("BoxTeacher", "../box_supervised_baselines/tierb/results/20261101_192510/boxteacher/results/preds_boxteacher_sub_test_r2048.json"),
                 ("Box2Mask", "seamfix/preds_box2mask_swinl_s0_r2048_seamfix.json")],
-        tiles="390", per_row=1, crop=512, crop_xy=(1216, 0), fill_alpha=0.0, canopy_tint=True),
+        # 2026-11-28 (Tom): Fig 1 must look like the paper's story (dry, open savanna). Tile 390 replaced by tile 397, crop
+        # (640,1536): picked BY EYE from 11 drafts (deleted 11-28; open crop, canopy class 1.4%, 17 crowns shown), not by
+        # rule. Tile LACE-Restor AP50 margin +0.020 = 37th percentile of open-crop tiles (median +0.048), i.e. not flattering.
+        tiles="397", per_row=1, crop=512, crop_xy=(640, 1536), fill_alpha=0.0, canopy_tint=True),
     "sparse": dict(
         gt=os.path.join(REPO, "data/tcd_sparse/sparse_gt.json"), imgdir=os.path.join(REPO, "data/tcd_sparse/test"), prefix="tcd_tile_",
         models=[("LACE (ours)", "preds_lace_sparse_s0_r2048_cgf_r12_tau035_guidedrun.json"),
@@ -199,6 +202,11 @@ def auto_crop(gt_masks, size, stride=64):
     return bxy
 
 
+# 2026-11-28 (Tom): paper names the OAM-TCD authors' released Mask R-CNN "Mask R-CNN (OAM-TCD)", not "Restor".
+# Display-only rename: internal labels (threshold-cache keys in qualitative_thresholds_*.json) stay "Restor".
+DISPLAY = {"Restor": "Mask R-CNN\n(OAM-TCD)"}
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--set", default="tcd439", choices=SETS); a = ap.parse_args()
     cfg = SETS[a.set]
@@ -236,7 +244,10 @@ def main():
     k = min(1.0, fig_w / (18.4 / 2.54) * 1.9)  # font scale for column-width figures
     pw = fig_w / ncol
     gap = 0.012
-    fig, axes = plt.subplots(nrow, ncol, figsize=(fig_w, pw * nrow + (0.35 if k >= 1 else 0.45)), squeeze=False,
+    # 2026-11-28: extra headroom when a column title wraps to two lines (DISPLAY), else it clips in column-width figures
+    extra = 0.13 if k < 1 and any("\n" in DISPLAY.get(lab, lab) for lab, _ in models) else 0.0
+    h0 = pw * nrow + (0.35 if k >= 1 else 0.45)
+    fig, axes = plt.subplots(nrow, ncol, figsize=(fig_w, h0 + extra), squeeze=False,
                              gridspec_kw=dict(wspace=gap, hspace=gap * 1.2))
     crops, counts = {}, {}
     for ti, t in enumerate(tiles):
@@ -291,7 +302,7 @@ def main():
             fn = sum(1 for m in fn_masks if inwin(m))
             f1 = 2 * tp / max(2 * tp + fp + fn, 1)
             counts[f"{t}|{lab}"] = dict(f1=round(f1, 4), tp=tp, fp=fp, fn=fn)
-            show(axes[r, c0 + 1 + ci], arr, lab, f"F1 {f1:.2f}" if k < 1 else f"F1 {f1:.2f}  TP {tp}  FP {fp}  FN {fn}")
+            show(axes[r, c0 + 1 + ci], arr, DISPLAY.get(lab, lab), f"F1 {f1:.2f}" if k < 1 else f"F1 {f1:.2f}  TP {tp}  FP {fp}  FN {fn}")
         print("rendered", t, flush=True)
 
     handles = [Line2D([0], [0], color="white", lw=1.4, label="matched (IoU $\\geq$ 0.5)"),
@@ -301,7 +312,8 @@ def main():
                edgecolor="none", labelcolor="white", fancybox=True, bbox_to_anchor=(0.5, -0.003),
                handlelength=2.2, columnspacing=1.6)
     if k < 1:
-        plt.subplots_adjust(left=0.003, right=0.997, top=0.88, bottom=0.17)
+        H = h0 + extra
+        plt.subplots_adjust(left=0.003, right=0.997, top=1 - (0.12 * h0 + extra) / H, bottom=0.17 * h0 / H)
     else:
         plt.subplots_adjust(left=0.003, right=0.997, top=0.955, bottom=0.05)
     stem = os.path.join(OUT, f"qualitative_{a.set}{suffix}")

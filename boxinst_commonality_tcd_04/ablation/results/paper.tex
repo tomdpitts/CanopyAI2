@@ -16,7 +16,7 @@
 \pubyear{2026}
 \copyrightyear{2026}
 \datereceived{ } 
-\daterevised{ } % Comment out if no revised date
+% \daterevised{ } % Comment out if no revised date
 \dateaccepted{ } 
 \datepublished{ } 
 \hreflink{https://doi.org/} % required by mdpi.cls (2024); fills the front-matter citation link
@@ -31,23 +31,25 @@
 \Title{Latent Commonality Expectation-Maximisation for Box-supervised Tree Crown Instance Segmentation}
 
 \newcommand{\orcidauthorA}{0009-0000-8884-2381} % Add \orcidA{} behind the author's name
+\newcommand{\orcidauthorB}{0009-0004-4289-9971} % Kunqi Li
+\newcommand{\orcidauthorC}{0000-0002-6605-2167} % Bin Liang
 
-\Author{Thomas Pitts $^{1,}$*\orcidA{}, Kunqi Li $^{1}$ and Bin Liang $^{1}$}
+
+\Author{Thomas Pitts $^{1,}$*\orcidA{}, Kunqi Li $^{1}$\orcidB{} and Bin Liang $^{1}$\orcidC{}}
 
 
 \AuthorNames{Thomas Pitts, Kunqi Li and Bin Liang}
 
 
 \address[1]{%
-$^{1}$ \quad Department of Data Science, University of Technology Sydney, Sydney, NSW 2007, Australia}
+$^{1}$ \quad Data Science Institute, University of Technology Sydney, Sydney, NSW 2007, Australia}
 
-\corres{Correspondence: thomas.pitts@uts.edu.au}
+\corres{Correspondence: bin.liang@uts.edu.au}
 
 
-\abstract{Individual tree crown segmentation from aerial imagery underpins tree-level carbon accounting, biodiversity, and restoration monitoring at landscape scale. However, existing models are predominantly trained on dense canopy forest imagery and degrade in savannah and drylands, where tree crowns are sparse, of variable appearance, and underrepresented in annotated benchmarks. We introduce LACE (LAtent Commonality Expectation-maximisation), a box-supervised instance segmentation model, evaluated on $0.1$ m/px aerial RGB tree crown imagery. LACE uses a frozen DINOv3-web ViT-L/16 encoder, applied at shifted offsets and interlaced into a dense feature grid, with a DINO-DETR detection head trained solely on bounding boxes. We use expectation-\hspace{0pt}maximisation to separate recurring appearance, the ``treeness'', within bounding boxes from surroundings. On the OAM-TCD benchmark test set, LACE reaches a mask AP$_{50}$ of $0.714$ trained on $900$ box-annotated images, ahead of BoxTeacher with $0.664$ and Restor's released mask-supervised Mask R-CNN model that achieves $0.648$ with full ${\sim}4.2$k image set polygon mask training.  By leveraging frozen self-supervised features, LACE matches fully-supervised specialist baselines from boxes alone, with masks on $108$ validation images used only for model selection, removing the need for polygon annotation in tree crown instance segmentation for sparse-canopy environments where labelled data is scarce.}
+\abstract{Individual tree crown segmentation from aerial imagery underpins tree-level carbon accounting, biodiversity, and restoration monitoring at landscape scale. However, existing models are predominantly trained on dense canopy forest imagery and degrade in savannah and drylands, where tree crowns are sparse, of variable appearance, and underrepresented in annotated benchmarks. We introduce LACE (LAtent Commonality Expectation-maximisation), a box-supervised instance segmentation model, evaluated on $0.1$ m/px aerial RGB tree crown imagery. LACE uses a frozen DINOv3-web ViT-L/16 encoder, applied at shifted offsets and interlaced into a dense feature grid, with a DINO-DETR detection head trained solely on bounding boxes. We use expectation-\hspace{0pt}maximisation to separate recurring appearance, the ``treeness'', within bounding boxes from surroundings. On the OAM-TCD benchmark test set, LACE reaches a mask AP$_{50}$ of $0.714$ trained on $900$ box-annotated images, ahead of BoxTeacher with $0.664$ and the OAM-TCD authors' released mask-supervised Mask R-CNN that achieves $0.648$ with full ${\sim}4.2$k image set polygon mask training.  By leveraging frozen self-supervised features, LACE matches fully-supervised specialist baselines from boxes alone, with masks on $108$ validation images used only for model selection, removing the need for polygon annotation in tree crown instance segmentation for sparse-canopy environments where labelled data is scarce.}
 
-\keyword{Tree crown instance segmentation, self-supervised vision transformers, remote sensing, carbon accounting, DINOv3, expectation-\hspace{0pt}maximisation, box-supervised instance segmentation} 
-
+\keyword{individual tree crown segmentation; box-supervised instance segmentation; drylands; self-supervised features; aerial RGB imagery} 
 
 \begin{document}
 
@@ -61,23 +63,19 @@ Machine learning and deep learning applied to satellite and UAV data have shifte
 
 Table~\ref{tab:gap} (Appendix~\ref{app:gap}) summarises representative deep-learning methods for tree crown instance segmentation (TCIS) on RGB imagery. We address three gaps. Firstly, existing approaches focus on dense-canopy forests. For example, the authors of Detectree2 deliberately exclude images with $\leq 40\%$ canopy cover~\cite{ball2023}, and in the seminal DeepForest paper the authors highlight the worst-performing site, Onaqui, Utah, as a ``desert scrub site with a different vegetation structure from any of the training data''~\cite{weinstein2020}. Our setting is instead savannah, scrub and other open landscapes, where crowns are sparse, small and set against bare or grassy ground (Figure~\ref{fig:qual}). Secondly, existing models typically rely on manually annotated polygons for training~\cite{hao2021,braga2020,ocer2020,ball2023,chadwick2020,zhao2023}. Instead, we use boxes only, which have the benefit of being much faster and therefore cheaper to produce~\cite{jain2013}. Thirdly, apples-to-apples comparison across this literature remains difficult, as papers variously report AP$_{50}$, AP$_{50:95}$, instance- or semantic-F1 at differing IoU thresholds against boxes and/or polygons. The most widely used matching criterion in TCIS is an IoU $\geq0.5$ between predicted and ground truth (GT) crowns~\cite{ball2023,weinstein2020,hao2021,plesoianu2020}, and we adopt it for our headline metrics, mask AP$_{50}$ and F1.
 
-% 2026-11-27 Fig 1 = figs/make_qualitative.py --set tcd439_fig1 (FIG_W_CM=9.6): tile 390 = eligible open-crop tile closest to the median margin excluding fig:qualgrid's tiles (pool of select_qual_grid_v3.py), v3 auto-crop (1216,0); replaces the by-eye tcd439_d1 strip below.
+% 2026-11-28 Fig 1 = figs/make_qualitative.py --set tcd439_fig1 (FIG_W_CM=9.6): tile 397, crop (640,1536), picked by eye (Tom) from 11 by-eye drafts (deleted 11-28) to look like dry open savanna; tile margin +0.020 = 37th pct of open-crop tiles. Replaces rule-picked tile 390 (11-27).
 % 2026-11-12 qualitative strip: figs/make_qualitative.py --set tcd439_d1 (FIG_W_CM=8.25); tile 122 picked by rule in figs/select_qual_tile.py -> figs/qualitative_tile_select_tcd439_d1_soil.json (median LACE-Restor AP50 margin among 7 holdout tiles >= 40% bare soil; pick changes at 30%/50%, see sensitivity); 512 px crop at (128,640) chosen by eye, less favourable to LACE than auto-crop. Sparse-236 avoided: 220 of its tiles are in Restor's training split.
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\linewidth]{figs/qualitative_tcd439_fig1.pdf}
-\caption{Representative open-ground holdout tile (OAM-TCD $390$, $512$~px crop), closest to the median LACE$-$Restor AP$_{50}$ margin among open-ground tiles (crop $<2\%$ canopy class, $\geq 10$ crowns, LACE in-crop F1 $\geq 0.8$) not shown in Figure~\ref{fig:qualgrid}. Each model is shown at its own best-F1 threshold.\label{fig:qual}}
+\caption{Open savannah holdout tile (OAM-TCD $397$, $512$~px crop). Its LACE$-$Mask R-CNN (OAM-TCD) AP$_{50}$ margin ($+0.020$) lies below the open-ground median ($+0.048$). Each model is shown at its own best-F1 threshold.\label{fig:qual}}
 \end{figure}
 
-\paragraph{Lack of sparse-canopy datasets}
 We see two contributing factors to the exclusion of sparse-canopy biomes. The first is spatial resolution: individual tree crown (ITC) delineation requires high ($<1$~m/px) or ultra-high ($\leq 0.1$~m/px) imagery~\cite{oamtcd}, beyond most publicly available satellite RGB at $5$--$10$~m/px. Downsampling the OAM-TCD holdout set used in this work ($439$ images, $25{,}705$ crowns) from its native $0.1$~m/px to a $1$~m Ground Sample Distance (GSD) leaves $25.0\%$ of crowns enclosing no complete pixel. The second is that conventional global tree cover maps such as Hansen et al.~\cite{hansen2013} systematically underestimate tree cover in drylands~\cite{fagan2020} and are markedly less accurate outside closed-canopy forests~\cite{brandtstolle2021}, while biomass and carbon products used for drylands~\cite{baccini2012,avitabile2016,bouvet2018} typically apply a single method to forest and dryland vegetation alike~\cite{tucker2023}. We speculate that this has led to a subtle vicious cycle: under-counting makes woody biomass in sparse-canopy biomes appear too scarce to justify annotation effort, which in turn stymies tree crown detection and segmentation in exactly the biomes where cover is most uncertain~\cite{bastin2017}. Tucker et al.~\cite{tucker2023} found that ``areas with scattered trees are often represented by zero values'', since ``previous models are rarely developed, trained and validated with plots of very sparse tree cover''. Since existing models all rely on supervised learning, datasets precede models. Things are changing, however: SelvaBox~\cite{selvabox} and SelvaMask~\cite{selvamask} have broadened geographic coverage of dense-canopy annotations, and OAM-TCD~\cite{oamtcd} includes a variety of biomes, including urban, tundra and savannah.
 
-\paragraph{Box- and Mask-supervised learning}
 
 
 Apart from limitations within sparse-canopy coverage, TCIS also remains understudied due to the lack of individual tree crown mask annotations in datasets~\cite{teng2025}. Since crown polygons are slower and typically more expensive to annotate than boxes, box-supervised instance segmentation~\cite{boxinst,box2mask,boxteacher} offers a practical route to instance-level delineation without polygon labels. The recent rise of self-supervised backbones such as DINOv2~\cite{dinov2} and DINOv3~\cite{dinov3} has demonstrated that models pretrained on very large sets of diverse web imagery are capable of matching or even exceeding Earth-observation-specific foundation models (e.g. DINOv3-sat) on high-resolution RGB RS tasks~\cite{dinov3}. 
-
-
 
 Strong self-supervised features present the intriguing possibility of leveraging the encoding of annotated boxes in representation space to learn by virtue of repeated similarities across annotation boxes. This is conceptually similar to inferring the subject of a list of verbal representations (Figure~\ref{fig:concept}): ``ash'', ``trunk'', ``dirt'', ``car'', ``leaves'', ``birch'', ``canopy'', ``branches'' etc. Clearly challenges remain, not least of which is filtering out unwanted elements such as ``dirt'' and ``car'', and to produce a reliable model for the specific task of TCIS is the main aim of this work. In other words, we effectively ask the question: ``can we leverage the vector space signature of the tree-ness within DINO latent feature vectors, based only on the commonality between GT boxes, to isolate the trees from the background?'' Furthermore, this approach needs to work without the model ever being told which elements of the bounding boxes it should be targeting: it is completely tree-agnostic in principle, and only becomes a TCIS model through training exposure. 
 
@@ -85,43 +83,39 @@ Strong self-supervised features present the intriguing possibility of leveraging
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\linewidth]{figs/concept_commonality.pdf}
-\caption{Intuitive LACE explanation. Given highly compressed verbal representations i.e. words, the shared subject can be inferred even though some entries (``dirt'', ``car'') are unrelated (top). Likewise, given only box crops of tree crowns, each containing some background, the crown is what recurs across them once their features are whitened onto the unit sphere (Figure~\ref{fig:masker-fit}, step 1) (bottom). Crops are OAM-TCD training boxes, including man-made objects such as roads and cars.\label{fig:concept}}
+\caption{Intuitive LACE explanation. Given highly compressed verbal representations i.e. words, the shared subject can be inferred even though some entries (``dirt'', ``car'') are unrelated (top). Likewise, given only box crops of diverse tree crowns, LACE infers the correct target from groups of features (Figure~\ref{fig:masker-fit}) (bottom). Crops are OAM-TCD training boxes, including man-made objects such as roads and cars.\label{fig:concept}}
 \end{figure}
 
-\paragraph{Contribution}
-
-Our contributions are:
+Our contributions are threefold:
 \begin{itemize}
-\item LACE, a box-supervised instance segmentation model whose novel expectation-\hspace{0pt}maximisation box-to-mask module isolates crowns in frozen DINOv3-web (ViT-L/16)~\cite{dinov3} features from the latent commonality of the GT boxes alone, paired with a DINO-DETR~\cite{dinodetr} Swin-L~\cite{swin} detector trained on the same boxes. Given identical detector boxes, the module outperforms the mask-pretrained foundation model SAM~3 at AP$_{50}$, and BoxTeacher's own mask head on BoxTeacher's boxes (Section~\ref{sec:samebox}).
-\item A benchmark comparison of the key box- and mask-supervised state-of-the-art (SOTA) models in the TCIS space, every one re-run and re-scored by us under a single protocol (Appendix~\ref{app:protocol}). On OAM-TCD, which spans a diverse range of biomes, tree species and background contexts, LACE outperforms both the existing box-supervised models and the established mask-supervised TCIS models, including the OAM-TCD authors' Mask R-CNN trained on several times more images, with a relative mask AP$_{50}$ gain of $7.5\%$ or more (Table~\ref{tab:oamtcd439}).
+\item A novel expectation-\hspace{0pt}maximisation box-to-mask module that isolates crowns in frozen DINOv3-web (ViT-L/16)~\cite{dinov3} features from the latent commonality of the GT boxes alone. Given identical detector boxes, the module outperforms the mask-pretrained foundation model SAM~3 at AP$_{50}$, and BoxTeacher's own mask head on BoxTeacher's boxes (Section~\ref{sec:samebox}).
+\item LACE, a box-supervised instance segmentation model pairing this module with a DINO-DETR~\cite{dinodetr} Swin-L~\cite{swin} detector trained on the same boxes. On OAM-TCD, which spans a diverse range of biomes, tree species and background contexts, LACE outperforms both the existing box-supervised models and the established mask-supervised TCIS models, including the OAM-TCD authors' Mask R-CNN trained on several times more images, with a relative mask AP$_{50}$ gain of $7.5\%$ or more (Table~\ref{tab:oamtcd439}).
+\item A benchmark comparison of the key box- and mask-supervised state-of-the-art (SOTA) models in the TCIS space, every one re-run and re-scored by us under a single protocol (Appendix~\ref{app:protocol}), and costed in annotator-hours: LACE needs $14\times$ fewer than the OAM-TCD authors' Mask R-CNN while scoring $0.066$ higher at AP$_{50}$ (Figure~\ref{fig:cost}).
 \end{itemize}
 
 
 \section{Related Work}
 
-In recent years there has been a focus in the RS community on RGB datasets which can directly leverage Computer Vision deep learning models~\cite{zhu2017} especially through the use of Convolutional Neural Networks (CNNs)~\cite{lecun1998,alexnet} and Vision Transformers (ViT)~\cite{vit}. Mask R-CNN~\cite{maskrcnn}, the instance segmentation member of the region-based CNN (R-CNN) family of models~\cite{rcnn}, extends the Faster R-CNN~\cite{fasterrcnn} detector with a parallel per-instance mask head and is a common architecture for TCIS, including two of our baselines, Detectree2~\cite{ball2023} and Restor's OAM-TCD model~\cite{oamtcd}, both fine-tuned from Detectron2~\cite{detectron2} checkpoints trained on COCO~\cite{coco} from ImageNet-1k-pretrained~\cite{imagenet} backbones. Alternative approaches such as Star-convex representation have also been explored to improve performance on dense canopy \cite{tong2025, fgtreeseg}.
+In recent years there has been a focus in the RS community on RGB datasets which can directly leverage Computer Vision deep learning models~\cite{zhu2017} especially through the use of Convolutional Neural Networks (CNNs)~\cite{lecun1998,alexnet} and Vision Transformers (ViT)~\cite{vit}. Mask R-CNN~\cite{maskrcnn}, the instance segmentation member of the region-based CNN (R-CNN) family of models~\cite{rcnn}, extends the Faster R-CNN~\cite{fasterrcnn} detector with a parallel per-instance mask head and is a common architecture for TCIS, including two of our baselines, Detectree2~\cite{ball2023} and the OAM-TCD authors' released Mask R-CNN~\cite{oamtcd}, hereafter Mask R-CNN (OAM-TCD), both fine-tuned from Detectron2~\cite{detectron2} checkpoints trained on COCO~\cite{coco} from ImageNet-1k-pretrained~\cite{imagenet} backbones. Alternative approaches such as Star-convex representation have also been explored to improve performance on dense canopy \cite{tong2025, fgtreeseg}.
 
 
-\paragraph{Segment Anything Model (SAM)}
 
 Meta's Segment Anything Model (SAM)~\cite{sam}, now in its third iteration~\cite{sam3}, is a promptable class-agnostic segmentation foundation model. In remote sensing, SAM has been benchmarked zero-shot on satellite imagery~\cite{ren2024space}, and RSPrompter~\cite{rsprompter} overcomes SAM's reliance on prompts such as points/boxes/masks by using a trained prompter to generate prompt embeddings for aerial imagery directly. 
 SAM has further been applied to TCIS either as a box-to-mask module prompted by a separate detector or centre predictor~\cite{fmsam,chen2025zeroshot,treepseco}, or adapted to the domain by fine-tuning, side-tuning or elevation inputs~\cite{teng2025,treesam,ginkgo}, the latter motivated by poor out-of-the-box performance~\cite{teng2025,treesam}.
 
-\paragraph{Self-DIstillation with NO labels (DINO)}
 
 DINOv3~\cite{dinov3}, the latest of Meta's DINO family~\cite{dino,dinov2}, is a SOTA encoder trained with fully Self-Supervised Learning (SSL) on $1.7$ billion images. Highly context-agnostic, DINOv3-web is an example of a frozen SSL backbone that can serve as a ``universal visual encoder''~\cite{dinov3}.
 
 
-\paragraph{Box-supervised mask inference}
 
-Existing approaches fall broadly into two paradigms. The first is loss design with hand-crafted objectives computed from the box and low-level image cues. BoxInst~\cite{boxinst} established the modern approach with a projection loss requiring the projections of the predicted mask to match the box edges and a pairwise affinity loss encouraging neighbouring pixels of similar colour to share a label, reaching $33.2$ mask AP on COCO~\cite{coco} against $39.1$ for its fully mask-supervised counterpart. BoxSnake~\cite{boxsnake} instead supervises polygon vertices directly, and Box2Mask~\cite{box2mask} evolves a level-set function inside each box with an energy over both the image and its deep features, reaching $42.4$ mask AP on COCO test-dev with a Swin-L~\cite{swin} backbone. The second paradigm is to utilise mask predictions for self-training. An early example is ``Simple Does It''~\cite{khoreva2017}, which generated pseudo-masks inside boxes with GrabCut~\cite{rother2004} and MCG~\cite{pont2017mcg} and recursively trained a segmentation network on them. In BoxTeacher~\cite{boxteacher}, a teacher predicts confidence-weighted pseudo-masks that supervise the student alongside BoxInst's losses, and is updated as a moving average of the student. DiscoBox~\cite{discobox} instead uses a structured energy teacher whose pairwise and cross-image potentials refine masks within boxes. We use one representative of each paradigm, Box2Mask and BoxTeacher, as baselines (Table~\ref{tab:oamtcd439}); to the best of our knowledge, trained box-supervised instance segmentation architectures, as distinct from box-prompted foundation models such as SAM, have not been previously explored for TCIS.
+Existing approaches fall broadly into two paradigms. The first is loss design with hand-crafted objectives computed from the box and low-level image cues. BoxInst~\cite{boxinst} established the modern approach with a projection loss requiring the projections of the predicted mask to match the box edges and a pairwise affinity loss encouraging neighbouring pixels of similar colour to share a label, reaching $33.2$ mask AP on COCO~\cite{coco} against $39.1$ for its fully mask-supervised counterpart. BoxSnake~\cite{boxsnake} instead supervises polygon vertices directly, and Box2Mask~\cite{box2mask} evolves a level-set function inside each box with an energy over both the image and its deep features, reaching $42.4$ mask AP on COCO test-dev with a Swin-L~\cite{swin} backbone, the highest published box-supervised COCO result we are aware of. The second paradigm is to utilise mask predictions for self-training. An early example is ``Simple Does It''~\cite{khoreva2017}, which generated pseudo-masks inside boxes with GrabCut~\cite{rother2004} and MCG~\cite{pont2017mcg} and recursively trained a segmentation network on them. In BoxTeacher~\cite{boxteacher}, a teacher predicts confidence-weighted pseudo-masks that supervise the student alongside BoxInst's losses, and is updated as a moving average of the student. BoxSeg~\cite{boxseg} extends this pseudo-labelling with quality-aware filtering of the pseudo-masks, reaching $40.9$ COCO mask AP with a ResNet-101 backbone, but has no public code. DiscoBox~\cite{discobox} instead uses a structured energy teacher whose pairwise and cross-image potentials refine masks within boxes. We use one representative of each paradigm, Box2Mask and BoxTeacher, as baselines (Table~\ref{tab:oamtcd439}); to the best of our knowledge, trained box-supervised instance segmentation architectures, as distinct from box-prompted foundation models such as SAM, have not been previously explored for TCIS.
 
 LACE represents a third way, instead building on self-supervised embeddings to derive statistical relationships of in-box characteristics. Unlike EM-Adapt~\cite{emadapt}, which amortises the E-step into a gradient-trained CNN with implicit cross-box sharing, we fit an explicit closed-form commonality mixture over frozen features. This thematically follows DiscoBox~\cite{discobox} and DDT~\cite{ddt} in exploiting similarities between embeddings within GT boxes, but aligns more closely with STEGO~\cite{stego}, eschewing pixel-space calculations in favour of mask inference in latent space. Unsupervised object discovery on DINO features (LOST~\cite{lost}, TokenCut~\cite{tokencut}, deep spectral methods~\cite{deepspectral}, CutLER~\cite{cutler}) also separates objects in latent space, but from the saliency of a single image; LACE instead learns what recurs across many annotated boxes.
 
-\section{Method}
+\section{Proposed Method}
 \label{sec:LACE}
 
-Our method produces instance masks for individual tree crowns using bounding-box supervision only. It has three stages: an object detector trained on bounding boxes (Section~\ref{sec:detector}); a dense feature grid obtained by interlacing sixteen offset passes of a frozen DINOv3-web ViT (Section~\ref{sec:features}); and a novel box-to-mask module that converts each predicted box into a mask (Section~\ref{sec:masker}). Predictions are then ranked by a mask-aware confidence that combines the detector score with the mask module's own posterior, refined by a small learned scorer $\hat s$ (Section~\ref{sec:scorer}). Figure~\ref{fig:architecture} shows inference and Figure~\ref{fig:masker-fit} the one-off fit. Further details are given in Appendix~\ref{app:method}.
+Our method produces instance masks for individual tree crowns using bounding-box supervision only. It has three stages: an object detector trained on bounding boxes (Section~\ref{sec:detector}); a dense feature grid obtained by interlacing sixteen offset passes of a frozen DINOv3-web ViT (Section~\ref{sec:features}); and a novel box-to-mask module that converts each predicted box into a mask (Section~\ref{sec:masker}). Predictions are then ranked by a mask-aware confidence that combines the detector score with the mask module's own posterior, refined by a small learned scorer $\hat s$ (Section~\ref{sec:scorer}). Further details are given in Appendix~\ref{app:method}.
 
 
 % figure redrawn for LACE (D1 variant) 2026-11-05: figs/arch/make_arch_panels_d1_prefix.py, figs/arch/d1_arch_meta.json; encoding panel labels say 4 px, drawing kept as the 4-offset schematic (Tom); output masks coloured by rank (illustrative); Box->Mask zoom drawn at 8 px cells (masker on the 8 px sub-lattice, legibility)
@@ -168,7 +162,6 @@ Given a detection box, the task remains to decide which of its cells belong to t
 
 The module has four key components: a whitened feature space; a frozen background mixture; a set of foreground prototypes; and a spatial prior over relative position within the box. The last two are learned by an alternating EM-based fit, while the first two stay fixed.
 
-\paragraph{Feature space}
 LACE's core idea is to treat the rich DINOv3-web embeddings as sufficiently descriptive representations of each patch to build a high-performing tree-crown instance segmentation model. We begin with $a$, a given cell's raw unmodified embedding, and PCA-whiten it to $d = 128$ dimensions. A final $L_2$ normalisation then places the result on the unit sphere, giving the unit vector $z$.
 
 \begin{equation}
@@ -178,7 +171,6 @@ LACE's core idea is to treat the rich DINOv3-web embeddings as sufficiently desc
 
 Here $a \in \mathbb{R}^{1024}$ is one cell of $\widetilde F$; $\mu \in \mathbb{R}^{1024}$ is the cell mean, and $W \in \mathbb{R}^{1024 \times d}$ is the whitening matrix, whose columns are the retained principal directions. $\lambda \in \mathbb{R}^{d}$ is the vector of per-component standard deviations, which are all estimated once on training cells and then frozen. The unit norm makes all subsequent comparisons simple cosine similarities and allows both foreground and background to be modelled by von Mises--Fisher components~\cite{banerjee2005vmf} with a shared concentration $\kappa$.
 
-\paragraph{Background mixture}
 Cells outside every box, excluding OAM-TCD's canopy class, are background. A background mixture of $K_{bg}$ components $\{(w_j, G_j)\}_{j=1}^{K_{bg}}$ is fitted to them by spherical $k$-means and \emph{frozen}, giving the background log-likelihood $\ell_{bg}$ as follows:
 
 \begin{equation}
@@ -188,7 +180,6 @@ Cells outside every box, excluding OAM-TCD's canopy class, are background. A bac
 
 The log-sum-exp acts as a smooth maximum over the components, so $\ell_{bg}(z)$ is a single scalar per cell reading as how well that cell matches its best-matching background component.
 
-\paragraph{Foreground mixture}
 Foreground takes the same von Mises--Fisher form, but its weights are supplied per cell by the spatial prior and re-estimated at every M-step, as opposed to global and frozen. Foreground is represented by $K_{fg}$ unit prototypes $\{C_k\}_{k=1}^{K_{fg}}$, initialised from in-box cells atypical of the background. This is merely a heuristic to kick-start the fitting. Without this restriction, the initialisation is seeded from in-box background elements such as soil and roads, which are numerous and not the intended crown foreground. In practice the contrastive M-step (Equation~\eqref{eq:contrastive}) draws the prototypes onto a single shared direction, the same at every EM seed (Appendix~\ref{app:ablations}): the mixture is how LACE finds one `treeness' direction without labels, rather than a taxonomy of tree types.
 
 \begin{figure}[!t]
@@ -199,10 +190,8 @@ Foreground takes the same von Mises--Fisher form, but its weights are supplied p
 \ifdefined\extralength\end{adjustwidth}\fi
 \end{figure}
 
-\paragraph{Spatial prior}
 We observe that a crown typically occupies a roughly central, roughly circular region of a reasonably tight GT box. We encode this as a spatial prior $\rho$ over the crown's \emph{relative} position within the box, on an $N \times N$ grid of bins in normalised box coordinates $(u, v) \in [0,1]^2$, so $\rho$ is by construction invariant to crown size, tile size and ground sample distance. $\rho_k(b)$ is the prior that a cell in bin $b$ is crown and also explained by prototype $k$. $\hat\rho_k = \rho_k / \sum_{k'} \rho_{k'}$ normalises it over the $K_{fg}$ prototypes, while the unnormalised total $\sum_k \rho_k$ remains the probability that the bin is crown at all. $\rho$ is initialised flat, and at every M-step its mean per-bin foreground mass is rescaled to a nominal $\pi/4 \approx 0.785$, the area fraction of an ellipse inscribed in its bounding box for any aspect ratio (realised $0.690$ after the per-bin cap, Appendix~\ref{app:method}).
 
-\paragraph{Fitting}
 \medskip\noindent\emph{E-step.} For the cells of one box, with $\rho_k$ the spatial prior evaluated at each cell's bin for prototype $k$ and $\sum_k \rho_k$ the total foreground prior at that bin:
 
 \begin{align}
@@ -279,7 +268,7 @@ D(B) &\;=\; \frac{1}{\lvert B \rvert} \sum_{n \in B}
 
 Because the mean-centring of Equation~\eqref{eq:meancentre} sets the mean of $\bar A$ to zero within every box, both statistics read the \emph{shape} of the within-box posterior rather than its level. Read this way $\bar p$ is a soft estimate of the fraction of its box that the crown occupies. The decisiveness $D$ folds each cell to its distance from $\tfrac12$ before averaging, and so records the \emph{spread} of the same distribution: $D = 1$ when every cell is confidently inside or outside, $D = 0$ when every cell is a coin flip.
 
-\paragraph{Learned confidence} A small MLP gives the final mask-aware confidence $\hat s$. It takes four inputs per detection: $s$, $\log(\bar p\, D)$, the log box height $\log h$, and $\mathrm{IoU}_{\uparrow}$, the largest box IoU with any higher-scoring detection, which marks likely duplicates. It has one hidden layer of 64 units, trained on the validation detections to predict whether each matches a GT crown at box IoU $\geq 0.5$; detections falling in canopy are excluded, as they are in scoring. The deployed $\hat s$ is the mean of $25$ such MLPs ($5$ seeds $\times$ $5$ validation folds).
+A small MLP gives the final mask-aware confidence $\hat s$. It takes four inputs per detection: $s$, $\log(\bar p\, D)$, the log box height $\log h$, and $\mathrm{IoU}_{\uparrow}$, the largest box IoU with any higher-scoring detection, which marks likely duplicates. It has one hidden layer of 64 units, trained on the validation detections to predict whether each matches a GT crown at box IoU $\geq 0.5$; detections falling in canopy are excluded, as they are in scoring. The deployed $\hat s$ is the mean of $25$ such MLPs ($5$ seeds $\times$ $5$ validation folds).
 
 
 \subsection{Supervision and model selection}
@@ -292,7 +281,6 @@ No crown polygon is read at any stage of encoding, detection or mask fitting, an
 
 \subsection{Datasets}
 
-\paragraph{Restor OAM-TCD}
 
 The OAM-TCD dataset~\cite{oamtcd}, introduced by Veitch-Michaelis et al., uses OpenAerialMap (OAM)~\cite{oam} RGB imagery and provides $5072$ $2048\times2048$~px images at $0.1$~m/px resolution with associated human-labelled instance masks for over $280$k individual and $56$k groups of trees (``canopy''). The OAM-TCD dataset provides polygon masks, as well as a broad range of ecological biomes, also including examples of the savannah \& dryland landscapes so scarce in existing annotated datasets. To our knowledge it is the only public dataset with individual crown masks spanning sparse-canopy biomes, and is therefore the only benchmark on which sparse-canopy TCIS can be measured.
 
@@ -304,15 +292,48 @@ Of the $5072$ images in the OAM-TCD dataset, $439$ are reserved as a holdout ben
 
 Table~\ref{tab:config} collects every key configuration used. The EM fit is CPU-only and completes in minutes. It is performed once, and the same fitted masker is used for every result reported.
 
+\begin{table}[H]
+\footnotesize
+\renewcommand{\arraystretch}{1.0}
+\setlength{\aboverulesep}{0.2ex}\setlength{\belowrulesep}{0.25ex}
+\caption{Configuration. Encoder and masker-fitting hyperparameters were fixed a priori, and the inference settings were selected on validation with an earlier detector's boxes and frozen for the DINO-DETR detector (Section~\ref{sec:inference}). The detector follows DINO-DETR's released optimiser with a validation-plateau schedule. The learned confidence $\hat s$ is trained on validation detections (Section~\ref{sec:scorer}).\label{tab:config}} \newcolumntype{K}{>{\hsize=0.42\hsize\raggedright\arraybackslash}X} \newcolumntype{V}{>{\hsize=1.58\hsize\raggedright\arraybackslash}X}
+\begin{tabularx}{\textwidth}{KV}
+\toprule
+\textbf{Component} & \textbf{Setting} \\
+\midrule
+Encoder & DINOv3 ViT-L/16, frozen, layer $24$ only, $1024$ dimensions \\
+\cmidrule{1-2}
+Feature grid & $4$ offsets $(\delta_y,\delta_x) \in \{0,8\}^2$, interlaced to $8$~px ($256\times256$ cells), used to fit the box-to-mask module. $16$ offsets $\{0,4,8,12\}^2$, interlaced to $4$~px ($512\times512$ cells), at inference \\
+\cmidrule{1-2}
+Detector & DINO-DETR (detrex), Swin-L (ImageNet-22k), $5$-scale deformable encoder, $900$ queries, denoising, two-stage. COCO-trained initialisation, $1$ class \\
+\cmidrule{1-2}
+Detector training & AdamW, lr $10^{-4}$ (backbone $\times0.1$), weight decay $10^{-4}$, gradient clip $0.1$, batch $16$. $3{,}168$ jittered $1024$~px crops per epoch (scale $0.8$--$1.0$, horizontal flip). lr $\times0.1$ on validation plateau ($\Delta = 0.005$, patience $2$, at most $2$ decays), $4$--$20$ epochs. Best checkpoint by validation box AP$_{50}$ on the $896$ of $972$ validation subtiles that hold any annotation \\
+\cmidrule{1-2}
+Decoding & $3\times3$ subtiles of $1024$~px at stride $512$, top $300$ each. Boxes within $10$~px of an interior subtile edge dropped, duplicates removed at IoU $>0.7$ or containment $>0.85$. Score $>0.05$, top $600$ per tile \\
+\midrule
+Masker -- feature space & $120$ training tiles; PCA $d = 128$ \\
+\cmidrule{1-2}
+Masker -- mixtures & $K_{fg} = 16$ foreground prototypes; $K_{bg} = 12$ background components; concentration $\kappa = 10$; contrastive weight $\beta = 0.5$ \\
+\cmidrule{1-2}
+Masker -- spatial prior & $N = 8$ bins per axis; $3$ size bands at the training terciles; mean per-bin foreground mass $\pi/4$; per-bin cap $0.95$ \\
+\cmidrule{1-2}
+Masker -- EM schedule & $30$ iterations, no convergence test; prototype pruning after $5$ iterations at responsibility share below $0.25/K_{fg}$, a quarter of uniform \\
+\midrule
+Inference & prior weight $\alpha = 0.3$; concentration $\kappa = 16$ (fitted at $10$); posterior upsampled to the $2048$~px tile by an RGB-guided filter (radius $12$~px, $\epsilon = 10^{-4}$); mask threshold $\tau = 0.33\times$ the in-box maximum of the filtered posterior \\
+\cmidrule{1-2}
+Ranking & $\hat s$: MLP with one hidden layer of $64$ units on $s$, $\log(\bar p\,D)$, $\log h$ and $\mathrm{IoU}_{\uparrow}$. Mean of $25$ MLPs ($5$ seeds $\times$ $5$ folds) trained on the $108$ validation tiles. Decode floor applied to $s$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\subsection{Main results}
 
-\paragraph{Tree Crown Instance Segmentation}
+\subsection{Tree Crown Instance Segmentation Results}
+
 
 For TCIS, we restrict our evaluation to OAM-TCD's Tree class (cat=2). One approach in the literature~\cite{selvabox}, which we agree with and utilise in this work, is to ignore all canopy annotations (cat=1) altogether. Unsurprisingly, the model's predictions often fall inside areas marked as canopy, which contain entirely valid but merged tree crowns, but we exclude these from the evaluation metrics entirely (using COCO's iscrowd=1 to ignore). The rationale here is that the annotating of canopy into groups leads to subjective groupings. For example, should a clump of $10$ tree crowns be best delineated by $1$ canopy of $10$ crowns, or $2$ of $5$? We claim both are equally valid, and by using subjective groupings, metrics such as AP and F1 become corrupted since $\mathrm{IoU}>0.X$ is based on agreement of delineations. Every OAM-TCD figure we report is therefore ``canopy-neutral'', unless otherwise specified.
 
 \begin{table}[H]
-\caption{Instance segmentation on the OAM-TCD $439$-image holdout, all rows run and scored by us (COCOeval, native $2048^2$ tiles, single runs). Method names give the detection backbone; LACE's masker also reads frozen DINOv3 ViT-L/16 features. \emph{Imgs}: OAM-TCD training images (all models are pre-trained), rows with $900$ were trained by us. Configuration: Table~\ref{tab:geometry}. All LACE mask AP margins are significant (paired tile bootstrap, $2{,}000$ resamples, $95\%$ interval excludes zero) except AP$_{50:95}$ against Restor ($+0.009$ [$0.000$, $0.017$]). TP/FP/FN/F1: mask IoU $\geq 0.5$, each model at its own best-F1 score threshold, an oracle operating point applied equally to every row; the AP columns are threshold-free.}
+\caption{Instance segmentation on the OAM-TCD $439$-image holdout, all rows run and scored by us (COCOeval, native $2048^2$ tiles, single runs). Method names give the detection backbone; LACE's masker also reads frozen DINOv3 ViT-L/16 features. \emph{Imgs}: OAM-TCD training images (all models are pre-trained), rows with $900$ were trained by us. Configuration: Table~\ref{tab:geometry}. All LACE mask AP margins are significant (paired tile bootstrap, $2{,}000$ resamples, $95\%$ interval excludes zero) except AP$_{50:95}$ against Mask R-CNN (OAM-TCD) ($+0.009$ [$0.000$, $0.017$]). TP/FP/FN/F1: mask IoU $\geq 0.5$, each model at its own best-F1 score threshold, an oracle operating point applied equally to every row; the AP columns are threshold-free.}
 \label{tab:oamtcd439}
 % source (2026-11-11): CI sentence = dino_det/results/t1_boot_{test,sparse}.json (pre-registration T1-boot, dino_det/README.md); test-set sampling only, single training seed
 % Method is the only X column: the data columns take their natural width, so none can overflow
@@ -328,7 +349,7 @@ For TCIS, we restrict our evaluation to OAM-TCD's Tree class (cat=2). One approa
 \textbf{AP\boldmath$_{50}$}\,$\uparrow$ &
 \textbf{TP}\,$\uparrow$ & \textbf{FP}\,$\downarrow$ & \textbf{FN}\,$\downarrow$ & \textbf{F1}\,$\uparrow$ \\
 \midrule
-Restor Mask R-CNN R-50 & masks & $4169$ & $0.648$ & $0.333$ & $0.665$ & $17{,}134$ & $6{,}983$ & $8{,}571$ & $0.688$ \\
+Mask R-CNN (OAM-TCD) & masks & $4169$ & $0.648$ & $0.333$ & $0.665$ & $17{,}134$ & $6{,}983$ & $8{,}571$ & $0.688$ \\
 Detectree2 R-101 & masks & $900$ & $0.630$ & $0.310$ & $0.651$ & $15{,}967$ & $8{,}766$ & $9{,}738$ & $0.633$ \\
 \addlinespace[2pt]
 Box2Mask Swin-L & box & $900$ & $0.589$ & $0.245$ & $0.620$ & $14{,}653$ & $\mathbf{5{,}460}$ & $11{,}052$ & $0.640$ \\
@@ -341,15 +362,15 @@ BoxTeacher Swin-B & box & $900$ & $0.664$ & $0.305$ & $0.703$ & $16{,}218$ & $7{
 \end{tabularx}
 \end{table}
 
-Table~\ref{tab:oamtcd439} summarises our model's performance across COCO average precision (AP; with a single class, mAP and AP are the same) for OAM-TCD. Every baseline in Table~\ref{tab:oamtcd439} was re-run and re-scored by us under a single protocol (Appendix~\ref{app:protocol}), over all $439$ images including those with zero predictions. We use COCO defaults with three exceptions: maxDets $600$ in place of $100$, necessary since tiles in the test dataset contain up to 422 GT crowns; score floor $0.05$, inherited from Meta FAIR's Detectron2 test-time default setting~\cite{detectron2}; and canopy as \texttt{iscrowd} as discussed above.  Each baseline was run in its own native prediction geometry, so only the measurement is held fixed, and we comment in Table~\ref{tab:geometry} on any configuration choice that materially affects a row. Box2Mask and BoxTeacher were trained by us with identical supervision to LACE ($900$ images, boxes only), using their strongest released COCO box-supervised checkpoints, Swin-L and Swin-B backbones respectively. Box2Mask reaches $0.589$ mask AP$_{50}$, and BoxTeacher reaches $0.664$ against LACE's $0.714$ under the same scorer. LACE is ahead of Restor's Mask R-CNN at AP$_{50}$ ($0.714$ against $0.648$) and at box AP$_{50}$ ($0.747$ against $0.665$). Restor's figure here is well above its published $0.432$ because our protocol is the more generous to it: restoring Detectron2's default proposal budget alone lifts it from $0.585$ to $0.648$ (Table~\ref{tab:rpn}). LACE's margin has two sources, both trained on boxes alone: a stronger detector (box AP$_{50}$ $0.747$ against $0.703$ for BoxTeacher) and the box-to-mask module, which we isolate in Section~\ref{sec:samebox}. Backbone size alone does not order the table: Box2Mask, with the same Swin-L backbone as LACE's detector, trails BoxTeacher's Swin-B by $0.075$. Because the module is decoupled from detection, it can mask any detector's boxes, and every gain in box detection carries over to masks with no further annotation.
+Table~\ref{tab:oamtcd439} summarises our model's performance across COCO average precision (AP; with a single class, mAP and AP are the same) for OAM-TCD. Every baseline in Table~\ref{tab:oamtcd439} was re-run and re-scored by us under a single protocol (Appendix~\ref{app:protocol}), over all $439$ images including those with zero predictions. We use COCO defaults with three exceptions: maxDets $600$ in place of $100$, necessary since tiles in the test dataset contain up to 422 GT crowns; score floor $0.05$, inherited from Meta FAIR's Detectron2 test-time default setting~\cite{detectron2}; and canopy as \texttt{iscrowd} as discussed above.  Each baseline was run in its own native prediction geometry, so only the measurement is held fixed, and we comment in Table~\ref{tab:geometry} on any configuration choice that materially affects a row. Box2Mask and BoxTeacher were trained by us with identical supervision to LACE ($900$ images, boxes only), using their strongest released COCO box-supervised checkpoints, Swin-L and Swin-B backbones respectively. Box2Mask reaches $0.589$ mask AP$_{50}$, and BoxTeacher reaches $0.664$ against LACE's $0.714$ under the same scorer. LACE is ahead of Mask R-CNN (OAM-TCD) at AP$_{50}$ ($0.714$ against $0.648$) and at box AP$_{50}$ ($0.747$ against $0.665$). Its figure here is well above the published $0.432$ because our protocol is the more generous to it: restoring Detectron2's default proposal budget alone lifts it from $0.585$ to $0.648$ (Table~\ref{tab:rpn}). LACE's margin has two sources, both trained on boxes alone: a stronger detector (box AP$_{50}$ $0.747$ against $0.703$ for BoxTeacher) and the box-to-mask module, which we isolate in Section~\ref{sec:samebox}. Backbone size alone does not order the table: Box2Mask, with the same Swin-L backbone as LACE's detector, trails BoxTeacher's Swin-B by $0.075$. Because the module is decoupled from detection, it can mask any detector's boxes, and every gain in box detection carries over to masks with no further annotation.
 
 LACE also has the highest F1 ($0.700$), with the most true positives and fewest false negatives (i.e. missed crowns), at the same IoU $\geq 0.5$ matching threshold~\cite{ball2023,weinstein2020,hao2021,plesoianu2020}. Box2Mask (Swin-L) produces the fewest false positives, but is more cautious across the board and consequently produces significantly fewer true positives and more false negatives than other models, resulting in an F1 score of $0.640$.
 
-\paragraph{Annotation cost}
+\subsection{Annotation Efficiency Analysis}
 % 2026-11-26 (Tom): LACE's 108 val masks = one-off tuning, not charged (was 392 h / 11x); see make_cost_pareto.py docstring
 % source (2026-11-26): figs/make_cost_pareto.py -> figs/cost_pareto_data.json (hours, ratios); AP read from results_439/TABLE1_CURRENT.json; label counts from data/tcd/train/*_meta.json
 % 7 s / 54 s (verified 2026-11-26): jain2013 Sec. 5, "we use the average time required by the 101 users in our user study: 7 sec for bounding box, 20 sec for sloppy contour, 54 sec for tight polygon"; same 420 images, 5 users per image per mode; PDF ~/dphil/refs/lace_bib_pdfs/jain2013.pdf. Replaces 79.2 s (COCO) / 7 s (extreme clicking) / 34.5 s whisker (papadopoulos2017), which mixed protocols.
-Figure~\ref{fig:cost} sets each row of Table~\ref{tab:oamtcd439} against an estimate of the annotator time behind the OAM-TCD labels it consumed, whether in training or in model selection. We price a crown polygon at $54$~s and a box at $7$~s, the times measured on the same images and annotators in the user study of Jain and Grauman~\cite{jain2013}, and charge OAM-TCD's canopy groups as polygons for every row, since they are seen by every row. The $108$ validation masks that fixed LACE's inference settings and its ranking (Section~\ref{sec:labels}) are not charged here: like the baselines' own tuning, they are a one-off development cost, and we reuse the settings unchanged on all new data (the sparse-canopy, BoxTeacher detector, and PhenoBench tests below). On this estimate LACE consumes $300$ annotator-hours against $4{,}311$ for Restor's Mask R-CNN, $14$ times fewer, while scoring $0.066$ higher at AP$_{50}$. Other estimates put a polygon at up to $15$ times the annotation time cost of a box~\cite{khoreva2017}, and COCO's crowd workers took over $79$~s per polygon~\cite{coco}, which would widen the gap further.
+Figure~\ref{fig:cost} sets each row of Table~\ref{tab:oamtcd439} against an estimate of the annotator time behind the OAM-TCD labels it consumed, whether in training or in model selection. We price a crown polygon at $54$~s and a box at $7$~s, the times measured on the same images and annotators in the user study of Jain and Grauman~\cite{jain2013}, and charge OAM-TCD's canopy groups as polygons for every row, since they are seen by every row. The $108$ validation masks that fixed LACE's inference settings and its ranking (Section~\ref{sec:labels}) are not charged here: like the baselines' own tuning, they are a one-off development cost, and we reuse the settings unchanged on all new data (the sparse-canopy, BoxTeacher detector, and PhenoBench tests below). On this estimate LACE consumes $300$ annotator-hours against $4{,}311$ for Mask R-CNN (OAM-TCD), $14$ times fewer, while scoring $0.066$ higher at AP$_{50}$. Other estimates put a polygon at up to $15$ times the annotation time cost of a box~\cite{khoreva2017}, and COCO's crowd workers took over $79$~s per polygon~\cite{coco}, which would widen the gap further.
 
 \begin{figure}[!t]
 \centering
@@ -357,12 +378,11 @@ Figure~\ref{fig:cost} sets each row of Table~\ref{tab:oamtcd439} against an esti
 \caption{Annotation cost against mask AP$_{50}$ on the OAM-TCD $439$-image holdout, one point per row of Table~\ref{tab:oamtcd439}. Hours are estimated from the OAM-TCD labels each row consumed in training or model selection ($54$~s per polygon, $7$~s per box~\cite{jain2013}, canopy groups charged as polygons throughout). Pretraining data are not counted, nor are the $108$ validation masks used once to fix LACE's inference settings.\label{fig:cost}}
 \end{figure}
 
-\paragraph{Sparse-canopy holdout}
-
+\subsection{Sparse Canopy Segmentation Analysis}
 The $439$-tile holdout holds only $16$ savannah and dryland tiles (Table~\ref{tab:test-biomes}), too few to measure on their own. To test model efficacy on sparse-canopy biomes such as savannah and dryland, we therefore take a `sparse-canopy' slice of the OAM-TCD data: $236$ tiles carrying $14{,}937$ crowns, none of which appears among the $900$ training images. We reuse models on this slice without any additional training or fine-tuning; Table~\ref{tab:sparse236} reports the result. To generate the slice, we categorise by the OAM-TCD dataset's own metadata which includes a \textit{biome} category for each image and select the most appropriate biomes by name, listed in Table~\ref{tab:sparse-biomes} (Appendix~\ref{app:datasets}). The slice is sparse by FAO's yardstick as well as by name: labelled tree cover on its median tile is $7.5\%$, below the $10\%$ canopy cover at which FAO counts land as forest~\cite{fao2018terms}, and $59.3\%$ of its tiles fall under that line, compared with $31.0\%$ of the tiles drawn from the six forest biomes (labelled cover is a lower bound wherever annotators left gaps).
 
 \begin{table}[H]
-\caption{Instance segmentation on the sparse-canopy OAM-TCD holdout ($236$ tiles, $14{,}937$ crowns, no tile shared with the $900$ training images). N.B. Restor's Mask R-CNN is omitted because it was trained on OAM-TCD's full training split, which contains most of these tiles. Canopy is scored as \texttt{iscrowd} throughout, as in Table~\ref{tab:oamtcd439}. All rows are single runs. All LACE mask AP margins are significant (paired tile bootstrap, as in Table~\ref{tab:oamtcd439}). TP/FP/FN/F1 as in Table~\ref{tab:oamtcd439}.\label{tab:sparse236}} \newcolumntype{C}{>{\centering\arraybackslash}X}
+\caption{Instance segmentation on the sparse-canopy OAM-TCD holdout ($236$ tiles, $14{,}937$ crowns, no tile shared with the $900$ training images). N.B. Mask R-CNN (OAM-TCD) is omitted because it was trained on OAM-TCD's full training split, which contains most of these tiles. Canopy is scored as \texttt{iscrowd} throughout, as in Table~\ref{tab:oamtcd439}. All rows are single runs. All LACE mask AP margins are significant (paired tile bootstrap, as in Table~\ref{tab:oamtcd439}). TP/FP/FN/F1 as in Table~\ref{tab:oamtcd439}.\label{tab:sparse236}} \newcolumntype{C}{>{\centering\arraybackslash}X}
 % TP/FP/FN/F1 (2026-11-25): figs/table1_best_f1.py -> figs/table1_best_f1.json (mask IoU >= 0.5, per-row best-F1 score threshold, canopy-ignored preds dropped)
 \setlength{\tabcolsep}{3pt}
 \begin{tabularx}{\textwidth}{lCCCCCCC}
@@ -382,23 +402,22 @@ BoxTeacher Swin-B & $0.721$ & $0.376$ & $0.739$ & $10{,}140$ & $3{,}013$ & $4{,}
 \noindent{\footnotesize{Scored with the same frozen COCOeval protocol as Table~\ref{tab:oamtcd439} (pycocotools, masks at $2048^2$, maxDets $600$, canopy as \texttt{iscrowd}).}}
 \end{table}
 
-\paragraph{Qualitative comparison}
-% source (2026-11-25): figs/make_qualitative.py --set tcd439_grid3; tiles 146/333/93 by rule in figs/select_qual_grid_v3.py -> figs/qualitative_grid_select_tcd439_v3.json (open-crop = canopy class < 2% of the auto-crop, 71/291 candidates; display-eligible = auto-crop holds >= 10 crowns and LACE in-crop F1 >= 0.8, 19/71; rows = eligible open-crop tile closest to the 25th/50th/75th percentile of LACE-Restor AP50 margin over all 71 open-crop tiles; LACE ahead on 76% of them); failure tile 431 = open-crop tile closest to the 5th-percentile margin (2026-11-26, replaces 341 = 5th percentile over all 291 candidates, which Tom judged confusing after viewing: its FPs were duplicate detections; new rule set before 431 was viewed); crops are the script's auto-crop; in-crop F1 in figs/qualitative_tcd439_grid3_meta.json. Supersedes grid2 (tiles 363/336/56, canopy-band rule: crops were mostly canopy wash)
-Figure~\ref{fig:qualgrid} compares the methods on three open-ground holdout tiles, together with a LACE failure case (SAM~3 on LACE's boxes is introduced in Section~\ref{sec:samebox}). The three tiles were chosen by a rule fixed before any was viewed: among the $71$ candidate tiles whose $512$~px crop is less than $2\%$ canopy class, the tiles whose LACE$-$Restor AP$_{50}$ margin is closest to its $25$th, $50$th and $75$th percentile, restricted to crops that hold at least ten crowns and on which LACE reaches an F1 of at least $0.8$. The failure row is the candidate tile closest to the $5$th percentile of that margin; on it LACE leaves six crowns unmatched at IoU $0.5$, all of which Restor matches. The rule ranks tiles by whole-tile AP$_{50}$ margin, not by the crop shown, so LACE need not lead in every crop: in the median row its in-crop F1 ($0.85$) is below Restor's ($0.89$) and BoxTeacher's ($0.90$).
+\subsection{Visualisation Comparison}
+% source (2026-11-25): figs/make_qualitative.py --set tcd439_grid3; tiles 146/333/93 by rule in figs/select_qual_grid_v3.py -> figs/qualitative_grid_select_tcd439_v3.json (open-crop = canopy class < 2% of the auto-crop, 71/291 candidates; display-eligible = auto-crop holds >= 10 crowns and LACE in-crop F1 >= 0.8, 19/71; rows = eligible open-crop tile closest to the 25th/50th/75th percentile of LACE-Restor AP50 margin over all 71 open-crop tiles; LACE ahead on 76% of them)
+Figure~\ref{fig:qualgrid} compares the methods on three open-ground holdout tiles, together with a LACE failure case (SAM~3 on LACE's boxes is introduced in Section~\ref{sec:samebox}). The three tiles were chosen by a rule fixed before any was viewed: among the $71$ candidate tiles whose $512$~px crop is less than $2\%$ canopy class, the tiles whose LACE$-$Mask R-CNN (OAM-TCD) AP$_{50}$ margin is closest to its $25$th, $50$th and $75$th percentile, restricted to crops that hold at least ten crowns and on which LACE reaches an F1 of at least $0.8$. The failure row is the candidate tile closest to the $5$th percentile of that margin; on it LACE leaves six crowns unmatched at IoU $0.5$, all of which Mask R-CNN (OAM-TCD) matches. The rule ranks tiles by whole-tile AP$_{50}$ margin, not by the crop shown, so LACE need not lead in every crop: in the median row its in-crop F1 ($0.85$) is below that of Mask R-CNN (OAM-TCD) ($0.89$) and BoxTeacher's ($0.90$).
 
 \begin{figure}[!t]
 \ifdefined\extralength\begin{adjustwidth}{-\extralength}{0cm}\fi
 \centering
 \includegraphics[width=\ifdefined\extralength\fulllength\else\textwidth\fi]{figs/qualitative_tcd439_grid3.pdf}
-\caption{Qualitative comparison on OAM-TCD holdout tiles ($512$~px crops, each model at its best-F1 threshold). Rows: open-ground tiles (crop $<2\%$ canopy class) at the $25$th, $50$th and $75$th percentile of the LACE$-$Restor AP$_{50}$ margin (selection requires $\geq 10$ crowns and LACE in-crop F1 $\geq 0.8$), then a LACE failure case at the $5$th percentile.\label{fig:qualgrid}}
+\caption{Qualitative comparison on OAM-TCD holdout tiles ($512$~px crops, each model at its best-F1 threshold). Rows: open-ground tiles (crop $<2\%$ canopy class) at the $25$th, $50$th and $75$th percentile of the LACE$-$Mask R-CNN (OAM-TCD) AP$_{50}$ margin (selection requires $\geq 10$ crowns and LACE in-crop F1 $\geq 0.8$), then a LACE failure case at the $5$th percentile.\label{fig:qualgrid}}
 \ifdefined\extralength\end{adjustwidth}\fi
 \end{figure}
 
-\subsection{Same boxes, different maskers}
+\subsection{Box-to-mask Analysis}
 \label{sec:samebox}
 % source (2026-11-13): box/ellipse/LACE-shared-ranking rows = dino_det/results/boxshape_nm_{test,sparse}.json (BOXSHAPE-2); shape-only intervals = dino_det/results/samebox_{test,sparse}.json (pre-registration SAMEBOX, dino_det/README.md); SAM 3 and deployed LACE rows + LACE-SAM 3 intervals = dino_det/results/sam3_d1/summary_lace_r3ef_vs_sam3_{test,sparse}.json; 3 dp half up 
 
-\paragraph{LACE Detector}
 
 To directly assess LACE's box-to-mask performance, we compare to controls that all share LACE's detector boxes (Table~\ref{tab:samebox}). The LACE masker beats ellipses by $+0.012$ AP$_{50}$ ($95\%$ paired tile-bootstrap interval $[0.010, 0.017]$) and $+0.024$ AP$_{50:95}$ ($[0.019, 0.029]$) on the test set, so its contribution is larger at stricter IoU thresholds. We also test SAM~3, used zero-shot as a drop-in masker, each ranked by its own score: LACE by $\hat s$, SAM~3 by $\sqrt{s\cdot s_{\mathrm{SAM}}}$, with $s_{\mathrm{SAM}}$ its predicted mask IoU, which outperformed using $s$ only (0.701 against 0.695 AP$_{50}$ on the test set). Each masker is thus ranked as its own pipeline would be deployed: $\hat s$ is part of LACE, and SAM~3 is given its strongest own score. On identical detector boxes, LACE is ahead at mask AP$_{50}$ on the test set ($0.714$ against $0.701$, a difference of $+0.013$ with $95\%$ paired tile-bootstrap interval $[0.007, 0.021]$). At a single operating point LACE also leads SAM~3 on F1 ($0.700$ against $0.684$), mainly through fewer false positives. SAM~3 leads at AP$_{50:95}$, so our box-fitted masker on frozen features matches a mask-pretrained foundation model at AP$_{50}$, but not at higher boundary precisions.
 
@@ -422,7 +441,7 @@ LACE & $\mathbf{0.714}$ & $0.342$ & $\mathbf{17{,}438}$ & $\mathbf{6{,}713}$ & $
 \end{table}
 
 % source (2026-11-26): native_raster/hunt/btmask/compare_ef.json (arm A) + compare_ef_d.json (arm D) + f1_ef.json (TP/FP/FN/F1, figs/table1_best_f1.py routine); pre-registration BTMASK-EF + arm D in native_raster/hunt/btmask/README.md; deployed masker (EDGE_FILL) and deployed hat-s (R3, D1-val fit) unchanged, s = BoxTeacher score; intervals = paired tile bootstrap D - A (2000, seed 0); 3 dp half up
-\paragraph{BoxTeacher Detector}
+
 
 We also assess LACE's box-to-mask module unmodified on BoxTeacher's box detections. All configuration is frozen including $\hat s$ (the $s$ term used is, naturally, BoxTeacher's detection box confidence score); no fine-tuning is applied anywhere. LACE's box-to-mask module beats BoxTeacher's mask head on the test set by $+0.013$ AP$_{50}$ ($[0.005, 0.021]$) and $+0.016$ AP$_{50:95}$ ($[0.011, 0.021]$) (Table~\ref{tab:btbox-test}). (Note that the reverse swap is not possible, as neither BoxTeacher's nor Box2Mask's mask head accepts an external box: each mask is tied to the method's own detection location or query~\cite{boxteacher,box2mask}).
 
@@ -471,13 +490,8 @@ LACE masker (tree-fitted) & $\mathbf{0.605}$ & $\mathbf{0.631}$ & $\mathbf{0.569
 
 We ablate the two central contributions, the box-to-mask module and the mask-aware confidence $\hat s$, and the interlaced feature grid that feeds them. Unless stated otherwise, ablations of the module hold the detector fixed, so every arm scores the identical set of predicted boxes and any difference is attributable to mask generation alone. All ablations use a single detector run, and intervals are paired tile-bootstrap $95\%$ intervals. Further ablations of the module (hyperparameters, dense canopy and foreground collapse) are given in Appendix~\ref{app:ablations}.
 
-\paragraph{Feature grid: interlacing versus interpolation}
 
 LACE interlaces offset passes of the frozen encoder into a real $4$~px grid (Section~\ref{sec:features}). With detections, module and scorer held fixed (Table~\ref{tab:grid}), interlacing beats interpolation on every metric, modestly at AP$_{50}$ ($+0.003$) and more at AP$_{75}$ ($+0.014$), where boundary placement matters most. Interpolation adds sampling resolution but no new evidence, whereas the offsets add evidence. Four offsets $\{0, p/2\}^2$ match sixteen at AP$_{50}$ ($0.000$, $[-0.001, 0.002]$) and trail by $0.001$ at AP$_{50:95}$. The gain from interlacing is therefore almost entirely that of the first four offsets.
-
-
-\paragraph{Confidence from the mask posterior}
-\label{sec:ablation-scorer}
 
 % Table 3 drop rows (2026-11-10): pre-registration T3, dino_det/README.md; dino_det/results/t3_abl.json, scored_dino_swinl_s0_{test,sparse}_t3_{sm,sp,no_s,no_logpm,no_logh,no_iou}_r2048.json; 3 dp half up
 % source (2026-11-05): s = dino_det/results/interlace/scored_d1_il_real4_dets_test_r2048.json, dino_det/results/edgefix/scored_d1_edgefix_sparse_dets_r2048.json (sparse_dets_ef.py); s' = dino_det/results/edgefix/scored_d1_edgefix_{test,sparse}_sprime_r2048.json; learned = dino_det/results/scored_dino_swinl_s0_{test,sparse}_R3_ef_r2048.json; CIs dino_det/results/r3_edgefix.json; 2026-11-06: R3 = \hat s, old S7 (scorer table) deleted and merged into this table, factor-drop and \hat s input-drop rows ?? until computed (draft ablation/results/table3_shat_draft.tex)
@@ -510,10 +524,8 @@ $\quad -\, \mathrm{IoU}_{\uparrow}$       & $0.708$ & $0.341$ & $17{,}041$ & $6{
 \section{Discussion}
 \label{sec:discussion}
 
-\paragraph{A note of caution}
 In a warming world, it is tempting to reduce the objective to something along the lines of `tree maximalism', i.e.\ the position that more trees is always better. Open African savannah in particular, as argued by Bond et al.~\cite{bond2019}, has often been considered as a kind of deforested or degraded landscape~\cite{laestadius2012,bastin2019} when in fact the biodiversity~\cite{veldman2015,jenkins2013}, surface temperature through biophysical effects~\cite{bright2015}, streamflow~\cite{jackson2005}, and vulnerability to fire~\cite{veldman2015} are all negatively impacted by aggressive tree \emph{planting} in these environments, and moreover Dass et al.~\cite{dass2018} have argued that grasslands (in California) may actually be more reliable and robust carbon sinks than dense forests. Further analysis of this debate is beyond the scope of this work, but we call attention to the nuance required in practical implementation of tree crown delineation and carbon accounting using techniques such as LACE.
 
-\paragraph{TCIS}
 LACE's competitive results against other box-supervised models and fully supervised models promise a new viable option for TCIS tasks utilising time- and cost-efficient box annotations. It has demonstrated efficacy over a wide range of biomes, due to the flexibility of self-supervised embeddings to identify a diverse range of tree crowns, and it leads every model tested on the sparse-canopy slice (Table~\ref{tab:sparse236}), where the focus is on measuring tree crown count, size, and allometries over large, noisy landscapes. 
 
 % source (verified 2026-11-16): dino_det/results/guidectl/guidectl_test.json (pre-registration GC-test, R3 rows, test 439): guided - bilinear AP75 +0.0255, AP50:95 +0.0120, AP50 +0.0043; LACE AP75 0.2713. Restor AP75 0.2968 = native_raster/scored_restor_rpn1000_r2048_tree.json (canopy_neutral_crowd)
@@ -521,22 +533,17 @@ By taking the $4$~px interlaced grid as the unit of crown delineation, LACE has 
 
 It should also be emphasised that the box-supervised models have an additional, subtle disadvantage to their mask-supervised counterparts. Human annotations function as the ground truth and therefore any manually annotated dataset naturally contains idiosyncrasies and a degree of interpretation in its annotations, particularly with respect to edge cases and ambiguities. Mask-supervised models are able to learn these characteristics to some degree at least, whereas models within the box-supervised category are measured by an unseen yardstick, and are therefore highly susceptible to poor-quality annotations. They are fully reliant on agreement between the actual ground truth and the dataset's version of GT, having not had any opportunity to adjust to a given dataset's biases. We present our results as demonstration of the efficacy of LACE, and also of the high quality of the OAM-TCD annotations, since it would simply not be possible to compete with a Mask R-CNN were the tree crown polygons poorly drawn. 
 
-\paragraph{Spatial prior}
 Although the spatial prior is maintained separately for three crown-size bands (Appendix~\ref{app:method}), in practice we observe very little difference between the three fitted priors, contrary to our expectations. We leave the stratification in as a defensive component that does not add any significant complexity, but acknowledge that a single pooled prior would likely perform comparably.
 
-\paragraph{Crown annotations in dense canopy}
 Existing datasets that try to provide instance segmentation labels very often will tend to attempt to draw definitive `ground truth' on dense canopy where there arguably is simply not enough information in the image to make that determination definitively~\cite{ball2023,steier2024}. Firstly, where GT annotations leave non-trivial gaps between annotation boundaries, a model that produces more inclusive, justified boundaries can be penalised. Secondly, in annotated dense canopy, the resulting benchmark contains some subjectivity, i.e., many predictions that are defensible and possibly even more accurate than the ground truth can be counted as False Positives (FP). This is particularly an issue with RGB imagery that includes trees of varying scales i.e. smaller and larger, as a mismatched scale between prediction and GT leads to much higher FP rates since (m)AP$_{50}$ is highly sensitive to scale mismatch for purely geometric reasons. If one of the two is less than $50\%$ of the area of the other, it will be counted as a FP regardless of placement. In contexts such as dense canopy where, for example, a single large crown could be one tree or two trees, the metric is sensitive to the arbitrary choice of division.
-
-\paragraph{Limitations}
-\begin{itemize}
-\item LACE is evaluated end-to-end on a single mask benchmark, OAM-TCD, at $0.1$~m/px RGB; its behaviour at coarser GSD, or with multispectral or LiDAR inputs, is untested.
-\item At strict IoU its boundaries trail those of mask-trained models (AP$_{75}$ $0.271$ against $0.297$ for Restor's Mask R-CNN), since the masker never sees a polygon.
-\item The box-to-mask module transfers to objects a few encoder patches across (Table~\ref{tab:phenobench}), but not to objects of about one patch, as on LIVECell (Table~\ref{tab:phenobench-choice}).
-\end{itemize}
 
 \section{Conclusion}
 
-In this study we present LACE, a model, tree-agnostic in design, for instance segmentation in box-supervised Tree Crown tasks, where annotations are scarce. Our box-to-mask inference method, by leveraging the statistical signature of the DINOv3 latent composite, provides a SOTA-competitive solution to true TCIS without the need for time-consuming and/or expensive polygon masks. With this contribution, we hope to support the Remote Sensing community in the previously underexplored area of TCIS in diverse global biomes, particularly sparse-canopy landscapes. 
+In this study we present LACE, a model, tree-agnostic in design, for instance segmentation in box-supervised Tree Crown tasks, where crown polygon annotations are scarce. Our box-to-mask inference method, by leveraging the statistical signature of the DINOv3 latent composite, provides a SOTA-competitive solution to true TCIS without the need for time-consuming and/or expensive polygon masks. With this contribution, we hope to support the Remote Sensing community in the previously underexplored area of TCIS in diverse global biomes, particularly sparse-canopy landscapes. 
+
+LACE is evaluated end-to-end on a single mask benchmark, OAM-TCD, at $0.1$~m/px RGB; its behaviour at coarser GSD, or with multispectral or LiDAR inputs, is untested. At strict IoU its boundaries trail those of mask-trained models (AP$_{75}$ $0.271$ against $0.297$ for Mask R-CNN (OAM-TCD)), since the masker never sees a polygon. The box-to-mask module transfers to objects a few encoder patches across (Table~\ref{tab:phenobench}), but not to objects of about one patch, as on LIVECell (Table~\ref{tab:phenobench-choice}).
+
+Our end-to-end evaluation uses OAM-TCD, the only multi-biome tree crown mask benchmark, at $0.1$~m/px RGB, and extending LACE to coarser GSD and to multispectral or LiDAR inputs is a natural next step. LACE leads on AP$_{50:95}$ without ever seeing a polygon, and the remaining gap to mask-trained models is concentrated at strict IoU (AP$_{75}$ $0.271$ against $0.297$ for Mask R-CNN (OAM-TCD)), where boundary placement partly follows annotator convention. The box-to-mask module transfers unmodified to objects a few encoder patches across (Table~\ref{tab:phenobench}), while objects of about one patch, as on LIVECell (Table~\ref{tab:phenobench-choice}), fall below the encoder's resolution and would need finer features.
 
 % We also believe the designs discussed here could be transferable to other Computer Vision domains where availability of annotated data is also a known challenge, since we did not rely on domain-specific priors to any significant degree, although this is beyond the scope of this work.
 
@@ -648,21 +655,16 @@ Biome columns are groups of WWF terrestrial biomes, the classification used thro
 \subsection{Method details}
 \label{app:method}
 
-\paragraph{Interlaced grid}
 Registration of the interlaced grid of Equation~\eqref{eq:interlace} is verified independently: a synthetic blob is localised to within one cell across $200$ positions, and the cells of $\widetilde F$ belonging to the unshifted phase reproduce a plain single-pass extraction to floating-point precision, confirming its indexing.
 
-\paragraph{Background mixture}
 Note that the standard von Mises--Fisher normalising constant $C_d(\kappa)$ is omitted from Equation~\eqref{eq:bgll} and from the foreground term of Equation~\eqref{eq:logratio} alike; sharing a single concentration parameter $\kappa$ between the two mixtures makes it identical on both sides, so it cancels in the difference and never has to be evaluated in $d = 128$ dimensions.
 
-\paragraph{Spatial prior}
 Separate priors are kept for three crown-size bands (training box-size terciles), since at a fixed feature stride the number of cells spanning a crown depends on its size; each predicted box is masked with the prior of its band. Each bin is also capped at $0.95$, so no relative position is ever treated as certainly foreground.
 Pinning the mass to a constant derived from geometry rather than fitted is what keeps the prior label-free, and it means the fit decides only \emph{where} the foreground mass sits, never \emph{how much} of it there is: without the constraint $\rho$ inflates towards unity, stops discriminating position, and the $\alpha$ term of Equation~\eqref{eq:posterior} degenerates into an additive constant.
 
-\paragraph{Fitting}
 Strictly speaking, the procedure is EM-style rather than EM proper: the within-box mean-centring of Equation~\eqref{eq:meancentre}, the contrastive term of Equation~\eqref{eq:contrastive} and the projection of $\rho$ onto the mass and cap constraints each break the correspondence with a joint likelihood, so no objective is monotonically ascended and there is no convergence test: $T$ is fixed at $30$ iterations.
 The constraints are applied as a single rescale followed by the cap, so the cap partly undoes the rescaling: on the deployed fit this leaves a realised mean per-bin mass of $0.690$ against the nominal $0.785$.
 
-\paragraph{Learned confidence}
 The four inputs are what remained after backward elimination from fourteen candidates on validation; tile-level context features were the first removed.
 
 \subsection{Supervision and model selection}
@@ -673,40 +675,6 @@ No crown polygon is read at any stage of encoding, detection or mask fitting. OA
 
 %CHECK test-look history: D1 one pre-registered test run; R2 scored twice, R3 once
 The box-to-mask settings were then evaluated once on the test set in a single pre-specified run. We therefore describe the method as trained without mask supervision but also broadly calibrated for tree crown mask generation on a small held-out set of mask labels as a one-time analysis. We take these to be reasonable `tree crown' hyperparameters and do not attempt to optimise them for use on other datasets.
-
-\begin{table}[H]
-\footnotesize
-\renewcommand{\arraystretch}{1.0}
-\setlength{\aboverulesep}{0.2ex}\setlength{\belowrulesep}{0.25ex}
-\caption{Configuration. Encoder and masker-fitting hyperparameters were fixed a priori, and the inference settings were selected on validation with an earlier detector's boxes and frozen for the DINO-DETR detector (Section~\ref{sec:inference}). The detector follows DINO-DETR's released optimiser with a validation-plateau schedule. The learned confidence $\hat s$ is trained on validation detections (Section~\ref{sec:scorer}).\label{tab:config}} \newcolumntype{K}{>{\hsize=0.42\hsize\raggedright\arraybackslash}X} \newcolumntype{V}{>{\hsize=1.58\hsize\raggedright\arraybackslash}X}
-\begin{tabularx}{\textwidth}{KV}
-\toprule
-\textbf{Component} & \textbf{Setting} \\
-\midrule
-Encoder & DINOv3 ViT-L/16, frozen, layer $24$ only, $1024$ dimensions \\
-\cmidrule{1-2}
-Feature grid & $4$ offsets $(\delta_y,\delta_x) \in \{0,8\}^2$, interlaced to $8$~px ($256\times256$ cells), used to fit the box-to-mask module. $16$ offsets $\{0,4,8,12\}^2$, interlaced to $4$~px ($512\times512$ cells), at inference \\
-\cmidrule{1-2}
-Detector & DINO-DETR (detrex), Swin-L (ImageNet-22k), $5$-scale deformable encoder, $900$ queries, denoising, two-stage. COCO-trained initialisation, $1$ class \\
-\cmidrule{1-2}
-Detector training & AdamW, lr $10^{-4}$ (backbone $\times0.1$), weight decay $10^{-4}$, gradient clip $0.1$, batch $16$. $3{,}168$ jittered $1024$~px crops per epoch (scale $0.8$--$1.0$, horizontal flip). lr $\times0.1$ on validation plateau ($\Delta = 0.005$, patience $2$, at most $2$ decays), $4$--$20$ epochs. Best checkpoint by validation box AP$_{50}$ on the $896$ of $972$ validation subtiles that hold any annotation \\
-\cmidrule{1-2}
-Decoding & $3\times3$ subtiles of $1024$~px at stride $512$, top $300$ each. Boxes within $10$~px of an interior subtile edge dropped, duplicates removed at IoU $>0.7$ or containment $>0.85$. Score $>0.05$, top $600$ per tile \\
-\midrule
-Masker -- feature space & $120$ training tiles; PCA $d = 128$ \\
-\cmidrule{1-2}
-Masker -- mixtures & $K_{fg} = 16$ foreground prototypes; $K_{bg} = 12$ background components; concentration $\kappa = 10$; contrastive weight $\beta = 0.5$ \\
-\cmidrule{1-2}
-Masker -- spatial prior & $N = 8$ bins per axis; $3$ size bands at the training terciles; mean per-bin foreground mass $\pi/4$; per-bin cap $0.95$ \\
-\cmidrule{1-2}
-Masker -- EM schedule & $30$ iterations, no convergence test; prototype pruning after $5$ iterations at responsibility share below $0.25/K_{fg}$, a quarter of uniform \\
-\midrule
-Inference & prior weight $\alpha = 0.3$; concentration $\kappa = 16$ (fitted at $10$); posterior upsampled to the $2048$~px tile by an RGB-guided filter (radius $12$~px, $\epsilon = 10^{-4}$); mask threshold $\tau = 0.33\times$ the in-box maximum of the filtered posterior \\
-\cmidrule{1-2}
-Ranking & $\hat s$: MLP with one hidden layer of $64$ units on $s$, $\log(\bar p\,D)$, $\log h$ and $\mathrm{IoU}_{\uparrow}$. Mean of $25$ MLPs ($5$ seeds $\times$ $5$ folds) trained on the $108$ validation tiles. Decode floor applied to $s$ \\
-\bottomrule
-\end{tabularx}
-\end{table}
 
 \subsection{Datasets}
 \label{app:datasets}
@@ -836,7 +804,6 @@ $\Delta$ real $4$~px $-$ $4$-offset & $0.000$ {\scriptsize [$-0.001$, $0.002$]} 
 \noindent{\footnotesize{Interpolated and real cells agree at a mean cosine of $0.950$ (native) and $0.981$ ($4$-offset) away from the source lattice. Single detector run. The module's inference settings were selected on real $4$~px features, which favours the last row.}}
 \end{table}
 
-\paragraph{Hyperparameter tuning}
 
 The module's hyperparameters were fixed a priori except for the contrastive repulsion strength $\beta$ and the inference settings of Section~\ref{sec:inference}: the spatial-prior weight $\alpha$, the concentration $\kappa$ (raised from its fit-time value of $10$ to $16$), the mask threshold $\tau$ and the guided filter's radius and $\epsilon$. Table~\ref{tab:masker} ablates $\alpha$ and $\kappa$ on OAM-TCD, including a row with the spatial prior removed ($\alpha = 0$), with the rendering and $\tau$ held fixed throughout.
 
@@ -880,7 +847,6 @@ contrastive ($\beta = 0.5$)  & mean-centred & $\mathbf{0.7980}$ & $\mathbf{0.747
 \noindent{\footnotesize{Effects are relative to the generative/absolute cell. The interaction is the departure from additivity: were the two independent, enabling both would give $+0.079$ on predicted boxes, whereas it gives $+0.060$.}}
 \end{table}
 
-\paragraph{Dense canopy}
 
 Foreground/background commonality within a box rests to some extent on the assumption that the box contains mostly one crown, meaning crowded trees with overlapping crowns could be a challenge. 
 
@@ -888,7 +854,6 @@ Foreground/background commonality within a box rests to some extent on the assum
 % source (2026-11-10): ablation/results_r2048/strata_instance_d1_r2048.json (pre-registration ABL-D1 item 2), LACE Table 1 predictions, box-matched arm
 We call a crown \emph{touching} when its GT box overlaps that of another crown, which happens to be the case for $39.3\%$ of the $25{,}705$ test crowns. Touching and isolated crowns score almost identically: mean mask IoU $0.7353$ against $0.7330$, and touching crowns fail slightly more often ($0.0241$ versus $0.0223$, where failure is a box-matched true positive whose mask IoU falls below $0.5$). Touching crowns are also larger (mean box side $\sqrt{wh}$ of $68.9$ versus $42.0$~px), which may partly offset neighbour interference.
 
-\paragraph{Foreground collapse} 
 The module was designed as a mixture of $K_{fg}$ foreground prototypes, the idea being that different trees could present as distinct prototypes in latent space (e.g. conifers vs palm trees). However, what we found was that with the inclusion of the contrastive term (at a contrastive weight of $\beta = 0.5$), the mixture collapses to a single foreground prototype. Mean pairwise cosine rises smoothly with $\beta$ (Table~\ref{tab:collapse}) to $0.994$ at the deployed $\beta = 0.5$, an effective rank of $1.66$ of $16$. Pruning tests responsibility share, which the highly similar prototypes survive because each contributes more or less equally. In practice, pruning is activated at intermediate $\beta$ where some prototypes do starve.
 
 \begin{table}[H]
@@ -923,7 +888,7 @@ We theorise that the variance and diversity of OAM-TCD imagery is a key driver o
 
 \subsection{Frozen scoring protocol}
 
-Every OAM-TCD figure in this paper is produced by one scorer under one configuration, fixed before the baselines were run and unchanged since, apart from a floating-point correction to the IoU thresholds worth $0.0005$ AP$_{50:95}$. The evaluation engine is unmodified \texttt{pycocotools} \texttt{COCOeval}; what follows is its configuration (Table~\ref{tab:protocol}) and the per-row prediction geometry it consumes. Because several settings depart from the COCO defaults, the figures here are internally comparable across rows but \emph{not} directly comparable to numbers published elsewhere for the same checkpoints. Restor's own published $0.432$ against the $0.648$ we measure for their model is the clearest instance, and reflects protocol and proposal budget (Table~\ref{tab:rpn}) rather than a different model.
+Every OAM-TCD figure in this paper is produced by one scorer under one configuration, fixed before the baselines were run and unchanged since, apart from a floating-point correction to the IoU thresholds worth $0.0005$ AP$_{50:95}$. The evaluation engine is unmodified \texttt{pycocotools} \texttt{COCOeval}; what follows is its configuration (Table~\ref{tab:protocol}) and the per-row prediction geometry it consumes. Because several settings depart from the COCO defaults, the figures here are internally comparable across rows but \emph{not} directly comparable to numbers published elsewhere for the same checkpoints. The OAM-TCD authors' published $0.432$ against the $0.648$ we measure for their model is the clearest instance, and reflects protocol and proposal budget (Table~\ref{tab:rpn}) rather than a different model.
 
 \begin{table}[H]
 \caption{Scorer configuration. Settings marked $\dagger$ depart from the COCO defaults.\label{tab:protocol}}
@@ -943,7 +908,7 @@ IoU thresholds & \texttt{linspace(0.5, 0.95, 10)}, the COCO convention \\
 \cmidrule{1-2}
 maxDets$^{\dagger}$ & $600$, against COCO's $100$. Forced: the test tile with the most GT instances holds $450$ ($421$ crowns plus $29$ canopy groups; the densest in crowns alone holds $422$), so $100$ would censor every row. Where it binds is reported below \\
 \cmidrule{1-2}
-Score floor$^{\dagger}$ & $0.05$, applied to every row before scoring. COCO scores the full ranked list; this is protocol harmonisation, and it is the knob at which each method's own confidence threshold is aligned. It lowers the released default floor of Restor and Detectree2 from $0.2$, and since a lower floor only appends detections to the tail of the ranking, it can only improve their AP \\
+Score floor$^{\dagger}$ & $0.05$, applied to every row before scoring. COCO scores the full ranked list; this is protocol harmonisation, and it is the knob at which each method's own confidence threshold is aligned. It lowers the released default floor of Mask R-CNN (OAM-TCD) and Detectree2 from $0.2$, and since a lower floor only appends detections to the tail of the ranking, it can only improve their AP \\
 \cmidrule{1-2}
 Mask raster & $2048^2$ for every row, the native tile at $0.1$~m/px; masks produced at another resolution are resampled to it at the last step \\
 \cmidrule{1-2}
@@ -966,7 +931,7 @@ No model is forced out of its own distribution; each runs in its native geometry
 \toprule
 \textbf{Row} & \textbf{Geometry} & \textbf{Deviations from released configuration} \\
 \midrule
-Restor Mask R-CNN\tnote{a} & whole $2048^2$ (their own test configuration) & \texttt{SCORE\_THRESH\_TEST} $0.2 \rightarrow 0.05$; \texttt{DETECTIONS\_PER\_IMAGE} $512 \rightarrow 600$; \texttt{RPN.PRE/POST\_NMS\_TOPK\_TEST} $512 \rightarrow 1000$ \\
+Mask R-CNN (OAM-TCD)\tnote{a} & whole $2048^2$ (their own test configuration) & \texttt{SCORE\_THRESH\_TEST} $0.2 \rightarrow 0.05$; \texttt{DETECTIONS\_PER\_IMAGE} $512 \rightarrow 600$; \texttt{RPN.PRE/POST\_NMS\_TOPK\_TEST} $512 \rightarrow 1000$ \\
 \cmidrule{1-3}
 Detectree2\tnote{b} & $1024^2$ at $0.5$ overlap, $3\times3$ subtiles, stitched & \texttt{INPUT.MIN\_SIZE\_TEST} set to its own \texttt{MIN\_SIZE\_TRAIN} of $1000$ rather than Detectron2's inherited COCO default of $800$, which would downscale our subtiles at test but not at train; stitched at the protocol floor $0.05$ (\texttt{clean\_crowns} defaults to $0.2$); as in its \texttt{stitch\_crowns}, a subtile prediction reaching within $1$~m ($10$~px) of a subtile edge is dropped before the merge, applied at edges interior to the $2048^2$ tile but not at its outer frame; \texttt{clean\_crowns} merge (IoU~$>0.7$ or containment~$>0.85$) \\
 \cmidrule{1-3}
@@ -987,10 +952,10 @@ LACE (ours)\tnote{e} & $3\times3$ $1024^2$ subtiles at stride $512$, stitched & 
 \end{threeparttable}
 \end{table}
 
-\paragraph{Restor's proposal budget} Mask R-CNN detects only what its region proposal network proposes, and the released configuration caps that at $512$, half Detectron2's FPN default, against tiles holding up to $422$ crowns. We report Detectron2's own FPN default of $1000$ (\texttt{Base-RCNN-FPN.yaml}), with the released $512$ as a sensitivity in Table~\ref{tab:rpn}. The cap starves rather than rescores: the maximum detection score is identical across settings and the additional proposals arrive entirely as low-confidence tail.
+Mask R-CNN detects only what its region proposal network proposes, and the released configuration caps that at $512$, half Detectron2's FPN default, against tiles holding up to $422$ crowns. We report Detectron2's own FPN default of $1000$ (\texttt{Base-RCNN-FPN.yaml}), with the released $512$ as a sensitivity in Table~\ref{tab:rpn}. The cap starves rather than rescores: the maximum detection score is identical across settings and the additional proposals arrive entirely as low-confidence tail.
 
 \begin{table}[H]
-\caption{Restor's proposal budget, canopy-neutral mask AP on the $439$ tiles. Recall is at IoU $0.5$; the second row is the operating point reported in Table~\ref{tab:oamtcd439}.\label{tab:rpn}}
+\caption{Proposal budget of Mask R-CNN (OAM-TCD), canopy-neutral mask AP on the $439$ tiles. Recall is at IoU $0.5$; the second row is the operating point reported in Table~\ref{tab:oamtcd439}.\label{tab:rpn}}
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 \begin{tabularx}{\textwidth}{lCCCC}
 \toprule
@@ -1004,11 +969,11 @@ $1000$ (Detectron2 default, \textbf{reported}) & $128.6$ & $0.7441$ & $\mathbf{0
 
 \subsection{Asymmetries}
 
-\paragraph{Detection budget} The cap of $600$ detections per tile is our protocol choice. The maximum number of tree crowns in the test set is $422$, leaving comfortably enough room for accurate detections without penalty. Two models emit more than $600$ detections per tile when the cap is removed: Detectree2 emits up to $1{,}333$ at the protocol floor, and LACE up to $1{,}186$, exceeding $600$ on $212$ of the $439$ tiles. Re-scored at $1{,}200$, Detectree2 gains $0.002$ ($0.6297 \rightarrow 0.6321$) mask AP$_{50}$ and LACE $0.005$ ($0.714 \rightarrow 0.719$; AP$_{50:95}$ $0.342 \rightarrow 0.344$), which does not change any ranking order in Table~\ref{tab:oamtcd439} and shows that the residuals are a long tail of low-confidence predictions. Both are reported at the protocol cap, so the cap works against LACE rather than for it. Restor and Box2Mask never reach the cap, with at most $377$ and $502$ detections per tile respectively.
+The cap of $600$ detections per tile is our protocol choice. The maximum number of tree crowns in the test set is $422$, leaving comfortably enough room for accurate detections without penalty. Two models emit more than $600$ detections per tile when the cap is removed: Detectree2 emits up to $1{,}333$ at the protocol floor, and LACE up to $1{,}186$, exceeding $600$ on $212$ of the $439$ tiles. Re-scored at $1{,}200$, Detectree2 gains $0.002$ ($0.6297 \rightarrow 0.6321$) mask AP$_{50}$ and LACE $0.005$ ($0.714 \rightarrow 0.719$; AP$_{50:95}$ $0.342 \rightarrow 0.344$), which does not change any ranking order in Table~\ref{tab:oamtcd439} and shows that the residuals are a long tail of low-confidence predictions. Both are reported at the protocol cap, so the cap works against LACE rather than for it. Mask R-CNN (OAM-TCD) and Box2Mask never reach the cap, with at most $377$ and $502$ detections per tile respectively.
 
-\paragraph{Seeds} LACE's OAM-TCD results use a single detector training run (seed $0$). Restor is a single released checkpoint with no seed variation available. Detectree2, Box2Mask and BoxTeacher are trained by us but we did not run multiseed experiments. Detector seed does not enter the same-box comparisons of Section~\ref{sec:samebox}, where the boxes are held fixed and the masker fit recovers the same foreground direction at every EM seed ($\cos \geq 0.99$, Table~\ref{tab:collapse}).
+LACE's OAM-TCD results use a single detector training run (seed $0$). Mask R-CNN (OAM-TCD) is a single released checkpoint with no seed variation available. Detectree2, Box2Mask and BoxTeacher are trained by us but we did not run multiseed experiments. Detector seed does not enter the same-box comparisons of Section~\ref{sec:samebox}, where the boxes are held fixed and the masker fit recovers the same foreground direction at every EM seed ($\cos \geq 0.99$, Table~\ref{tab:collapse}).
 
-\paragraph{Compute} DINOv3 feature extraction, LACE detector training and inference, masker fitting, and all baseline training and inference ran on an NVIDIA A100 (Modal); LACE's $4$~px features ($16$ offsets) and the SAM~3 zero-shot comparison ran on an Apple M4 Max GPU. Mask rendering, the learned confidence $\hat s$, the validation sweeps, subtile stitching and scoring ran on CPU, and every row of every table is scored by the same deterministic CPU code.
+DINOv3 feature extraction, LACE detector training and inference, masker fitting, and all baseline training and inference ran on an NVIDIA A100 (Modal); LACE's $4$~px features ($16$ offsets) and the SAM~3 zero-shot comparison ran on an Apple M4 Max GPU. Mask rendering, the learned confidence $\hat s$, the validation sweeps, subtile stitching and scoring ran on CPU, and every row of every table is scored by the same deterministic CPU code.
 
 
 \begin{adjustwidth}{-\extralength}{0cm}

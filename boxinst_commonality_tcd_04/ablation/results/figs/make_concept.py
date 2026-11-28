@@ -22,6 +22,10 @@ Every crop and the crown are picked by a fixed rule from OAM-TCD TRAIN tiles (no
   but lobed), the one with the highest exg_in, shown as an RGB cutout of its own tile clipped to its GT
   polygon low-passed to FOURIER_K Fourier harmonics (removes the pixel-grid staircase of the annotation;
   schematic only), alpha rendered at SS x supersampling for an anti-aliased edge.
+  2026-11-28 (Tom) overrides: grid positions OVERRIDE are replaced BY EYE for diversity (a star-shaped palm and a
+  leafless crown, from contact sheets of the lowest-isoperimetric-quotient and lowest-exg_in candidates); the crown
+  is shown as a SQUARE crop centred on its box (side = longer box side + 2 x 4 px pad, i.e. the old cutout's extent),
+  background dimmed to DIM, GT polygon (Fourier-smoothed as above) outlined in TEAL.
 --sheet writes a contact sheet of the top 12 confounder candidates (for checking the rule, not for selection).
 Writes concept_commonality.{pdf,png} and concept_commonality_meta.json (chosen tiles and annotation ids).
 """
@@ -40,6 +44,8 @@ TRAIN = os.path.join(REPO, "data", "tcd", "train")
 FEAT = os.path.join(HERE, "concept_commonality_features.json")
 FEAT_V = 2
 N_CROPS, N_CONF, CONF_POS, SEED = 10, 2, (2, 6), 0
+OVERRIDE = {7: 88903, 8: 167953}   # 2026-11-28 Tom: by eye, star-shaped palm (was 206439), leafless crown (was 297828)
+DIM, TEAL = 0.85, "#11a3a3"
 Q_BAND, FOURIER_K, UPS, SS = (0.83, 0.87), 24, 4, 4
 GROUPS = [["ash", "trunk", "dirt"], ["car", "leaves", "birch"], ["canopy", "branches", "grass"]]
 INK, INK2 = "#1a1a1a", "#555555"
@@ -63,7 +69,7 @@ def _mix(c, w, other="#ffffff"):
     return tuple(w / 100 * a + (1 - w / 100) * b)
 
 
-def sphere(ax, cx, cy, r):
+def sphere(ax, cx, cy, r, phys_r_in=None):
     """Fig. 4 (1) sphere: ball shading of frz!10, ink!45 rim, dashed ink!30 equator, crown/soil points."""
     from matplotlib.patches import Circle, Ellipse
     n = 400
@@ -79,11 +85,38 @@ def sphere(ax, cx, cy, r):
     ax.add_patch(Circle((cx, cy), r, fc="none", ec=_mix(INK_T, 45), lw=0.5, zorder=3))
     ax.add_patch(Ellipse((cx, cy), 2 * r, 2 * r * 0.16 / 0.55, fc="none", ec=_mix(INK_T, 30), lw=0.4,
                          ls=(0, (2.5, 1.5)), zorder=3))
-    ms = 2 * (1.2 / (0.55 / 2.54 * 72)) * (r * PHYS_W / 6.0 * 72)        # dot radius 1.2 pt per 0.55 cm of radius
+    phys_r_in = r * PHYS_W / 6.0 if phys_r_in is None else phys_r_in
+    ms = 2 * (1.2 / (0.55 / 2.54 * 72)) * (phys_r_in * 72)        # dot radius 1.2 pt per 0.55 cm of radius
     for pts, col in ((SPHERE_CROWN, CROWN_C), (SPHERE_SOIL, SOIL)):
         for a, b in pts:
-            ax.plot(cx + r * np.cos(np.radians(a)) * np.sqrt(1 - b * b), cy + r * b, "o", ms=ms,
-                    color=col, mec="none", zorder=4)
+            px, py = sphere_xy(cx, cy, r, a, b)
+            # 2026-11-28 Tom: thin vectors from the origin to each unit-sphere point
+            ax.plot([cx, px], [cy, py], color=col, lw=0.4, solid_capstyle="round", zorder=3.5)
+            ax.plot(px, py, "o", ms=ms, color=col, mec="none", zorder=4)
+
+
+SPHERE_R_CM, SPHERE_PAD = 0.55, 1.06
+# 2026-11-28 (Tom): two 16 px patches (one DINOv3 patch) in grid crop LINK_POS, each joined by a flat dashed line to a
+# sphere point: background patch (bottom right of the crop) -> soil point LINK_SOIL, crown patch -> nearest crown point
+# LINK_CROWN. Patch rows are set so the patch centre sits at the point's height; columns picked by eye.
+LINK_POS, PATCH_PX = 4, 16
+LINK_SOIL, LINK_CROWN = (190, 0.25), (75, 0.45)
+LINK_COL = {"soil": 128, "crown": 112}     # patch-centre column (crop px)
+LINK_BRIGHT = {"soil": "#FFC97A", "crown": "#9BFF6E"}   # 2026-11-28 Tom: brighter square outlines on the crop
+
+
+def sphere_xy(cx, cy, r, a, b):
+    return cx + r * np.cos(np.radians(a)) * np.sqrt(1 - b * b), cy + r * b
+
+
+def write_sphere_standalone(path):
+    """2026-11-28 (Tom): the same sphere (with origin vectors) as a standalone transparent PDF for Fig. 4 panel (1)
+    (lace_masker_fit.tex includes it at width 2 * SPHERE_R_CM * SPHERE_PAD cm, replacing its TikZ sphere)."""
+    d = 2 * SPHERE_R_CM * SPHERE_PAD / 2.54
+    f = plt.figure(figsize=(d, d))
+    a = f.add_axes([0, 0, 1, 1]); a.set_xlim(-SPHERE_PAD, SPHERE_PAD); a.set_ylim(-SPHERE_PAD, SPHERE_PAD); a.axis("off")
+    sphere(a, 0, 0, 1, phys_r_in=SPHERE_R_CM / 2.54)
+    f.savefig(path, transparent=True); plt.close(f)
 
 
 def boxes_overlap(a, b):
@@ -202,6 +235,22 @@ def cutout(c):
     return np.asarray(out)
 
 
+def tile_highlight(c, pad=4):
+    """Square crop around c's box at UPS x, background brightness x DIM, crown (smoothed GT polygon) at full
+    brightness; returns (rgb, polygon in output pixel coords)."""
+    x, y, w, h = box_xywh(c)
+    side = max(w, h) + 2 * pad
+    x0, y0 = x + w // 2 - side // 2, y + h // 2 - side // 2
+    im = Image.open(os.path.join(TRAIN, c["tile"] + ".tif")).convert("RGB").crop((x0, y0, x0 + side, y0 + side))
+    im = im.resize((side * UPS, side * UPS), Image.LANCZOS)
+    p = (fourier_smooth(c["poly"], FOURIER_K) - [x0, y0]) * UPS
+    m = Image.new("L", (im.width * SS, im.height * SS), 0)
+    ImageDraw.Draw(m).polygon([tuple(v) for v in p * SS], fill=255)
+    a = np.asarray(m.resize(im.size, Image.LANCZOS), np.float64)[..., None] / 255
+    rgb = np.asarray(im, np.float64) * (DIM + (1 - DIM) * a)
+    return np.clip(rgb, 0, 255).astype(np.uint8), p
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sheet", default=None)
@@ -236,6 +285,10 @@ def main():
     picks, it = [], iter(others)
     for i in range(N_CROPS):
         picks.append(conf[CONF_POS.index(i)] if i in CONF_POS else next(it))
+    byid = {c["ann_id"]: c for c in cands}
+    replaced = {i: picks[i]["ann_id"] for i in OVERRIDE}
+    for i, a in OVERRIDE.items():
+        picks[i] = byid[a]
 
     band = [c for c in cands if len(c["poly"]) >= 40 and Q_BAND[0] <= iso_quotient(c["poly"]) <= Q_BAND[1]]
     crown = max(band, key=lambda c: feat[c["ann_id"]]["exg_in"])
@@ -259,26 +312,27 @@ def main():
 
     # top: words -> subject
     ty = 2.36
-    grey_box(ty, 0.84)
+    grey_box(ty, 0.96)                 # 2026-11-28: 0.84 -> 0.96 for the 4th (ellipsis) row
     # one white card per group of words, mirroring one box crop per tree below
-    gw, gh, gg = 0.70, 0.60, 0.10
+    gw, gh, gg = 0.70, 0.74, 0.10
     gx0 = 1.7 - (len(GROUPS) * gw + (len(GROUPS) - 1) * gg + 0.22) / 2
     for i, grp in enumerate(GROUPS):
         cx = gx0 + i * (gw + gg)
         ov.add_patch(FancyBboxPatch((cx, ty - gh / 2), gw, gh, boxstyle="round,pad=0.0,rounding_size=0.04",
                                     fc="white", ec=INK2, lw=0.4))
-        for j, w in enumerate(grp):
-            ov.text(cx + gw / 2, ty + (1 - j) * 0.17, w, ha="center", va="center", fontsize=8, color=INK,
-                    style="italic")
+        # 2026-11-28 Tom: an ellipsis under each group's words (longer lists); 4 rows fitted inside the same card
+        for j, w in enumerate(grp + ["…"]):
+            ov.text(cx + gw / 2, ty + (1.5 - j) * 0.155, w, ha="center", va="center", fontsize=8, color=INK,
+                    style="italic" if w != "…" else "normal")
     ov.text(gx0 + len(GROUPS) * (gw + gg) + 0.05, ty, "…", ha="center", va="center", fontsize=8, color=INK)
     arrow(ty, 3.30, 3.70)
     for w, dx, dy, col in CLOUD:      # free-floating: no space is implied, only that the tree words gather
         ov.text(4.17 + dx, ty + dy, w, ha="center", va="center", fontsize=7, color=col, style="italic")
     arrow(ty, 4.62, 4.99)
-    ov.text(XOUT, ty, "“tree crown”", ha="center", va="center", fontsize=9, color=INK, style="italic")
-    label(1.7, ty - 0.42 - 0.12, "groups of words")
-    label(4.17, ty - 0.42 - 0.12, "common theme")
-    label(XOUT, ty - 0.42 - 0.12, "shared subject")
+    ov.text(XOUT, ty, "“tree”", ha="center", va="center", fontsize=9, color=INK, style="italic")
+    label(1.7, ty - 0.48 - 0.11, "bags of words")
+    label(4.17, ty - 0.48 - 0.11, "semantic clusters")
+    label(XOUT, ty - 0.48 - 0.11, "shared subject")
 
     ov.plot([0.25, FW - 0.25], [1.66, 1.66], color="#9e9e9e", lw=0.5)
 
@@ -296,24 +350,44 @@ def main():
             sp.set_edgecolor(INK2); sp.set_linewidth(0.4)
     ov.text(x0 + ncol * (t + g) + 0.05, by, "…", ha="center", va="center", fontsize=8, color=INK)
     arrow(by, 3.30, 3.70)
-    sphere(ov, 4.17, by, 0.30)
-    label(1.7, by - 0.58 - 0.12, "GT box crops")
-    label(4.17, by - 0.58 - 0.12, "whitened DINOv3 features")
-    label(XOUT, by - 0.58 - 0.12, "shared crown")
+    SX, SR = 4.17, 0.36
+    sphere(ov, SX, by, SR)  # 2026-11-28 Tom: a touch larger (was 0.30)
+    # patch -> sphere-point links, on a transparent top layer so they run over the crop and the sphere
+    top = fig.add_axes([0, 0, 1, 1]); top.set_xlim(0, FW); top.set_ylim(0, FH); top.axis("off"); top.patch.set_alpha(0)
+    lr, lk = divmod(LINK_POS, ncol)
+    cW, cH = crop(picks[LINK_POS]).shape[1], crop(picks[LINK_POS]).shape[0]
+    cx0, cy0 = x0 + lk * (t + g), by + g / 2 - lr * (t + g)
+    side = PATCH_PX * t / ((cW + cH) / 2)
+    dot_r = (2 * (1.2 / (0.55 / 2.54 * 72)) * (SR * PHYS_W / 6.0 * 72)) / 2 / 72 * FW / PHYS_W
+    links = []
+    for kind, (a, b), col in (("soil", LINK_SOIL, SOIL), ("crown", LINK_CROWN, CROWN_C)):
+        dx, dy = sphere_xy(SX, by, SR, a, b)
+        px = cx0 + (LINK_COL[kind] + 0.5) / cW * t
+        top.add_patch(plt.Rectangle((px - side / 2, dy - side / 2), side, side, fc="none", ec=LINK_BRIGHT[kind], lw=0.9))
+        top.plot([px + side / 2, dx - dot_r], [dy, dy], color=col, lw=0.6, ls=(0, (3, 2)))
+        links.append(dict(kind=kind, point=(a, b), patch_col=LINK_COL[kind], patch_row=round((1 - (dy - cy0) / t) * cH - 0.5, 1)))
+    label(1.7, by - 0.58 - 0.12, "GT boxes")
+    label(4.17, by - 0.58 - 0.12, "DINOv3 features")
+    label(XOUT, by - 0.58 - 0.12, "isolated crown")
     arrow(by, 4.62, 4.99)
     s = 0.72
-    rgba = cutout(crown)
-    h, w = rgba.shape[:2]
+    rgb, poly = tile_highlight(crown)
+    h, w = rgb.shape[:2]
     cw, ch = (s, s * h / w) if w >= h else (s * w / h, s)
     ax = fig.add_axes([(XOUT - cw / 2) / FW, (by - ch / 2) / FH, cw / FW, ch / FH])
-    ax.imshow(rgba, interpolation="bilinear", aspect="auto")
-    ax.axis("off")
+    ax.imshow(rgb, interpolation="lanczos", aspect="auto")
+    ax.plot(np.append(poly[:, 0], poly[0, 0]), np.append(poly[:, 1], poly[0, 1]), color=TEAL, lw=0.6)
+    ax.set_xlim(0, w); ax.set_ylim(h, 0)
+    ax.set_xticks([]); ax.set_yticks([])
+    for sp in ax.spines.values():
+        sp.set_edgecolor(INK2); sp.set_linewidth(0.4)
 
+    write_sphere_standalone(os.path.join(HERE, "arch", "concept_sphere.pdf"))
     stem = os.path.join(HERE, "concept_commonality")
     fig.savefig(stem + ".pdf"); fig.savefig(stem + ".png", dpi=300)
     rec = lambda c: dict(tile=c["tile"], ann_id=c["ann_id"], bbox=c["bbox"], **feat[c["ann_id"]])
     json.dump(dict(rule=__doc__.split("--sheet")[0].strip(), n_candidates=len(cands), seed=SEED,
-                   conf_pos=CONF_POS, q_band=Q_BAND, fourier_k=FOURIER_K, exg_in_median=med,
+                   conf_pos=CONF_POS, links=links, link_pos=LINK_POS, override=OVERRIDE, override_replaced=replaced, dim=DIM, teal=TEAL, q_band=Q_BAND, fourier_k=FOURIER_K, exg_in_median=med,
                    crops=[dict(pos=i, confounder=i in CONF_POS, **rec(c)) for i, c in enumerate(picks)],
                    crown=dict(iso_quotient=iso_quotient(crown["poly"]), **rec(crown))),
               open(stem + "_meta.json", "w"), indent=1)

@@ -25,14 +25,11 @@
   \node[num] at (0.27,-0.27) {1};
   \node[chead, anchor=west] at (0.47,-0.27) {Whiten};
   \begin{scope}[xshift=0.375cm]   % content centred in widened card
-  \begin{scope}[shift={(0.78,-1.5)}]
-    \shade[ball color=frz!10] (0,0) circle (0.55);
-    \draw[ink!45, line width=0.4pt] (0,0) circle (0.55);
-    \draw[ink!30, dashed, line width=0.3pt] (0,0) ellipse (0.55 and 0.16);
-    \foreach \a/\b in {20/0.35, 40/0.5, 55/0.3, 75/0.45, 30/0.6}{\fill[crown] ({0.55*cos(\a)*sqrt(1-\b*\b)},{0.55*\b}) circle (1.2pt);}
-    \foreach \a/\b in {200/-0.3, 230/-0.5, 250/-0.2, 215/0.1, 260/-0.6, 190/0.25}{\fill[soil] ({0.55*cos(\a)*sqrt(1-\b*\b)},{0.55*\b}) circle (1.2pt);}
+  \begin{scope}[shift={(0.70,-1.5)}]
+    % 2026-11-28 (Tom): the Fig. 2 sphere (origin vectors) from make_concept.py, replacing the TikZ ball; enlarged r 0.55 -> 0.64 cm (x1.06 pad)
+    \node[inner sep=0pt] at (0,0) {\includegraphics[width=1.357cm]{arch/concept_sphere.pdf}};
   \end{scope}
-  \node[tlbl, anchor=west, align=left] at (1.45,-1.5) {PCA-whiten\\to $128$ dims,\\project onto\\unit sphere};
+  \node[tlbl, anchor=west, align=left] at (1.52,-1.5) {PCA-whiten to\\$128$ dims, project\\onto unit sphere};
   \end{scope}
 \end{scope}
 
